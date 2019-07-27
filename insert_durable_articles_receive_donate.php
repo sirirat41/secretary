@@ -27,7 +27,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include "navigetion/navbar.php";?>
+    <?php include "navigation/navbar.php";?>
 
         </nav>
         <!-- End of Topbar -->
