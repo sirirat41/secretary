@@ -6,7 +6,7 @@
               <div class="sidebar-brand-icon ">
                 <img src="../img/logo1.png" class="my-logo">
               </div>
-            </a>
+          </a>
           <br>
 
       <!-- Divider -->
@@ -149,7 +149,7 @@
 
           <!-- Topbar Search -->
           <div class="col-md-4">
-              <img src="img/logosecretary.png" class="img-fluid">
+              <img src="img/logosecretary1.png" class="img-fluid">
           </div>
 
           <!-- Topbar Navbar -->
