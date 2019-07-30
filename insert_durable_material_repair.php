@@ -45,18 +45,18 @@
                             </div>
                           
                           <div class="card-body">
-                              <form>
+                          <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="seq">ลำดับ</label>
-                                          <input type="text" class="form-control" id="seq" placeholder="seq" autofocus>
+                                          <input type="text" class="form-control" name="seq" id="seq" placeholder="seq" autofocus>
                                       </div>
                                   </div>
                                   <div class="col-md-8">
                                       <div class="form-group">
                                      <label for="inputEmail3" >วันที่ซ่อม</label>
-                                      <input type="datetime-local" class="form-control" id="receive_date" placeholder="receivedate">
+                                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
                                     </div>
                                 </div>
                               </div>
@@ -64,7 +64,7 @@
                                 <div class="col-md-12 ">
                                   <div class="form-group">
                                  <label for="product_id">รหัสวัสดุ(ชำรุด)</label>
-                                  <input type="text" class="form-control" id="product_id" placeholder="id">
+                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
                                 </div>
                               </div>
                             </div>
@@ -73,7 +73,7 @@
                           <div class="col-md-12">
                             <div class="form-group ">
                                 <label for="place" >สถานที่ซ่อม</label>
-                              <textarea class="form-control" id="place" rows="3" placeholder="place"></textarea>
+                              <textarea class="form-control" name="place" id="place" rows="3" placeholder="place"></textarea>
                           </div>
                         </div>
                       </div>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-primary">บันทึก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                 </div>
                               </div>
                             </div>
@@ -124,7 +124,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>
