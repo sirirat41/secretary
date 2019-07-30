@@ -10,7 +10,8 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_receive_donate</secretary>
+  <secretary style="display: none">insert_durable_articles_repair_history</secretary>
+
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +20,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+
 
 </head>
 
@@ -41,20 +43,20 @@
             <div class="col-md-6 offset-md-3">
               <div class="card shado mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(ครุภัณฑ์)</h6>
+                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
                 </div>
                 <div class="card-body">
                     <form>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                  <label for="document_no">เลขที่เอกสาร</label>
-                                  <input type="text" class="form-control" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                                  <label for="seq">ลำดับ</label>
+                                  <input type="text" class="form-control" id="inputseq" aria-describedby="seq" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <div class="form-group">
-                                  <label for="receive_date">วันที่รับบริจาค</label>
+                                  <label for="receive_date">วันที่ซ่อม</label>
                                   <input type="datetime-local" class="form-control" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                               </div>
                           </div>
@@ -62,68 +64,63 @@
                       <div class="row">
                           <div class="col-md-12">
                               <div class="form-group">
-                                <label for="product_id">รหัสครุภัณฑ์</label>
-                                <input type="text" class="form-control" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
+                                <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
+                                <input type="text" class="form-control" id="inputrepair_id" aria-describedby="repair_id" placeholder="repairid">
                               </div>
                           </div>
-                          
                       </div>
-                      <div class="row">
-                          <div class="col-md-7">
+                        <div class="row">
+                          <div class="col-md-8">
+                              <div class="form-group">
+                                  <label for="fix">รายการการซ่อมครุภัณฑ์</label>
+                                  <input type="text" class="form-control" id="inputfix" aria-describedby="fix" placeholder="listfix">
+                              </div>
+                          </div>
+                          <div class="col-md-4">
                             <div class="form-group">
-                              <label for="donate_name">ชื่อผู้บริจาค</label>
-                              <input type="text" class="form-control" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="number">ราคา</label>
-                                <input type="text" class="form-control" id="inputnumber" aria-describedby="number" placeholder="price">
-                            </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="flag">หมายเหตุ</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                              <label for="price">ราคา</label>
+                              <input type="text" class="form-control" id="inputprice" aria-describedby="price" placeholder="price">
                             </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                          บันทึก
-                        <div class="ripple-container"></div></button>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลรับบริจาคครุภัณฑ์หรือไม่ ?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger">บันทึก</button>
-                              </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label for="flag">หมายเหตุ</label>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-12">
+                        <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
+                        บันทึก
+                      <div class="ripple-container"></div></button>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                              <button type="button" class="btn btn-danger">บันทึก</button>
                             </div>
                           </div>
                         </div>
-                        
+                      </div>
+
                       </div>
                     </div>
-                  </div>
-            </div>
-          </div>
-          </div>
-
+                    
                     </form>
+                </div>
                 </div>
               </div>
             </div>
@@ -192,6 +189,7 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
 
 </body>
 

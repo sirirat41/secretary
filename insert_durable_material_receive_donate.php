@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_receive_donate</secretary>
+  <secretary style="display: none">insert_durable_material_receive_donate</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +19,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+
 
 </head>
 
@@ -41,7 +42,7 @@
             <div class="col-md-6 offset-md-3">
               <div class="card shado mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(ครุภัณฑ์)</h6>
+                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(วัสดุคงทน)</h6>
                 </div>
                 <div class="card-body">
                     <form>
@@ -57,16 +58,15 @@
                                   <label for="receive_date">วันที่รับบริจาค</label>
                                   <input type="datetime-local" class="form-control" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                               </div>
-                          </div>
+                            </div>
                         </div>
                       <div class="row">
                           <div class="col-md-12">
                               <div class="form-group">
-                                <label for="product_id">รหัสครุภัณฑ์</label>
+                                <label for="product_id">รหัสวัสดุ</label>
                                 <input type="text" class="form-control" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
                               </div>
                           </div>
-                          
                       </div>
                       <div class="row">
                           <div class="col-md-7">
@@ -74,13 +74,13 @@
                               <label for="donate_name">ชื่อผู้บริจาค</label>
                               <input type="text" class="form-control" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
                             </div>
-                        </div>
-                        <div class="col-md-5">
+                          </div>
+                          <div class="col-md-5">
                             <div class="form-group">
                                 <label for="number">ราคา</label>
                                 <input type="text" class="form-control" id="inputnumber" aria-describedby="number" placeholder="price">
                             </div>
-                        </div>
+                          </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
@@ -106,7 +106,7 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลรับบริจาคครุภัณฑ์หรือไม่ ?
+                                  คุณต้องการบันทึกข้อมูลรับบริจาควัสดุหรือไม่ ?
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -115,14 +115,10 @@
                             </div>
                           </div>
                         </div>
-                        
                       </div>
-                    </div>
-                  </div>
-            </div>
-          </div>
-          </div>
+                      </div>
 
+                      </div>
                     </form>
                 </div>
               </div>
@@ -192,6 +188,7 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
 
 </body>
 

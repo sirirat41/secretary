@@ -10,7 +10,8 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_receive_donate</secretary>
+  <secretary style="display: none">insert_supplies</secretary>
+
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +20,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+
 
 </head>
 
@@ -41,55 +43,136 @@
             <div class="col-md-6 offset-md-3">
               <div class="card shado mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(ครุภัณฑ์)</h6>
+                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูล(วัสดุสิ้นเปลือง)</h6>
                 </div>
                 <div class="card-body">
                     <form>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="document_no">เลขที่เอกสาร</label>
-                                  <input type="text" class="form-control" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                                  <label for="seq">ลำดับ</label>
+                                  <input type="text" class="form-control" id="inputseq" aria-describedby="seq" placeholder="seq">
                                 </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="receive_date">วันที่รับบริจาค</label>
-                                  <input type="datetime-local" class="form-control" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                <input type="text" class="form-control" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
                               </div>
                           </div>
                         </div>
-                      <div class="row">
-                          <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="product_id">รหัสครุภัณฑ์</label>
-                                <input type="text" class="form-control" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
-                              </div>
-                          </div>
+                        <div class="row">
                           
-                      </div>
-                      <div class="row">
-                          <div class="col-md-7">
+                          <div class="col-md-12">
                             <div class="form-group">
-                              <label for="donate_name">ชื่อผู้บริจาค</label>
-                              <input type="text" class="form-control" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
+                                <label for="code">รหัสวัสดุ</label>
+                                <input type="text" class="form-control" id="inputcode" aria-describedby="code" placeholder="code">
+                            </div>
+                          </div>
+                        </div>
+                  
+                      
+                      <div class="row">
+                          <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="name">ชื่อวัสดุ</label>
+                                <input type="text" class="form-control" id="inputname" aria-describedby="name" placeholder="name">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="unit">หน่วยนับ</label>
+                              <input type="text" class="form-control" id="inputunit" aria-describedby="unit" placeholder="unit">
                             </div>
                         </div>
-                        <div class="col-md-5">
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="attribute">คุณลักษณะ</label>
+                            <input type="text" class="form-control" id="inputattribute" aria-describedby="attribute" placeholder="attribute">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="price">ราคา</label>
+                          <input type="text" class="form-control" id="inputprice" aria-describedby="price" placeholder="price">
+                        </div>
+                    </div>
+                    </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="number">ราคา</label>
-                                <input type="text" class="form-control" id="inputnumber" aria-describedby="number" placeholder="price">
+                              <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
                             </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="flag">หมายเหตุ</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                              <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+
                             </div>
                         </div>
                       </div>
+                      <div class="row">
+                        
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                              <label for="govermant">ส่วนราชการ</label>
+                              <input type="text" class="form-control" id="inputgovermant" aria-describedby="govermant" placeholder="govermant">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="short_govermant">หน่วยงาน</label>
+                            <input type="text" class="form-control" id="inputshort_govermant" aria-describedby="short_govermant" placeholder="short_govermant">
+                          </div>
+                      </div>
+                      </div>
+                      
+                      <div class="row">
+                        
+                        <div class="col-md-12">
+                          <div class="form-group">
+                              <label for="status">สถานะ</label>
+                              <input type="text" class="form-control" id="inputstatus" aria-describedby="status" placeholder="status">
+                          </div>
+                        </div>
+                      </div>
+
                       <div class="row">
                         <div class="col-md-12">
                           <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
@@ -106,7 +189,7 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลรับบริจาคครุภัณฑ์หรือไม่ ?
+                                  คุณต้องการบันทึกข้อมูลรับบริจาควัสดุหรือไม่ ?
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -115,14 +198,10 @@
                             </div>
                           </div>
                         </div>
-                        
                       </div>
-                    </div>
-                  </div>
-            </div>
-          </div>
-          </div>
+                      </div>
 
+                      </div>
                     </form>
                 </div>
               </div>
@@ -192,6 +271,7 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
 
 </body>
 

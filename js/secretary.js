@@ -11,5 +11,15 @@ $(document).ready(function() {
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .purchase').addClass('active');
             break
+        case "insert_durable_articles_receive_donate":
+            $('.nav-articles').addClass('active');
+            $('.collapse-articles').addClass('show');
+            $('.collapse-articles .donate').addClass('active');
+            break
+        case "insert_durable_articles_repair":
+            $('.nav-articles').addClass('active');
+            $('.collapse-articles').addClass('show');
+            $('.collapse-articles .repair').addClass('active');
+            break
     }
 })
