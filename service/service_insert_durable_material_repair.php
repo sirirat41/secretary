@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $repairdate = $_POST["repair_date"];
     $place = $_POST["place"];
 
-    $sql = "INSERT INTO durable_articles_repair(seq, damage_id, repair_date, place)";
+    $sql = "INSERT INTO durable_material_repair(seq, damage_id, repair_date, place)";
     $sql .= " VALUES($seq, $damageid, '$repairdate', '$place')";
 
     if (mysqli_query($conn, $sql)) {

@@ -46,18 +46,18 @@
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มรายละเอียดการซ่อม(วัสดุคงทน)</h6>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="service/service_insert_durable_material_repair_history.php" id="form_insert">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="seq">ลำดับ</label>
-                                  <input type="text" class="form-control" id="inputseq" aria-describedby="seq" placeholder="">
+                                  <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-8">
                               <div class="form-group">
                                   <label for="receive_date">วันที่ซ่อม</label>
-                                  <input type="datetime-local" class="form-control" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                                  <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                               </div>
                           </div>
                         </div>
@@ -65,7 +65,7 @@
                           <div class="col-md-9">
                               <div class="form-group">
                                 <label for="repair_id">รหัสซ่อม(วัสดุ)</label>
-                                <input type="text" class="form-control" id="inputrepair_id" aria-describedby="repair_id" placeholder="repairid">
+                                <input type="text" class="form-control" name="repair_id" id="inputrepair_id" aria-describedby="repair_id" placeholder="repairid">
                               </div>
                           </div>
                       </div>
@@ -73,13 +73,13 @@
                           <div class="col-md-8">
                               <div class="form-group">
                                   <label for="fix">รายการซ่อม(วัสดุ)</label>
-                                  <input type="text" class="form-control" id="inputfix" aria-describedby="fix" placeholder="listfix">
+                                  <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="listfix">
                               </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="price">ราคา</label>
-                              <input type="text" class="form-control" id="inputprice" aria-describedby="price" placeholder="price">
+                              <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
                             </div>
                         </div>
                       </div>
@@ -88,7 +88,7 @@
                       <div class="col-md-12">
                           <div class="form-group">
                               <label for="flag">หมายเหตุ</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                              <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
                           </div>
                       </div>
                       
@@ -110,7 +110,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                              <button type="button" class="btn btn-danger">บันทึก</button>
+                              <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                             </div>
                           </div>
                         </div>
