@@ -35,15 +35,12 @@
             <a class="collapse-item purchase" href="insert_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
             <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
+            <a class="collapse-item insertdamage" href="insert_durable_articles_damage.php">เพิ่มรายการชำรุด</a>
             <a class="collapse-item repair" href="buttons.html">รายการซ่อม</a>
             <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
-<<<<<<< HEAD
-            <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
-            <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก</a>
-=======
             <a class="collapse-item transfer" href="insert_durable_articles_transfer_in.php">โอนเข้า-ออก</a>
-            <a class="collapse-item donate" href="buttons.html">บริจาคเข้า-ออก</a>
->>>>>>> 945b4252c50b37d7395e101b99fb2adccbcaa8e2
+            <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคออก</a>
+            <a class="collapse-item insertdonate" href="insert_durable_articles_donate.php">เพิ่มข้อมูลบริจาคออก</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>
@@ -60,11 +57,13 @@
             <a class="collapse-item display" href="cards.html">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="buttons.html">จัดซื้อ</a>
             <a class="collapse-item permits" href="buttons.html">ยืม-คืน</a>
-            <a class="collapse-item damage" href="buttons.html">รายการชำรุด</a>
+            <a class="collapse-item damage" href="display_durable_material_damage.php">รายการชำรุด</a>
+            <a class="collapse-item insertdamage" href="insert_durable_material_damage.php">เพิ่มรายการชำรุด</a>
             <a class="collapse-item repair" href="buttons.html">รายการซ่อม</a>
             <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
-            <a class="collapse-item donate" href="buttons.html">บริจาคเข้า-ออก</a>
+            <a class="collapse-item donates" href="display_durable_material_donate.php">บริจาคออก</a>
+            <a class="collapse-item insertdonates" href="insert_durable_material_donate.php">เพิ่มข้อมูลบริจาคออก</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>
@@ -81,7 +80,8 @@
             <a class="collapse-item display" href="cards.html">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="buttons.html">จัดซื้อ</a>
             <a class="collapse-item permits" href="buttons.html">ยืม-คืน</a>
-            <a class="collapse-item distribute" href="buttons.html">แจกจ่าย</a>
+            <a class="collapse-item distribute" href="display_suplies_distribute.php">แจกจ่าย</a>
+            <a class="collapse-item insertdistribute" href="insert_suplies_distribute.php">เพิ่มข้อมูลแจกจ่าย</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>
