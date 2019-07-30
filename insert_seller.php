@@ -46,12 +46,12 @@
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลร้านค้า</h6>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="service/service_insert_seller.php" id="form_insert">
                       <div class="row">
                           <div class="col-md-12 ">
                               <div class="form-group">
                                 <label for="name">ชื่อร้านค้า</label>
-                                <input type="text" class="form-control" id="inputname" aria-describedby="name" placeholder="nameseller">
+                                <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="nameseller">
                               </div>
                           </div>
                       </div>
@@ -60,7 +60,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="tel">เบอร์โทร</label>
-                              <input type="text" class="form-control" id="inputtel" aria-describedby="tel" placeholder="tel">
+                              <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                       <div class="col-md-12 ">
                           <div class="form-group">
                             <label for="fax">แฟกต์</label>
-                            <input type="text" class="form-control" id="inputfax" aria-describedby="fax" placeholder="fax">
+                            <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax">
                           </div>
                       </div>
                   </div>
@@ -78,7 +78,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                           <label for="address">ที่อยู่</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="address" rows="3"></textarea>
+                          <textarea class="form-control" name="address" id="exampleFormControlTextarea1" placeholder="address" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger">บันทึก</button>
+                                <button type="button" class="btn btn-danger"onclick="$('#form_insert').submit();">บันทึก</button>
                               </div>
                             </div>
                           </div>

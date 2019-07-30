@@ -45,18 +45,18 @@
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(วัสดุคงทน)</h6>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="service/service_insert_durable_material_receive_donate.php" id="form_insert">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="document_no">เลขที่เอกสาร</label>
-                                  <input type="text" class="form-control" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                                  <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
                                 </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                   <label for="receive_date">วันที่รับบริจาค</label>
-                                  <input type="datetime-local" class="form-control" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                                  <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                               </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                           <div class="col-md-12">
                               <div class="form-group">
                                 <label for="product_id">รหัสวัสดุ</label>
-                                <input type="text" class="form-control" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
+                                <input type="text" class="form-control" name="product_id" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
                               </div>
                           </div>
                       </div>
@@ -72,13 +72,13 @@
                           <div class="col-md-7">
                             <div class="form-group">
                               <label for="donate_name">ชื่อผู้บริจาค</label>
-                              <input type="text" class="form-control" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
+                              <input type="text" class="form-control" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
                             </div>
                           </div>
                           <div class="col-md-5">
                             <div class="form-group">
                                 <label for="number">ราคา</label>
-                                <input type="text" class="form-control" id="inputnumber" aria-describedby="number" placeholder="price">
+                                <input type="text" class="form-control" name="number" id="inputnumber" aria-describedby="number" placeholder="price">
                             </div>
                           </div>
                       </div>
@@ -86,7 +86,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="flag">หมายเหตุ</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                                <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
                             </div>
                         </div>
                       </div>
@@ -110,7 +110,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger">บันทึก</button>
+                                <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                               </div>
                             </div>
                           </div>
