@@ -4,7 +4,7 @@
           <!-- Sidebar - Brand -->
           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
               <div class="sidebar-brand-icon ">
-                <img src="../img/logo1.png" class="my-logo">
+                <img src="./img/logo1.png" class="my-logo">
               </div>
           </a>
           <br>
@@ -30,14 +30,15 @@
         </a>
         <div id="collapseArticles" class="collapse collapse-articles" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item display" href="">แสดงข้อมูล</a>
+            <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
+            <a class="collapse-item insert" href="insert_durable_articles.php">เพิ่มข้อมูล</a>
             <a class="collapse-item purchase" href="insert_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
-            <a class="collapse-item damage" href="buttons.html">รายการชำรุด</a>
+            <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="buttons.html">รายการซ่อม</a>
             <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
-            <a class="collapse-item donate" href="buttons.html">บริจาคเข้า-ออก</a>
+            <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>
@@ -149,7 +150,7 @@
 
           <!-- Topbar Search -->
           <div class="col-md-4">
-              <img src="img/logosecretary1.png" class="img-fluid">
+              <img src="./img/logosecretary.png" class="img-fluid">
           </div>
 
           <!-- Topbar Navbar -->
