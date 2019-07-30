@@ -46,18 +46,18 @@
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูล(วัสดุสิ้นเปลือง)</h6>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="service/service_insert_supplies.php" id="form_insert">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="seq">ลำดับ</label>
-                                  <input type="text" class="form-control" id="inputseq" aria-describedby="seq" placeholder="seq">
+                                  <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq">
                                 </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="bill_no">เลขที่ใบเบิก</label>
-                                <input type="text" class="form-control" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
+                                <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
                               </div>
                           </div>
                         </div>
@@ -66,7 +66,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                                 <label for="code">รหัสวัสดุ</label>
-                                <input type="text" class="form-control" id="inputcode" aria-describedby="code" placeholder="code">
+                                <input type="text" class="form-control" name="code" id="inputcode" aria-describedby="code" placeholder="code">
                             </div>
                           </div>
                         </div>
@@ -76,13 +76,13 @@
                           <div class="col-md-8">
                             <div class="form-group">
                                 <label for="name">ชื่อวัสดุ</label>
-                                <input type="text" class="form-control" id="inputname" aria-describedby="name" placeholder="name">
+                                <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="name">
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="unit">หน่วยนับ</label>
-                              <input type="text" class="form-control" id="inputunit" aria-describedby="unit" placeholder="unit">
+                              <input type="text" class="form-control" name="unit" id="inputunit" aria-describedby="unit" placeholder="unit">
                             </div>
                         </div>
                       </div>
@@ -90,7 +90,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="attribute">คุณลักษณะ</label>
-                            <input type="text" class="form-control" id="inputattribute" aria-describedby="attribute" placeholder="attribute">
+                            <input type="text" class="form-control" name="attribute" id="inputattribute" aria-describedby="attribute" placeholder="attribute">
                           </div>
                         </div>
                       </div>
@@ -98,19 +98,19 @@
                         <div class="col-md-8">
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            <select class="form-control" name="type">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
                             </select>
                           </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="price">ราคา</label>
-                          <input type="text" class="form-control" id="inputprice" aria-describedby="price" placeholder="price">
+                          <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
                         </div>
                     </div>
                     </div>
@@ -119,12 +119,12 @@
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="exampleFormControlSelect1">หน่วยงาน</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                <select class="form-control" name="department_id">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
                                 </select>
                             </div>
                         </div>
@@ -133,12 +133,12 @@
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                <select class="form-control" name="seller_id">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
                                 </select>
 
                             </div>
@@ -152,13 +152,13 @@
                         <div class="col-md-8">
                             <div class="form-group">
                               <label for="govermant">ส่วนราชการ</label>
-                              <input type="text" class="form-control" id="inputgovermant" aria-describedby="govermant" placeholder="govermant">
+                              <input type="text" class="form-control" name="goverment" id="inputgovermant" aria-describedby="govermant" placeholder="govermant">
                             </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="short_govermant">หน่วยงาน</label>
-                            <input type="text" class="form-control" id="inputshort_govermant" aria-describedby="short_govermant" placeholder="short_govermant">
+                            <input type="text" class="form-control" name="short_goverment" id="inputshort_govermant" aria-describedby="short_govermant" placeholder="short_govermant">
                           </div>
                       </div>
                       </div>
@@ -168,7 +168,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                               <label for="status">สถานะ</label>
-                              <input type="text" class="form-control" id="inputstatus" aria-describedby="status" placeholder="status">
+                              <input type="text" class="form-control" name="status" id="inputstatus" aria-describedby="status" placeholder="status">
                           </div>
                         </div>
                       </div>
@@ -193,7 +193,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger">บันทึก</button>
+                                <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                               </div>
                             </div>
                           </div>

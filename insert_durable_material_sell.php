@@ -46,18 +46,18 @@
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> เพิ่มข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="service/service_insert_durable_material_sell.php" id="form_insert">
                       <div class="row">
                           <div class="col-md-6 ">
                               <div class="form-group">
                                 <label for="product_id">รหัสวัสดุ</label>
-                                <input type="text" class="form-control" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
+                                <input type="text" class="form-control" name="product_id" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
                               </div>
                           </div>
                           <div class="col-md-6 ">
                             <div class="form-group">
                               <label for="sell_date">วันที่ขาย</label>
-                              <input type="datetime-local" class="form-control" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate">
+                              <input type="datetime-local" class="form-control" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate">
                             </div>
                         </div>
                       </div>
@@ -66,7 +66,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="buyer">ชื่อผู้ซื้อ</label>
-                              <input type="text" class="form-control" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer">
+                              <input type="text" class="form-control" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer">
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                           <label for="document_no">เลขที่เอกสาร</label>
-                          <input type="text" class="form-control" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                          <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                   <div class="col-md-12">
                       <div class="form-group">
                         <label for="flag">หมายเหตุ</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                        <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
                       </div>
                   </div>
               </div>
@@ -108,7 +108,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger">บันทึก</button>
+                                <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                               </div>
                             </div>
                           </div>

@@ -33,11 +33,30 @@
             <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
+<<<<<<< HEAD
             <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_articles_repair.php">รายการซ่อม</a>
             <a class="collapse-item sell" href="display_durable_articles_sell.php">ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">โอนเข้า-ออก</a>
             <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก </a>
+=======
+            <a class="collapse-item damage" href="buttons.html">รายการชำรุด</a>
+            <a class="collapse-item repair" href="insert_durable_articles_repair.php">รายการซ่อม</a>
+            <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
+
+            <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
+            <a class="collapse-item donate" href="insert_durable_articles_receive_donate.php">บริจาคเข้า-ออก</a>
+            <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
+            <a class="collapse-item repair" href="buttons.html">รายการซ่อม</a>
+            <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
+<<<<
+            <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
+            <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก</a>
+=======
+            <a class="collapse-item transfer" href="insert_durable_articles_transfer_in.php">โอนเข้า-ออก</a>
+            <a class="collapse-item donate" href="buttons.html">บริจาคเข้า-ออก</a>
+>>>>>>> 945b4252c50b37d7395e101b99fb2adccbcaa8e2
+>>>>>>> 151864a7952e428ae8c593519ec9d1d819c8fcad
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>

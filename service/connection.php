@@ -10,14 +10,18 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> 151864a7952e428ae8c593519ec9d1d819c8fcad
     $conn = mysqli_connect($servername, $username, $password, $database);
     if (!$conn) {
         die("Failed to connect to MySQL: " . mysqli_connect_error());
     }
 =======
+<<<<<<< HEAD
     $conn = mysqli_connect ($servername ,$username ,$password, $database);
     if (!$conn) {
         die("Failed to connect to MySQL: " . mysqli_connect_error());
@@ -28,6 +32,8 @@
     if (!$conn) {
         die("Failed to connect to MySQL;" . mysqli_connect_error());
 =======
+=======
+>>>>>>> 151864a7952e428ae8c593519ec9d1d819c8fcad
     $conn = mysqli_connect ($servername ,$username ,$password, $database);
     if (!$conn) {
         die("Failed to connect to MySQL: " . mysqli_connect_error());
@@ -36,4 +42,5 @@
     }
 
 
+>>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
 ?>
