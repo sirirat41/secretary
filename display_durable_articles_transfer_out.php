@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_transfer_in</secretary>
+  <secretary style="display: none">display_durable_articles_transfer_out</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,9 +27,8 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php include "navigation/navbar.php";?>
-
+  <?php include "navigation/navbar.php";?>
+    
         </nav>
         <!-- End of Topbar -->
 
@@ -43,7 +42,7 @@
                     <div class="card-header py-3">
                         <nav class="navbar navbar-light bg-light">
                       <h6 class="m-0 font-weight-bold text-danger">
-                          <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                          <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนออก(ครุภัณฑ์)</h6>
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                             <div>
@@ -69,7 +68,7 @@
                                         <th >เลขที่เอกสาร</th>
                                         <th >วันที่โอน</th>
                                         <th >รหัสครุภัณฑ์</th>
-                                        <th >ชื่อผู้โอน</th>
+                                        <th >ชื่อผู้โอนให้</th>
                                         <th >การทำงาน</th>
                                     </tr>
                                 </thead>
@@ -101,7 +100,7 @@
                                                       </button>
                                                     </div>
                                                     <div class="modal-body text-left">
-                                                      คุณต้องการลบข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+                                                      คุณต้องการลบข้อมูลการโอนออกครุภัณฑ์ใช่หรือไม่
                                                     </div>
                                                     <div class="modal-footer">
                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
