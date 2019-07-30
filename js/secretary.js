@@ -14,8 +14,16 @@ $(document).ready(function() {
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .purchase').addClass('active');
+<<<<<<< HEAD
             break;
 
+=======
+            break
+<<<<<<< HEAD
+<<<<<<< HEAD
+        case "insert_durable_articles_receive_donate":
+=======
+>>>>>>> 97a7e3a92a8500893cf32d867123fe30cd5db842
         case "display_durable_articles":
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
@@ -41,9 +49,11 @@ $(document).ready(function() {
             break;
 
         case "display_durable_articles_donate":
+>>>>>>> 07fa5f891a0e02cdb8571166c9159e6293425ef6
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .donate').addClass('active');
+<<<<<<< HEAD
             break;
 
         case "insert_durable_articles_donate":
@@ -52,6 +62,22 @@ $(document).ready(function() {
             $('.collapse-articles .insertdonate').addClass('active');
             break;
 
+=======
+            break
+<<<<<<< HEAD
+        case "insert_durable_articles_repair":
+            $('.nav-articles').addClass('active');
+            $('.collapse-articles').addClass('show');
+            $('.collapse-articles .repair').addClass('active');
+=======
+        case "insert_durable_articles":
+            $('.nav-articles').addClass('active');
+            $('.collapse-articles').addClass('show');
+            $('.collapse-articles .insert').addClass('active');
+>>>>>>> 07fa5f891a0e02cdb8571166c9159e6293425ef6
+            break
+=======
+>>>>>>> 97a7e3a92a8500893cf32d867123fe30cd5db842
          case "display_durable_articles_transfer_in":
              $('.nav-articles').addClass('active');
              $('.collapse-articles').addClass('show');
