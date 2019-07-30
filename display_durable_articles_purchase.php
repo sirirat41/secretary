@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_transfer_in</secretary>
+  <secretary style="display: none">Display_durable_articles_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
                     <div class="card-header py-3">
                         <nav class="navbar navbar-light bg-light">
                       <h6 class="m-0 font-weight-bold text-danger">
-                          <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                        <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                             <div>
@@ -66,10 +66,11 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th >#</th>
-                                        <th >เลขที่เอกสาร</th>
-                                        <th >วันที่โอน</th>
+                                        <th >เลขที่ใบสั่งซื้อ</th>
+                                        <th >วันที่จัดซื้อ</th>
+                                        <th >ชื่อผู้จัดซื้อ</th>
                                         <th >รหัสครุภัณฑ์</th>
-                                        <th >ชื่อผู้โอน</th>
+                                        <th >จำนวน</th>
                                         <th >การทำงาน</th>
                                     </tr>
                                 </thead>
@@ -78,8 +79,9 @@
                                         <td class="text-center">1</td>
                                         <td>25/569</td>
                                         <td>12/07/62</td>
-                                        <td>777-526-98556</td>
                                         <td>ศิริรัชต์</td>
+                                        <td>777-526-98556</td>
+                                        <td>10</td>
                                         <td class="td-actions text-center">
                                             <button type="button" rel="tooltip" class="btn btn-warning" >
                                                 <i class="fas fa-pencil-alt"></i>
@@ -101,7 +103,7 @@
                                                       </button>
                                                     </div>
                                                     <div class="modal-body text-left">
-                                                      คุณต้องการลบข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+                                                      คุณต้องการลบข้อมูลการจัดซื้อครุภัณฑ์ใช่หรือไม่
                                                     </div>
                                                     <div class="modal-footer">
                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -113,10 +115,11 @@
                                             </div>
                                           </div>
                                         </td>
-                                      </tr>
-                                   </tbody>
-                                </table>
-                              <nav aria-label="Page navigation example">
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
                                   <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Previous">
