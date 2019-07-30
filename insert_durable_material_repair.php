@@ -10,8 +10,12 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
+<<<<<<< HEAD
   <secretary style="display: none">insert_durable_articles_repair</secretary>
 
+=======
+  <secretary style="display: none">Display_durable_material_repair</secretary>
+>>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,8 +32,12 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+<<<<<<< HEAD
     <!-- Sidebar -->
     <?php include "navigation/navbar.php";?>
+=======
+  <?php include "navigation/navbar.php";?>
+>>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
 
         </nav>
         <!-- End of Topbar -->
@@ -178,7 +186,7 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
-
+  <script src="js/secretary.js"></script>
 </body>
 
 </html>
