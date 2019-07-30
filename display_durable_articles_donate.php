@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_articles</secretary>
+  <secretary style="display : none">display_durable_articles_donate</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +19,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+
   
 
 </head>
@@ -29,7 +30,8 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-        <?php include "navigation/navbar.php";?>
+    <?php include "navigation/navbar.php";?>
+
         </nav>
         <!-- End of Topbar -->
 
@@ -38,12 +40,12 @@
         <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <div class="row">
-            <div class="col-12" >
+            <div class="col-10 offset-1" >
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                   <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลการบริจาคออก(ครุภัณฑ์)</h6>
                   <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <div>
@@ -65,22 +67,20 @@
                               <thead>
                               <tr class="text-center">
                                 <th >#</th>
-                                <th >รูปภาพ</th>
-                                <th >ลำดับ</th>
-                                <th >เลขที่ใบเบิก</th>
+                                <th >เลขที่เอกสาร</th>
                                 <th >รหัสครุภัณฑ์</th>
-                                <th >ประเภท</th>
+                                <th >ชื่อบริจาค</th>
+                                <th >วันที่บริจาค</th>
                                 <th >การทำงาน</th>
                               </tr class="text-center">
                             </thead>
                             <tbody>
                               <tr class="text-center">
-                                  <th >1</th>
-                                  <th >pic</th>
-                                  <th >ลำดับ</th>
-                                  <th >๗๔๔๐-๐๑๐๑-๐๐๕๑-๓-๒๕๖๒ (PC) / ๗๔๔๐-๐๒๐๒-๐๐๕๑-๓-๒๕๖๒</th>
-                                  <th >คอม</th>
-                                  <th >คอมพิวเตอร์ประมวลผล</th>
+                                <td >1</td>
+                                <td>12/2562</td>
+                                <td>121212222222222222</td>
+                                <td>คุณ ก</td>
+                                <td>12/03/2562</td>
                                 <td class="td-actions text-center">
                                   <button type="button" rel="tooltip" class="btn btn-warning" >
                                   <i class="fas fa-pencil-alt"></i>
@@ -101,7 +101,7 @@
                                     </button>
                                     </div>
                                   <div class="modal-body text-left">
-                                    คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่
+                                    คุณต้องการลบข้อมูลบริจาคออก (ครุภัณฑ์)ใช่หรือไม่
                                   </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -138,8 +138,8 @@
                 </div>
               </div>
             </div>
-          </div>
         </form>
+      </div>
         <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
         <!-- /.container-fluid -->

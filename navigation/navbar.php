@@ -30,15 +30,25 @@
         </a>
         <div id="collapseArticles" class="collapse collapse-articles" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item display" href="">แสดงข้อมูล</a>
+            <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
+            <a class="collapse-item insert" href="insert_durable_articles.php">เพิ่มข้อมูล</a>
             <a class="collapse-item purchase" href="insert_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
+<<<<<<< HEAD
             <a class="collapse-item damage" href="buttons.html">รายการชำรุด</a>
             <a class="collapse-item repair" href="insert_durable_articles_repair.php">รายการซ่อม</a>
             <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
 <<<<<<< HEAD
             <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
             <a class="collapse-item donate" href="insert_durable_articles_receive_donate.php">บริจาคเข้า-ออก</a>
+=======
+            <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
+            <a class="collapse-item repair" href="buttons.html">รายการซ่อม</a>
+            <a class="collapse-item sell" href="buttons.html">ขายทอดตลาด</a>
+<<<<<<< HEAD
+            <a class="collapse-item transfer" href="buttons.html">โอนเข้า-ออก</a>
+            <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก</a>
+>>>>>>> 07fa5f891a0e02cdb8571166c9159e6293425ef6
 =======
             <a class="collapse-item transfer" href="insert_durable_articles_transfer_in.php">โอนเข้า-ออก</a>
             <a class="collapse-item donate" href="buttons.html">บริจาคเข้า-ออก</a>
