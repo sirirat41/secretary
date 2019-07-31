@@ -48,18 +48,8 @@ $(document).ready(function() {
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .permits').addClass('active');
             break;
-<<<<<<< HEAD
 
          case "display_durable_articles":   //ครุภัณฑ์
-=======
-        case "insert_durable_articles_purchase":
-            $('.nav-articles').addClass('active');
-            $('.collapse-articles').addClass('show');
-            $('.collapse-articles .purchase').addClass('active');
-            break
-        case "insert_durable_articles_receive_donate":
-        case "display_durable_articles":
->>>>>>> 151864a7952e428ae8c593519ec9d1d819c8fcad
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .display').addClass('active');
@@ -69,7 +59,6 @@ $(document).ready(function() {
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .damage').addClass('active');
-<<<<<<< HEAD
             break;
 
         case "display_durable_articles_donate":  // บริจาค
@@ -205,35 +194,5 @@ $(document).ready(function() {
             $('.collapse-supplies').addClass('show');
             $('.collapse-supplies .permits').addClass('active');
             break;
-
-=======
-            break
-        case "display_durable_articles_donate":
-            $('.nav-articles').addClass('active');
-            $('.collapse-articles').addClass('show');
-            $('.collapse-articles .donate').addClass('active');
-            break
-        case "insert_durable_articles_repair":
-            $('.nav-articles').addClass('active');
-            $('.collapse-articles').addClass('show');
-            $('.collapse-articles .repair').addClass('active');
-        case "insert_durable_articles":
-            $('.nav-articles').addClass('active');
-            $('.collapse-articles').addClass('show');
-            $('.collapse-articles .insert').addClass('active');
-            break
-=======
-         case "display_durable_articles_transfer_in":
-             $('.nav-articles').addClass('active');
-             $('.collapse-articles').addClass('show');
-             $('.collapse-articles .transfer').addClass('active');
-             break
-         case "insert_durable_articles_transfer_in":
-             $('.nav-articles').addClass('active');
-             $('.collapse-articles').addClass('show');
-             $('.collapse-articles .transfer').addClass('active');
-             break
->>>>>>> 945b4252c50b37d7395e101b99fb2adccbcaa8e2
->>>>>>> 151864a7952e428ae8c593519ec9d1d819c8fcad
     }
 })

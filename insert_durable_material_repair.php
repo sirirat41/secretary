@@ -10,12 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-<<<<<<< HEAD
-  <secretary style="display: none">insert_durable_articles_repair</secretary>
-
-=======
-  <secretary style="display: none">Display_durable_material_repair</secretary>
->>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
+  <secretary style="display: none">insert_durable_material_repair</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,12 +27,8 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-<<<<<<< HEAD
     <!-- Sidebar -->
     <?php include "navigation/navbar.php";?>
-=======
-  <?php include "navigation/navbar.php";?>
->>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
 
         </nav>
         <!-- End of Topbar -->
@@ -55,11 +46,7 @@
                             </div>
                           
                           <div class="card-body">
-<<<<<<< HEAD
                           <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
-=======
-                              <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
->>>>>>> 33425004392a5333a6e15b41773ff476c8abf9f5
                                 <div class="row">
                                   <div class="col-md-4">
                                       <div class="form-group">
@@ -69,26 +56,16 @@
                                   </div>
                                   <div class="col-md-8">
                                       <div class="form-group">
-<<<<<<< HEAD
-                                     <label for="inputEmail3" >วันที่ซ่อม</label>
-                                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
-=======
                                      <label for="repair_date" >วันที่ซ่อม</label>
                                       <input type="datetime-local" class="form-control" name="repair_date" id="receive_date" placeholder="receivedate">
->>>>>>> 33425004392a5333a6e15b41773ff476c8abf9f5
                                     </div>
                                 </div>
                               </div>
                               <div class="row">
                                 <div class="col-md-12 ">
                                   <div class="form-group">
-<<<<<<< HEAD
-                                 <label for="product_id">รหัสวัสดุ(ชำรุด)</label>
-                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
-=======
                                  <label for="damage_id">รหัสวัสดุ(ชำรุด)</label>
                                   <input type="text" class="form-control" name="damage_id" id="damage_id" placeholder="id">
->>>>>>> 33425004392a5333a6e15b41773ff476c8abf9f5
                                 </div>
                               </div>
                             </div>
