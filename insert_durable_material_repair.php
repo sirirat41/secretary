@@ -45,7 +45,11 @@
                             </div>
                           
                           <div class="card-body">
+<<<<<<< HEAD
+                          <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
+=======
                               <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
+>>>>>>> 33425004392a5333a6e15b41773ff476c8abf9f5
                                 <div class="row">
                                   <div class="col-md-4">
                                       <div class="form-group">
@@ -55,16 +59,26 @@
                                   </div>
                                   <div class="col-md-8">
                                       <div class="form-group">
+<<<<<<< HEAD
+                                     <label for="inputEmail3" >วันที่ซ่อม</label>
+                                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
+=======
                                      <label for="repair_date" >วันที่ซ่อม</label>
                                       <input type="datetime-local" class="form-control" name="repair_date" id="receive_date" placeholder="receivedate">
+>>>>>>> 33425004392a5333a6e15b41773ff476c8abf9f5
                                     </div>
                                 </div>
                               </div>
                               <div class="row">
                                 <div class="col-md-12 ">
                                   <div class="form-group">
+<<<<<<< HEAD
+                                 <label for="product_id">รหัสวัสดุ(ชำรุด)</label>
+                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
+=======
                                  <label for="damage_id">รหัสวัสดุ(ชำรุด)</label>
                                   <input type="text" class="form-control" name="damage_id" id="damage_id" placeholder="id">
+>>>>>>> 33425004392a5333a6e15b41773ff476c8abf9f5
                                 </div>
                               </div>
                             </div>
@@ -124,7 +138,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>
