@@ -1,3 +1,6 @@
+<?php
+  require "service/connection.php";
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,12 +101,14 @@
                         <div class="col-md-8">
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
-                            <select class="form-control" name="type">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
+                            <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                              <?php
+                                $sqlSelectType = "SELECT * FROM durable_material_type";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                }
+                               ?>
                             </select>
                           </div>
                       </div>
@@ -119,13 +124,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="exampleFormControlSelect1">หน่วยงาน</label>
-                                <select class="form-control" name="department_id">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
-                                </select>
+                              <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                              <?php
+                                $sqlSelectType = "SELECT * FROM department";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["fullname"].'</option>';
+                                }
+                               ?>
+                            </select>
                             </div>
                         </div>
                       </div>
@@ -133,13 +140,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
-                                <select class="form-control" name="seller_id">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
-                                </select>
+                              <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                              <?php
+                                $sqlSelectType = "SELECT * FROM seller";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                }
+                               ?>
+                            </select>
 
                             </div>
                         </div>

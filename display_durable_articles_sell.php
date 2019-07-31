@@ -48,7 +48,7 @@
                               <div >
                               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                               <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                              <button class="btn btn-outline-info" type="button">
+                              <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_sell.php';">
                                 <i class="fas fa-plus"></i>
                               </button>
                             </form>

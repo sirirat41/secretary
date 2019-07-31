@@ -40,11 +40,7 @@
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <br>
         <div class="row ">
-<<<<<<< HEAD
-        <div class="col-8 offset-2" >
-=======
         <div class="col-6 offset-3" >
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
             <div class="card">
                 <div class="card-header card-header-text card-header-danger">
                   <div class="card-text">
@@ -56,32 +52,18 @@
                 </div>
                 <br>
                 <div class="card-body">
-<<<<<<< HEAD
-=======
                 <form method="post" action="service/service_insert_department.php" id="form_insert">
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                     <div class="row" >
                       <div class=" col-6 " >
                             <div class="form-group bmd-form-group">
                               <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
-<<<<<<< HEAD
-                              <input class="form-control" type="text"autocomplete="off" placeholder="department"
-                               value=""  required
-                               >
-                             
-=======
                               <input class="form-control" name="fullname" type="text"autocomplete="off" placeholder="department">
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                             </div>
                       </div>
                           <div class="col-6 ">
                                 <div class="form-group bmd-form-group">
                                   <label class="bmd-label-floating">ตัวย่อ(หน่วยงาน)</label>
-<<<<<<< HEAD
-                                  <input class="form-control" type="text" placeholder="shortdepartment">
-=======
                                   <input class="form-control" name="shortname" type="text" placeholder="shortdepartment">
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                                 </div>
                           </div>
                         </div>
@@ -89,11 +71,7 @@
                         <div class=" col-12">
                             <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">เจ้าหน้าที่</label>
-<<<<<<< HEAD
-                                <input class="form-control" type="text" placeholder="owner">
-=======
                                 <input class="form-control" name="owner" type="text" placeholder="owner">
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                             </div>
                         </div>
                     </div>
@@ -101,21 +79,13 @@
                         <div class=" col-6">
                             <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">อาคาร</label>
-<<<<<<< HEAD
-                                <input class="form-control" type="text" placeholder="bulding">
-=======
                                 <input class="form-control" name="bulding" type="text" placeholder="bulding">
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">ชั้น</label>
-<<<<<<< HEAD
-                                <input class="form-control" type="text" placeholder="floor">
-=======
                                 <input class="form-control" name="floor" type="text" placeholder="floor">
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                             </div>
                         </div>
                     </div>
@@ -123,11 +93,7 @@
                   <div class="row">
                     <div class="col-12" >
                         <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-<<<<<<< HEAD
-                            ตกลง
-=======
                             บันทึก
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                             <div class="ripple-container"></div>
                           </button>
                           <!-- Modal -->
@@ -145,11 +111,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-<<<<<<< HEAD
-                                  <button type="button" class="btn btn-danger">บันทึก</button>
-=======
                                   <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
                                 </div>
                               </div>
                             </div>
@@ -159,10 +121,7 @@
                   </div>
                 </div>
             </div>
-<<<<<<< HEAD
-=======
             </form>
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
         </div>
         </div>
         

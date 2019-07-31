@@ -27,12 +27,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-<<<<<<< HEAD
-    <!-- Sidebar -->
-    <?php include "navigation/navbar.php";?>
-=======
   <?php include "navigation/navbar.php";?>
->>>>>>> 9bcf1d5d48433f315200494e957042898478a7c6
 
         </nav>
         <!-- End of Topbar -->
