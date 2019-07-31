@@ -39,7 +39,7 @@
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <br>
         <div class="row ">
-        <div class="col-8 offset-2" >
+        <div class="col-6 offset-3" >
             <div class="card">
                 <div class="card-header card-header-text card-header-danger">
                   <div class="card-text">
@@ -50,17 +50,18 @@
                   </div>
                 </div>
                 <div class="card-body">
+                <form method="post" action="service/service_insert_durable_material_donate.php" id="form_insert">
                   <div class="row" >
                       <div class=" col-6 " >
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">เลขที่เอกสาร</label>
-                            <input class="form-control" type="text" placeholder="documentnumber">
+                            <input class="form-control" name="document_no" type="text" placeholder="document_no">
                           </div>
                     </div>
                         <div class="col-6">
                               <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
-                                <input class="form-control" type="text" placeholder="product_id">
+                                <input class="form-control" name="product_id" type="text" placeholder="product_id">
                               </div>
                         </div>
                       </div>
@@ -68,21 +69,29 @@
                         <div class=" col-6 " >
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">ชื่อบริจาค</label>
-                            <input class="form-control" type="text" placeholder="donate_name">
+                            <input class="form-control" name="donate_name" type="text" placeholder="donate_name">
                           </div>
                         </div>
                           <div class="col-6">
                             <div class="form-group bmd-form-group">
                               <label class="bmd-label-floating">วันที่บริจาค</label>
-                              <input class="form-control" type="date" placeholder="receive_date">
+                              <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
                             </div>
                       </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12 ">
+                          <div class="form-group bmd-form-group">
+                            <label class="bmd-label-floating">หมายเหตุ</label>
+                            <input class="form-control" name="flag" type="text" placeholder="flag"> 
+                          </div>
+                    </div>
+                  </div>
                     <br>
                     <div class="row">
                         <div class="col-12" >
                             <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                                ตกลง
+                                บันทึก
                               </button>
                               <!-- Modal -->
                               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,7 +108,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                      <button type="button" class="btn btn-danger">บันทึก</button>
+                                      <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                     </div>
                                   </div>
                                 </div>
