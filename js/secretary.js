@@ -194,5 +194,27 @@ $(document).ready(function() {
             $('.collapse-supplies').addClass('show');
             $('.collapse-supplies .permits').addClass('active');
             break;
+<<<<<<< HEAD
+
+        // หน่วยงาน Display
+
+        case "display_department":  //หน่วยงาน
+            $('.nav-department').addClass('active');
+            $('.collapse-department').addClass('show');
+            $('.collapse-department .display').addClass('active');
+            break;
+
+         // หน่วยงาน Insert
+
+         case "insert_department":  //หน่วยงาน
+            $('.nav-department').addClass('active');
+            $('.collapse-department').addClass('show');
+            $('.collapse-department .insert').addClass('active');
+            break;
+
+
+
+=======
+>>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
     }
 })
