@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">Display_durable_material_transfer_out</secretary>
+  <secretary style="display: none">insert_durable_material_transfer_out</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,18 +45,18 @@
                             </div>
                           
                           <div class="card-body">
-                              <form>
+                          <form method="post" action="service/service_insert_durable_material_transfer_out.php" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label for="document_no">เลขที่เอกสาร</label>
-                                          <input type="text" class="form-control" id="document_no" placeholder="no" autofocus>
+                                          <input type="text" class="form-control" name="document_no" id="document_no" placeholder="no" autofocus>
                                       </div>
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group">
-                                     <label for="inputEmail3" >วันที่โอน</label>
-                                      <input type="datetime-local" class="form-control" id="receive_date" placeholder="receivedate">
+                                     <label for="transfer_date" >วันที่โอน</label>
+                                      <input type="datetime-local" class="form-control" name="transfer_date" id="transfer_date" placeholder="transferdate">
                                     </div>
                                 </div>
                               </div>
@@ -64,23 +64,23 @@
                                 <div class="col-md-12 ">
                                   <div class="form-group">
                                  <label for="product_id">รหัสวัสดุ</label>
-                                  <input type="text" class="form-control" id="product_id" placeholder="id">
+                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
                                 </div>
                               </div>
                             </div>
                           <div class="row">
                               <div class="col-md-12 ">
                                 <div class="form-group ">
-                               <label for="transfer_form" >ชื่อผู้โอนให้</label>
-                                <input type="text" class="form-control" id="transfer_form" placeholder="name">
+                               <label for="transfer_to" >ชื่อผู้โอนให้</label>
+                                <input type="text" class="form-control" name="transfer_to" id="transfer_to" placeholder="name">
                               </div>
                             </div>
                         </div>
                       <div class="row">
                           <div class="col-md-12">
                             <div class="form-group ">
-                                <label for="inputEmail3" >หมายเหตุ</label>
-                              <textarea class="form-control" id="flag" rows="3" placeholder="flag"></textarea>
+                                <label for="flag" >หมายเหตุ</label>
+                              <textarea class="form-control"  name="flag" id="flag" rows="3" placeholder="flag"></textarea>
                           </div>
                         </div>
                       </div>
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-primary">บันทึก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                 </div>
                               </div>
                             </div>
@@ -131,7 +131,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>

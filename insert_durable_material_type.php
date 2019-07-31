@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">Display_durable_material_type</secretary>
+  <secretary style="display: none">insert_durable_material_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,12 +44,12 @@
                             </div>
                           
                           <div class="card-body">
-                              <form>
+                          <form method="post" action="service/service_insert_durable_material_type.php" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-12">
                                       <div class="form-group">
                                           <label for="name">ชื่อประเภทวัสดุ</label>
-                                          <input type="text" class="form-control" id="name" placeholder="name" autofocus>
+                                          <input type="text" class="form-control" name="name" id="name" placeholder="name" autofocus>
                                       </div>
                                   </div>
                               </div>
@@ -57,7 +57,7 @@
                                 <div class="col-md-12 ">
                                   <div class="form-group">
                                  <label for="shortname">ชื่อย่อ</label>
-                                  <input type="text" class="form-control" id="shortname" placeholder="shortname">
+                                  <input type="text" class="form-control" name="shortname" id="shortname" placeholder="shortname">
                                 </div>
                               </div>
                             </div>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-primary">บันทึก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                 </div>
                               </div>
                             </div>
@@ -108,7 +108,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>

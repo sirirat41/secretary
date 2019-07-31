@@ -46,12 +46,12 @@
                             </div>
                           
                           <div class="card-body">
-                              <form>
+                          <form method="post" action="service/service_insert_durable_material_permits.php" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-12">
                                       <div class="form-group">
                                           <label for="book_no">เลขที่หนังสือ</label>
-                                          <input type="text" class="form-control" id="book_no"  placeholder="no" autofocus>
+                                          <input type="text" class="form-control" name="book_no" id="book_no"  placeholder="no" autofocus>
                                       </div>
                                   </div>
                                 </div>
@@ -60,7 +60,7 @@
                                   <div class="form-group">
                                  <label for="product_id">รหัสวัสดุ</label>
                                 
-                                  <input type="text" class="form-control" id="product_id" placeholder="id">
+                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
                                 </div>
                               </div>
                             </div>
@@ -68,13 +68,13 @@
                               <div class="col-md-6 ">
                                 <div class="form-group ">
                                <label for="permit_date" >วันที่ยืม</label>
-                                <input type="datetime-local" class="form-control" id="permit_date" placeholder="permitdate">
+                                <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                              <label for="receive_date" >วันที่คืน</label>
-                              <input type="datetime-local" class="form-control" id="receive_date" placeholder="receivedate">
+                              <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
                             </div>
                           </div>
                         </div>
@@ -82,7 +82,7 @@
                           <div class="col-md-12">
                             <div class="form-group ">
                                 <label for="flag" >หมายเหตุ</label>
-                              <textarea class="form-control" id="flag" rows="3" placeholder="flag"></textarea>
+                              <textarea class="form-control"  name="flag" id="flag" rows="3" placeholder="flag"></textarea>
                           </div>
                         </div>
                       </div>
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-primary">บันทึก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                 </div>
                               </div>
                             </div>
@@ -133,7 +133,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>

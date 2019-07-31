@@ -10,12 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-<<<<<<< HEAD
-  <secretary style="display: none">insert_durable_articles_repair</secretary>
-
-=======
-  <secretary style="display: none">Display_durable_material_repair</secretary>
->>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
+  <secretary style="display: none">insert_durable_material_repair</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +32,7 @@
     <?php include "navigation/navbar.php";?>
 =======
   <?php include "navigation/navbar.php";?>
->>>>>>> 4cd26ec3f06c16ff696e20aaff1da0d7543e807a
+>>>>>>> 9bcf1d5d48433f315200494e957042898478a7c6
 
         </nav>
         <!-- End of Topbar -->
@@ -55,7 +50,7 @@
                             </div>
                           
                           <div class="card-body">
-                              <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
+                          <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-4">
                                       <div class="form-group">
@@ -134,7 +129,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>

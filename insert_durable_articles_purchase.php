@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">Display_durable_articles_purchase</secretary>
+  <secretary style="display: none">insert_durable_articles_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,18 +45,18 @@
                             </div>
                           
                           <div class="card-body">
-                              <form>
+                          <form method="post" action="service/service_insert_durable_articles_purchase.php" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-8">
                                       <div class="form-group">
                                           <label for="order_no">เลขที่ใบสั่งซื้อ</label>
-                                          <input type="text" class="form-control" id="order_no" placeholder="no" autofocus>
+                                          <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
                                       </div>
                                   </div>
                                   <div class="col-md-4">
                                       <div class="form-group">
                                      <label for="purchase_date" >วันที่จัดซื้อ</label>
-                                      <input type="datetime-local" class="form-control" id="purchase_date" placeholder="purchase_date">
+                                      <input type="datetime-local" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
                                     </div>
                                 </div>
                               </div>
@@ -64,7 +64,7 @@
                                 <div class="col-md-12 ">
                                   <div class="form-group ">
                                  <label for="order_by" >ชื่อผู้จัดซื้อ</label>
-                                  <input type="text" class="form-control" id="order_by" placeholder="name">
+                                  <input type="text" class="form-control" name="order_by" id="order_by" placeholder="name">
                                 </div>
                               </div>
                           </div>
@@ -72,13 +72,13 @@
                                 <div class="col-md-8 ">
                                   <div class="form-group">
                                  <label for="product_id">รหัสครุภัณฑ์</label>
-                                  <input type="text" class="form-control" id="product_id" placeholder="id">
+                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
                                 </div>
                               </div>
                               <div class="col-md-4">
                                 <div class="form-group">
                                <label for="number" >จำนวน</label>
-                                <input type="text" class="form-control" id="number" placeholder="number">
+                                <input type="text" class="form-control" name="number" id="number" placeholder="number">
                               </div>
                           </div>
                             </div>
@@ -86,13 +86,13 @@
                           <div class="col-md-8 ">
                             <div class="form-group ">
                            <label for="receiver" >ชื่อผู้รับ</label>
-                            <input type="text" class="form-control" id="receiver" placeholder="name">
+                            <input type="text" class="form-control" name="receiver" id="receiver" placeholder="name">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                          <label for="receive_date" >วันที่ตรวจรับ</label>
-                          <input type="datetime-local" class="form-control" id="receive_date" placeholder="receive_date">
+                          <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date">
                         </div>
                     </div>
                   </div>
@@ -100,20 +100,20 @@
                     <div class="col-md-12 ">
                       <div class="form-group ">
                      <label for="receive_address" >สถานที่จัดส่ง</label>
-                     <textarea class="form-control" id="receive_address" rows="2" placeholder="address"></textarea>
+                     <textarea class="form-control" name="receive_address" id="receive_address"  rows="2" placeholder="address"></textarea>
                     </div>
                   </div>
               </div>
                       <div class="row">
                           <div class="col-md-12">
                             <div class="form-group ">
-                                <label for="sell_id" >ข้อมูลร้านที่สั่ง</label>
-                                <select class="form-control" >
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                <label for="seller_id" >ข้อมูลร้านที่สั่ง</label>
+                                <select class="form-control" name="seller_id" >
+                                  <option value ="1">1</option>
+                                  <option value ="2">2</option>
+                                  <option value ="3">3</option>
+                                  <option value ="4">4</option>
+                                  <option value ="5">5</option>
                                 </select>
                         </div>
                       </div>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-primary">บันทึก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                 </div>
                               </div>
                             </div>
@@ -165,7 +165,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
       </footer>
