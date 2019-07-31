@@ -1,3 +1,6 @@
+<?php
+  require "service/connection.php";
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +22,7 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
- 
+
 
 </head>
 
@@ -39,13 +42,13 @@
         <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
 
-       
+
         <div class="row "></div>
         <div class="col-8 offset-2" >
             <div class="card">
                 <div class="card-header card-header-text card-header-danger">
                     <div class="card-text">
-                      
+
                       <h5 class="m-0 font-weight-bold text-danger">
                         <i class="fas fa-fw fa-cubes"></i>
                         เพิ่มข้อมูลครุภัณฑ์
@@ -81,11 +84,13 @@
                         <div class="form-group bmd-form-group">
                             <label for="exampleFormControlSelect1">ประเภท : </label>
                             <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
-                              <option value ="0">ครุภัณฑ์สำนักงาน</option>
-                              <option value ="1">ครุภัณฑ์คอมพิวเตอร์</option>
-                              <option value ="2">ครุภัณฑ์งานบ้าน-งานครัว</option>
-                              <option value ="3">ครุภัณฑ์ไฟฟ้า</option>
-                              <option value ="4">ครุภัณฑ์โฆษณาและเผยแพร่</option>
+                              <?php
+                                $sqlSelectType = "SELECT * FROM durable_articles_type";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                }
+                               ?>
                             </select>
                         </div>
                   </div>
@@ -191,7 +196,7 @@
                         </div>
                       </div>
                     </div> -->
-                    
+
                     <div class="row">
                       <div class="col-6">
                           <div class="form-group bmd-form-group">
@@ -302,12 +307,12 @@
                                                         </label>
                                                       </div>
                                                       <br>
-                  
+
                     <div class="row">
                         <div class="col-6" >
                             <div class="fileinput fileinput-new text-center" data-provides="fileinput" >
                                 <div class="fileinput-new thumbnail img-raised" >
-                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" 
+                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
                                     align ="center" alt="...">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail img-raised" ></div>
@@ -318,7 +323,7 @@
                                         <input type="file" name="..." />
                                       </div>
                                     </span>
-                                      
+
                                 </div>
                             </div>
                         </div>
@@ -350,7 +355,7 @@
                                   </div>
                                 </div>
                               </div>
-                       
+
                         </div>
                       </div>
                   </div>
