@@ -211,5 +211,10 @@ $(document).ready(function() {
             $('.collapse-department .insert').addClass('active');
             break;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 533559a59fc5856cbc745da806a189862bb7e61f
     }
 })

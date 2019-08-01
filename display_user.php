@@ -10,7 +10,8 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_receive_donate</secretary>
+  <secretary style="display : none">display_user</secretary>
+
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,6 +19,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/secretary.css" rel="stylesheet">
 
 </head>
 
@@ -40,13 +42,13 @@
                       <div class="card shadow mb-4">
                         <div class="card-header py-3">
                           <nav class="navbar navbar-light bg-light justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แสดงรายละเอียดการซ่อม(วัสดุคงทน)</h6>
+                            <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แสดงข้อมูลสมาชิก</h6>
   
                             <form class="form-inline">
                               <div >
                               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                               <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                              <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_repair_history.php';">
+                              <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_user.php';">
                                 <i class="fas fa-plus"></i>
                               </button>
                             </form>
@@ -60,9 +62,10 @@
                                           <thead>
                                               <tr class="text-center">
                                                   <th >#</th>
-                                                  <th >วันที่ซ่อม</th>
-                                                  <th >รหัสวัสดุ(วัสดุ)</th>
-                                                  <th >รายการซ่อม(วัสดุ)</th>
+                                                  <th >ชื่อสมาชิก</th>
+                                                  <th >ชื่อ</th>
+                                                  <th >นามสกุล</th>
+                                                  <th >ประเภท</th>
                                                   <th class="text-center" >การทำงาน</th>
                                               </tr>
                                           </thead>
@@ -72,6 +75,7 @@
                                                   <td>Andrew</td>
                                                   <td>Andrew Mike</td>
                                                   <td>Develop</td>
+                                                  <td>AAA</td>
                                                   <td class="td-actions text-center">
                                                       <button type="button" rel="tooltip" class="btn btn-warning">
                                                           <i class="fas fa-pencil-alt"></i>
@@ -93,7 +97,7 @@
                                                                 </button>
                                                               </div>
                                                               <div class="modal-body text-left">
-                                                                คุณต้องการลบข้อมูลรายละเอียดการซ่อมวัสดุใช่หรือไม่
+                                                                คุณต้องการลบข้อมูลร้านค้าใช่หรือไม่
                                                               </div>
                                                               <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -198,7 +202,6 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
 
 </body>
 
