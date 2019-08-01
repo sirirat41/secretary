@@ -108,9 +108,12 @@
                     <div class="col-md-6">
                         <div class="form-group">
                           <label for="u_type">ประเภท</label>
-                          <input type="text" class="form-control" name="u_type" id="inputu_type" aria-describedby="u_type" placeholder="u_type">
+                          <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="u_type">
+                            <option value="Super admin">Super admin</option>
+                            <option value="Admin">Admin</option>
+                          </select>
+                          </div>
                         </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                           <label for="status">สถานะ</label>
