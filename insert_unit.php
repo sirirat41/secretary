@@ -51,11 +51,12 @@
               </div>
               <br>
               <div class="card-body">
+              <form method="post" action="service/service_insert_unit.php" id="form_insert">
                 <div class="row" >
                   <div class=" col-md-12 " >
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">ชื่อหน่วยนับ</label>
-                          <input class="form-control" type="text" placeholder="nameunit">
+                          <input class="form-control" type="text" name="name" id="nameunit" placeholder="nameunit">
                         </div>
                   </div>
                     </div>
@@ -80,7 +81,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                      <button type="button" class="btn btn-danger">บันทึก</button>
+                                      <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                                     </div>
                                   </div>
                                 </div>
