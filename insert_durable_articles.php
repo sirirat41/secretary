@@ -22,8 +22,6 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -42,7 +40,6 @@
         <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
 
-
         <div class="row "></div>
         <div class="col-8 offset-2" >
             <div class="card">
@@ -60,13 +57,13 @@
                   <form method="post" action="service/service_insert_durables_articles.php" id="form_insert">
                     <div class="row">
                     <div class="col-6 ">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                               <label class="bmd-label-floating">ลำดับ :</label>
                               <input class="form-control" type="text" placeholder="id" name="seq">
                           </div>
                       </div>
                       <div class="col-6 ">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                               <label class="bmd-label-floating">หน่วยงาน :</label>
                               <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
                               <small id="emailHelp" class="form-text text-danger">  *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
@@ -75,13 +72,13 @@
                     </div>
                     <div class="row">
                       <div class="col-6">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                               <label class="bmd-label-floating">รหัสครุภัณฑ์ :</label>
                               <input class="form-control" type="text" placeholder="id" name="code">
                           </div>
                       </div>
                       <div class="col-6">
-                        <div class="form-group bmd-form-group">
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1">ประเภท : </label>
                             <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
                               <?php
@@ -97,70 +94,50 @@
                     </div>
                     <div class="row">
                       <div class="col-6">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                               <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
                               <input class="form-control" type="text" placeholder="attribute"  name="attribute">
                           </div>
                       </div>
                       <div class="col-6">
-                        <div class="form-group bmd-form-group">
-                          <div class="form-group bmd-form-group">
+                        <div class="form-group">
                             <label class="bmd-label-floating">รุ่นแบบ :</label>
                             <input class="form-control" type="text" placeholder="model" name="model">
-                        </div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-6">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                               <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
                               <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
                           </div>
                       </div>
                       <div class="col-6">
-                        <div class="form-group bmd-form-group">
-                          <div class="form-group bmd-form-group">
+                        <div class="form-group">
                             <label class="bmd-label-floating">งบประมาณ :</label>
                             <input class="form-control" type="text" placeholder="budget" name="budget">
                         </div>
-                        </div>
                       </div>
                     </div>
-                    <!-- <div class="row">
+                    <div class="row">
                       <div class="col-md-6">
-                          <div class="form-group bmd-form-group">
-                              <label class="bmd-label-floating">เลขที่หนังสือ :</label>
-                              <input class="form-control" type="text" placeholder="ไม่มีใน database ต้องเพิ่ม" >
-                          </div>
-                      </div> -->
-                      <div class="col-md-6">
-                        <div class="form-group bmd-form-group">
-                          <div class="form-group bmd-form-group">
+                        <div class="form-group">
                             <label class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
                             <input class="form-control" type="text" placeholder="department" name="department_id">
                         </div>
-                        </div>
                       </div>
                     </div>
-                    <!-- <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group bmd-form-group">
-                            <label for="address"class="bmd-label-floating">สถานที่ตั้ง :</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="?"></textarea>
-                          </div>
-                      </div>
-                    </div> -->
                   <div class="row">
                     <div class="col-6">
-                        <div class="form-group bmd-form-group">
+                        <div class="form-group">
                             <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
                             <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
                         </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group bmd-form-group">
-                        <div class="form-group bmd-form-group">
+                      <div class="form-group">
+                        <div class="form-group">
                           <label class="bmd-label-floating">เอกสารสำรองเงิน :</label>
                           <input class="form-control" type="text" placeholder="D-GEN" name="d_gen">
                       </div>
@@ -180,42 +157,23 @@
                         </div>
                     </div>
                     <br>
-                    <!-- <div class="row">
-                      <div class="col-6">
-                          <div class="form-group bmd-form-group">
-                              <label class="bmd-label-floating">เบอร์โทร :</label>
-                              <input class="form-control" type="text" placeholder="tel" name="tel">
-                          </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="form-group bmd-form-group">
-                          <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">แฟค :</label>
-                            <input class="form-control" type="text" placeholder="fax" name="fax">
-                        </div>
-                        </div>
-                      </div>
-                    </div> -->
-
                     <div class="row">
                       <div class="col-6">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                               <label class="bmd-label-floating">หน่วยนับ :</label>
                               <input class="form-control" type="text" placeholder="unit" name="unit">
                           </div>
                       </div>
                       <div class="col-6">
-                        <div class="form-group bmd-form-group">
-                          <div class="form-group bmd-form-group">
+                        <div class="form-group">
                             <label class="bmd-label-floating">จำนวนเงิน :</label>
                             <input class="form-control" type="text" placeholder="price" name="price">
-                        </div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-6">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                             <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
                             <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1"  name="durable_year">
                             <option value="0">0</option>
@@ -235,7 +193,7 @@
                     </div>
                     <div class="row">
                       <div class="col-12">
-                          <div class="form-group bmd-form-group">
+                          <div class="form-group">
                                 <label class="bmd-label-floating">ประเภทเงิน :</label>
                                 <div class="form-check form-check-radio form-check-inline">
                                     <label class="form-check-label">
@@ -272,7 +230,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group bmd-form-group">
+                                            <div class="form-group">
                                                   <label class="bmd-label-floating">วิธีการได้มา :</label>
                                                   <div class="form-check form-check-radio form-check-inline">
                                                       <label class="form-check-label">
@@ -323,7 +281,6 @@
                                         <input type="file" name="..." />
                                       </div>
                                     </span>
-
                                 </div>
                             </div>
                         </div>
@@ -332,7 +289,7 @@
                     <div class="row">
                         <div class="col-12" >
                             <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                                ตกลง
+                                บันทึก
                                 <div class="ripple-container"></div>
                               </button>
                               <!-- Modal -->
@@ -364,10 +321,12 @@
         </div>
       </div>
       </form>
+      </div>
+      </div>
+      </div>
         <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
         <!-- /.container-fluid -->
-
 
       </div>
       <!-- End of Main Content -->
