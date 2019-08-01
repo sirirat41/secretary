@@ -60,7 +60,15 @@
                                   <div class="form-group">
                                  <label for="product_id">รหัสวัสดุ</label>
                                 
-                                  <input type="text" class="form-control" name="product_id" id="product_id" placeholder="id">
+                                 <select class="form-control" name="product_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM durable_material";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                                 </div>
                               </div>
                             </div>

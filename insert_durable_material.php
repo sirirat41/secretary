@@ -79,7 +79,7 @@
                       </div>
                       <div class="col-6 ">
                         <div class="form-group bmd-form-group">
-                            <label for="exampleFormControlSelect1">ประเภท : </label>
+                            <label for="exampleFormControlSelect1">ประเภทวัสดุ: </label>
                             <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
                               <?php
                                 $sqlSelectType = "SELECT * FROM durable_material_type";
@@ -110,12 +110,12 @@
                       <div class="col-6">
                         <div class="form-group bmd-form-group">
                           <label for="exampleFormControlSelect1">หน่วยงาน : </label>
-                          <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                          <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
                               <?php
                                 $sqlSelectType = "SELECT * FROM department";
                                 $resultType = mysqli_query($conn, $sqlSelectType);
                                 while ($row = mysqli_fetch_assoc($resultType)) {
-                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                  echo '<option value="'.$row["id"].'">'.$row["fullname"].'</option>';
                                 }
                                ?>
                             </select>
@@ -124,7 +124,7 @@
                     <div class="col-6">
                       <div class="form-group bmd-form-group">
                         <label for="exampleFormControlSelect1">ร้านค้า : </label>
-                        <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                        <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
                               <?php
                                 $sqlSelectType = "SELECT * FROM seller";
                                 $resultType = mysqli_query($conn, $sqlSelectType);
@@ -173,7 +173,15 @@
                         <div class="form-group bmd-form-group">
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">หน่วยนับ :</label>
-                            <input class="form-control" type="text" placeholder="fax">
+                            <select class="form-control" name="unit" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM unit";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                }
+                               ?>
+                                </select>
                         </div>
                         </div>
                       </div>

@@ -35,26 +35,26 @@
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
           <div class="row">
               <div class="col-md-4 offset-4">
-              <div class="card border-danger shadow mb-4 text-center" >
+              <div class="card border-danger shadow mb-4 " >
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-danger">
+                      <h6 class="m-0 font-weight-bold text-danger text-center">
                       <i class="fas fa-user-lock"></i> เข้าสู่ระบบ</h6>
                             </div>
                           
                           <div class="card-body">
                           <form method="post" action="service/service_insert_durable_articles_permits.php" id="form_insert">
                                 <div class="row">
-                                  <div class="col-md-8 offset-2">
+                                  <div class="col-md-10 offset-1">
                                       <div class="form-group">
-                                      <span class="border-bottom"></span>   
-                                       
+                                     
+                                      <label for="order_no">เลขที่ใบสั่งซื้อ</label>
                                           <input type="text" class="form-control"  name="username" id="username"  placeholder="username" autofocus>
                                       
                                         </div>
                                   </div>
                                 </div>
                               <div class="row">
-                                <div class="col-md-8 offset-2">
+                                <div class="col-md-10 offset-1">
                                   <div class="form-group">
                                
                                 
@@ -67,18 +67,23 @@
                             </div>
                             
                       <div class="row">
-                          <div class="col-md-8 offset-2">
+                          <div class="col-md-10 offset-1">
                       <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                           เข้าสู่ระบบ
                         </button>
                         <hr color="red">
                         <br>
-                        <a href="#" >สมัครสมาชิก</a>
+                        </div>
                     </div>
-                 
-                         
-                      </div>
+                    <div class="row">
+                       <div class="col-md-12 text-center">
+                     <a href="#" >สมัครสมาชิก</a>
+                           </div>
+                        </div>    
                     </div>
+                  </div>
+                  </div>
+                  </div>
                   </div>
             
              </form>

@@ -65,7 +65,15 @@
                           <div class="col-md-9">
                               <div class="form-group">
                                 <label for="repair_id">รหัสซ่อม(วัสดุ)</label>
-                                <input type="text" class="form-control" name="repair_id" id="inputrepair_id" aria-describedby="repair_id" placeholder="repairid">
+                                <select class="form-control" name="repair_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM durable_material_repair";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                               </div>
                           </div>
                       </div>

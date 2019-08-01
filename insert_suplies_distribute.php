@@ -56,13 +56,29 @@
                       <div class=" col-6 " >
                             <div class="form-group bmd-form-group">
                               <label class="bmd-label-floating">รหัสวัสดุ</label>
-                              <input class="form-control" type="text" placeholder="product_id">
+                              <select class="form-control" name="product_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM supplies";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                             </div>
                       </div>
                           <div class="col-6">
                                 <div class="form-group bmd-form-group">
-                                  <label class="bmd-label-floating">รหัสหน่วยงาน</label>
-                                  <input class="form-control" type="text" placeholder="department_id">
+                                  <label class="bmd-label-floating">หน่วยงาน</label>
+                                  <select class="form-control" name="department_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM department";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["fullname"].'</option>';
+                                }
+                               ?>
+                                </select>
                                 </div>
                           </div>
                         </div>

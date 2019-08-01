@@ -85,7 +85,15 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="unit">หน่วยนับ</label>
-                              <input type="text" class="form-control" name="unit" id="inputunit" aria-describedby="unit" placeholder="unit">
+                              <select class="form-control" name="unit" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM unit";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                }
+                               ?>
+                                </select>
                             </div>
                         </div>
                       </div>

@@ -60,8 +60,16 @@
                     </div>
                         <div class="col-6">
                               <div class="form-group bmd-form-group">
-                                <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
-                                <input class="form-control" name="product_id" type="text" placeholder="product_id">
+                                <label class="bmd-label-floating">รหัสวัสดุ</label>
+                                <select class="form-control" name="product_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM durable_material";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                               </div>
                         </div>
                       </div>

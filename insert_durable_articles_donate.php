@@ -61,14 +61,22 @@
                         <div class="col-6">
                               <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
-                                <input class="form-control" name="product_id" type="text" placeholder="product_id">
+                                <select class="form-control" name="product_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM durable_articles";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                               </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class=" col-6 " >
                           <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">ชื่อบริจาค</label>
+                            <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
                             <input class="form-control" name="donate_name" type="text" placeholder="donate_name">
                           </div>
                         </div>

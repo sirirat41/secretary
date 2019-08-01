@@ -47,7 +47,7 @@
                   <div class="card-text">
                     <h6 class="m-0 font-weight-bold text-danger">
                         <i class="fas fa-fw fa-house-damage"></i>
-                        ชำรุด (ครุภัณฑ์)
+                        ชำรุด (วัสดุคงทน)
                     </h6>
                   </div>
                 </div>
@@ -57,8 +57,16 @@
                   <div class="row" >
                     <div class=" col-6 " >
                           <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
-                            <input class="form-control" name="product_id" type="text" placeholder="product_id">
+                            <label class="bmd-label-floating">รหัสวัสดุ</label>
+                            <select class="form-control" name="product_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM durable_material";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                           </div>
                     </div>
                         <div class="col-6">

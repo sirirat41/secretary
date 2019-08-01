@@ -51,7 +51,15 @@
                           <div class="col-md-6 ">
                               <div class="form-group">
                                 <label for="product_id">รหัสครุภัณฑ์</label>
-                                <input type="text" class="form-control" name="product_id" id="inputproduct_id" aria-describedby="product_id" placeholder="productid">
+                                <select class="form-control" name="product_id" >
+                                <?php
+                                $sqlSelectType = "SELECT * FROM durable_articles";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
+                                }
+                               ?>
+                                </select>
                               </div>
                           </div>
                           <div class="col-md-6 ">

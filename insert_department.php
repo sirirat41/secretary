@@ -40,11 +40,7 @@
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <br>
         <div class="row ">
-<<<<<<< HEAD
-        <div class="col-8 offset-2" >
-=======
         <div class="col-6 offset-3" >
->>>>>>> 533559a59fc5856cbc745da806a189862bb7e61f
             <div class="card">
                 <div class="card-header card-header-text card-header-danger">
                   <div class="card-text">
@@ -56,10 +52,7 @@
                 </div>
                 <br>
                 <div class="card-body">
-<<<<<<< HEAD
-=======
                 <form method="post" action="service/service_insert_department.php" id="form_insert">
->>>>>>> 533559a59fc5856cbc745da806a189862bb7e61f
                     <div class="row" >
                       <div class=" col-6 " >
                             <div class="form-group bmd-form-group">
