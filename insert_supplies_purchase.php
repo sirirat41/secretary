@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+require "service/connection.php";
+?>
 <head>
 
   <meta charset="utf-8">
@@ -109,11 +111,13 @@
                             <div class="form-group ">
                                 <label for="seller_id" >ข้อมูลร้านที่สั่ง</label>
                                 <select class="form-control" name="seller_id">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
+                                <?php
+                                $sqlSelectType = "SELECT * FROM seller";
+                                $resultType = mysqli_query($conn, $sqlSelectType);
+                                while ($row = mysqli_fetch_assoc($resultType)) {
+                                  echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+                                }
+                               ?>
                                 </select>
                           </div>
                         </div>

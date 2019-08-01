@@ -10,8 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_material_repair</secretary>
-
+  <secretary style="display: none">index</secretary>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -27,9 +26,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <?php include "navigation/navbar.php";?>
 
-        </nav>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -37,72 +34,46 @@
         <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
           <div class="row">
-              <div class="col-md-6 offset-3">
-                  <div class="card shadow mb-4">
+              <div class="col-md-4 offset-4">
+              <div class="card border-danger shadow mb-4 text-center" >
                     <div class="card-header py-3">
                       <h6 class="m-0 font-weight-bold text-danger">
-                        <i class="fas fa-wrench"></i> เพิ่มข้อมูลการซ่อม(วัสดุคงทน)</h6>
+                      <i class="fas fa-user-lock"></i> เข้าสู่ระบบ</h6>
                             </div>
                           
                           <div class="card-body">
-                          <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
+                          <form method="post" action="service/service_insert_durable_articles_permits.php" id="form_insert">
                                 <div class="row">
-                                  <div class="col-md-4">
+                                  <div class="col-md-8 offset-2">
                                       <div class="form-group">
-                                          <label for="seq">ลำดับ</label>
-                                          <input type="text" class="form-control" name="seq" id="seq" placeholder="seq" autofocus>
-                                      </div>
+                                      <span class="border-bottom"></span>   
+                                       
+                                          <input type="text" class="form-control"  name="username" id="username"  placeholder="username" autofocus>
+                                      
+                                        </div>
                                   </div>
-                                  <div class="col-md-8">
-                                      <div class="form-group">
-                                     <label for="repair_date" >วันที่ซ่อม</label>
-                                      <input type="datetime-local" class="form-control" name="repair_date" id="receive_date" placeholder="receivedate">
-                                    </div>
                                 </div>
-                              </div>
                               <div class="row">
-                                <div class="col-md-12 ">
+                                <div class="col-md-8 offset-2">
                                   <div class="form-group">
-                                 <label for="damage_id">รหัสวัสดุ(ชำรุด)</label>
-                                  <input type="text" class="form-control" name="damage_id" id="damage_id" placeholder="id">
+                               
+                                
+                                  <input type="password" class="form-control"  name="password" id="password" placeholder="password">
+                                  <div class="text-right">
+		                              	<a href="#" >ลืมรหัสผ่าน?</a>
+		                              </div>
                                 </div>
                               </div>
                             </div>
-                      
+                            
                       <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group ">
-                                <label for="place" >สถานที่ซ่อม</label>
-                              <textarea class="form-control" name="place" id="place" rows="3" placeholder="place"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-8 offset-2">
                       <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
-                          บันทึก
+                          เข้าสู่ระบบ
                         </button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลการซ่อมวัสดุใช่หรือไม่
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        <hr color="red">
+                        <br>
+                        <a href="#" >สมัครสมาชิก</a>
                     </div>
                  
                          

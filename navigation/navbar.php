@@ -38,10 +38,6 @@
             <a class="collapse-item sell" href="display_durable_articles_sell.php">ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">โอนเข้า-ออก</a>
             <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก </a>
-<<<<<<< HEAD
-=======
-
->>>>>>> 6ae1e9a0e9ec84c1da0bd201636a9941a72c66e2
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>
