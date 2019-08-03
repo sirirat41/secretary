@@ -12,10 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= " VALUES('$fullname', '$shortname', '$owner', '$bulding', '$floor')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Insert data complete";
+        header('Location: ../insert_department.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {
-        echo $sql . "<br/>";
-        echo mysqli_error($conn);
+        header('Location: ../insert_department.php?message=เพิ่มข้อมูลไม้สำเร็จ กรุณาลองอีกครั้ง');
     }
 
 } else {
