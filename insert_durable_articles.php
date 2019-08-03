@@ -189,6 +189,7 @@
                         </div>
                       </div>
                     </div>
+                    
                     <div class="row">
                       <div class="col-6">
                           <div class="form-group">
@@ -208,6 +209,14 @@
                             <input class="form-control" type="text" placeholder="storage" name="storage">
                         </div>
                       </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">จำนวนครุภัณฑ์ :</label>
+                            <input class="form-control" type="text" placeholder="numberrr" >
+                        </div>
+                    </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
