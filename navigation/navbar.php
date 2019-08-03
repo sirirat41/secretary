@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav my-primary-color sidebar sidebar-dark accordion" id="accordionSidebar">
       <br>
       <br>
           <!-- Sidebar - Brand -->
