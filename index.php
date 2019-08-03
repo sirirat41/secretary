@@ -46,8 +46,6 @@
                                 <div class="row">
                                   <div class="col-md-10 offset-1">
                                       <div class="form-group">
-                                     
-                                      <label for="order_no">เลขที่ใบสั่งซื้อ</label>
                                           <input type="text" class="form-control"  name="username" id="username"  placeholder="username" autofocus>
                                       
                                         </div>
