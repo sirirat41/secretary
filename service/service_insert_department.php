@@ -14,7 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conn, $sql)) {
         header('Location: ../insert_department.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {
+<<<<<<< HEAD
         header('Location: ../insert_department.php?message=เพิ่มข้อมูลไม้สำเร็จ กรุณาลองอีกครั้ง');
+=======
+        header('Location: ../insert_department.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+>>>>>>> a10740cbb8d541803515a024ea97c908a2ff3c96
     }
 
 } else {
