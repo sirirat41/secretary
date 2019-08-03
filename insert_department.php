@@ -192,6 +192,20 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+<<<<<<< HEAD
+  <script >
+    $(document).ready(function() {
+      <?php
+      if (isset($_GET["message"])); {
+        $message = $_GET["message"];
+        echo "$('#modal-message').modal();";
+      }
+      ?>
+    })
+    </script>
+
+  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+=======
   <script>
     $(document).ready(function() {
       <?php
