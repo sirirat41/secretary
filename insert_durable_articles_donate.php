@@ -19,7 +19,7 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-  
+
 
 </head>
 
@@ -29,126 +29,123 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-      <?php include "navigation/navbar.php";?>
-        </nav>
-        <!-- End of Topbar -->
+    <?php include "navigation/navbar.php"; ?>
+    </nav>
+    <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
+    <!-- Begin Page Content -->
 
-        <div class="container-fluid">
-        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-        <br>
-        <div class="row ">
-        <div class="col-6 offset-3" >
-            <div class="card">
-                <div class="card-header card-header-text card-header-danger">
-                  <div class="card-text">
-                    <h6 class="m-0 font-weight-bold text-danger">
-                        <i class="fas fa-fw fa-archive"></i>
-                        บริจาคออก (ครุภัณฑ์)
-                    </h6>
+    <div class="container-fluid">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <br>
+      <div class="row ">
+        <div class="col-6 offset-3">
+          <div class="card">
+            <div class="card-header card-header-text card-header-danger">
+              <div class="card-text">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-fw fa-archive"></i>
+                  บริจาคออก (ครุภัณฑ์)
+                </h6>
+              </div>
+            </div>
+            <div class="card-body">
+              <form method="post" action="service/service_insert_durable_articles_donate.php" id="form_insert">
+                <div class="row">
+                  <div class=" col-6 ">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">เลขที่เอกสาร</label>
+                      <input class="form-control" name="document_no" type="text" placeholder="document_no">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
+                      <select class="form-control" name="product_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM durable_articles";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div class="card-body">
-                <form method="post" action="service/service_insert_durable_articles_donate.php" id="form_insert">
-                  <div class="row" >
-                    <div class=" col-6 " >
-                          <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">เลขที่เอกสาร</label>
-                            <input class="form-control" name="document_no" type="text" placeholder="document_no">
-                          </div>
-                    </div>
-                        <div class="col-6">
-                              <div class="form-group bmd-form-group">
-                                <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
-                                <select class="form-control" name="product_id" >
-                                <?php
-                                $sqlSelectType = "SELECT * FROM durable_articles";
-                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
-                                }
-                               ?>
-                                </select>
-                              </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class=" col-6 " >
-                          <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
-                            <input class="form-control" name="donate_name" type="text" placeholder="donate_name">
-                          </div>
-                        </div>
-                          <div class="col-6">
-                            <div class="form-group bmd-form-group">
-                              <label class="bmd-label-floating">วันที่บริจาค</label>
-                              <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
-                            </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 ">
-                          <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">หมายเหตุ</label>
-                            <input class="form-control" name="flag" name="flag" type="text" placeholder="flag"> 
-                          </div>
+                <div class="row">
+                  <div class=" col-6 ">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
+                      <input class="form-control" name="donate_name" type="text" placeholder="donate_name">
                     </div>
                   </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12" >
-                            <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                                บันทึก
-                              </button>
-                              <!-- Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body ">
-                                      คุณต้องการบันทึกข้อมูลบริจาคออก(ครุภัณฑ์)หรือไม่ ?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                      <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                       
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">วันที่บริจาค</label>
+                      <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 ">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">หมายเหตุ</label>
+                      <input class="form-control" name="flag" name="flag" type="text" placeholder="flag">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลบริจาคออก(ครุภัณฑ์)หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
                         </div>
-                      </div>
-                      </form>
                       </div>
                     </div>
                   </div>
                 </div>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
-        </div>
-        <!-- /.container-fluid -->
-
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-              <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+              </form>
+            </div>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
+      </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
