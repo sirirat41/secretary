@@ -1,3 +1,7 @@
+
+<?php
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
