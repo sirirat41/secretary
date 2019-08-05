@@ -90,7 +90,7 @@
                                                             </button>
                                                           </div>
                                                           <div class="modal-body text-left">
-                                                            คุณต้องการลบข้อมูลประเภทครุภัณฑ์ใช่หรือไม่
+                                                            คุณต้องการลบข้อมูลประเภทครุภัณฑ์ใช่รือไม่
                                                           </div>
                                                           <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

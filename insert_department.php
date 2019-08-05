@@ -192,7 +192,6 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-<<<<<<< HEAD
   <script >
     $(document).ready(function() {
       <?php
@@ -205,6 +204,8 @@
     </script>
 
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<<<<<<< HEAD
+=======
 =======
   <script>
     $(document).ready(function() {
@@ -231,6 +232,7 @@
    <!-- Message Modal-->
    <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 >>>>>>> a10740cbb8d541803515a024ea97c908a2ff3c96
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
