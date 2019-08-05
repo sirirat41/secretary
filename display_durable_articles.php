@@ -48,7 +48,11 @@ require "service/connection.php";
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                 <form class="form-inline">
+<<<<<<< HEAD
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+=======
+                  <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -78,6 +82,7 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
+<<<<<<< HEAD
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
                         $sqlSelect .=" WHERE a.type = t.id and a.status = 1";
                         if (isset($_GET["keyword"])) {
@@ -113,6 +118,40 @@ require "service/connection.php";
 
                       ?>
 
+=======
+                      $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and a.code like '%$keyword%' or a.bill_no like '%$keyword%'";
+                      }
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                        ?>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["picture"]; ?></td>
+                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["name"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
                     </tbody>
                   </table>
                 </div>
@@ -139,8 +178,11 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
@@ -206,7 +248,10 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -217,9 +262,15 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
+<<<<<<< HEAD
           คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่ 
           <form id="form-drop" method="post" action="service/service_drop_durable_articles.php">
           <input type="hidden" id="remove-articles" name="article_id">
+=======
+          คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_articles.php">
+            <input type="hidden" id="remove-articles" name="articles_id">
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
           </form>
         </div>
         <div class="modal-footer">

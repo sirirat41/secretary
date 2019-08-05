@@ -20,7 +20,6 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
 </head>
 
 <body id="page-top">
@@ -205,6 +204,35 @@
     </script>
 
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<<<<<<< HEAD
+=======
+=======
+  <script>
+    $(document).ready(function() {
+      <?php
+<<<<<<< HEAD
+      if (isset($_GET["message"])); {
+        $message = $_GET["message"];
+        echo "$('#modal-message').modal();";
+      }
+      ?>
+    })
+  </script>
+
+  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+=======
+        if (isset($_GET["message"] )) ; {
+        $message = $_GET["message"];
+        echo "$('#modal-message').modal();";
+    }
+      ?>
+    })
+
+  </script>
+   <!-- Message Modal-->
+   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+>>>>>>> a10740cbb8d541803515a024ea97c908a2ff3c96
+>>>>>>> 04250eaf9494e64a953ee7e422388668716fbf46
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -214,11 +242,18 @@
           </button>
         </div>
         <div class="modal-body">
+<<<<<<< HEAD
+          <?php echo $_GET["message"]; ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+=======
           <?php echo $_GET["message"];?>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
 
+>>>>>>> a10740cbb8d541803515a024ea97c908a2ff3c96
         </div>
       </div>
     </div>
