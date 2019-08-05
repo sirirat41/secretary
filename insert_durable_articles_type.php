@@ -1,3 +1,6 @@
+<?php
+  require "service/connection.php";
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +97,6 @@
                       </div>
                     </div>
                   </div>
-            ห
              </form>
        
         <!-- สิ้นสุดการเขียนตรงนี้ -->

@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+  require "service/connection.php";
+ ?><!DOCTYPE html>
 <html lang="en">
 
 <head>
