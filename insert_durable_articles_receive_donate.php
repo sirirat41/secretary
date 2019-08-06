@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
 require "service/connection.php";
 ?>
-=======
-  require "service/connection.php";
- ?>
->>>>>>> e16523b3dd8598753b302f9216d21994f20f9e4c
 <!DOCTYPE html>
 <html lang="en">
 
