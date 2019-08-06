@@ -59,7 +59,7 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                      <label for="transfer_date" >วันที่โอน</label>
-                                      <input type="datetime-local" class="form-control" name="transfer_date" id="transfer_date" placeholder="receivedate">
+                                      <input type="date" class="form-control" name="transfer_date" id="transfer_date" placeholder="receivedate">
                                     </div>
                                 </div>
                               </div>
