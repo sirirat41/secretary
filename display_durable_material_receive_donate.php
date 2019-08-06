@@ -1,3 +1,6 @@
+<?php
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +20,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/secretary.css" rel="stylesheet">
+
 
 </head>
 
@@ -28,15 +33,15 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <br>
-        <br>
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-              <div class="sidebar-brand-icon ">
-                <img src="img/logo1.png" width="450">
-              </div>
-            </a>
-            <br>
+      <br>
+      <br>
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon ">
+          <img src="img/logo1.png" width="450">
+        </div>
+      </a>
+      <br>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -157,7 +162,7 @@
 
           <!-- Topbar Search -->
           <div class="col-md-4">
-              <img src="img/logosecretary.png" class="img-fluid">
+            <img src="img/logosecretary.png" class="img-fluid">
           </div>
 
           <!-- Topbar Navbar -->
@@ -320,9 +325,9 @@
 
           </ul>
 
-          
 
-            
+
+
 
         </nav>
         <!-- End of Topbar -->
@@ -330,127 +335,127 @@
         <!-- Begin Page Content -->
 
         <div class="container-fluid">
-            <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-              <div class="row">
-                  <div class="col-md-10 offset-md-1">
-                      <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                          <nav class="navbar navbar-light bg-light justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลรับบริจาค(วัสดุคงทน)</h6>
-  
-                            <form class="form-inline">
-                              <div >
-                              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                              <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_receive_donate.php';">
-                                <i class="fas fa-plus"></i>
+          <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+          <div class="row">
+            <div class="col-md-10 offset-md-1">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <nav class="navbar navbar-light bg-light justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+
+                    <form class="form-inline">
+                      <div>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                        <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_receive_donate.php';">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+              </div>
+              <form>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover ">
+                        <thead>
+                          <tr class="text-center">
+                            <th>#</th>
+                            <th>เลขที่เอกสาร</th>
+                            <th>วันที่รับบริจาค</th>
+                            <th>รหัสวัสดุ</th>
+                            <th>ชื่อผู้บริจาค</th>
+                            <th class="text-center">การทำงาน</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="text-center">
+                            <td>1</td>
+                            <td>Andrew</td>
+                            <td>Andrew Mike</td>
+                            <td>Develop</td>
+                            <td>AAA</td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-warning">
+                                <i class="fas fa-pencil-alt"></i>
                               </button>
-                            </form>
-                          </div>
-                        </div>
-                                  <form>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover ">
-                                          <thead>
-                                              <tr class="text-center">
-                                                  <th >#</th>
-                                                  <th >เลขที่เอกสาร</th>
-                                                  <th >วันที่รับบริจาค</th>
-                                                  <th >รหัสวัสดุ</th>
-                                                  <th >ชื่อผู้บริจาค</th>
-                                                  <th class="text-center" >การทำงาน</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody>
-                                              <tr class="text-center">
-                                                  <td >1</td>
-                                                  <td>Andrew</td>
-                                                  <td>Andrew Mike</td>
-                                                  <td>Develop</td>
-                                                  <td>AAA</td>
-                                                  <td class="td-actions text-center">
-                                                      <button type="button" rel="tooltip" class="btn btn-warning">
-                                                          <i class="fas fa-pencil-alt"></i>
-                                                      </button>
-                                                      <button type="button" rel="tooltip" class="btn btn-success">
-                                                          <i class="fas fa-clipboard-list"></i>
-                                                      </button>
-                                                      <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                                                        
-                                                          <i class="fas fa-trash-alt"></i>
-                                                      </button>
-                                                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                          <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                              <div class="modal-header">
-                                                                <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                  <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                              </div>
-                                                              <div class="modal-body text-left">
-                                                                คุณต้องการลบข้อมูลรับบริจาควัสดุใช่หรือไม่
-                                                              </div>
-                                                              <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                                                <button type="button" class="btn btn-danger">บันทึก</button>
-                                                              </div>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </td>
-                                              </tr>
-                                          </tbody>
-                                      </table>
-                                      
-                                      <nav aria-label="Page navigation example">
-                                          <ul class="pagination justify-content-center">
-                                            <li class="page-item">
-                                              <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                              </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                              <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                              </a>
-                                            </li>
-                                          </ul>
-                                        </nav>
-                                      </div>
+                              <button type="button" rel="tooltip" class="btn btn-success">
+                                <i class="fas fa-clipboard-list"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body text-left">
+                                      คุณต้องการลบข้อมูลรับบริจาควัสดุใช่หรือไม่
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                      <button type="button" class="btn btn-danger">บันทึก</button>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                 </form>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
-        </div>
-        <!-- /.container-fluid -->
+                    </div>
+                  </div>
+                  </td>
+                  </tr>
+                  </tbody>
+                  </table>
 
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+            </div>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
+      </div>
     </div>
-    <!-- End of Content Wrapper -->
+    </form>
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  <!-- /.container-fluid -->
+
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
