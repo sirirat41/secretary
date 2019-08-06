@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 
 <?php
 require "service/connection.php";
 ?>
+=======
+<?php
+  require "service/connection.php";
+ ?>
+>>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
 <!DOCTYPE html>
 <html lang="en">
 
