@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 
 <?php
 require "service/connection.php";
 ?>
-=======
-<?php
-  require "service/connection.php";
- ?>
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
 <!DOCTYPE html>
 <html lang="en">
 
@@ -234,12 +228,12 @@ require "service/connection.php";
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
-                            <th>รูปภาพ</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>ประเภท</th>
+                            <td>#</td>
+                            <td>รูปภาพ</td>
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสครุภัณฑ์</td>
+                            <td>ประเภท</td>
                           </tr class="text-center">
                         </thead>
                         <tbody>

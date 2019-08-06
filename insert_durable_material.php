@@ -41,7 +41,8 @@ require "service/connection.php";
     <!-- Begin Page Content -->
 
     <div class="container-fluid">
-      <!-- เริ่มเขียนโค๊ดตรงนี้ --> <div class="row ">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
         <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
@@ -54,158 +55,65 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-            <form method="post" action="service/service_insert_supplies_purchase.php" id="form_insert">
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="order_no">เลขที่ใบสั่งซื้อ</label>
-                    <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
+              <form method="post" action="service/service_insert_supplies_purchase.php" id="form_insert">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="order_no">เลขที่ใบสั่งซื้อ</label>
+                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="purchase_date">วันที่จัดซื้อ</label>
+                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
+                    </div>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="purchase_date">วันที่จัดซื้อ</label>
-                    <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="order_no">ชื่อผู้จัดซื้อ</label>
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="order_no">ชื่อผู้จัดซื้อ</label>
-                    <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by">
+                <div class="row">
+                  <div class="col-6 ">
+                    <div class="form-group ">
+                      <label for="receiver">ชื่อผู้รับ</label>
+                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="receive_date">วันที่ตรวจรับ</label>
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-6 ">
-                  <div class="form-group ">
-                    <label for="receiver">ชื่อผู้รับ</label>
-                    <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver">
+                <div class="row">
+                  <div class="col-12 ">
+                    <div class="form-group ">
+                      <label for="receive_address">สถานที่จัดส่ง</label>
+                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" name="address"></textarea>
+                    </div>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="receive_date">วันที่ตรวจรับ</label>
-                    <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 ">
-                  <div class="form-group ">
-                    <label for="receive_address">สถานที่จัดส่ง</label>
-                    <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" name="address"></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">หน่วยงาน :</label>
-                    <input class="form-control" type="text" placeholder="shortdepartment" name="shortdepartment">
-                    <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
-                  </div>
-                </div>
-                <div class="col-6 ">
-                  <div class="form-group bmd-form-group">
-                    <label for="exampleFormControlSelect1">ประเภทวัสดุ: </label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM durable_material_type";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                    <input class="form-control" type="text" placeholder="attribute" name="attribute">
-                  </div>
-                </div>
-                <div class="col-6 ">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
-                    <input class="form-control" type="text" placeholder="namemeterial" name="name">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label for="exampleFormControlSelect1">หน่วยงาน : </label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM department";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label for="exampleFormControlSelect1">ร้านค้า : </label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM seller";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                    <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label for="exampleFormControlSelect1">จำนวนปีของวัสดุ :</label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
-                      <option value="0">1</option>
-                      <option value="1">2</option>
-                      <option value="2">3</option>
-                      <option value="3">4</option>
-                      <option value="4">5</option>
-                      <option value="5">6</option>
-                      <option value="6">7</option>
-                      <option value="7">8</option>
-                      <option value="8">9</option>
-                      <option value="9">10</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">จำนวนเงิน :</label>
-                    <input class="form-control" type="text" placeholder="tel" name="tel">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
+                <div class="row">
+                  <div class="col-6">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">หน่วยนับ :</label>
-                      <select class="form-control" name="unit">
+                      <label class="bmd-label-floating">หน่วยงาน :</label>
+                      <input class="form-control" type="text" placeholder="shortdepartment" name="shortdepartment">
+                      <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="form-group bmd-form-group">
+                      <label for="exampleFormControlSelect1">ประเภทวัสดุ: </label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
                         <?php
-                        $sqlSelectType = "SELECT * FROM unit";
+                        $sqlSelectType = "SELECT * FROM durable_material_type";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
                           echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
@@ -215,62 +123,154 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">จำนวนวัสดุ :</label>
-                    <input class="form-control" type="text" placeholder="number" name="number">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                    <div class="fileinput-new thumbnail img-raised">
-                      <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
+                      <input class="form-control" type="text" placeholder="attribute" name="attribute">
                     </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                    <div>
-                      <span class="btn btn-raised btn-round btn-default btn-file">
-                        <br>
-                        <div class="col-2 offset-1">
-                          <input type="file" name="..." />
-                        </div>
-                      </span>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
+                      <input class="form-control" type="text" placeholder="namemeterial" name="name">
                     </div>
                   </div>
                 </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-12">
-                  <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                    ตกลง
-                  </button>
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body ">
-                          คุณต้องการบันทึกข้อมูลวัสดุ(คงทน)หรือไม่ ?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                          <button type="button" class="btn btn-danger">บันทึก</button>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label for="exampleFormControlSelect1">หน่วยงาน : </label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label for="exampleFormControlSelect1">ร้านค้า : </label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM seller";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
+                      <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label for="exampleFormControlSelect1">จำนวนปีของวัสดุ :</label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                        <option value="2">3</option>
+                        <option value="3">4</option>
+                        <option value="4">5</option>
+                        <option value="5">6</option>
+                        <option value="6">7</option>
+                        <option value="7">8</option>
+                        <option value="8">9</option>
+                        <option value="9">10</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">จำนวนเงิน :</label>
+                      <input class="form-control" type="text" placeholder="tel" name="tel">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">หน่วยนับ :</label>
+                        <select class="form-control" name="unit">
+                          <?php
+                          $sqlSelectType = "SELECT * FROM unit";
+                          $resultType = mysqli_query($conn, $sqlSelectType);
+                          while ($row = mysqli_fetch_assoc($resultType)) {
+                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">จำนวนวัสดุ :</label>
+                      <input class="form-control" type="text" placeholder="number" name="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail img-raised">
+                        <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                          <br>
+                          <div class="col-2 offset-1">
+                            <input type="file" name="..." />
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      ตกลง
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลวัสดุ(คงทน)หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger">บันทึก</button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
-              </div>
             </div>
           </div>
         </div>

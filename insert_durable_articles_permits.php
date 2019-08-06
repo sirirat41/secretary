@@ -45,10 +45,6 @@ require "service/connection.php";
               <h6 class="m-0 font-weight-bold text-danger">
                 <i class="fas fa-business-time"></i> เพิ่มข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
             </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_articles_permits.php" id="form_insert">
                 <div class="row">
@@ -60,19 +56,11 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
                   <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10 ">
-=======
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="product_id">รหัสครุภัณฑ์</label>
-                      <div class="row">
-                        <div class="col-md-10">
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
                           <select class="form-control" name="product_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles";
@@ -84,17 +72,8 @@ require "service/connection.php";
                           </select>
                         </div>
                         <div class="col-md-2">
-<<<<<<< HEAD
                           <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
                             <i class="fas fa-search"></i>
-=======
-                          <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button"
-                            data-toggle="modal" data-target="#modal-form-search">
-                              <i class="fas fa-search"></i>
-                            </button>
-                          </div>
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
                         </div>
                       </div>
                     </div>
@@ -102,11 +81,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-md-6 ">
-<<<<<<< HEAD
                     <div class="form-group">
-=======
-                    <div class="form-group ">
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
                       <label for="permit_date">วันที่ยืม</label>
                       <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
                     </div>
@@ -152,29 +127,14 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
+              </form>
             </div>
           </div>
-<<<<<<< HEAD
         </div>
       </div>
-
-      </form>
-
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-=======
-
-          </form>
-
-          <!-- สิ้นสุดการเขียนตรงนี้ -->
-        </div>
-        <!-- /.container-fluid -->
-      </div>
-      <!-- End of Main Content -->
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -245,7 +205,6 @@ require "service/connection.php";
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-<<<<<<< HEAD
         <div class="modal-body text-left">
           <div class="row">
             <div class="col-12">
@@ -264,59 +223,54 @@ require "service/connection.php";
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-                            <th>#</th>
-                            <th>รูปภาพ</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>ประเภท</th>
-                          </tr class="text-center">
-                        </thead>
-                        <tbody>
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
-                          $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                          $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["picture"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["name"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success">
-                                  <i class="fas fa-check"></i>
-                                </button>
-
-                              </td>
-                            </tr>
-                          <?php
-                          }
-
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center">
+                          <td>#</td>
+                          <td>รูปภาพ</td>
+                          <td>ลำดับ</td>
+                          <td>เลขที่ใบเบิก</td>
+                          <td>รหัสครุภัณฑ์</td>
+                          <td>ประเภท</td>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody>
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = $_GET["keyword"];
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
                           ?>
-
-                        </tbody>
-                      </table>
-                    </div>
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["picture"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-
+              </div>
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
@@ -337,8 +291,6 @@ require "service/connection.php";
             </nav>
           </div>
         </div>
-        </form>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -349,132 +301,20 @@ require "service/connection.php";
   <script>
     function search() {
       var kw = $("#keyword").val();
-=======
-        <div class="modal-body">
-        <div class="row">
-        <div class="col-12">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
-                  <div>
-                    <button class="btn btn-outline-danger" type="button" onclick="search();">
-                      <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-          </div>
-          </nav>
-          <form>
-            <div class="row">
-              <div class="col-12">
-                <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
-                      <tr class="text-center">
-                        <th>#</th>
-                        <th>รูปภาพ</th>
-                        <th>ลำดับ</th>
-                        <th>เลขที่ใบเบิก</th>
-                        <th>รหัสครุภัณฑ์</th>
-                        <th>ประเภท</th>
-                        <th>การทำงาน</th>
-                      </tr class="text-center">
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and a.code like '%$keyword%' or a.bill_no like '%$keyword%'";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["picture"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["name"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-check"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    function search() {
-      var kw = $('#keyword').val();
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
       $.ajax({
         url: 'service/service_search_json_durable_articles.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
-<<<<<<< HEAD
         },
         success: function(data) {
           console.log(data);
         },
         error: function(error) {
-
-          console.log(error);
-        }
-
-      })
-
-=======
-        }, success: function(data){
-          console.log(data);
-        }, error: function(error) {
           console.log(error);
         }
       })
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
     }
   </script>
 

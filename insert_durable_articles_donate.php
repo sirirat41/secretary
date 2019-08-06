@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
 require "service/connection.php";
 ?>
-=======
-  require "service/connection.php";
- ?>
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +60,6 @@ require "service/connection.php";
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
                       <input class="form-control" name="document_no" type="text" placeholder="document_no">
                     </div>
-<<<<<<< HEAD
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
@@ -107,40 +101,6 @@ require "service/connection.php";
                     </div>
                   </div>
                   <div class="col-6 ">
-=======
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">รหัสครุภัณฑ์</label>
-                      <select class="form-control" name="product_id">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM durable_articles";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                        }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
-                      <input class="form-control" name="donate_name" type="text" placeholder="donate_name">
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">วันที่บริจาค</label>
-                      <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 ">
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หมายเหตุ</label>
                       <input class="form-control" name="flag" name="flag" type="text" placeholder="flag">
@@ -183,17 +143,11 @@ require "service/connection.php";
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-<<<<<<< HEAD
 
 
   </div>
   <!-- End of Main Content -->
 
-=======
-  </div>
-  <!-- End of Main Content -->
-
->>>>>>> 78445379073fb397e53abfe2356bd0040b8bfdac
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -286,12 +240,12 @@ require "service/connection.php";
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
-                            <th>รูปภาพ</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>ประเภท</th>
+                            <td>#</td>
+                            <td>รูปภาพ</td>
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสครุภัณฑ์</td>
+                            <td>ประเภท</td>
                           </tr class="text-center">
                         </thead>
                         <tbody>
@@ -350,37 +304,34 @@ require "service/connection.php";
                 </li>
               </ul>
             </nav>
-        </form>
+            </form>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-  <script>
-    function search() {
-      var kw = $("#keyword").val();
-      $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
-        dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        },
-        success: function(data) {
-          console.log(data);
-        },
-        error: function(error) {
-
-          console.log(error);
-        }
-
-      })
-
-    }
-  </script>
+    <script>
+      function search() {
+        var kw = $("#keyword").val();
+        $.ajax({
+          url: 'service/service_search_json_durable_articles.php',
+          dataType: 'JSON',
+          type: 'GET',
+          data: {
+            keyword: kw
+          },
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        })
+      }
+    </script>
 
 </body>
 
