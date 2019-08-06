@@ -39,141 +39,155 @@ require "service/connection.php";
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <div class="col-8 offset-2">
+          <div class="card">
+            <div class="card-header card-header-text card-header-danger">
+              <div class="card-text">
 
-      <div class="row "></div>
-      <div class="col-8 offset-2">
-        <div class="card">
-          <div class="card-header card-header-text card-header-danger">
-            <div class="card-text">
-
-              <h5 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-fw fa-cubes"></i>
-                เพิ่มข้อมูลครุภัณฑ์
-              </h5>
+                <h5 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-fw fa-cubes"></i>
+                  เพิ่มข้อมูลครุภัณฑ์
+                </h5>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="card-body">
-            <form method="post" action="service/service_insert_durables_articles.php" id="form_insert">
-              <div class="row">
-                <div class="col-6 ">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">ลำดับ :</label>
-                    <input class="form-control" type="text" placeholder="id" name="seq">
-                  </div>
-                </div>
-                <div class="col-6 ">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">หน่วยงาน :</label>
-                    <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
-                    <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">รหัสครุภัณฑ์ :</label>
-                    <input class="form-control" type="text" placeholder="id" name="code">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">ประเภทครุภัณฑ์ : </label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM durable_articles_type";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                    <input class="form-control" type="text" placeholder="attribute" name="attribute">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">รุ่นแบบ :</label>
-                    <input class="form-control" type="text" placeholder="model" name="model">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                    <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">งบประมาณ :</label>
-                    <input class="form-control" type="text" placeholder="budget" name="budget">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
-                    <select class="form-control" name="department_id">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM department";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                    <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
+            <br>
+            <div class="card-body">
+              <form method="post" action="service/service_insert_durables_articles.php" id="form_insert">
+                <div class="row">
+                  <div class="col-6 ">
                     <div class="form-group">
-                      <label class="bmd-label-floating">เอกสารสำรองเงิน :</label>
-                      <input class="form-control" type="text" placeholder="D-GEN" name="d_gen">
+                      <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
+                      <input class="form-control" type="text" placeholder="order_no" name="order_no">
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
+                      <input class="form-control" type="text" placeholder="purchase_date" name="purchase_date">
+
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <label for="exampleFormControlSelect1">ร้านค้า : </label>
-                  <select class="form-control" name="seller_id">
-                    <?php
-                    $sqlSelectType = "SELECT * FROM seller";
-                    $resultType = mysqli_query($conn, $sqlSelectType);
-                    while ($row = mysqli_fetch_assoc($resultType)) {
-                      echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                    }
-                    ?>
-                  </select>
+                <div class="row">
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
+                      <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">หน่วยนับ :</label>
-                    <select class="form-control" name="unit">
+                <div class="row">
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">ชื่อผู้รับ :</label>
+                      <input class="form-control" type="text" placeholder="receiver" name="receiver">
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label for="receive_date">วันที่ตรวจรับ</label>
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group ">
+                      <label for="receive_address">สถานที่จัดส่ง</label>
+                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">หน่วยงาน :</label>
+                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
+                      <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">ประเภทครุภัณฑ์ : </label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM durable_articles_type";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
+                      <input class="form-control" type="text" placeholder="attribute" name="attribute">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">รุ่นแบบ :</label>
+                      <input class="form-control" type="text" placeholder="model" name="model">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
+                      <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">งบประมาณ :</label>
+                      <input class="form-control" type="text" placeholder="budget" name="budget">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
+                      <select class="form-control" name="department_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
+                      <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">เอกสารสำรองเงิน :</label>
+                        <input class="form-control" type="text" placeholder="D-GEN" name="d_gen">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlSelect1">ร้านค้า : </label>
+                    <select class="form-control" name="seller_id">
                       <?php
-                      $sqlSelectType = "SELECT * FROM unit";
+                      $sqlSelectType = "SELECT * FROM seller";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
                         echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
@@ -182,158 +196,175 @@ require "service/connection.php";
                     </select>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">จำนวนเงิน :</label>
-                    <input class="form-control" type="text" placeholder="price" name="price">
+                <br>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">หน่วยนับ :</label>
+                      <select class="form-control" name="unit">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM unit";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">จำนวนเงิน :</label>
+                      <input class="form-control" type="text" placeholder="price" name="price">
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                        <option value="2">3</option>
+                        <option value="3">4</option>
+                        <option value="4">5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">ห้องเก็บครุภัณฑ์ :</label>
+                      <input class="form-control" type="text" placeholder="storage" name="storage">
+                    </div>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">ห้องเก็บครุภัณฑ์ :</label>
-                    <input class="form-control" type="text" placeholder="storage" name="storage">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">จำนวนครุภัณฑ์ :</label>
+                      <input class="form-control" type="text" placeholder="number">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">จำนวนครุภัณฑ์ :</label>
-                    <input class="form-control" type="text" placeholder="numberrr">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">ประเภทเงิน :</label>
-                    <div class="form-check form-check-radio form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="	money_type" id="inlineRadio1" value="เงินงบประมาณ"> เงินงบประมาณ
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-                    </div>
-                    <div class="form-check form-check-radio form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ"> เงินนอกงบประมาณ
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-                    </div>
-                    <div class="form-check form-check-radio form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ"> เงินบริจาค/เงินช่วยเหลือ
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-                    </div>
-                    <div class="form-check form-check-radio form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ"> อื่นๆ
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">วิธีการได้มา :</label>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง"> เฉพาะเจาะจง
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา"> ประกวดราคา
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป"> ประกาศเชิญชวนทั่วไป
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค"> รับบริจาค
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <br>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">ประเภทเงิน :</label>
+                      <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="	money_type" id="inlineRadio1" value="เงินงบประมาณ"> เงินงบประมาณ
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ"> เงินนอกงบประมาณ
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ"> เงินบริจาค/เงินช่วยเหลือ
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ"> อื่นๆ
+                          <span class="circle">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">วิธีการได้มา :</label>
+                            <div class="form-check form-check-radio form-check-inline">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง"> เฉพาะเจาะจง
+                                <span class="circle">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="form-checFk form-check-radio form-check-inline">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา"> ประกวดราคา
+                                <span class="circle">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="form-check form-check-radio form-check-inline">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป"> ประกาศเชิญชวนทั่วไป
+                                <span class="circle">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="form-check form-check-radio form-check-inline">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค"> รับบริจาค
+                                <span class="circle">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                            <br>
 
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                <div class="fileinput-new thumbnail img-raised">
-                                  <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
-                                </div>
-                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                                <div>
-                                  <span class="btn btn-raised btn-round btn-default btn-file">
-                                    <br>
-                                    <div class="col-2 offset-1">
-                                      <input type="file" name="..." />
-                                    </div>
-                                  </span>
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                  <div class="fileinput-new thumbnail img-raised">
+                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                                  </div>
+                                  <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                  <div>
+                                    <span class="btn btn-raised btn-round btn-default btn-file">
+                                      <br>
+                                      <div class="col-2 offset-1">
+                                        <input type="file" name="..." />
+                                      </div>
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <br><br>
-                          <div class="row">
-                            <div class="col-12">
-                              <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                                บันทึก
-                                <div class="ripple-container"></div>
-                              </button>
-                              <!-- Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body ">
-                                      คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                      <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <br><br>
+                            <div class="row">
+                              <div class="col-12">
+                                <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                                  บันทึก
+                                  <div class="ripple-container"></div>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body ">
+                                        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -345,26 +376,26 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
-    </div>
-    <!-- /.container-fluid -->
+      <!-- /.container-fluid -->
 
-  </div>
-  <!-- End of Main Content -->
-  <br>
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
     </div>
-  </footer>
-  <!-- End of Footer -->
+    <!-- End of Main Content -->
+    <br>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
@@ -413,6 +444,8 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
+
 
 </body>
 

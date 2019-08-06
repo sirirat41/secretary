@@ -66,12 +66,12 @@
                             <table class="table table-hover ">
                               <thead>
                               <tr class="text-center">
-                                <th >#</th>
-                                <th >เลขที่เอกสาร</th>
-                                <th >รหัสครุภัณฑ์</th>
-                                <th >ชื่อบริจาค</th>
-                                <th >วันที่บริจาค</th>
-                                <th >การทำงาน</th>
+                                <td >#</td>
+                                <td >เลขที่เอกสาร</td>
+                                <td >รหัสครุภัณฑ์</td>
+                                <td >ชื่อบริจาค</td>
+                                <td >วันที่บริจาค</td>
+                                <td >การทำงาน</td>
                               </tr class="text-center">
                             </thead>
                             <tbody>

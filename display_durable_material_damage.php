@@ -67,10 +67,10 @@
                               <table class="table table-hover ">
                                 <thead>
                                 <tr class="text-center">
-                                  <th >#</th>
-                                  <th >รหัสวัสดุ</th>
-                                  <th >วันที่ชำรุด</th>
-                                  <th >การทำงาน</th>
+                                  <td >#</td>
+                                  <td >รหัสวัสดุ</td>
+                                  <td >วันที่ชำรุด</td>
+                                  <td >การทำงาน</td>
                                 </tr class="text-center">
                               </thead>
                               <tbody>
