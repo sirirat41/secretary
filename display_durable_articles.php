@@ -115,7 +115,7 @@ require "service/connection.php";
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div>      
             </div>
           </form>
         </div>
@@ -201,7 +201,10 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 44df56d8c671330eec13bfc30b13025a1514cd64
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -212,7 +215,6 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-
           คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่ 
           <form id="form-drop" method="post" action="service/service_drop_durable_articles.php">
           <input type="hidden" id="remove-articles" name="articles_id">

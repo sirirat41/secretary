@@ -48,7 +48,7 @@ require "service/connection.php";
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -56,7 +56,6 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_permits.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-
                 </form>
             </div>
           </div>
@@ -68,82 +67,75 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <td>#</td>
-                        <td>เลขที่หนังสือ</td>
-                        <td>รหัสครุภัณฑ์</td>
-                        <td>วันที่ยืม</td>
-                        <td class="text-center">การทำงาน</td>
+                        <th>#</th>
+                        <th>เลขที่หนังสือ</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>วันที่ยืม</th>
+                        <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        $sqlSelect = "SELECT * FROM durable_articles_permits";
+                        $sqlSelect .=" WHERE product_id and status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = $_GET["keyword"];
+                          $sqlSelect .=" and (product_id like '%$keyword%' or permit_date like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn,$sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                      ?>
                       <tr class="text-center">
-                        <td>1</td>
-                        <td>Andrew Mike</td>
-                        <td>Develop</td>
-                        <td>2013</td>
+                        <td><?php echo $row["id"];?></td>
+                        <td><?php echo $row["book_no"];?></td>
+                        <td><?php echo thainumDigit($row["product_id"]);?></td>
+                        <td><?php echo $row["permit_date"];?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
-
                           <button type="button" rel="tooltip" class="btn btn-success">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
+                          data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body text-left">
-                                  คุณต้องการลบข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger">บันทึก</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          </td>
+                      </tr>
+                      <?php
+                        }
+
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              </td>
-              </tr>
-              </tbody>
-              </table>
-
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
             </div>
+          </form>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-  </div>
-  </div>
-  </form>
 
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
@@ -208,7 +200,27 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+          คุณต้องการลบข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
