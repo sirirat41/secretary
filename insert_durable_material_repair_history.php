@@ -222,48 +222,44 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body">
-        <div class="row">
-              <div class="col-10 offset-1" >
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <nav class="navbar navbar-light bg-light">
+          <div class="row">
+            <div class="col-10 offset-1">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                    <i class="fas fa-business-time"></i> แสดงข้อมูลการซ่อม</h6>
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลการซ่อม</h6>
                     <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <div>
-                    <button class="btn btn-outline-danger" type="submit">
-                    <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material.php';">
-                    <i class="fas fa-plus"></i>
-                    </button>
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
+                          <i class="fas fa-search"></i>
+                        </button>
                     </form>
                 </div>
               </div>
-                    </nav>
-                      <form>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="table-responsive">
-                              <table class="table table-hover ">
-                                <thead>
-                                <tr class="text-center">
-                                  <th >#</th>
-                                  <th >รหัสวัสดุ</th>
-                                  <th >ชื่อวัสดุ</th>
-                                  <th >ประเภท</th>
-                                  <th >เลขที่ใบเบิก</th>
-                                  <th >การทำงาน</th>
-                                </tr class="text-center">
-                              </thead>
+              </nav>
+              <form>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover ">
+                        <thead>
+                          <tr class="text-center">
+                            <th>#</th>
+                            <th>ลำดับ</th>
+                            <th>วันที่ซ่อม</th>
+                            <th>รหัสวัสดุ(ชำรุด)</th>
+                            <th>สถานที่ซ่อม</th>
+                          </tr class="text-center">
+                        </thead>
                         <tbody>
                           <?php
                           $sqlSelect = "SELECT r.*, h.repair_id FROM durable_material_repair as r, durable_material_repair_history as h";
                           $sqlSelect .= " WHERE r.damage_id = h.id and r.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (r.damage_id like '%$keyword%' or r.fix like '%$keyword%')";
+                            $sqlSelect .= " and (r.damage_id like '%$keyword%' or h.repair_id like '%$keyword%')";
                           }
                           // echo $sqlSelect;
                           $result = mysqli_query($conn, $sqlSelect);
@@ -273,7 +269,7 @@ require "service/connection.php";
                             <tr class="text-center">
                               <td><?php echo $row["id"]; ?></td>
                               <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo $row["fix"]; ?></td>
+                              <td><?php echo $row["repair_date"]; ?></td>
                               <td><?php echo thainumDigit($row["damage_id"]); ?></td>
                               <td><?php echo $row["place"]; ?></td>
                               <td class="td-actions text-center">
@@ -322,7 +318,7 @@ require "service/connection.php";
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_material.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
