@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["article_id"] )) {
     }
 
 } else {
-    header('Location: ../display_durable_articles.php?message=ข้อมูลผิดพลาด');
+    header('Location: ../display_durable_articles.php?message=ลบข้อมูลผิดพลาด');
 }
 
 ?>

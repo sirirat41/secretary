@@ -213,6 +213,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

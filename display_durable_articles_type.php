@@ -109,7 +109,7 @@ require "service/connection.php";
               </div>
             </div>
           </form>
-        </div>>
+        </div>
 
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
@@ -208,11 +208,12 @@ require "service/connection.php";
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลประเภทครุภัณฑ์ใช่รือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_type.php">
-            <input type="hidden" id="remove-type" name="type_id">
+          <input type="hidden" id="remove-type" name="type_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger"onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

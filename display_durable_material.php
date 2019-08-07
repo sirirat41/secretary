@@ -1,3 +1,7 @@
+
+<?php
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,12 +72,12 @@
                               <table class="table table-hover ">
                                 <thead>
                                 <tr class="text-center">
-                                  <th >#</th>
-                                  <th >รหัสวัสดุ</th>
-                                  <th >ชื่อวัสดุ</th>
-                                  <th >ประเภท</th>
-                                  <th >เลขที่ใบเบิก</th>
-                                  <th >การทำงาน</th>
+                                  <td >#</td>
+                                  <td >รหัสวัสดุ</td>
+                                  <td >ชื่อวัสดุ</td>
+                                  <td >ประเภท</td>
+                                  <td >เลขที่ใบเบิก</td>
+                                  <td >การทำงาน</td>
                                 </tr class="text-center">
                               </thead>
                               <tbody>

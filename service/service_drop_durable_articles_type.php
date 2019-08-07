@@ -2,8 +2,8 @@
 require "connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["type_id"] )) {
-    $permitsID = $_POST["type_id"];
-    $sqlUpdate ="UPDATE durable_articles_type SET status = 0 WHERE id = ". $permitsID;
+    $typeID = $_POST["type_id"];
+    $sqlUpdate ="UPDATE durable_articles_type SET status = 0 WHERE id = ". $typeID;
 
     if (mysqli_query($conn, $sqlUpdate)) {
         header('Location: ../display_durable_articles_type.php?message=ลบข้อมูลสำเร็จ');

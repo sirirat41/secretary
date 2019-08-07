@@ -77,6 +77,7 @@ require "service/connection.php";
                       </tr class="text-center">
                     </thead>
                     <tbody>
+                      <!-- ///ดึงข้อมูล -->
                       <?php
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
                         $sqlSelect .=" WHERE a.type = t.id and a.status = 1";
@@ -86,7 +87,7 @@ require "service/connection.php";
                         }
                         $result = mysqli_query($conn,$sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
+                          $id = $row["id"]
                       ?>
                       <tr class="text-center">
                         <td><?php echo $row["id"];?></td>
@@ -103,16 +104,15 @@ require "service/connection.php";
                             <i class="fas fa-clipboard-list"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                          data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                            data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id;?>')">
+                              <i class="fas fa-trash-alt"></i>
+                        </button>
                         </td>
                       </tr>
                       <?php
                         }
 
                       ?>
-
                     </tbody>
                   </table>
                 </div>
@@ -216,7 +216,7 @@ require "service/connection.php";
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่ 
           <form id="form-drop" method="post" action="service/service_drop_durable_articles.php">
-          <input type="hidden" id="remove-articles" name="article_id">
+          <input type="hidden" id="remove-articles" name="articles_id">
           </form>
         </div>
         <div class="modal-footer">
