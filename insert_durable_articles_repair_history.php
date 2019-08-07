@@ -60,7 +60,7 @@
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="receive_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                      <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -248,7 +248,7 @@
                             <th>ลำดับ</th>
                             <th>วันที่ซ่อม</th>
                             <th>รหัสครภัณฑ์(ชำรุด)</th>
-                            <th>สถานที่ซ่อม</th>
+                            <th>รายการซ่อมครุภัณฑ์</th>
                             <th class="text-center">การทำงาน</th>
                           </tr>
                         </thead>
@@ -270,7 +270,7 @@
                               <td><?php echo $row["seq"]; ?></td>
                               <td><?php echo $row["repair_date"]; ?></td>
                               <td><?php echo thainumDigit($row["damage_id"]); ?></td>
-                              <td><?php echo $row["place"]; ?></td>
+                              <td><?php echo $row["fix"]; ?></td>
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-success">
                                   <i class="fas fa-check"></i>

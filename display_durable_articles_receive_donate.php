@@ -48,7 +48,7 @@ require "service/connection.php";
 
                 <form class="form-inline">
                   <div>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_receive_donate.php';">
                       <i class="fas fa-plus"></i>
@@ -65,47 +65,46 @@ require "service/connection.php";
                       <tr class="text-center">
                         <th>#</th>
                         <th>เลขที่เอกสาร</th>
-                        <th>รหัสครุภัณฑ์</th>
                         <th>วันที่บริจาค</th>
+                        <th>รหัสครุภัณฑ์</th>
                         <th>ชื่อผู้บริจาค</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <!-- ///ดึงข้อมูล -->
-                    <?php
-                        $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
-                        $sqlSelect .=" WHERE d.product_id = a.id and d.status = 1";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = $_GET["keyword"];
-                          $sqlSelect .=" and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
-                        }
-                        //echo $sqlSelect;
-                        $result = mysqli_query($conn,$sqlSelect);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $id = $row["id"]
-                      ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"];?></td>
-                        <td><?php echo thainumDigit($row["document_no"]);?></td>
-                        <td><?php echo thainumDigit($row["product_id"]);?></td>
-                        <td><?php echo $row["receive_date"];?></td>
-                        <td><?php echo $row["donate_name"];?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id;?>')">
-                              <i class="fas fa-trash-alt"></i>
-                        </button>
-                        </td>
-                      </tr>
+                      <!-- ///ดึงข้อมูล -->
                       <?php
-                        }
+                      $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
+                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                      }
+                      //echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo $row["donate_name"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
                       ?>
                     </tbody>
                   </table>
