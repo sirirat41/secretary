@@ -108,7 +108,7 @@ $(document).ready(function() {
         //     $('.collapse-material .insertdamage').addClass('active');
         //     break;
         
-        // case "insert_suplies_distribute":  //แจกจ่าย
+        // case "insert_supplies'_distribute":  //แจกจ่าย
         //     $('.nav-supplies').addClass('active');
         //     $('.collapse-supplies').addClass('show');
         //     $('.collapse-supplies .insertdistribute').addClass('active');
@@ -171,7 +171,7 @@ $(document).ready(function() {
 
             //Supplies วัสดุสิ้นเปลือง
 
-        case "display_suplies_distribute":    //แจกจ่าย
+        case "display_supplies'_distribute":    //แจกจ่าย
             $('.nav-supplies').addClass('active');
             $('.collapse-supplies').addClass('show');
             $('.collapse-supplies .distribute').addClass('active');

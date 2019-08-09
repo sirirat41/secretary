@@ -272,66 +272,67 @@ require "service/connection.php";
                                 <button type="button" rel="tooltip" class="btn btn-success">
                                   <i class="fas fa-check"></i>
                                 </button>
-
                               </td>
                             </tr>
                           <?php
                           }
 
                           ?>
-
                         </tbody>
                       </table>
-                    </div>
-                  </div>
-                </div>
-
+              </form>
             </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            </form>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           </div>
         </div>
       </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <script>
-      function search() {
-        var kw = $("#keyword").val();
-        $.ajax({
-          url: 'service/service_search_json_durable_articles.php',
-          dataType: 'JSON',
-          type: 'GET',
-          data: {
-            keyword: kw
-          },
-          success: function(data) {
-            console.log(data);
-          },
-          error: function(error) {
-            console.log(error);
-          }
-        })
-      }
-    </script>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_durable_material.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+
+          console.log(error);
+        }
+
+      })
+
+    }
+  </script>
 
 </body>
 

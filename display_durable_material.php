@@ -39,68 +39,87 @@ require "service/connection.php";
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->
-    <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <div class="row">
-        <div class="col-10 offset-1">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <div>
-                    <button class="btn btn-outline-danger" type="submit">
-                      <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                </form>
+      <div class="container-fluid">
+        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+        <div class="row">
+          <div class="col-10 offset-1">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <nav class="navbar navbar-light bg-light">
+                  <h6 class="m-0 font-weight-bold text-danger">
+                    <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
+                  <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <div>
+                      <button class="btn btn-outline-danger" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                      <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material.php';">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                  </form>
+              </div>
             </div>
-          </div>
-          </nav>
-          <form>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
-                      <tr class="text-center">
-                        <td>#</td>
-                        <td>รหัสวัสดุ</td>
-                        <td>ชื่อวัสดุ</td>
-                        <td>ประเภท</td>
-                        <td>เลขที่ใบเบิก</td>
-                        <td>การทำงาน</td>
-                      </tr class="text-center">
-                    </thead>
-                    <tbody>
-                      <tr class="text-center">
-                        <td>1</td>
-                        <td>ว.สดง ๑๙๙๙๙๙๙</td>
-                        <td>ปากกา</td>
-                        <td>วัสดุสำนักงาน</td>
-                        <td>12/03/2562</td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+            </nav>
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center">
+                          <th>#</th>
+                          <th>ลำดับ</th>
+                          <th>เลขที่ใบเบิก</th>
+                          <th>รหัสวัสดุ</th>
+                          <th>ประเภท</th>
+                          <th>การทำงาน</th>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody>
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
+                        $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = $_GET["keyword"];
+                          $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["type"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-warning">
+                                <i class="fas fa-pencil-alt"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-success">
+                                <i class="fas fa-clipboard-list"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-              </td>
-              </tr>
-              </tbody>
-              </table>
-          </form>
+            </form>
+          </div>
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item">
@@ -124,9 +143,13 @@ require "service/connection.php";
   </div>
   </div>
   </div>
+  </form>
+  </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
+
+
   </div>
   <!-- End of Main Content -->
 
@@ -189,28 +212,52 @@ require "service/connection.php";
   <script src="js/secretary.js"></script>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body text-left">
-                                  คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
-                                  <form id="form-drop" method="post" action="service/service_drop_durable_material.php">
-                                  <input type="hidden" id="remove-material" name="material_id">
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_material.php">
+            <input type="hidden" id="remove-material" name="material_id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+
+          คุณต้องการลบข้อมูลวัสดุ (คงทน)ใช่หรือไม่
+
+          <form id="form-drop" method="post" action="service/service_drop_durable_material.php">
+            <input type="hidden" id="remove-material" name="material_id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
