@@ -253,33 +253,35 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php
-                          $sqlSelect = "SELECT r.*, h.repair_id FROM durable_articles_repair as r, durable_articles_repair_history as h";
-                          $sqlSelect .= " WHERE r.damage_id = h.id and r.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (r.damage_id like '%$keyword%' or r.repair_date like '%$keyword%')";
-                          }
-                          // echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo $row["repair_date"]; ?></td>
-                              <td><?php echo thainumDigit($row["damage_id"]); ?></td>
-                              <td><?php echo $row["fix"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              </td>
-                            </tr>
-                          <?php
-                          }
-                          ?>
+                        <?php
+                      $sqlSelect = "SELECT h.*, r.damage_id FROM durable_articles_repair_history as h, durable_articles_repair as r";
+                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (r.damage_id like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                      }
+                      //echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["damage_id"]); ?></td>
+                          <td><?php echo $row["fix"]; ?></td>
+                          <td class="td-actions text-center">
+                            
+                            <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="fas fa-check"></i>
+                            </button>
+                            
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
                         </tbody>
                       </table>
                     </div>
