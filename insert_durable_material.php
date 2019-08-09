@@ -343,6 +343,24 @@ require "service/connection.php";
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+  <script>
+    function search() {
+      var kw = $('#keyword').val();
+      $.ajax({
+        url: 'service/service_search_json_durable_material.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        }, success: function(data){
+          console.log(data);
+        }, error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+  </script>
+
 </body>
 
 </html>

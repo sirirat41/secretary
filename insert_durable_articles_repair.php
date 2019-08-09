@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
-require "service/connection.php";
-?>
-=======
   require "service/connection.php";
  ?>
->>>>>>> e16523b3dd8598753b302f9216d21994f20f9e4c
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +98,6 @@ require "service/connection.php";
                       <textarea class="form-control" name="place" id="exampleFormControlTextarea1" placeholder="place" rows="3"></textarea>
                     </div>
                   </div>
-
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                       บันทึก

@@ -1,6 +1,6 @@
 <?php
-  require "service/connection.php";
- ?>
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,126 +33,134 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include "navigation/navbar.php";?>
+    <?php include "navigation/navbar.php"; ?>
 
-        </nav>
-        <!-- End of Topbar -->
+    </nav>
+    <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
+    <!-- Begin Page Content -->
 
-        <div class="container-fluid">
-        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-          <div class="row">
-            <div class="col-md-6 offset-md-3">
-              <div class="card shado mb-6">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> เพิ่มข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="service/service_insert_durable_material_sell.php" id="form_insert">
-                      <div class="row">
-                          <div class="col-md-6 ">
-                              <div class="form-group">
-                                <label for="product_id">รหัสวัสดุ</label>
-                                <select class="form-control" name="product_id" >
-                                <?php
-                                $sqlSelectType = "SELECT * FROM durable_material";
-                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                  echo '<option value="'.$row["id"].'">'.$row["code"].'</option>';
-                                }
-                               ?>
-                                </select>
-                              </div>
-                          </div>
-                          <div class="col-md-6 ">
-                            <div class="form-group">
-                              <label for="sell_date">วันที่ขาย</label>
-                              <input type="datetime-local" class="form-control" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate">
-                            </div>
-                        </div>
-                      </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="buyer">ชื่อผู้ซื้อ</label>
-                              <input type="text" class="form-control" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer">
-                            </div>
-                        </div>
-                    </div>
-
-
+    <div class="container-fluid">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card shado mb-6">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> เพิ่มข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
+            </div>
+            <div class="card-body">
+              <form method="post" action="service/service_insert_durable_material_sell.php" id="form_insert">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="document_no">เลขที่เอกสาร</label>
-                          <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
-                        </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="document_no">เลขที่เอกสาร</label>
+                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
                     </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="sell_date">วันที่ขาย</label>
+                      <input type="datetime-local" class="form-control" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate">
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="flag">หมายเหตุ</label>
-                        <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                    <div class="col-md-12">
-                      <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                        บันทึก
-                      <div class="ripple-container"></div></button>
-
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลการขายทอดตลาดวัสดุหรือไม่ ?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                              </div>
-                            </div>
+                    <div class="form-group">
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <div class="row">
+                        <div class="col-md-10">
+                          <select class="form-control" name="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_material";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                              <i class="fas fa-search"></i>
+                            </button>
                           </div>
                         </div>
-                    </div>
-                      
-                    
                       </div>
-                    </form>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="buyer">ชื่อผู้ซื้อ</label>
+                      <input type="text" class="form-control" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="flag">หมายเหตุ</label>
+                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
+                      <div class="ripple-container"></div></button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลการขายทอดตลาดวัสดุหรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </form>
             </div>
           </div>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
-        <!-- /.container-fluid -->
-
-
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -198,6 +206,24 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
+  <script>
+    function search() {
+      var kw = $('#keyword').val();
+      $.ajax({
+        url: 'service/service_search_json_durable_material.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        }, success: function(data){
+          console.log(data);
+        }, error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+  </script>
 
 
 </body>
