@@ -75,7 +75,7 @@
             <a class="collapse-item display" href="display_supplies.php">แสดงข้อมูลวัสดุสิ้นเปลือง</a>
             <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
-            <a class="collapse-item distribute" href="display_suplies_distribute.php">แจกจ่าย</a>
+            <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>

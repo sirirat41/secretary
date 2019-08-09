@@ -271,6 +271,7 @@ require "service/connection.php";
                       </table>
                     </div>
                   </div>
+                  </form>
                 </div>
             </div>
             <nav aria-label="Page navigation example">
@@ -292,7 +293,7 @@ require "service/connection.php";
             </nav>
           </div>
         </div>
-        </form>
+       
 
       </div>
       <div class="modal-footer">

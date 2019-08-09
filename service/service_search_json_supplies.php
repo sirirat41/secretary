@@ -4,9 +4,9 @@
 
     if (isset($_GET["keyword"])){
         $keyword = $_GET["keyword"];
-        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-        $sqlSelect .=" WHERE a.type = t.id and a.status = 1";
-        $sqlSelect .=" and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+        $sqlSelect = "SELECT m.* FROM supplies ";
+        $sqlSelect .=" WHERE m.type = m.status = 1";
+        $sqlSelect .=" and (m.code like '%$keyword%' or m.bill_no like '%$keyword%')";
         $data = array();
         $result = mysqli_query($conn, $sqlSelect);
         while ($row = mysqli_fetch_assoc($result)){

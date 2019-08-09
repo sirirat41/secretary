@@ -5,7 +5,6 @@ require "service/connection.php";
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -79,38 +78,38 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                        $sqlSelect .=" WHERE a.type = t.id and a.status = 1";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = $_GET["keyword"];
-                          $sqlSelect .=" and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                        }
-                        $result = mysqli_query($conn,$sqlSelect);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $id = $row["id"]
-                      ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"];?></td>
-                        <td><?php echo $row["picture"];?></td>
-                        <td><?php echo $row["seq"];?></td>
-                        <td><?php echo thainumDigit($row["bill_no"]);?></td>
-                        <td><?php echo thainumDigit($row["code"]);?></td>
-                        <td><?php echo $row["name"];?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id;?>')">
+                      $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                      }
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["picture"]; ?></td>
+                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["name"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
+                            onclick="$('#remove-articles').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
-                        </button>
-                        </td>
-                      </tr>
+                            </button>
+                          </td>
+                        </tr>
                       <?php
-                        }
+                      }
 
                       ?>
                     </tbody>
@@ -218,9 +217,10 @@ require "service/connection.php";
         </div>
         <div class="modal-body text-left">
 
-          คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่ 
+          คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่
+
           <form id="form-drop" method="post" action="service/service_drop_durable_articles.php">
-          <input type="hidden" id="remove-articles" name="articles_id">
+            <input type="hidden" id="remove-articles" name="articles_id">
           </form>
         </div>
         <div class="modal-footer">

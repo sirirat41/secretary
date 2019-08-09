@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_supplies</secretary>
+  <secretary style="display : none">display_supplies_distribute</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,16 +20,17 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
+
+
 </head>
 
 <body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-    <?php include "navigation/navbar.php"; ?>
 
     <!-- Sidebar -->
-
+    <?php include "navigation/navbar.php"; ?>
 
     </nav>
     <!-- End of Topbar -->
@@ -39,46 +40,48 @@
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
-
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลแจกจ่ายวัสดุ</h6>
                 <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                   <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
+                    <button class="btn btn-outline-danger" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                 </form>
             </div>
           </div>
+          </nav>
           <form>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-12">
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>ลำดับ</th>
-                        <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
-                        <th>ชื่อวัสดุ</th>
-                        <th>สถานะ</th>
-                        <th class="text-center">การทำงาน</th>
-                      </tr>
+                        <th>รหัสหน่วยงาน</th>
+                        <th>วันที่แจกจ่าย</th>
+                        <th>จำนวน</th>
+                        <th>การทำงาน</th>
+                      </tr class="text-center">
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                     $sqlSelect = "SELECT m.* FROM supplies ";
-                     $sqlSelect .=" WHERE m.type = m.status = 1";
+                      $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
+                      $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .=" and (m.code like '%$keyword%' or m.bill_no like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -89,7 +92,7 @@
                           <td><?php echo $row["seq"]; ?></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["name"]; ?></td>
+                          <td><?php echo $row["type"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning">
                               <i class="fas fa-pencil-alt"></i>
@@ -98,7 +101,7 @@
                               <i class="fas fa-clipboard-list"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                            onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                            onclick="$('#remove-suppliesl').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -202,6 +205,30 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+
+          คุณต้องการลบข้อมูลวัสดุ (คงทน)ใช่หรือไม่
+
+          <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php">
+            <input type="hidden" id="remove-material" name="material_id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
