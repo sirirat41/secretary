@@ -55,79 +55,90 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <div class="row">
-                <div class=" col-6 ">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">รหัสวัสดุ</label>
-                    <select class="form-control" name="product_id">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM supplies";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">หน่วยงาน</label>
-                    <select class="form-control" name="department_id">
-                      <?php
-                      $sqlSelectType = "SELECT * FROM department";
-                      $resultType = mysqli_query($conn, $sqlSelectType);
-                      while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
-                      }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class=" col-6 ">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">วันที่แจกจ่าย</label>
-                    <input class="form-control" type="text" placeholder="distribute_date">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group">
-                    <label class="bmd-label-floating">จำนวน</label>
-                    <input class="form-control" type="text" placeholder="number">
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-12">
-                  <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                    ตกลง
-                  </button>
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+              <form method="post" action="service/service_insert_supplies_distribute.php" id="form_insert">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label for="product_id">รหัสครุภัณฑ์</label>
+                      <div class="row">
+                        <div class="col-md-10 ">
+                          <select class="form-control" name="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM supplies";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            ?>
+                          </select>
                         </div>
-                        <div class="modal-body ">
-                          คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                          <button type="button" class="btn btn-danger">บันทึก</button>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                            <i class="fas fa-search"></i>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
-              </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">จำนวน</label>
+                      <input class="form-control" type="text" placeholder="number">
+                    </div>
+                  </div>
+                  <div class=" col-6 ">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">วันที่แจกจ่าย</label>
+                      <input class="form-control" type="text" placeholder="distribute_date">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">หน่วยงาน</label>
+                      <select class="form-control" name="department_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      ตกลง
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -318,7 +329,7 @@ require "service/connection.php";
     function search() {
       var kw = $("#keyword").val();
       $.ajax({
-        url: 'service/service_search_json_supplies_distribute.php',
+        url: 'service/service_search_json_supplies.php',
         dataType: 'JSON',
         type: 'GET',
         data: {

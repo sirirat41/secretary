@@ -94,7 +94,7 @@ require "service/connection.php";
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["document_no"]; ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td><?php echo $row["receive_date"]; ?></td>
                           <td class="td-actions text-center">

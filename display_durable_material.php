@@ -97,7 +97,7 @@ require "service/connection.php";
                             <td><?php echo $row["seq"]; ?></td>
                             <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["type"]; ?></td>
+                            <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-warning">
                                 <i class="fas fa-pencil-alt"></i>
@@ -105,7 +105,8 @@ require "service/connection.php";
                               <button type="button" rel="tooltip" class="btn btn-success">
                                 <i class="fas fa-clipboard-list"></i>
                               </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
+                              onclick="$('#remove-material').val('<?php echo $id; ?>')">
                                 <i class="fas fa-trash-alt"></i>
                               </button>
                             </td>

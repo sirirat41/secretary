@@ -1,3 +1,6 @@
+<?php
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,11 +80,11 @@
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-                      $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
+                      $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
+                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -89,10 +92,10 @@
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["type"]; ?></td>
+                          <td><?php echo $row["fullname"]; ?></td>
+                          <td><?php echo $row["distribute_date"]; ?></td>
+                          <td><?php echo $row["number"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning">
                               <i class="fas fa-pencil-alt"></i>
