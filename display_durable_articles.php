@@ -115,7 +115,7 @@ require "service/connection.php";
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div>      
             </div>
           </form>
         </div>
@@ -141,8 +141,6 @@ require "service/connection.php";
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -203,9 +201,6 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
-
-
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

@@ -105,14 +105,13 @@ require "service/connection.php";
                               <button type="button" rel="tooltip" class="btn btn-success">
                                 <i class="fas fa-clipboard-list"></i>
                               </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                              onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
                                 <i class="fas fa-trash-alt"></i>
                               </button>
                             </td>
                           </tr>
                         <?php
-                        } 
+                        }
                         ?>
                       </tbody>
                     </table>
@@ -211,6 +210,28 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_material.php">
+            <input type="hidden" id="remove-material" name="material_id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
-require "service/connection.php";
-?>
-=======
   require "service/connection.php";
  ?>
->>>>>>> e16523b3dd8598753b302f9216d21994f20f9e4c
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +60,7 @@ require "service/connection.php";
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="receive_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                      <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -80,7 +75,7 @@ require "service/connection.php";
                             $sqlSelectType = "SELECT * FROM durable_articles_repair";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["damag_id"] . '</option>';
+                              echo '<option value="' . $row["id"] . '">' . $row["damage_id"] . '</option>';
                             }
                             ?>
                           </select>
@@ -99,7 +94,7 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-md-8">
                     <div class="form-group">
-                      <label for="fix">รายการการซ่อมครุภัณฑ์</label>
+                      <label for="fix">รายการซ่อมครุภัณฑ์</label>
                       <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="listfix">
                     </div>
                   </div>
@@ -142,10 +137,8 @@ require "service/connection.php";
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </form>
             </div>
           </div>
@@ -254,14 +247,14 @@ require "service/connection.php";
                             <th>#</th>
                             <th>ลำดับ</th>
                             <th>วันที่ซ่อม</th>
-                            <th>รหัสวัสดุ(ชำรุด)</th>
-                            <th>สถานที่ซ่อม</th>
+                            <th>รหัสครภัณฑ์(ชำรุด)</th>
+                            <th>รายการซ่อมครุภัณฑ์</th>
                             <th class="text-center">การทำงาน</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php
-                          $sqlSelect = "SELECT r.*, d.product_id FROM durable_articles_repair as r, durable_articles_repair_history as h";
+                          $sqlSelect = "SELECT r.*, h.repair_id FROM durable_articles_repair as r, durable_articles_repair_history as h";
                           $sqlSelect .= " WHERE r.damage_id = h.id and r.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
@@ -277,7 +270,7 @@ require "service/connection.php";
                               <td><?php echo $row["seq"]; ?></td>
                               <td><?php echo $row["repair_date"]; ?></td>
                               <td><?php echo thainumDigit($row["damage_id"]); ?></td>
-                              <td><?php echo $row["place"]; ?></td>
+                              <td><?php echo $row["fix"]; ?></td>
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-success">
                                   <i class="fas fa-check"></i>
@@ -343,3 +336,4 @@ require "service/connection.php";
 </body>
 
 </html>
+ 

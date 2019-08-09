@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
 require "service/connection.php";
 ?>
-=======
-  require "service/connection.php";
- ?>
->>>>>>> e16523b3dd8598753b302f9216d21994f20f9e4c
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +58,7 @@ require "service/connection.php";
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่รับบริจาค</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                      <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                     </div>
                   </div>
                 </div>
