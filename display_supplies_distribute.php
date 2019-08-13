@@ -86,6 +86,7 @@ require "service/connection.php";
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
                       }
+
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
@@ -179,7 +180,7 @@ require "service/connection.php";
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
-          </button>
+          </button>g
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
