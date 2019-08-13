@@ -142,14 +142,9 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 

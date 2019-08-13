@@ -135,6 +135,7 @@ require "service/connection.php";
           </ul>
         </nav>
       </div>
+    </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
