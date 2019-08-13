@@ -37,8 +37,6 @@ require "service/connection.php";
 
     <!-- Begin Page Content -->
 
-    <div class="container-fluid">
-      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <div class="row">
@@ -131,9 +129,6 @@ require "service/connection.php";
           </nav>
         </div>
       </div>
-    </div>
-  </div>
-  </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
