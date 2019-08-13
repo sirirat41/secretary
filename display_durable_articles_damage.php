@@ -66,10 +66,10 @@ require "service/connection.php";
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                          <td>#</td>
-                          <td>รหัสครุภัณฑ์</td>
-                          <td>วันที่ชำรุด</td>
-                          <td>การทำงาน</td>
+                          <th>#</th>
+                          <th>รหัสครุภัณฑ์</th>
+                          <th>วันที่ชำรุด</th>
+                          <th>การทำงาน</th>
                         </tr class="text-center">
                       </thead>
                       <tbody>

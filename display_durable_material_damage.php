@@ -70,10 +70,10 @@ require "service/connection.php";
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                          <td>#</td>
-                          <td>รหัสวัสดุ</td>
-                          <td>วันที่ชำรุด</td>
-                          <td>การทำงาน</td>
+                          <th>#</th>
+                          <th>รหัสวัสดุ</th>
+                          <th>วันที่ชำรุด</th>
+                          <th>การทำงาน</th>
                         </tr class="text-center">
                       </thead>
                       <tbody>

@@ -68,12 +68,12 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <td>#</td>
-                        <td>เลขที่เอกสาร</td>
-                        <td>รหัสวัสดุ</td>
-                        <td>ชื่อบริจาค</td>
-                        <td>วันที่บริจาค</td>
-                        <td>การทำงาน</td>
+                        <th>#</th>
+                        <th>เลขที่เอกสาร</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>ชื่อบริจาค</th>
+                        <th>วันที่บริจาค</th>
+                        <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
                     <tbody>
