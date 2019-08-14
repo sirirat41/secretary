@@ -165,13 +165,7 @@ require "service/connection.php";
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-
-    
-  
-=======
     </form>
->>>>>>> a76a5685926d5f402a68eb0fc3d0b3c2c0fae273
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
