@@ -242,16 +242,15 @@ require "service/connection.php";
               <div class="row">
                 <div class="col-12">
                   <div class="table-responsive">
-                    <table class="table table-hover ">
+                    <table class="table table-hover">
                       <thead>
                         <tr class="text-center">
                           <td>#</td>
-                          <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
-                        </tr class="text-center">
+                        </tr>
                       </thead>
                       <tbody>
                         <!-- ///ดึงข้อมูล -->
@@ -268,7 +267,6 @@ require "service/connection.php";
                           ?>
                           <tr class="text-center">
                             <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
                             <td><?php echo $row["seq"]; ?></td>
                             <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -284,6 +282,7 @@ require "service/connection.php";
                         ?>
                       </tbody>
                     </table>
+                    </form>
                   </div>
                 </div>
               </div>

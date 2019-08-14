@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">insert_suplies_distribute</secretary>
+  <secretary style="display : none">insert_supplies_distribute</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -83,21 +83,21 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">จำนวน</label>
-                      <input class="form-control" type="text" placeholder="number">
+                      <label for="number">จำนวน</label>
+                      <input class="form-control" type="text" name="number" placeholder="number">
                     </div>
                   </div>
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">วันที่แจกจ่าย</label>
-                      <input class="form-control" type="text" placeholder="distribute_date">
+                      <label for="distribute_date">วันที่แจกจ่าย</label>
+                      <input class="form-control" type="date" name="distribute_date" placeholder="distribute_date">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">หน่วยงาน</label>
+                      <label for="department_id">หน่วยงาน</label>
                       <select class="form-control" name="department_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
@@ -110,10 +110,18 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group bmd-form-group">
+                      <label for="flag">หมายเหตุ</label>
+                      <input class="form-control" type="text" name="flag" placeholder="flag">
+                    </div>
+                  </div>
+                </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
                       ตกลง
                     </button>
                     <!-- Modal -->
@@ -131,7 +139,7 @@ require "service/connection.php";
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger">บันทึก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -143,6 +151,7 @@ require "service/connection.php";
           </div>
         </div>
       </div>
+</form>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
@@ -219,14 +228,14 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          <div class="row">
+        <div class="row">
             <div class="col-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
-                    <form class="form-inline">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
+                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>
                         <button class="btn btn-outline-danger" type="button" onclick="search();">
@@ -236,11 +245,10 @@ require "service/connection.php";
                 </div>
               </div>
               </nav>
-              <form>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="table-responsive">
-                      <table class="table table-hover ">
+                      <table class="table table-hover">
                         <thead>
                           <tr class="text-center">
                             <th>#</th>
@@ -274,31 +282,21 @@ require "service/connection.php";
                               <td><?php echo $row["name"]; ?></td>
                               <td><?php echo $row["type"]; ?></td>
                               <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-warning">
-                                  <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-success">
-                                  <i class="fas fa-clipboard-list"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                                onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                                  <i class="fas fa-trash-alt"></i>
-                                </button>
+                              <button type="button" rel="tooltip" class="btn btn-success">
+                                <i class="fas fa-check"></i>
+                              </button>
                               </td>
                             </tr>
                           <?php
                           }
                           ?>
                         </tbody>
-                      </table>
-                    </div>
+                      </table> 
+                    </form>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item">
@@ -312,14 +310,17 @@ require "service/connection.php";
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+              </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+      </div>
     </div>
-  </div>
-  </div>
-  </div>
   </div>
   </div>
   <script>
