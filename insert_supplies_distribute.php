@@ -57,7 +57,7 @@ require "service/connection.php";
             <div class="card-body">
               <form method="post" action="service/service_insert_supplies_distribute.php" id="form_insert">
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
@@ -232,95 +232,92 @@ require "service/connection.php";
                         <button class="btn btn-outline-danger" type="button" onclick="search();">
                           <i class="fas fa-search"></i>
                         </button>
+                      </div>
                     </form>
+                  </nav>
                 </div>
               </div>
-              </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-                            <th>#</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสวัสดุ</th>
-                            <th>ชื่อวัสดุ</th>
-                            <th>ประเภทวัสดุ</th>
-                            <th class="text-center">การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
-                          $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                          $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          //echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo $row["bill_no"]; ?></td>
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["name"]; ?></td>
-                              <td><?php echo $row["type"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-warning">
-                                  <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-success">
-                                  <i class="fas fa-clipboard-list"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                                onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                                  <i class="fas fa-trash-alt"></i>
-                                </button>
-                              </td>
-                            </tr>
-                          <?php
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-hover ">
+                    <thead>
+                      <tr class="text-center">
+                        <th>#</th>
+                        <th>ลำดับ</th>
+                        <th>เลขที่ใบเบิก</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>ชื่อวัสดุ</th>
+                        <th>ประเภทวัสดุ</th>
+                        <th class="text-center">การทำงาน</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- ///ดึงข้อมูล -->
+                      <?php
+                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
+                      $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                      }
+                      //echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["seq"]; ?></td>
+                        <td><?php echo $row["bill_no"]; ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["name"]; ?></td>
+                        <td><?php echo $row["type"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
     </div>
-  </div>
-  </div>
-  </div>
-  </div>
   </div>
   <script>
     function search() {
@@ -344,6 +341,8 @@ require "service/connection.php";
 
     }
   </script>
+
+
 
 </body>
 
