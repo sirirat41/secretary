@@ -43,13 +43,13 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <br>
       <div class="row ">
-        <div class="col-8 offset-2">
+        <div class="col-6 offset-3">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-paper-plane"></i>
-                  แจกจ่ายวัสดุ
+                  เพิ่มข้อมูลแจกจ่ายวัสดุ
                 </h6>
               </div>
             </div>

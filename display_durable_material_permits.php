@@ -88,7 +88,7 @@ require "service/connection.php";
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["book_no"]; ?></td>
+                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["product_id"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
                           <td class="td-actions text-center">

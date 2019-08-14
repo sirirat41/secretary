@@ -45,7 +45,7 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนออก(วัสดุคงทน)</h6>
+                  <i class="fas fa-box-open"></i> แสดงข้อมูลการโอนออก(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -215,6 +215,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการโอนออกวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_transfer_out.php">
             <input type="hidden" id="remove-transfer_out" name="transfer_out_id">
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

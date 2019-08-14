@@ -48,7 +48,7 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
-                  บริจาคออก (วัสดุคงทน)
+                  เพิ่มข้อมูลบริจาคออก (วัสดุคงทน)
                 </h6>
               </div>
             </div>

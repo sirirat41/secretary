@@ -45,7 +45,7 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
+                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -70,9 +70,9 @@ require "service/connection.php";
                         <th>#</th>
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
-                        <th>ชื่อผู้จัดซื้อ</th>
                         <th>รหัสวัสดุ</th>
                         <th>จำนวน</th>
+                        <th>ชื่อผู้จัดซื้อ</th>
                         <th>การทำงาน</th>
                       </tr>
                     </thead>
@@ -91,11 +91,11 @@ require "service/connection.php";
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["order_no"]; ?></td>
+                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
                           <td><?php echo $row["purchase_date"]; ?></td>
                           <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                          <td><?php echo $row["order_by"]; ?></td>
                           <td><?php echo $row["number"]; ?></td>
+                          <td><?php echo $row["order_by"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning">
                               <i class="fas fa-pencil-alt"></i>

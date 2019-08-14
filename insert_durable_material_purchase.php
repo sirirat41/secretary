@@ -47,7 +47,7 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  จัดซื้อวัสดุ (คงทน)
+                  เพิ่มข้อมูลจัดซื้อวัสดุ (คงทน)
                 </h6>
               </div>
             </div>
@@ -271,15 +271,12 @@ require "service/connection.php";
           </div>
         </div>
       </div>
-
-  </form>
-
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+      </form>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
+    </div>
+    <!-- /.container-fluid -->
   </div>
-  <!-- /.container-fluid -->
-
-
-  </div>
+  <br>
   <!-- End of Main Content -->
 
   <!-- Footer -->
