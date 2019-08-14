@@ -48,7 +48,7 @@ require "service/connection.php";
 
                 <form class="form-inline">
                   <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_sell.php';">
                       <i class="fas fa-plus"></i>
@@ -63,84 +63,78 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
+                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
-                        <th>รหัสวัสดุ</th>
                         <th>วันที่ขาย</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ชื่อผู้ซื้อ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="text-center">
-                        <td>1</td>
-                        <td>Andrew</td>
-                        <td>Andrew Mike</td>
-                        <td>Develop</td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body text-left">
-                                  คุณต้องการลบข้อมูลการขายทอดตลาดวัสดุใช่หรือไม่
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger">บันทึก</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                      <!-- ///ดึงข้อมูล -->
+                      <?php
+                      $sqlSelect = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
+                      $sqlSelect .= " WHERE s.product_id = m.id and s.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
+                      }
+                      //echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["sell_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["buyer"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-sell').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              </td>
-              </tr>
-              </tbody>
-              </table>
-
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
             </div>
+          </form>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-  </div>
-  </div>
-  </form>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
 
   </div>
   <!-- End of Main Content -->
@@ -202,6 +196,28 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+          คุณต้องการลบข้อมูลการขายทอดตลาดวัสดุใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_material_sell.php">
+            <input type="hidden" id="remove-sell" name="product_id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

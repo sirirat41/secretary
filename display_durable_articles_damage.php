@@ -1,8 +1,10 @@
+<?php
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,8 +37,6 @@
 
     <!-- Begin Page Content -->
 
-    <div class="container-fluid">
-      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <div class="row">
@@ -47,7 +47,7 @@
                   <h6 class="m-0 font-weight-bold text-danger">
                     <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
                   <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <div>
                       <button class="btn btn-outline-danger" type="submit">
                         <i class="fas fa-search"></i>
@@ -66,46 +66,41 @@
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                          <td>#</td>
-                          <td>รหัสครุภัณฑ์</td>
-                          <td>วันที่ชำรุด</td>
-                          <td>การทำงาน</td>
+                          <th>#</th>
+                          <th>รหัสครุภัณฑ์</th>
+                          <th>วันที่ชำรุด</th>
+                          <th>การทำงาน</th>
                         </tr class="text-center">
                       </thead>
                       <tbody>
-                        <tr class="text-center">
-                          <td>1</td>
-                          <td>๑๑๒๑๑</td>
-                          <td>12/03/2562</td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body text-left">
-                                    คุณต้องการลบข้อมูลชำรุด (ครุภัณฑ์)ใช่หรือไม่
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                    <button type="button" class="btn btn-danger">บันทึก</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                        <?php
+                        $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+                        $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = $_GET["keyword"];
+                          $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["damage_date"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-warning">
+                                <i class="fas fa-pencil-alt"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-success">
+                                <i class="fas fa-clipboard-list"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            <?php
+                            }
+                            ?>
                           </td>
                         </tr>
                       </tbody>
@@ -113,6 +108,7 @@
                   </div>
                 </div>
               </div>
+            </form>
           </div>
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
@@ -131,18 +127,11 @@
               </li>
             </ul>
           </nav>
-          </form>
         </div>
       </div>
-    </div>
-  </div>
-  </div>
-
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -204,6 +193,29 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+          คุณต้องการลบข้อมูลชำรุด (ครุภัณฑ์)ใช่หรือไม่
+
+          <form id="form-drop" method="post" action="service/service_drop_durable_articles_damage.php">
+            <input type="hidden" id="remove-articles" name="damage_id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

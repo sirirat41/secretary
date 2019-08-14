@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_material_donate</secretary>
+  <secretary style="display : none">display_supplies_distribute</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +22,7 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+
 
 
 </head>
@@ -47,14 +48,14 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการบริจาคออก(วัสดุคงทน)</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลแจกจ่ายวัสดุ</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_donate.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                 </form>
@@ -69,34 +70,33 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>เลขที่เอกสาร</th>
                         <th>รหัสวัสดุ</th>
-                        <th>ชื่อบริจาค</th>
-                        <th>วันที่บริจาค</th>
+                        <th>รหัสหน่วยงาน</th>
+                        <th>วันที่แจกจ่าย</th>
+                        <th>จำนวน</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
-                      
                       <?php
-                      $sqlSelect = "SELECT do.*, m.code FROM durable_material_donate as do, durable_material as m";
-                      $sqlSelect .= " WHERE do.product_id = m.id and do.status = 1";
+                      $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
+                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (do.product_id like '%$keyword%' or m.code like '%$keyword%')";
+                        $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
                       }
-                      
+
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["document_no"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["donate_name"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo $row["fullname"]; ?></td>
+                          <td><?php echo $row["distribute_date"]; ?></td>
+                          <td><?php echo $row["number"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning">
                               <i class="fas fa-pencil-alt"></i>
@@ -105,17 +105,14 @@ require "service/connection.php";
                               <i class="fas fa-clipboard-list"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                            onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                            onclick="$('#remove-suppliesl').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
                       <?php
                       }
-
                       ?>
-                      </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -177,7 +174,7 @@ require "service/connection.php";
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
-          </button>
+          </button>g
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
@@ -216,15 +213,16 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการบริจาคออกของวัสดุ (คงทน) ใช่หรือไม่
 
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_donate.php">
-            <input type="hidden" id="remove-material" name="donate_id">
+          คุณต้องการลบข้อมูลวัสดุ (คงทน)ใช่หรือไม่
+
+          <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php">
+            <input type="hidden" id="remove-material" name="material_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

@@ -66,8 +66,8 @@ require "service/connection.php";
                         <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
-                        <th>รหัสการซ่อมครุภัณฑ์</th>
-                        <th>รายการซ่อมครุภัณฑ์</th>
+                        <th>รหัสการซ่อม(ครุภัณฑ์)</th>
+                        <th>รายการซ่อม(ครุภัณฑ์)</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>

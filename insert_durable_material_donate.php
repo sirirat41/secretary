@@ -55,25 +55,11 @@ require "service/connection.php";
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_material_donate.php" id="form_insert">
                 <div class="row">
-                  <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">เลขที่เอกสาร</label>
-                      <input class="form-control" name="document_no" type="text" placeholder="document_no">
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">วันที่บริจาค</label>
-                      <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">รหัสวัสดุ</label>
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-10 ">
                           <select class="form-control" name="product_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_material";
@@ -85,30 +71,38 @@ require "service/connection.php";
                           </select>
                         </div>
                         <div class="col-md-2">
-                          <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
-                              <i class="fas fa-search"></i>
-                            </button>
-                          </div>
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                            <i class="fas fa-search"></i>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class=" col-12">
+                  <div class=" col-6 ">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">เลขที่เอกสาร</label>
+                      <input class="form-control" name="document_no" type="text" placeholder="document_no">
+                    </div>
+                  </div>
+                  <div class=" col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อบริจาค</label>
                       <input class="form-control" name="donate_name" type="text" placeholder="donate_name">
                     </div>
                   </div>
-
                 </div>
                 <div class="row">
-                  <div class="col-12 ">
+                  <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หมายเหตุ</label>
                       <input class="form-control" name="flag" type="text" placeholder="flag">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">วันที่บริจาค</label>
+                      <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
                     </div>
                   </div>
                 </div>
@@ -141,6 +135,7 @@ require "service/connection.php";
 
                   </div>
                 </div>
+              </form>
             </div>
           </div>
         </div>
@@ -210,6 +205,133 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
+  <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left">
+          <div class="row">
+            <div class="col-12">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <nav class="navbar navbar-light bg-light">
+                    <h6 class="m-0 font-weight-bold text-danger">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                    <form class="form-inline">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                          <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+              </div>
+              </nav>
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover ">
+                        <thead>
+                          <tr class="text-center">
+                            <td>#</td>
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสวัสดุ</td>
+                            <td>ประเภท</td>
+                          </tr class="text-center">
+                        </thead>
+                        <tbody>
+                          <!-- ///ดึงข้อมูล -->
+                          <?php
+                          $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
+                          $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
+                          if (isset($_GET["keyword"])) {
+                            $keyword = $_GET["keyword"];
+                            $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          }
+                          $result = mysqli_query($conn, $sqlSelect);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row["id"]
+                            ?>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["seq"]; ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success">
+                                  <i class="fas fa-check"></i>
+                                </button>
+
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function search() {
+        var kw = $("#keyword").val();
+        $.ajax({
+          url: 'service/service_search_json_durable_material.php',
+          dataType: 'JSON',
+          type: 'GET',
+          data: {
+            keyword: kw
+          },
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(error) {
+
+            console.log(error);
+          }
+
+        })
+
+      }
+    </script>
+
 </body>
 
 </html>
