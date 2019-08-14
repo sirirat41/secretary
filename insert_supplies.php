@@ -48,10 +48,10 @@ require "service/connection.php";
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
 
-                <h5 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
                   เพิ่มข้อมูล(วัสดุสิ้นเปลือง)
-                </h5>
+                </h6>
               </div>
             </div>
             <br>

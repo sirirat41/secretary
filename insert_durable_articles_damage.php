@@ -48,7 +48,7 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-house-damage"></i>
-                  ชำรุด (ครุภัณฑ์)
+                  เพิ่มข้อมูลชำรุด (ครุภัณฑ์)
                 </h6>
               </div>
             </div>

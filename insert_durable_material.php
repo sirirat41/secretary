@@ -49,7 +49,7 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  วัสดุ (คงทน)
+                  เพิ่มข้อมูลวัสดุ (คงทน)
                 </h6>
               </div>
             </div>
