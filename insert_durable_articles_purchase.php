@@ -375,29 +375,6 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
-              </div>
-          </div>
-        </div>
-      </div>
-      </form>
-
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
-    </div>
-    <!-- /.container-fluid -->
-
-
-  </div>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
-=======
             </form>
           </div>
         </div>
@@ -416,7 +393,6 @@ require "service/connection.php";
         <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
       </div>
     </div>
->>>>>>> a76a5685926d5f402a68eb0fc3d0b3c2c0fae273
   </footer>
   <!-- End of Footer -->
 
