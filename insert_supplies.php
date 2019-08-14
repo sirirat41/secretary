@@ -240,9 +240,8 @@ require "service/connection.php";
           <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
         <!-- /.container-fluid -->
-
-
       </div>
+      <br>
       <!-- End of Main Content -->
 
       <!-- Footer -->

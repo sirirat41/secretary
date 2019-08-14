@@ -271,15 +271,12 @@ require "service/connection.php";
           </div>
         </div>
       </div>
-
-  </form>
-
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+      </form>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
+    </div>
+    <!-- /.container-fluid -->
   </div>
-  <!-- /.container-fluid -->
-
-
-  </div>
+  <br>
   <!-- End of Main Content -->
 
   <!-- Footer -->

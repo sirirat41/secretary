@@ -276,13 +276,11 @@ require "service/connection.php";
         </div>
       </div>
       </form>
-
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-
-
   </div>
+  <br>
   <!-- End of Main Content -->
 
   <!-- Footer -->
@@ -352,9 +350,11 @@ require "service/connection.php";
         type: 'GET',
         data: {
           keyword: kw
-        }, success: function(data){
+        },
+        success: function(data) {
           console.log(data);
-        }, error: function(error) {
+        },
+        error: function(error) {
           console.log(error);
         }
       })

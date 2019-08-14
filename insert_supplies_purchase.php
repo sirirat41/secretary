@@ -164,17 +164,12 @@ require "service/connection.php";
           </div>
         </div>
       </div>
-    </div>
     </form>
-  </div>
-  </div>
-  </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
+  <br>
   <!-- End of Main Content -->
 
   <!-- Footer -->
