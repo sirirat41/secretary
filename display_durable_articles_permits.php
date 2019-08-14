@@ -88,7 +88,7 @@ require "service/connection.php";
                       ?>
                       <tr class="text-center">
                         <td><?php echo $row["id"];?></td>
-                        <td><?php echo $row["book_no"];?></td>
+                        <td><?php echo thainumDigit($row["book_no"]);?></td>
                         <td><?php echo thainumDigit($row["product_id"]);?></td>
                         <td><?php echo $row["permit_date"];?></td>
                         <td class="td-actions text-center">
@@ -213,6 +213,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

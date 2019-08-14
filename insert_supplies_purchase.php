@@ -44,7 +44,7 @@ require "service/connection.php";
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6>
+              <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)
                 </h6>
               </div>
@@ -53,7 +53,7 @@ require "service/connection.php";
             <div class="card-body">
               <form method="post" action="service/service_insert_supplies_purchase.php" id="form_insert">
                 <div class="row">
-                  <div class="col-ุ6">
+                  <div class="col-6">
                     <div class="form-group">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
                       <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
@@ -134,6 +134,7 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
+                </form>
                 <div class="row">
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
