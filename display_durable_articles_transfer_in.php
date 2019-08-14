@@ -219,6 +219,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
             <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

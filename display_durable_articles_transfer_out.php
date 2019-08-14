@@ -215,6 +215,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการโอนออกครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_out.php">
             <input type="hidden" id="remove-transfer_out" name="transfer_out_id">
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
