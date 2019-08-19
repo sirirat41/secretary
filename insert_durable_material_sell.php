@@ -133,8 +133,6 @@ require "service/connection.php";
                       </div>
                     </div>
                   </div>
-
-
                 </div>
               </form>
             </div>
@@ -144,8 +142,6 @@ require "service/connection.php";
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
