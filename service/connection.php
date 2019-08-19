@@ -16,19 +16,9 @@
         $num);
     };
 
-<<<<<<< HEAD
     function arabicnumDigit($num){
         return str_replace(array( "o" , "๑" , "๒" , "๓" , "๔" , "๕" , "๖" , "๗" , "๘" , "๙"  ),
         array( '0' , '1' , '2' , '3' , '4' , '5' , '6' ,'7' , '8' , '9' ),
         $num);
     };
-=======
-    
-    function arabicnumDigit($num){
-        return str_replace(array( "o" , "๑" , "๒" , "๓" , "๔" , "๕" , "๖" , "๗" , "๘" , "๙" ),
-        array( '0' , '1' , '2' , '3' , '4' , '5' , '6' ,'7' , '8' , '9' ),
-        $num);
-    };
-    
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
 ?>

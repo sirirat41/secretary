@@ -96,13 +96,8 @@ require "service/connection.php";
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["name"]; ?></td>
                         <td class="td-actions text-center">
-<<<<<<< HEAD
                           <button type="button" rel="tooltip" class="btn btn-warning"
                             onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
-=======
-                          <button type="button" rel="tooltip" class="btn btn-warning" 
-                          onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success">
