@@ -4,7 +4,6 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-<<<<<<< HEAD
   $sql = "SELECT * FROM durable_articles as a,durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
@@ -12,16 +11,6 @@ if (isset($_GET["id"])) {
   $purchaseDate = $item["purchase_date"];
   $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
   $newPurchaseDate = date("ํd-m-Y", strtotime($purchaseDate));
-=======
-  $sql = "SELECT * FROM durable_articles as a ,durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id";
-  $result = mysqli_query($conn, $sql) or die('cannot select data');
-  $item = mysqli_fetch_assoc($result);
-  $purchaseDate = $item["purchase_date"];
-  $receiveDate = $item["receive_date"];
-  $newPurchaseDate = date("d/m/Y", strtotime($purchaseDate));
-  $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
-  
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
 }
 ?>
 
@@ -74,11 +63,7 @@ if (isset($_GET["id"])) {
           </div>
           <br>
           <div class="card-body">
-<<<<<<< HEAD
             <form method="post" action="service/service_edit_durable_articles_purchase.php?id=<?php echo $id;?>" id="form_insert">
-=======
-            <form method="post" action="service/service_edit_durable_articles_purchase.php?id=<?php echo $id;?>"id="form_insert">
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">
@@ -243,21 +228,12 @@ if (isset($_GET["id"])) {
                       $sqlSelectType = "SELECT * FROM unit";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-<<<<<<< HEAD
                         if ($item["unit"] == $row["id"]) {
                           echo '<option value="' . $row["id"] . '" selected>' . $row["name"] . '</option>';
                         } else {
                           echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
                         }
                       }
-=======
-                        if ($item["unit"] == $row["id"]){
-                        echo '<option value="' . $row["id"] . '" selected>' . $row["name"] . '</option>';
-                        } else {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                      }
-                    }
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                       ?>
                     </select>
                   </div>
@@ -269,46 +245,27 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
                     <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
-<<<<<<< HEAD
                       <?php
                       for ($i = 1; $i <= 5; $i++) {
-=======
-                    <?php
-                      for ($i=1; $i <= 5 ; $i++) { 
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                         if ($item["durable_year"] == $i) {
                           echo "<option value='$i' selected>$i</option>";
                         } else {
                           echo "<option value='$i'>$i</option>";
                         }
-<<<<<<< HEAD
                       }
                       ?>
-=======
-        
-                      }
-                    ?>
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                     </select>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group bmd-form-group">
                     <label class="bmd-label-floating">ห้องเก็บครุภัณฑ์ :</label>
-<<<<<<< HEAD
-                    <input class="form-control" type="text" placeholder="storage" name="storage"  value="<?php echo $item["storage"]; ?>">
-=======
                     <input class="form-control" type="text" placeholder="storage" name="storage" value="<?php echo $item["storage"]; ?>">
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                   </div>
                 </div>
               </div>
@@ -318,11 +275,7 @@ if (isset($_GET["id"])) {
                     <label class="bmd-label-floating">ประเภทเงิน :</label>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ" <?php if ($item["money_type"] == "เงินงบประมาณ") echo "checked" ?>> เงินงบประมาณ
-=======
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ" <?php if($item["money_type"] == "เงินงบประมาณ") echo "checked" ?>> เงินงบประมาณ
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -330,11 +283,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ" <?php if ($item["money_type"] == "เงินนอกงบประมาณ") echo "checked" ?>> เงินนอกงบประมาณ
-=======
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ" <?php if($item["money_type"] == "เงินนอกงบประมาณ") echo "checked" ?>> เงินนอกงบประมาณ
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -342,11 +291,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ" <?php if ($item["money_type"] == "เงินบริจาค/เงินช่วยเหลือ") echo "checked" ?>> เงินบริจาค/เงินช่วยเหลือ
-=======
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ" <?php if($item["money_type"] == "เงินบริจาค/เงินช่วยเหลือ") echo "checked" ?>> เงินบริจาค/เงินช่วยเหลือ
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -354,11 +299,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ" <?php if ($item["money_type"] == "อื่นๆ") echo "checked" ?>> อื่นๆ
-=======
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ" <?php if($item["money_type"] == "อื่นๆ") echo "checked" ?>> อื่นๆ
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -371,11 +312,7 @@ if (isset($_GET["id"])) {
                           <label class="bmd-label-floating">วิธีการได้มา :</label>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-<<<<<<< HEAD
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง" <?php if ($item["acquiring"] == "เฉพาะเจาะจง") echo "checked" ?>> เฉพาะเจาะจง
-=======
                               <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง" <?php if($item["acquiring"] == "เฉพาะเจาะจง") echo "checked" ?>> เฉพาะเจาะจง
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -383,11 +320,7 @@ if (isset($_GET["id"])) {
                           </div>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-<<<<<<< HEAD
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา" <?php if ($item["acquiring"] == "ประกวดราคา") echo "checked" ?>> ประกวดราคา
-=======
                               <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา" <?php if($item["acquiring"] == "ประกวดราคา") echo "checked" ?>> ประกวดราคา
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -395,11 +328,7 @@ if (isset($_GET["id"])) {
                           </div>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-<<<<<<< HEAD
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป" <?php if ($item["acquiring"] == "ประกาศเชิญชวนทั่วไป") echo "checked" ?>> ประกาศเชิญชวนทั่วไป
-=======
                               <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป" <?php if($item["acquiring"] == "ประกาศเชิญชวนทั่วไป") echo "checked" ?>> ประกาศเชิญชวนทั่วไป
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -407,11 +336,7 @@ if (isset($_GET["id"])) {
                           </div>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-<<<<<<< HEAD
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค" <?php if ($item["acquiring"] == "รับบริจาค") echo "checked" ?>> รับบริจาค
-=======
                               <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค" <?php if($item["acquiring"] == "รับบริจาค") echo "checked" ?>> รับบริจาค
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -420,10 +345,6 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                       <br>
-<<<<<<< HEAD
-=======
-
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                       <div class="row">
                         <div class="col-6">
                           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
