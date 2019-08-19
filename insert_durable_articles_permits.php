@@ -61,9 +61,9 @@ require "service/connection.php";
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control" name="product_id">
+                          <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1 ";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -235,9 +235,10 @@ require "service/connection.php";
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
-                        </tr class="text-center">
+                          <th class="text-center">การทำงาน</th>
+                        </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="modal-articles-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
@@ -258,7 +259,7 @@ require "service/connection.php";
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success">
+                        <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -309,12 +310,34 @@ require "service/connection.php";
           keyword: kw
         },
         success: function(data) {
-          console.log(data);
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
+          for(i = 0; i< data.length; i++) {
+          var item = data[i];
+          var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+          $('<td>'+item.id+'</td>').appendTo(tr);
+          $('<td>'+item.picture+'</td>').appendTo(tr);
+          $('<td>'+item.seq+'</td>').appendTo(tr);
+          $('<td>'+item.bill_no+'</td>').appendTo(tr);
+          $('<td>'+item.code+'</td>').appendTo(tr);
+          $('<td>'+item.type+'</td>').appendTo(tr);
+          $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+
+
+
+          console.log();
+          }
         },
         error: function(error) {
           console.log(error);
         }
       })
+    }
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#product_id').val(id);
+
     }
   </script>
 
