@@ -50,7 +50,7 @@ require "service/connection.php";
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลการบริจาคออก(ครุภัณฑ์)</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search" >
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -88,23 +88,22 @@ require "service/connection.php";
                     while ($row = mysqli_fetch_assoc($result)) {
                       $id = $row["id"]
                       ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["donate_name"]; ?></td>
-                        <td><?php echo $row["receive_date"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                          onclick="$('#remove-articles').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                    <tr class="text-center">
+                      <td><?php echo $row["id"]; ?></td>
+                      <td><?php echo thainumDigit($row["document_no"]); ?></td>
+                      <td><?php echo thainumDigit($row["code"]); ?></td>
+                      <td><?php echo $row["donate_name"]; ?></td>
+                      <td><?php echo $row["receive_date"]; ?></td>
+                      <td class="td-actions text-center">
+                        <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
+                          <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button type="button" rel="tooltip" class="btn btn-success">
+                          <i class="fas fa-clipboard-list"></i>
+                        </button>
+                        <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
                         <?php
                         }
                         ?>

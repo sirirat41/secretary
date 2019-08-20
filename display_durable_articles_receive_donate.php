@@ -92,7 +92,8 @@ require "service/connection.php";
                           <td><?php echo $row["receive_date"]; ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
+                            <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success">

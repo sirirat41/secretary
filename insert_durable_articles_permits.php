@@ -309,7 +309,7 @@ require "service/connection.php";
         data: {
           keyword: kw
         },
-        
+  
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();

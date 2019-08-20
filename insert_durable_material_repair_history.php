@@ -70,9 +70,9 @@ require "service/connection.php";
                       <label for="repair_id">รหัสการซ่อม(วัสดุ)</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="repair_id">
+                          <select class="form-control" name="repair_id" id="repair_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material_repair";
+                            $sqlSelectType = "SELECT * FROM durable_material_repair where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -253,7 +253,7 @@ require "service/connection.php";
                             <th>สถานที่ซ่อม</th>
                           </tr class="text-center">
                         </thead>
-                        <tbody>
+                        <tbody id="modal-material-body">
                           <?php
                           $sqlSelect = "SELECT r.*, h.repair_id FROM durable_material_repair as r, durable_material_repair_history as h";
                           $sqlSelect .= " WHERE r.damage_id = h.id and r.status = 1";
