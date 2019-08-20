@@ -11,7 +11,7 @@ if(isset($_GET["id"])) {
     $flag = $_POST["flag"];
     $updatereceivedonate = "UPDATE durable_articles_receive_donate SET document_no = '$documentno',";
     $updatereceivedonate .= " document_no = '$documentno', receive_date = '$receivedate', donate_name = '$donatename', number = $number, flag = '$flag' ";
-    $updatereceivedonate .= " WHERE product_id = $id";
+    $updatereceivedonate .= " WHERE id = $id";
     mysqli_query($conn, $updatereceivedonate) or die("Cannot update receive_donate" . mysqli_error($conn));
     header('Location: ../display_durable_articles_receive_donate.php?message=แก้ไขข้อมูลสำเร็จ');
 

@@ -115,7 +115,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3" value="<?php echo $item["flag"]; ?>"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
                 </div>
