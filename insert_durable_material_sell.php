@@ -70,9 +70,9 @@ require "service/connection.php";
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="product_id">
+                          <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material";
+                            $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -248,7 +248,7 @@ require "service/connection.php";
                           <th>การทำงาน</th>
                         </tr class="text-center">
                       </thead>
-                      <tbody>
+                      <tbody id="modal-material-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";

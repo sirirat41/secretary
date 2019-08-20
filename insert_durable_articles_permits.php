@@ -235,13 +235,8 @@ require "service/connection.php";
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
-<<<<<<< HEAD
                           <td>การทำงาน</td>
                         </tr class="text-center">
-=======
-                          <th class="text-center">การทำงาน</th>
-                        </tr>
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                       </thead>
                       <tbody id="modal-articles-body">
                         <!-- ///ดึงข้อมูล -->
@@ -264,11 +259,7 @@ require "service/connection.php";
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
-<<<<<<< HEAD
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-=======
-                        <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedArticles(<?php echo $row["id"]; ?>);">
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -318,12 +309,11 @@ require "service/connection.php";
         data: {
           keyword: kw
         },
-        
+  
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();
           for(i = 0; i< data.length; i++) {
-<<<<<<< HEAD
            var item = data[i];
            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
            $('<td>'+item.id+'</td>').appendTo(tr);
@@ -334,22 +324,6 @@ require "service/connection.php";
            $('<td>'+item.type+'</td>').appendTo(tr);
            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
 				 }
-=======
-          var item = data[i];
-          var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-          $('<td>'+item.id+'</td>').appendTo(tr);
-          $('<td>'+item.picture+'</td>').appendTo(tr);
-          $('<td>'+item.seq+'</td>').appendTo(tr);
-          $('<td>'+item.bill_no+'</td>').appendTo(tr);
-          $('<td>'+item.code+'</td>').appendTo(tr);
-          $('<td>'+item.type+'</td>').appendTo(tr);
-          $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-
-
-
-          console.log();
-          }
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
         },
         error: function(error) {
           console.log(error);
@@ -360,10 +334,6 @@ require "service/connection.php";
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
-<<<<<<< HEAD
-=======
-
->>>>>>> 17fdbd48730b2f2fb42af76604fd3949547e45c0
     }
   </script>
 

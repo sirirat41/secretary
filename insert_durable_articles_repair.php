@@ -70,9 +70,9 @@
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="damage_id">
+                          <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles_damage";
+                            $sqlSelectType = "SELECT * FROM durable_articles_damage where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["product_id"] . '</option>';
@@ -234,7 +234,7 @@
                             <th class="text-center">การทำงาน</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="modal-articles-body">
                           <?php
                           $sqlSelect = "SELECT r.*, d.product_id FROM durable_articles_repair as r, durable_articles_damage as d";
                           $sqlSelect .= " WHERE r.damage_id = d.id and r.status = 1";

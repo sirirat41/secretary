@@ -70,9 +70,9 @@
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="product_id">
+                          <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -248,7 +248,7 @@
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
-                    <tbody>
+                    <tbody id="modal-articles-body">
                       <?php
                       $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
                       $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
