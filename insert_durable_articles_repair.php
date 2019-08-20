@@ -72,7 +72,7 @@
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles_damage";
+                            $sqlSelectType = "SELECT * FROM durable_articles_damage where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["product_id"] . '</option>';
@@ -254,9 +254,9 @@
                               <td><?php echo thainumDigit($row["damage_id"]);?></td>
                               <td><?php echo $row["place"];?></td>
                               <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success">
-                                  <i class="fas fa-check"></i>
-                                </button>
+                              <button type="button" rel="tooltip" class="btn btn-success">
+                                <i class="fas fa-check"></i>
+                              </button>
                               </td>
                             </tr>
                           <?php
@@ -304,11 +304,9 @@
         type: 'GET',
         data: {
           keyword: kw
-        },
-        success: function(data) {
+        }, success: function(data){
           console.log(data);
-        },
-        error: function(error) {
+        }, error: function(error) {
           console.log(error);
         }
       })
