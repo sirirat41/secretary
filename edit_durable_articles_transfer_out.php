@@ -2,13 +2,13 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_permits WHERE id = $id";
+  $sql = "SELECT * FROM durable_articles_transfer_out  WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
-  $receiveDate = $item["receive_date"];
-  $purchaseDate = $item["permit_date"];
-  $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
-  $newPurchaseDate = date("ํd-m-Y", strtotime($purchaseDate));
+  $receiveDate = $item["transfer_date"];
+  // $purchaseDate = $item["permit_date"];
+  // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
+  $newreceiveDate = date("ํd-m-Y", strtotime($receiveDate));
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,8 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_permits</secretary>
+  <secretary style="display: none">insert_durable_articles_transfer_out</secretary>
+
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -53,15 +54,22 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> เพิ่มข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนออก(ครุภัณฑ์)</h6>
             </div>
+
             <div class="card-body">
-              <form method="post" action="service/service_edit_durable_articles_permits.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_durable_articles_transfer_out.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <div class="form-group">
-                      <label for="book_no">เลขที่หนังสือ</label>
-                      <input type="text" class="form-control" name="book_no" id="book_no" placeholder="no" autofocus value="<?php echo $item["book_no"]; ?>">
+                      <label for="document_no">เลขที่เอกสาร</label>
+                      <input type="text" class="form-control" name="document_no" id="document_no" placeholder="no" autofocus value="<?php echo $item["document_no"]; ?>">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputEmail3">วันที่โอน</label>
+                      <input type="date" class="form-control" name="transfer_date" id="transfer_date" placeholder="transdate" value="<?php echo $item["transfer_date"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -90,25 +98,19 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6 ">
-                    <div class="form-group">
-                      <label for="permit_date">วันที่ยืม</label>
-                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate" value="<?php echo $item["permit_date"]; ?>">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="receive_date">วันที่คืน</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $item["receive_date"]; ?>">
+                  <div class="col-md-12 ">
+                    <div class="form-group ">
+                      <label for="transfer_to">ชื่อผู้โอนให้</label>
+                      <input type="text" class="form-control" name="transfer_to" id="transfer_to" placeholder="name" value="<?php echo $item["transfer_to"]; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="flag">หมายเหตุ</label>
-                      <textarea type="text" class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
-                    </div> 
+                    <div class="form-group ">
+                      <label for="inputEmail3">หมายเหตุ</label>
+                      <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -126,7 +128,7 @@ if (isset($_GET["id"])) {
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
+                            คุณต้องการบันทึกข้อมูลการโอนออกครุภัณฑ์ใช่หรือไม่
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -137,14 +139,20 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
-              </form>
             </div>
+
+
           </div>
         </div>
       </div>
+
+      </form>
+
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
+
+
   </div>
   <!-- End of Main Content -->
 
@@ -205,7 +213,6 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -245,7 +252,6 @@ if (isset($_GET["id"])) {
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
-                          <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
                       <tbody id="modal-articles-body">
@@ -261,19 +267,19 @@ if (isset($_GET["id"])) {
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["picture"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["name"]; ?></td>
-                          <td class="td-actions text-center">
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["picture"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                              <i class="fas fa-check"></i>
-                            </button>
-                          </td>
-                        </tr>
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
                         <?php
                         }
                         ?>
@@ -319,21 +325,21 @@ if (isset($_GET["id"])) {
         data: {
           keyword: kw
         },
-
+        
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();
-          for (i = 0; i < data.length; i++) {
-            var item = data[i];
-            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.picture + '</td>').appendTo(tr);
-            $('<td>' + item.seq + '</td>').appendTo(tr);
-            $('<td>' + item.bill_no + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.type + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          }
+          for(i = 0; i< data.length; i++) {
+           var item = data[i];
+           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+           $('<td>'+item.id+'</td>').appendTo(tr);
+           $('<td>'+item.picture+'</td>').appendTo(tr);
+           $('<td>'+item.seq+'</td>').appendTo(tr);
+           $('<td>'+item.bill_no+'</td>').appendTo(tr);
+           $('<td>'+item.code+'</td>').appendTo(tr);
+           $('<td>'+item.type+'</td>').appendTo(tr);
+           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+				 }
         },
         error: function(error) {
           console.log(error);
@@ -346,7 +352,6 @@ if (isset($_GET["id"])) {
       $('#product_id').val(id);
     }
   </script>
-
 </body>
 
 </html>
