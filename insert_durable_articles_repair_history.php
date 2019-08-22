@@ -110,7 +110,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
                     </div>
                   </div>
 
@@ -272,8 +272,7 @@ require "service/connection.php";
                             <td><?php echo thainumDigit($row["damage_id"]); ?></td>
                             <td><?php echo $row["fix"]; ?></td>
                             <td class="td-actions text-center">
-
-                              <button type="button" rel="tooltip" class="btn btn-success">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
 
@@ -319,19 +318,35 @@ require "service/connection.php";
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_articles_repair.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
         success: function(data) {
-          console.log(data);
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.receivedate + '</td>').appendTo(tr);
+            $('<td>' + item.damageid + '</td>').appendTo(tr);
+            $('<td>' + item.fix + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);
         }
       })
+    }
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#damage_id').val(id);
     }
   </script>
 

@@ -85,25 +85,24 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
-                          <td><?php echo $row["donate_name"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo thainumDigit($row["document_no"]); ?></td>
+                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                        <td><?php echo $row["receive_date"]; ?></td>
+                        <td><?php echo $row["donate_name"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
                       <?php
                       }
                       ?>

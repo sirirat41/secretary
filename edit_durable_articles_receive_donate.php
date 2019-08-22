@@ -60,7 +60,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno"  value="<?php echo $item["document_no"]; ?>">
+                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">

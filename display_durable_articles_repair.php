@@ -79,31 +79,31 @@ require "service/connection.php";
                       $sqlSelect .= " WHERE r.damage_id = d.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (d.product_id like '%$keyword%' or r.place like '%$keyword%')";
+                        $sqlSelect .= " and (r.seq like '%$keyword%' or r.place like '%$keyword%' or d.product_id like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo $row["repair_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                          <td><?php echo $row["place"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["seq"]; ?></td>
+                        <td><?php echo $row["repair_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                        <td><?php echo $row["place"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
                       <?php
                       }
                       ?>

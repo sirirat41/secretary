@@ -16,7 +16,7 @@
             $row["code"] = thainumDigit($row["code"]);
             $row["bill_no"] = thainumDigit($row["bill_no"]);
             array_push($data, $row);
-            
+
         }
         echo json_encode($data);
     }
