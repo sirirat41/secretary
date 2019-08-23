@@ -1,8 +1,16 @@
-<?php
-require "service/connection.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM durable_material_receive_donate WHERE id = $id";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+  $receivedate = $item["receive_date"];
+  $newReceivedate = date("ํY-m-d", strtotime($receivedate));
+}
+?>
 
 <head>
 
@@ -48,18 +56,18 @@ require "service/connection.php";
               <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(วัสดุคงทน)</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durable_material_receive_donate.php" id="form_insert">
+              <form method="post" action="service/service_edit_durable_material_receive_donate.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่รับบริจาค</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder=""value="<?php echo $newReceivedate; ?>">
                     </div>
                   </div>
                 </div>
@@ -69,7 +77,7 @@ require "service/connection.php";
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="product_id" id="product_id">
+                          <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -94,13 +102,13 @@ require "service/connection.php";
                   <div class="col-md-7">
                     <div class="form-group">
                       <label for="donate_name">ชื่อผู้บริจาค</label>
-                      <input type="text" class="form-control" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
+                      <input type="text" class="form-control" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename" value="<?php echo $item["donate_name"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="form-group">
                       <label for="number">ราคา</label>
-                      <input type="text" class="form-control" name="number" id="inputnumber" aria-describedby="number" placeholder="price">
+                      <input type="text" class="form-control" name="number" id="inputnumber" aria-describedby="number" placeholder="price" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -108,7 +116,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -345,7 +353,6 @@ require "service/connection.php";
               $('#product_id').val(id);
             }
           </script>
-
 
 </body>
 
