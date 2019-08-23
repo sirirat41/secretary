@@ -83,7 +83,11 @@ if (isset($_GET["id"])) {
                             $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["repair_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
+                              } else {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>

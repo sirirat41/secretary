@@ -59,7 +59,7 @@ if (isset($_GET["id"])) {
               <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มข้อมูลซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_edit_durable_articles_repair.php?id=<?php echo $id; ?>"  id="form_insert">
+              <form method="post" action="service/service_edit_durable_articles_repair.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
@@ -85,7 +85,11 @@ if (isset($_GET["id"])) {
                             $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              if ($item["damage_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -333,7 +337,6 @@ if (isset($_GET["id"])) {
       $('#product_id').val(id);
     }
   </script>
-
 
 </body>
 

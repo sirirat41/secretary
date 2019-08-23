@@ -89,8 +89,8 @@ require "service/connection.php";
                       <tr class="text-center">
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
                         <td><?php echo $row["receive_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
                         <td><?php echo $row["donate_name"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_receive_donate.php?id=<?php echo $row['id']; ?>'">

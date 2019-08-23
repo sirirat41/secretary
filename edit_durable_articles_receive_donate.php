@@ -81,7 +81,11 @@ if (isset($_GET["id"])) {
                             $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              if ($item["product_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -149,24 +153,24 @@ if (isset($_GET["id"])) {
             </div>
           </div>
           </form>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
-      </div>
-      <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+          <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
+        <!-- /.container-fluid -->
       </div>
-    </footer>
-    <!-- End of Footer -->
+      <!-- End of Main Content -->
 
-  </div>
-  <!-- End of Content Wrapper -->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -267,19 +271,19 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"];
                             ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["picture"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["name"]; ?></td>
-                              <td class="td-actions text-center">
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["picture"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
-                                </button>
-                              </td>
-                            </tr>
+                              </button>
+                            </td>
+                          </tr>
                           <?php
                           }
                           ?>
@@ -330,17 +334,17 @@ if (isset($_GET["id"])) {
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.picture+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.bill_no+'</td>').appendTo(tr);
-           $('<td>'+item.code+'</td>').appendTo(tr);
-           $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.picture + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.bill_no + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.type + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);
