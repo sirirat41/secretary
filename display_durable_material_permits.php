@@ -95,6 +95,7 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-warning"
                             onclick="window.location = 'edit_durable_material_permits.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
+                            </button>
                             <button type="button" rel="tooltip" class="btn btn-success">
                               <i class="fas fa-clipboard-list"></i>
                             </button>

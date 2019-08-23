@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_repair_history WHERE id = $id";
+  $sql = "SELECT * FROM durable_material_repair WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
-  $receivedate = $item["receive_date"];
-  $newReceivedate = date("ํY-m-d", strtotime($receivedate));
+  $repairDate = $item["repair_date"];
+  $newrepairDate = date("ํY-m-d", strtotime($repairDate));
+
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -21,7 +22,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_repair_history</secretary>
+  <secretary style="display: none">insert_durable_material_repair</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -54,33 +55,33 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มข้อมูลซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_edit_durable_articles_repair_history.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_durable_material_repair.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="" value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq" value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group">
-                      <label for="receive_date">วันที่ซ่อม</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
+                      <label for="repair_date">วันที่ซ่อม</label>
+                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $item["repair_date"]; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
+                      <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
+                          <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -100,28 +101,12 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-8">
-                    <div class="form-group">
-                      <label for="fix">รายการซ่อมครุภัณฑ์</label>
-                      <input type="text" class="form-control" name="fix" id="fix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="price">ราคา</label>
-                      <input type="text" class="form-control" name="price" id="price" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
+                      <label for="place">สถานที่ซ่อม</label>
+                      <textarea class="form-control" name="place" id="exampleFormControlTextarea1" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
-
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                       บันทึก
@@ -136,7 +121,7 @@ if (isset($_GET["id"])) {
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -155,8 +140,6 @@ if (isset($_GET["id"])) {
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -229,12 +212,12 @@ if (isset($_GET["id"])) {
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-12">
+            <div class="col-md-10 offset-1 ">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
                       <div>
@@ -253,42 +236,36 @@ if (isset($_GET["id"])) {
                         <thead>
                           <tr class="text-center">
                             <th>#</th>
-                            <th>ลำดับ</th>
-                            <th>วันที่ซ่อม</th>
-                            <th>รหัสครภัณฑ์(ชำรุด)</th>
-                            <th>สถานที่</th>
+                            <th>รหัสวัสดุ</th>
+                            <th>วันที่ชำรุด</th>
                             <th>การทำงาน</th>
                           </tr>
                         </thead>
-                        <tbody id="modal-articles-body">
-                          <?php
-                          $sqlSelect = "SELECT r.*, a.code FROM durable_articles as a, durable_articles_repair as r";
-                          $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+                        <tbody id="modal-material-body">
+                        <?php
+                          $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
+                          $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
+                            $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
                           }
-                          //echo $sqlSelect;
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
                           <tr class="text-center">
                             <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo $row["repair_date"]; ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["place"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-
-                            </td>
-                          </tr>
-                          <?php
-                          }
-                          ?>
+                            <td><?php echo $row["damage_date"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                              <i class="fas fa-check"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
                         </tbody>
                       </table>
                     </div>
@@ -324,27 +301,25 @@ if (isset($_GET["id"])) {
   </div>
   <script>
     function search() {
-      var kw = $('#keyword').val();
+      var kw = $("#keyword").val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles_repair_history.php',
+        url: 'service/service_search_json_durable_material_repair.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
+
         success: function(data) {
-          var tbody = $('#modal-articles-body');
+          var tbody = $('#modal-material-body');
           tbody.empty();
-          console.log(data);
           for (i = 0; i < data.length; i++) {
             var item = data[i];
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>'+item.id+'</td>').appendTo(tr);
-            $('<td>'+item.seq+'</td>').appendTo(tr);
-            $('<td>'+item.repair_date+'</td>').appendTo(tr);
-            $('<td>'+item.code+'</td>').appendTo(tr);
-            $('<td>'+item.place+'</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.damage_date + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }
         },
         error: function(error) {
@@ -353,9 +328,9 @@ if (isset($_GET["id"])) {
       })
     }
 
-    function selectedArticles(id) {
+    function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
-      $('#repair_id').val(id);
+      $('#damage_id').val(id);
     }
   </script>
 

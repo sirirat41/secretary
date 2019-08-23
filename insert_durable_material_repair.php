@@ -1,6 +1,6 @@
 <?php
-  require "service/connection.php";
- ?>
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,10 +72,10 @@
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material_damage where status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["product_id"] . '</option>';
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
                             }
                             ?>
                           </select>
@@ -210,7 +210,7 @@
                     <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
                     <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
                       <div>
                         <button class="btn btn-outline-danger" type="button" onclick="search();">
                           <i class="fas fa-search"></i>
@@ -227,41 +227,36 @@
                         <thead>
                           <tr class="text-center">
                             <th>#</th>
-                            <th>ลำดับ</th>
-                            <th>วันที่ซ่อม</th>
-                            <th>รหัสวัสดุ(ชำรุด)</th>
-                            <th>สถานที่ซ่อม</th>
-                            <th class="text-center">การทำงาน</th>
+                            <th>รหัสวัสดุ</th>
+                            <th>วันที่ชำรุด</th>
+                            <th>การทำงาน</th>
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
-                          <?php
-                          $sqlSelect = "SELECT r.*, d.product_id FROM durable_material_repair as r, durable_material_damage as d";
-                          $sqlSelect .= " WHERE r.damage_id = d.id and r.status = 1";
+                        <?php
+                          $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+                          $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (r.product_id like '%$keyword%' or r.repair_date like '%$keyword%')";
+                            $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
                           }
-                          // echo $sqlSelect;
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
+                            $id = $row["id"]
                             ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"];?></td>
-                              <td><?php echo $row["seq"];?></td>
-                              <td><?php echo $row["repair_date"];?></td>
-                              <td><?php echo thainumDigit($row["damage_id"]);?></td>
-                              <td><?php echo $row["place"];?></td>
-                              <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                              </td>
-                            </tr>
-                          <?php
-                          }
-                          ?>
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["damage_date"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                              <i class="fas fa-check"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
                         </tbody>
                       </table>
                     </div>
@@ -299,26 +294,24 @@
     function search() {
       var kw = $("#keyword").val();
       $.ajax({
-        url: 'service/service_search_json_durable_material.php',
+        url: 'service/service_search_json_durable_material_repair.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
-        
+
         success: function(data) {
           var tbody = $('#modal-material-body');
           tbody.empty();
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.repair_date+'</td>').appendTo(tr);
-           $('<td>'+item.damage_id+'</td>').appendTo(tr);
-           $('<td>'+item.place+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.damage_date + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);

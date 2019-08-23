@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_articles_repair</secretary>
+  <secretary style="display: none">display_durable_articles_repair</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,8 +30,6 @@ require "service/connection.php";
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-
-    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -42,21 +40,26 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-10 offset-1 ">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แสดงข้อมูลซ่อม(ครุภัณฑ์)</h6>
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-outline-danger" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_repair.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+
                 </form>
             </div>
           </div>
+          </nav>
           <form>
             <div class="row">
               <div class="col-md-12">
@@ -67,7 +70,7 @@ require "service/connection.php";
                         <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
-                        <th>รหัสครุภัณฑ์(ชำรุด)</th>
+                        <th>รหัสวัสดุ(ชำรุด)</th>
                         <th>สถานที่ซ่อม</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
@@ -75,11 +78,11 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT r.*, d.product_id FROM durable_articles_repair as r, durable_articles_damage as d";
-                      $sqlSelect .= " WHERE r.damage_id = d.id and r.status = 1";
+                      $sqlSelect = "SELECT r.*, a.code FROM durable_articles_repair as r, durable_articles as a";
+                      $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (r.seq like '%$keyword%' or r.place like '%$keyword%' or d.product_id like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -90,12 +93,13 @@ require "service/connection.php";
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo $row["seq"]; ?></td>
                         <td><?php echo $row["repair_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["place"]; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
+                        <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
-                          </button>
+                            </button>
                           <button type="button" rel="tooltip" class="btn btn-success">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
@@ -136,7 +140,6 @@ require "service/connection.php";
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
   </div>
   <!-- End of Main Content -->
 
@@ -208,7 +211,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการซ่อมครุภัณฑ์ใช่หรือไม่
+          คุณต้องการลบข้อมูลซ่อมวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_repair.php">
             <input type="hidden" id="remove-repair" name="repair_id">
         </div>

@@ -6,16 +6,16 @@
         $keyword = $_GET["keyword"];
         $thai = thainumDigit($keyword);
         $arabic = arabicnumDigit($keyword);
-        $sqlSelect = "SELECT r.*, d.product_id FROM durable_material_repair as r, durable_material_damage as d";
-        $sqlSelect .=" WHERE r.damage_id = d.id and r.status = 1";
-        $sqlSelect .=" and (r.seq like '%$thai%' or r.place like '%$thai%' or d.product_id like '%$thai%'";
-        $sqlSelect .= " or r.seq like '%$arabic%' or r.place like '%$arabic%' or d.product_id like '%$arabic%')";
+        $sqlSelect = "SELECT * FROM durable_material_damage d, durable_material a";
+        $sqlSelect .=" WHERE d.product_id = a.id and d.status = 1";
+        $sqlSelect .=" and (d.product_id like '%$thai%' or d.damage_date like '%$thai%'";
+        $sqlSelect .= " or d.product_id like '%$arabic%' or d.damage_date like '%$arabic%')";
         $data = array();
         $result = mysqli_query($conn, $sqlSelect);
         while ($row = mysqli_fetch_assoc($result)){
-            $row["seq"] = thainumDigit($row["seq"]);
             $row["product_id"] = thainumDigit($row["product_id"]);
             array_push($data, $row);
+            
         }
         echo json_encode($data);
     }

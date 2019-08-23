@@ -46,7 +46,7 @@ require "service/connection.php";
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มรายละเอียดการซ่อม(วัสดุคงทน)</h6>
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_material_repair_history.php" id="form_insert">
@@ -60,19 +60,19 @@ require "service/connection.php";
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="receive_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                      <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="repair_id">รหัสการซ่อม(วัสดุ)</label>
+                      <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10">
                           <select class="form-control" name="repair_id" id="repair_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material_repair where status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -94,7 +94,7 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-md-8">
                     <div class="form-group">
-                      <label for="fix">รายการซ่อม(วัสดุ)</label>
+                      <label for="fix">รายการซ่อมครุภัณฑ์</label>
                       <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="listfix">
                     </div>
                   </div>
@@ -110,7 +110,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
                     </div>
                   </div>
 
@@ -128,7 +128,7 @@ require "service/connection.php";
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลรายการซ่อมวัสดุหรือไม่ ?
+                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -137,10 +137,8 @@ require "service/connection.php";
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </form>
             </div>
           </div>
@@ -223,16 +221,16 @@ require "service/connection.php";
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลการซ่อม</h6>
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
                       <div>
-                        <button class="btn btn-outline-danger" type="submit">
+                        <button class="btn btn-outline-danger" type="button" onclick="search();">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -249,35 +247,37 @@ require "service/connection.php";
                             <th>#</th>
                             <th>ลำดับ</th>
                             <th>วันที่ซ่อม</th>
-                            <th>รหัสวัสดุ(ชำรุด)</th>
-                            <th>สถานที่ซ่อม</th>
-                          </tr class="text-center">
+                            <th>รหัสครภัณฑ์(ชำรุด)</th>
+                            <th>สถานที่</th>
+                            <th class="text-center">การทำงาน</th>
+                          </tr>
                         </thead>
                         <tbody id="modal-material-body">
                           <?php
-                          $sqlSelect = "SELECT r.*, h.repair_id FROM durable_material_repair as r, durable_material_repair_history as h";
-                          $sqlSelect .= " WHERE r.damage_id = h.id and r.status = 1";
+                          $sqlSelect = "SELECT r.*, a.code FROM durable_material as a, durable_material_repair as r";
+                          $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (r.damage_id like '%$keyword%' or h.repair_id like '%$keyword%')";
+                            $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
                           }
-                          // echo $sqlSelect;
+                          //echo $sqlSelect;
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
+                            $id = $row["id"]
                             ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo $row["repair_date"]; ?></td>
-                              <td><?php echo thainumDigit($row["damage_id"]); ?></td>
-                              <td><?php echo $row["place"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              </td>
-                            </tr>
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo $row["repair_date"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["place"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+
+                            </td>
+                          </tr>
                           <?php
                           }
                           ?>
@@ -318,24 +318,39 @@ require "service/connection.php";
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_material.php',
+        url: 'service/service_search_json_durable_material_repair_history.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
         success: function(data) {
+          var tbody = $('#modal-material-body');
+          tbody.empty();
           console.log(data);
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>'+item.id+'</td>').appendTo(tr);
+            $('<td>'+item.seq+'</td>').appendTo(tr);
+            $('<td>'+item.repair_date+'</td>').appendTo(tr);
+            $('<td>'+item.code+'</td>').appendTo(tr);
+            $('<td>'+item.place+'</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
-  </script>
 
+    function selectedmaterial(id) {
+      $('#modal-form-search').modal('hide');
+      $('#repair_id').val(id);
+    }
+  </script>
 
 </body>
 
 </html>
-
