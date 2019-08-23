@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_articles_repair</secretary>
+  <secretary style="display : none">display_seller</secretary>
 
 
   <!-- Custom fonts for this template-->
