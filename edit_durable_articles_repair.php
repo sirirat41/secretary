@@ -5,10 +5,10 @@ if (isset($_GET["id"])) {
   $sql = "SELECT * FROM durable_articles_repair WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
-  $damageDate = $item["damage_date"];
+  $repairdate = $item["repair_date"];
   // $purchaseDate = $item["permit_date"];
   // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
-  $newdamageDate = date("ํd-m-Y", strtotime($damageDate));
+  $newrepairdate = date("ํd-m-Y", strtotime($repairdate));
 }
 ?>
 <!DOCTYPE html>
@@ -59,18 +59,18 @@ if (isset($_GET["id"])) {
               <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มข้อมูลซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durable_articles_repair.php" id="form_insert">
+              <form method="post" action="service/service_edit_durable_articles_repair.php?id=<?php echo $id; ?>"  id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq">
+                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
+                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="damage_id" id="damage_id">
+                          <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -105,7 +105,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea class="form-control" name="place" id="exampleFormControlTextarea1" placeholder="place" rows="3"></textarea>
+                      <textarea class="form-control" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
                   <div class="col-md-12">
