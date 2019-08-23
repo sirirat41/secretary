@@ -275,7 +275,7 @@ if (isset($_GET["id"])) {
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -320,7 +320,7 @@ if (isset($_GET["id"])) {
                 },
 
                 success: function(data) {
-                  var tbody = $('#modal-articles-body');
+                  var tbody = $('#modal-material-body');
                   tbody.empty();
                   for (i = 0; i < data.length; i++) {
                     var item = data[i];
@@ -331,7 +331,7 @@ if (isset($_GET["id"])) {
                     $('<td>' + item.bill_no + '</td>').appendTo(tr);
                     $('<td>' + item.code + '</td>').appendTo(tr);
                     $('<td>' + item.type + '</td>').appendTo(tr);
-                    $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+                    $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedMaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
                   }
                 },
                 error: function(error) {
@@ -340,7 +340,7 @@ if (isset($_GET["id"])) {
               })
             }
 
-            function selectedArticles(id) {
+            function selectedMaterial(id) {
               $('#modal-form-search').modal('hide');
               $('#product_id').val(id);
             }

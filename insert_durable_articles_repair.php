@@ -72,10 +72,10 @@ require "service/connection.php";
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles_damage where status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["product_id"] . '</option>';
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
                             }
                             ?>
                           </select>
@@ -308,7 +308,7 @@ require "service/connection.php";
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
             $('<td>' + item.id + '</td>').appendTo(tr);
             $('<td>' + item.damage_date + '</td>').appendTo(tr);
-            $('<td>' + item.product_id + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
             $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }
         },
