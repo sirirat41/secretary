@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_repair_history WHERE id = $id";
+  $sql = "SELECT * FROM durable_material_repair_history WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receivedate = $item["receive_date"];
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_repair_history</secretary>
+  <secretary style="display: none">insert_durable_material_repair_history</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
               <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_edit_durable_articles_repair_history.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_durable_material_repair_history.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
                         <div class="col-md-10">
                           <select class="form-control" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -260,9 +260,9 @@ if (isset($_GET["id"])) {
                             <th>การทำงาน</th>
                           </tr>
                         </thead>
-                        <tbody id="modal-articles-body">
+                        <tbody id="modal-material-body">
                           <?php
-                          $sqlSelect = "SELECT r.*, a.code FROM durable_articles as a, durable_articles_repair as r";
+                          $sqlSelect = "SELECT r.*, a.code FROM durable_material as a, durable_material_repair as r";
                           $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
@@ -280,7 +280,7 @@ if (isset($_GET["id"])) {
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["place"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
 
@@ -326,14 +326,14 @@ if (isset($_GET["id"])) {
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles_repair_history.php',
+        url: 'service/service_search_json_durable_material_repair_history.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
         success: function(data) {
-          var tbody = $('#modal-articles-body');
+          var tbody = $('#modal-material-body');
           tbody.empty();
           console.log(data);
           for (i = 0; i < data.length; i++) {
@@ -344,7 +344,7 @@ if (isset($_GET["id"])) {
             $('<td>'+item.repair_date+'</td>').appendTo(tr);
             $('<td>'+item.code+'</td>').appendTo(tr);
             $('<td>'+item.place+'</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }
         },
         error: function(error) {
@@ -353,7 +353,7 @@ if (isset($_GET["id"])) {
       })
     }
 
-    function selectedArticles(id) {
+    function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#repair_id').val(id);
     }

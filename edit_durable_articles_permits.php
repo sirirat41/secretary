@@ -6,9 +6,9 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
-  $purchaseDate = $item["permit_date"];
+  $permitDate = $item["permit_date"];
   $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
-  $newPurchaseDate = date("ํd-m-Y", strtotime($purchaseDate));
+  $newpermitDate = date("ํd-m-Y", strtotime($permitDate));
 }
 ?>
 <!DOCTYPE html>
@@ -93,13 +93,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6 ">
                     <div class="form-group">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate" value="<?php echo $item["permit_date"]; ?>">
+                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate" value="<?php echo $newpermitDate; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $item["receive_date"]; ?>">
+                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ if (isset($_GET["id"])) {
             $('<td>' + item.type + '</td>').appendTo(tr);
             $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }
-        },
+        }, 
         error: function(error) {
           console.log(error);
         }
