@@ -63,9 +63,9 @@ require "service/connection.php";
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control" name="product_id">
+                          <select class="form-control" name="product_id"  id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
+                            $sqlSelectType = "SELECT * FROM supplies where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -252,7 +252,7 @@ require "service/connection.php";
                           <td>ประเภท</td>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="modal-supplies-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
@@ -272,9 +272,9 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-check"></i>
-                            </button>
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
                           </td>
                         </tr>
                         <?php
@@ -313,24 +313,41 @@ require "service/connection.php";
     </div>
   </div>
   </div>
- 
- <script>
+  <script>
     function search() {
       var kw = $("#keyword").val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_supplies.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
+        
         success: function(data) {
-          console.log(data);
+          var tbody = $('#modal-supplies-body');
+          tbody.empty();
+          for(i = 0; i< data.length; i++) {
+           var item = data[i];
+           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+           $('<td>'+item.id+'</td>').appendTo(tr);
+           $('<td>'+item.picture+'</td>').appendTo(tr);
+           $('<td>'+item.seq+'</td>').appendTo(tr);
+           $('<td>'+item.bill_no+'</td>').appendTo(tr);
+           $('<td>'+item.code+'</td>').appendTo(tr);
+           $('<td>'+item.type+'</td>').appendTo(tr);
+           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+				 }
         },
         error: function(error) {
           console.log(error);
         }
       })
+    }
+
+    function selectedsupplies(id) {
+      $('#modal-form-search').modal('hide');
+      $('#product_id').val(id);
     }
   </script>
 

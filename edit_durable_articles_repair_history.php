@@ -62,13 +62,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="" value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="" value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="receive_date">วันที่ซ่อม</label>
-                      <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
                     </div>
                   </div>
                 </div>
@@ -103,13 +103,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="fix">รายการซ่อมครุภัณฑ์</label>
-                      <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
+                      <input type="text" class="form-control" name="fix" id="fix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="price">ราคา</label>
-                      <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                      <input type="text" class="form-control" name="price" id="price" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -326,7 +326,7 @@ if (isset($_GET["id"])) {
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles_repair.php',
+        url: 'service/service_search_json_durable_articles_repair_history.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
@@ -341,8 +341,8 @@ if (isset($_GET["id"])) {
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
             $('<td>'+item.id+'</td>').appendTo(tr);
             $('<td>'+item.seq+'</td>').appendTo(tr);
-            $('<td>'+item.receivedate+'</td>').appendTo(tr);
-            $('<td>'+item.damageid+'</td>').appendTo(tr);
+            $('<td>'+item.receive_date+'</td>').appendTo(tr);
+            $('<td>'+item.damage_id+'</td>').appendTo(tr);
             $('<td>'+item.fix+'</td>').appendTo(tr);
             $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }

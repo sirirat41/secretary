@@ -221,18 +221,15 @@ require "service/connection.php";
                   <h6 class="m-0 font-weight-bold text-danger">
                     <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
                   <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <div>
-                      <button class="btn btn-outline-danger" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                      <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material.php';">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                  </form>
+                  <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                          <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
               </div>
-            </div>
-            </nav>
+              </nav>
             <form>
               <div class="row">
                 <div class="col-md-12">
@@ -241,6 +238,7 @@ require "service/connection.php";
                       <thead>
                         <tr class="text-center">
                           <th>#</th>
+                          <th>รูปภาพ</th>
                           <th>ลำดับ</th>
                           <th>เลขที่ใบเบิก</th>
                           <th>รหัสวัสดุ</th>
@@ -263,12 +261,13 @@ require "service/connection.php";
                           ?>
                           <tr class="text-center">
                             <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["picture"]; ?></td>
                             <td><?php echo $row["seq"]; ?></td>
                             <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -310,12 +309,32 @@ require "service/connection.php";
         type: 'GET',
         data: {
           keyword: kw
-        }, success: function(data){
-          console.log(data);
-        }, error: function(error) {
+        }, 
+        
+        success: function(data) {
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
+          for(i = 0; i< data.length; i++) {
+           var item = data[i];
+           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+           $('<td>'+item.id+'</td>').appendTo(tr);
+           $('<td>'+item.picture+'</td>').appendTo(tr);
+           $('<td>'+item.seq+'</td>').appendTo(tr);
+           $('<td>'+item.bill_no+'</td>').appendTo(tr);
+           $('<td>'+item.code+'</td>').appendTo(tr);
+           $('<td>'+item.type+'</td>').appendTo(tr);
+           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+				 }
+        },
+        error: function(error) {
           console.log(error);
         }
       })
+    }
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#product_id').val(id);
     }
   </script>
 

@@ -254,7 +254,7 @@ require "service/connection.php";
                           $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%')";
+                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                           }
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
@@ -268,7 +268,7 @@ require "service/connection.php";
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -319,13 +319,31 @@ require "service/connection.php";
         data: {
           keyword: kw
         },
+       
         success: function(data) {
-          console.log(data);
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
+          for(i = 0; i< data.length; i++) {
+           var item = data[i];
+           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+           $('<td>'+item.id+'</td>').appendTo(tr);
+           $('<td>'+item.picture+'</td>').appendTo(tr);
+           $('<td>'+item.seq+'</td>').appendTo(tr);
+           $('<td>'+item.bill_no+'</td>').appendTo(tr);
+           $('<td>'+item.code+'</td>').appendTo(tr);
+           $('<td>'+item.type+'</td>').appendTo(tr);
+           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+				 }
         },
         error: function(error) {
           console.log(error);
         }
       })
+    }
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#product_id').val(id);
     }
   </script>
 

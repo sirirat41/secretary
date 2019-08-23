@@ -62,13 +62,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq" value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="seq" value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newRepairdate; ?>">
+                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newRepairdate; ?>">
                     </div>
                   </div>
                 </div>
@@ -309,7 +309,7 @@ if (isset($_GET["id"])) {
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_articles_damage.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
@@ -323,8 +323,8 @@ if (isset($_GET["id"])) {
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
             $('<td>' + item.id + '</td>').appendTo(tr);
             $('<td>' + item.seq + '</td>').appendTo(tr);
-            $('<td>' + item.repairdate + '</td>').appendTo(tr);
-            $('<td>' + item.productid + '</td>').appendTo(tr);
+            $('<td>' + item.repair_date + '</td>').appendTo(tr);
+            $('<td>' + item.product_id + '</td>').appendTo(tr);
             $('<td>' + item.place + '</td>').appendTo(tr);
             $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }
