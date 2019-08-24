@@ -89,7 +89,7 @@ require "service/connection.php";
                           <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["seq"]; ?></td>
                           <td><?php echo $row["receive_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["damage_id"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["fix"]; ?></td>
                           <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning"
