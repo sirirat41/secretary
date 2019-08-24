@@ -92,7 +92,8 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["buyer"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
+                            <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success">

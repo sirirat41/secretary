@@ -152,7 +152,7 @@ require "service/connection.php";
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
       </div>
     </div>
   </footer>

@@ -74,11 +74,11 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT h.*, r.damage_id FROM durable_articles_repair_history as h, durable_articles_repair as r";
-                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (r.damage_id like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                       $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
+                       $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
+                       if (isset($_GET["keyword"])) {
+                         $keyword = $_GET["keyword"];
+                         $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -92,8 +92,9 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["damage_id"]); ?></td>
                           <td><?php echo $row["fix"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
-                              <i class="fas fa-pencil-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_articles_repair_history.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success">
                               <i class="fas fa-clipboard-list"></i>

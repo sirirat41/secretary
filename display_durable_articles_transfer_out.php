@@ -95,7 +95,8 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["transfer_to"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
+                          <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_articles_transfer_out.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success">

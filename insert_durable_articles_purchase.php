@@ -65,7 +65,6 @@ require "service/connection.php";
                   <div class="form-group">
                     <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
                     <input class="form-control" type="text" placeholder="purchase_date" name="purchase_date">
-
                   </div>
                 </div>
               </div>
@@ -219,7 +218,6 @@ require "service/connection.php";
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
@@ -284,97 +282,97 @@ require "service/connection.php";
                         </span>
                       </label>
                     </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">วิธีการได้มา :</label>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง"> เฉพาะเจาะจง
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา"> ประกวดราคา
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป"> ประกาศเชิญชวนทั่วไป
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค"> รับบริจาค
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">วิธีการได้มา :</label>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง"> เฉพาะเจาะจง
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา"> ประกวดราคา
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป"> ประกาศเชิญชวนทั่วไป
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค"> รับบริจาค
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-6">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised">
+                      <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                      <span class="btn btn-raised btn-round btn-default btn-file">
+                        <br>
+                        <div class="col-2 offset-1">
+                          <input type="file" name="..." />
                         </div>
-                      </div>
-                      <br>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                            <div class="fileinput-new thumbnail img-raised">
-                              <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
-                            </div>
-                            <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                            <div>
-                              <span class="btn btn-raised btn-round btn-default btn-file">
-                                <br>
-                                <div class="col-2 offset-1">
-                                  <input type="file" name="..." />
-                                </div>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <br><br>
-                      <div class="row">
-                        <div class="col-12">
-                          <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                            บันทึก
-                            <div class="ripple-container"></div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br><br>
+              <div class="row">
+                <div class="col-12">
+                  <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    บันทึก
+                    <div class="ripple-container"></div>
+                  </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                           </button>
-                          <!-- Modal -->
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body ">
-                                  คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        </div>
+                        <div class="modal-body ">
+                          คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
             </form>
           </div>
         </div>
@@ -382,6 +380,16 @@ require "service/connection.php";
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
+=======
+              </div>
+          </div>
+        </div>
+      </div>
+      </form>
+  <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  <!-- /.container-fluid -->
+>>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
   </div>
   <br>
   <!-- End of Main Content -->

@@ -96,7 +96,8 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
+                            <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
 
@@ -153,7 +154,7 @@ require "service/connection.php";
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
       </div>
     </div>
   </footer>

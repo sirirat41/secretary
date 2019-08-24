@@ -61,9 +61,15 @@ require "service/connection.php";
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10 ">
+<<<<<<< HEAD
                           <select class="form-control" name="product_id" id ="product_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 1";
+=======
+                          <select class="form-control" name="product_id" id="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
+>>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -235,6 +241,7 @@ require "service/connection.php";
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
+                          <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
                       <tbody id="modal-articles-body">
@@ -250,6 +257,7 @@ require "service/connection.php";
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
+<<<<<<< HEAD
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["picture"]; ?></td>
@@ -263,6 +271,21 @@ require "service/connection.php";
                             </button>
                           </td>
                         </tr>
+=======
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["picture"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+>>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         <?php
                         }
                         ?>
@@ -308,9 +331,11 @@ require "service/connection.php";
         data: {
           keyword: kw
         },
+  
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();
+<<<<<<< HEAD
           for (i = 0; i < data.length; i++) {
             var item = data[i];
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
@@ -324,12 +349,34 @@ require "service/connection.php";
 
             console.log(data);
           }
+=======
+          for(i = 0; i< data.length; i++) {
+           var item = data[i];
+           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+           $('<td>'+item.id+'</td>').appendTo(tr);
+           $('<td>'+item.picture+'</td>').appendTo(tr);
+           $('<td>'+item.seq+'</td>').appendTo(tr);
+           $('<td>'+item.bill_no+'</td>').appendTo(tr);
+           $('<td>'+item.code+'</td>').appendTo(tr);
+           $('<td>'+item.type+'</td>').appendTo(tr);
+           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+				 }
+>>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
+<<<<<<< HEAD
+=======
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#product_id').val(id);
+    }
+  </script>
+>>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
 
     function selectedArticles(id){
       console.log(id);

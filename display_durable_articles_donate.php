@@ -95,7 +95,11 @@ require "service/connection.php";
                       <td><?php echo $row["donate_name"]; ?></td>
                       <td><?php echo $row["receive_date"]; ?></td>
                       <td class="td-actions text-center">
+<<<<<<< HEAD
                         <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_donate.php?id=<?php echo $row['id']; ?>'">
+=======
+                        <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
+>>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                           <i class="fas fa-pencil-alt"></i>
                         </button>
                         <button type="button" rel="tooltip" class="btn btn-success">

@@ -6,10 +6,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bookno = $_POST["book_no"];
         $permitdate = $_POST["permit_date"];
         $receivedate = $_POST["receive_date"];
+        $number = $_POST["number"];
         $flag = $_POST["flag"];
 
-        $sql = "INSERT INTO supplies_permits(product_id ,book_no ,permit_date ,receive_date, flag)";
-        $sql .= " VALUES($productId, '$bookno' , '$permitdate', '$receivedate', '$flag')"; 
+        $sql = "INSERT INTO supplies_permits(product_id ,book_no ,permit_date ,receive_date,number, flag)";
+        $sql .= " VALUES($productId, '$bookno' , '$permitdate', '$receivedate','$number', '$flag')"; 
 
         
         if (mysqli_query($conn, $sql)) {

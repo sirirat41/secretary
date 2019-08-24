@@ -122,6 +122,26 @@
         </a>
       </li>
 
+      <li class="nav-item nav-setting">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
+          <i class="fas fa-fw fa-setting"></i>
+          <span>ตั้งค่า</span>
+        </a>
+        <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
+            <a class="collapse-item insertse" href="insert_seller.php">เพิ่มร้านค้า</a>
+            <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
+            <a class="collapse-item insertun" href="insert_unit.php">เพิ่มหน่วยนับ</a>
+            <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
+            <a class="collapse-item inserta" href="insert_durable_articles_type.php">เพิ่มประเภทของครุภัณฑ์</a>
+            <a class="collapse-item displaym" href="display_durable_material_type.php">แสดงประเภทของวัสดุ</a>
+            <a class="collapse-item insertm" href="insert_durable_material_type.php">เพิ่มประเภทของวัสดุ</a>
+
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

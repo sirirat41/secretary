@@ -1,6 +1,6 @@
 <?php
-  require "service/connection.php";
- ?>
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,12 +70,12 @@
                       <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10">
-                          <select class="form-control" name="repair_id">
+                          <select class="form-control" name="repair_id" id="repair_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles_repair";
+                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["damage_id"] . '</option>';
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
                             }
                             ?>
                           </select>
@@ -110,7 +110,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
                     </div>
                   </div>
 
@@ -248,40 +248,39 @@
                             <th>ลำดับ</th>
                             <th>วันที่ซ่อม</th>
                             <th>รหัสครภัณฑ์(ชำรุด)</th>
-                            <th>รายการซ่อมครุภัณฑ์</th>
+                            <th>สถานที่</th>
                             <th class="text-center">การทำงาน</th>
                           </tr>
                         </thead>
-                        <tbody>
-                        <?php
-                      $sqlSelect = "SELECT h.*, r.damage_id FROM durable_articles_repair_history as h, durable_articles_repair as r";
-                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (r.damage_id like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
-                      }
-                      //echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["damage_id"]); ?></td>
-                          <td><?php echo $row["fix"]; ?></td>
-                          <td class="td-actions text-center">
-                            
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-check"></i>
-                            </button>
-                            
-                          </td>
-                        </tr>
-                      <?php
-                      }
-                      ?>
+                        <tbody id="modal-articles-body">
+                          <?php
+                          $sqlSelect = "SELECT r.*, a.code FROM durable_articles as a, durable_articles_repair as r";
+                          $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+                          if (isset($_GET["keyword"])) {
+                            $keyword = $_GET["keyword"];
+                            $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
+                          }
+                          //echo $sqlSelect;
+                          $result = mysqli_query($conn, $sqlSelect);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row["id"]
+                            ?>
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo $row["repair_date"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["place"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+
+                            </td>
+                          </tr>
+                          <?php
+                          }
+                          ?>
                         </tbody>
                       </table>
                     </div>
@@ -319,23 +318,39 @@
     function search() {
       var kw = $('#keyword').val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_articles_repair_history.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
         success: function(data) {
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
           console.log(data);
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>'+item.id+'</td>').appendTo(tr);
+            $('<td>'+item.seq+'</td>').appendTo(tr);
+            $('<td>'+item.repair_date+'</td>').appendTo(tr);
+            $('<td>'+item.code+'</td>').appendTo(tr);
+            $('<td>'+item.place+'</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#repair_id').val(id);
+    }
   </script>
 
 </body>
 
 </html>
- 

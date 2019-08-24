@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_articles_repair</secretary>
+  <secretary style="display : none">display_seller</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -46,7 +46,6 @@ require "service/connection.php";
                         <div class="card-header py-3">
                           <nav class="navbar navbar-light bg-light justify-content-between">
                             <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แสดงข้อมูลร้านค้า</h6>
-  
                             <form class="form-inline">
                               <div >
                               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

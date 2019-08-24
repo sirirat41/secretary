@@ -76,11 +76,11 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT * FROM durable_material_permits";
-                      $sqlSelect .= " WHERE product_id and status = 1";
+                      $sqlSelect = "SELECT p.*, m.code FROM durable_material_permits as p,durable_material as m";
+                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (product_id like '%$keyword%' or permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -89,13 +89,13 @@ require "service/connection.php";
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["book_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
-                              <i class="fas fa-pencil-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_material_permits.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
                             </button>
-
                             <button type="button" rel="tooltip" class="btn btn-success">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
@@ -133,8 +133,6 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-   
-
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
@@ -147,7 +145,7 @@ require "service/connection.php";
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotporn</span>
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
       </div>
     </div>
   </footer>
