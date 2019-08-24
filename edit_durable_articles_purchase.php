@@ -4,7 +4,6 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-<<<<<<< HEAD
   $sql = "SELECT * FROM durable_articles  as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
@@ -15,15 +14,6 @@ if (isset($_GET["id"])) {
 
   //item.code java odject , item["code"] php
 
-=======
-  $sql = "SELECT * FROM durable_articles as a,durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id";
-  $result = mysqli_query($conn, $sql) or die('cannot select data');
-  $item = mysqli_fetch_assoc($result);
-  $receiveDate = $item["receive_date"];
-  $purchaseDate = $item["purchase_date"];
-  $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
-  $newPurchaseDate = date("ํd-m-Y", strtotime($purchaseDate));
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
 }
 ?>
 
@@ -76,11 +66,7 @@ if (isset($_GET["id"])) {
           </div>
           <br>
           <div class="card-body">
-<<<<<<< HEAD
             <form method="post" action="service/service_edit_durable_articles_purchase.php?id=<?php echo $id; ?>" id="form_insert">
-=======
-            <form method="post" action="service/service_edit_durable_articles_purchase.php?id=<?php echo $id;?>" id="form_insert">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">
@@ -91,12 +77,8 @@ if (isset($_GET["id"])) {
                 <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-<<<<<<< HEAD
                     <input class="form-control" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
 
-=======
-                    <input class="form-control" type="date" placeholder="purchase_date" id="purchase_date" name="purchase_date" value="<?php echo $newPurchaseDate; ?>">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                   </div>
                 </div>
               </div>
@@ -126,12 +108,8 @@ if (isset($_GET["id"])) {
                 <div class="col-md-12 ">
                   <div class="form-group ">
                     <label for="receive_address">สถานที่จัดส่ง</label>
-<<<<<<< HEAD
                     <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address"><?php echo $item["receive_address"]; ?>
                   </textarea>
-=======
-                    <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" value="<?php echo $item["receive_address"]; ?>"></textarea>
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                   </div>
                 </div>
               </div>
@@ -152,11 +130,7 @@ if (isset($_GET["id"])) {
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
                         if ($item["type"] == $row["id"]) {
-<<<<<<< HEAD
                           echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-=======
-                          echo '<option value="' . $row["id"] . '" selected>' . $row["name"] . '</option>';
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         } else {
                           echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
                         }
@@ -203,15 +177,11 @@ if (isset($_GET["id"])) {
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-<<<<<<< HEAD
                         if ($item["department_id"] == $row["id"]) {
                           echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
                         } else {
                           echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
                         }
-=======
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                       }
                       ?>
                     </select>
@@ -242,15 +212,11 @@ if (isset($_GET["id"])) {
                     $sqlSelectType = "SELECT * FROM seller";
                     $resultType = mysqli_query($conn, $sqlSelectType);
                     while ($row = mysqli_fetch_assoc($resultType)) {
-<<<<<<< HEAD
                       if ($item["seller_id"] == $row["id"]) {
                         echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
                       } else {
                         echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
                       }
-=======
-                      echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                     }
                     ?>
                   </select>
@@ -267,11 +233,7 @@ if (isset($_GET["id"])) {
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
                         if ($item["unit"] == $row["id"]) {
-<<<<<<< HEAD
                           echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-=======
-                          echo '<option value="' . $row["id"] . '" selected>' . $row["name"] . '</option>';
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         } else {
                           echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
                         }
@@ -287,19 +249,11 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
-<<<<<<< HEAD
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
-=======
                     <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                       <?php
                       for ($i = 1; $i <= 5; $i++) {
                         if ($item["durable_year"] == $i) {
@@ -319,21 +273,13 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">ประเภทเงิน :</label>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ" <?php if ($item["money_type"] == "เงินงบประมาณ") echo "checked" ?>> เงินงบประมาณ
-=======
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ" <?php if($item["money_type"] == "เงินงบประมาณ") echo "checked" ?>> เงินงบประมาณ
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -341,11 +287,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ" <?php if ($item["money_type"] == "เงินนอกงบประมาณ") echo "checked" ?>> เงินนอกงบประมาณ
-=======
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ" <?php if($item["money_type"] == "เงินนอกงบประมาณ") echo "checked" ?>> เงินนอกงบประมาณ
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -353,11 +295,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ" <?php if ($item["money_type"] == "เงินบริจาค/เงินช่วยเหลือ") echo "checked" ?>> เงินบริจาค/เงินช่วยเหลือ
-=======
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ" <?php if($item["money_type"] == "เงินบริจาค/เงินช่วยเหลือ") echo "checked" ?>> เงินบริจาค/เงินช่วยเหลือ
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -365,104 +303,12 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-<<<<<<< HEAD
                         <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ" <?php if ($item["money_type"] == "อื่นๆ") echo "checked" ?>> อื่นๆ
-=======
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ" <?php if($item["money_type"] == "อื่นๆ") echo "checked" ?>> อื่นๆ
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         <span class="circle">
                           <span class="check"></span>
                         </span>
                       </label>
                     </div>
-<<<<<<< HEAD
-                    <br>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">วิธีการได้มา :</label>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง" <?php if ($item["acquiring"] == "เฉพาะเจาะจง") echo "checked" ?>> เฉพาะเจาะจง
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา" <?php if ($item["acquiring"] == "ประกวดราคา") echo "checked" ?>> ประกวดราคา
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป" <?php if ($item["acquiring"] == "ประกาศเชิญชวนทั่วไป") echo "checked" ?>> ประกาศเชิญชวนทั่วไป
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-check form-check-radio form-check-inline">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค" <?php if ($item["acquiring"] == "รับบริจาค") echo "checked" ?>> รับบริจาค
-                              <span class="circle">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <br>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                            <div class="fileinput-new thumbnail img-raised">
-                              <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
-                            </div>
-                            <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                            <div>
-                              <span class="btn btn-raised btn-round btn-default btn-file">
-                                <br>
-                                <div class="col-2 offset-1">
-                                  <input type="file" name="..." />
-                                </div>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <br><br>
-                      <div class="row">
-                        <div class="col-12">
-                          <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                            บันทึก
-                            <div class="ripple-container"></div>
-                          </button>
-                          <!-- Modal -->
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body ">
-                                  คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-=======
                   </div>
                 </div>
               </div>
@@ -548,14 +394,12 @@ if (isset($_GET["id"])) {
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                           <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
             </form>
           </div>
         </div>
@@ -578,28 +422,6 @@ if (isset($_GET["id"])) {
       </div>
     </footer>
     <!-- End of Footer -->
-=======
-          </div>
-        </div>
-      </div>
-      </form>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
-  <br>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
 
   </div>
   <!-- End of Content Wrapper -->
@@ -648,10 +470,7 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-<<<<<<< HEAD
   
-=======
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -668,11 +487,7 @@ if (isset($_GET["id"])) {
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-<<<<<<< HEAD
                       <i class="fas fa-file-invoice-dollar"></i> แก้ไขข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
-=======
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                       <div>
@@ -711,12 +526,7 @@ if (isset($_GET["id"])) {
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"];
-<<<<<<< HEAD
                             ?> <tr class="text-center">
-=======
-                            ?>
-                          <tr class="text-center">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                             <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["order_no"]; ?></td>
                             <td><?php echo $row["purchase_date"]; ?></td>
@@ -724,20 +534,8 @@ if (isset($_GET["id"])) {
                             <td><?php echo $row["order_by"]; ?></td>
                             <td><?php echo $row["number"]; ?></td>
                             <td class="td-actions text-center">
-<<<<<<< HEAD
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
-=======
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
-
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                               </button>
                               <?php
                               }
@@ -749,10 +547,6 @@ if (isset($_GET["id"])) {
                 </div>
               </form>
             </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item">
@@ -793,8 +587,4 @@ if (isset($_GET["id"])) {
         </script>
 </body>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
 </html>
