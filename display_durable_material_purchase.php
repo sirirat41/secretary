@@ -66,7 +66,7 @@ require "service/connection.php";
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                    <tr class="text-center">
+                      <tr class="text-center">
                         <th>#</th>
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
@@ -89,24 +89,23 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                          <td><?php echo $row["purchase_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                          <td><?php echo $row["number"]; ?></td>
-                          <td><?php echo $row["order_by"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo thainumDigit($row["order_no"]); ?></td>
+                        <td><?php echo $row["purchase_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                        <td><?php echo $row["number"]; ?></td>
+                        <td><?php echo $row["order_by"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
                           <?php
                           }
 
@@ -131,7 +130,7 @@ require "service/connection.php";
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
-              </a> 
+              </a>
             </li>
           </ul>
         </nav>

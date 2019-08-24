@@ -1,8 +1,19 @@
-<?php
-require "service/connection.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM supplies_distribute WHERE id = $id";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+  $orderDate = $item["distribute_date"];
+  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+
+  //item.code java odject , item["code"] php
+
+}
+?>
 
 <head>
 
@@ -13,7 +24,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">insert_durable_material_damage</secretary>
+  <secretary style="display : none">insert_suplies_distribute</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +45,6 @@ require "service/connection.php";
 
     <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
-
     </nav>
     <!-- End of Topbar -->
 
@@ -49,26 +59,30 @@ require "service/connection.php";
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-fw fa-house-damage"></i>
-                  เพิ่มข้อมูลชำรุด (วัสดุคงทน)
+                  <i class="fas fa-fw fa-paper-plane"></i>
+                  เพิ่มข้อมูลแจกจ่ายวัสดุ
                 </h6>
               </div>
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durable_material_damage.php" id="form_insert">
+              <form method="post" action="service/service_edit_supplies_distribute.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสวัสดุ</label>
+                      <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
-                        <div class="col-10 ">
+                        <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM supplies";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              if ($item["product_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -84,22 +98,42 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">วันที่ชำรุด</label>
-                      <input class="form-control" name="damage_date" type="date" placeholder="damage_date" id="damage_date">
+                      <label for="number" class="bmd-label-floating">จำนวน</label>
+                      <input class="form-control" type="text" placeholder="number" name="number" id="number" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
-                  <div class="col-6 ">
+                  <div class=" col-6 ">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">หมายเหตุ</label>
-                      <input class="form-control" name="flag" type="text" placeholder="flag" id="flag">
+                      <label for="distribute_date" class="bmd-label-floating">วันที่แจกจ่าย</label>
+                      <input class="form-control" type="text" placeholder="distribute_date" name="distribute_date" id="distribute_date" value="<?php echo $newOrderDate; ?>">
                     </div>
                   </div>
                 </div>
-                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">หน่วยงาน</label>
+                      <select class="form-control" name="department_id" name="department_id" id="department_id" value="<?php echo $item["department_id"]; ?>">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          if ($item["department_id"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                          }
+                        }
+                        ?>
+                        
+                      </select>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-12">
                     <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                      บันทึก
+                      ตกลง
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,12 +146,12 @@ require "service/connection.php";
                             </button>
                           </div>
                           <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลชำรุด(วัสดุ)หรือไม่ ?
+                            คุณต้องการบันทึกข้อมูลแจกจ่ายวัสดุ (สิ้นเปลือง) หรือไม่ ?
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                             <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -210,119 +244,116 @@ require "service/connection.php";
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
+                      <i class="fas fa-business-time"></i> แก้ไขข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                        <button class="btn btn-outline-danger" type="submit" onclick="search();">
                           <i class="fas fa-search"></i>
                         </button>
-                    </form>
+                        </form>
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-                            <td>#</td>
-                            <td>รูปภาพ</td>
-                            <td>ลำดับ</td>
-                            <td>เลขที่ใบเบิก</td>
-                            <td>รหัสวัสดุ</td>
-                            <td>ประเภท</td>
-                          </tr class="text-center">
-                        </thead>
-                        <tbody>
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
-                          $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-                          $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                            </td>
-                          </tr>
-                          <?php
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-hover ">
+                    <thead>
+                      <tr class="text-center">
+                        <th>#</th>
+                        <th>ลำดับ</th>
+                        <th>เลขที่ใบเบิก</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>คุณสมบัติ</th>
+                        <th>ประเภทวัสดุ</th>
+                        <th class="text-center">การทำงาน</th>
+                      </tr>
+                    </thead>
+                    <tbody id="modal-supplies-body">
+                      <!-- ///ดึงข้อมูล -->
+                      <?php
+                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
+                      $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (s.code like '%$keyword%' or t.name like '%$keyword%')";
+                      }
+                      //echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["seq"]; ?></td>
+                        <td><?php echo $row["bill_no"]; ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["attribute"]; ?></td>
+                        <td><?php echo $row["name"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
+                            <i class="fas fa-check"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          </form>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-  </div>
   </div>
   <script>
     function search() {
       var kw = $("#keyword").val();
       $.ajax({
-        url: 'service/service_search_json_durable_material.php',
+        url: 'service/service_search_json_supplies.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
           keyword: kw
         },
         success: function(data) {
-          var tbody = $('#modal-material-body');
+          var tbody = $('#modal-supplies-body');
           tbody.empty();
           console.log(data);
           for (i = 0; i < data.length; i++) {
             var item = data[i];
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
             $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.picture + '</td>').appendTo(tr);
             $('<td>' + item.seq + '</td>').appendTo(tr);
             $('<td>' + item.bill_no + '</td>').appendTo(tr);
             $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.attribute + '</td>').appendTo(tr);
             $('<td>' + item.name + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"> <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedMaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+            $('<td class="td-actions text-center"> <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedSupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
 
-            
+
           }
         },
 
@@ -332,14 +363,14 @@ require "service/connection.php";
       })
     }
 
-    function selectedMaterial(id) {
+    function selectedSupplies(id) {
       console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
 
     }
   </script>
-
 </body>
+
 
 </html>

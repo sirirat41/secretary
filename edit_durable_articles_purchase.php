@@ -1,8 +1,21 @@
-<?php
-require "service/connection.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM durable_articles  as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+  $receiveDate = $item["receive_date"];
+  $orderDate = $item["purchase_date"];
+  $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
+  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+
+  //item.code java odject , item["code"] php
+
+}
+?>
 
 <head>
 
@@ -53,18 +66,18 @@ require "service/connection.php";
           </div>
           <br>
           <div class="card-body">
-            <form method="post" action="service/service_insert_durables_articles.php" id="form_insert">
+            <form method="post" action="service/service_edit_durable_articles_purchase.php?id=<?php echo $id; ?>" id="form_insert">
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                    <input class="form-control" type="text" placeholder="order_no" name="order_no">
+                    <input class="form-control" type="text" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
                   </div>
                 </div>
                 <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                    <input class="form-control" type="text" placeholder="purchase_date" name="purchase_date">
+                    <input class="form-control" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
 
                   </div>
                 </div>
@@ -73,7 +86,7 @@ require "service/connection.php";
                 <div class="col-12 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
-                    <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                    <input class="form-control" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
                   </div>
                 </div>
               </div>
@@ -81,13 +94,13 @@ require "service/connection.php";
                 <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">ชื่อผู้รับ :</label>
-                    <input class="form-control" type="text" placeholder="receiver" name="receiver">
+                    <input class="form-control" type="text" placeholder="receiver" name="receiver" value="<?php echo $item["receiver"]; ?>">
                   </div>
                 </div>
                 <div class="col-6 ">
                   <div class="form-group">
                     <label for="receive_date">วันที่ตรวจรับ</label>
-                    <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
+                    <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date" value="<?php echo $newReceiveDate; ?>">
                   </div>
                 </div>
               </div>
@@ -95,7 +108,8 @@ require "service/connection.php";
                 <div class="col-md-12 ">
                   <div class="form-group ">
                     <label for="receive_address">สถานที่จัดส่ง</label>
-                    <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address"></textarea>
+                    <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address"><?php echo $item["receive_address"]; ?>
+                  </textarea>
                   </div>
                 </div>
               </div>
@@ -103,19 +117,23 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">หน่วยงาน :</label>
-                    <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
+                    <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
                     <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">ประเภทครุภัณฑ์ : </label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" value="<?php echo $item["type"]; ?>">
                       <?php
                       $sqlSelectType = "SELECT * FROM durable_articles_type";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        if ($item["type"] == $row["id"]) {
+                          echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                        } else {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
                       }
                       ?>
                     </select>
@@ -126,13 +144,13 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                    <input class="form-control" type="text" placeholder="attribute" name="attribute">
+                    <input class="form-control" type="text" placeholder="attribute" name="attribute" value="<?php echo $item["attribute"]; ?>">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">รุ่นแบบ :</label>
-                    <input class="form-control" type="text" placeholder="model" name="model">
+                    <input class="form-control" type="text" placeholder="model" name="model" value="<?php echo $item["model"]; ?>">
                   </div>
                 </div>
               </div>
@@ -140,13 +158,13 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                    <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
+                    <input class="form-control" type="text" placeholder="bill_no" name="bill_no" value="<?php echo $item["bill_no"]; ?>">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">งบประมาณ :</label>
-                    <input class="form-control" type="text" placeholder="budget" name="budget">
+                    <input class="form-control" type="text" placeholder="budget" name="budget" value="<?php echo $item["budget"]; ?>">
                   </div>
                 </div>
               </div>
@@ -154,12 +172,16 @@ require "service/connection.php";
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
-                    <select class="form-control" name="department_id">
+                    <select class="form-control" name="department_id" value="<?php echo $item["department_id"]; ?>">
                       <?php
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        if ($item["department_id"] == $row["id"]) {
+                          echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                        } else {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
                       }
                       ?>
                     </select>
@@ -170,14 +192,14 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                    <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                    <input class="form-control" type="text" placeholder="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="form-group">
                       <label class="bmd-label-floating">เอกสารสำรองเงิน :</label>
-                      <input class="form-control" type="text" placeholder="D-GEN" name="d_gen">
+                      <input class="form-control" type="text" placeholder="D-GEN" name="d_gen" value="<?php echo $item["d_gen"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -190,7 +212,11 @@ require "service/connection.php";
                     $sqlSelectType = "SELECT * FROM seller";
                     $resultType = mysqli_query($conn, $sqlSelectType);
                     while ($row = mysqli_fetch_assoc($resultType)) {
-                      echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                      if ($item["seller_id"] == $row["id"]) {
+                        echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                      } else {
+                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                      }
                     }
                     ?>
                   </select>
@@ -201,12 +227,16 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">หน่วยนับ :</label>
-                    <select class="form-control" name="unit">
+                    <select class="form-control" name="unit" value="<?php echo $item["unit"]; ?>">
                       <?php
                       $sqlSelectType = "SELECT * FROM unit";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        if ($item["unit"] == $row["id"]) {
+                          echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                        } else {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
                       }
                       ?>
                     </select>
@@ -215,7 +245,7 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">จำนวนเงิน :</label>
-                    <input class="form-control" type="text" placeholder="price" name="price">
+                    <input class="form-control" type="text" placeholder="price" name="price" value="<?php echo $item["price"]; ?>">
                   </div>
                 </div>
               </div>
@@ -224,37 +254,34 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
-                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
-                      <option value="0">1</option>
-                      <option value="1">2</option>
-                      <option value="2">3</option>
-                      <option value="3">4</option>
-                      <option value="4">5</option>
+                    <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
+                      <?php
+                      for ($i = 1; $i <= 5; $i++) {
+                        if ($item["durable_year"] == $i) {
+                          echo "<option value='$i' selected>$i</option>";
+                        } else {
+                          echo "<option value='$i'>$i</option>";
+                        }
+                      }
+                      ?>
                     </select>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group bmd-form-group">
                     <label class="bmd-label-floating">ห้องเก็บครุภัณฑ์ :</label>
-                    <input class="form-control" type="text" placeholder="storage" name="storage">
+                    <input class="form-control" type="text" placeholder="storage" name="storage" value="<?php echo $item["storage"]; ?>">
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">จำนวนครุภัณฑ์ :</label>
-                    <input class="form-control" type="text" placeholder="number">
-                  </div>
-                </div>
-              </div>
+
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">ประเภทเงิน :</label>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="	money_type" id="inlineRadio1" value="เงินงบประมาณ"> เงินงบประมาณ
+                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ" <?php if ($item["money_type"] == "เงินงบประมาณ") echo "checked" ?>> เงินงบประมาณ
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -262,7 +289,7 @@ require "service/connection.php";
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ"> เงินนอกงบประมาณ
+                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio2" value="เงินนอกงบประมาณ" <?php if ($item["money_type"] == "เงินนอกงบประมาณ") echo "checked" ?>> เงินนอกงบประมาณ
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -270,7 +297,7 @@ require "service/connection.php";
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ"> เงินบริจาค/เงินช่วยเหลือ
+                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio3" value="เงินบริจาค/เงินช่วยเหลือ" <?php if ($item["money_type"] == "เงินบริจาค/เงินช่วยเหลือ") echo "checked" ?>> เงินบริจาค/เงินช่วยเหลือ
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -278,7 +305,7 @@ require "service/connection.php";
                     </div>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ"> อื่นๆ
+                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio4" value="อื่นๆ" <?php if ($item["money_type"] == "อื่นๆ") echo "checked" ?>> อื่นๆ
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -291,7 +318,7 @@ require "service/connection.php";
                           <label class="bmd-label-floating">วิธีการได้มา :</label>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง"> เฉพาะเจาะจง
+                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง" <?php if ($item["acquiring"] == "เฉพาะเจาะจง") echo "checked" ?>> เฉพาะเจาะจง
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -299,7 +326,7 @@ require "service/connection.php";
                           </div>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา"> ประกวดราคา
+                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio2" value="ประกวดราคา" <?php if ($item["acquiring"] == "ประกวดราคา") echo "checked" ?>> ประกวดราคา
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -307,7 +334,7 @@ require "service/connection.php";
                           </div>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป"> ประกาศเชิญชวนทั่วไป
+                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio3" value="ประกาศเชิญชวนทั่วไป" <?php if ($item["acquiring"] == "ประกาศเชิญชวนทั่วไป") echo "checked" ?>> ประกาศเชิญชวนทั่วไป
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -315,7 +342,7 @@ require "service/connection.php";
                           </div>
                           <div class="form-check form-check-radio form-check-inline">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค"> รับบริจาค
+                              <input class="form-check-input" type="radio" name="acquiring" id="inlineRadio4" value="รับบริจาค" <?php if ($item["acquiring"] == "รับบริจาค") echo "checked" ?>> รับบริจาค
                               <span class="circle">
                                 <span class="check"></span>
                               </span>
@@ -375,26 +402,29 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
+              </div>
             </form>
           </div>
         </div>
-      </div>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
-  <br>
-  <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
+      <!-- /.container-fluid -->
+
+
     </div>
-  </footer>
-  <!-- End of Footer -->
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
@@ -460,7 +490,7 @@ require "service/connection.php";
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
+                      <i class="fas fa-file-invoice-dollar"></i> แก้ไขข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                       <div>
@@ -499,9 +529,7 @@ require "service/connection.php";
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"];
-                            ?>
-
-                          <tr class="text-center">
+                            ?> <tr class="text-center">
                             <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["order_no"]; ?></td>
                             <td><?php echo $row["purchase_date"]; ?></td>
@@ -509,19 +537,11 @@ require "service/connection.php";
                             <td><?php echo $row["order_by"]; ?></td>
                             <td><?php echo $row["number"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
-
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
                               </button>
                               <?php
                               }
-
                               ?>
                         </tbody>
                       </table>

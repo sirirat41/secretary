@@ -37,99 +37,99 @@ require "service/connection.php";
 
     <!-- Begin Page Content -->
 
-      <div class="container-fluid">
-        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-        <div class="row">
-          <div class="col-10 offset-1">
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <nav class="navbar navbar-light bg-light">
-                  <h6 class="m-0 font-weight-bold text-danger">
-                    <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
-                  <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <div>
-                      <button class="btn btn-outline-danger" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                      <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_damage.php';">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                  </form>
-              </div>
+    <div class="container-fluid">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row">
+        <div class="col-10 offset-1">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                  <div>
+                    <button class="btn btn-outline-danger" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_damage.php';">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                </form>
             </div>
-            </nav>
-            <form>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="table-responsive">
-                    <table class="table table-hover ">
-                      <thead>
-                        <tr class="text-center">
-                          <th>#</th>
-                          <th>รหัสครุภัณฑ์</th>
-                          <th>วันที่ชำรุด</th>
-                          <th>การทำงาน</th>
-                        </tr class="text-center">
-                      </thead>
-                      <tbody>
-                        <?php
-                        $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
-                        $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = $_GET["keyword"];
-                          $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
-                        }
-                        $result = mysqli_query($conn, $sqlSelect);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $id = $row["id"]
+          </div>
+          </nav>
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-hover ">
+                    <thead>
+                      <tr class="text-center">
+                        <th>#</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>วันที่ชำรุด</th>
+                        <th>การทำงาน</th>
+                      </tr class="text-center">
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+                      $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                      }
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["damage_date"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                          <?php
+                          }
                           ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["damage_date"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
-                            <?php
-                            }
-                            ?>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-            </form>
-          </div>
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+            </div>
+          </form>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    </div>
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
   </div>

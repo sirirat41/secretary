@@ -2,6 +2,15 @@
 <html lang="en">
 <?php
 require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM department   WHERE id = $id";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+
+  //item.code java odject , item["code"] php
+
+}
 ?>
 
 <head>
@@ -59,13 +68,13 @@ require "service/connection.php";
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
-                      <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department">
+                      <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department" value="<?php echo $item["fullname"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ตัวย่อ(หน่วยงาน)</label>
-                      <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortdepartment" >
+                      <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortdepartment" value="<?php echo $item["shortname"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -73,7 +82,7 @@ require "service/connection.php";
                   <div class=" col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">เจ้าหน้าที่</label>
-                      <input class="form-control" name="owner" type="text" placeholder="owner" id="owner">
+                      <input class="form-control" name="owner" type="text" placeholder="owner" id="owner" value="<?php echo $item["owner"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -81,13 +90,13 @@ require "service/connection.php";
                   <div class=" col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">อาคาร</label>
-                      <input class="form-control" name="bulding" type="text" placeholder="bulding" id="bulding">
+                      <input class="form-control" name="bulding" type="text" placeholder="bulding" id="bulding" value="<?php echo $item["bulding"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชั้น</label>
-                      <input class="form-control" name="floor" type="text" placeholder="floor" id="floor">
+                      <input class="form-control" name="floor" type="text" placeholder="floor" id="floor" value="<?php echo $item["floor"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -221,6 +230,67 @@ require "service/connection.php";
         </div>
       </div>
     </div>
+    <form>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-hover ">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th>ชื่อหน่วยงาน</th>
+                  <th>ตัวย่อ(หน่วยงาน)</th>
+                  <th>เจ้าหน้าที่</th>
+                  <th>อาคาร</th>
+                  <th>ชั้น</th>
+                  <th class="text-center">การทำงาน</th>
+                </tr>
+              </thead>
+              <tbody id="modal-articles-body">
+                <?php
+                $sqlSelect = "SELECT * FROM department";
+                $sqlSelect .= " WHERE status = 1";
+                  ?>
+                <tr class="text-center">
+                  <td><?php echo $row["id"]; ?></td>
+                  <td><?php echo $row["fullname"]; ?></td>
+                  <td><?php echo $row["shortname"]; ?></td>
+                  <td><?php echo thainumDigit($row["owner"]); ?></td>
+                  <td><?php echo thainumDigit($row["bulding"]); ?></td>
+                  <td><?php echo thainumDigit($row["floor"]); ?></td>
+                  <td class="td-actions text-center">
+                    <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                      <i class="fas fa-check"></i>
+                    </button>
+                    <?php
+
+                    ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+  </div>
 
 </body>
 

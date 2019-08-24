@@ -52,7 +52,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_purchase.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                 </form>
@@ -96,7 +96,7 @@ require "service/connection.php";
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["name"]; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success">
@@ -210,9 +210,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-
           คุณต้องการลบข้อมูลครุภัณฑ์ (ครุภัณฑ์)ใช่หรือไม่
-
           <form id="form-drop" method="post" action="service/service_drop_durable_articles.php">
             <input type="hidden" id="remove-articles" name="articles_id">
           </form>
@@ -225,5 +223,4 @@ require "service/connection.php";
     </div>
   </div>
 </body>
-
 </html>

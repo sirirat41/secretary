@@ -2,6 +2,19 @@
 <html lang="en">
 <?php
 require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM durable_material  as a , durable_material_purchase as p WHERE a.id = $id and p.product_id = a.id ";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+  $receiveDate = $item["receive_date"];
+  $orderDate = $item["purchase_date"];
+  $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
+  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+
+  //item.code java odject , item["code"] php
+
+}
 ?>
 
 <head>
@@ -53,18 +66,18 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durables_material.php" id="form_insert">
+              <form method="post" action="service/service_edit_durable_material_purchase.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
-                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
+                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus value="<?php echo $item["order_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
-                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
+                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date" value="<?php echo $newOrderDate; ?>">
                     </div>
                   </div>
                 </div>
@@ -72,7 +85,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by">
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -80,13 +93,13 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group ">
                       <label for="receiver">ชื่อผู้รับ</label>
-                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver">
+                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $item["receiver"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่ตรวจรับ</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>
@@ -94,7 +107,8 @@ require "service/connection.php";
                   <div class="col-12 ">
                     <div class="form-group ">
                       <label for="receive_address">สถานที่จัดส่ง</label>
-                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" name="address"></textarea>
+                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" name="address"><?php echo $item["receive_address"]; ?>
+                    </textarea>
                     </div>
                   </div>
                 </div>
@@ -102,19 +116,23 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="shortdepartment" name="shortdepartment">
+                      <input class="form-control" type="text" placeholder="short_goverment	" name="short_goverment	" value="<?php echo $item["short_goverment"]; ?>">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">ประเภทวัสดุ: </label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" value="<?php echo $type; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM durable_material_type";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                          if ($item["type"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                          }
                         }
                         ?>
                       </select>
@@ -125,13 +143,13 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                      <input class="form-control" type="text" placeholder="attribute" name="attribute">
+                      <input class="form-control" type="text" placeholder="attribute" name="attribute" value="<?php echo $item["attribute"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
-                      <input class="form-control" type="text" placeholder="namemeterial" name="name">
+                      <input class="form-control" type="text" placeholder="namemeterial" name="name" value="<?php echo $item["name"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -139,12 +157,16 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">หน่วยงาน : </label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                          if ($item["department_id"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                          }
                         }
                         ?>
                       </select>
@@ -153,12 +175,16 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">ร้านค้า : </label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM seller";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                          if ($item["seller_id"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                          }
                         }
                         ?>
                       </select>
@@ -169,23 +195,22 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                      <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
+                      <input class="form-control" type="text" placeholder="bill_no" name="bill_no" value="<?php echo $item["bill_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group">
                       <label for="exampleFormControlSelect1">จำนวนปีของวัสดุ :</label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
-                        <option value="0">1</option>
-                        <option value="1">2</option>
-                        <option value="2">3</option>
-                        <option value="3">4</option>
-                        <option value="4">5</option>
-                        <option value="5">6</option>
-                        <option value="6">7</option>
-                        <option value="7">8</option>
-                        <option value="8">9</option>
-                        <option value="9">10</option>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
+                        <?php
+                        for ($i = 1; $i <= 5; $i++) {
+                          if ($item["durable_year"] == $i) {
+                            echo "<option value='$i' selected>$i</option>";
+                          } else {
+                            echo "<option value='$i'>$i</option>";
+                          }
+                        }
+                        ?>
                       </select>
                     </div>
                   </div>
@@ -195,19 +220,23 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
-                      <input class="form-control" type="text" placeholder="tel" name="tel">
+                      <input class="form-control" type="text" placeholder="price" name="price" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">หน่วยนับ :</label>
-                        <select class="form-control" name="unit">
+                        <select class="form-control" name="unit" value="<?php echo $unit; ?>">
                           <?php
                           $sqlSelectType = "SELECT * FROM unit";
                           $resultType = mysqli_query($conn, $sqlSelectType);
                           while ($row = mysqli_fetch_assoc($resultType)) {
-                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                            if ($item["unit"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                            }
                           }
                           ?>
                         </select>
@@ -219,7 +248,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนวัสดุ :</label>
-                      <input class="form-control" type="text" placeholder="number" name="number">
+                      <input class="form-control" type="text" placeholder="number" name="number"  value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -257,7 +286,7 @@ require "service/connection.php";
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการจัดซื้อวัสดุ (คงทน) ใช่หรือไม่
+                            คุณต้องการบันทึกข้อมูลการจัดซื้อวัสดุใช่หรือไม่
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -338,7 +367,6 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -355,11 +383,11 @@ require "service/connection.php";
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุ)</h6>
+                      <i class="fas fa-file-invoice-dollar"></i> แก้ไขข้อมูลการจัดซื้อ(วัสดุ)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                       <div>
-                        <button class="btn btn-outline-danger" type="submit">
+                        <button class="btn btn-outline-danger" type="submit" onclick="search();">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -382,7 +410,7 @@ require "service/connection.php";
                             <th>การทำงาน</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="modal-articles-body">
                           <?php
                           $sqlSelect = "SELECT * FROM durable_material_purchase";
                           $sqlSelect .= " WHERE status = 1";
@@ -404,15 +432,8 @@ require "service/connection.php";
                             <td><?php echo $row["order_by"]; ?></td>
                             <td><?php echo $row["number"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
-
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMrticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
                               </button>
                               <?php
                               }

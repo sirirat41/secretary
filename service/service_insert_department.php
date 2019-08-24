@@ -20,5 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
 
 }
+header('Location: ../display_department.php?message=เพิ่มข้อมูลสำเร็จ');
 
 ?>

@@ -62,9 +62,9 @@ require "service/connection.php";
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control" name="product_id">
+                          <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
+                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -84,13 +84,13 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวน</label>
-                      <input class="form-control" type="text" placeholder="number">
+                      <input class="form-control" type="text" placeholder="number" name="number" id="number">
                     </div>
                   </div>
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">วันที่แจกจ่าย</label>
-                      <input class="form-control" type="text" placeholder="distribute_date">
+                      <input class="form-control" type="text" placeholder="distribute_date" name="distribute_date" id="distribute_date">
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน</label>
-                      <select class="form-control" name="department_id">
+                      <select class="form-control" name="department_id" name="department_id" id="department_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -131,14 +131,14 @@ require "service/connection.php";
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger">บันทึก</button>
-                          </div>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            </div>
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
+              </form>
             </div>
           </div>
         </div>
@@ -232,14 +232,10 @@ require "service/connection.php";
                         <button class="btn btn-outline-danger" type="button" onclick="search();">
                           <i class="fas fa-search"></i>
                         </button>
-                      </div>
-                    </form>
-                  </nav>
+                        </form>
                 </div>
               </div>
-            </div>
-          </div>
-          <form>
+              </nav>
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
@@ -250,19 +246,19 @@ require "service/connection.php";
                         <th>ลำดับ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
-                        <th>ชื่อวัสดุ</th>
+                        <th>คุณสมบัติ</th>
                         <th>ประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="modal-supplies-body">
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
+                      $sqlSelect = "SELECT s.*,t.name FROM supplies as s, durable_material_type as t";
                       $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or t.name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -274,17 +270,11 @@ require "service/connection.php";
                         <td><?php echo $row["seq"]; ?></td>
                         <td><?php echo $row["bill_no"]; ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["attribute"]; ?></td>
                         <td><?php echo $row["name"]; ?></td>
-                        <td><?php echo $row["type"]; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
+                            <i class="fas fa-check"></i>
                           </button>
                         </td>
                       </tr>
@@ -319,6 +309,12 @@ require "service/connection.php";
       </div>
     </div>
   </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+  </div>
+  </div>
+  </div>
+  </div>
   <script>
     function search() {
       var kw = $("#keyword").val();
@@ -330,19 +326,37 @@ require "service/connection.php";
           keyword: kw
         },
         success: function(data) {
+          var tbody = $('#modal-supplies-body');
+          tbody.empty();
           console.log(data);
-        },
-        error: function(error) {
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.bill_no + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.attribute + '</td>').appendTo(tr);
+            $('<td>' + item.name + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"> <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedSupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
 
+
+          }
+        },
+
+        error: function(error) {
           console.log(error);
         }
-
       })
+    }
+
+    function selectedSupplies(id) {
+      console.log(id);
+      $('#modal-form-search').modal('hide');
+      $('#product_id').val(id);
 
     }
   </script>
-
-
 
 </body>
 

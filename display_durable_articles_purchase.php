@@ -79,11 +79,11 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT * FROM durable_articles_purchase";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect = "SELECT p.* ,a.code FROM durable_articles_purchase as p, durable_articles as a ";
+                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (product_id like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.order_no like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -94,14 +94,13 @@ require "service/connection.php";
                           <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["order_no"]); ?></td>
                           <td><?php echo $row["purchase_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["number"]; ?></td>
                           <td><?php echo $row["order_by"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-
                             <button type="button" rel="tooltip" class="btn btn-success">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
