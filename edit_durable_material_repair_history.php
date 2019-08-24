@@ -83,7 +83,11 @@ if (isset($_GET["id"])) {
                             $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              if ($item["repair_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -339,12 +343,12 @@ if (isset($_GET["id"])) {
           for (i = 0; i < data.length; i++) {
             var item = data[i];
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>'+item.id+'</td>').appendTo(tr);
-            $('<td>'+item.seq+'</td>').appendTo(tr);
-            $('<td>'+item.repair_date+'</td>').appendTo(tr);
-            $('<td>'+item.code+'</td>').appendTo(tr);
-            $('<td>'+item.place+'</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.repair_date + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.place + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           }
         },
         error: function(error) {

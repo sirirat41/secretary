@@ -7,7 +7,6 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $repairDate = $item["repair_date"];
   $newrepairDate = date("ํY-m-d", strtotime($repairDate));
-
 }
 ?>
 <!DOCTYPE html>
@@ -84,7 +83,11 @@ if (isset($_GET["id"])) {
                             $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              if ($item["damage_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -242,7 +245,7 @@ if (isset($_GET["id"])) {
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
-                        <?php
+                          <?php
                           $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
@@ -257,15 +260,15 @@ if (isset($_GET["id"])) {
                             <td><?php echo $row["id"]; ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["damage_date"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                              <i class="fas fa-check"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <?php
-                        }
-                        ?>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+                          <?php
+                          }
+                          ?>
                         </tbody>
                       </table>
                     </div>

@@ -67,7 +67,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่รับบริจาค</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder=""value="<?php echo $newReceivedate; ?>">
+                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
                     </div>
                   </div>
                 </div>
@@ -82,7 +82,11 @@ if (isset($_GET["id"])) {
                             $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              if ($item["product_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
