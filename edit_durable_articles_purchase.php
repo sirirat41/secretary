@@ -124,7 +124,11 @@ if (isset($_GET["id"])) {
                       $sqlSelectType = "SELECT * FROM durable_articles_type";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        if ($item["type"] == $row["id"]) {
+                          echo '<option value="' . $row["id"] . '" selected>' . $row["name"] . '</option>';
+                        } else {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
                       }
                       ?>
                     </select>
