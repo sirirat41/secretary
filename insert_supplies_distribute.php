@@ -83,37 +83,22 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
-<<<<<<< HEAD
                       <label class="bmd-label-floating">จำนวน</label>
                       <input class="form-control" type="text" placeholder="number" name="number" id="number">
-=======
-                      <label for="number">จำนวน</label>
-                      <input class="form-control" type="text" name="number" placeholder="number">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                     </div>
                   </div>
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group">
-<<<<<<< HEAD
                       <label class="bmd-label-floating">วันที่แจกจ่าย</label>
                       <input class="form-control" type="text" placeholder="distribute_date" name="distribute_date" id="distribute_date">
-=======
-                      <label for="distribute_date">วันที่แจกจ่าย</label>
-                      <input class="form-control" type="date" name="distribute_date" placeholder="distribute_date">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group bmd-form-group">
-<<<<<<< HEAD
                       <label class="bmd-label-floating">หน่วยงาน</label>
                       <select class="form-control" name="department_id" name="department_id" id="department_id">
-=======
-                      <label for="department_id">หน่วยงาน</label>
-                      <select class="form-control" name="department_id">
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -155,11 +140,7 @@ require "service/connection.php";
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                             <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-<<<<<<< HEAD
                             </div>
-=======
-                          </div>
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
                         </div>
                       </div>
                     </div>

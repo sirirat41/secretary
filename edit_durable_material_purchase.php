@@ -14,6 +14,11 @@ if (isset($_GET["id"])) {
 
   //item.code java odject , item["code"] php
 
+  // $sql = "SELECT * FROM durable_material a, durable_material_type t, department d WHERE id = $id and a.department = d.id";  
+  // $sql .= " and a.type = t.id";
+  // $result = mysqli_query($conn, $sql);
+  // $row = mysqli_fetch(_assoc($result)); // ใช้สำหรับหน้า View เท่านั้น
+
 }
 ?>
 

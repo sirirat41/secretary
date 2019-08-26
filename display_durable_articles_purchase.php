@@ -46,7 +46,7 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
+                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -56,7 +56,6 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_purchase.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-
                 </form>
             </div>
           </div>
@@ -67,11 +66,10 @@ require "service/connection.php";
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                    <tr class="text-center">
+                      <tr class="text-center">
                         <th>#</th>
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
-                        <th>รหัสวัสดุ</th>
                         <th>จำนวน</th>
                         <th>ชื่อผู้จัดซื้อ</th>
                         <th>การทำงาน</th>
@@ -79,8 +77,8 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT p.* ,a.code FROM durable_articles_purchase as p, durable_articles as a ";
-                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1";
+                      $sqlSelect = "SELECT * FROM durable_articles_purchase";
+                      $sqlSelect .= " WHERE status = 1 Group by order_no";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (a.code like '%$keyword%' or p.order_no like '%$keyword%')";
@@ -90,24 +88,25 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                          <td><?php echo $row["purchase_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["number"]; ?></td>
-                          <td><?php echo $row["order_by"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
-                            onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo thainumDigit($row["order_no"]); ?></td>
+                        <td><?php echo $row["purchase_date"]; ?></td>
+                        <td><?php echo $row["number"]; ?></td>
+                        <td><?php echo $row["order_by"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <a style="color: white" rel="tooltip" class="btn btn-info" href="test.php" target="_blank">
+                            <i class="fas fa-print"></i>
+                          </a>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
                           <?php
                           }
 

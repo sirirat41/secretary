@@ -64,7 +64,7 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                      <input class="form-control" type="text" placeholder="purchase_date" name="purchase_date">
+                      <input class="form-control" type="date" placeholder="purchase_date" name="purchase_date">
 
                     </div>
                   </div>
@@ -284,7 +284,6 @@ require "service/connection.php";
                           </span>
                         </label>
                       </div>
-                      <br>
                       <div class="row">
                         <div class="col-12">
                           <div class="form-group">
