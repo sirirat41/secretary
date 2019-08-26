@@ -53,7 +53,7 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durables_articles.php" id="form_insert">
+              <form method="post" action="service/service_insert_durable_articles.php" id="form_insert">
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group">
@@ -65,7 +65,6 @@ require "service/connection.php";
                     <div class="form-group">
                       <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
                       <input class="form-control" type="text" placeholder="purchase_date" name="purchase_date">
-
                     </div>
                   </div>
                 </div>
