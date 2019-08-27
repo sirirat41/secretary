@@ -77,16 +77,6 @@ require "service/connection.php";
                 </div>
               </div>
               <div class="row">
-<<<<<<< HEAD
-                <div class="col-12 ">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
-                    <input class="form-control" type="text" placeholder="articles_pattern" name="articles_pattern">
-                    <small style="color: red">ตัวอย่าง: ค.สง 7700-1000-{run_4}-10</small>
-                  </div>
-                </div>
-              </div>
-=======
                   <div class="col-12 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
@@ -95,7 +85,6 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
->>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">

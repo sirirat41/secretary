@@ -14,13 +14,10 @@ if (isset($_GET["id"])) {
 
   //item.code java odject , item["code"] php
 
-<<<<<<< HEAD
   // $sql = "SELECT * FROM durable_articles a, durable_articles_type t, department d WHERE id = $id and a.department = d.id";
   // $sql .= " and a.type = t.id";
   // $result = mysqli_query($conn,$sql);
   // $row = mysqli_fetch_assoc($result); // .ใช้สำหรับหน้า View
-=======
->>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
 }
 ?>
 

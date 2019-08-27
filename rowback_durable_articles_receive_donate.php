@@ -50,14 +50,8 @@ require "service/connection.php";
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_receive_donate.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_receive_donate.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_receive_donate.php';">
-                      <i class="fas fa-print"></i>
+                    <button type="button" rel="tooltip" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_receive_donate.php';">
+                      <i class="fas fa-paste"></i>
                     </button>
                 </form>
             </div>
@@ -81,7 +75,7 @@ require "service/connection.php";
                       <!-- ///ดึงข้อมูล -->
                       <?php
                       $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
-                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
@@ -98,17 +92,8 @@ require "service/connection.php";
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["donate_name"]; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href = 'print_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-print"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-receive_donate').val('<?php echo $id; ?>')">
+                            <i class="fas fa-sync-alt"></i>
                           </button>
 
                         </td>
@@ -217,12 +202,12 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลรับบริจาคครุภัณฑ์ใช่หรือไม่ </div>
-        <form id="form-drop" method="post" action="service/service_drop_durable_articles_receive_donate.php">
-          <input type="hidden" id="remove-receive_donate" name="receive_donate_id">
+          คุณต้องการกู้ข้อมูลรับบริจาคครุภัณฑ์ใช่หรือไม่ </div>
+        <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_receive_donate.php">
+          <input type="hidden" id="rowback-receive_donate" name="receive_donate_id">
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+            <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
           </div>
       </div>
     </div>
