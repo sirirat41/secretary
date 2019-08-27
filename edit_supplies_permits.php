@@ -116,7 +116,23 @@ if (isset($_GET["id"])) {
                       <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $item["receive_date"]; ?>">
                     </div>
                   </div>
-                </div>
+                </div> <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="department_id">หน่วยงานที่ยืม</label>
+                      <select class="form-control" data-style="btn btn-link" id="department_id" name="department_id" value="<?php echo $item["department_id"]; ?>">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          if ($item["department_id"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                          }
+                        }
+                        ?>
+                      </select>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group ">

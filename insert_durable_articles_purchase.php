@@ -53,7 +53,7 @@ require "service/connection.php";
           </div>
           <br>
           <div class="card-body">
-            <form method="post" action="service/service_insert_durables_articles.php" id="form_insert">
+            <form method="post" action="service/service_insert_durable_articles.php" id="form_insert">
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">
@@ -64,7 +64,7 @@ require "service/connection.php";
                 <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                    <input class="form-control" type="text" placeholder="purchase_date" name="purchase_date">
+                    <input class="form-control" type="date" placeholder="purchase_date" name="purchase_date">
                   </div>
                 </div>
               </div>
@@ -73,6 +73,15 @@ require "service/connection.php";
                   <div class="form-group">
                     <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
                     <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
+                    <input class="form-control" type="text" placeholder="articles_pattern" name="articles_pattern">
+                    <small style="color: red">ตัวอย่าง: ค.สง 7700-1000-{run_4}-10</small>
                   </div>
                 </div>
               </div>
@@ -242,7 +251,7 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">จำนวนครุภัณฑ์ :</label>
-                    <input class="form-control" type="text" placeholder="number">
+                    <input class="form-control" type="text" placeholder="number" name="number">
                   </div>
                 </div>
               </div>
@@ -252,7 +261,7 @@ require "service/connection.php";
                     <label class="bmd-label-floating">ประเภทเงิน :</label>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="	money_type" id="inlineRadio1" value="เงินงบประมาณ"> เงินงบประมาณ
+                        <input class="form-check-input" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ"> เงินงบประมาณ
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -285,7 +294,6 @@ require "service/connection.php";
                   </div>
                 </div>
               </div>
-              <br>
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
@@ -372,7 +380,6 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
             </form>
           </div>
         </div>
@@ -380,16 +387,6 @@ require "service/connection.php";
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-=======
-              </div>
-          </div>
-        </div>
-      </div>
-      </form>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
   </div>
   <br>
   <!-- End of Main Content -->
