@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code FROM durable_material as a,durable_material_permits as p WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id";
+  $sql = "SELECT p.*, a.code ,d.fullname FROM durable_material as a,durable_material_permits as p ,department as d WHERE p.id = $id";
+  $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -91,7 +91,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                  <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
-                   <?php echo $row["code"]; ?>
+                   <?php echo $row["fullname"]; ?>
                   </div>
                 </div>
                 <div class="row">
@@ -172,28 +172,6 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
-            <input type="hidden" id="remove-permits" name="permits_id">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>
