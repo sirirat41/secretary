@@ -2,7 +2,7 @@
 require "connection.php";
 //Supplies
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $ืnumber = $_POST["number"]; 
+    $number = $_POST["number"]; 
     $type = $_POST["type"]; 
     $attribute = $_POST["attribute"]; 
     $name = $_POST["name"]; 
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $shortgoverment = $_POST["short_goverment"]; 
     $unit = $_POST["unit"]; 
     $suppliesPattern = $_POST["supplies_pattern"];
-    $status = $_POST["status"]; 
+    $status = 1; 
 
     //purchase
     $order_no = $_POST["order_no"];
@@ -49,15 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
         }
 
-        $sqlInsertSupplies = "INSERT INTO durable_supplies(code, seq, type, attribute, name, department_id,";
+        $sqlInsertSupplies = "INSERT INTO supplies(code, seq, type, attribute, name, department_id,";
         $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status)";
-        $sqlInsertSupplies .= " VALUES('$newCode', $seq, $type, '$attribute',  '$name', $department_id, ";
-        $sqlInsertSupplies .= " $seller_id, $price, '$bill_no', '$goverment', '$short_goverment', $unit, $status)";
+        $sqlInsertSupplies .= " VALUES('$newCode', $seq, $type, '$attribute',  '$name', $departmentid, ";
+        $sqlInsertSupplies .= " $seller_id, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status)";
         
         mysqli_query($conn, $sqlInsertSupplies) or die(mysqli_error($conn));
         $productID = mysqli_insert_id($conn);
 
-        $sqlInsertPurchase = "INSERT INTO durable_supplies_purchase(product_id, order_no, purchase_date, seller_id,";
+        $sqlInsertPurchase = "INSERT INTO supplies_purchase(product_id, order_no, purchase_date, seller_id,";
         $sqlInsertPurchase .= "order_by, receiver, receive_date, receive_address, number, status)";
         $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date', $seller_id, ";
         $sqlInsertPurchase .= " '$order_by', '$receiver', '$receive_date', '$receive_address', $number, $status)";

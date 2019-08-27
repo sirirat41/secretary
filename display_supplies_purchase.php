@@ -78,7 +78,7 @@ require "service/connection.php";
                     <tbody>
                       <?php
                       $sqlSelect = "SELECT * FROM supplies_purchase";
-                      $sqlSelect .= " WHERE status = 1 Gruop by order_no ";
+                      $sqlSelect .= " WHERE status = 1 Group by order_no ";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
