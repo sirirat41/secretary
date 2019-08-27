@@ -1,8 +1,13 @@
 <?php
 require "connection.php";
+<<<<<<< HEAD
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     //articles
+=======
+//articles
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
     $number = $_POST["number"];
     $type = $_POST["type"];
     $attribute = $_POST["attribute"];
@@ -15,18 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $asset_no = $_POST["asset_no"];
     $d_gen = $_POST["d_gen"];
     $seller_id = $_POST["seller_id"];
+<<<<<<< HEAD
     $goverment	 ="สำนักงานตำรวจแห่งชาติ";
+=======
+    $goverment = "สำนักงานตำรวจแห่งชาติ";
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
     $unit = $_POST["unit"];
     $price = $_POST["price"];
     $short_goverment = $_POST["short_goverment"];
     //$picture = $_POST["picture"];
     $durable_year = $_POST["durable_year"];
     $storage = $_POST["storage"];
+<<<<<<< HEAD
     $articles_pattern = $_POST["articles_pattern"];
     $status = 1;
 
     //purchase
 
+=======
+    $articlesPattern = $_POST["articles_pattern"];
+    $status = 1;
+
+    //purchase
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
     $order_no = $_POST["order_no"];
     $purchase_date = $_POST["purchase_date"];
     $seller_id = $_POST["seller_id"];
@@ -34,13 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $receiver = $_POST["receiver"];
     $receive_date = $_POST["receive_date"];
     $receive_address = $_POST["receive_address"];
+<<<<<<< HEAD
     
     $pattern = convertPattern($articles_pattern);
+=======
+
+    $pattern = convertPattern($articlesPattern);
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
     $sqlCheck = "SELECT * FROM durable_articles WHERE code like '$pattern'";
     $resultCheck = mysqli_query($conn, $sqlCheck);
     $numberBefore = mysqli_num_rows($resultCheck);
 
     for ($i = 0; $i < $number; $i++) {
+<<<<<<< HEAD
 
     $seq= $i +1;
     $code = "";
@@ -80,6 +102,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 }else{
+=======
+        $seq = $i + 1;
+        $code = "";
+        if ($numberBefore > 0){
+            $len = substr_count($pattern, "_");
+            $replacement = "";
+            for ($j = 0; $j < $len; $j++) {
+                $replacement .= "_";
+            }
+            $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
+        } else {
+            $len = substr_count($pattern, "_");
+            $replacement = "";
+            for ($j = 0; $j < $len; $j++) {
+                $replacement .= "_";
+            }
+            $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
+        }
+
+        $sqlInsertArticles = "INSERT INTO durable_articles(code, seq, type, attribute, model, bill_no, budget, department_id,";
+        $sqlInsertArticles .= "money_type, acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status)";
+        $sqlInsertArticles .= " VALUES('$newCode', $seq, $type, '$attribute', '$model', '$bill_no', '$budget', '$department_id', ";
+        $sqlInsertArticles .= " '$money_type', '$acquiring', '$asset_no', '$d_gen', $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year, '$storage', $status)";
+        
+        mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));
+        $productID = mysqli_insert_id($conn);
+
+        $sqlInsertPurchase = "INSERT INTO durable_articles_purchase(product_id, order_no, purchase_date, seller_id,";
+        $sqlInsertPurchase .= "order_by, receiver, receive_date, receive_address, number, status)";
+        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date', $seller_id, ";
+        $sqlInsertPurchase .= " '$order_by', '$receiver', '$receive_date', '$receive_address', $number, $status)";
+
+        mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
+       
+    }
+
+    header('location: ../display_durable_articles.php');
+
+} else {
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
     header('location: ../display_durable_articles.php');
 }
 
@@ -106,15 +168,29 @@ function convertPattern($pattern)
     }
     return $pattern;
 }
+<<<<<<< HEAD
 function autoRun($current, $format) {
+=======
+
+function autoRun($current, $format){
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74
     $auto = "";
     $diff = $format - strlen($current);
     for ($i = 0; $i < $diff; $i++) {
       $auto .= "0";
     }
+<<<<<<< HEAD
   
     $auto .= $current;
     return $auto;
 }
 
 ?>
+=======
+    $auto .= $current; 
+    
+    return $auto;
+  }
+
+?>
+>>>>>>> 723fa8d6b8e6ac01de8bff0d0691cf3ab0e0eb74

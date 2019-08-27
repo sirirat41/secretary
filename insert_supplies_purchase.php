@@ -15,6 +15,7 @@ require "service/connection.php";
   <title>Dashboard</title>
   <secretary style="display: none">insert_supplies_purchase</secretary>
 
+
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -30,6 +31,7 @@ require "service/connection.php";
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -39,13 +41,15 @@ require "service/connection.php";
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <div class="row ">
+      <div class="row">
         <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
+
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)
+                  <i class="fas fa-fw fa-archive"></i>
+                  เพิ่มข้อมูล(วัสดุสิ้นเปลือง)
                 </h6>
               </div>
             </div>
@@ -56,57 +60,44 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
-                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
+                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus id="order_no">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
-                      <input type="datetime-local" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
+                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date" id="purchase_date">
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-12">
                     <div class="form-group ">
                       <label for="order_by">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="name">
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="name" name="order_by" id="order_by">
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-8 ">
+                  <div class="col-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสวัสดุ</label>
-                      <select class="form-control" name="product_id">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM supplies";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                        }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="number">จำนวน</label>
-                      <input type="text" class="form-control" name="number" id="number" placeholder="number">
+                      <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
+                      <input class="form-control" type="text" placeholder="รหัสวัสดุตั้งต้น" name="supplies_pattern">
+                      <small style="color: red">ตัวอย่าง: ว.สนง {run_1}</small> 
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-8 ">
+                  <div class="col-6 ">
                     <div class="form-group ">
                       <label for="receiver">ชื่อผู้รับ</label>
-                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="name">
+                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" id="receiver">
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่ตรวจรับ</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date">
                     </div>
                   </div>
                 </div>
@@ -114,15 +105,97 @@ require "service/connection.php";
                   <div class="col-md-12 ">
                     <div class="form-group ">
                       <label for="receive_address">สถานที่จัดส่ง</label>
-                      <textarea class="form-control" name="receive_address" id="receive_address" rows="2" placeholder="address"></textarea>
+                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group ">
-                      <label for="seller_id">ข้อมูลร้านที่สั่ง</label>
-                      <select class="form-control" name="seller_id">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">หน่วยงาน :</label>
+                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment">
+                      <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" id="type">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM durable_material_type";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="attribute">คุณลักษณะ</label>
+                      <input type="text" class="form-control" name="attribute" id="inputattribute" aria-describedby="attribute" placeholder="attribute" id="attribute">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="name">ชื่อวัสดุ</label>
+                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="name" name="name" id="name">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="bill_no">เลขที่ใบเบิก</label>
+                      <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label for="unit">หน่วยนับ</label>
+                      <select class="form-control" name="unit">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM unit";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="price">จำนวนเงิน</label>
+                      <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM seller";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -133,58 +206,71 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">จำนวนวัสดุ</label>
+                      <input class="form-control" type="text" placeholder="number" name="number">
+                    </div>
+                  </div>
                 </div>
-              </form>
-              <div class="row">
-                <div class="col-md-12">
-                  <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
-                    บันทึก
-                  </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          คุณต้องการบันทึกข้อมูลการจัดซื้อวัสดุ (สิ้นเปลือง) ใช่หรือไม่
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="status">สถานะ</label>
+                      <input type="text" class="form-control" name="status" id="inputstatus" aria-describedby="status" placeholder="status">
+                    </div>
+                  </div>
+                </div>
+                <br><br>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
+                      <div class="ripple-container"></div></button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
+          <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
+        <!-- /.container-fluid -->
       </div>
-      </form>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
-  <br>
-  <!-- End of Main Content -->
+      <br>
+      <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
-  </div>
-  <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -230,131 +316,26 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script>
+    function search() {
+      var kw = $('#keyword').val();
+      $.ajax({
+        url: 'service/service_search_json_supplies.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+  </script>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-left">
-          <div class="row">
-            <div class="col-md-10 offset-1">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุ)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                      <div>
-                        <button class="btn btn-outline-danger" type="submit">
-                          <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-              </div>
-              </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-                            <th>#</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสวัสดุ</th>
-                            <th>ชื่อวัสดุ</th>
-                            <th>ประเภทวัสดุ</th>
-                            <th class="text-center">การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
-                          $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                          $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          //echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo $row["bill_no"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td><?php echo $row["type"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
-                            </td>
-                          </tr>
-                          <?php
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <script>
-          function search() {
-            var kw = $("#keyword").val();
-            $.ajax({
-              url: 'service/service_search_json_supplies.php',
-              dataType: 'JSON',
-              type: 'GET',
-              data: {
-                keyword: kw
-              },
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            })
-          }
-        </script>
 </body>
 
 </html>

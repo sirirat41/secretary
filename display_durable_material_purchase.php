@@ -93,7 +93,6 @@ require "service/connection.php";
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["order_no"]); ?></td>
                         <td><?php echo $row["purchase_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
                         <td><?php echo $row["number"]; ?></td>
                         <td><?php echo $row["order_by"]; ?></td>
                         <td class="td-actions text-center">
