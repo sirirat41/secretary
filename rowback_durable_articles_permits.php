@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <secretary style="display: none">rowback_durable_articles_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,14 +52,8 @@ require "service/connection.php";
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_permits.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_permits.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_permits.php';">
-                      <i class="fas fa-print"></i>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_durable_articles_permits.php';">
+                      <i class="fas fa-paste"></i>
                     </button>
                 </form>
             </div>
@@ -82,7 +76,7 @@ require "service/connection.php";
                     <tbody>
                       <?php
                       $sqlSelect = "SELECT p.*, m.code FROM durable_articles_permits as p,durable_articles as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
+                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
@@ -97,19 +91,9 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href='print_durable_articles_permits.php';">
-                            <i class="fas fa-print"></i>
-                          </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" 
+                            data-target="#exampleModal" onclick="$('#rowback-permits').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php
                           }
@@ -216,14 +200,14 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
-            <input type="hidden" id="remove-permits" name="permits_id">
+          คุณต้องการกู้ข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_permits.php">
+            <input type="hidden" id="rowback-permits" name="permits_id">
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

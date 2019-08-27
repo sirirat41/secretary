@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code FROM durable_articles as a,durable_articles_permits as p WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code FROM durable_material as a,durable_material_permits as p WHERE p.id = $id";
   $sql .= " and p.product_id = a.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <secretary style="display: none">display_durable_material_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,6 +53,7 @@ if (isset($_GET["id"])) {
             <nav class="navbar navbar-light bg-light">
               <h6 class="m-0 font-weight-bold text-danger">
                 <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                <form class="form-inline">
             
             </div>
             </nav>
@@ -182,7 +183,7 @@ if (isset($_GET["id"])) {
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
+          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>
