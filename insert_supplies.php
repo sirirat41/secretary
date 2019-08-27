@@ -79,6 +79,15 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
+                      <input class="form-control" type="text" placeholder="รหัสวัสดุตั้งต้น" name="supplies_pattern">
+                      <small style="color: red">ตัวอย่าง: ว.สนง {run_1}</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-6 ">
                     <div class="form-group ">
                       <label for="receiver">ชื่อผู้รับ</label>
@@ -104,7 +113,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="shortdepartment" name="shortdepartment" id="shortdepartment">
+                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
@@ -123,7 +132,6 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
@@ -142,7 +150,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">หน่วยงาน</label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -161,9 +169,9 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-6 ">
+                  <div class="col-6">
                     <div class="form-group">
-                      <label for="unit">หน่วยนับ</label>
+                      <label class="bmd-label-floating">หน่วยนับ :</label>
                       <select class="form-control" name="unit">
                         <?php
                         $sqlSelectType = "SELECT * FROM unit";
@@ -186,7 +194,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
+                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM seller";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -198,62 +206,62 @@ require "service/connection.php";
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
-                      <label for="status">สถานะ</label>
-                      <input type="text" class="form-control" name="status" id="inputstatus" aria-describedby="status" placeholder="status">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">จำนวนวัสดุ</label>
+                      <input class="form-control" type="text" placeholder="number" name="number">
                     </div>
                   </div>
                 </div>
-
-                <br><br>
-                <div class="row">
-                  <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                      บันทึก
-                      <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="col-12">
+                <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                  บันทึก
+                  <div class="ripple-container"></div></button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body ">
+                        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
+            </form>
           </div>
-          <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
-      <br>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+      <!-- /.container-fluid -->
     </div>
-    <!-- End of Content Wrapper -->
+    <br>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->

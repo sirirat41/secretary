@@ -1,33 +1,105 @@
 <?php
 require "connection.php";
-
+//Supplies
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $seq = $_POST["seq"];
-    $code = $_POST["code"];
-    $type = $_POST["type"];
-    $attribute = $_POST["attribute"];
-    $name = $_POST["name"];
-    $departmentid = $_POST["department_id"];
-    $sellerid = $_POST["seller_id"];
-    $price = $_POST["price"];
-    $billno = $_POST["bill_no"];
-    $goverment = $_POST["goverment"];
-    $shortgoverment = $_POST["short_goverment"];
-    $unit = $_POST["unit"];
-    $status = $_POST["status"];
+    $ืnumber = $_POST["number"]; 
+    $type = $_POST["type"]; 
+    $attribute = $_POST["attribute"]; 
+    $name = $_POST["name"]; 
+    $departmentid = $_POST["department_id"]; 
+    $sellerid = $_POST["seller_id"]; 
+    $price = $_POST["price"]; 
+    $billno = $_POST["bill_no"]; 
+    $goverment = "สำนักงานตำรวจแห่งชาติ"; 
+    $shortgoverment = $_POST["short_goverment"]; 
+    $unit = $_POST["unit"]; 
+    $suppliesPattern = $_POST["supplies_pattern"];
+    $status = $_POST["status"]; 
 
-    $sql = "INSERT INTO supplies(seq, code, type, attribute, name, department_id, seller_id, price, bill_no, goverment, short_goverment, unit, status)";
-    $sql .= " VALUES($seq, '$code', $type, '$attribute', '$name', $departmentid, $sellerid, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status)";
+    //purchase
+    $order_no = $_POST["order_no"];
+    $purchase_date = $_POST["purchase_date"];
+    $seller_id = $_POST["seller_id"];
+    $order_by = $_POST["order_by"];
+    $receiver = $_POST["receiver"];
+    $receive_date = $_POST["receive_date"];
+    $receive_address = $_POST["receive_address"];
 
-    if (mysqli_query($conn, $sql)) {
-        echo "Insert data complete";
-    } else {
-        echo $sql . "<br/>";
-        echo mysqli_error($conn);
+    $pattern = convertPattern($suppliesPattern);
+    $sqlCheck = "SELECT * FROM supplies WHERE code like '$pattern'";
+    $resultCheck = mysqli_query($conn, $sqlCheck);
+    $numberBefore = mysqli_num_rows($resultCheck);
+
+    for ($i = 0; $i < $number; $i++) {
+        $seq = $i + 1;
+        $code = "";
+        if ($numberBefore > 0) {
+            $len = substr_count($pattern, "_");
+            $replacement = "";
+            for ($j = 0; $j < $len; $j++) {
+                $replacement .= "_";
+            }
+            $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
+        } else {
+            $len = substr_count($pattern, "_");
+            $replacement = "";
+            for ($j = 0; $j < $len; $j++) {
+                $replacement .= "_";
+            }
+            $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
+        }
+
+        $sqlInsertSupplies = "INSERT INTO durable_supplies(code, seq, type, attribute, name, department_id,";
+        $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status)";
+        $sqlInsertSupplies .= " VALUES('$newCode', $seq, $type, '$attribute',  '$name', $department_id, ";
+        $sqlInsertSupplies .= " $seller_id, $price, '$bill_no', '$goverment', '$short_goverment', $unit, $status)";
+        
+        mysqli_query($conn, $sqlInsertSupplies) or die(mysqli_error($conn));
+        $productID = mysqli_insert_id($conn);
+
+        $sqlInsertPurchase = "INSERT INTO durable_supplies_purchase(product_id, order_no, purchase_date, seller_id,";
+        $sqlInsertPurchase .= "order_by, receiver, receive_date, receive_address, number, status)";
+        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date', $seller_id, ";
+        $sqlInsertPurchase .= " '$order_by', '$receiver', '$receive_date', '$receive_address', $number, $status)";
+
+        mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
     }
 
+    header('location: ../display_supplies.php');
 } else {
-
+    header('location: ../display_supplies.php');
 }
 
-?>
+function convertPattern($pattern)
+{
+    $len = substr_count($pattern, "{");
+    for ($i = 0; $i < $len; $i++) {
+        $posA = strpos($pattern, "{");
+        $posB = strpos($pattern, "}");
+        $founded = substr("$pattern", $posA, 7);
+        $command = str_replace("{", "", $founded);
+        $command = str_replace("}", "", $command);
+        $command = explode("_", $command);
+        if (count($command) == 2) {
+            $runTotal = $command[1];
+            $underNum = "";
+            for ($j = 0; $j < $runTotal; $j++) {
+                $underNum .= "_";
+            }
+            $pattern = str_replace($founded, $underNum, $pattern);
+        } else { }
+    }
+    return $pattern;
+}
+
+function autoRun($current, $format)
+{
+    $auto = "";
+    $diff = $format - strlen($current);
+    for ($i = 0; $i < $diff; $i++) {
+        $auto .= "0";
+    }
+    $auto .= $current;
+
+    return $auto;
+}

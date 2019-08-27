@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $asset_no = $_POST["asset_no"];
     $d_gen = $_POST["d_gen"];
     $seller_id = $_POST["seller_id"];
-    $goverment     = "สำนักงานตำรวจแห่งชาติ";
+    $goverment = "สำนักงานตำรวจแห่งชาติ";
     $unit = $_POST["unit"];
     $price = $_POST["price"];
     $short_goverment = $_POST["short_goverment"];

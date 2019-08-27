@@ -54,6 +54,12 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='rowback_supplies.php';">
+                      <i class="fas fa-print"></i>
+                    </button>
                 </form>
             </div>
           </div>
@@ -67,7 +73,6 @@ require "service/connection.php";
                         <th>#</th>
                         <th>ลำดับ</th>
                         <th>เลขที่ใบเบิก</th>
-                        <th>รหัสวัสดุ</th>
                         <th>ชื่อวัสดุ</th>
                         <th>ประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
@@ -93,7 +98,6 @@ require "service/connection.php";
                         <td><?php echo $row["bill_no"]; ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["name"]; ?></td>
-                        <td><?php echo $row["type"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -101,6 +105,9 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
+                          <button type="button" rel="tooltip" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fas fa-print"></i>
+                      </button>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>

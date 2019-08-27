@@ -53,6 +53,12 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_repair_history.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_repair_history.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_receive_donate.php';">
+                      <i class="fas fa-print"></i>
+                    </button>
                 </form>
             </div>
           </div>

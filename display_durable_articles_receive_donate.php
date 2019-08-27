@@ -53,6 +53,12 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_receive_donate.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_receive_donate.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_receive_donate.php';">
+                      <i class="fas fa-print"></i>
+                    </button>
                 </form>
             </div>
           </div>
@@ -98,9 +104,13 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
+                          <button type="button" rel="tooltip" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fas fa-print"></i>
+                          </button>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
+                          
                         </td>
                       </tr>
                       <?php
