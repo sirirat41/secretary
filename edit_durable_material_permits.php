@@ -111,6 +111,23 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
+                    <label for="department_id">หน่วยงานที่ยืม</label>
+                      <select class="form-control" data-style="btn btn-link" id="department_id" name="department_id" value="<?php echo $item["department_id"]; ?>">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          if ($item["department_id"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                          }
+                        }
+                        ?>
+                      </select>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
                       <textarea type="text" class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
                     </div> 

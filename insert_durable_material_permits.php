@@ -1,6 +1,6 @@
 <?php
-  require "service/connection.php";
- ?>
+require "service/connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +22,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-  
+
 </head>
 
 <body id="page-top">
@@ -30,39 +30,39 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    
-  <?php include "navigation/navbar.php";?>
 
-        </nav>
-        <!-- End of Topbar -->
+    <?php include "navigation/navbar.php"; ?>
 
-        <!-- Begin Page Content -->
+    </nav>
+    <!-- End of Topbar -->
 
-        <div class="container-fluid">
-        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-          <div class="row">
-              <div class="col-md-6 offset-3">
-                  <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-danger">
-                          <i class="fas fa-business-time"></i> เพิ่มข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
-                            </div>
-                          
-                          <div class="card-body">
-                          <form method="post" action="service/service_insert_durable_material_permits.php" id="form_insert">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                      <div class="form-group">
-                                          <label for="book_no">เลขที่หนังสือ</label>
-                                          <input type="text" class="form-control" name="book_no" id="book_no"  placeholder="no" autofocus>
-                                      </div>
-                                  </div>
-                                </div>
-                              <div class="row">
-                                <div class="col-md-12 ">
-                                  <div class="form-group">
-                                 <label for="product_id">รหัสวัสดุ</label>
-                                 <div class="row">
+    <!-- Begin Page Content -->
+
+    <div class="container-fluid">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row">
+        <div class="col-md-6 offset-3">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-danger">
+                <i class="fas fa-business-time"></i> เพิ่มข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
+            </div>
+
+            <div class="card-body">
+              <form method="post" action="service/service_insert_durable_material_permits.php" id="form_insert">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="book_no">เลขที่หนังสือ</label>
+                      <input type="text" class="form-control" name="book_no" id="book_no" placeholder="no" autofocus>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <div class="row">
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
@@ -82,83 +82,99 @@
                     </div>
                   </div>
                 </div>
-                          <div class="row">
-                              <div class="col-md-6 ">
-                                <div class="form-group ">
-                               <label for="permit_date" >วันที่ยืม</label>
-                                <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                             <label for="receive_date" >วันที่คืน</label>
-                              <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
-                            </div>
-                          </div>
-                        </div>
-                      <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group ">
-                                <label for="flag" >หมายเหตุ</label>
-                              <textarea class="form-control"  name="flag" id="flag" rows="3" placeholder="flag"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-12">
-                      <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
-                          บันทึก
-                        </button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="form-group ">
+                      <label for="permit_date">วันที่ยืม</label>
+                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
                     </div>
-                 
-                         
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="receive_date">วันที่คืน</label>
+                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="department_id" class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
+                      <select class="form-control" id="department_id" name="department_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group ">
+                      <label for="flag">หมายเหตุ</label>
+                      <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-            
-             </form>
-       
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
-        </div>
-        <!-- /.container-fluid -->
+                </div>
+            </div>
 
 
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
+      </div>
 
+      </form>
+
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -258,19 +274,19 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td class="td-actions text-center">
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["picture"]; ?></td>
+                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["name"]; ?></td>
+                          <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                            </td>
-                          </tr>
+                              <i class="fas fa-check"></i>
+                            </button>
+                          </td>
+                        </tr>
                         <?php
                         }
                         ?>
@@ -316,21 +332,21 @@
         data: {
           keyword: kw
         },
-        
+
         success: function(data) {
           var tbody = $('#modal-material-body');
           tbody.empty();
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.picture+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.bill_no+'</td>').appendTo(tr);
-           $('<td>'+item.code+'</td>').appendTo(tr);
-           $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.picture + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.bill_no + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.type + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);

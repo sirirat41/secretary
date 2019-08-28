@@ -106,6 +106,22 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="department_id" class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
+                      <select class="form-control" id="department_id" name="department_id">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group ">
                       <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"></textarea>

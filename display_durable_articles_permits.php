@@ -30,7 +30,6 @@ require "service/connection.php";
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -46,15 +45,21 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
                 <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_permits.php';">
                       <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_permits.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_permits.php';">
+                      <i class="fas fa-print"></i>
                     </button>
                 </form>
             </div>
@@ -69,46 +74,47 @@ require "service/connection.php";
                       <tr class="text-center">
                         <th>#</th>
                         <th>เลขที่หนังสือ</th>
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>รหัสวัสดุ</th>
                         <th>วันที่ยืม</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
-                       $sqlSelect = "SELECT p.*, a.code FROM durable_articles_permits as p,durable_articles as a";
-                       $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1";
-                       if (isset($_GET["keyword"])) {
-                         $keyword = $_GET["keyword"];
-                         $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
-                       }
-                       $result = mysqli_query($conn, $sqlSelect);
-                       while ($row = mysqli_fetch_assoc($result)) {
-                         $id = $row["id"];
-                      ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"];?></td>
-                        <td><?php echo thainumDigit($row["book_no"]);?></td>
-                        <td><?php echo thainumDigit($row["code"]);?></td>
-                        <td><?php echo $row["permit_date"];?></td>
-                        <td class="td-actions text-center">
-                        <button type="button" rel="tooltip" class="btn btn-warning"
+                      <?php
+                      $sqlSelect = "SELECT p.*, m.code FROM durable_articles_permits as p,durable_articles as m";
+                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                      }
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                        ?>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["permit_date"]; ?></td>
+                          <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning"
                             onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href='print_durable_articles_permits.php';">
+                            <i class="fas fa-print"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                          data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                          </td>
-                      </tr>
-                      <?php
-                        }
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
+                            data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          <?php
+                          }
 
-                      ?>
+                          ?>
                     </tbody>
                   </table>
                 </div>
@@ -135,8 +141,7 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
+  <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
@@ -211,7 +216,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
+          คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
             </form>

@@ -53,6 +53,9 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_sell.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='rowback_durable_material_sell.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
                 </form>
             </div>
           </div>
