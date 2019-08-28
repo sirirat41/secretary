@@ -76,40 +76,41 @@ require "service/connection.php";
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       $sqlSelect = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
                       }
-                    //  echo $sqlSelect;
+                      //  echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["document_no"]; ?></td>
-                          <td><?php echo $row["transfer_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["transfer_to"]; ?></td>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["document_no"]; ?></td>
+                        <td><?php echo $row["transfer_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["transfer_to"]; ?></td>
                         <td class="td-actions text-center">
-                        <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
-                            </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                          data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
+                          <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_transfer_out.php';">
+                            <i class="fas fa-plus"></i>
+                          </button>
+                          <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_transfer_out.php';">
+                            <i class="fas fa-sync-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
                           <?php
-                            }
+                          }
 
-                            ?>
+                          ?>
                     </tbody>
                   </table>
                 </div>
@@ -215,7 +216,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการโอนออกวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_transfer_out.php">
             <input type="hidden" id="remove-transfer_out" name="transfer_out_id">
-            </form>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

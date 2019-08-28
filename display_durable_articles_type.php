@@ -92,7 +92,7 @@ require "service/connection.php";
                           <td><?php echo $row["name"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href='edit_durable_articles_type.php';">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
