@@ -55,7 +55,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_purchase.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                 </form>

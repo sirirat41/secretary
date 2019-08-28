@@ -55,7 +55,7 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_supplies_purchase.php" id="form_insert">
+              <form method="post" action="service/service_insert_supplie_purchase.php" id="form_insert">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
@@ -197,7 +197,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
-                      <input class="form-control" type="text" placeholder="tel" name="tel">
+                      <input class="form-control" type="text" placeholder="price" name="price" id="price">
                     </div>
                   </div>
                   <div class="col-6">

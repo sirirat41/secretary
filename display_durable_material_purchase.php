@@ -70,7 +70,6 @@ require "service/connection.php";
                         <th>#</th>
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
-                        <th>รหัสวัสดุ</th>
                         <th>จำนวน</th>
                         <th>ชื่อผู้จัดซื้อ</th>
                         <th>การทำงาน</th>
@@ -79,10 +78,10 @@ require "service/connection.php";
                     <tbody>
                       <?php
                       $sqlSelect = "SELECT * FROM durable_material_purchase";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect .= " WHERE status = 1 Group by order_no ";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (product_id like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -93,7 +92,6 @@ require "service/connection.php";
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["order_no"]); ?></td>
                         <td><?php echo $row["purchase_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["product_id"]); ?></td>
                         <td><?php echo $row["number"]; ?></td>
                         <td><?php echo $row["order_by"]; ?></td>
                         <td class="td-actions text-center">

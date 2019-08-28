@@ -1,9 +1,10 @@
 <?php
 require "connection.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['material_id'])) { 
-    $material_id = $_POST["material_id"];
 
-    $sqlUpdate = "UPDATE durable_material SET status = 0 WHERE id = " .$material_id;
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['material_id'])) { 
+    $materialid = $_POST["material_id"];
+
+    $sqlUpdate = "UPDATE durable_material SET status = 0 WHERE id = " .$materialid;
     if (mysqli_query($conn, $sqlUpdate)) {
         header('Location: ../display_durable_material.php?message=ลบข้อมูลสำเร็จ');
     } else {

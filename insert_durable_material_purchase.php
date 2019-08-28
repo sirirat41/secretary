@@ -53,7 +53,7 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durables_material.php" id="form_insert">
+              <form method="post" action="service/service_insert_durable_material.php" id="form_insert">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
@@ -73,6 +73,15 @@ require "service/connection.php";
                     <div class="form-group">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
+                      <input class="form-control" type="text" placeholder="รหัสวัสดุฑ์ตั้งต้น" name="material_pattern">
+                      <small style="color: red"> *ตัวอย่าง: ว.สดง. 7700-100-{run_4}-2557</small>
                     </div>
                   </div>
                 </div>
@@ -102,7 +111,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="shortdepartment" name="shortdepartment">
+                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
@@ -195,7 +204,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
-                      <input class="form-control" type="text" placeholder="tel" name="tel">
+                      <input class="form-control" type="text" placeholder="price" name="price" id="price">
                     </div>
                   </div>
                   <div class="col-6">
@@ -244,8 +253,9 @@ require "service/connection.php";
                 <br>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                       บันทึก
+                      <div class="ripple-container"></div>
                     </button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
@@ -338,7 +348,7 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
