@@ -53,8 +53,11 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_sell.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='rowback_durable_material_sell.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_sell.php';">
                       <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_material_sell.php';">
+                      <i class="fas fa-print"></i>
                     </button>
                 </form>
             </div>
@@ -95,13 +98,15 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["buyer"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href = 'print_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-print"></i>
+                          </button>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-sell').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
