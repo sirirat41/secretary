@@ -44,20 +44,15 @@ require "service/connection.php";
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แสดงรายละเอียดการซ่อม(วัสดุคงทน)</h6>
+                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แสดงรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
 
                 <form class="form-inline">
                   <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_repair_history.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_repair_history.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_material_receive_donate.php';">
-                      <i class="fas fa-print"></i>
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+                      <i class="fas fa-search"></i></button>
+                      <button type="button" rel="tooltip" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_repair_history.php';">
+                      <i class="fas fa-paste"></i>
                     </button>
                 </form>
             </div>
@@ -72,46 +67,37 @@ require "service/connection.php";
                         <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
-                        <th>รหัสการซ่อม(วัสดุ)</th>
-                        <th>รายการซ่อม(วัสดุ)</th>
+                        <th>รหัสการซ่อม(ครุภัณฑ์)</th>
+                        <th>รายการซ่อม(ครุภัณฑ์)</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT h.*, r.code FROM durable_material_repair_history as h, durable_material as r";
-                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                       $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
+                       $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 0";
+                       if (isset($_GET["keyword"])) {
+                         $keyword = $_GET["keyword"];
+                         $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["seq"]; ?></td>
-                        <td><?php echo $row["receive_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["fix"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_repair_history.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["fix"]; ?></td>
+                          <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-repair_history').val('<?php echo $id; ?>')">
+                            <i class="fas fa-sync-alt"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_material_repair_history.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href = 'print_durable_material_repair_history.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-print"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair_history').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -141,9 +127,12 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
+
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
+
+
   </div>
   <!-- End of Main Content -->
 
@@ -215,13 +204,13 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลรายละเอียดการซ่อมวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_repair_history.php">
-            <input type="hidden" id="remove-repair_history" name="repair_id">
+          คุณต้องการกู้ข้อมูลรายละเอียดการซ่อมครุภัณฑ์ใช่หรือไม่
+          <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_repair_history.php">
+            <input type="hidden" id="rowback-repair_history" name="repair_id">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>
