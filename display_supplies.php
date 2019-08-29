@@ -59,7 +59,11 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
+<<<<<<< HEAD
                     <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+=======
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_supplies.php';">
+>>>>>>> 791d4c91aa9af17b9e87d65070fe43d4ce08319e
                       <i class="fas fa-print"></i>
                     </a>
 

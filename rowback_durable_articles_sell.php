@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_material_receive_donate</secretary>
+  <secretary style="display : none">display_durable_articles_sell</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +31,7 @@ require "service/connection.php";
   <div id="wrapper">
 
     <!-- Sidebar -->
+
     <?php include "navigation/navbar.php"; ?>
     </nav>
     <!-- End of Topbar -->
@@ -44,25 +45,18 @@ require "service/connection.php";
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> แสดงข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
 
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_receive_donate.php';">
-                      <i class="fas fa-plus"></i>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_durable_articles_sell.php';">
+                      <i class="fas fa-paste"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_receive_donate.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
                 </form>
             </div>
           </div>
-
           <form>
             <div class="row">
               <div class="col-md-12">
@@ -72,20 +66,20 @@ require "service/connection.php";
                       <tr class="text-center">
                         <th>#</th>
                         <th>เลขที่เอกสาร</th>
-                        <th>วันที่บริจาค</th>
+                        <th>วันที่ขาย</th>
                         <th>รหัสครุภัณฑ์</th>
-                        <th>ชื่อผู้บริจาค</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>ชื่อผู้ซื้อ</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
-                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      $sqlSelect = "SELECT s.*, a.code FROM durable_articles_sell as s, durable_articles as a";
+                      $sqlSelect .= " WHERE s.product_id = a.id and s.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -94,22 +88,13 @@ require "service/connection.php";
                         ?>
                       <tr class="text-center">
                         <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["sell_date"]; ?></td>
                         <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                        <td><?php echo $row["receive_date"]; ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["donate_name"]; ?></td>
+                        <td><?php echo $row["buyer"]; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_receive_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_material_receive_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-sell').val('<?php echo $id; ?>')">
+                            <i class="fas fa-sync-alt"></i>
                           </button>
                         </td>
                       </tr>
@@ -145,6 +130,8 @@ require "service/connection.php";
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
+
+
   </div>
   <!-- End of Main Content -->
 
@@ -216,13 +203,13 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลรับบริจาควัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_receive_donate.php">
-            <input type="hidden" id="remove-receive_donate" name="receive_donate_id">
+          คุณต้องการกู้ข้อมูลการขายทอดตลาดครุภัณฑ์ใช่หรือไม่
+          <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_sell.php">
+            <input type="hidden" id="rowback-sell" name="product_id">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

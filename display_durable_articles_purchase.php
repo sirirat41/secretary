@@ -94,6 +94,7 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
+<<<<<<< HEAD
                       <tr class="text-center">
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["order_no"]); ?></td>
@@ -113,6 +114,28 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
+=======
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
+                          <td><?php echo $row["purchase_date"]; ?></td>
+                          <td><?php echo $row["number"]; ?></td>
+                          <td><?php echo $row["order_by"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
+                            onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+>>>>>>> 791d4c91aa9af17b9e87d65070fe43d4ce08319e
                           <?php
                           }
 
