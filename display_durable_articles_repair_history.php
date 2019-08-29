@@ -48,7 +48,7 @@ require "service/connection.php";
 
                 <form class="form-inline">
                   <div>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_repair_history.php';">
                       <i class="fas fa-plus"></i>
@@ -56,9 +56,9 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_repair_history.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_receive_donate.php';">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
                       <i class="fas fa-print"></i>
-                    </button>
+                    </a>
                 </form>
             </div>
           </div>
@@ -80,38 +80,38 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                       $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
-                       $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
-                       if (isset($_GET["keyword"])) {
-                         $keyword = $_GET["keyword"];
-                         $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                      $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
+                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["fix"]; ?></td>
-                          <td class="td-actions text-center">
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["seq"]; ?></td>
+                        <td><?php echo $row["receive_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["fix"]; ?></td>
+                        <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_articles_repair_history.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_articles_repair_history.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href = 'print_durable_articles_repair_history.php?id=<?php echo $row['id']; ?>'">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
                             <i class="fas fa-print"></i>
-                          </button>
+                          </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair_history').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
-                          </td>
-                        </tr>
+                        </td>
+                      </tr>
                       <?php
                       }
                       ?>

@@ -56,9 +56,9 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_repair_history.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_material_receive_donate.php';">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
                       <i class="fas fa-print"></i>
-                    </button>
+                    </a>
                 </form>
             </div>
           </div>
@@ -104,9 +104,9 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_material_repair_history.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href = 'print_durable_material_repair_history.php?id=<?php echo $row['id']; ?>'">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
                             <i class="fas fa-print"></i>
-                          </button>
+                          </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair_history').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>

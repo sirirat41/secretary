@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM seller WHERE id = $id";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+}
+?>
 
 <head>
 
@@ -46,12 +55,12 @@
               <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลร้านค้า</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_insert_seller.php" id="form_insert">
+              <form method="post" action="service/service_edit_seller.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="name">ชื่อร้านค้า</label>
-                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="nameseller">
+                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="nameseller" value="<?php echo $item["name"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -59,7 +68,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="tel">เบอร์โทร</label>
-                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -67,7 +76,7 @@
                   <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="fax">แฟกต์</label>
-                      <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax">
+                      <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax" value="<?php echo $item["fax"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -75,7 +84,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="address">ที่อยู่</label>
-                      <textarea class="form-control" name="address" id="exampleFormControlTextarea1" placeholder="address" rows="3"></textarea>
+                      <textarea class="form-control" name="address" id="address" placeholder="address" rows="3"><?php echo $item["address"]; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -173,35 +182,68 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      <?php
-      if (isset($_GET["message"])); {
-        $message = $_GET["message"];
-        echo "$('#modal-message').modal();";
-      }
-      ?>
-    })
-  </script>
-  <!-- Message Modal-->
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <?php echo $_GET["message"]; ?>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="row">
+            <div class="col-md-10 offset-1 ">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <nav class="navbar navbar-light bg-light">
+                    <h6 class="m-0 font-weight-bold text-danger">
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลร้านค้า</h6>
+                    <form class="form-inline">
+                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                          <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+              </div>
+              </nav>
+              <script>
+                function search() {
+                  var kw = $("#keyword").val();
+                  $.ajax({
+                    url: 'service/service_search_json_seller.php',
+                    dataType: 'JSON',
+                    type: 'GET',
+                    data: {
+                      keyword: kw
+                    },
+
+                    success: function(data) {
+                      var tbody = $('#modal-articles-body');
+                      tbody.empty();
+                      console.log(data);
+                      for (i = 0; i < data.length; i++) {
+                        var item = data[i];
+                        var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+                        $('<td>' + item.id + '</td>').appendTo(tr);
+                        $('<td>' + item.damage_date + '</td>').appendTo(tr);
+                        $('<td>' + item.code + '</td>').appendTo(tr);
+                        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+                      }
+                    },
+                    error: function(error) {
+                      console.log(error);
+                    }
+                  })
+                }
+
+                function selectedArticles(id) {
+                  $('#modal-form-search').modal('hide');
+                  $('#id').val(id);
+                }
+              </script>
 
 </body>
 

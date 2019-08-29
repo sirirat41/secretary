@@ -57,7 +57,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='rowback_supplies.php';">
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_supplies.php';">
                       <i class="fas fa-print"></i>
                     </button>
                 </form>

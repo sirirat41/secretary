@@ -101,7 +101,7 @@ require "service/connection.php";
                             <button type="button" rel="tooltip" class="btn btn-success">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-info" style="color: white" href="test.php" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" 
