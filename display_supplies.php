@@ -48,18 +48,21 @@ require "service/connection.php";
                 <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
 
                 <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                   <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-outline-danger" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='rowback_supplies.php';">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
                       <i class="fas fa-print"></i>
-                    </button>
+                    </a>
+
                 </form>
             </div>
           </div>
@@ -102,12 +105,12 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
                             <i class="fas fa-print"></i>
-                      </button>
+                          </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>

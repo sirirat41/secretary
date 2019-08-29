@@ -104,7 +104,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="shortdepartment" name="shortdepartment">
+                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>

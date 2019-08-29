@@ -135,7 +135,7 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="attribute">คุณลักษณะ</label>
+                      <label for="attribute">ลักษณะ/คุณสมบัติ</label>
                       <input type="text" class="form-control" name="attribute" id="inputattribute" aria-describedby="attribute" placeholder="attribute" id="attribute">
                     </div>
                   </div>

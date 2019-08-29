@@ -58,9 +58,9 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_permits.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_durable_articles_permits.php';">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
                       <i class="fas fa-print"></i>
-                    </button>
+                    </a>
                 </form>
             </div>
           </div>
@@ -91,26 +91,24 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo thainumDigit($row["book_no"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["permit_date"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href='print_durable_articles_permits.php';">
-                            <i class="fas fa-print"></i>
                           </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                            <i class="fas fa-print"></i>
+                          </a>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
                           <?php
                           }
 
@@ -141,7 +139,7 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
@@ -219,7 +217,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
-            </form>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
