@@ -61,7 +61,7 @@
             <a class="collapse-item sell" href="display_durable_material_sell.php">ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="display_durable_material_transfer_in.php">โอนเข้า</a>
             <a class="collapse-item transferO" href="display_durable_material_transfer_out.php">โอนออก</a>
-            <a class="collapse-item donates" href="display_durable_articles_receive_donate.php">บริจาคเข้า</a>
+            <a class="collapse-item donates" href="display_durable_material_receive_donate.php">บริจาคเข้า</a>
             <a class="collapse-item donatesO" href="display_durable_material_donate.php">บริจาคออก</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
