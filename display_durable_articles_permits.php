@@ -59,13 +59,8 @@ require "service/connection.php";
                       <i class="fas fa-sync-alt"></i>
                     </button>
                     <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
-<<<<<<< HEAD
-                              <i class="fas fa-print"></i>
-                            </a>
-=======
                       <i class="fas fa-print"></i>
                     </a>
->>>>>>> b8819126e94570ec4a51c980fe4e3306830fd785
                 </form>
             </div>
           </div>
@@ -104,19 +99,6 @@ require "service/connection.php";
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
-<<<<<<< HEAD
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-=======
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
@@ -127,7 +109,6 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
->>>>>>> b8819126e94570ec4a51c980fe4e3306830fd785
                           <?php
                           }
 
