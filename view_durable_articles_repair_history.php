@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
-  $sql .= " and r.damage_id = a.id ";
+  $sql = "SELECT r.*, a.code FROM durable_articles as a,durable_articles_repair_history as r WHERE r.id = $id";
+  $sql .= " and r.repair_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
             <nav class="navbar navbar-light bg-light">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                <i class="fas fa-business-time"></i> ข้อมูลรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
             
             </div>
             </nav>
@@ -73,20 +73,26 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="damage_id">รหัสครุภัณฑ์ : </label>
+                 <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
                    <?php echo $row["code"]; ?>
                   </div>
                 </div>
                 <div class="row">
                  <div class="col-md-6">
-                 <label class="text-dark" for="repair_date">วันที่ซ่อม : </label>
-                    <?php echo $row["repair_date"]; ?>
+                 <label class="text-dark" for="receive_date">วันที่ซ่อม : </label>
+                    <?php echo $row["receive_date"]; ?>
                   </div>
                   </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="place">สถานที่ซ่อม : </label>
-                   <?php echo $row["place"]; ?>
+                 <label class="text-dark" for="fix">รายการซ่อมครุภัณฑ์ : </label>
+                   <?php echo $row["fix"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                  <label class="text-dark" for="price">ราคา : </label>
+                    <?php echo $row["price"]; ?>
                   </div>
                 </div>
                 <div class="row">
