@@ -329,19 +329,6 @@ require "service/connection.php";
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();
-<<<<<<< HEAD
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.picture+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.bill_no+'</td>').appendTo(tr);
-           $('<td>'+item.code+'</td>').appendTo(tr);
-           $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
-=======
           for (i = 0; i < data.length; i++) {
             var item = data[i];
             var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
@@ -355,22 +342,12 @@ require "service/connection.php";
 
             console.log(data);
           }
->>>>>>> 2ab5381b4a5f83223682c0fca5dae128813df0da
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
-<<<<<<< HEAD
-
-    function selectedArticles(id) {
-      $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
-    }
-  </script>
-=======
->>>>>>> 2ab5381b4a5f83223682c0fca5dae128813df0da
 
     function selectedArticles(id){
       console.log(id);

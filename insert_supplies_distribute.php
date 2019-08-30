@@ -140,7 +140,7 @@ require "service/connection.php";
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                             <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -151,7 +151,7 @@ require "service/connection.php";
           </div>
         </div>
       </div>
-</form>
+      </form>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
@@ -228,56 +228,51 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-        <div class="row">
+          <div class="row">
             <div class="col-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
-                     <form class="form-inline">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุสิ้นเปลือง</h6>
+                    <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>
                         <button class="btn btn-outline-danger" type="button" onclick="search();">
                           <i class="fas fa-search"></i>
                         </button>
-                        </form>
+                    </form>
                 </div>
-              </div>
-<<<<<<< HEAD
-              </nav>
-=======
-<<<<<<< HEAD
-              </nav>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr class="text-center">
-                            <th>#</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสวัสดุ</th>
-                            <th>ชื่อวัสดุ</th>
-                            <th>ประเภทวัสดุ</th>
-                            <th class="text-center">การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
-                          $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                          $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          //echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table class="table table-hover ">
+                          <thead>
+                            <tr class="text-center">
+                              <th>#</th>
+                              <th>ลำดับ</th>
+                              <th>เลขที่ใบเบิก</th>
+                              <th>รหัสวัสดุ</th>
+                              <th>ชื่อวัสดุ</th>
+                              <th>ประเภทวัสดุ</th>
+                              <th class="text-center">การทำงาน</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- ///ดึงข้อมูล -->
+                            <?php
+                            $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
+                            $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
+                            if (isset($_GET["keyword"])) {
+                              $keyword = $_GET["keyword"];
+                              $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                            }
+                            //echo $sqlSelect;
+                            $result = mysqli_query($conn, $sqlSelect);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                              $id = $row["id"]
+                              ?>
                             <tr class="text-center">
                               <td><?php echo $row["id"]; ?></td>
                               <td><?php echo $row["seq"]; ?></td>
@@ -286,105 +281,21 @@ require "service/connection.php";
                               <td><?php echo $row["name"]; ?></td>
                               <td><?php echo $row["type"]; ?></td>
                               <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-check"></i>
-                              </button>
+                                <button type="button" rel="tooltip" class="btn btn-success">
+                                  <i class="fas fa-check"></i>
+                                </button>
                               </td>
                             </tr>
-                          <?php
-                          }
-                          ?>
-                        </tbody>
-                      </table> 
-                    </form>
-                  </div>
-                </div>
+                            <?php
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                </form>
               </div>
             </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              </a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-      </div>
-    </div>
-  </div>
-  </div>
-=======
-            </div>
-          </div>
-          <form>
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
-                      <tr class="text-center">
-                        <th>#</th>
-                        <th>ลำดับ</th>
-                        <th>เลขที่ใบเบิก</th>
-                        <th>รหัสวัสดุ</th>
-                        <th>คุณสมบัติ</th>
-                        <th>ประเภทวัสดุ</th>
-                        <th class="text-center">การทำงาน</th>
-                      </tr>
-                    </thead>
-                    <tbody id="modal-supplies-body">
-                      <!-- ///ดึงข้อมูล -->
-                      <?php
-                      $sqlSelect = "SELECT s.*,t.name FROM supplies as s, durable_material_type as t";
-                      $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or t.name like '%$keyword%')";
-                      }
-                      //echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["seq"]; ?></td>
-                        <td><?php echo $row["bill_no"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["attribute"]; ?></td>
-                        <td><?php echo $row["name"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
-                            <i class="fas fa-check"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
@@ -405,58 +316,139 @@ require "service/connection.php";
       </div>
     </div>
   </div>
-<<<<<<< HEAD
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
   </div>
   </div>
   </div>
   </div>
-=======
->>>>>>> aa719cfa07f35fa8b21d81493213cd0ff0dcb4ca
->>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
-  <script>
-    function search() {
-      var kw = $("#keyword").val();
-      $.ajax({
-        url: 'service/service_search_json_supplies.php',
-        dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        },
-        success: function(data) {
-          var tbody = $('#modal-supplies-body');
-          tbody.empty();
-          console.log(data);
-          for (i = 0; i < data.length; i++) {
-            var item = data[i];
-            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.seq + '</td>').appendTo(tr);
-            $('<td>' + item.bill_no + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.attribute + '</td>').appendTo(tr);
-            $('<td>' + item.name + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"> <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedSupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+  </div>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-hover ">
+            <thead>
+              <tr class="text-center">
+                <th>#</th>
+                <th>ลำดับ</th>
+                <th>เลขที่ใบเบิก</th>
+                <th>รหัสวัสดุ</th>
+                <th>คุณสมบัติ</th>
+                <th>ประเภทวัสดุ</th>
+                <th class="text-center">การทำงาน</th>
+              </tr>
+            </thead>
+            <tbody id="modal-supplies-body">
+              <!-- ///ดึงข้อมูล -->
+              <?php
+              $sqlSelect = "SELECT s.*,t.name FROM supplies as s, durable_material_type as t";
+              $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
+              if (isset($_GET["keyword"])) {
+                $keyword = $_GET["keyword"];
+                $sqlSelect .= " and (s.code like '%$keyword%' or t.name like '%$keyword%')";
+              }
+              //echo $sqlSelect;
+              $result = mysqli_query($conn, $sqlSelect);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["id"]
+                ?>
+              <tr class="text-center">
+                <td><?php echo $row["id"]; ?></td>
+                <td><?php echo $row["seq"]; ?></td>
+                <td><?php echo $row["bill_no"]; ?></td>
+                <td><?php echo thainumDigit($row["code"]); ?></td>
+                <td><?php echo $row["attribute"]; ?></td>
+                <td><?php echo $row["name"]; ?></td>
+                <td class="td-actions text-center">
+                  <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
+                    <i class="fas fa-check"></i>
+                  </button>
+                </td>
+              </tr>
+              <?php
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+  </div>
+  </div>
+  <<<<<<< HEAD <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    =======
+    >>>>>>> aa719cfa07f35fa8b21d81493213cd0ff0dcb4ca
+    >>>>>>> 9d193602c03d577c57e3c7fa984239ddc6b1f3a5
+    <script>
+      function search() {
+        var kw = $("#keyword").val();
+        $.ajax({
+          url: 'service/service_search_json_supplies.php',
+          dataType: 'JSON',
+          type: 'GET',
+          data: {
+            keyword: kw
+          },
+          success: function(data) {
+            var tbody = $('#modal-supplies-body');
+            tbody.empty();
+            console.log(data);
+            for (i = 0; i < data.length; i++) {
+              var item = data[i];
+              var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+              $('<td>' + item.id + '</td>').appendTo(tr);
+              $('<td>' + item.seq + '</td>').appendTo(tr);
+              $('<td>' + item.bill_no + '</td>').appendTo(tr);
+              $('<td>' + item.code + '</td>').appendTo(tr);
+              $('<td>' + item.attribute + '</td>').appendTo(tr);
+              $('<td>' + item.name + '</td>').appendTo(tr);
+              $('<td class="td-actions text-center"> <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedSupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
 
 
+            }
+          },
+
+          error: function(error) {
+            console.log(error);
           }
-        },
+        })
+      }
 
-        error: function(error) {
-          console.log(error);
-        }
-      })
-    }
+      function selectedSupplies(id) {
+        console.log(id);
+        $('#modal-form-search').modal('hide');
+        $('#product_id').val(id);
 
-    function selectedSupplies(id) {
-      console.log(id);
-      $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
-
-    }
-  </script>
+      }
+    </script>
 
 </body>
 

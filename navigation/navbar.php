@@ -36,8 +36,10 @@
             <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_articles_repair.php">รายการซ่อม</a>
             <a class="collapse-item sell" href="display_durable_articles_sell.php">ขายทอดตลาด</a>
-            <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">โอนเข้า-ออก</a>
-            <a class="collapse-item donate" href="display_durable_articles_donate.php">บริจาคเข้า-ออก </a>
+            <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">โอนเข้า</a>
+            <a class="collapse-item transferO" href="display_durable_articles_transfer_out.php">โอนออก</a>
+            <a class="collapse-item donate" href="display_durable_articles_receive_donate.php">บริจาคเข้า</a>
+            <a class="collapse-item donateO" href="display_durable_articles_donate.php">บริจาคออก </a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>
@@ -57,8 +59,10 @@
             <a class="collapse-item damage" href="display_durable_material_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_material_repair.php">รายการซ่อม</a>
             <a class="collapse-item sell" href="display_durable_material_sell.php">ขายทอดตลาด</a>
-            <a class="collapse-item transfer" href="display_durable_material_transfer_in.php">โอนเข้า-ออก</a>
-            <a class="collapse-item donates" href="display_durable_material_donate.php">บริจาคเข้า-ออก</a>
+            <a class="collapse-item transfer" href="display_durable_material_transfer_in.php">โอนเข้า</a>
+            <a class="collapse-item transferO" href="display_durable_material_transfer_out.php">โอนออก</a>
+            <a class="collapse-item donates" href="display_durable_material_receive_donate.php">บริจาคเข้า</a>
+            <a class="collapse-item donatesO" href="display_durable_material_donate.php">บริจาคออก</a>
             <a class="collapse-item report" href="buttons.html">รายงาน</a>
           </div>
         </div>

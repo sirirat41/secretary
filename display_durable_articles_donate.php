@@ -57,6 +57,12 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_donate.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_donate.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a>
                 </form>
             </div>
           </div>
@@ -77,11 +83,11 @@ require "service/connection.php";
                       </tr class="text-center">
                     </thead>
                     <?php
-                    $sqlSelect = "SELECT do.*, m.code FROM durable_articles_donate as do, durable_articles as m";
-                    $sqlSelect .= " WHERE do.product_id = m.id and do.status = 1";
+                    $sqlSelect = "SELECT do.*, a.code FROM durable_articles_donate as do, durable_articles as a";
+                    $sqlSelect .= " WHERE do.product_id = a.id and do.status = 1";
                     if (isset($_GET["keyword"])) {
                       $keyword = $_GET["keyword"];
-                      $sqlSelect .= " and (do.product_id like '%$keyword%' or m.code like '%$keyword%')";
+                      $sqlSelect .= " and (do.product_id like '%$keyword%' or a.code like '%$keyword%')";
                     }
 
                     $result = mysqli_query($conn, $sqlSelect);
@@ -98,9 +104,12 @@ require "service/connection.php";
                         <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_donate.php?id=<?php echo $row['id']; ?>'">
                           <i class="fas fa-pencil-alt"></i>
                         </button>
-                        <button type="button" rel="tooltip" class="btn btn-success">
+                        <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_donate.php?id=<?php echo $row['id']; ?>'">
                           <i class="fas fa-clipboard-list"></i>
                         </button>
+                        <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                          <i class="fas fa-print"></i>
+                        </a>
                         <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
                           <i class="fas fa-trash-alt"></i>
                         </button>

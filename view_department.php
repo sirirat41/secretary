@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*,dis.code,d.fullname FROM supplies_distribute as dis, supplies as s, department as d WHERE s.id = $id ";
-  $sql .= "  and s.product_id = dis.id and s.department_id = d.id";
+  $sql = "SELECT * FROM department WHERE id =$id";
+  $sql .= " and status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <secretary style="display: none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,65 +50,64 @@ if (isset($_GET["id"])) {
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <nav class="navbar navbar-light bg-light">
-              <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-            
-            </div>
-            </nav>
-              <form> 
-                <div class="card-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card" style="width: 200px;">
-                      <img class="card-img-top" src="./img/bg.jpg" >
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                  <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="book_no" >เลขที่หนังสือ : </label>
-                    <?php echo $row["book_no"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="book_no">รหัสครุภัณฑ์ : </label>
-                   <?php echo $row["code"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                 <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่ยืม : </label>
-                    <?php echo $row["permit_date"]; ?>
-                  </div>
-                  <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่คืน : </label>
-                    <?php echo $row["receive_date"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
-                   <?php echo $row["fullname"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="flag">หมายเหตุ : </label>
-                    <?php echo $row["flag"]; ?>
-                  </div>
-                </div>
-                </div>
-                </div>
-              </form>
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> ข้อมูลหน่วยงาน</h6>
+                <form class="form-inline">
+                  <div>
+                </form>
             </div>
           </div>
+          </nav>
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card" style="width: 200px;">
+                    <img class="card-img-top" src="./img/bg.jpg">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="fullname">ชื่อหน่วยงาน : </label>
+                      <?php echo $row["fullname"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
+                      <?php echo $row["shortname"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
+                      <?php echo $row["owner"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="bulding">อาคาร : </label>
+                      <?php echo $row["bulding"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="floor">ชั้น : </label>
+                      <?php echo $row["floor"]; ?>
+                    </div>
+                  </div>
+                </div>
+          </form>
         </div>
       </div>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- /.container-fluid -->
+    </div>
+    </div>
+  <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  <!-- /.container-fluid -->
 
 
   </div>

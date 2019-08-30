@@ -59,8 +59,13 @@ require "service/connection.php";
                       <i class="fas fa-sync-alt"></i>
                     </button>
                     <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+<<<<<<< HEAD
                               <i class="fas fa-print"></i>
                             </a>
+=======
+                      <i class="fas fa-print"></i>
+                    </a>
+>>>>>>> b8819126e94570ec4a51c980fe4e3306830fd785
                 </form>
             </div>
           </div>
@@ -91,15 +96,15 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo thainumDigit($row["book_no"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["permit_date"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
+<<<<<<< HEAD
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
@@ -111,6 +116,18 @@ require "service/connection.php";
                             data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
+=======
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                            <i class="fas fa-print"></i>
+                          </a>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+>>>>>>> b8819126e94570ec4a51c980fe4e3306830fd785
                           <?php
                           }
 
@@ -141,7 +158,7 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
@@ -219,7 +236,7 @@ require "service/connection.php";
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
-            </form>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

@@ -64,6 +64,12 @@ $(document).ready(function () {
         case "display_durable_articles_donate":  // บริจาค
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
+            $('.collapse-articles .donateO').addClass('active');
+            break;
+
+        case "display_durable_articles_receive_donate":  // บริจาค
+            $('.nav-articles').addClass('active');
+            $('.collapse-articles').addClass('show');
             $('.collapse-articles .donate').addClass('active');
             break;
 
@@ -71,6 +77,12 @@ $(document).ready(function () {
             $('.nav-articles').addClass('active');
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .transfer').addClass('active');
+            break;
+
+        case "display_durable_articles_transfer_out":  //โอนเข้า
+            $('.nav-articles').addClass('active');
+            $('.collapse-articles').addClass('show');
+            $('.collapse-articles .transferO').addClass('active');
             break;
 
         case "display_durable_articles_purchase":  //โอนเข้า
@@ -127,6 +139,12 @@ $(document).ready(function () {
         case "display_durable_material_donate":  //บริจาค
             $('.nav-material').addClass('active');
             $('.collapse-material').addClass('show');
+            $('.collapse-material .donatesO').addClass('active');
+            break;
+
+        case "display_durable_material_receive_donate":  //บริจาค
+            $('.nav-material').addClass('active');
+            $('.collapse-material').addClass('show');
             $('.collapse-material .donates').addClass('active');
             break;
 
@@ -164,6 +182,12 @@ $(document).ready(function () {
             $('.nav-material').addClass('active');
             $('.collapse-material').addClass('show');
             $('.collapse-material .transfer').addClass('active');
+            break;
+
+        case "display_durable_material_transfer_out":  //ซ่อม
+            $('.nav-material').addClass('active');
+            $('.collapse-material').addClass('show');
+            $('.collapse-material .transferO').addClass('active');
             break;
 
 

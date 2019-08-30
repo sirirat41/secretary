@@ -57,6 +57,12 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_department.php';">
                       <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_department.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a>
 
                 </form>
             </div>
@@ -103,10 +109,13 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                            <i class="fas fa-print"></i>
+                          </a>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
                         </td>
@@ -219,8 +228,8 @@ require "service/connection.php";
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_department.php">
-            <input type="hidden" id="remove-department" name="department">
-            </form>
+            <input type="hidden" id="remove-department" name="id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
