@@ -68,7 +68,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_supplies.php" id="form_insert">
+              <form method="post" action="service/service_edit_supplies.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group">

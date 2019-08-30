@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles  as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
+  $sql = "SELECT * FROM durable_articles as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];

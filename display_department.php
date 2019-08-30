@@ -228,7 +228,7 @@ require "service/connection.php";
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_department.php">
-            <input type="hidden" id="remove-department" name="id">
+            <input type="hidden" id="remove-department" name="department_id">
           </form>
         </div>
         <div class="modal-footer">

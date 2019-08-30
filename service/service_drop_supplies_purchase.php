@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["purchase_id"] )) {
     } else {
         header('Location: ../display_supplies_purchase.php?message=ลบข้อมูลไม่สำเร็จ');
     }
-
 } else {
     header('Location: ../display_supplies_purchase.php?message=ข้อมูลผิดพลาด');
 }

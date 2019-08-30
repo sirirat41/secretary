@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT dis.*, s.code,d.fullname FROM supplies_distribute as dis , supplies as s ,department as d WHERE s.id = $id";
+  $sql = "SELECT dis.*, s.code,d.fullname FROM supplies_distribute as dis , supplies as s ,department as d WHERE dis.id = $id";
   $sql .= " and dis.product_id = s.id and dis.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -69,8 +69,8 @@ if (isset($_GET["id"])) {
                     <div class="col-md-8">
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark" for="product_id">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
-                          <?php echo $row["product_id"]; ?>
+                          <label class="text-dark" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
+                          <?php echo $row["code"]; ?>
                         </div>
                       </div>
                       <div class="row">

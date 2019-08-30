@@ -55,7 +55,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_purchase.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_purchase.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
                     <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">

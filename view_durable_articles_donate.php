@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT do.*, a.code FROM durable_articles_donate as do ,durable_articles as a WHERE do.product_id = a.id";
-  $sql .= " and a.status = 1 ";
+  $sql = "SELECT do.*, a.code FROM durable_articles_donate as do ,durable_articles as a WHERE do.id = $id";
+  $sql .= " and do.product_id = a.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -47,7 +47,7 @@ if (isset($_GET["id"])) {
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -82,8 +82,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="product_id">รหัสครุภัณฑ์ : </label>
-                      <?php echo $row["product_id"]; ?>
+                      <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                      <?php echo $row["code"]; ?>
                     </div>
                     <div class="col-md-6">
                       <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>

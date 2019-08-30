@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name FROM durable_articles as a ,durable_articles_type as t WHERE a.type = t.id";
-  $sql .= " and a.status = 1 ";
+  $sql = "SELECT m.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_articles as m ,durable_articles_type as t , seller as se , department as d , unit as un WHERE m.id = $id";
+  $sql .= " and m.type = t.id and m.seller_id = se.id and m.department_id = d.id and m.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -47,7 +47,7 @@ if (isset($_GET["id"])) {
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -73,14 +73,24 @@ if (isset($_GET["id"])) {
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="short_goverment">หน่วยงาน (ย่อ) : </label>
-                      <?php echo $row["short_goverment"]; ?>
+                      <label class="text-dark" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
+                      <?php echo $row["fullname"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
+                      <?php echo $row["shortname"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
                       <label class="text-dark" for="type">ประเภทครุภัณฑ์ : </label>
-                      <?php echo $row["type"]; ?>
+                      <?php echo $row["durable_articles_type_name"]; ?>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="text-dark" for="model">รุ่นแบบ : </label>
+                      <?php echo $row["model"]; ?>
                     </div>
                   </div>
                   <div class="row">
@@ -89,8 +99,8 @@ if (isset($_GET["id"])) {
                       <?php echo $row["attribute"]; ?>
                     </div>
                     <div class="col-md-6">
-                      <label class="text-dark" for="model">รุ่นแบบ : </label>
-                      <?php echo $row["model"]; ?>
+                      <label class="text-dark" for="unit">หน่วยนับ : </label>
+                      <?php echo $row["unit_name"]; ?>
                     </div>
                   </div>
                   <div class="row">
@@ -107,12 +117,6 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="department_id">หน่วยงานที่รับผิดชอบ : </label>
-                      <?php echo $row["department_id"]; ?>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
                       <label class="text-dark" for="d_gen">เอกสารสำรองเงิน : </label>
                       <?php echo $row["d_gen"]; ?>
                     </div>
@@ -120,13 +124,7 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="seller_id">ร้านค้า : </label>
-                      <?php echo $row["seller_id"]; ?>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="text-dark" for="unit">หน่วยนับ : </label>
-                      <?php echo $row["unit"]; ?>
+                      <?php echo $row["seller_name"]; ?>
                     </div>
                   </div>
                   <div class="row">

@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT do.*, m.code FROM durable_material_donate as do ,durable_material as m WHERE do.product_id = m.id";
-  $sql .= " and m.status = 1 ";
+  $sql = "SELECT do.*, m.code FROM durable_material_donate as do ,durable_material as m WHERE do.id = $id";
+  $sql .= " and do.product_id = m.id and m.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -82,8 +82,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="product_id">รหัสครุภัณฑ์ : </label>
-                      <?php echo $row["product_id"]; ?>
+                      <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                      <?php echo $row["code"]; ?>
                     </div>
                     <div class="col-md-6">
                       <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>

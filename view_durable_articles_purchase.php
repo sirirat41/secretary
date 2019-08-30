@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code FROM durable_articles_purchase as p ,durable_articles as a WHERE p.product_id = a.id";
-  $sql .= " and a.status = 1 ";
+  $sql = "SELECT p.*, a.code FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
+  $sql .= " and p.product_id = a.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
