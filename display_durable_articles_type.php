@@ -45,7 +45,7 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(ครุภัณฑ์)</h6>
+                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -55,7 +55,12 @@ require "service/connection.php";
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_type.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_type.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <a rel="tooltip" class="btn btn-outline-primary"  href="test.php" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
                 </form>
             </div>
           </div>
@@ -68,13 +73,12 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>ชื่อประเภทครุภัณฑ์</th>
-                        <th>ชื่อย่อ</th>
+                        <th>ชื่อประเภทวัสดุ</th>
+                        <th>ชื่อย่อประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-
                       <?php
                       $sqlSelect = "SELECT * FROM durable_articles_type";
                       $sqlSelect .= " WHERE status = 1";
@@ -92,18 +96,20 @@ require "service/connection.php";
                           <td><?php echo $row["name"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href='edit_durable_articles_type.php';">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_type.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
                           <?php
                           }
 
                           ?>
-                 </tbody>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -111,27 +117,27 @@ require "service/connection.php";
           </form>
         </div>
 
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      </a>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
             </li>
           </ul>
         </nav>
       </div>
     </div>
 
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
@@ -206,9 +212,9 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลประเภทครุภัณฑ์ใช่รือไม่
+          คุณต้องการลบข้อมูลประเภทวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_type.php">
-          <input type="hidden" id="remove-type" name="type_id">
+            <input type="hidden" id="remove-type" name="type_id">
           </form>
         </div>
         <div class="modal-footer">

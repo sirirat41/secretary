@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,d.fullname FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and p.department_id = d.id";
+  $sql = "SELECT t.*, a.code FROM durable_material as a,durable_material_transfer_out as t WHERE t.id = $id";
+  $sql .= " and t.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <secretary style="display: none">display_durable_material_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
             <nav class="navbar navbar-light bg-light">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                <i class="fas fa-business-time"></i> ข้อมูลการโอนออก(ครุภัณฑ์)</h6>
             
             </div>
             </nav>
@@ -67,35 +67,31 @@ if (isset($_GET["id"])) {
                   <div class="col-md-8">
                   <div class="row">
                   <div class="col-md-12">
-                  <label class="text-dark" for="book_no" >เลขที่หนังสือ : </label>
-                    <?php echo $row["book_no"]; ?>
+                  <label class="text-dark" for="document_no" >เลขที่หนังสือ : </label>
+                    <?php echo $row["document_no"]; ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="book_no">รหัสครุภัณฑ์ : </label>
+                 <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
                    <?php echo $row["code"]; ?>
                   </div>
                 </div>
                 <div class="row">
                  <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่ยืม : </label>
-                    <?php echo $row["permit_date"]; ?>
+                 <label class="text-dark" for="transfer_date">วันที่โอน : </label>
+                    <?php echo $row["transfer_date"]; ?>
                   </div>
-                  <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่คืน : </label>
-                    <?php echo $row["receive_date"]; ?>
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="transfer_to">ชื่อผู้โอนให้ : </label>
+                   <?php echo $row["transfer_to"]; ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
-                   <?php echo $row["fullname"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="book_no">หมายเหตุ : </label>
+                  <label class="text-dark" for="flag">หมายเหตุ : </label>
                     <?php echo $row["flag"]; ?>
                   </div>
                 </div>
