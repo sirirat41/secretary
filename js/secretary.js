@@ -142,7 +142,7 @@ $(document).ready(function () {
             $('.collapse-material .donatesO').addClass('active');
             break;
 
-        case "durable_material_receive_donate":  //บริจาค
+        case "display_durable_material_receive_donate":  //บริจาค
             $('.nav-material').addClass('active');
             $('.collapse-material').addClass('show');
             $('.collapse-material .donates').addClass('active');

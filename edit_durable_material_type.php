@@ -4,7 +4,7 @@
   require "service/connection.php";
   if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    $sql = "SELECT * FROM durable_articles_type WHERE id = $id";
+    $sql = "SELECT * FROM durable_material_type WHERE id = $id";
     $result = mysqli_query($conn, $sql) or die('cannot select data');
     $item = mysqli_fetch_assoc($result);
   }
@@ -19,7 +19,7 @@
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_articles_type</secretary>
+  <secretary style="display: none">insert_durable_material_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,7 +54,7 @@
                             </div>
                           
                           <div class="card-body">
-                          <form method="post" action="service/service_edit_durable_articles_type.php?id=<?php echo $id; ?>" id="form_insert">
+                          <form method="post" action="service/service_edit_durable_material_type.php?id=<?php echo $id; ?>" id="form_insert">
                                 <div class="row">
                                   <div class="col-md-12">
                                       <div class="form-group">

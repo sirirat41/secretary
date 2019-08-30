@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM department   WHERE id = $id";
+  $sql = "SELECT * FROM department WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
 
@@ -63,7 +63,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_department.php" id="form_insert">
+            <form method="post" action="service/service_edit_department.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group">

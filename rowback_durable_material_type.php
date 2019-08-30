@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_transfer_in</secretary>
+  <secretary style="display: none">display_durable_material_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,7 +30,6 @@ require "service/connection.php";
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -41,27 +40,21 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col-md-8 offset-2 ">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-box-open"></i> เเสดงข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_transfer_in.php';">
-                      <i class="fas fa-plus"></i>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_durable_material_type.php';">
+                      <i class="fas fa-paste"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_transfer_in.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
                 </form>
             </div>
           </div>
@@ -74,20 +67,18 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>เลขที่เอกสาร</th>
-                        <th>วันที่โอน</th>
-                        <th>รหัสครุภัณฑ์</th>
-                        <th>ชื่อผู้โอน</th>
-                        <th>การทำงาน</th>
+                        <th>ชื่อประเภทวัสดุ</th>
+                        <th>ชื่อย่อประเภทวัสดุ</th>
+                        <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code FROM durable_articles as ar, durable_articles_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                      $sqlSelect = "SELECT * FROM durable_material_type";
+                      $sqlSelect .= " WHERE status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (name like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -96,32 +87,17 @@ require "service/connection.php";
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["document_no"]; ?></td>
-                          <td><?php echo $row["transfer_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["transfer_from"]; ?></td>
+                          <td><?php echo $row["name"]; ?></td>
+                          <td><?php echo $row["shortname"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" 
+                            data-target="#exampleModal" onclick="$('#rowback-type').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal"
-                            data-target="#exampleModal" onclick="$('#remove-transfer_in').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      <?php
-                      }
+                          <?php
+                          }
 
-                      ?>
-
+                          ?>
                     </tbody>
                   </table>
                 </div>
@@ -129,22 +105,23 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-         <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
               </a>
-          </li>
-        </ul>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
         </nav>
       </div>
     </div>
@@ -161,7 +138,7 @@ require "service/connection.php";
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        <span>By &copy; Sirirat Napaporn Bongkotporn</span>
       </div>
     </div>
   </footer>
@@ -224,14 +201,14 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
-            <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
-            </form>
+          คุณต้องการกู้ข้อมูลประเภทวัสดุใช่หรือไม่
+          <form id="form-rowback" method="post" action="service/service_rowback_durable_material_type.php">
+            <input type="hidden" id="rowback-type" name="type_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

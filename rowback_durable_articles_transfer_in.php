@@ -53,15 +53,9 @@ require "service/connection.php";
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_transfer_in.php';">
-                      <i class="fas fa-plus"></i>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_durable_articles_transfer_in.php';">
+                      <i class="fas fa-paste"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_transfer_in.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
                 </form>
             </div>
           </div>
@@ -84,7 +78,7 @@ require "service/connection.php";
                     <tbody>
                       <?php
                       $sqlSelect = "SELECT trans.*, ar.code FROM durable_articles as ar, durable_articles_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
@@ -101,19 +95,9 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal"
-                            data-target="#exampleModal" onclick="$('#remove-transfer_in').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" 
+                            data-target="#exampleModal" onclick="$('#rowback-transfer_in').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
                             </button>
                           </td>
                         </tr>
@@ -224,14 +208,14 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
-            <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
+          คุณต้องการกู้ข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+          <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_transfer_in.php">
+            <input type="hidden" id="rowback-transfer_in" name="transfer_in_id">
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

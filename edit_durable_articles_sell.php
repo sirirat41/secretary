@@ -68,7 +68,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6 ">
                     <div class="form-group">
                       <label for="sell_date">วันที่ขาย</label>
-                      <input type="datetime-local" class="form-control" name="sell_date" id="sell_date" aria-describedby="sell_date" placeholder="selldate" value="<?php echo $newselldate; ?>">
+                      <input type="date" class="form-control" name="sell_date" id="sell_date" aria-describedby="sell_date" placeholder="selldate" value="<?php echo $newselldate; ?>">
                     </div>
                   </div>
                 </div>
