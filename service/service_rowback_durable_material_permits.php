@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["permits_id"] )) {
     }
 
 } else {
-    header('Location: ../display_durable_material_permits.php?message=ข้อมูลผิดพลาด');
+    header('Location: ../display_durable_material_permits.php?message=กู้ข้อมูลผิดพลาด');
 }
 
 ?>

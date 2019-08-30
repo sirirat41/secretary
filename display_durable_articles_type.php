@@ -102,7 +102,7 @@ require "service/connection.php";
                           <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
                           <?php
