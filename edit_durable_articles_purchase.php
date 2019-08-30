@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles  as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
+  $sql = "SELECT * FROM durable_articles as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
@@ -17,11 +17,7 @@ if (isset($_GET["id"])) {
   // $sql = "SELECT * FROM durable_articles a, durable_articles_type t, department d WHERE id = $id and a.department = d.id";
   // $sql .= " and a.type = t.id";
   // $result = mysqli_query($conn,$sql);
-<<<<<<< HEAD
   // $row = mysqli_fetch_assoc($result); // .ใช้สำหรับหน้า View
-=======
-  // $row = mysqli_fetch_assoc($result);  // .ใช้สำหรับหน้า View
->>>>>>> 64c0063e37f1eb28f1151b796304e02c24a76042
 }
 ?>
 

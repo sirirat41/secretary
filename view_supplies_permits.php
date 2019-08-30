@@ -74,29 +74,29 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="book_no">รหัสครุภัณฑ์ : </label>
+                 <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
                    <?php echo $row["code"]; ?>
                   </div>
                 </div>
                 <div class="row">
                  <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่ยืม : </label>
+                 <label class="text-dark" for="permit_date">วันที่ยืม : </label>
                     <?php echo $row["permit_date"]; ?>
                   </div>
                   <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่คืน : </label>
+                 <label class="text-dark" for="receive_date">วันที่คืน : </label>
                     <?php echo $row["receive_date"]; ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
+                 <label class="text-dark" for="fullname">หน่วยงานที่ยืม : </label>
                    <?php echo $row["fullname"]; ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                  <label class="text-dark" for="book_no">หมายเหตุ : </label>
+                  <label class="text-dark" for="flag">หมายเหตุ : </label>
                     <?php echo $row["flag"]; ?>
                   </div>
                 </div>

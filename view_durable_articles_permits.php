@@ -95,7 +95,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                  <label class="text-dark" for="book_no">หมายเหตุ : </label>
+                  <label class="text-dark" for="flag">หมายเหตุ : </label>
                     <?php echo $row["flag"]; ?>
                   </div>
                 </div>
