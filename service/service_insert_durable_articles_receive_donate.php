@@ -13,9 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= " VALUES('$documentno', $productid, '$receivedate', '$donatename', $number, '$flag')";
 
     if (mysqli_query($conn, $sql)) {
-        header('Location: ../insert_durable_articles_receive_donate.php?message=เพิ่มข้อมูลสำเร็จ');
+        header('Location: ../display_durable_articles_receive_donate.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {
-        header('Location: ../insert_durable_articles_receive_donate.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+        header('Location: ../display_durable_articles_receive_donate.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }
 
 } else {
