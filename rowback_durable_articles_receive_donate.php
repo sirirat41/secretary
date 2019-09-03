@@ -68,7 +68,7 @@ require "service/connection.php";
                         <th>วันที่บริจาค</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ชื่อผู้บริจาค</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -85,19 +85,19 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                        <td><?php echo $row["receive_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["donate_name"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-receive_donate').val('<?php echo $id; ?>')">
-                            <i class="fas fa-sync-alt"></i>
-                          </button>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["donate_name"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-receive_donate').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
+                            </button>
 
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>

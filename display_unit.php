@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_department</secretary>
+  <secretary style="display : none">display_unit</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,17 +47,17 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยนับห</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_department.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_unit.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_department.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_unit.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
                     <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
@@ -68,7 +68,6 @@ require "service/connection.php";
             </div>
           </div>
           </nav>
-
           <form>
             <div class="row">
               <div class="col-md-12">
@@ -76,23 +75,19 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
+                      <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
-                        <th>ตัวย่อ(หน่วยงาน)</th>
-                        <th>เจ้าหน้าที่</th>
-                        <th>อาคาร</th>
-                        <th>ชั้น</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT * FROM department";
+                      $sqlSelect = "SELECT * FROM unit";
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (fullname like '%$keyword%')";
+                        $sqlSelect .= " and (name like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -100,22 +95,18 @@ require "service/connection.php";
                         ?>
                       <tr class="text-center">
                         <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["fullname"]; ?></td>
-                        <td><?php echo $row["shortname"]; ?></td>
-                        <td><?php echo thainumDigit($row["owner"]); ?></td>
-                        <td><?php echo thainumDigit($row["bulding"]); ?></td>
-                        <td><?php echo thainumDigit($row["floor"]); ?></td>
+                        <td><?php echo $row["name"]; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_unit.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_unit.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
                           <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
                             <i class="fas fa-print"></i>
                           </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-unit').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
                         </td>
@@ -226,9 +217,9 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_department.php">
-            <input type="hidden" id="remove-department" name="department_id">
+          คุณต้องการลบข้อมูลหน่วยนับใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_unit.php">
+            <input type="hidden" id="remove-unit" name="unit_id">
           </form>
         </div>
         <div class="modal-footer">
