@@ -11,10 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= " VALUES($seq, $damageid, '$repairdate', '$place')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Insert data complete";
+        header('Location: ../display_material_repair.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {
-        echo $sql . "<br/>";
-        echo mysqli_error($conn);
+        header('Location: ../display_material_repair.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }
 
 } else {

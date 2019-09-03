@@ -11,13 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO durable_articles_transfer_in(document_no ,product_id ,transfer_from ,transfer_date, flag)";
         $sql .= " VALUES($document, $productId , '$transferfrom', '$transferdate', '$flag')"; 
 
-        
         if (mysqli_query($conn, $sql)) {
-            echo "Insert data complete";
+            header('Location: ../display_articles_transfer_in.php?message=เพิ่มข้อมูลสำเร็จ');
         } else {
-            echo "Can't insert data, please check this:" . mysqli_error($conn);
+            header('Location: ../display_articles_transfer_in.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
-
+        
 } else {
 
 

@@ -10,16 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $position = $_POST["position"];
     $email = $_POST["email"];
     $utype = $_POST["u_type"];
-    $status = $_POST["status"];
 
-    $sql = "INSERT INTO user(username, password, surname, lastname, tel, position, email, u_type, status)";
-    $sql .= " VALUES('$username', '$password', '$surname', '$lastname', '$tel', '$position', '$email', $utype, $status)";
+
+    $sql = "INSERT INTO user(username, password, surname, lastname, tel, position, email, u_type)";
+    $sql .= " VALUES('$username', '$password', '$surname', '$lastname', $tel, '$position', '$email', '$utype')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Insert data complete";
+        header('Location: ../display_user.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {
-        echo $sql . "<br/>";
-        echo mysqli_error($conn);
+        header('Location: ../display_user.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }
 
 } else {

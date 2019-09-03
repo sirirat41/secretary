@@ -11,11 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO durable_articles_permits(product_id ,book_no ,permit_date ,receive_date, flag)";
         $sql .= " VALUES($productId, '$bookno' , '$permitdate', '$receivedate', '$flag')"; 
 
-        
         if (mysqli_query($conn, $sql)) {
-            echo "Insert data complete";
+            header('Location: ../display_articles_permits.php?message=เพิ่มข้อมูลสำเร็จ');
         } else {
-            echo "Can't insert data, please check this:" . mysqli_error($conn);
+            header('Location: ../display_articles_permits.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
 
 } else {
