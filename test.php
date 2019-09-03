@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> 76ba85ee72c9013012cd8031aad17b0b07a3db94
 <?php 
 
 echo autoRun(1,4) . "<br>";
@@ -14,6 +18,10 @@ function autoRun($current, $format) {
     
     $auto .= $current;
     return $auto;
+<<<<<<< HEAD
+}
+=======
 }
 
 ?>
+>>>>>>> 76ba85ee72c9013012cd8031aad17b0b07a3db94
