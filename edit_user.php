@@ -1,5 +1,11 @@
 <?php
 require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM user WHERE id = $id";
+  $result = mysqli_query($conn, $sql) or die('cannot select data');
+  $item = mysqli_fetch_assoc($result);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +55,12 @@ require "service/connection.php";
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลสมาชิก</h6>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="service/service_insert_user.php" id="form_insert">
+                    <form method="post" action="service/service_edit_user.php?id=<?php echo $id; ?>" id="form_insert">
                       <div class="row">
                           <div class="col-md-12 ">
                               <div class="form-group">
                                 <label for="username">ชื่อสมาชิก</label>
-                                <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username">
+                                <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
                               </div>
                           </div>
                       </div>
@@ -63,7 +69,7 @@ require "service/connection.php";
                         <div class="col-md-12">
                             <div class="form-group">
                               <label for="password">รหัสผ่าน</label>
-                              <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password">
+                              <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password" value="<?php echo $item["password"]; ?>">
                             </div>
                         </div>
                     </div>
@@ -72,13 +78,13 @@ require "service/connection.php";
                       <div class="col-md-6">
                           <div class="form-group">
                             <label for="surname">ชื่อ</label>
-                            <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname">
+                            <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname" value="<?php echo $item["surname"]; ?>">
                           </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="lastname">นามสกุล</label>
-                          <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname">
+                          <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname" value="<?php echo $item["lastname"]; ?>">
                         </div>
                     </div>
                   </div>
@@ -88,13 +94,13 @@ require "service/connection.php";
                     <div class="col-md-4">
                         <div class="form-group">
                           <label for="tel">เบอร์โทร</label>
-                          <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                          <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
                           <label for="position">ตำแหน่ง</label>
-                          <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position">
+                          <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position" value="<?php echo $item["position"]; ?>">
                         </div>
                     </div>
                 </div>
@@ -103,7 +109,7 @@ require "service/connection.php";
                     <div class="col-md-12">
                         <div class="form-group">
                           <label for="email">อีเมล์</label>
-                          <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email">
+                          <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email" value="<?php echo $item["email"]; ?>">
                         </div>
                     </div>
                 </div>
@@ -116,7 +122,11 @@ require "service/connection.php";
                         $sqlSelectType = "SELECT * FROM u_type";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["t_code"] . '</option>';
+                          if ($item["u_type"] == $row["id"]) {
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["t_code"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row["id"] . '">' . $row["t_code"] . '</option>';
+                          }
                         }
                         ?>
                       </select>
