@@ -84,6 +84,18 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                   <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="code">รหัส : </label>
+                      <?php echo $row["code"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="asset_no">เลขสินทรัพย์ : </label>
+                      <?php echo $row["asset_no"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="type">ประเภทครุภัณฑ์ : </label>
                       <?php echo $row["durable_articles_type_name"]; ?>
