@@ -213,15 +213,15 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body">
-        <div class="row">
-          <div class="col-10 offset-1">
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <nav class="navbar navbar-light bg-light">
-                  <h6 class="m-0 font-weight-bold text-danger">
-                    <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
-                  <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+          <div class="row">
+            <div class="col-10 offset-1">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <nav class="navbar navbar-light bg-light">
+                    <h6 class="m-0 font-weight-bold text-danger">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
+                    <form class="form-inline">
+                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
                       <div>
                         <button class="btn btn-outline-danger" type="button" onclick="search();">
                           <i class="fas fa-search"></i>
@@ -230,113 +230,113 @@ require "service/connection.php";
                 </div>
               </div>
               </nav>
-            <form>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="table-responsive">
-                    <table class="table table-hover ">
-                      <thead>
-                        <tr class="text-center">
-                          <th>#</th>
-                          <th>รูปภาพ</th>
-                          <th>ลำดับ</th>
-                          <th>เลขที่ใบเบิก</th>
-                          <th>รหัสวัสดุ</th>
-                          <th>ประเภท</th>
-                          <th>การทำงาน</th>
-                        </tr class="text-center">
-                      </thead>
-                      <tbody id="modal-material-body">
-                        <!-- ///ดึงข้อมูล -->
-                        <?php
-                        $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-                        $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = $_GET["keyword"];
-                          $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                        }
-                        $result = mysqli_query($conn, $sqlSelect);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $id = $row["id"]
-                          ?>
+              <form>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover ">
+                        <thead>
                           <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                            </td>
-                          </tr>
-                        <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                            <th>#</th>
+                            <th>รูปภาพ</th>
+                            <th>ลำดับ</th>
+                            <th>เลขที่ใบเบิก</th>
+                            <th>รหัสวัสดุ</th>
+                            <th>ประเภท</th>
+                            <th>การทำงาน</th>
+                          </tr class="text-center">
+                        </thead>
+                        <tbody id="modal-material-body">
+                          <!-- ///ดึงข้อมูล -->
+                          <?php
+                          $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
+                          $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
+                          if (isset($_GET["keyword"])) {
+                            $keyword = $_GET["keyword"];
+                            $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          }
+                          $result = mysqli_query($conn, $sqlSelect);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row["id"]
+                            ?>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["picture"]; ?></td>
+                              <td><?php echo $row["seq"]; ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-  <script>
-    function search() {
-      var kw = $('#keyword').val();
-      $.ajax({
-        url: 'service/service_search_json_durable_material.php',
-        dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        }, 
-        
-        success: function(data) {
-          var tbody = $('#modal-material-body');
-          tbody.empty();
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.picture+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.bill_no+'</td>').appendTo(tr);
-           $('<td>'+item.code+'</td>').appendTo(tr);
-           $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedMaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      })
-    }
+          <script>
+            function search() {
+              var kw = $('#keyword').val();
+              $.ajax({
+                url: 'service/service_search_json_durable_material.php',
+                dataType: 'JSON',
+                type: 'GET',
+                data: {
+                  keyword: kw
+                },
 
-    function selectedMaterial(id) {
-      $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
-    }
-  </script>
+                success: function(data) {
+                  var tbody = $('#modal-material-body');
+                  tbody.empty();
+                  for (i = 0; i < data.length; i++) {
+                    var item = data[i];
+                    var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+                    $('<td>' + item.id + '</td>').appendTo(tr);
+                    $('<td>' + item.picture + '</td>').appendTo(tr);
+                    $('<td>' + item.seq + '</td>').appendTo(tr);
+                    $('<td>' + item.bill_no + '</td>').appendTo(tr);
+                    $('<td>' + item.code + '</td>').appendTo(tr);
+                    $('<td>' + item.type + '</td>').appendTo(tr);
+                    $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedMaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+                  }
+                },
+                error: function(error) {
+                  console.log(error);
+                }
+              })
+            }
+
+            function selectedMaterial(id) {
+              $('#modal-form-search').modal('hide');
+              $('#product_id').val(id);
+            }
+          </script>
 
 </body>
 

@@ -88,18 +88,18 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["seq"]; ?></td>
-                        <td><?php echo $row["repair_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["place"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-repair').val('<?php echo $id; ?>')">
-                            <i class="fas fa-sync-alt"></i>
-                          </button>
-                        </td>
-                      </tr>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo $row["repair_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["place"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-repair').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>

@@ -47,7 +47,7 @@ require "service/connection.php";
                 <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แสดงข้อมูลร้านค้า</h6>
                 <form class="form-inline">
                   <div>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                     <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_seller.php';">
                       <i class="fas fa-plus"></i>
@@ -90,24 +90,24 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["name"]; ?></td>
-                        <td><?php echo $row["tel"]; ?></td>
-                        <td><?php echo $row["fax"]; ?></td>
-                        <td><?php echo $row["address"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_seller.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_seller.php?id=<?php echo $row['id']; ?>" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-seller').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                      </tr>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["name"]; ?></td>
+                          <td><?php echo $row["tel"]; ?></td>
+                          <td><?php echo $row["fax"]; ?></td>
+                          <td><?php echo $row["address"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_seller.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_seller.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-seller').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>

@@ -48,10 +48,10 @@ require "service/connection.php";
 
                 <form class="form-inline">
                   <div>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
                       <i class="fas fa-search"></i></button>
-                      <button type="button" rel="tooltip" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_repair_history.php';">
+                    <button type="button" rel="tooltip" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_repair_history.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>
@@ -75,11 +75,11 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                       $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
-                       $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 0";
-                       if (isset($_GET["keyword"])) {
-                         $keyword = $_GET["keyword"];
-                         $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                      $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
+                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 0";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -93,9 +93,9 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["fix"]; ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-repair_history').val('<?php echo $id; ?>')">
-                            <i class="fas fa-sync-alt"></i>
-                          </button>
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-repair_history').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
+                            </button>
                           </td>
                         </tr>
                       <?php

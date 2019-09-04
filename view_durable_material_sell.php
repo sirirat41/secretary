@@ -50,60 +50,60 @@ if (isset($_GET["id"])) {
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <nav class="navbar navbar-light bg-light">
-              <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
             </div>
             </nav>
-              <form> 
-                <div class="card-body">
+            <form>
+              <div class="card-body">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card" style="width: 200px;">
-                      <img class="card-img-top" src="./img/bg.jpg" >
+                      <img class="card-img-top" src="./img/bg.jpg">
                     </div>
                   </div>
                   <div class="col-md-8">
-                  <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="document_no" >เลขที่เอกสาร : </label>
-                    <?php echo $row["document_no"]; ?>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
+                        <?php echo $row["document_no"]; ?>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                        <?php echo $row["code"]; ?>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="text-dark" for="sell_date">วันที่ขาย : </label>
+                        <?php echo $row["sell_date"]; ?>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="text-dark" for="buyer">ชื่อผู้ซื้อ : </label>
+                        <?php echo $row["buyer"]; ?>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="text-dark" for="flag">หมายเหตุ : </label>
+                        <?php echo $row["flag"]; ?>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                   <?php echo $row["code"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                 <div class="col-md-6">
-                 <label class="text-dark" for="sell_date">วันที่ขาย : </label>
-                    <?php echo $row["sell_date"]; ?>
-                  </div>
-                  </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="buyer">ชื่อผู้ซื้อ : </label>
-                   <?php echo $row["buyer"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="flag">หมายเหตุ : </label>
-                    <?php echo $row["flag"]; ?>
-                  </div>
-                </div>
-                </div>
-                </div>
-              </form>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- /.container-fluid -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  <!-- /.container-fluid -->
 
 
   </div>
