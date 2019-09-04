@@ -105,7 +105,7 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_sell.php" target="_blank">
                             <i class="fas fa-print"></i>
                           </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-sell').val('<?php echo $id; ?>')">
