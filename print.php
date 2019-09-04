@@ -6,7 +6,6 @@ if (isset($_GET["id"])) {
   $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-
 }
 ?>
 
@@ -49,61 +48,61 @@ if (isset($_GET["id"])) {
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-8 offset-2">
-              <h6 class="m-3 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-              <form> 
-                <div class="card-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card" style="width: 200px;">
-                      <img class="card-img-top" src="./img/bg.jpg" >
+          <h6 class="m-3 font-weight-bold text-danger">
+            <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card" style="width: 200px;">
+                    <img class="card-img-top" src="./img/bg.jpg">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="book_no">เลขที่หนังสือ : </label>
+                      <?php echo $row["book_no"]; ?>
                     </div>
                   </div>
-                  <div class="col-md-8">
                   <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="book_no" >เลขที่หนังสือ : </label>
-                    <?php echo $row["book_no"]; ?>
+                    <div class="col-md-12">
+                      <label class="text-dark" for="book_no">รหัสครุภัณฑ์ : </label>
+                      <?php echo $row["code"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="book_no">วันที่ยืม : </label>
+                      <?php echo $row["permit_date"]; ?>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="text-dark" for="book_no">วันที่คืน : </label>
+                      <?php echo $row["receive_date"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
+                      <?php echo $row["fullname"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="flag">หมายเหตุ : </label>
+                      <?php echo $row["flag"]; ?>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="book_no">รหัสครุภัณฑ์ : </label>
-                   <?php echo $row["code"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                 <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่ยืม : </label>
-                    <?php echo $row["permit_date"]; ?>
-                  </div>
-                  <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่คืน : </label>
-                    <?php echo $row["receive_date"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
-                   <?php echo $row["fullname"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="flag">หมายเหตุ : </label>
-                    <?php echo $row["flag"]; ?>
-                  </div>
-                </div>
-                </div>
-                </div>
-              </form>
-            </div>
-          </div>
+              </div>
+          </form>
         </div>
       </div>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- /.container-fluid -->
+  </div>
+  <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  <!-- /.container-fluid -->
 
 
   </div>
