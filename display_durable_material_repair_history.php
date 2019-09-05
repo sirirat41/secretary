@@ -56,7 +56,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_repair_history.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material_repair_history.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
