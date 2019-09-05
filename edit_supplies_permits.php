@@ -13,6 +13,7 @@ if (isset($_GET["id"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
@@ -72,7 +73,7 @@ if (isset($_GET["id"])) {
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control" name="product_id"  id="product_id" value="<?php echo $item["product_id"]; ?>">
+                          <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM supplies where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -116,10 +117,11 @@ if (isset($_GET["id"])) {
                       <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $item["receive_date"]; ?>">
                     </div>
                   </div>
-                </div> <div class="row">
+                </div>
+                <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                    <label for="department_id">หน่วยงานที่ยืม</label>
+                      <label for="department_id">หน่วยงานที่ยืม</label>
                       <select class="form-control" data-style="btn btn-link" id="department_id" name="department_id" value="<?php echo $item["department_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
@@ -133,34 +135,37 @@ if (isset($_GET["id"])) {
                         }
                         ?>
                       </select>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group ">
-                      <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
-                      บันทึก
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group ">
+                            <label for="flag">หมายเหตุ</label>
+                            <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
                           </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                            บันทึก
+                          </button>
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  คุณต้องการบันทึกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -168,31 +173,28 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
             </div>
-
-
           </div>
         </div>
+
+        </form>
+
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
+      <!-- /.container-fluid -->
 
-      </form>
 
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- /.container-fluid -->
+    <!-- End of Main Content -->
 
-
-  </div>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        </div>
       </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
+    </footer>
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
@@ -294,18 +296,18 @@ if (isset($_GET["id"])) {
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["name"]; ?></td>
-                          <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
+                          <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
                         <?php
                         }
                         ?>
@@ -352,21 +354,21 @@ if (isset($_GET["id"])) {
         data: {
           keyword: kw
         },
-        
+
         success: function(data) {
           var tbody = $('#modal-supplies-body');
           tbody.empty();
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.picture+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.bill_no+'</td>').appendTo(tr);
-           $('<td>'+item.code+'</td>').appendTo(tr);
-           $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.picture + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.bill_no + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.type + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);

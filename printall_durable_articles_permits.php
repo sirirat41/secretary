@@ -22,15 +22,22 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-
+  <style type="text/css" media="print">
+    @page {
+      size: landscape;
+    }
+   
+  </style>
+ 
 </head>
 
-<body id="page-top">
+
+<body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php include "navigation/navbar.php"; ?>
+
 
     </nav>
     <!-- End of Topbar -->
@@ -41,50 +48,28 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                  <div>
-                    <button class="btn btn-outline-danger" type="submit">
-                      <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_permits.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_permits.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_permits.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
-                </form>
-            </div>
-          </div>
-          </nav>
-          <form>
+         
+        
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
+                <table width="100%" border="1" class="landscape">
+                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                     <form>
+                        <thead>
                       <tr class="text-center">
-                        <th>#</th>
-                        <th>เลขที่หนังสือ</th>
-                        <th>รหัสครุภัณฑ์</th>
-                        <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อครุภัณฑ์</th>
-                        <th>วันที่ยืม</th>
-                        <th>วันที่คืน</th>
-                        <th>การทำงาน</th>
+                        <th><font size="2">ลำดับ</font></th>
+                        <th><font size="2">เลขที่หนังสือ</font></th>
+                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
+                        <th><font size="2">รุ่นแบบ</font></th>
+                        <th><font size="2">รหัสครุภัณฑ์</font></th>
+                        <th><font size="2">วันที่ยืม</font></th>
+                        <th><font size="2">วันที่คืน</font></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT p.*, m.code , m.attribute ,m.model FROM durable_articles_permits as p,durable_articles as m";
+                      $sqlSelect = "SELECT p.*, m.code ,m.attribute ,m.model FROM durable_articles_permits as p,durable_articles as m";
                       $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -94,27 +79,15 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo $row["model"]; ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_permits.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
+                      <tr class="text-center">
+                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["book_no"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["model"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["permit_date"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["receive_date"]; ?></font></td>
+                      </tr>
                           <?php
                           }
 
@@ -126,23 +99,7 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -155,11 +112,7 @@ require "service/connection.php";
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
+   
   </footer>
   <!-- End of Footer -->
 

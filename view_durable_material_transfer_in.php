@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT t.*, a.code FROM durable_material as a,durable_material_transfer_in as t WHERE t.id = $id";
+  $sql = "SELECT t.*, a.code ,a.attribute , a.name FROM durable_material as a,durable_material_transfer_in as t WHERE t.id = $id";
   $sql .= " and t.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
             <nav class="navbar navbar-light bg-light">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                <i class="fas fa-business-time"></i> ข้อมูลการโอนเข้า(วัสดุสิ้นเปลือง)</h6>
             
             </div>
             </nav>
@@ -77,6 +77,18 @@ if (isset($_GET["id"])) {
                    <?php echo $row["code"]; ?>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                   <?php echo $row["attribute"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
+                   <?php echo $row["name"]; ?>
+                  </div>
+                </div> 
                 <div class="row">
                  <div class="col-md-6">
                  <label class="text-dark" for="transfer_date">วันที่โอน : </label>
