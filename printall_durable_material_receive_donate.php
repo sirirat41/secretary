@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_seller</secretary>
+  <secretary style="display: none">display_durable_material_receive_donate</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,15 +22,14 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-
+ 
 </head>
 
-<body onload="window.print()">
+<body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
     </nav>
     <!-- End of Topbar -->
 
@@ -40,80 +39,69 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-          <div class="table-responsive">
-            <table width="600" border="1" align="center">
-              <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลร้านค้า</h6>
-              <form>
-                <thead>
-                  <tr class="text-center">
-                    <th>
-                      <font size="2">#</font>
-                    </th>
-                    <th>
-                      <font size="2">ชื่อร้าน</font>
-                    </th>
-                    <th>
-                      <font size="2">เบอร์โทร</font>
-                    </th>
-                    <th>
-                      <font size="2">แฟกต์</font>
-                    </th>
-                    <th>
-                      <font size="2">ที่อยู่</font>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- ///ดึงข้อมูล -->
-                  <?php
-                  $sqlSelect = "SELECT * FROM seller ";
-                  $sqlSelect .= " WHERE status = 1";
-                  if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (name like '%$keyword%' or address like '%$keyword%')";
-                  }
-                  //echo $sqlSelect;
-                  $result = mysqli_query($conn, $sqlSelect);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $id = $row["id"]
-                    ?>
-                    <tr class="text-center">
-                      <td>
-                        <font size="2"><?php echo $row["id"]; ?></font>
-                      </td>
-                      <td>
-                        <font size="2"><?php echo $row["name"]; ?></font>
-                      </td>
-                      <td>
-                        <font size="2"><?php echo $row["tel"]; ?></font>
-                      </td>
-                      <td>
-                        <font size="2"><?php echo $row["fax"]; ?></font>
-                      </td>
-                      <td>
-                        <font size="2"><?php echo $row["address"]; ?></font>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-            </table>
-          </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                <table width="100%" border="1" class="landscape">
+                <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+                     <form>
+                        <thead>
+                      <tr class="text-center">
+                        <th><font size="2">ลำดับ</font></th>
+                        <th><font size="2">เลขที่เอกสาร</font></th>
+                        <th><font size="2">วันที่บริจาค</font></th>
+                        <th><font size="2">รหัสวัสดุ</font></th>
+                        <th><font size="2">ชื่อผู้บริจาค</font></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sqlSelect = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
+                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                      }
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                        ?>
+                      <tr class="text-center">
+                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["document_no"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["receive_date"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["donate_name"]; ?></font></td>
+                      </tr>
+                          <?php
+                          }
+                          ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      </form>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    </div>
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-  
+
+  </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+   
+  </footer>
   <!-- End of Footer -->
 
+  </div>
   <!-- End of Content Wrapper -->
 
+  </div>
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
@@ -157,7 +145,6 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -168,9 +155,10 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการขายทอดตลาดวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_seller.php">
-            <input type="hidden" id="remove-seller" name="seller_id">
+          คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -179,7 +167,6 @@ require "service/connection.php";
       </div>
     </div>
   </div>
-
 </body>
 
 </html>

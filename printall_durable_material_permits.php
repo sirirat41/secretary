@@ -48,7 +48,6 @@ require "service/connection.php";
       <div class="row">
         <div class="col-md-12">
 
-
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
@@ -126,13 +125,11 @@ require "service/connection.php";
           </div>
           </form>
         </div>
-
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
 
   </div>
   <!-- End of Main Content -->

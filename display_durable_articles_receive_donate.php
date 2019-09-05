@@ -56,7 +56,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_receive_donate.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_receive_donate.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -74,7 +74,7 @@ require "service/connection.php";
                         <th>วันที่บริจาค</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ชื่อผู้บริจาค</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
