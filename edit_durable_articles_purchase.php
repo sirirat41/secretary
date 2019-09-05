@@ -210,7 +210,7 @@ if (isset($_GET["id"])) {
               </div>
               <div class="row">
                 <div class="col-12">
-                  <label for="exampleFormControlSelect1">ร้านค้า : </label>
+                  <label for="exampleFormControlSelect1">ชื่อผู้ขาย : </label>
                   <select class="form-control" name="seller_id">
                     <?php
                     $sqlSelectType = "SELECT * FROM seller";

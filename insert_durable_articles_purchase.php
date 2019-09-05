@@ -89,7 +89,7 @@ require "service/connection.php";
                 <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">ชื่อผู้รับ :</label>
-                    <input class="form-control" type="text" placeholder="receiver" name="receiver"  id="receiver">
+                    <input class="form-control" type="text" placeholder="receiver" name="receiver" id="receiver">
                   </div>
                 </div>
                 <div class="col-6 ">
@@ -191,8 +191,16 @@ require "service/connection.php";
                 </div>
               </div>
               <div class="row">
-                <div class="col-12">
-                  <label for="exampleFormControlSelect1">ร้านค้า : </label>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขที่หนังสือ :</label>
+                      <input class="form-control" type="text" placeholder="book_no" name="book_no">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="exampleFormControlSelect1">ชื่อผู้ขาย : </label>
                   <select class="form-control" name="seller_id">
                     <?php
                     $sqlSelectType = "SELECT * FROM seller";
@@ -448,7 +456,7 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -506,24 +514,24 @@ require "service/connection.php";
                             $id = $row["id"];
                             ?>
 
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["order_no"]; ?></td>
-                            <td><?php echo $row["purchase_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                            <td><?php echo $row["order_by"]; ?></td>
-                            <td><?php echo $row["number"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["order_no"]; ?></td>
+                              <td><?php echo $row["purchase_date"]; ?></td>
+                              <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                              <td><?php echo $row["order_by"]; ?></td>
+                              <td><?php echo $row["number"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-warning">
+                                  <i class="fas fa-pencil-alt"></i>
+                                </button>
 
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
+                                <button type="button" rel="tooltip" class="btn btn-success">
+                                  <i class="fas fa-clipboard-list"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
                               <?php
                               }
 

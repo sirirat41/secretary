@@ -183,7 +183,15 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">เลขที่หนังสือ :</label>
+                        <input class="form-control" type="text" placeholder="book_no" name="book_no">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
                     <label for="exampleFormControlSelect1">ร้านค้า : </label>
                     <select class="form-control" name="seller_id">
                       <?php
