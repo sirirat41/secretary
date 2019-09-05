@@ -105,7 +105,6 @@ if (isset($_GET["id"])) {
   </div>
   <!-- /.container-fluid -->
 
-
   </div>
   <!-- End of Main Content -->
 

@@ -39,58 +39,74 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-    <div class="col-sm-8 offset-sm-2">
-      <div class="table-responsive">
-        <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลร้านค้า</h6>
-          <form>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
-                      <tr class="text-center">
-                        <th>#</th>
-                        <th>ชื่อร้าน</th>
-                        <th>เบอร์โทร</th>
-                        <th>แฟกต์</th>
-                        <th>ที่อยู่</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- ///ดึงข้อมูล -->
-                      <?php
-                      $sqlSelect = "SELECT * FROM seller ";
-                      $sqlSelect .= " WHERE status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (name like '%$keyword%' or address like '%$keyword%')";
-                      }
-                      //echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["name"]; ?></td>
-                          <td><?php echo $row["tel"]; ?></td>
-                          <td><?php echo $row["fax"]; ?></td>
-                          <td><?php echo $row["address"]; ?></td>
-                        </tr>
-                      <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table width="600" border="1" align="center">
+              <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลร้านค้า</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">#</font>
+                    </th>
+                    <th>
+                      <font size="2">ชื่อร้าน</font>
+                    </th>
+                    <th>
+                      <font size="2">เบอร์โทร</font>
+                    </th>
+                    <th>
+                      <font size="2">แฟกต์</font>
+                    </th>
+                    <th>
+                      <font size="2">ที่อยู่</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- ///ดึงข้อมูล -->
+                  <?php
+                  $sqlSelect = "SELECT * FROM seller ";
+                  $sqlSelect .= " WHERE status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (name like '%$keyword%' or address like '%$keyword%')";
+                  }
+                  //echo $sqlSelect;
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"]
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["name"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["tel"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["fax"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["address"]; ?></font>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+            </table>
+          </div>
         </div>
       </div>
+      </form>
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  </div>
+  <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
