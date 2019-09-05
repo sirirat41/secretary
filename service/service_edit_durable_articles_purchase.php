@@ -31,13 +31,14 @@ if(isset($_GET['id'])) {
     $storage = $_POST["storage"];
     $moneyType = $_POST["money_type"];
     $acquiring = $_POST["acquiring"];
+    $bookNo = $_POST["book_no"];
 
-    $updateArticl = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
-    $updateArticl .= " type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
-    $updateArticl .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";
-    $updateArticl .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring'";
-    $updateArticl .= " WHERE id = $id";
-    mysqli_query($conn, $updateArticl) or die("Cannot update articles" . mysqli_error($conn));
+    $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
+    $updateArticles .= " type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
+    $updateArticles .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";
+    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', book_no = '$bookNo'";
+    $updateArticles .= " WHERE id = $id";
+    mysqli_query($conn, $updateArticles) or die("Cannot update articles" . mysqli_error($conn));
     header('Location: ../display_durable_articles.php?message=แก้ไขข้อมูลสำเร็จ');
 }
 ?>

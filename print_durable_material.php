@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un WHERE a.id = $id";
-  $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id";
+  $sql = "SELECT m.*, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor FROM durable_material as m ,durable_material_type as t , seller as se , department as d , unit as un WHERE m.id = $id";
+  $sql .= " and m.type = t.id and m.seller_id = se.id and m.department_id = d.id and m.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">print_durable_artricles</secretary>
+  <secretary style="display : none">print_durable_material</secretary>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -35,15 +35,15 @@ if (isset($_GET["id"])) {
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12" align="center">
-        <h7>ทะเบียนคุมทรัพย์สิน</h7>
+        <h7>วัสดุคงทน</h7>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
         <label class="text" for="type">
-          <h7>ประเภท:</h7>
+          <h7>ประเภทวัสดุ :</h7>
         </label>
-        <?php echo $row["durable_articles_type_name"]; ?>
+        <?php echo $row["durable_material_type_name"]; ?>
       </div>
       <div class="text" class="col-sm-">
         <h7>ส่วนราชการ: </h7>
@@ -72,18 +72,16 @@ if (isset($_GET["id"])) {
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <label class="text" for="model">
-        <h7>รุ่นแบบ :</h7>
-      </label>
-      <?php echo $row["model"]; ?>
-
-    </div>
-    <div class="col-sm-6">
       <label class="text" for="code">
         <h7>รหัส :</h7>
       </label>
       <?php echo $row["code"]; ?>
-
+    </div>
+    <div class="col-sm-6">
+      <label class="text" for="name">
+        <h7>รายการวัสดุ :</h7>
+      </label>
+      <?php echo $row["name"]; ?>
     </div>
   </div>
   <div class="row">
@@ -92,34 +90,6 @@ if (isset($_GET["id"])) {
         <h7>เลขที่ใบเบิก : </h7>
       </label>
       <?php echo $row["bill_no"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="asset_no">
-        <h7>เลขสินทรัพย์ :</h7>
-      </label>
-      <?php echo $row["asset_no"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="budget">
-        <h7>งบประมาณ : </h7>
-      </label>
-      <?php echo $row["budget"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="d_gen">
-        <h7>เอกสารสำรองเงิน : </h7>
-      </label>
-      <?php echo $row["d_gen"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="book_no">
-        <h7>เลขที่หนังสือ :</h7>
-      </label>
-      <?php echo $row["book_no"]; ?>
     </div>
     <div class="col-sm-6">
       <label class="text" for="seller_id">
@@ -148,7 +118,7 @@ if (isset($_GET["id"])) {
         <h7>สถานที่ตั้ง :</h7>
       </label>
       <?php echo $row["fullname"]; ?>/
-      <label class="textk" for="bulding">อาคาร
+      <label class="text" for="bulding">อาคาร
       </label>
       <?php echo $row["bulding"]; ?>/
       <label class="text" for="floor">ชั้น
@@ -165,20 +135,6 @@ if (isset($_GET["id"])) {
       <?php echo $row["seller_fax"]; ?>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="money_type">
-        <h7>ประเภทเงิน :</h7>
-      </label>
-      <?php echo $row["money_type"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="acquiring">
-        <h7>วิธีการได้มา :</h7>
-      </label>
-      <?php echo $row["acquiring"]; ?>
-    </div>
-  </div>
   <style type="text/css" media="print">
     @page {
       size: landscape;
@@ -189,7 +145,7 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-12">
         <div class="table-responsive">
-          <table class='border-color-gray' align="center" cellpadding="5" cellspacing="5" border="1" width="100%" >
+        <table class='border-color-gray' align="center" cellpadding="5" cellspacing="5" border="1" width="100%">
             <thead>
               <tr class="text-center">
                 <th>วัน/เดือน/ปี</th>

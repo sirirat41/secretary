@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $storage = $_POST["storage"];
     $articles_pattern = $_POST["articles_pattern"];
     $status = 1;
-    $articlesPattern = $_POST["articles_pattern"];
+    $bookNo = $_POST["book_no"];
 
     //purchase
 
@@ -68,10 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
         $sqlInsertArticles = "INSERT INTO durable_articles ( seq, code, type, attribute, model, bill_no, budget, department_id, money_type ,";
-        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status)";
+        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status , book_no)";
         $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
         $sqlInsertArticles .= " '$money_type', '$acquiring', '$asset_no', '$d_gen', $seller_id, '$goverment', $unit, ";
-        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status)";
+        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo')";
 
 
         mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));

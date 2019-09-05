@@ -135,7 +135,13 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="seller_id">ร้านค้า : </label>
+                      <label class="text-dark" for="book_no">เลขที่หนังสือ : </label>
+                      <?php echo $row["book_no"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="seller_id">ชื่อผู้ขาย : </label>
                       <?php echo $row["seller_name"]; ?>
                     </div>
                   </div>
