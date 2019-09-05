@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,d.fullname FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code ,a.attribute , a.model ,d.fullname FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
   $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -79,19 +79,25 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                 <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่ยืม : </label>
-                    <?php echo $row["permit_date"]; ?>
-                  </div>
-                  <div class="col-md-6">
-                 <label class="text-dark" for="book_no">วันที่คืน : </label>
-                    <?php echo $row["receive_date"]; ?>
+                  <div class="col-md-12">
+                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                   <?php echo $row["attribute"]; ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                 <label class="text-dark" for="department_id">หน่วยงานที่ยืม : </label>
-                   <?php echo $row["fullname"]; ?>
+                 <label class="text-dark" for="model">ชื่อครุภัณฑ์ : </label>
+                   <?php echo $row["model"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                 <div class="col-md-6">
+                 <label class="text-dark" for="permit_date">วันที่ยืม : </label>
+                    <?php echo $row["permit_date"]; ?>
+                  </div>
+                  <div class="col-md-6">
+                 <label class="text-dark" for="receive_date">วันที่คืน : </label>
+                    <?php echo $row["receive_date"]; ?>
                   </div>
                 </div>
                 <div class="row">

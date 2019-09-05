@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_permits WHERE id = $id";
+  $sql = "SELECT p.*,m.code FROM durable_material_permits as p,durable_material as m WHERE p.id = $id and p.product_id = m.id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
@@ -66,10 +66,11 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
+       
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสครุภัณฑ์</label>
+                      <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
@@ -153,6 +154,9 @@ if (isset($_GET["id"])) {
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                             <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                          </div>
+                          </div>
                           </div>
                         </div>
                       </div>

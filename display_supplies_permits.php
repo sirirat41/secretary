@@ -39,7 +39,7 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1 ">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -57,7 +57,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_permits.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='print_supplies_permits.php';">
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='printall_supplies_permits.php';">
                       <i class="fas fa-print"></i>
                     </button>
                 </form>
@@ -71,30 +71,37 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
+                      <th>#</th>
                         <th>เลขที่หนังสือ</th>
-                        <th>รหัสวัสดุ</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ชื่อครุภัณฑ์</th>
                         <th>วันที่ยืม</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>วันที่คืน</th>
+                        <th>การทำงาน</th>
+                     
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT * FROM supplies_permits";
-                      $sqlSelect .= " WHERE product_id and status = 1";
+                       $sqlSelect = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
+                       $sqlSelect .= " WHERE p.product_id = s.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (product_id like '%$keyword%' or permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["book_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo $row["name"]; ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
                           <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning"
                             onclick="window.location = 'edit_supplies_permits.php?id=<?php echo $row['id']; ?>'">
@@ -103,9 +110,9 @@ require "service/connection.php";
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_permits.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-primary" onclick="window.location.href='print_supplies_permits.php';">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_permits.php?id=<?php echo $row['id']; ?>" target="_blank">
                             <i class="fas fa-print"></i>
-                          </button>
+                          </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>

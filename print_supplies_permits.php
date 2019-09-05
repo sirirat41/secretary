@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute , a.model, d.fullname FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code ,a.attribute , a.name ,d.fullname FROM supplies as a,supplies_permits as p ,department as d WHERE p.id = $id";
   $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <secretary style="display: none">display_supplies_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุสิ้นเปลือง)</h6>
           <form>
             <div class="card-body">
               <div class="row">
@@ -82,7 +82,7 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="code">รหัสครุภัณฑ์ : </label>
+                            <label class="text" for="code">รหัสวัสดุ : </label>
                             <?php echo $row["code"]; ?>
                           </div>
                         </div>
@@ -102,8 +102,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text-dark" for="model">ชื่อครุภัณฑ์ : </label>
-                            <?php echo $row["model"]; ?>
+                            <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                            <?php echo $row["name"]; ?>
                           </div>
                         </div>
                       </td>
@@ -121,8 +121,8 @@ if (isset($_GET["id"])) {
                           <label class="text" for="receive_date">วันที่คืน : </label>
                           <?php echo $row["receive_date"]; ?>
                         </div>
-              </div>
-              </td>
+                    </div>
+                </td>
               </tr>
               <tr>
                 <td colspan="2">
@@ -146,7 +146,7 @@ if (isset($_GET["id"])) {
               </tr>
               </thead>
               </tbody>
-        </table>
+          </table>
         <br>
         <br>
         <div class="card-body">
