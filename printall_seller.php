@@ -25,13 +25,12 @@ require "service/connection.php";
 
 </head>
 
-<body id="page-top">
+<body onload="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include "navigation/navbar.php"; ?>
     </nav>
     <!-- End of Topbar -->
 
@@ -40,27 +39,10 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-md-1">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แสดงข้อมูลร้านค้า</h6>
-                <form class="form-inline">
-                  <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_seller.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_seller.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_seller.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
-                </form>
-            </div>
-          </div>
+    <div class="col-sm-8 offset-sm-2">
+      <div class="table-responsive">
+        <table width="600" border="1" align="center">
+          <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลร้านค้า</h6>
           <form>
             <div class="row">
               <div class="col-md-12">
@@ -73,7 +55,6 @@ require "service/connection.php";
                         <th>เบอร์โทร</th>
                         <th>แฟกต์</th>
                         <th>ที่อยู่</th>
-                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -96,14 +77,6 @@ require "service/connection.php";
                           <td><?php echo $row["tel"]; ?></td>
                           <td><?php echo $row["fax"]; ?></td>
                           <td><?php echo $row["address"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_seller.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-seller').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
                         </tr>
                       <?php
                       }
@@ -115,24 +88,6 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -143,13 +98,6 @@ require "service/connection.php";
   <!-- End of Main Content -->
 
   <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
-  </footer>
   <!-- End of Footer -->
 
   </div>

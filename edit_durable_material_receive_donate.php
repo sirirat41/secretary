@@ -67,7 +67,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่รับบริจาค</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
                     </div>
                   </div>
                 </div>

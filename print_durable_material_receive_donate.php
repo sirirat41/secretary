@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a WHERE d.id = $id";
-  $sql .= " and d.product_id = a.id ";
+  $sql = "SELECT d.*, m.code FROM durable_material_receive_donate as d, durable_material as m WHERE d.id = $id";
+  $sql .= " and d.product_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_articles_receive_donate</secretary>
+  <secretary style="display: none">display_durable_material_receive_donate</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรับบริจาค(ครุภัณฑ์)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรับบริจาค(วัสดุ)</h6>
           <form>
             <div class="card-body">
               <div class="row">

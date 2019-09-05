@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a WHERE d.id = $id";
-  $sql .= " and d.product_id = a.id ";
+  $sql = "SELECT r.*, a.code FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
+  $sql .= " and r.damage_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_articles_receive_donate</secretary>
+  <secretary style="display: none">display_durable_articles_repair</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรับบริจาค(ครุภัณฑ์)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
           <form>
             <div class="card-body">
               <div class="row">
@@ -68,16 +68,6 @@ if (isset($_GET["id"])) {
                 </div>
                 <tbody>
                   <thead>
-                    <tr>
-                      <td colspan="2">
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <label class="text" for="document_no">เลขที่เอกสาร : </label>
-                            <?php echo $row["document_no"]; ?>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
                     <tr>
                       <td colspan="2">
                         <div class="row">
@@ -92,26 +82,16 @@ if (isset($_GET["id"])) {
                       <td>
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="receive_date">วันที่รับบริจาค : </label>
-                            <?php echo $row["receive_date"]; ?>
+                            <label class="text" for="repair_date">วันที่ซ่อม : </label>
+                            <?php echo $row["repair_date"]; ?>
                           </div>
                       </td>
                       <td>
                         <div class="col-sm-12">
-                          <label class="text" for="donate_name">ชื่อผู้บริจาค : </label>
-                          <?php echo $row["donate_name"]; ?>
+                          <label class="text" for="place">สถานที่ซ่อม : </label>
+                          <?php echo $row["place"]; ?>
                         </div>
                     </div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label class="text" for="number">ราคา : </label>
-                      <?php echo $row["number"]; ?>
-                    </div>
-                  </div>
                 </td>
               </tr>
               <tr>
