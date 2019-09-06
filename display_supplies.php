@@ -59,7 +59,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
 
@@ -76,7 +76,7 @@ require "service/connection.php";
                         <th>#</th>
                         <th>ลำดับ</th>
                         <th>เลขที่ใบเบิก</th>
-                        <th>ชื่อวัสดุ</th>
+                        <th>รหัส</th>
                         <th>ประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>

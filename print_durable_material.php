@@ -74,7 +74,7 @@ if (isset($_GET["id"])) {
           <label class="text" for="attribute">
             <h7>ลักษณะ/คุณสมบัติ:</h7>
           </label>
-          <?php echo $row["attribute"]; ?>
+          <?php echo thainumDigit($row["attribute"]); ?>
         </div>
         <div class="col-sm-">
           <label class="text" for="short_goverment">
@@ -92,7 +92,7 @@ if (isset($_GET["id"])) {
         <label class="text" for="code">
           <h7>รหัส :</h7>
         </label>
-        <?php echo $row["code"]; ?>
+        <?php echo thainumDigit($row["code"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="name">
@@ -106,7 +106,7 @@ if (isset($_GET["id"])) {
         <label class="text" for="bill_no">
           <h7>เลขที่ใบเบิก : </h7>
         </label>
-        <?php echo $row["bill_no"]; ?>
+        <?php echo thainumDigit($row["bill_no"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="seller_id">
@@ -126,7 +126,7 @@ if (isset($_GET["id"])) {
         <label class="text" for="seller_address">
           <h7>ที่อยู่ :</h7>
         </label>
-        <?php echo $row["seller_address"]; ?>
+        <?php echo thainumDigit($row["seller_address"]); ?>
       </div>
     </div>
     <div class="row">
@@ -134,22 +134,22 @@ if (isset($_GET["id"])) {
         <label class="text" for="fullname">
           <h7>สถานที่ตั้ง :</h7>
         </label>
-        <?php echo $row["fullname"]; ?>/
+        <?php echo thainumDigit($row["fullname"]); ?>/
         <label class="text" for="bulding">อาคาร
         </label>
-        <?php echo $row["bulding"]; ?>/
+        <?php echo thainumDigit($row["bulding"]); ?>/
         <label class="text" for="floor">ชั้น
         </label>
-        <?php echo $row["floor"]; ?>
+        <?php echo thainumDigit($row["floor"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="seller_tel">
           <h7>โทรศัพท์/FAX :</h7>
         </label>
-        <?php echo $row["seller_tel"]; ?>/
+        <?php echo thainumDigit($row["seller_tel"]); ?>/
         <label class="text" for="seller_fax">
         </label>
-        <?php echo $row["seller_fax"]; ?>
+        <?php echo thainumDigit($row["seller_fax"]); ?>
       </div>
     </div>
     <style type="text/css" media="print">

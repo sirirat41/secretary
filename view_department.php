@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM department WHERE id =$id";
-  $sql .= " and status = 1 ";
+  $sql = "SELECT d.* FROM department as d WHERE d.id =$id";
+  $sql .= " and d.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
