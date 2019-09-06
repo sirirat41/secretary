@@ -74,7 +74,7 @@ require "service/connection.php";
                         <th>วันที่ขาย</th>
                         <th>รหัสวัสดุ</th>
                         <th>ชื่อผู้ซื้อ</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>

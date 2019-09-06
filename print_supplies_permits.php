@@ -54,9 +54,9 @@ if (isset($_GET["id"])) {
   <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
 
   <div class="row">
-    <div class="col-sm-8 offset-sm-2">
+    <div class="col-sm-12">
       <div class="table-responsive">
-        <table width="600" border="1" align="center">
+        <table width="900" border="1" align="center">
           <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุสิ้นเปลือง)</h6>
           <form>
             <div class="card-body">
@@ -157,7 +157,7 @@ if (isset($_GET["id"])) {
           </div>
           <br>
           <div class="row">
-            <div class="col-sm-5 offset-sm-7" align="right">
+            <div class="col-sm-4 offset-sm-8">
               <label class="text">พ.ต.ท.หญิง......................................................</label>
             </div>
           </div>

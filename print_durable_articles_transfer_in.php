@@ -33,150 +33,199 @@ if (isset($_GET["id"])) {
 
 </head>
 
-<body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
 
-   
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-    </nav>
-    <!-- End of Topbar -->
 
-    <!-- Begin Page Content -->
+
+  </nav>
+  <!-- End of Topbar -->
+
+  <body onLoad="window.print()">
     <div class="container-fluid">
-      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <div class="row">
-    <div class="col-sm-8 offset-sm-2">
-      <div class="table-responsive">
-        <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลโอนเข้า(ครุภัณฑ์)</h6>
-            
+
+    </div>
+</div>
+<!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
+<!-- เริ่มเขียนโค๊ดตรงนี้ -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="table-responsive">
+      <table width="900" border="1" align="center">
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลโอนเข้า(ครุภัณฑ์)</h6>
+
+    </div>
+    </nav>
+    <form>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12" align="center">
+            <div class="center" style="width: 200px;">
+              <img class="card-img-top" align="center" src="./img/bg.jpg">
             </div>
-            </nav>
-              <form> 
-                <div class="card-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card" style="width: 200px;">
-                      <img class="card-img-top" src="./img/bg.jpg" >
+          </div>
+          <tbody>
+            <thead>
+              <tr>
+                <td colspan="2">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="text-dark" for="document_no">เลขที่หนังสือ : </label>
+                        <?php echo $row["document_no"]; ?>
+                      </div>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                      <?php echo $row["code"]; ?>
                     </div>
                   </div>
-                  <div class="col-md-8">
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="document_no" >เลขที่หนังสือ : </label>
-                    <?php echo $row["document_no"]; ?>
+                    <div class="col-md-12">
+                      <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                      <?php echo $row["attribute"]; ?>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="col-md-12">
+                      <label class="text-dark" for="model">รุ่นแบบ : </label>
+                      <?php echo $row["model"]; ?>
+                  </div> 
+                 </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="transfer_date">วันที่โอน : </label>
+                      <?php echo $row["transfer_date"]; ?>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-12">
+                      <label class="text-dark" for="transfer_from">ชื่อผู้โอน : </label>
+                      <?php echo $row["transfer_from"]; ?>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                   <?php echo $row["code"]; ?>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="flag">หมายเหตุ : </label>
+                      <?php echo $row["flag"]; ?>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                   <?php echo $row["attribute"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="model">ชื่อครุภัณฑ์ : </label>
-                   <?php echo $row["model"]; ?>
-                  </div>
-                </div> 
-                <div class="row">
-                 <div class="col-md-6">
-                 <label class="text-dark" for="transfer_date">วันที่โอน : </label>
-                    <?php echo $row["transfer_date"]; ?>
-                  </div>
-                  </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="transfer_from">ชื่อผู้โอน : </label>
-                   <?php echo $row["transfer_from"]; ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                  <label class="text-dark" for="flag">หมายเหตุ : </label>
-                    <?php echo $row["flag"]; ?>
-                  </div>
-                </div>
-                </div>
-                </div>
-              </form>
+                </td>
+              </tr>
+            </table>
+            <br>
+        <br>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">ตรวจแล้วถูกต้อง</label>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-4 offset-sm-8" >
+              <label class="text">พ.ต.ท.หญิง......................................................</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              </label>
             </div>
           </div>
         </div>
-      </div>
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
-    </div>
-    <!-- /.container-fluid -->
-
-
-  </div>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- สิ้นสุดการเขียนตรงนี้ -->
+</div>
+<!-- /.container-fluid -->
+
+
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-  <script src="js/secretary.js"></script>
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+<script src="js/secretary.js"></script>
 
 </body>
 

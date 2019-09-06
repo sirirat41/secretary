@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
+  $sql = "SELECT r.*, a.code ,a.attribute , a.model FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
   $sql .= " and r.damage_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -50,61 +50,73 @@ if (isset($_GET["id"])) {
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
-
+            <nav class="navbar navbar-light bg-light">
+              <h6 class="m-0 font-weight-bold text-danger">
+                <i class="fas fa-business-time"></i> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+            
             </div>
             </nav>
-            <form>
-              <div class="card-body">
+              <form> 
+                <div class="card-body">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card" style="width: 200px;">
-                      <img class="card-img-top" src="./img/bg.jpg">
+                      <img class="card-img-top" src="./img/bg.jpg" >
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark" for="seq">ลำดับ : </label>
-                        <?php echo $row["seq"]; ?>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                        <?php echo $row["code"]; ?>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <label class="text-dark" for="repair_date">วันที่ซ่อม : </label>
-                        <?php echo $row["repair_date"]; ?>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark" for="place">สถานที่ซ่อม : </label>
-                        <?php echo $row["place"]; ?>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark" for="flag">หมายเหตุ : </label>
-                        <?php echo $row["flag"]; ?>
-                      </div>
-                    </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                  <label class="text-dark" for="seq" >ลำดับ : </label>
+                    <?php echo $row["seq"]; ?>
                   </div>
                 </div>
-            </form>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="damage_id">รหัสครุภัณฑ์ : </label>
+                   <?php echo $row["code"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                   <?php echo $row["attribute"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="model">ชื่อวัสดุ : </label>
+                   <?php echo $row["model"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                 <div class="col-md-6">
+                 <label class="text-dark" for="repair_date">วันที่ซ่อม : </label>
+                    <?php echo $row["repair_date"]; ?>
+                  </div>
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="place">สถานที่ซ่อม : </label>
+                   <?php echo $row["place"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                  <label class="text-dark" for="flag">หมายเหตุ : </label>
+                    <?php echo $row["flag"]; ?>
+                  </div>
+                </div>
+                </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 
 
   </div>

@@ -41,7 +41,7 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -59,7 +59,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_transfer_in.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_transfer_in.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                 </form>
@@ -74,20 +74,21 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
                         <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ชื่อครุภัณฑ์</th>
                         <th>ชื่อผู้โอน</th>
                         <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code FROM durable_articles as ar, durable_articles_transfer_in as trans";
+                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
@@ -96,9 +97,10 @@ require "service/connection.php";
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["document_no"]; ?></td>
                           <td><?php echo $row["transfer_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo $row["model"]; ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning"
@@ -108,7 +110,7 @@ require "service/connection.php";
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal"

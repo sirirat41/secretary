@@ -72,7 +72,6 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center">
                       <th>#</th>
-                        <th>เลขที่หนังสือ</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อครุภัณฑ์</th>
@@ -96,7 +95,6 @@ require "service/connection.php";
                         ?>
                         <tr class="text-center">
                         <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
