@@ -58,7 +58,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_user.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_user.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -76,13 +76,16 @@ require "service/connection.php";
                         <th>ชื่อผู้ใช้งาน</th>
                         <th>ชื่อ</th>
                         <th>นามสกุล</th>
+                        <th>ตำแหน่ง</th>
+                        <th>เบอร์โทร</th>
+                        <th>ประเภท</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT * FROM user";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect = "SELECT u.*,t.t_code FROM user as u ,u_type as t";
+                      $sqlSelect .= " WHERE u.u_type = t.id and u.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (username like '%$keyword%' or surname like '%$keyword%')";
@@ -96,6 +99,9 @@ require "service/connection.php";
                         <td><?php echo thainumDigit($row["username"]); ?></td>
                         <td><?php echo thainumDigit($row["surname"]); ?></td>
                         <td><?php echo $row["lastname"]; ?></td>
+                        <td><?php echo $row["position"]; ?></td>
+                        <td><?php echo $row["tel"]; ?></td>
+                        <td><?php echo $row["t_code"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_user.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -103,7 +109,7 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_user.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_user.php?id=<?php echo $row['id']; ?>" target="_blank">
                             <i class="fas fa-print"></i>
                           </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-user').val('<?php echo $id; ?>')">

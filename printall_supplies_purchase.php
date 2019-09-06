@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_transfer_in</secretary>
+  <secretary style="display: none">display_supplies_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,12 +22,7 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-  <style type="text/css" media="print">
-    @page {
-      size: landscape;
-    }
-   
-  </style>
+ 
  
 </head>
 
@@ -48,31 +43,29 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-         
-        
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
                      <form>
                         <thead>
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">วันที่โอน</font></th>
-                        <th><font size="2">รหัสครุภัณฑ์</font></th>
-                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
-                        <th><font size="2">รุ่นแบบ</font></th>
-                        <th><font size="2">ชื่อผู้โอน</font></th>
+                        <th><font size="2">เลขที่ใบสั่งซื้อ</font></th>
+                         <th><font size="2">วันที่จัดซื้อ</font></th>
+                         <th><font size="2">คุณสมบัติ/ลักษณะ</font></th>
+                        <th><font size="2">จำนวน</font></th>
+                        <th><font size="2">ชื่อผู้จัดซื้อ</font></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                      $sqlSelect = "SELECT p.*,a.attribute FROM supplies_purchase as p,supplies as a";
+                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 Group by order_no";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (p.order_no like '%$keyword%' or p.order_by like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -80,15 +73,14 @@ require "service/connection.php";
                         ?>
                       <tr class="text-center">
                         <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["transfer_date"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["order_no"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["purchase_date"]; ?></font></td>
                         <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["model"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["transfer_from"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["number"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["order_by"]; ?></font></td>
                       </tr>
                           <?php
                           }
-
                           ?>
                     </tbody>
                   </table>
@@ -121,13 +113,11 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-        
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
 
   </div>
   <!-- End of Main Content -->
@@ -196,8 +186,8 @@ require "service/connection.php";
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
-            <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
+          <form id="form-drop" method="post" action="service/service_drop_supplies_purchase.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>
         <div class="modal-footer">
