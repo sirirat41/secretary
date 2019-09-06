@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
+  $sql = "SELECT r.*, a.code ,a.attribute ,a.model FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
   $sql .= " and r.damage_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -54,9 +54,9 @@ if (isset($_GET["id"])) {
   <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
 
   <div class="row">
-    <div class="col-sm-8 offset-sm-2">
+    <div class="col-sm-12">
       <div class="table-responsive">
-        <table width="600" border="1" align="center">
+        <table width="800" border="1" align="center">
           <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
           <form>
             <div class="card-body">
@@ -78,6 +78,26 @@ if (isset($_GET["id"])) {
                         </div>
                       </td>
                     </tr>
+                    <tr>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                          <?php echo $row["attribute"]; ?>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="model">รุ่นแบบ : </label>
+                          <?php echo $row["model"]; ?>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                     <tr>
                       <td>
                         <div class="row">
@@ -117,7 +137,7 @@ if (isset($_GET["id"])) {
           </div>
           <br>
           <div class="row">
-            <div class="col-sm-5 offset-sm-7" align="right">
+            <div class="col-sm-4 offset-sm-8">
               <label class="text">พ.ต.ท.หญิง......................................................</label>
             </div>
           </div>

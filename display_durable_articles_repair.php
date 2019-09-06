@@ -40,12 +40,12 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1 ">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
+                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์คงทน)</h6>
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -58,9 +58,9 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_repair.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_repair.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
+                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_repair.php" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
                 </form>
             </div>
           </div>
@@ -76,14 +76,15 @@ require "service/connection.php";
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
                         <th>รหัสครุภัณฑ์(ชำรุด)</th>
-                        <th>สถานที่ซ่อม</th>
-                        <th>การทำงาน</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ชื่อครุภัณฑ์</th>
+                        <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT r.*, a.code FROM durable_articles_repair as r, durable_articles as a";
+                      $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.model FROM durable_articles_repair as r, durable_articles as a";
                       $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -94,27 +95,31 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["seq"]; ?></td>
-                          <td><?php echo $row["repair_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["place"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["seq"]; ?></td>
+                        <td><?php echo $row["repair_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo $row["model"]; ?></td>
+                        <td class="td-actions text-center">
+                        <button type="button" rel="tooltip" class="btn btn-warning"
+                            onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
+                       
                             <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_repair.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
+                            data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-                          </td>
-                        </tr>
+                        </td>
+                      </tr>
                       <?php
                       }
                       ?>
@@ -218,7 +223,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลซ่อมวัสดุใช่หรือไม่
+          คุณต้องการลบข้อมูลซ่อมครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_repair.php">
             <input type="hidden" id="remove-repair" name="repair_id">
         </div>

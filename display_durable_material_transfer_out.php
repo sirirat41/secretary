@@ -40,7 +40,7 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -58,7 +58,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_transfer_out.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_transfer_out.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                 </form>
@@ -73,16 +73,17 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
                         <th>รหัสวัสดุ</th>
-                        <th>ชื่อผู้โอน</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ชื่อครุภัณฑ์</th>
+                        <th>ชื่อผู้โอนให้</th>
                         <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_out as trans";
+                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute, ar.name FROM durable_material as ar, durable_material_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -95,9 +96,10 @@ require "service/connection.php";
                         ?>
                       <tr class="text-center">
                         <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["document_no"]; ?></td>
                         <td><?php echo $row["transfer_date"]; ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo $row["name"]; ?></td>
                         <td><?php echo $row["transfer_to"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
@@ -106,7 +108,7 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">

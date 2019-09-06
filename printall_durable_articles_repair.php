@@ -58,13 +58,16 @@ require "service/connection.php";
                           <font size="2">รหัสครุภัณฑ์(ชำรุด)</font>
                         </th>
                         <th>
-                          <font size="2">สถานที่ซ่อม</font>
+                          <font size="2">ลักษณะ/คุณสมบัติ</font>
+                        </th>
+                        <th>
+                          <font size="2">รุ่นแบบ</font>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT r.*, a.code FROM durable_articles_repair as r, durable_articles as a";
+                      $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.model FROM durable_articles_repair as r, durable_articles as a";
                       $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -85,7 +88,10 @@ require "service/connection.php";
                             <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
                           </td>
                           <td>
-                            <font size="2"><?php echo $row["place"]; ?></font>
+                            <font size="2"><?php echo $row["attribute"]; ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo $row["model"]; ?></font>
                           </td>
                         <?php
                         }
@@ -171,7 +177,7 @@ require "service/connection.php";
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
+          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>

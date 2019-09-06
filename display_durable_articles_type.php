@@ -58,7 +58,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_type.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_type.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                 </form>
@@ -99,9 +99,6 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_type.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>

@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT t.*, a.code ,a.attribute , a.name FROM durable_material as a,durable_material_transfer_in as t WHERE t.id = $id";
+  $sql = "SELECT t.*, a.code ,a.attribute , a.name FROM durable_material as a,durable_material_transfer_out as t WHERE t.id = $id";
   $sql .= " and t.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -114,8 +114,8 @@ if (isset($_GET["id"])) {
                 </td>
                 <td>
                     <div class="col-md-12">
-                      <label class="text-dark" for="transfer_from">ชื่อผู้โอน : </label>
-                      <?php echo $row["transfer_from"]; ?>
+                      <label class="text-dark" for="transfer_to">ชื่อผู้โอนให้ : </label>
+                      <?php echo $row["transfer_to"]; ?>
                     </div>
                   </div>
                 </td>
@@ -131,7 +131,7 @@ if (isset($_GET["id"])) {
                 </td>
               </tr>
             </table>
-              <br>
+            <br>
         <br>
         <div class="card-body">
           <div class="row">

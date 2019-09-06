@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code FROM durable_material as a,durable_material_repair as r WHERE r.id = $id";
+  $sql = "SELECT r.*, a.code ,a.attribute , a.name FROM durable_material as a,durable_material_repair as r WHERE r.id = $id";
   $sql .= " and r.damage_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -75,6 +75,18 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                  <label class="text-dark" for="damage_id">รหัสครุภัณฑ์ : </label>
                    <?php echo $row["code"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                   <?php echo $row["attribute"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                   <?php echo $row["name"]; ?>
                   </div>
                 </div>
                 <div class="row">

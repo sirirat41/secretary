@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, m.code FROM durable_material_purchase as p ,durable_material as m WHERE p.product_id = m.id";
+  $sql = "SELECT p.*, m.code, m.attribute ,m.name FROM durable_material_purchase as p ,durable_material as m WHERE p.product_id = m.id";
   $sql .= " and m.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -80,6 +80,24 @@ if (isset($_GET["id"])) {
                       <?php echo $row["purchase_date"]; ?>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="product_id">รหัสครุภัณฑ์ : </label>
+                      <?php echo $row["product_id"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                   <?php echo $row["attribute"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                   <?php echo $row["name"]; ?>
+                  </div>
+                </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="order_by">ชื่อผู้จัดซื้อ : </label>
