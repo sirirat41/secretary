@@ -97,13 +97,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6 ">
                     <div class="form-group">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate" value="<?php echo $newpermitDate; ?>">
+                      <input type="date" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate" value="<?php echo $newpermitDate; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>
