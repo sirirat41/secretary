@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display : none">display_durable_material_damage</secretary>
+  <secretary style="display: none">display_durable_material_damage</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,65 +22,48 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-
-
+  <style type="text/css" media="print">
+    @page {
+      size: landscape;
+    }
+   
+  </style>
+ 
 </head>
 
-<body id="page-top">
+
+<body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php include "navigation/navbar.php"; ?>
+
 
     </nav>
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->
+
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-10 offset-1">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด(วัสดุคงทน)</h6>
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                  <div>
-                    <button class="btn btn-outline-danger" type="submit">
-                      <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_damage.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_damage.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material_damage.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
-                </form>
-            </div>
-          </div>
-          </nav>
-          <form>
+        <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
+                <table width="100%" border="1" class="landscape">
+                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลครุภัณฑ์</h6>
+                     <form>
+                        <thead>
                       <tr class="text-center">
-                        <th>#</th>
-                        <th>รหัสวัสดุ</th>
-                        <th>วันที่ชำรุด</th>
-                        <th>การทำงาน</th>
-                      </tr class="text-center">
+                        <th><font size="2">ลำดับ</font></th>
+                        <th><font size="2">รหัส</font></th>
+                        <th><font size="2">วันที่ชำรุด</font></th>
+                        <th><font size="2">หมายเหตุ</font></th>
+                      </tr>
                     </thead>
                     <tbody>
-                      <?php
+                    <?php
                       $sqlSelect = "SELECT da.*, m.code FROM durable_material_damage as da, durable_material as m";
                       $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
@@ -92,27 +75,14 @@ require "service/connection.php";
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["damage_date"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_damage.php?id=<?php echo $row['id']; ?>" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["damage_date"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["flag"]); ?></font></td>
+                      </tr>
                           <?php
                           }
                           ?>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -120,38 +90,18 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
+
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-      </div>
-    </div>
+   
   </footer>
   <!-- End of Footer -->
 
@@ -202,7 +152,6 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -213,15 +162,14 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลชำรุดของวัสดุ (คงทน) ใช่หรือไม่
-
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_damage.php">
-            <input type="hidden" id="remove-material" name="damage_id">
+          คุณต้องการลบข้อมูลชำรุด (วัสดุคงทน) ใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>
