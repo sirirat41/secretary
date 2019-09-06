@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_repair</secretary>
+  <secretary style="display: none">display_durable_material_repair_history</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,6 @@ if (isset($_GET["id"])) {
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> ข้อมูลรายละเอียดการซ่อม(วัสดุคงทน)</h6>
-
             </div>
             </nav>
             <form>

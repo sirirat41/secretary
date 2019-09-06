@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_repair</secretary>
+  <secretary style="display: none">display_durable_material_sell</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
+                  <i class="fas fa-business-time"></i> ข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
             </div>
             </nav>
             <form>

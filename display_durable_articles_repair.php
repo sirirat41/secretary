@@ -45,7 +45,7 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
+                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -58,7 +58,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_repair.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="test.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_repair.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -75,9 +75,9 @@ require "service/connection.php";
                         <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
-                        <th>รหัสวัสดุ(ชำรุด)</th>
+                        <th>รหัสครุภัณฑ์(ชำรุด)</th>
                         <th>สถานที่ซ่อม</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
