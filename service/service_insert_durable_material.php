@@ -59,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $sqlInsertMaterial = "INSERT INTO durable_material ( seq, code, type, attribute, bill_no, department_id, ";
-        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year)";
+        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , name)";
         $sqlInsertMaterial .= " VALUES($seq,'$newCode', $type, '$attribute', '$bill_no', $department_id ,";
-        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year)";
+        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , $name)";
 
 
         mysqli_query($conn, $sqlInsertMaterial) or die(mysqli_error($conn));

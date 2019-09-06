@@ -31,8 +31,24 @@ if (isset($_GET["id"])) {
 
 </head>
 
-<body style="padding: 16px">
-  <div class="container-fluid">
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+
+    <!-- End of Topbar -->
+
+
+    <!-- Begin Page Content -->
+
+    <body onLoad="window.print()">
+      <div class="container-fluid">
+      </div>
+    </body>
+  </div>
+
+  <body style="padding: 16px">
     <div class="row">
       <div class="col-sm-12" align="center">
         <h7>ทะเบียนคุมทรัพย์สิน</h7>
@@ -69,153 +85,154 @@ if (isset($_GET["id"])) {
     <div class="col-sm-3">
       <?php echo $row["short_goverment"]; ?>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="model">
-        <h7>รุ่นแบบ :</h7>
-      </label>
-      <?php echo $row["model"]; ?>
-
     </div>
-    <div class="col-sm-6">
-      <label class="text" for="code">
-        <h7>รหัส :</h7>
-      </label>
-      <?php echo $row["code"]; ?>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="bill_no">
-        <h7>เลขที่ใบเบิก : </h7>
-      </label>
-      <?php echo $row["bill_no"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="asset_no">
-        <h7>เลขสินทรัพย์ :</h7>
-      </label>
-      <?php echo $row["asset_no"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="budget">
-        <h7>งบประมาณ : </h7>
-      </label>
-      <?php echo $row["budget"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="d_gen">
-        <h7>เอกสารสำรองเงิน : </h7>
-      </label>
-      <?php echo $row["d_gen"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="book_no">
-        <h7>เลขที่หนังสือ :</h7>
-      </label>
-      <?php echo $row["book_no"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="seller_id">
-        <h7>ชื่อผู้ขาย :</h7>
-      </label>
-      <?php echo $row["seller_name"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="shortname">
-        <h7>หน่วยงานที่รับผิดชอบ :</h7>
-      </label>
-      <?php echo $row["shortname"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="seller_address">
-        <h7>ที่อยู่ :</h7>
-      </label>
-      <?php echo $row["seller_address"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="fullname">
-        <h7>สถานที่ตั้ง :</h7>
-      </label>
-      <?php echo $row["fullname"]; ?>/
-      <label class="textk" for="bulding">อาคาร
-      </label>
-      <?php echo $row["bulding"]; ?>/
-      <label class="text" for="floor">ชั้น
-      </label>
-      <?php echo $row["floor"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="seller_tel">
-        <h7>โทรศัพท์/FAX :</h7>
-      </label>
-      <?php echo $row["seller_tel"]; ?>/
-      <label class="text" for="seller_fax">
-      </label>
-      <?php echo $row["seller_fax"]; ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label class="text" for="money_type">
-        <h7>ประเภทเงิน :</h7>
-      </label>
-      <?php echo $row["money_type"]; ?>
-    </div>
-    <div class="col-sm-6">
-      <label class="text" for="acquiring">
-        <h7>วิธีการได้มา :</h7>
-      </label>
-      <?php echo $row["acquiring"]; ?>
-    </div>
-  </div>
-  <style type="text/css" media="print">
-    @page {
-      size: landscape;
-    }
-  </style>
-  <br>
-  <form>
     <div class="row">
-      <div class="col-12">
-        <div class="table-responsive">
-          <table class='border-color-gray' align="center" cellpadding="5" cellspacing="5" border="1" width="100%" >
-            <thead>
-              <tr class="text-center">
-                <th>วัน/เดือน/ปี</th>
-                <th>เลขที่เอกสาร</th>
-                <th>รายการ</th>
-                <th>จำนวนหน่วย</th>
-                <th>ราคาต่อหน่วย/ชุด/กลุ่ม</th>
-                <th>อายุการใช้งาน</th>
-                <th>อัตราค่าเสื่อมราคา</th>
-                <th>ค่าเสื่อมราคาประจำปี</th>
-                <th>ค่าเสื่อมราคาสะสม</th>
-                <th>มูลค่าสุทธิ</th>
-                <th>หมายเหตุ</th>
-              </tr class="text-center">
-            </thead>
-          </table>
-        </div>
+      <div class="col-sm-6">
+        <label class="text" for="model">
+          <h7>รุ่นแบบ :</h7>
+        </label>
+        <?php echo $row["model"]; ?>
+
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="code">
+          <h7>รหัส :</h7>
+        </label>
+        <?php echo $row["code"]; ?>
+
       </div>
     </div>
-  </form>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="bill_no">
+          <h7>เลขที่ใบเบิก : </h7>
+        </label>
+        <?php echo $row["bill_no"]; ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="asset_no">
+          <h7>เลขสินทรัพย์ :</h7>
+        </label>
+        <?php echo $row["asset_no"]; ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="budget">
+          <h7>งบประมาณ : </h7>
+        </label>
+        <?php echo $row["budget"]; ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="d_gen">
+          <h7>เอกสารสำรองเงิน : </h7>
+        </label>
+        <?php echo $row["d_gen"]; ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="book_no">
+          <h7>เลขที่หนังสือ :</h7>
+        </label>
+        <?php echo $row["book_no"]; ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="seller_id">
+          <h7>ชื่อผู้ขาย :</h7>
+        </label>
+        <?php echo $row["seller_name"]; ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="shortname">
+          <h7>หน่วยงานที่รับผิดชอบ :</h7>
+        </label>
+        <?php echo $row["shortname"]; ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="seller_address">
+          <h7>ที่อยู่ :</h7>
+        </label>
+        <?php echo $row["seller_address"]; ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="fullname">
+          <h7>สถานที่ตั้ง :</h7>
+        </label>
+        <?php echo $row["fullname"]; ?>/
+        <label class="textk" for="bulding">อาคาร
+        </label>
+        <?php echo $row["bulding"]; ?>/
+        <label class="text" for="floor">ชั้น
+        </label>
+        <?php echo $row["floor"]; ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="seller_tel">
+          <h7>โทรศัพท์/FAX :</h7>
+        </label>
+        <?php echo $row["seller_tel"]; ?>/
+        <label class="text" for="seller_fax">
+        </label>
+        <?php echo $row["seller_fax"]; ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="money_type">
+          <h7>ประเภทเงิน :</h7>
+        </label>
+        <?php echo $row["money_type"]; ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text" for="acquiring">
+          <h7>วิธีการได้มา :</h7>
+        </label>
+        <?php echo $row["acquiring"]; ?>
+      </div>
+    </div>
+    <style type="text/css" media="print">
+      @page {
+        size: landscape;
+      }
+    </style>
+    <br>
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class='border-color-gray' align="center" cellpadding="5" cellspacing="5" border="1" width="100%">
+              <thead>
+                <tr class="text-center">
+                  <th>วัน/เดือน/ปี</th>
+                  <th>เลขที่เอกสาร</th>
+                  <th>รายการ</th>
+                  <th>จำนวนหน่วย</th>
+                  <th>ราคาต่อหน่วย/ชุด/กลุ่ม</th>
+                  <th>อายุการใช้งาน</th>
+                  <th>อัตราค่าเสื่อมราคา</th>
+                  <th>ค่าเสื่อมราคาประจำปี</th>
+                  <th>ค่าเสื่อมราคาสะสม</th>
+                  <th>มูลค่าสุทธิ</th>
+                  <th>หมายเหตุ</th>
+                </tr class="text-center">
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </body>
 
 </html>

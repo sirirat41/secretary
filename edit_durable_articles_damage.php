@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles  as a , durable_articles_damage as da WHERE a.id = $id and da.product_id = a.id ";
+  $sql = "SELECT * FROM durable_articles_damage WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["damage_date"];
@@ -103,7 +103,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">หมายเหตุ</label>
+                      <label class="bmd-label-floating" for="flag">หมายเหตุ</label>
                       <input class="form-control" name="flag" type="text" placeholder="flag" id="flag" value="<?php echo $item["flag"]; ?>">
                     </div>
                   </div>
@@ -264,20 +264,20 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["picture"]; ?></td>
+                              <td><?php echo $row["seq"]; ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
 
-                            </td>
-                          </tr>
+                              </td>
+                            </tr>
                           <?php
                           }
 

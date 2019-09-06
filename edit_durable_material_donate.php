@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material  as a , durable_material_donate as do WHERE a.id = $id and do.product_id = a.id ";
+  $sql = "SELECT * FROM durable_material_donate WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["receive_date"];
@@ -276,19 +276,19 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                            </td>
-                          </tr>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["picture"]; ?></td>
+                              <td><?php echo $row["seq"]; ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
+                              </td>
+                            </tr>
                           <?php
                           }
                           ?>

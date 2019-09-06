@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute , a.model, d.fullname FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and p.department_id = d.id";
+  $sql = "SELECT do.*, a.code FROM durable_articles_donate as do ,durable_articles as a WHERE do.id = $id";
+  $sql .= " and do.product_id = a.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -20,8 +20,8 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <title>Dashboard</title>
+  <secretary style="display: none">display_durable_articles_donate</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,7 +32,6 @@ if (isset($_GET["id"])) {
   <link href="css/secretary.css" rel="stylesheet">
 
 </head>
-
 
 <body id="page-top">
 
@@ -50,92 +49,72 @@ if (isset($_GET["id"])) {
 
       </div>
   </div>
-  <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
 
+  <!-- เริ่มเขียนโค๊ดตรงนี้ -->
   <div class="row">
-    <div class="col-sm-8 offset-sm-2">
+    <div class="col-md-10 offset-1">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-          <form>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12" align="center">
-                  <div class="center" style="width: 200px;">
-                    <img class="card-img-top" align="center" src="./img/bg.jpg">
-                  </div>
-                </div>
-              </div>
-              <tbody>
-                <thead>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <label class="text" for="book_no">เลขที่หนังสือ : </label>
-                          <?php echo $row["book_no"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                          <?php echo $row["code"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                          <?php echo $row["attribute"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="model">ชื่อครุภัณฑ์ : </label>
-                          <?php echo $row["model"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text" for="permit_date">วันที่ยืม : </label>
-                          <?php echo $row["permit_date"]; ?>
-                        </div>
-                    </td>
-                    <td>
-                      <div class="col-sm-12">
-                        <label class="text" for="receive_date">วันที่คืน : </label>
-                        <?php echo $row["receive_date"]; ?>
-                      </div>
-                    </td>
-                  </tr>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลบริจาคออก (ครุภัณฑ์)</h6>
+          <form class="form-inline">
+            <div>
+          </form>
+      </div>
+    </div>
+    </nav>
+    <form>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12" align="center">
+            <div class="center" style="width: 200px;">
+              <img class="card-img-top" align="center" src="./img/bg.jpg">
             </div>
+          </div>
+        </div>
+        <tbody>
+          <thead>
             <tr>
               <td colspan="2">
                 <div class="row">
-                  <div class="col-sm-12">
-                    <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
-                    <?php echo $row["fullname"]; ?>
+                  <div class="col-sm-6">
+                    <label class="text" for="document_no">เลขที่เอกสาร : </label>
+                    <?php echo $row["document_no"]; ?>
                   </div>
                 </div>
               </td>
             </tr>
             <tr>
               <td colspan="2">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label class="text" for="receive_date">วันที่บริจาค : </label>
+                    <?php echo $row["receive_date"]; ?>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                    <?php echo $row["code"]; ?>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>
+                    <?php echo $row["donate_name"]; ?>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text" for="flag">หมายเหตุ : </label>
@@ -144,8 +123,8 @@ if (isset($_GET["id"])) {
                 </div>
               </td>
             </tr>
-            </thead>
-            </tbody>
+          </thead>
+        </tbody>
         </table>
         <br>
         <br>
@@ -174,9 +153,8 @@ if (isset($_GET["id"])) {
           </div>
         </div>
       </div>
-    </div>
-    </form>
   </div>
+  </form>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
@@ -186,7 +164,13 @@ if (isset($_GET["id"])) {
   <!-- End of Main Content -->
 
   <!-- Footer -->
-
+  <!-- <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer> -->
   <!-- End of Footer -->
 
   </div>

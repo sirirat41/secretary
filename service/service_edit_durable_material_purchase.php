@@ -1,6 +1,6 @@
-<?php 
+<?php
 require 'connection.php';
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     //purchase data
     $id = $_GET["id"];
     $orderNo = $_POST["order_no"];
@@ -18,17 +18,18 @@ if(isset($_GET['id'])) {
     //material data
     $shortGoverment = $_POST["short_goverment"];
     $type = $_POST["type"];
-    $attribute =$_POST["attribute"];
+    $attribute = $_POST["attribute"];
     $billNo = $_POST["bill_no"];
     $departmentID = $_POST["department_id"];
     $sellerID = $_POST["seller_id"];
     $unit = $_POST["unit"];
     $price = $_POST["price"];
     $durableYear = $_POST["durable_year"];
+    $name = $_POST["name"];
 
-    $updateMaterial = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
+    $updateMaterial = "UPDATE durable_material SET short_goverment = '$shortGoverment',";
     $updateMaterial .= " type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";
-    $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear";
+    $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name'";
     $updateMaterial .= " WHERE id = $id";
     mysqli_query($conn, $updateMaterial) or die("Cannot update material" . mysqli_error($conn));
     header('Location: ../display_durable_material.php?message=แก้ไขข้อมูลสำเร็จ');

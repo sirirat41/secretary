@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*, t.name FROM supplies as s ,durable_material_type as t, department as d, seller as se, unit as u WHERE s.id = $id";
-  $sql .= " and s.type = t.id and s.departmen_id = d.id and s.seller_id = se.id and s.unit = u.id ";
+  $sql = "SELECT s.*, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM supplies as s ,durable_articles_type as t , seller as se , department as d , unit as un WHERE s.id = $id";
+  $sql .= " and s.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_supplies</secretary>
+  <secretary style="display: none">supplies</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,14 +47,17 @@ if (isset($_GET["id"])) {
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสินเปลือง</h6>
+                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h6>
                 <form class="form-inline">
                   <div>
+                    <button class="btn btn-outline-danger" type="button">
+                      <i class="fas fa-qrcode"></i>
+                    </button>
                 </form>
             </div>
           </div>
@@ -70,14 +73,26 @@ if (isset($_GET["id"])) {
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="short_goverment">ส่วนของราชการ (ย่อ) : </label>
-                      <?php echo $row["short_goverment"]; ?>
+                      <label class="text-dark" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
+                      <?php echo $row["fullname"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
+                      <?php echo $row["shortname"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="code">รหัส : </label>
+                      <?php echo $row["code"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
                       <label class="text-dark" for="type">ประเภทวัสดุ : </label>
-                      <?php echo $row["type"]; ?>
+                      <?php echo $row["durable_material_type_name"]; ?>
                     </div>
                   </div>
                   <div class="row">
@@ -85,38 +100,37 @@ if (isset($_GET["id"])) {
                       <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
                       <?php echo $row["attribute"]; ?>
                     </div>
+                    <div class="col-md-6">
+                      <label class="text-dark" for="unit">หน่วยนับ : </label>
+                      <?php echo $row["unit_name"]; ?>
+                    </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <label class="text-dark" for="name">ชื่อวัสดุ : </label>
                       <?php echo $row["name"]; ?>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
-                      <label class="text-dark" for="department_id">หน่วยงาน : </label>
-                      <?php echo $row["department_id"]; ?>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <label class="text-dark" for="bill_no">เลขที่ใบเบิก : </label>
                       <?php echo $row["bill_no"]; ?>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
-                      <label class="text-dark" for="unit">หน่วยนับ : </label>
-                      <?php echo $row["unit"]; ?>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <label class="text-dark" for="price">จำนวนเงิน : </label>
                       <?php echo $row["price"]; ?>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="seller_id">ชื่อผู้ขาย : </label>
+                      <?php echo $row["seller_name"]; ?>
+                    </div>
+                  </div>
                 </div>
+              </div>
           </form>
         </div>
       </div>

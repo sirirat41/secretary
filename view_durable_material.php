@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT m.*, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_material as m ,durable_material_type as t , seller as se , department as d , unit as un WHERE m.id = $id";
+  $sql = "SELECT m.*, m.name as durable_material_name, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_material as m ,durable_material_type as t , seller as se , department as d , unit as un WHERE m.id = $id";
   $sql .= " and m.type = t.id and m.seller_id = se.id and m.department_id = d.id and m.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -79,8 +79,14 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
-                      <?php echo $row["shortname"]; ?>
+                      <label class="text-dark" for="short_goverment">หน่วยงาน (ย่อ) : </label>
+                      <?php echo $row["short_goverment"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="code">รหัสวัสดุ (คงทน) : </label>
+                      <?php echo $row["code"]; ?>
                     </div>
                   </div>
                   <div class="row">

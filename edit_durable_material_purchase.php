@@ -121,7 +121,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="short_goverment	" name="short_goverment	" value="<?php echo $item["short_goverment"]; ?>">
+                      <input class="form-control" type="text" placeholder="short_goverment	" name="short_goverment	"  name="short_goverment"value="<?php echo $item["short_goverment"]; ?>">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
@@ -154,7 +154,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
-                      <input class="form-control" type="text" placeholder="namemeterial" name="name" value="<?php echo $item["name"]; ?>">
+                      <input class="form-control" type="text" placeholder="name" name="name" value="<?php echo $item["name"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -410,7 +410,7 @@ if (isset($_GET["id"])) {
                             <th>เลขที่ใบสั่งซื้อ</th>
                             <th>วันที่จัดซื้อ</th>
                             <th>ชื่อผู้จัดซื้อ</th>
-                            <th>รหัสวัสดุ/th>
+                            <th>รหัสวัสดุ</th>
                             <th>จำนวน</th>
                             <th>การทำงาน</th>
                           </tr>
