@@ -6,18 +6,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $damagedate = $_POST["damage_date"];
     $flag = $_POST["flag"];
 
-    $sql = "INSERT INTO durable_articles_damage(product_id, damage_date, flag)";
-    $sql .= " VALUES($productid, '$damagedate', '$flag')";
+    $sql = "INSERT INTO durable_articles_damage(product_id ,damage_date ,flag)";
+    $sql .= " VALUES($productid ,'$damagedate' ,'$flag')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Insert data complete";
     } else {
-        echo $sql . "<br/>";
-        echo mysqli_error($conn);
+        echo "Can't insert data, please check this:" . mysqli_error($conn);
     }
 
 } else {
-    
+
 
 }
 header('Location: ../display_durable_articles_damage.php?message=เพิ่มข้อมูลสำเร็จ');

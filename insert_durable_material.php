@@ -133,7 +133,7 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
-                      <input class="form-control" type="text" placeholder="namemeterial" name="name">
+                      <input class="form-control" type="text" placeholder="name" name="name">
                     </div>
                   </div>
                 </div>

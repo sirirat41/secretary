@@ -75,6 +75,7 @@ require "service/connection.php";
                         <th>#</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>วันที่ชำรุด</th>
+                        <th>หมายเหตุ</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -94,6 +95,7 @@ require "service/connection.php";
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["damage_date"]; ?></td>
+                        <td><?php echo $row["flag"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -101,7 +103,7 @@ require "service/connection.php";
                           <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_damage.php?id=<?php echo $row['id']; ?>" target="_blank">
                             <i class="fas fa-print"></i>
                           </a>
                           <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">

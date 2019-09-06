@@ -97,27 +97,27 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["document_no"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["donate_name"]; ?></td>
-                        <td><?php echo $row["receive_date"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="test.php" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                      </tr>
+                        <tr class="text-center">
+                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo $row["document_no"]; ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["donate_name"]; ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_donate.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
                       <?php
                       }
 
