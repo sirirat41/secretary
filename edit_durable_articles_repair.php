@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
+                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
                     </div>
                   </div>
                 </div>
@@ -300,8 +300,6 @@ if (isset($_GET["id"])) {
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
       </div>
     </div>
-  </div>
-  </div>
   <script>
     function search() {
       var kw = $("#keyword").val();
