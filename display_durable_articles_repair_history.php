@@ -74,7 +74,7 @@ require "service/connection.php";
                         <th>วันที่ซ่อม</th>
                         <th>รหัสการซ่อม(ครุภัณฑ์)</th>
                         <th>รายการซ่อม(ครุภัณฑ์)</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>

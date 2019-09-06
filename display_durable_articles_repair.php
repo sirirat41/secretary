@@ -78,7 +78,7 @@ require "service/connection.php";
                         <th>รหัสครุภัณฑ์(ชำรุด)</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อครุภัณฑ์</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>

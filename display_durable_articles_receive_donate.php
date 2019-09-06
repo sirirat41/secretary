@@ -110,7 +110,6 @@ require "service/connection.php";
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-receive_donate').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-
                           </td>
                         </tr>
                       <?php
