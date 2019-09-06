@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute , a.model, d.fullname FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and p.department_id = d.id";
+  $sql = "SELECT p.*, a.code ,a.attribute ,a.model FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
+  $sql .= " and p.product_id = a.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_articles_permits</secretary>
+  <secretary style="display: none">display_durable_articles_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="900" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลจัดซื้อ (ครุภัณฑ์)</h6>
         <form>
           <div class="card-body">
             <div class="row">
@@ -68,27 +68,34 @@ if (isset($_GET["id"])) {
               <tbody>
                 <thead>
                   <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <label class="text" for="book_no">เลขที่หนังสือ : </label>
-                          <?php echo $row["book_no"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
+                    <td>
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                          <?php echo $row["code"]; ?>
+                          <label class="text-dark" for="order_no">เลขที่ใบสั่งซื้อ : </label>
+                          <?php echo $row["order_no"]; ?>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
+                          <?php echo $row["purchase_date"]; ?>
                         </div>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="2">
+                    <td>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="product_id">รหัสครุภัณฑ์ : </label>
+                          <?php echo $row["product_id"]; ?>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
@@ -111,40 +118,48 @@ if (isset($_GET["id"])) {
                     <td>
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text" for="permit_date">วันที่ยืม : </label>
-                          <?php echo $row["permit_date"]; ?>
+                          <label class="text-dark" for="order_by">ชื่อผู้จัดซื้อ : </label>
+                          <?php echo $row["order_by"]; ?>
                         </div>
                     </td>
                     <td>
-                      <div class="col-sm-12">
-                        <label class="text" for="receive_date">วันที่คืน : </label>
-                        <?php echo $row["receive_date"]; ?>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="receiver">ชื่อผู้รับ : </label>
+                          <?php echo $row["receiver"]; ?>
+                        </div>
                       </div>
-            </div>
-            </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
-                    <?php echo $row["fullname"]; ?>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="text" for="flag">หมายเหตุ : </label>
-                    <?php echo $row["flag"]; ?>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            </thead>
-            </tbody>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
+                          <?php echo $row["receive_date"]; ?>
+                        </div>
+                    </td>
+                    <td>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="number">จำนวนปีครุภัณฑ์ : </label>
+                          <?php echo $row["number"]; ?>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="receive_address">สถานที่จัดส่ง : </label>
+                          <?php echo $row["receive_address"]; ?>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+              </tbody>
       </table>
       <br>
       <br>

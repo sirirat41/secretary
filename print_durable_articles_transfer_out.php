@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT t.*, a.code ,a.attribute , a.name FROM durable_material as a,durable_material_transfer_in as t WHERE t.id = $id";
+  $sql = "SELECT t.*, a.code ,a.attribute , a.model FROM durable_articles as a,durable_articles_transfer_out as t WHERE t.id = $id";
   $sql .= " and t.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_material_permits</secretary>
+  <secretary style="display: none">display_durable_articles_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -98,8 +98,8 @@ if (isset($_GET["id"])) {
                     </td>
                     <td>
                     <div class="col-md-12">
-                      <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
-                      <?php echo $row["name"]; ?>
+                      <label class="text-dark" for="model">รุ่นแบบ : </label>
+                      <?php echo $row["model"]; ?>
                   </div> 
                  </div>
                 </td>
@@ -114,8 +114,8 @@ if (isset($_GET["id"])) {
                 </td>
                 <td>
                     <div class="col-md-12">
-                      <label class="text-dark" for="transfer_from">ชื่อผู้โอน : </label>
-                      <?php echo $row["transfer_from"]; ?>
+                      <label class="text-dark" for="transfer_to">ชื่อผู้โอนให้ : </label>
+                      <?php echo $row["transfer_to"]; ?>
                     </div>
                   </div>
                 </td>
@@ -131,7 +131,7 @@ if (isset($_GET["id"])) {
                 </td>
               </tr>
             </table>
-              <br>
+            <br>
         <br>
         <div class="card-body">
           <div class="row">

@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute , a.name, d.fullname FROM durable_material as a,durable_material_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and p.department_id = d.id";
+  $sql = "SELECT r.*, a.code ,a.attribute ,a.name FROM durable_material as a,durable_material_repair as r WHERE r.id = $id";
+  $sql .= " and r.damage_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_material_permits</secretary>
+  <secretary style="display: none">display_durable_material_repair</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,8 +56,8 @@ if (isset($_GET["id"])) {
   <div class="row">
     <div class="col-sm-12">
       <div class="table-responsive">
-        <table width="900" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
+        <table width="800" border="1" align="center">
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
           <form>
             <div class="card-body">
               <div class="row">
@@ -71,67 +71,47 @@ if (isset($_GET["id"])) {
                     <tr>
                       <td colspan="2">
                         <div class="row">
-                          <div class="col-sm-6">
-                            <label class="text" for="book_no">เลขที่หนังสือ : </label>
-                            <?php echo $row["book_no"]; ?>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="2">
-                        <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="code">รหัสวัสดุ : </label>
+                            <label class="text" for="code">รหัสครุภัณฑ์ : </label>
                             <?php echo $row["code"]; ?>
                           </div>
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="2">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                            <?php echo $row["attribute"]; ?>
-                          </div>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                          <?php echo $row["attribute"]; ?>
                         </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="2">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                            <?php echo $row["name"]; ?>
-                          </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
+                          <?php echo $row["name"]; ?>
                         </div>
-                      </td>
-                    </tr>
+                      </div>
+                    </td>
+                  </tr>
                     <tr>
                       <td>
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="permit_date">วันที่ยืม : </label>
-                            <?php echo $row["permit_date"]; ?>
+                            <label class="text" for="repair_date">วันที่ซ่อม : </label>
+                            <?php echo $row["repair_date"]; ?>
                           </div>
                       </td>
                       <td>
                         <div class="col-sm-12">
-                          <label class="text" for="receive_date">วันที่คืน : </label>
-                          <?php echo $row["receive_date"]; ?>
+                          <label class="text" for="place">สถานที่ซ่อม : </label>
+                          <?php echo $row["place"]; ?>
                         </div>
-              </div>
-              </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
-                      <?php echo $row["fullname"]; ?>
                     </div>
-                  </div>
                 </td>
               </tr>
               <tr>
@@ -146,7 +126,7 @@ if (isset($_GET["id"])) {
               </tr>
               </thead>
               </tbody>
-        </table>
+          </table>
         <br>
         <br>
         <div class="card-body">

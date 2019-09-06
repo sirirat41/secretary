@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and a.status = 1 ";
+  $sql = "SELECT p.*, a.code, a.attribute ,a.model FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
+  $sql .= " and p.product_id = a.id and p.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -80,6 +80,24 @@ if (isset($_GET["id"])) {
                       <?php echo $row["purchase_date"]; ?>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="product_id">รหัสครุภัณฑ์ : </label>
+                      <?php echo $row["product_id"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                   <?php echo $row["attribute"]; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                 <label class="text-dark" for="model">รุ่นแบบ : </label>
+                   <?php echo $row["model"]; ?>
+                  </div>
+                </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="order_by">ชื่อผู้จัดซื้อ : </label>
