@@ -1,12 +1,19 @@
 <?php
 require "service/connection.php";
+include 'qrcode/phpqrcode/qrlib.php';
+
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un WHERE a.id = $id";
   $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-}
+
+  //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+  //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
+  //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
+  //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
+} 
 ?>
 
 <!DOCTYPE html>
@@ -55,9 +62,10 @@ if (isset($_GET["id"])) {
                   <i class="fas fa-business-time"></i> ข้อมูลครุภัณฑ์</h6>
                 <form class="form-inline">
                   <div>
-                    <button class="btn btn-outline-danger" type="button">
+                    <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
+                    
                 </form>
             </div>
           </div>
@@ -247,6 +255,27 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"];?> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+
+        <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $row["id"];?>" class="btn btn-danger" 
+          style="color: white; cursor: pointer" download>ดาวน์โหลด</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
