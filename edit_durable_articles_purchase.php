@@ -353,7 +353,6 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                       <br>
-
                       <div class="row">
                         <div class="col-6">
                           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -365,7 +364,7 @@ if (isset($_GET["id"])) {
                               <span class="btn btn-raised btn-round btn-default btn-file">
                                 <br>
                                 <div class="col-2 offset-1">
-                                  <input type="file" name="..." />
+                                  <input type="file" name="image" />
                                 </div>
                               </span>
                             </div>
@@ -475,7 +474,7 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -532,16 +531,16 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"];
                             ?> <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["order_no"]; ?></td>
-                            <td><?php echo $row["purchase_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                            <td><?php echo $row["order_by"]; ?></td>
-                            <td><?php echo $row["number"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["order_no"]; ?></td>
+                              <td><?php echo $row["purchase_date"]; ?></td>
+                              <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                              <td><?php echo $row["order_by"]; ?></td>
+                              <td><?php echo $row["number"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
                               <?php
                               }
                               ?>

@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = 1;
     $bookNo = $_POST["book_no"];
 
-<<<<<<< HEAD
     //อัฟโหลดรูปภาพ
     $target_dir = "../uploads/";
     $imgeName = $_FILES["image"]["name"];
@@ -37,22 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } 
-=======
-    $target_dir = "../uploads/";
-    $imageName = basename($_FILES["image"]["name"]);
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-<<<<<<< HEAD
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        //echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
-=======
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        // echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
->>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
-    }
->>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
-
     //purchase
 
     $order_no = $_POST["order_no"];
@@ -89,24 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $sqlInsertArticles = "INSERT INTO durable_articles ( seq, code, type, attribute, model, bill_no, budget, department_id, money_type ,";
-<<<<<<< HEAD
         $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status , book_no, picture)";
         $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
         $sqlInsertArticles .= " '$money_type', '$acquiring', '$assetNoArray[$i]', '$d_gen', $seller_id, '$goverment', $unit, ";
         $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo','$imgeName')";
-=======
-<<<<<<< HEAD
-        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status , book_no, picture)";
-        $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
-        $sqlInsertArticles .= " '$money_type', '$acquiring', '$assetNoArray[$i]', '$d_gen', $seller_id, '$goverment', $unit, ";
-        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo', '$imageName')";
-=======
-        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status ,book_no ,picture)";
-        $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
-        $sqlInsertArticles .= " '$money_type', '$acquiring', '$assetNoArray[$i]', '$d_gen', $seller_id, '$goverment', $unit, ";
-        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo' , '$imageName')";
->>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
->>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
 
         echo $sqlInsertArticles;
         mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));

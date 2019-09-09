@@ -121,7 +121,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="short_goverment	" name="short_goverment	"  name="short_goverment"value="<?php echo $item["short_goverment"]; ?>">
+                      <input class="form-control" type="text" placeholder="short_goverment	" name="short_goverment	" name="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
@@ -253,7 +253,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนวัสดุ :</label>
-                      <input class="form-control" type="text" placeholder="number" name="number"  value="<?php echo $item["number"]; ?>">
+                      <input class="form-control" type="text" placeholder="number" name="number" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ if (isset($_GET["id"])) {
                         <span class="btn btn-raised btn-round btn-default btn-file">
                           <br>
                           <div class="col-2 offset-1">
-                            <input type="file" name="..." />
+                            <input type="file" name="image" />
                           </div>
                         </span>
                       </div>
@@ -429,17 +429,17 @@ if (isset($_GET["id"])) {
                             $id = $row["id"];
                             ?>
 
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["order_no"]; ?></td>
-                            <td><?php echo $row["purchase_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                            <td><?php echo $row["order_by"]; ?></td>
-                            <td><?php echo $row["number"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMrticles(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["order_no"]; ?></td>
+                              <td><?php echo $row["purchase_date"]; ?></td>
+                              <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                              <td><?php echo $row["order_by"]; ?></td>
+                              <td><?php echo $row["number"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMrticles(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
                               <?php
                               }
 

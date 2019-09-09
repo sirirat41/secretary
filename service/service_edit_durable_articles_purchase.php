@@ -1,6 +1,6 @@
-<?php 
+<?php
 require 'connection.php';
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     //purchase data
     $id = $_GET["id"];
     $orderNo = $_POST["order_no"];
@@ -13,6 +13,14 @@ if(isset($_GET['id'])) {
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
+    //อัฟโหลดรูปภาพ
+    $target_dir = "../uploads/";
+    $imgeName = $_FILES["image"]["name"];
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    }
 
     //articles data
     $shortGoverment = $_POST["short_goverment"];
@@ -36,9 +44,8 @@ if(isset($_GET['id'])) {
     $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
     $updateArticles .= " type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateArticles .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";
-    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', book_no = '$bookNo'";
+    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', book_no = '$bookNo', picture = '$imgeName'";
     $updateArticles .= " WHERE id = $id";
     mysqli_query($conn, $updateArticles) or die("Cannot update articles" . mysqli_error($conn));
     header('Location: ../display_durable_articles.php?message=แก้ไขข้อมูลสำเร็จ');
 }
-?>
