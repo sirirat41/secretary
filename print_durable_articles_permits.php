@@ -39,12 +39,8 @@ if (isset($_GET["id"])) {
 <div id="wrapper">
 
 
-<<<<<<< HEAD
   </nav>
   <!-- End of Topbar -->
-=======
-    <!-- End of Topbar -->
->>>>>>> f2bfb6f1d9ee5eeede582aa117ee32e32745e3bd
 
 
   <!-- Begin Page Content -->
@@ -105,11 +101,7 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-<<<<<<< HEAD
                           <label class="text-dark" for="model">รุ่นแบบ : </label>
-=======
-                          <label class="text-dark" for="model">ชื่อครุภัณฑ์ : </label>
->>>>>>> f2bfb6f1d9ee5eeede582aa117ee32e32745e3bd
                           <?php echo $row["model"]; ?>
                         </div>
                       </div>
@@ -128,15 +120,9 @@ if (isset($_GET["id"])) {
                         <label class="text" for="receive_date">วันที่คืน : </label>
                         <?php echo $row["receive_date"]; ?>
                       </div>
-<<<<<<< HEAD
             </div>
             </td>
             </tr>
-=======
-                    </td>
-                  </tr>
-            </div>
->>>>>>> f2bfb6f1d9ee5eeede582aa117ee32e32745e3bd
             <tr>
               <td colspan="2">
                 <div class="row">
@@ -159,7 +145,6 @@ if (isset($_GET["id"])) {
             </tr>
             </thead>
             </tbody>
-<<<<<<< HEAD
       </table>
       <br>
       <br>
@@ -167,16 +152,6 @@ if (isset($_GET["id"])) {
         <div class="row">
           <div class="col-sm-3 offset-sm-9">
             <label class="text">ตรวจแล้วถูกต้อง</label>
-=======
-        </table>
-        <br>
-        <br>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
-            </div>
->>>>>>> f2bfb6f1d9ee5eeede582aa117ee32e32745e3bd
           </div>
         </div>
         <br>
@@ -198,7 +173,6 @@ if (isset($_GET["id"])) {
         </div>
       </div>
     </div>
-<<<<<<< HEAD
   </div>
   </form>
 </div>
@@ -243,48 +217,6 @@ if (isset($_GET["id"])) {
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         <a class="btn btn-primary" href="login.html">Logout</a>
-=======
-    </form>
-  </div>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-
-
-  </div>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-
-  <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
->>>>>>> f2bfb6f1d9ee5eeede582aa117ee32e32745e3bd
       </div>
     </div>
   </div>

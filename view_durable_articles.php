@@ -1,5 +1,7 @@
 <?php
 require "service/connection.php";
+include 'qrcode/phpqrcode/qrlib.php';
+
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un WHERE a.id = $id";
@@ -7,12 +9,31 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
+<<<<<<< HEAD
   // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   // $depPerMouth = $depPerYear / 12;
   // echo "year :" . +number_format((float) $depPerYear, 2, '.', '') . "<br>";
   // echo "mouth :" . +number_format((float) $depPerMouth, 2, '.', '');
 
+=======
+<<<<<<< HEAD
+  //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+  //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
+  //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
+  //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
+} 
+=======
+  // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+
+  // $depPerMonth = $depPerYear / 12;
+  // echo "year: " . +number_format($depPerYear, 2, '.', '') . "<br>";
+  // echo "month: " . +number_format($depPerMonth, 2, '.', '');
+
+
+  
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
 }
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +85,7 @@ if (isset($_GET["id"])) {
                     <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
+                    
                 </form>
             </div>
           </div>
@@ -73,7 +95,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-md-4">
                   <div class="card" style="width: 200px;">
-                    <img class="card-img-top" src="./img/bg.jpg">
+                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -262,7 +284,19 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"];?> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+<<<<<<< HEAD
 
+<<<<<<< HEAD
 
   <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -280,6 +314,27 @@ if (isset($_GET["id"])) {
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary" 
           style="color: white; cursor: pointer" download>ดาวโหลด</a>
+=======
+        <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $row["id"];?>" class="btn btn-danger" 
+          style="color: white; cursor: pointer" download>ดาวน์โหลด</a>
+        </div>
+      </div>
+    </div>
+  </div>
+=======
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
+
+        <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $row["id"];?>" class="btn btn-danger"
+           style="color: white; cusor: pointer" download>ดาวน์โหลด</a>
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
         </div>
       </div>
     </div>

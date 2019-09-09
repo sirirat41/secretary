@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute ,a.model FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code ,a.attribute ,a.name FROM supplies_purchase as p ,supplies as a WHERE p.id = $id";
   $sql .= " and p.product_id = a.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_articles_purchase</secretary>
+  <secretary style="display: none">display_supplies_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="900" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลจัดซื้อ (ครุภัณฑ์)</h6>
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลจัดซื้อ (วัสดุคงทน)</h6>
         <form>
           <div class="card-body">
             <div class="row">
@@ -100,8 +100,8 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="model">รุ่นแบบ : </label>
-                          <?php echo $row["model"]; ?>
+                          <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                          <?php echo $row["name"]; ?>
                         </div>
                       </div>
                     </td>

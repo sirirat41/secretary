@@ -87,15 +87,7 @@ if (isset($_GET["id"])) {
                     </td>
                   </tr>
                   <tr>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="product_id">รหัสครุภัณฑ์ : </label>
-                          <?php echo $row["product_id"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
+                    <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>

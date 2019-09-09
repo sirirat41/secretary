@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_transfer_in</secretary>
+  <secretary style="display: none">display_user</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,47 +48,46 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-         
-        
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
                      <form>
                         <thead>
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">วันที่โอน</font></th>
-                        <th><font size="2">รหัสครุภัณฑ์</font></th>
-                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
-                        <th><font size="2">รุ่นแบบ</font></th>
-                        <th><font size="2">ชื่อผู้โอน</font></th>
+                        <th><font size="2">ชื่อสมาชิก</font></th>
+                        <th><font size="2">ชื่อ</font></th>
+                        <th><font size="2">นามสกุล</font></th>
+                        <th><font size="2">ตำแหน่ง</font></th>
+                        <th><font size="2">เบอร์โทร</font></th>
+                        <th><font size="2">ประเภท</font></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                      $sqlSelect = "SELECT u.*,t.t_code FROM user as u ,u_type as t";
+                      $sqlSelect .= " WHERE u.u_type = t.id and u.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (username like '%$keyword%' or surname like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["transfer_date"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["model"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["transfer_from"]; ?></font></td>
+                      <td><?php echo $row["id"]; ?></td>
+                        <td><font size="2"><?php echo thainumDigit($row["username"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["surname"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["lastname"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["position"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["tel"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["t_code"]; ?></font></td>
                       </tr>
                           <?php
                           }
-
                           ?>
                     </tbody>
                   </table>
@@ -121,13 +120,11 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-        
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
 
   </div>
   <!-- End of Main Content -->
@@ -196,8 +193,8 @@ require "service/connection.php";
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
-            <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
+          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>
         <div class="modal-footer">

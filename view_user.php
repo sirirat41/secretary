@@ -62,8 +62,6 @@ if (isset($_GET["id"])) {
                         <label class="text-dark" for="username">ชื่อสมาชิก : </label>
                         <?php echo $row["username"]; ?>
                       </div>
-
-        
                       <div class="col-md-6">
                         <label class="text-dark" for="password">รหัสผ่าน : </label>
                         <?php echo $row["password"]; ?>
