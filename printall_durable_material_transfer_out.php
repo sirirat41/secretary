@@ -68,11 +68,11 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.name FROM durable_articles as ar, durable_articles_transfer_out as trans";
+                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.name FROM durable_material as ar, durable_material_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -196,7 +196,7 @@ require "service/connection.php";
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
+          <form id="form-drop" method="post" action="service/service_drop_durable_material_transfer_in.php">
             <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
           </form>
         </div>
