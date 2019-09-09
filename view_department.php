@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT d.* FROM department as d WHERE d.id =$id";
+  $sql = "SELECT d.* , d.picture FROM department as d WHERE d.id =$id";
   $sql .= " and d.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -64,7 +64,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-md-4">
                   <div class="card" style="width: 200px;">
-                    <img class="card-img-top" src="./img/bg.jpg">
+                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -103,8 +103,8 @@ if (isset($_GET["id"])) {
         </div>
       </div>
     </div>
-    </div>
-    </div>
+  </div>
+  </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->

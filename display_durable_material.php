@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show = 5;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +78,7 @@ require "service/connection.php";
                       <tr class="text-center">
                         <th>#</th>
                         <th>ลำดับ</th>
+                        <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
                         <th>ประเภท</th>
@@ -86,12 +88,20 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
                       $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                       }
+                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
@@ -99,6 +109,7 @@ require "service/connection.php";
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["seq"]; ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
@@ -134,9 +145,32 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+            $sqlSelectCount = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
+            $sqlSelectCount .= " WHERE m.type = t.id and m.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by m.id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+
+            <?php
+              }
+            }
+
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -146,7 +180,6 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-    </form>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->

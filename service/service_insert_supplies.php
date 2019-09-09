@@ -16,6 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $suppliesPattern = $_POST["supplies_pattern"];
     $status = 1; 
 
+    //อัฟโหลดรูปภาพ
+    $target_dir = "../uploads/";
+    $imgeName = $_FILES["image"]["name"];
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } 
+
     //purchase
     $order_no = $_POST["order_no"];
     $purchase_date = $_POST["purchase_date"];
@@ -50,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $sqlInsertSupplies = "INSERT INTO supplies(code, seq, type, attribute, name, department_id,";
-        $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status)";
+        $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status, picture)";
         $sqlInsertSupplies .= " VALUES('$newCode', $seq, $type, '$attribute',  '$name', $departmentid, ";
-        $sqlInsertSupplies .= " $seller_id, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status)";
+        $sqlInsertSupplies .= " $seller_id, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status,'$imgeName')";
         
         mysqli_query($conn, $sqlInsertSupplies) or die(mysqli_error($conn));
         $productID = mysqli_insert_id($conn);

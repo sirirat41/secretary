@@ -18,6 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //$picture = $_POST["picture"];
     $durable_year = $_POST["durable_year"]; 
     $materialPattern = $_POST["material_pattern"];
+    $status = 1;
+
+
+      //อัฟโหลดรูปภาพ
+      $target_dir = "../uploads/";
+      $imgeName = $_FILES["image"]["name"];
+      $target_file = $target_dir . basename($_FILES["image"]["name"]);
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+          //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+      } 
 
     //purchase
     $order_no = $_POST["order_no"];
@@ -59,9 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $sqlInsertMaterial = "INSERT INTO durable_material ( seq, code, type, attribute, bill_no, department_id, ";
-        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , name)";
+        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , name , picture)";
         $sqlInsertMaterial .= " VALUES($seq,'$newCode', $type, '$attribute', '$bill_no', $department_id ,";
-        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , $name)";
+        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , '$name' ,'$imgeName')";
 
 
         mysqli_query($conn, $sqlInsertMaterial) or die(mysqli_error($conn));

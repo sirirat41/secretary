@@ -53,7 +53,7 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_durable_material.php" id="form_insert">
+              <form method="post" action="service/service_insert_durable_material.php" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
@@ -243,7 +243,7 @@ require "service/connection.php";
                         <span class="btn btn-raised btn-round btn-default btn-file">
                           <br>
                           <div class="col-2 offset-1">
-                            <input type="file" name="..." />
+                            <input type="file" name="image" />
                           </div>
                         </span>
                       </div>
@@ -406,27 +406,26 @@ require "service/connection.php";
                             $id = $row["id"];
                             ?>
 
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["order_no"]; ?></td>
-                            <td><?php echo $row["purchase_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                            <td><?php echo $row["order_by"]; ?></td>
-                            <td><?php echo $row["number"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
+                            <tr class="text-center">
+                              <td><?php echo $row["id"]; ?></td>
+                              <td><?php echo $row["order_no"]; ?></td>
+                              <td><?php echo $row["purchase_date"]; ?></td>
+                              <td><?php echo thainumDigit($row["product_id"]); ?></td>
+                              <td><?php echo $row["order_by"]; ?></td>
+                              <td><?php echo $row["number"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-warning">
+                                  <i class="fas fa-pencil-alt"></i>
+                                </button>
 
-                              <button type="button" rel="tooltip" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
+                                <button type="button" rel="tooltip" class="btn btn-success">
+                                  <i class="fas fa-clipboard-list"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
                               <?php
                               }
-
                               ?>
                         </tbody>
                       </table>

@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, s.code ,s.attribute ,s.name FROM supplies_purchase as p ,supplies as s WHERE p.product_id = s.id";
+  $sql = "SELECT p.*, s.code ,s.attribute ,s.name, s.picture FROM supplies_purchase as p ,supplies as s WHERE p.product_id = s.id";
   $sql .= " and s.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -64,7 +64,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-md-4">
                   <div class="card" style="width: 200px;">
-                    <img class="card-img-top" src="./img/bg.jpg">
+                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -81,17 +81,17 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                   <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                   <?php echo $row["attribute"]; ?>
+                    <div class="col-md-12">
+                      <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                      <?php echo $row["attribute"]; ?>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <label class="text-dark" for="name">รุ่นแบบ : </label>
-                   <?php echo $row["name"]; ?>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="name">รุ่นแบบ : </label>
+                      <?php echo $row["name"]; ?>
+                    </div>
                   </div>
-                </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="order_by">ชื่อผู้จัดซื้อ : </label>

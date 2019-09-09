@@ -93,7 +93,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
@@ -144,7 +144,23 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+<<<<<<< HEAD
             $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+=======
+<<<<<<< HEAD
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1 ";
+=======
+<<<<<<< HEAD
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+=======
+<<<<<<< HEAD
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1 ";
+=======
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
+>>>>>>> ecf79b56c200a23970e76e78fe878325dff8176d
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
@@ -154,6 +170,37 @@ $show = 10;
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
             for ($i = 0; $i < $page; $i++) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else { 
+                ?>
+
+              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+            }}
+=======
+<<<<<<< HEAD
+>>>>>>> ecf79b56c200a23970e76e78fe878325dff8176d
+              if (isset($_GET["keyword"])){
+                ?>
+                  <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keywprd"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <?php
+              } else {
+              ?>
+              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+            } }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
               if (isset($_GET["keyword"])) {
                 ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
@@ -162,9 +209,18 @@ $show = 10;
                   ?>
 
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-            <?php
 
+            <?php
+              }
+            }
+
+<<<<<<< HEAD
+=======
             }}
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
+>>>>>>> ecf79b56c200a23970e76e78fe878325dff8176d
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

@@ -1,5 +1,7 @@
 <?php
 require "service/connection.php";
+include 'qrcode/phpqrcode/qrlib.php';
+
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un WHERE a.id = $id";
@@ -7,15 +9,43 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+  // $depPerMouth = $depPerYear / 12;
+  // echo "year :" . +number_format((float) $depPerYear, 2, '.', '') . "<br>";
+  // echo "mouth :" . +number_format((float) $depPerMouth, 2, '.', '');
+
+=======
+<<<<<<< HEAD
+>>>>>>> ecf79b56c200a23970e76e78fe878325dff8176d
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
+  //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+  //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
+  //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
+  //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
+} 
+<<<<<<< HEAD
+
+=======
   // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
 
   // $depPerMonth = $depPerYear / 12;
   // echo "year: " . +number_format($depPerYear, 2, '.', '') . "<br>";
   // echo "month: " . +number_format($depPerMonth, 2, '.', '');
 
+<<<<<<< HEAD
+=======
 
   
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
 }
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
+>>>>>>> ecf79b56c200a23970e76e78fe878325dff8176d
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +69,7 @@ if (isset($_GET["id"])) {
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-
+  <link href="qrcode/qrlib.php" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -67,6 +97,7 @@ if (isset($_GET["id"])) {
                     <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
+                    
                 </form>
             </div>
           </div>
@@ -189,6 +220,15 @@ if (isset($_GET["id"])) {
           </form>
         </div>
       </div>
+      <div class="col-md-12">
+        <div class="card shadow mb-4">
+          <div class="py-3">
+            <nav class="navbar navbar-light bg-light">
+              <h6 class="m-0 font-weight-bold text-danger">
+                <i class="fas fa-business-time"></i> ค่าเสื่อมรายปี</h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -266,6 +306,41 @@ if (isset($_GET["id"])) {
           </button>
         </div>
         <div class="modal-body" align="center">
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+
+  <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"];?></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
+          <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary" 
+          style="color: white; cursor: pointer" download>ดาวโหลด</a>
+<<<<<<< HEAD
+=======
+=======
+        <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $row["id"];?>" class="btn btn-danger" 
+          style="color: white; cursor: pointer" download>ดาวน์โหลด</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
         <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
         </div>
@@ -273,6 +348,8 @@ if (isset($_GET["id"])) {
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           <a href="generate_qrcode_articles.php?id=<?php echo $row["id"];?>" class="btn btn-danger"
            style="color: white; cusor: pointer" download>ดาวน์โหลด</a>
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
+>>>>>>> c183e5d70595e70acab932f81c8874c9651bce8e
         </div>
       </div>
     </div>
