@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $money_type = $_POST["money_type"];
     $acquiring = $_POST["acquiring"];
     $asset_no = $_POST["asset_no"];
+    $assetNoArray = explode(",", $asset_no);
     $d_gen = $_POST["d_gen"];
     $seller_id = $_POST["seller_id"];
     $goverment = "สำนักงานตำรวจแห่งชาติ";
@@ -27,6 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = 1;
     $bookNo = $_POST["book_no"];
 
+    //อัฟโหลดรูปภาพ
+    $target_dir = "../uploads/";
+    $imgeName = $_FILES["image"]["name"];
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } 
+
     //purchase
 
     $order_no = $_POST["order_no"];
@@ -36,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $receiver = $_POST["receiver"];
     $receive_date = $_POST["receive_date"];
     $receive_address = $_POST["receive_address"];
-    
+
     $pattern = convertPattern($articles_pattern);
     $sqlCheck = "SELECT * FROM durable_articles WHERE code like '$pattern'";
     $resultCheck = mysqli_query($conn, $sqlCheck);
@@ -48,37 +58,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     for ($i = 0; $i < $number; $i++) {
 
-    $seq= $i +1;
-    $code = "";
-    if ($numberBefore > 0){
-        $len = substr_count($pattern, "_");
-        $replacement = "";
-        for ($j = 0; $j < $len; $j++){
-            $replacement .= "_"; 
-
+        $seq = $i + 1;
+        $code = "";
+        if ($numberBefore > 0) {
+            $len = substr_count($pattern, "_");
+            $replacement = "";
+            for ($j = 0; $j < $len; $j++) {
+                $replacement .= "_";
+            }
+            $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
+        } else {
+            $len = substr_count($pattern, "_");
+            $replacement = "";
+            for ($j = 0; $j < $len; $j++) {
+                $replacement .= "_";
+            }
+            $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
         }
-        $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
-    }else{
-        $len = substr_count($pattern, "_");
-        $replacement = "";
-        for ($j = 0; $j < $len; $j++) { 
-            $replacement .= "_";
-        }
-        $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
-    }
 
         $sqlInsertArticles = "INSERT INTO durable_articles ( seq, code, type, attribute, model, bill_no, budget, department_id, money_type ,";
-        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status , book_no)";
+        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status , book_no, picture)";
         $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
-        $sqlInsertArticles .= " '$money_type', '$acquiring', '$asset_no', '$d_gen', $seller_id, '$goverment', $unit, ";
-        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo')";
-
+        $sqlInsertArticles .= " '$money_type', '$acquiring', '$assetNoArray[$i]', '$d_gen', $seller_id, '$goverment', $unit, ";
+        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo','$imgeName')";
 
         mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));
         $productID = mysqli_insert_id($conn);
 
         $sqlInsertPurchase = "INSERT INTO durable_articles_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, status)";
-        $sqlInsertPurchase .= " VALUES($productID, '$order_no', $purchase_date , $seller_id, '$receiver', '$order_by', '$receive_date', '$receive_address', $number, $status)";
+        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date' , $seller_id, '$receiver', '$order_by', '$receive_date', '$receive_address', $number, $status)";
 
         mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));;
     }
@@ -109,7 +117,8 @@ function convertPattern($pattern)
     }
     return $pattern;
 }
-function autoRun($current, $format) {
+function autoRun($current, $format)
+{
     $auto = "";
     $diff = $format - strlen($current);
 

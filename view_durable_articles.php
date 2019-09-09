@@ -6,6 +6,12 @@ if (isset($_GET["id"])) {
   $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+
+  // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+  // $depPerMouth = $depPerYear / 12;
+  // echo "year :" . +number_format((float) $depPerYear, 2, '.', '') . "<br>";
+  // echo "mouth :" . +number_format((float) $depPerMouth, 2, '.', '');
+
 }
 ?>
 
@@ -30,7 +36,7 @@ if (isset($_GET["id"])) {
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-
+  <link href="qrcode/qrlib.php" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -55,7 +61,7 @@ if (isset($_GET["id"])) {
                   <i class="fas fa-business-time"></i> ข้อมูลครุภัณฑ์</h6>
                 <form class="form-inline">
                   <div>
-                    <button class="btn btn-outline-danger" type="button">
+                    <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
                 </form>
@@ -180,6 +186,15 @@ if (isset($_GET["id"])) {
           </form>
         </div>
       </div>
+      <div class="col-md-12">
+        <div class="card shadow mb-4">
+          <div class="py-3">
+            <nav class="navbar navbar-light bg-light">
+              <h6 class="m-0 font-weight-bold text-danger">
+                <i class="fas fa-business-time"></i> ค่าเสื่อมรายปี</h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -248,6 +263,27 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+
+  <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"];?></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+          <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary" 
+          style="color: white; cursor: pointer" download>ดาวโหลด</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
