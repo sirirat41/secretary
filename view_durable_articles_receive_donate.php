@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a WHERE d.id = $id";
+  $sql = "SELECT d.*, a.code ,a.picture FROM durable_articles_receive_donate as d, durable_articles as a WHERE d.id = $id";
   $sql .= " and d.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>Dashboard</title>
-  <secretary style="display: none">display_durable_articles_purchase</secretary>
+  <secretary style="display: none">display_durable_articles_receive_donate</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-md-4">
                   <div class="card" style="width: 200px;">
-                    <img class="card-img-top" src="./img/bg.jpg">
+                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <div class="col-md-8">

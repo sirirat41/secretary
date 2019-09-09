@@ -9,23 +9,17 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
-<<<<<<< HEAD
   //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
   //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
   //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
 } 
-=======
   // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
 
   // $depPerMonth = $depPerYear / 12;
   // echo "year: " . +number_format($depPerYear, 2, '.', '') . "<br>";
   // echo "month: " . +number_format($depPerMonth, 2, '.', '');
 
-
-  
-}
->>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
 ?>
 
 <!DOCTYPE html>
@@ -277,7 +271,6 @@ if (isset($_GET["id"])) {
           </button>
         </div>
         <div class="modal-body" align="center">
-<<<<<<< HEAD
 
         <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
         </div>
@@ -289,8 +282,6 @@ if (isset($_GET["id"])) {
       </div>
     </div>
   </div>
-=======
->>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
 
         <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
         </div>
