@@ -329,7 +329,6 @@ require "service/connection.php";
                               </label>
                             </div>
                             <br>
-
                             <div class="row">
                               <div class="col-6">
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
