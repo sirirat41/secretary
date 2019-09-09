@@ -53,7 +53,7 @@ require "service/connection.php";
           </div>
           <br>
           <div class="card-body">
-            <form method="post" action="service/service_insert_durable_articles.php" id="form_insert">
+            <form method="post" action="service/service_insert_durable_articles.php" id="form_insert" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">
@@ -353,7 +353,7 @@ require "service/connection.php";
                       <span class="btn btn-raised btn-round btn-default btn-file">
                         <br>
                         <div class="col-2 offset-1">
-                          <input type="file" name="..." />
+                          <input type="file" name="image" />
                         </div>
                       </span>
                     </div>
