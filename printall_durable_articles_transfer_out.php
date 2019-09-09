@@ -68,7 +68,7 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
+                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -92,6 +92,30 @@ require "service/connection.php";
                           ?>
                     </tbody>
                   </table>
+                  <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9"><font size="2">
+              <label class="text">ตรวจแล้วถูกต้อง</label>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-4 offset-sm-8">
+              <label class="text">พ.ต.ท.หญิง......................................................</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              </label></font>
+            </div>
+          </div>
+        </div>
                 </div>
               </div>
             </div>

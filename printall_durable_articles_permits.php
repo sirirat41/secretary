@@ -26,9 +26,8 @@ require "service/connection.php";
     @page {
       size: landscape;
     }
-   
   </style>
- 
+
 </head>
 
 
@@ -48,21 +47,35 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-                     <form>
-                        <thead>
+                  <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                  <form>
+                    <thead>
                       <tr class="text-center">
-                        <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">เลขที่หนังสือ</font></th>
-                         <th><font size="2">รหัสครุภัณฑ์</font></th>
-                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
-                        <th><font size="2">รุ่นแบบ</font></th>
-                        <th><font size="2">วันที่ยืม</font></th>
-                        <th><font size="2">วันที่คืน</font></th>
+                        <th>
+                          <font size="2">ลำดับ</font>
+                        </th>
+                        <th>
+                          <font size="2">เลขที่หนังสือ</font>
+                        </th>
+                        <th>
+                          <font size="2">รหัสครุภัณฑ์</font>
+                        </th>
+                        <th>
+                          <font size="2">ลักษณะ/คุณสมบัติ</font>
+                        </th>
+                        <th>
+                          <font size="2">รุ่นแบบ</font>
+                        </th>
+                        <th>
+                          <font size="2">วันที่ยืม</font>
+                        </th>
+                        <th>
+                          <font size="2">วันที่คืน</font>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -77,23 +90,62 @@ require "service/connection.php";
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                      <tr class="text-center">
-                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["book_no"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["model"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["permit_date"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["receive_date"]; ?></font></td>
-                      </tr>
-                          <?php
-                          }
-                          ?>
+                        <tr class="text-center">
+                          <td>
+                            <font size="2"><?php echo $row["id"]; ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo thainumDigit($row["book_no"]); ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo $row["attribute"]; ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo $row["model"]; ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo $row["permit_date"]; ?></font>
+                          </td>
+                          <td>
+                            <font size="2"><?php echo $row["receive_date"]; ?></font>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
                     </tbody>
-                  </table>
+                </table>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3 offset-sm-9">
+                      <font size="2">
+                        <label class="text">ตรวจแล้วถูกต้อง</label>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-4 offset-sm-8">
+                      <label class="text">พ.ต.ท.หญิง......................................................</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3 offset-sm-9">
+                      <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3 offset-sm-9">
+                      <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+                      </label></font>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
           </form>
         </div>
       </div>
@@ -107,7 +159,7 @@ require "service/connection.php";
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-   
+
   </footer>
   <!-- End of Footer -->
 

@@ -9,11 +9,23 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
+<<<<<<< HEAD
   //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
   //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
   //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
 } 
+=======
+  // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
+
+  // $depPerMonth = $depPerYear / 12;
+  // echo "year: " . +number_format($depPerYear, 2, '.', '') . "<br>";
+  // echo "month: " . +number_format($depPerMonth, 2, '.', '');
+
+
+  
+}
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +87,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-md-4">
                   <div class="card" style="width: 200px;">
-                    <img class="card-img-top" src="./img/bg.jpg">
+                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -265,6 +277,7 @@ if (isset($_GET["id"])) {
           </button>
         </div>
         <div class="modal-body" align="center">
+<<<<<<< HEAD
 
         <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
         </div>
@@ -276,7 +289,19 @@ if (isset($_GET["id"])) {
       </div>
     </div>
   </div>
+=======
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
 
+        <img src="generate_qrcode_articles.php?id=<?php echo $row["id"];?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $row["id"];?>" class="btn btn-danger"
+           style="color: white; cusor: pointer" download>ดาวน์โหลด</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

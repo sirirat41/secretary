@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute ,a.model FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and a.status = 1 ";
+  $sql = "SELECT u.*, t.t_code FROM user as u, u_type as t WHERE u.id = $id";
+  $sql .= " and u.u_type = t.id and u.status = 1";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
 
-  <secretary style="display: none">display_durable_articles_purchase</secretary>
+  <secretary style="display: none">display_user</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,33 +55,19 @@ if (isset($_GET["id"])) {
 <div class="row">
   <div class="col-sm-12">
     <div class="table-responsive">
-      <table width="900" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลจัดซื้อ (ครุภัณฑ์)</h6>
+      <table width="600" border="1" align="center">
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
         <form>
           <div class="card-body">
-            <div class="row">
-              <div class="col-sm-12" align="center">
-                <div class="center" style="width: 200px;">
-                  <img class="card-img-top" align="center" src="./img/bg.jpg">
-                </div>
-              </div>
+           
               <tbody>
                 <thead>
                   <tr>
-                    <td>
+                    <td colspan="2">
                       <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="order_no">เลขที่ใบสั่งซื้อ : </label>
-                          <?php echo $row["order_no"]; ?>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
-                          <?php echo $row["purchase_date"]; ?>
+                        <div class="col-sm-6">
+                          <label class="text-dark" for="username">ชื่อสมาชิก : </label>
+                          <?php echo $row["username"]; ?>
                         </div>
                       </div>
                     </td>
@@ -90,8 +76,8 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                          <?php echo $row["attribute"]; ?>
+                          <label class="text-dark" for="password">รหัสผ่าน : </label>
+                          <?php echo $row["password"]; ?>
                         </div>
                       </div>
                     </td>
@@ -100,42 +86,8 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="model">รุ่นแบบ : </label>
-                          <?php echo $row["model"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="order_by">ชื่อผู้จัดซื้อ : </label>
-                          <?php echo $row["order_by"]; ?>
-                        </div>
-                    </td>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="receiver">ชื่อผู้รับ : </label>
-                          <?php echo $row["receiver"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
-                          <?php echo $row["receive_date"]; ?>
-                        </div>
-                    </td>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="number">จำนวนปีครุภัณฑ์ : </label>
-                          <?php echo $row["number"]; ?>
+                          <label class="text-dark" for="surname">ชื่อ : </label>
+                          <?php echo $row["surname"]; ?>
                         </div>
                       </div>
                     </td>
@@ -144,14 +96,51 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="receive_address">สถานที่จัดส่ง : </label>
-                          <?php echo $row["receive_address"]; ?>
+                          <label class="text-dark" for="lastname">นามสกุล : </label>
+                          <?php echo $row["lastname"]; ?>
                         </div>
                       </div>
                     </td>
                   </tr>
-                </thead>
-              </tbody>
+                  <tr>
+                    <td>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="position">ตำแหน่ง : </label>
+                          <?php echo $row["position"]; ?>
+                        </div>
+                    </td>
+                    <td>
+                      <div class="col-sm-12">
+                        <label class="text-dark" for="t_code">ประเภท : </label>
+                        <?php echo $row["t_code"]; ?>
+                      </div>
+            </div>
+            </td>
+            </tr>
+      
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label class="text-dark" for="tel">เบอร์โทร : </label>
+                  <?php echo $row["tel"]; ?>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label class="text-dark" for="email">อีเมล์ : </label>
+                  <?php echo $row["email"]; ?>
+                </div>
+              </div>
+            </td>
+          </tr>
+          </thead>
+          </tbody>
       </table>
       <br>
       <br>

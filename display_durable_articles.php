@@ -144,7 +144,11 @@ $show = 5;
             </li>
             <?php
             $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+<<<<<<< HEAD
             $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1 ";
+=======
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
@@ -154,6 +158,7 @@ $show = 5;
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
             for ($i = 0; $i < $page; $i++) {
+<<<<<<< HEAD
               if (isset($_GET["keyword"])){
                 ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keywprd"]; ?>"><?php echo ($i + 1); ?></a></li>
@@ -163,6 +168,19 @@ $show = 5;
               <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
             } }
+=======
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+
+            }}
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

@@ -9,7 +9,10 @@ if (isset($_GET["id"])) {
 
   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   echo $depPerYear;
+<<<<<<< HEAD
   
+=======
+>>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
 }
 ?>
 <!doctype html>
