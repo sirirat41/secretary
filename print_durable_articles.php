@@ -7,12 +7,17 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
+<<<<<<< HEAD
+  $depPerYear = ($row["price"] -1) / $row["durable_year"];
+  echo $depPerYear;
+=======
   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   echo $depPerYear;
 <<<<<<< HEAD
   
 =======
 >>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
+>>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
 }
 ?>
 <!doctype html>
