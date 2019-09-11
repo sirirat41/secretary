@@ -84,7 +84,7 @@ require "service/connection.php";
                       $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
                       $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
+                        $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
