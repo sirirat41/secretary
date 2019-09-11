@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
+<?php       
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
@@ -252,9 +252,9 @@ if (isset($_GET["id"])) {
                 $sqlSelect .= " WHERE status = 1";
                   ?>
                 <tr class="text-center">
-                  <td><?php echo $row["id"]; ?></td>
-                  <td><?php echo $row["fullname"]; ?></td>
-                  <td><?php echo $row["shortname"]; ?></td>
+                  <td><?php echo thainumDigit($row["id"]); ?></td>
+                  <td><?php echo thainumDigit($row["fullname"]); ?></td>
+                  <td><?php echo thainumDigit($row["shortname"]); ?></td>
                   <td><?php echo thainumDigit($row["owner"]); ?></td>
                   <td><?php echo thainumDigit($row["bulding"]); ?></td>
                   <td><?php echo thainumDigit($row["floor"]); ?></td>

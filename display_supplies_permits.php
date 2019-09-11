@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +72,6 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                      <th>#</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อครุภัณฑ์</th>
@@ -82,19 +82,26 @@ require "service/connection.php";
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
+                    <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                        $sqlSelect = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
                        $sqlSelect .= " WHERE p.product_id = s.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
+                        $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
                       }
+                      $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
@@ -133,9 +140,30 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+               $sqlSelectCount = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
+               $sqlSelectCount .= " WHERE p.product_id = s.id and p.status = 1";
+              if (isset($_GET["keyword"])) {
+                $keyword = arabicnumDigit($_GET["keyword"]);
+                $sqlSelectCount .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
+             }
+            $sqlSelectCount .= " Order by p.id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+
+            }}
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

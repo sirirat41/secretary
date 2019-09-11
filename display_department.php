@@ -109,6 +109,7 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
+<<<<<<< HEAD
                           <td><?php echo $row["id"]; ?></td>
                             <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                             <?php echo $row["fullname"]; ?></a></td>
@@ -130,6 +131,28 @@ $show = 10;
                                 <i class="fas fa-trash-alt"></i>
                               </button>
                             </td>
+=======
+                          <td><?php echo thainumDigit($row["id"]); ?></td>
+                          <td><?php echo thainumDigit($row["fullname"]); ?></td>
+                          <td><?php echo thainumDigit($row["shortname"]); ?></td>
+                          <td><?php echo thainumDigit($row["owner"]); ?></td>
+                          <td><?php echo thainumDigit($row["bulding"]); ?></td>
+                          <td><?php echo thainumDigit($row["floor"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+>>>>>>> 9b4528c00ee8d2d0bd91125bb0b35c446ea34c69
                         </tr>
                       <?php
                       }

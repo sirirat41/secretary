@@ -71,7 +71,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_edit_durable_material_purchase.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_durable_material_purchase.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
@@ -430,12 +430,12 @@ if (isset($_GET["id"])) {
                             ?>
 
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["order_no"]; ?></td>
-                              <td><?php echo $row["purchase_date"]; ?></td>
+                              <td><?php echo thainumDigit($row["id"]); ?></td>
+                              <td><?php echo thainumDigit($row["order_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
                               <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                              <td><?php echo $row["order_by"]; ?></td>
-                              <td><?php echo $row["number"]; ?></td>
+                              <td><?php echo thainumDigit($row["order_by"]); ?></td>
+                              <td><?php echo thainumDigit($row["number"]); ?></td>
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMrticles(<?php echo $row["id"]; ?>);">
                                   <i class="fas fa-check"></i>

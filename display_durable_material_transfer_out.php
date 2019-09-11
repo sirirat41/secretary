@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ require "service/connection.php";
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_transfer_out.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_transfer_out.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_material_transfer_out.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                 </form>
@@ -72,34 +73,38 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>วันที่โอน</th>
                         <th>รหัสวัสดุ</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อครุภัณฑ์</th>
                         <th>ชื่อผู้โอนให้</th>
                         <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute, ar.name FROM durable_material as ar, durable_material_transfer_out as trans";
+                    <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
+                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.name FROM durable_material as ar, durable_material_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
                       }
-                      //  echo $sqlSelect;
+                      // echo $sqlSelect;
+                      $sqlSelect .= " Order by trans.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
                         <td><?php echo $row["transfer_date"]; ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo $row["name"]; ?></td>
                         <td><?php echo $row["transfer_to"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
@@ -132,9 +137,31 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+           $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute  FROM durable_material as ar, durable_material_transfer_out as trans";
+           $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
+           if (isset($_GET["keyword"])) {
+             $keyword = arabicnumDigit($_GET["keyword"]);
+             $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
+           }
+           // echo $sqlSelect;
+           $sqlSelectCount .= " Order by trans.id desc LIMIT $start, $show";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+
+            }}
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

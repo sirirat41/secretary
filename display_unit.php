@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 require "service/connection.php";
+$show = 5;
 ?>
 
 <head>
@@ -83,19 +84,27 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM unit";
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (name like '%$keyword%')";
                       }
+                      $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["name"]; ?></td>
+                        <td><?php echo thainumDigit($row["id"]); ?></td>
+                        <td><?php echo thainumDigit($row["name"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_unit.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -129,9 +138,29 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+            $sqlSelectCount = "SELECT * FROM unit";
+            $sqlSelectCount .= " WHERE status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (name like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+              }
+            }
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

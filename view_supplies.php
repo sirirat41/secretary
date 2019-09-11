@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+include 'qrcode/phpqrcode/qrlib.php';
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT s.*, t.name as durable_material_type_name ,un.name as unit_name, s.picture ,se.name as seller_name, d.shortname ,d.fullname FROM supplies as s ,durable_articles_type as t , seller as se , department as d , unit as un WHERE s.id = $id";
@@ -30,6 +31,7 @@ if (isset($_GET["id"])) {
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+  <link href="qrcode/qrlib.php" rel="stylesheet">
 
 </head>
 
@@ -55,7 +57,7 @@ if (isset($_GET["id"])) {
                   <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h6>
                 <form class="form-inline">
                   <div>
-                    <button class="btn btn-outline-danger" type="button">
+                    <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
                 </form>
@@ -139,11 +141,8 @@ if (isset($_GET["id"])) {
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
-
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -202,6 +201,25 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+  <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+          <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary" style="color: white; cursor: pointer" download>ดาวโหลด</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
