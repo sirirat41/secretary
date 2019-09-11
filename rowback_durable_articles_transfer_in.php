@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show = 5;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +78,13 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT trans.*, ar.code FROM durable_articles as ar, durable_articles_transfer_in as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 0";
                       if (isset($_GET["keyword"])) {
@@ -84,6 +92,7 @@ require "service/connection.php";
                         $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
                       }
                       // echo $sqlSelect;
+                      $sqlSelect .= " Order by trans.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
@@ -95,8 +104,7 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#rowback-transfer_in').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-transfer_in').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           </td>
@@ -113,26 +121,46 @@ require "service/connection.php";
             </div>
           </form>
         </div>
-         <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
               </a>
-          </li>
-        </ul>
+            </li>
+            <?php
+            $sqlSelectCount = "SELECT trans.*, ar.code FROM durable_articles as ar, durable_articles_transfer_in as trans";
+            $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by trans.id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+              }
+            }
+            ?>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
         </nav>
       </div>
     </div>
-
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
@@ -211,7 +239,7 @@ require "service/connection.php";
           คุณต้องการกู้ข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_transfer_in.php">
             <input type="hidden" id="rowback-transfer_in" name="transfer_in_id">
-            </form>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

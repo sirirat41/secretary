@@ -407,11 +407,11 @@ require "service/connection.php";
                             ?>
 
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["order_no"]; ?></td>
-                              <td><?php echo $row["purchase_date"]; ?></td>
+                              <td><?php echo thainumDigit($row["id"]); ?></td>
+                              <td><?php echo thainumDigit($row["order_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
                               <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                              <td><?php echo $row["order_by"]; ?></td>
+                              <td><?php echo thainumDigit($row["order_by"]); ?></td>
                               <td><?php echo $row["number"]; ?></td>
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-warning">

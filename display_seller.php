@@ -86,36 +86,40 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM seller ";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect = "SELECT * FROM seller";
+                      $sqlSelect .= "";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%' or address like '%$keyword%')";
                       }
-                      //echo $sqlSelect;
+                      // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["name"]; ?></td>
-                          <td><?php echo $row["tel"]; ?></td>
-                          <td><?php echo $row["fax"]; ?></td>
-                          <td><?php echo $row["address"]; ?></td>
+                          <td><?php echo thainumDigit($row["id"]); ?></td>
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
+                          <td><?php echo thainumDigit($row["tel"]); ?></td>
+                          <td><?php echo thainumDigit($row["fax"]); ?></td>
+                          <td><?php echo thainumDigit($row["address"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_seller.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_seller?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_seller.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_seller.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-seller').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-                          </td>
-                        </tr>
-                      <?php
-                      }
-                      ?>
+                          <?php
+                          }
+                          ?>
                     </tbody>
                   </table>
                 </div>
@@ -123,7 +127,6 @@ $show = 10;
             </div>
           </form>
         </div>
-
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
@@ -133,7 +136,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM seller ";
-            $sqlSelectCount .= " WHERE status = 1";
+            $sqlSelectCount .= "";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%' or address like '%$keyword%')";
@@ -145,7 +148,7 @@ $show = 10;
             for ($i = 0; $i < $page; $i++) {
               if (isset($_GET["keyword"])) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keywprd"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
@@ -153,6 +156,7 @@ $show = 10;
             <?php
               }
             }
+
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

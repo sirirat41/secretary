@@ -84,7 +84,6 @@ $show = 10;
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
-
                       <?php
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -104,10 +103,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["document_no"]; ?></td>
+                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["donate_name"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["donate_name"]); ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -144,27 +143,30 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT do.*, m.code FROM durable_material_donate as do, durable_material as m";
-            $sqlSelectCount .= " WHERE do.product_id = m.id and do.status = 1";
+             $sqlSelectCount = "SELECT do.*, m.code FROM durable_material_donate as do, durable_material as m";
+             $sqlSelectCount .= " WHERE do.product_id = m.id and do.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (do.product_id like '%$keyword%' or m.code like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by a.id desc";
+            $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
             for ($i = 0; $i < $page; $i++) {
               if (isset($_GET["keyword"])) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keywprd"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
+
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+
             <?php
               }
             }
+
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

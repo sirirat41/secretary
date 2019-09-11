@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show = 5;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,12 +76,20 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT p.*, m.code FROM durable_material_permits as p,durable_material as m";
                       $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
+                      $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
@@ -91,8 +100,7 @@ require "service/connection.php";
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#rowback-permits').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php
@@ -113,9 +121,30 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+            $sqlSelectCount = "SELECT p.*, m.code FROM durable_material_permits as p,durable_material as m";
+            $sqlSelectCount .= " WHERE p.product_id = m.id and p.status = 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by p.id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+              }
+            }
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -125,7 +154,7 @@ require "service/connection.php";
         </nav>
       </div>
     </div>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
 
@@ -203,7 +232,7 @@ require "service/connection.php";
           คุณต้องการกู้ข้อมูลการยืม-คืนวัสดุใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_material_permits.php">
             <input type="hidden" id="rowback-permits" name="permits_id">
-            </form>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

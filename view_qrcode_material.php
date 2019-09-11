@@ -60,8 +60,8 @@ if (isset($_GET["id"])) {
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <div class="card" align="center">
-                        <img class="card-img-top" src="./img/bg.jpg">
+                      <div class="card" style="width: 200px;">
+                        <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -156,25 +156,25 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
   <div class="modal fade" id="modal-QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?> </h5>
+          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
-          <img src="generate_qrcode_material.php?id=<?php echo $row["id"]; ?>">
+        <div class="modal-body" align="center">
+          <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">ดาวโหลด</button>
         </div>
       </div>
     </div>
   </div>
 </body>
-
 </html>

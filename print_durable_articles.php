@@ -7,18 +7,11 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
-<<<<<<< HEAD
-  $depPerYear = ($row["price"] -1) / $row["durable_year"];
-  echo $depPerYear;
-=======
+
   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   echo $depPerYear;
-<<<<<<< HEAD
-  
-=======
->>>>>>> d388a24d09d45b5c9fe63c2d5db5f961280f5612
->>>>>>> 80dcae7f541e58c594ea5a105cd3d06f41634148
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -144,10 +137,16 @@ if (isset($_GET["id"])) {
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="book_no">
-          <h7>เลขที่หนังสือ :</h7>
+        <label class="text" for="fullname">
+          <h7>สถานที่ตั้ง / หน่วยงานที่รับผิดชอบ :</h7>
         </label>
-        <?php echo thainumDigit($row["book_no"]); ?>
+        <?php echo thainumDigit($row["fullname"]); ?>
+        <label class="textk" for="bulding">อาคาร
+        </label>
+        <?php echo thainumDigit($row["bulding"]); ?>/
+        <label class="text" for="floor">ชั้น
+        </label>
+        <?php echo thainumDigit($row["floor"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="seller_id">
@@ -158,30 +157,10 @@ if (isset($_GET["id"])) {
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="shortname">
-          <h7>หน่วยงานที่รับผิดชอบ :</h7>
-        </label>
-        <?php echo $row["shortname"]; ?>
-      </div>
-      <div class="col-sm-6">
         <label class="text" for="seller_address">
           <h7>ที่อยู่ :</h7>
         </label>
         <?php echo thainumDigit($row["seller_address"]); ?>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <label class="text" for="fullname">
-          <h7>สถานที่ตั้ง :</h7>
-        </label>
-        <?php echo thainumDigit($row["fullname"]); ?>/
-        <label class="textk" for="bulding">อาคาร
-        </label>
-        <?php echo thainumDigit($row["bulding"]); ?>/
-        <label class="text" for="floor">ชั้น
-        </label>
-        <?php echo thainumDigit($row["floor"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="seller_tel">

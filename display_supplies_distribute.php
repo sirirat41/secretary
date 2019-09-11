@@ -105,11 +105,11 @@ $show = 5;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit ($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["fullname"]; ?></td>
-                          <td><?php echo $row["distribute_date"]; ?></td>
-                          <td><?php echo $row["number"]; ?></td>
+                          <td><?php echo thainumDigit($row["fullname"]); ?></td>
+                          <td><?php echo thainumDigit($row["distribute_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["number"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
