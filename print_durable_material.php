@@ -89,10 +89,30 @@ if (isset($_GET["id"])) {
     </div>
     <div class="row">
       <div class="col-sm-6">
+        <label class="text" for="bill_no">
+          <h7>เลขที่ใบเบิก :</h7>
+        </label>
+        <?php echo thainumDigit($row["bill_no"]); ?>
+      </div>
+      <div class="col-sm-6">
         <label class="text" for="code">
           <h7>รหัส :</h7>
         </label>
-        <?php echo thainumDigit($row["code"]); ?>
+        <?php echo $row["code"]; ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text" for="fullname">
+          <h7>สถานที่ตั้ง/หน่วยงานที่รับผิดชอบ :</h7>
+        </label>
+        <?php echo $row["fullname"]; ?>
+        <label class="text" for="bulding">อาคาร
+        </label>
+        <?php echo thainumDigit($row["bulding"]); ?>/
+        <label class="text" for="floor">ชั้น
+        </label>
+        <?php echo thainumDigit($row["floor"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="name">
@@ -103,10 +123,10 @@ if (isset($_GET["id"])) {
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="bill_no">
-          <h7>เลขที่ใบเบิก : </h7>
+        <label class="text" for="seller_address">
+          <h7>ที่อยู่ :</h7>
         </label>
-        <?php echo thainumDigit($row["bill_no"]); ?>
+        <?php echo thainumDigit($row["seller_address"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="seller_id">
@@ -116,32 +136,6 @@ if (isset($_GET["id"])) {
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
-        <label class="text" for="shortname">
-          <h7>หน่วยงานที่รับผิดชอบ :</h7>
-        </label>
-        <?php echo $row["shortname"]; ?>
-      </div>
-      <div class="col-sm-6">
-        <label class="text" for="seller_address">
-          <h7>ที่อยู่ :</h7>
-        </label>
-        <?php echo thainumDigit($row["seller_address"]); ?>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <label class="text" for="fullname">
-          <h7>สถานที่ตั้ง :</h7>
-        </label>
-        <?php echo thainumDigit($row["fullname"]); ?>/
-        <label class="text" for="bulding">อาคาร
-        </label>
-        <?php echo thainumDigit($row["bulding"]); ?>/
-        <label class="text" for="floor">ชั้น
-        </label>
-        <?php echo thainumDigit($row["floor"]); ?>
-      </div>
       <div class="col-sm-6">
         <label class="text" for="seller_tel">
           <h7>โทรศัพท์/FAX :</h7>

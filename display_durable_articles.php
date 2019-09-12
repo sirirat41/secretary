@@ -106,10 +106,10 @@ $show = 10;
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                          <td><?php echo $row["seq"]; ?></td>
+                          <td><?php echo thainumDigit($row["seq"]); ?></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["name"]; ?></td>
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -154,6 +154,7 @@ $show = 10;
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
             for ($i = 0; $i < $page; $i++) {
+<<<<<<< HEAD
 
               if (isset($_GET["keyword"])) {
                 ?>
@@ -166,6 +167,27 @@ $show = 10;
             <?php
             }}
 
+=======
+              if (isset($_GET["keyword"])) {
+                ?>
+<<<<<<< HEAD
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+=======
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else { 
+                ?>
+              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+>>>>>>> 9b4528c00ee8d2d0bd91125bb0b35c446ea34c69
+            <?php
+              }
+            }
+>>>>>>> 711c67d207dd5d7beab72cb64726ed797dd1e118
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

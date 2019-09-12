@@ -68,7 +68,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_edit_supplies.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_supplies.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group">
@@ -234,7 +234,24 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
-
+                <div class="row">
+                  <div class="col-6">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail img-raised">
+                        <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                          <br>
+                          <div class="col-2 offset-1">
+                            <input type="file" name="image" />
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <br><br>
                 <div class="row">
                   <div class="col-12">
@@ -382,19 +399,19 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo $row["bill_no"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td><?php echo $row["type"]; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                            </td>
-                          </tr>
+                            <tr class="text-center">
+                              <td><?php echo thainumDigit($row["id"]); ?></td>
+                              <td><?php echo thainumDigit($row["seq"]); ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td><?php echo $row["type"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
+                              </td>
+                            </tr>
                           <?php
                           }
                           ?>

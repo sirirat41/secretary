@@ -103,8 +103,8 @@ $show = 10;
                       <tr class="text-center">
                         <td><?php echo thainumDigit($row["document_no"]); ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["donate_name"]; ?></td>
-                        <td><?php echo $row["receive_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["donate_name"]); ?></td>
+                        <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_donate.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>

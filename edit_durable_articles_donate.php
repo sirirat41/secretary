@@ -277,9 +277,9 @@ if (isset($_GET["id"])) {
                             $id = $row["id"]
                             ?>
                           <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo thainumDigit($row["id"]); ?></td>
+                            <td><?php echo thainumDigit($row["picture"]); ?></td>
+                            <td><?php echo thainumDigit($row["seq"]); ?></td>
                             <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["name"]; ?></td>

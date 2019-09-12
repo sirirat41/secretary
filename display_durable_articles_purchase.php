@@ -97,18 +97,18 @@ $show = 5;
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
                       }
+                       // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
-                      // echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                          <td><?php echo $row["purchase_date"]; ?></td>
-                          <td><?php echo $row["number"]; ?></td>
-                          <td><?php echo $row["order_by"]; ?></td>
+                          <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["number"]); ?></td>
+                          <td><?php echo thainumDigit($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>

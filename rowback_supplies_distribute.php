@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,23 +79,30 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
                       $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
                       }
-
+                      $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
+                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
-                          <td><?php echo $row["distribute_date"]; ?></td>
-                          <td><?php echo $row["number"]; ?></td>
+                          <td><?php echo thainumDigit($row["distribute_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["number"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-distribute').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
@@ -117,9 +125,29 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+            $sqlSelectCount = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
+            $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by sd.id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+              }
+            }
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

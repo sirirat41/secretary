@@ -1,6 +1,10 @@
 <?php
 require "service/connection.php";
+<<<<<<< HEAD
+$show = 5;
+=======
 $show = 10;
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +63,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_type.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_type.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_type.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a>
                 </form>
             </div>
           </div>
@@ -80,7 +84,11 @@ $show = 10;
                       </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
+                      <?php
+=======
                     <?php
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -89,8 +97,12 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_articles_type";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect .= "";
                       if (isset($_GET["keyword"])) {
+<<<<<<< HEAD
+                        $keyword = $_GET["keyword"];
+=======
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";
                       }
@@ -105,12 +117,12 @@ $show = 10;
                           <td><?php echo $row["name"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_type.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_type.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
                           <?php
                           }
 
@@ -122,7 +134,6 @@ $show = 10;
             </div>
           </form>
         </div>
-
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
@@ -132,13 +143,21 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM durable_articles_type";
+<<<<<<< HEAD
+            $sqlSelectCount .= "";
+=======
             $sqlSelectCount .= " WHERE status = 1";
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%')";
             }
+<<<<<<< HEAD
+            $sqlSelectCount .= " Order by id desc";
+=======
             // echo $sqlSelect;
             $sqlSelectCount .= " Order by id desc LIMIT $start, $show";
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
@@ -149,11 +168,18 @@ $show = 10;
               <?php
                 } else {
                   ?>
+<<<<<<< HEAD
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+              }
+            }
+=======
 
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
 
             }}
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

@@ -101,9 +101,15 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
+<<<<<<< HEAD
+                        <td><?php echo thainumDigit($row["id"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo thainumDigit($row["damage_date"]); ?></td>
+=======
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["damage_date"]; ?></td>
                         <td><?php echo $row["flag"]; ?></td>
+>>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
