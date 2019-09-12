@@ -156,20 +156,12 @@ $show = 10;
             for ($i = 0; $i < $page; $i++) {
               if (isset($_GET["keyword"])) {
                 ?>
-<<<<<<< HEAD
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
 
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-=======
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
-              <?php
-                } else { 
-                ?>
-              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
->>>>>>> 9b4528c00ee8d2d0bd91125bb0b35c446ea34c69
             <?php
               }
             }

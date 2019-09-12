@@ -36,10 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9b4528c00ee8d2d0bd91125bb0b35c446ea34c69
     //purchase
 
     $order_no = $_POST["order_no"];
