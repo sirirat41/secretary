@@ -2,11 +2,11 @@
 <html lang="en">
 <?php
 require "service/connection.php";
-if (isset($_GET["id"])) {
-  $depID = $_GET["id"];
-  $sql = "SELECT a.*, d.fullname FROM durable_articles as a, department as d";
-  $sql .= " WHERE a.department_id = d.id and d.id = $depID";
-}
+// if (isset($_GET["id"])) {
+//   $depID = $_GET["id"];
+//   $sql = "SELECT a.*, d.fullname FROM durable_articles as a, department as d";
+//   $sql .= " WHERE a.department_id = d.id and d.id = $depID";
+// }
 $show = 2;
 ?>
 
@@ -28,6 +28,7 @@ $show = 2;
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+  <link href="css/selectedDepartmant.css" rel="stylesheet">
 
 
 </head>
@@ -44,18 +45,16 @@ $show = 2;
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->
-        <div class="dropdown">
-          <h6 class="text-dark" align="center">เลือก
-            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button class="dropdown-item" type="button">Action</button>
-              <button class="dropdown-item" type="button">Another action</button>
-              <button class="dropdown-item" type="button">Something else here</button>
-          </h6>
-        </div>
-      </div>
+    <div class="dropdown">
+      <h6 class="text-dark" align="center">เลือก
+        <select name="selectedDepartment" id="selectedDepartment" class="btn btn-danger dropdown-toggle" onchange="selectedDepartment()">
+          <option value="1" selected="">1 : ข้อมูลครุภัณฑ์</option>
+          <option value="2">2 : ข้อมูลวัสดุคงทน</option>
+          <option value="3">3 : ข้อมูลวัสดุสิ้นเปลือง</option>
+        </select>
+        </button>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
@@ -112,6 +111,7 @@ $show = 2;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script src="js/selectedDepartment.js"></script>
 
 </body>
 

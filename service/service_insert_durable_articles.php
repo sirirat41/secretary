@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     $target_dir = "../uploads/";
     $imageName = basename($_FILES["image"]["name"]);
@@ -53,6 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 =======
 >>>>>>> 9b4528c00ee8d2d0bd91125bb0b35c446ea34c69
 >>>>>>> 711c67d207dd5d7beab72cb64726ed797dd1e118
+=======
+>>>>>>> 1f91b5290509285ea829c59d8c9fb6c87b48939c
     //purchase
 
     $order_no = $_POST["order_no"];
