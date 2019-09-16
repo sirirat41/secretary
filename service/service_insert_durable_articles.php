@@ -36,26 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-    $target_dir = "../uploads/";
-    $imageName = basename($_FILES["image"]["name"]);
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        //echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
-    }
-
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 9b4528c00ee8d2d0bd91125bb0b35c446ea34c69
->>>>>>> 711c67d207dd5d7beab72cb64726ed797dd1e118
-=======
->>>>>>> 1f91b5290509285ea829c59d8c9fb6c87b48939c
     //purchase
 
     $order_no = $_POST["order_no"];
@@ -96,10 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
         $sqlInsertArticles .= " '$money_type', '$acquiring', '$assetNoArray[$i]', '$d_gen', $seller_id, '$goverment', $unit, ";
         $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo','$imgeName')";
-<<<<<<< HEAD
-
-=======
->>>>>>> 711c67d207dd5d7beab72cb64726ed797dd1e118
 
         echo $sqlInsertArticles;
         mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));
