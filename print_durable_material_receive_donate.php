@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรับบริจาค(วัสดุ)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรับบริจาค(วัสดุคงทน)</h6>
           <form>
             <div class="card-body">
               <div class="row">
@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-6">
                             <label class="text" for="document_no">เลขที่เอกสาร : </label>
-                            <?php echo $row["document_no"]; ?>
+                            <?php echo thainumDigit($row["document_no"]); ?>
                           </div>
                         </div>
                       </td>
@@ -82,8 +82,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                            <?php echo $row["code"]; ?>
+                            <label class="text" for="code">รหัสวัสดุ : </label>
+                            <?php echo thainumDigit($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -93,7 +93,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="receive_date">วันที่รับบริจาค : </label>
-                            <?php echo $row["receive_date"]; ?>
+                            <?php echo thainumDigit($row["receive_date"]); ?>
                           </div>
                       </td>
                       <td>
@@ -109,7 +109,7 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-sm-12">
                       <label class="text" for="number">ราคา : </label>
-                      <?php echo $row["number"]; ?>
+                      <?php echo thainumDigit($row["number"]); ?>
                     </div>
                   </div>
                 </td>

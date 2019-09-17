@@ -80,8 +80,8 @@ $show = 10;
                       <tr class="text-center">
                         <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
-                        <th>ตัวย่อ(หน่วยงาน)</th>
-                        <th>เจ้าหน้าที่</th>
+                        <th>ตำแหน่ง</th>
+                        <th>โทรสาร</th>
                         <th>อาคาร</th>
                         <th>ชั้น</th>
                         <th class="text-center">การทำงาน</th>
@@ -112,8 +112,8 @@ $show = 10;
                           <td><?php echo $row["id"]; ?></td>
                             <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                             <?php echo $row["fullname"]; ?></a></td>
-                            <td><?php echo $row["shortname"]; ?></td>
-                            <td><?php echo thainumDigit($row["owner"]); ?></td>
+                            <td><?php echo thainumDigit($row["shortname"]); ?></td>
+                            <td><?php echo thainumDigit($row["fax"]); ?></td>
                             <td><?php echo thainumDigit($row["bulding"]); ?></td>
                             <td><?php echo thainumDigit($row["floor"]); ?></td>
                             <td class="td-actions text-center">

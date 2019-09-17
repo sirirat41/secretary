@@ -76,14 +76,14 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
+                      <label class="text-dark" for="shortname">ตำแหน่ง : </label>
                       <?php echo $row["shortname"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
-                      <?php echo $row["owner"]; ?>
+                      <label class="text-dark" for="owner">โทรสาร : </label>
+                      <?php echo $row["fax"]; ?>
                     </div>
                   </div>
                   <div class="row">

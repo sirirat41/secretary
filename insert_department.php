@@ -64,7 +64,7 @@ require "service/connection.php";
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">หน่วยงาน (ย่อ)</label>
+                      <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control" name="shortname" type="text" placeholder="shortname" id="shortname" >
                     </div>
                   </div>
@@ -72,8 +72,8 @@ require "service/connection.php";
                 <div class="row">
                   <div class=" col-12">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">เจ้าหน้าที่</label>
-                      <input class="form-control" name="owner" type="text" placeholder="owner" id="owner">
+                      <label class="bmd-label-floating">โทรสาร</label>
+                      <input class="form-control" name="fax" type="text" placeholder="fax" id="fax">
                     </div>
                   </div>
                 </div>

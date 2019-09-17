@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="order_no">เลขที่ใบสั่งซื้อ : </label>
-                          <?php echo $row["order_no"]; ?>
+                          <?php echo thainumDigit($row["order_no"]); ?>
                         </div>
                       </div>
                     </td>
@@ -79,7 +79,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
-                          <?php echo $row["purchase_date"]; ?>
+                          <?php echo thainumDigit($row["purchase_date"]); ?>
                         </div>
                       </div>
                     </td>
@@ -89,7 +89,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                          <?php echo $row["attribute"]; ?>
+                          <?php echo thainumDigit($row["attribute"]); ?>
                         </div>
                       </div>
                     </td>
@@ -99,7 +99,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                          <?php echo $row["name"]; ?>
+                          <?php echo thainumDigit($row["name"]); ?>
                         </div>
                       </div>
                     </td>
@@ -126,14 +126,14 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
-                          <?php echo $row["receive_date"]; ?>
+                          <?php echo thainumDigit($row["receive_date"]); ?>
                         </div>
                     </td>
                     <td>
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="number">จำนวนปีครุภัณฑ์ : </label>
-                          <?php echo $row["number"]; ?>
+                          <?php echo thainumDigit($row["number"]); ?>
                         </div>
                       </div>
                     </td>

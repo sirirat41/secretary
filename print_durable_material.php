@@ -98,7 +98,7 @@ if (isset($_GET["id"])) {
         <label class="text" for="code">
           <h7>รหัส :</h7>
         </label>
-        <?php echo $row["code"]; ?>
+        <?php echo thainumDigit($row["code"]); ?>
       </div>
     </div>
     <div class="row">
