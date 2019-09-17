@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-
+  <title>secretary</title>
   <secretary style="display: none">display_supplies_purchase</secretary>
 
   <!-- Custom fonts for this template-->
@@ -32,8 +32,6 @@ if (isset($_GET["id"])) {
   <link href="css/secretary.css" rel="stylesheet">
 
 </head>
-
-
 
 <!-- Page Wrapper -->
 <div id="wrapper">

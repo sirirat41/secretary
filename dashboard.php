@@ -12,7 +12,7 @@ require "service/connection.php";
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary> </secretary>
 
   <!-- Custom fonts for this template-->
