@@ -122,8 +122,8 @@ if(isset($_SESSION['user_id']))
       </a>
       <div id="collapseUsers" class="collapse collapse-users" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item display" href="login.html">แสดงรายชื่อ</a>
-          <a class="collapse-item insert" href="register.html">เพิ่มผู้ดูแลระบบ</a>
+          <a class="collapse-item display" href="display_user.php">แสดงรายชื่อ</a>
+          <a class="collapse-item insert" href="insert_user.php">เพิ่มผู้ดูแลระบบ</a>
           <a class="collapse-item report" href="forgot-password.html">รายงาน</a>
         </div>
       </div>
