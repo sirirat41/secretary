@@ -14,7 +14,6 @@ if (isset($_GET["id"])) {
   // echo "year :" . +number_format((float) $depPerYear, 2, '.', '') . "<br>";
   // echo "mouth :" . +number_format((float) $depPerMouth, 2, '.', '');
 
-<<<<<<< HEAD
 
   //ราคา
   $total =  $row["price"];
@@ -34,8 +33,6 @@ if (isset($_GET["id"])) {
 
   // เดือนลบวัน 
   $monthDay = ($dateMouth - $day) + 1;
-=======
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
 }
 ?>
 

@@ -126,11 +126,7 @@ $monthDay = ($dateMouth - $day) + 1;
         <label class="text" for="asset_no">
           <h7>เลขสินทรัพย์ :</h7>
         </label>
-<<<<<<< HEAD
         <?php echo thainumDigit($row["asset_no"]); ?>
-=======
-        <?php echo thainumDigit($row["code"]); ?>
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
       </div>
       <div class="col-sm-6">
         <label class="text" for="fullname">

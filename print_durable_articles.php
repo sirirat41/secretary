@@ -7,7 +7,6 @@ if (isset($_GET["id"])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
-<<<<<<< HEAD
   // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   // echo $depPerYear;
 
@@ -47,10 +46,6 @@ if (isset($_GET["id"])) {
   //หาค่าเสื่อมปีสุดท้าย 
   // $YearEnd = $net + $depPerYearM;
   // echo $YearEnd . "<br>";
-=======
-  $depPerYear = ($row["price"] - 1) / $row["durable_year"];
-  echo $depPerYear;
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
 }
 
 ?>

@@ -96,6 +96,7 @@ if (isset($_GET["id"])) {
                     <label class="text-dark" for="name">ชื่อวัสดุ : </label>
                     <?php echo thainumDigit($row["name"]); ?>
                   </div>
+                </td>
         </div>
         </td>
         </tr>

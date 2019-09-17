@@ -101,10 +101,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-<<<<<<< HEAD
-                        <td><?php echo thainumDigit($row["id"]); ?></td>
-=======
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo thainumDigit($row["damage_date"]); ?></td>
                         <td><?php echo thainumDigit($row["flag"]); ?></td>

@@ -58,7 +58,6 @@ if (isset($_GET["id"])) {
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
 
       <div class="row ">
-<<<<<<< HEAD
       <div class="col-8 offset-2">
         <div class="card">
           <div class="card-header card-header-text card-header-danger">
@@ -67,17 +66,6 @@ if (isset($_GET["id"])) {
                 <i class="fas fa-fw fa-cubes"></i>
                 เพิ่มข้อมูลครุภัณฑ์
               </h6>
-=======
-        <div class="col-8 offset-2">
-          <div class="card">
-            <div class="card-header card-header-text card-header-danger">
-              <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-fw fa-cubes"></i>
-                  เพิ่มข้อมูลครุภัณฑ์
-                </h6>
-              </div>
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
             </div>
             <br>
             <div class="card-body">
@@ -104,7 +92,6 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
               </div>
               <div class="row">
                 <div class="col-12 ">
@@ -120,14 +107,6 @@ if (isset($_GET["id"])) {
                   <div class="form-group">
                     <label class="bmd-label-floating">ชื่อผู้รับ :</label>
                     <input class="form-control" type="text" placeholder="receiver" name="receiver" value="<?php echo $item["receiver"]; ?>">
-=======
-                <div class="row">
-                  <div class="col-6 ">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">ชื่อผู้รับ :</label>
-                      <input class="form-control" type="text" placeholder="receiver" name="receiver" value="<?php echo $item["receiver"]; ?>">
-                    </div>
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                   </div>
                   <div class="col-6 ">
                     <div class="form-group">
@@ -423,7 +402,6 @@ if (isset($_GET["id"])) {
                           <div class="modal-body ">
                             คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
                           </div>
-<<<<<<< HEAD
                         </div>
                       </div>
                       <br>
@@ -469,11 +447,6 @@ if (isset($_GET["id"])) {
                                 </div>
                               </div>
                             </div>
-=======
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                           </div>
                         </div>
                       </div>
@@ -487,12 +460,9 @@ if (isset($_GET["id"])) {
 
           </div>
         </div>
-<<<<<<< HEAD
         </div>
 
 
-=======
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
         <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
       <!-- /.container-fluid -->
