@@ -13,7 +13,7 @@ $show = 5;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">display_durable_articles_receive_donate</secretary>
 
   <!-- Custom fonts for this template-->

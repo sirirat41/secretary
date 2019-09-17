@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">display_durable_material_permits</secretary>
 
   <!-- Custom fonts for this template-->
@@ -33,12 +33,8 @@ if (isset($_GET["id"])) {
 
 </head>
 
-
-
 <!-- Page Wrapper -->
 <div id="wrapper">
-
-
 
   </nav>
   <!-- End of Topbar -->
@@ -70,12 +66,12 @@ if (isset($_GET["id"])) {
             <thead>
               <tr>
                 <td colspan="2">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark" for="document_no">เลขที่หนังสือ : </label>
-                        <?php echo $row["document_no"]; ?>
-                      </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="document_no">เลขที่หนังสือ : </label>
+                      <?php echo $row["document_no"]; ?>
                     </div>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -95,72 +91,72 @@ if (isset($_GET["id"])) {
                       <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
                       <?php echo $row["attribute"]; ?>
                     </div>
-                    </td>
-                    <td>
-                    <div class="col-md-12">
-                      <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
-                      <?php echo $row["name"]; ?>
-                  </div> 
-                 </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="text-dark" for="transfer_date">วันที่โอน : </label>
-                      <?php echo $row["transfer_date"]; ?>
-                    </div>
                 </td>
                 <td>
-                    <div class="col-md-12">
-                      <label class="text-dark" for="transfer_to">ชื่อผู้โอนให้ : </label>
-                      <?php echo $row["transfer_to"]; ?>
-                    </div>
+                  <div class="col-md-12">
+                    <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
+                    <?php echo $row["name"]; ?>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="text-dark" for="flag">หมายเหตุ : </label>
-                      <?php echo $row["flag"]; ?>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-            <br>
-        <br>
-        <div class="card-body">
+        </div>
+        </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-dark" for="transfer_date">วันที่โอน : </label>
+                <?php echo $row["transfer_date"]; ?>
+              </div>
+          </td>
+          <td>
+            <div class="col-md-12">
+              <label class="text-dark" for="transfer_to">ชื่อผู้โอนให้ : </label>
+              <?php echo $row["transfer_to"]; ?>
+            </div>
+      </div>
+      </td>
+      </tr>
+      <tr>
+        <td colspan="2">
           <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
+            <div class="col-md-12">
+              <label class="text-dark" for="flag">หมายเหตุ : </label>
+              <?php echo $row["flag"]; ?>
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-4 offset-sm-8" >
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-              </label>
-            </div>
+        </td>
+      </tr>
+      </table>
+      <br>
+      <br>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">ตรวจแล้วถูกต้อง</label>
           </div>
         </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-4 offset-sm-8">
+            <label class="text">พ.ต.ท.หญิง......................................................</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+            </label>
+          </div>
         </div>
       </div>
-    </form>
   </div>
+</div>
+</form>
+</div>
 </div>
 </div>
 </div>
