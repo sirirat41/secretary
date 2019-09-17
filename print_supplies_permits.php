@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-6">
                             <label class="text" for="book_no">เลขที่หนังสือ : </label>
-                            <?php echo $row["book_no"]; ?>
+                            <?php echo thainumDigit($row["book_no"]); ?>
                           </div>
                         </div>
                       </td>
@@ -83,7 +83,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="code">รหัสวัสดุ : </label>
-                            <?php echo $row["code"]; ?>
+                            <?php echo thainumDigit($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -93,7 +93,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                            <?php echo $row["attribute"]; ?>
+                            <?php echo thainumDigit($row["attribute"]); ?>
                           </div>
                         </div>
                       </td>
@@ -103,7 +103,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                            <?php echo $row["name"]; ?>
+                            <?php echo thainumDigit($row["name"]); ?>
                           </div>
                         </div>
                       </td>
@@ -113,7 +113,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="permit_date">วันที่ยืม : </label>
-                            <?php echo $row["permit_date"]; ?>
+                            <?php echo thainumDigit($row["permit_date"]); ?>
                           </div>
                       </td>
                       <td>

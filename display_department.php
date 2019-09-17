@@ -112,10 +112,10 @@ $show = 10;
                           <td><?php echo $row["id"]; ?></td>
                             <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                             <?php echo $row["fullname"]; ?></a></td>
-                            <td><?php echo $row["shortname"]; ?></td>
-                            <td><?php echo $row["fax"]; ?></td>
-                            <td><?php echo $row["bulding"]; ?></td>
-                            <td><?php echo $row["floor"]; ?></td>
+                            <td><?php echo thainumDigit($row["shortname"]); ?></td>
+                            <td><?php echo thainumDigit($row["fax"]); ?></td>
+                            <td><?php echo thainumDigit($row["bulding"]); ?></td>
+                            <td><?php echo thainumDigit($row["floor"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
                                 <i class="fas fa-pencil-alt"></i>

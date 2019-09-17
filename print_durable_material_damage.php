@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
     <div class="col-md-8 offset-2">
       <div class="table-responsive">
         <table width="500" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลชำรุด (ครุภัณฑ์)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลชำรุด (วัสดุคงทน)</h6>
           <form class="form-inline">
             <div>
           </form>
@@ -77,8 +77,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                    <?php echo $row["code"]; ?>
+                    <label class="text" for="code">รหัสวัสดุ : </label>
+                    <?php echo thainumDigit($row["code"]); ?>
                   </div>
                 </div>
               </td>
@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text" for="damage_date">วันที่ชำรุด : </label>
-                    <?php echo $row["damage_date"]; ?>
+                    <?php echo thainumDigit($row["damage_date"]); ?>
                   </div>
                 </div>
               </td>

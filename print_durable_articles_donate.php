@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-6">
                     <label class="text" for="document_no">เลขที่เอกสาร : </label>
-                    <?php echo $row["document_no"]; ?>
+                    <?php echo thainumDigit($row["document_no"]); ?>
                   </div>
                 </div>
               </td>
@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text" for="receive_date">วันที่บริจาค : </label>
-                    <?php echo $row["receive_date"]; ?>
+                    <?php echo thainumDigit($row["receive_date"]); ?>
                   </div>
                 </div>
               </td>
@@ -98,7 +98,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                    <?php echo $row["code"]; ?>
+                    <?php echo thainumDigit($row["code"]); ?>
                   </div>
                 </div>
               </td>
