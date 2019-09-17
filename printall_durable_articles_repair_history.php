@@ -39,71 +39,64 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่ซ่อม</font>
+                    </th>
+                    <th>
+                      <font size="2">รหัสการซ่อม(ครุภัณฑ์)</font>
+                    </th>
+                    <th>
+                      <font size="2">รายการซ่อม(ครุภัณฑ์)</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
+                  $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                  }
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"];
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["receive_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["fix"]; ?></font>
+                      </td>
+                    <?php
+                    }
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                  <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
-                  <form>
-                    <thead>
-                      <tr class="text-center">
-                        <th>
-                          <font size="2">ลำดับ</font>
-                        </th>
-                        <th>
-                          <font size="2">วันที่ซ่อม</font>
-                        </th>
-                        <th>
-                          <font size="2">รหัสการซ่อม(ครุภัณฑ์)</font>
-                        </th>
-                        <th>
-                          <font size="2">รายการซ่อม(ครุภัณฑ์)</font>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
-                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                        <tr class="text-center">
-                          <td>
-                            <font size="2"><?php echo $row["id"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["receive_date"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["fix"]; ?></font>
-                          </td>
-                        <?php
-                        }
-
-                        ?>
-                    </tbody>
-                </table>
-              </div>
-            </div>
+                    ?>
+                </tbody>
+            </table>
+            </form>
           </div>
-          </form>
         </div>
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-
+    <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
 

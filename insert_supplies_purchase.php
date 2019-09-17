@@ -49,7 +49,7 @@ require "service/connection.php";
 
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
-                  เพิ่มข้อมูล(วัสดุสิ้นเปลือง)
+                  เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)
                 </h6>
               </div>
             </div>

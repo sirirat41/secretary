@@ -26,18 +26,14 @@ require "service/connection.php";
     @page {
       size: landscape;
     }
-   
   </style>
- 
-</head>
 
+</head>
 
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
 
     </nav>
     <!-- End of Topbar -->
@@ -48,69 +44,95 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลวัสดุสิ้นเปลือง </h6>
-                     <form>
-                        <thead>
-                      <tr class="text-center">
-                        <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">เลขที่ใบเบิก</font></th>
-                        <th><font size="2">รหัส</font></th>
-                        <th><font size="2">ประเภท</font></th>
-                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
-                        <th><font size="2">หน่วยนับ</font></th>
-                        <th><font size="2">รายการ</font></th>
-                        <th><font size="2">หน่วยงานที่รับผิดชอบ</font></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                      $sqlSelect = "SELECT s.*, t.name as durable_articles_type_name , d.fullname ,un.name as unit_name FROM supplies as s, durable_material_type as t, department as d, unit as un";
-                      $sqlSelect .= " WHERE s.type = t.id and s.department_id = d.id and s.unit = un.id and s.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-                      }
-                      //echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                      <tr class="text-center">
-                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["durable_articles_type_name"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["attribute"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["unit_name"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["name"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["fullname"]); ?></font></td>
-                      </tr>
-                          <?php
-                          }
-                          ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center">ข้อมูลการแจกจ่าย(วัสดุสิ้นเปลือง)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">เลขที่ใบเบิก</font>
+                    </th>
+                    <th>
+                      <font size="2">รหัสวัสดุ</font>
+                    </th>
+                    <th>
+                      <font size="2">ประเภท</font>
+                    </th>
+                    <th>
+                      <font size="2">ลักษณะ/คุณสมบัติ</font>
+                    </th>
+                    <th>
+                      <font size="2">หน่วยนับ</font>
+                    </th>
+                    <th>
+                      <font size="2">รายการ</font>
+                    </th>
+                    <th>
+                      <font size="2">หน่วยงานที่รับผิดชอบ</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT s.*, t.name as durable_articles_type_name , d.fullname ,un.name as unit_name FROM supplies as s, durable_material_type as t, department as d, unit as un";
+                  $sqlSelect .= " WHERE s.type = t.id and s.department_id = d.id and s.unit = un.id and s.status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                  }
+                  //echo $sqlSelect;
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"]
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["id"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["durable_articles_type_name"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["unit_name"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["fullname"]); ?></font>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+            </table>
+            </form>
+          </div>
         </div>
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-
+    <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-   
+
   </footer>
   <!-- End of Footer -->
 

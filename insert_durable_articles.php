@@ -47,7 +47,7 @@ require "service/connection.php";
 
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-cubes"></i>
-                  เพิ่มข้อมูลครุภัณฑ์
+                  เพิ่มข้อมูล(ครุภัณฑ์)
                 </h6>
               </div>
             </div>

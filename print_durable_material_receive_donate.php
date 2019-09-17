@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
           <form>
             <div class="card-body">
               <div class="row">

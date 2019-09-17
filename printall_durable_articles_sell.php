@@ -39,75 +39,70 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                  <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
-                  <form>
-                    <thead>
-                      <tr class="text-center">
-                        <th>
-                          <font size="2">ลำดับ</font>
-                        </th>
-                        <th>
-                          <font size="2">เลขที่เอกสาร</font>
-                        </th>
-                        <th>
-                          <font size="2">วันที่ขาย</font>
-                        </th>
-                        <th>
-                          <font size="2">รหัสครุภัณฑ์</font>
-                        </th>
-                        <th>
-                          <font size="2">ชื่อผู้ซื้อ</font>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT s.*, a.code FROM durable_articles_sell as s, durable_articles as a";
-                      $sqlSelect .= " WHERE s.product_id = a.id and s.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                        <tr class="text-center">
-                          <td>
-                            <font size="2"><?php echo $row["id"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["document_no"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["sell_date"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["buyer"]; ?></font>
-                          </td>
-                        </tr>
-                      <?php
-                      }
-                      ?>
-                    </tbody>
-                </table>
-              </div>
-            </div>
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">เลขที่เอกสาร</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่ขาย</font>
+                    </th>
+                    <th>
+                      <font size="2">รหัสครุภัณฑ์</font>
+                    </th>
+                    <th>
+                      <font size="2">ชื่อผู้ซื้อ</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT s.*, a.code FROM durable_articles_sell as s, durable_articles as a";
+                  $sqlSelect .= " WHERE s.product_id = a.id and s.status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
+                  }
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"];
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["document_no"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["sell_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["buyer"]; ?></font>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+            </table>
+            </form>
           </div>
-          </form>
         </div>
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 
   </div>
   <!-- End of Main Content -->

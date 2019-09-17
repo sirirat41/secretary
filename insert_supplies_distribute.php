@@ -50,7 +50,7 @@ $show=10;
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-paper-plane"></i>
-                  เพิ่มข้อมูลแจกจ่ายวัสดุ
+                  เพิ่มข้อมูลการแจกจ่ายวัสดุ
                 </h6>
               </div>
             </div>

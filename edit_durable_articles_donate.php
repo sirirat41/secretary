@@ -59,7 +59,7 @@ $show=10;
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
-                  เพิ่มข้อมูลบริจาคออก (ครุภัณฑ์)
+                  แก้ไขข้อมูลการบริจาคออก (ครุภัณฑ์)
                 </h6>
               </div>
             </div>

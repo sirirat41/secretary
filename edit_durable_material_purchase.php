@@ -65,7 +65,7 @@ if (isset($_GET["id"])) {
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  เพิ่มข้อมูลจัดซื้อวัสดุ (คงทน)
+                  แก้ไขข้อมูลการจัดซื้อ (วัสดุคงทน)
                 </h6>
               </div>
             </div>

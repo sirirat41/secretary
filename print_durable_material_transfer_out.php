@@ -50,7 +50,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="900" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลโอนเข้า(วัสดุคงทน)</h6>
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนออก(วัสดุคงทน)</h6>
     </div>
     </nav>
     <form>

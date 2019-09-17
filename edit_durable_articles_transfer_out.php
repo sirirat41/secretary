@@ -55,9 +55,8 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนออก(ครุภัณฑ์)</h6>
+                <i class="fas fa-box-open"></i> แก้ไขข้อมูลการโอนออก(ครุภัณฑ์)</h6>
             </div>
-
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_articles_transfer_out.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
@@ -248,7 +247,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-12">
                   <div class="table-responsive">
-                  <table class="table table-hover ">
+                    <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
                           <td>รูปภาพ</td>
@@ -260,38 +259,38 @@ if (isset($_GET["id"])) {
                         </tr class="text-center">
                       </thead>
                       <tbody>
-                      <!-- ///ดึงข้อมูล -->
-                      <?php
-                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                      if (isset($_GET["page"])) {
-                        $page = $_GET["page"];
-                      } else {
-                        $page = 1;
-                      }
-                      $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                      }
-                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                        <tr class="text-center">
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                          <td><?php echo thainumDigit($row["seq"]); ?></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["name"]); ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                              <i class="fas fa-check"></i>
-                            </button>
-                          </td>
-                        </tr>
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
+                        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
+                          <tr class="text-center">
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                            <td><?php echo thainumDigit($row["seq"]); ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
                         <?php
                         }
                         ?>
@@ -302,41 +301,42 @@ if (isset($_GET["id"])) {
               </div>
             </div>
             <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <?php
-            $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
-            if (isset($_GET["keyword"])) {
-              $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-            }
-            $sqlSelectCount .= " Order by a.id desc";
-            $resultCount = mysqli_query($conn, $sqlSelectCount);
-            $total = mysqli_num_rows($resultCount);
-            $page = ceil($total / $show);
-            for ($i = 0; $i < $page; $i++) {
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <?php
+                $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+                if (isset($_GET["keyword"])) {
+                  $keyword = arabicnumDigit($_GET["keyword"]);
+                  $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                }
+                $sqlSelectCount .= " Order by a.id desc";
+                $resultCount = mysqli_query($conn, $sqlSelectCount);
+                $total = mysqli_num_rows($resultCount);
+                $page = ceil($total / $show);
+                for ($i = 0; $i < $page; $i++) {
 
-              if (isset($_GET["keyword"])) {
+                  if (isset($_GET["keyword"])) {
+                    ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                  <?php
+                    } else {
+                      ?>
+
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <?php
+                  }
+                }
+
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
-              <?php
-                } else { 
-                ?>
-
-              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-            <?php
-            }}
-
-            ?>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -359,21 +359,21 @@ if (isset($_GET["id"])) {
         data: {
           keyword: kw
         },
-        
+
         success: function(data) {
           var tbody = $('#modal-articles-body');
           tbody.empty();
-          for(i = 0; i< data.length; i++) {
-           var item = data[i];
-           var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-           $('<td>'+item.id+'</td>').appendTo(tr);
-           $('<td>'+item.picture+'</td>').appendTo(tr);
-           $('<td>'+item.seq+'</td>').appendTo(tr);
-           $('<td>'+item.bill_no+'</td>').appendTo(tr);
-           $('<td>'+item.code+'</td>').appendTo(tr);
-           $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-				 }
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.picture + '</td>').appendTo(tr);
+            $('<td>' + item.seq + '</td>').appendTo(tr);
+            $('<td>' + item.bill_no + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.type + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
         },
         error: function(error) {
           console.log(error);

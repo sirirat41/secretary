@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  หน่วยงาน
+                  แก้ไขข้อมูลหน่วยงาน
                 </h6>
               </div>
             </div>

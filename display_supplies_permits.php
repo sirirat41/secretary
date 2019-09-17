@@ -58,9 +58,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_permits.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='printall_supplies_permits.php';">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_permits.php" target="_blank">
                       <i class="fas fa-print"></i>
-                    </button>
+                    </a>
                 </form>
             </div>
           </div>

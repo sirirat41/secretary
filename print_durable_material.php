@@ -39,7 +39,6 @@ if (isset($_GET["id"])) {
 
     <!-- End of Topbar -->
 
-
     <!-- Begin Page Content -->
 
     <body onLoad="window.print()">

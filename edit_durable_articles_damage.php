@@ -59,7 +59,7 @@ $show=10;
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-house-damage"></i>
-                  เพิ่มข้อมูลชำรุด (ครุภัณฑ์)
+                  แก้ไขข้อมูลชำรุด (ครุภัณฑ์)
                 </h6>
               </div>
             </div>

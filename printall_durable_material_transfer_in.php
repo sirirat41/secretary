@@ -31,13 +31,10 @@ require "service/connection.php";
  
 </head>
 
-
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
 
     </nav>
     <!-- End of Topbar -->
@@ -62,7 +59,7 @@ require "service/connection.php";
                         <th><font size="2">วันที่โอน</font></th>
                         <th><font size="2">รหัสวัสดุ</font></th>
                         <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
-                        <th><font size="2">ชื่อครุภัณฑ์</font></th>
+                        <th><font size="2">ชื่อวัสดุ</font></th>
                         <th><font size="2">ชื่อผู้โอน</font></th>
                       </tr>
                     </thead>

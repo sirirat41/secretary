@@ -30,142 +30,127 @@ require "service/connection.php";
 
 </head>
 
-
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-
-
     </nav>
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->
-
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุสิ้นเปลือง)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">เลขที่หนังสือ</font>
+                    </th>
+                    <th>
+                      <font size="2">รหัสครุภัณฑ์</font>
+                    </th>
+                    <th>
+                      <font size="2">ลักษณะ/คุณสมบัติ</font>
+                    </th>
+                    <th>
+                      <font size="2">รุ่นแบบ</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่ยืม</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่คืน</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT p.*, m.code ,m.attribute ,m.name FROM supplies_permits as p,supplies as m";
+                  $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                  }
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"];
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["book_no"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["attribute"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["name"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["permit_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["receive_date"]; ?></font>
+                      </td>
 
+                    <?php
+                    }
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                  <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-                  <form>
-                    <thead>
-                      <tr class="text-center">
-                        <th>
-                          <font size="2">ลำดับ</font>
-                        </th>
-                        <th>
-                          <font size="2">เลขที่หนังสือ</font>
-                        </th>
-                        <th>
-                          <font size="2">รหัสครุภัณฑ์</font>
-                        </th>
-                        <th>
-                          <font size="2">ลักษณะ/คุณสมบัติ</font>
-                        </th>
-                        <th>
-                          <font size="2">รุ่นแบบ</font>
-                        </th>
-                        <th>
-                          <font size="2">วันที่ยืม</font>
-                        </th>
-                        <th>
-                          <font size="2">วันที่คืน</font>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT p.*, m.code ,m.attribute ,m.name FROM supplies_permits as p,supplies as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                        <tr class="text-center">
-                          <td>
-                            <font size="2"><?php echo $row["id"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo thainumDigit($row["book_no"]); ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["attribute"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["name"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["permit_date"]; ?></font>
-                          </td>
-                          <td>
-                            <font size="2"><?php echo $row["receive_date"]; ?></font>
-                          </td>
-
-                        <?php
-                        }
-
-                        ?>
-                    </tbody>
-                </table>
-                <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9"><font size="2">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-4 offset-sm-8">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-              </label></font>
-            </div>
-          </div>
-        </div>
+                    ?>
+                </tbody>
+            </table>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <font size="2">
+                    <label class="text">ตรวจแล้วถูกต้อง</label>
+                </div>
               </div>
-            </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-4 offset-sm-8">
+                  <label class="text">พ.ต.ท.หญิง......................................................</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+                  </label></font>
+                </div>
+              </div>
+              </form>
           </div>
-          </form>
         </div>
-
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
+      <!-- /.container-fluid -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
+    <!-- End of Main Content -->
 
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
 
-  </div>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-
-  </footer>
-  <!-- End of Footer -->
+    </footer>
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->

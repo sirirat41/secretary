@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> เพิ่มข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                <i class="fas fa-business-time"></i> แก้ไขข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_articles_permits.php?id=<?php echo $id; ?>" id="form_insert">

@@ -23,13 +23,8 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-<<<<<<< HEAD
-  <title>Dashboard</title>
-  <secretary style="display: none">insert_durable_material_transfer_in</secretary>
-=======
   <title>secretary</title>
   <secretary style="display: none">insert_durable_articles_transfer_in</secretary>
->>>>>>> 342a5eb1483e1ba0cea832de5d590965d5a5e0a5
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,7 +57,7 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนเข้า(วัสดุ)</h6>
+                <i class="fas fa-box-open"></i> แก้ไขข้อมูลการโอนเข้า(วัสดุคงทน)</h6>
             </div>
 
             <div class="card-body">

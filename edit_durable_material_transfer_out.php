@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนออก(วัสดุ)</h6>
+                <i class="fas fa-box-open"></i> แก้ไขข้อมูลการโอนออก(วัสดุคงทน)</h6>
             </div>
 
             <div class="card-body">
