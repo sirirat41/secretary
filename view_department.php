@@ -76,24 +76,20 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-<<<<<<< HEAD
-                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
-                      <?php echo thainumDigit ($row["shortname"]); ?>
-=======
                       <label class="text-dark" for="shortname">ตำแหน่ง : </label>
                       <?php echo $row["shortname"]; ?>
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-<<<<<<< HEAD
-                      <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
-                      <?php echo thainumDigit ($row["owner"]); ?>
-=======
-                      <label class="text-dark" for="owner">โทรสาร : </label>
+                      <label class="text-dark" for="tel">เบอร์โทรศัพท์ : </label>
+                      <?php echo $row["tel"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="fax">โทรสาร : </label>
                       <?php echo $row["fax"]; ?>
->>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                     </div>
                   </div>
                   <div class="row">
