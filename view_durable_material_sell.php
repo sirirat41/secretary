@@ -60,38 +60,38 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card" style="width: 200px;">
-                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                      <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
-                        <?php echo $row["document_no"]; ?>
+                        <?php echo thainumDigit($row["document_no"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                        <?php echo $row["code"]; ?>
+                        <?php echo thainumDigit($row["code"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <label class="text-dark" for="sell_date">วันที่ขาย : </label>
-                        <?php echo $row["sell_date"]; ?>
+                        <?php echo thainumDigit($row["sell_date"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="buyer">ชื่อผู้ซื้อ : </label>
-                        <?php echo $row["buyer"]; ?>
+                        <?php echo thainumDigit($row["buyer"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="flag">หมายเหตุ : </label>
-                        <?php echo $row["flag"]; ?>
+                        <?php echo thainumDigit($row["flag"]); ?>
                       </div>
                     </div>
                   </div>

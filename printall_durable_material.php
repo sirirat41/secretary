@@ -58,6 +58,7 @@ require "service/connection.php";
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">รหัส</font></th>
+                        <th><font size="2">เลขสินทรัพท์</font></th>
                         <th><font size="2">ประเภท</font></th>
                         <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
                         <th><font size="2">เลขที่ใบเบิก</font></th>
@@ -79,6 +80,7 @@ require "service/connection.php";
                       <tr class="text-center">
                         <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["asset_no"]); ?></font></td>
                         <td><font size="2"><?php echo $row["name"]; ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["attribute"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font></td>

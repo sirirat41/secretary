@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $durable_year = $_POST["durable_year"]; 
     $materialPattern = $_POST["material_pattern"];
     $status = 1;
+    $asset_no = $_POST["asset_no"];
 
 
       //อัฟโหลดรูปภาพ
@@ -70,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $sqlInsertMaterial = "INSERT INTO durable_material ( seq, code, type, attribute, bill_no, department_id, ";
-        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , name , picture)";
+        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , name , picture , asset_no)";
         $sqlInsertMaterial .= " VALUES($seq,'$newCode', $type, '$attribute', '$bill_no', $department_id ,";
-        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , '$name' ,'$imgeName')";
+        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , '$name' ,'$imgeName','$asset_no')";
 
 
         mysqli_query($conn, $sqlInsertMaterial) or die(mysqli_error($conn));

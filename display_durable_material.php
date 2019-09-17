@@ -81,6 +81,7 @@ $show = 5;
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
+                        <th>เลขสินทรัพย์</th>
                         <th>ประเภท</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
@@ -112,6 +113,7 @@ $show = 5;
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo thainumDigit($row["asset_no"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">

@@ -64,23 +64,23 @@ if (isset($_GET["id"])) {
                         <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-12">
                           <label class="text-dark" for="code">รหัส : </label>
-                          <?php echo $row["code"]; ?>
+                          <?php echo thainumDigit($row["code"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                          <?php echo $row["attribute"]; ?>
+                          <?php echo thainumDigit($row["attribute"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
-                          <?php echo $row["receive_date"]; ?>
+                          <?php echo thainumDigit($row["receive_date"]); ?>
                         </div>
                       </div>
                     </div>

@@ -14,6 +14,8 @@ if (isset($_GET['id'])) {
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
+    
+
     //อัฟโหลดรูปภาพ
     $target_dir = "../uploads/";
     $imgeName = $_FILES["image"]["name"];
@@ -33,10 +35,17 @@ if (isset($_GET['id'])) {
     $price = $_POST["price"];
     $durableYear = $_POST["durable_year"];
     $name = $_POST["name"];
+    $assetNo = $_POST["asset_no"];
+    $articles_pattern = $_POST["articles_pattern"];
+
+    $pattern = convertPattern($articles_pattern);
+    $sqlCheck = "SELECT * FROM durable_articles WHERE code like '$pattern'";
+    $resultCheck = mysqli_query($conn, $sqlCheck);
+    $numberBefore = mysqli_num_rows($resultCheck);
 
     $updateMaterial = "UPDATE durable_material SET short_goverment = '$shortGoverment',";
     $updateMaterial .= " type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";
-    $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name', picture = '$imgeName'";
+    $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name', picture = '$imgeName',asset_no = '$assetNo'";
     $updateMaterial .= " WHERE id = $id";
     mysqli_query($conn, $updateMaterial) or die("Cannot update material" . mysqli_error($conn));
     header('Location: ../display_durable_material.php?message=แก้ไขข้อมูลสำเร็จ');

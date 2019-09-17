@@ -71,37 +71,37 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
-                      <?php echo $row["document_no"]; ?>
+                      <?php echo thainumDigit($row["document_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="receive_date">วันที่รับบริจาค : </label>
-                      <?php echo $row["receive_date"]; ?>
+                      <?php echo thainumDigit($row["receive_date"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                      <?php echo $row["code"]; ?>
+                      <?php echo thainumDigit($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>
-                      <?php echo $row["donate_name"]; ?>
+                      <?php echo thainumDigit($row["donate_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="number">ราคา : </label>
-                      <?php echo $row["number"]; ?>
+                      <?php echo thainumDigit($row["number"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="flag">หมายเหตุ : </label>
-                      <?php echo $row["flag"]; ?>
+                      <?php echo thainumDigit($row["flag"]); ?>
                     </div>
                   </div>
                 </div>

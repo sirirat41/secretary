@@ -81,7 +81,7 @@ require "service/connection.php";
                     <div class="form-group">
                       <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
                       <input class="form-control" type="text" placeholder="รหัสวัสดุฑ์ตั้งต้น" name="material_pattern">
-                      <small style="color: red"> *ตัวอย่าง: ว.สดง. 7700-100-{run_4}-2557</small>
+                      <small style="color: red"> *ตัวอย่าง: ว.สดง. 0018/59</small>
                     </div>
                   </div>
                 </div>
@@ -115,6 +115,14 @@ require "service/connection.php";
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
+                      <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">ประเภทวัสดุ: </label>
@@ -129,22 +137,20 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
                       <input class="form-control" type="text" placeholder="attribute" name="attribute">
                     </div>
                   </div>
+                </div>
+                <div class="row">
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
                       <input class="form-control" type="text" placeholder="namemeterial" name="name">
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">หน่วยงาน : </label>
@@ -159,6 +165,8 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
+                </div>
+                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">ร้านค้า : </label>
@@ -173,14 +181,15 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
                       <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
                     </div>
                   </div>
+                </div>
+
+                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label for="exampleFormControlSelect1">จำนวนปีของวัสดุ :</label>
@@ -198,15 +207,14 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-                </div>
-
-                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
                       <input class="form-control" type="text" placeholder="price" name="price" id="price">
                     </div>
                   </div>
+                </div>
+                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <div class="form-group bmd-form-group">
@@ -223,8 +231,6 @@ require "service/connection.php";
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">จำนวนวัสดุ :</label>

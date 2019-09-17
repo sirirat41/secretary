@@ -76,59 +76,59 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
-                      <?php echo $row["fullname"]; ?>
+                      <?php echo thainumDigit($row["fullname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
-                      <?php echo $row["shortname"]; ?>
+                      <?php echo thainumDigit($row["shortname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="code">รหัส : </label>
-                      <?php echo $row["code"]; ?>
+                      <?php echo thainumDigit($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="type">ประเภทวัสดุ : </label>
-                      <?php echo $row["durable_material_type_name"]; ?>
+                      <?php echo thainumDigit($row["durable_material_type_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                      <?php echo $row["attribute"]; ?>
+                      <?php echo thainumDigit($row["attribute"]); ?>
                     </div>
                     <div class="col-md-6">
                       <label class="text-dark" for="unit">หน่วยนับ : </label>
-                      <?php echo $row["unit_name"]; ?>
+                      <?php echo thainumDigit($row["unit_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                      <?php echo $row["name"]; ?>
+                      <?php echo thainumDigit($row["name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="bill_no">เลขที่ใบเบิก : </label>
-                      <?php echo $row["bill_no"]; ?>
+                      <?php echo thainumDigit($row["bill_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="price">จำนวนเงิน : </label>
-                      <?php echo $row["price"]; ?>
+                      <?php echo thainumDigit($row["price"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="seller_id">ชื่อผู้ขาย : </label>
-                      <?php echo $row["seller_name"]; ?>
+                      <?php echo thainumDigit($row["seller_name"]); ?>
                     </div>
                   </div>
                 </div>

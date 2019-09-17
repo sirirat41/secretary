@@ -71,19 +71,19 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                      <?php echo $row["code"]; ?>
+                      <?php echo thainumDigit ($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="damage_date">วันที่ชำรุด : </label>
-                      <?php echo $row["damage_date"]; ?>
+                      <?php echo thainumDigit($row["damage_date"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="flag">หมายเหตุ : </label>
-                      <?php echo $row["flag"]; ?>
+                      <?php echo thainumDigit($row["flag"]); ?>
                     </div>
                   </div>
                 </div>

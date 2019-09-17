@@ -54,7 +54,6 @@ if (isset($_GET["id"])) {
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h6>
                 <form class="form-inline">
-
             </div>
             </nav>
             <form>
@@ -70,31 +69,31 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-md-12">
                           <label class="text-dark" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
-                          <?php echo $row["code"]; ?>
+                          <?php echo thainumDigit($row["code"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <label class="text-dark" for="number">จำนวน : </label>
-                          <?php echo $row["number"]; ?>
+                          <?php echo thainumDigit($row["number"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <label class="text-dark" for="distribute_date">วันที่แจกจ่าย : </label>
-                          <?php echo $row["distribute_date"]; ?>
+                          <?php echo thainumDigit($row["distribute_date"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <label class="text-dark" for="department_id">หน่วยงาน : </label>
-                          <?php echo $row["department_id"]; ?>
+                          <?php echo thainumDigit($row["department_id"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <label class="text-dark" for="flag">หมายเหตุ : </label>
-                          <?php echo $row["flag"]; ?>
+                          <?php echo thainumDigit($row["flag"]); ?>
                         </div>
                       </div>
                     </div>
