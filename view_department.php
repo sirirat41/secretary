@@ -71,7 +71,7 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="fullname">ชื่อหน่วยงาน : </label>
-                      <?php echo $row["fullname"]; ?>
+                      <?php echo thainumDigit ($row["fullname"]); ?>
                     </div>
                   </div>
                   <div class="row">
@@ -82,20 +82,26 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="owner">โทรสาร : </label>
+                      <label class="text-dark" for="tel">เบอร์โทรศัพท์ : </label>
+                      <?php echo $row["tel"]; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-dark" for="fax">โทรสาร : </label>
                       <?php echo $row["fax"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="bulding">อาคาร : </label>
-                      <?php echo $row["bulding"]; ?>
+                      <?php echo thainumDigit($row["bulding"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="floor">ชั้น : </label>
-                      <?php echo $row["floor"]; ?>
+                      <?php echo thainumDigit($row["floor"]); ?>
                     </div>
                   </div>
                 </div>

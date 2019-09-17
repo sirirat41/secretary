@@ -65,11 +65,17 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
-                      <input class="form-control" name="shortname" type="text" placeholder="shortname" id="shortname" >
+                      <input class="form-control" name="shortname" type="text" placeholder="shortname" id="shortname">
                     </div>
                   </div>
                 </div>
                 <div class="row">
+                  <div class=" col-12">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">โทรสาร</label>
+                      <input class="form-control" name="tel" type="text" placeholder="tel" id="tel">
+                    </div>
+                  </div>
                   <div class=" col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">โทรสาร</label>

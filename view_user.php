@@ -60,34 +60,34 @@ if (isset($_GET["id"])) {
                 <div class="row">
                       <div class="col-md-6">
                         <label class="text-dark" for="username">ชื่อสมาชิก : </label>
-                        <?php echo $row["username"]; ?>
+                        <?php echo thainumDigit($row["username"]); ?>
                       </div>
                       <div class="col-md-6">
                         <label class="text-dark" for="password">รหัสผ่าน : </label>
-                        <?php echo $row["password"]; ?>
+                        <?php echo thainumDigit($row["password"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <label class="text-dark" for="surname">ชื่อ : </label>
-                        <?php echo $row["surname"]; ?>
+                        <?php echo thainumDigit($row["surname"]); ?>
                       </div>
                       <div class="col-md-6">
                         <label class="text-dark" for="lastname">นามสกุล : </label>
-                        <?php echo $row["lastname"]; ?>
+                        <?php echo thainumDigit($row["lastname"]); ?>
                       </div>
                     </div>
                    
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="position">ตำแหน่ง : </label>
-                        <?php echo $row["position"]; ?>
+                        <?php echo thainumDigit($row["position"]); ?>
                       </div>
                       </div>
                       <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="t_code">ประเภท : </label>
-                        <?php echo $row["t_code"]; ?>
+                        <?php echo thainumDigit($row["t_code"]); ?>
                       </div>
                     </div>
                   
@@ -100,16 +100,15 @@ if (isset($_GET["id"])) {
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="tel">เบอร์โทร : </label>
-                        <?php echo $row["tel"]; ?>
+                        <?php echo thainumDigit($row["tel"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="email">อีเมล์ : </label>
-                        <?php echo $row["email"]; ?>
+                        <?php echo thainumDigit($row["email"]); ?>
                       </div>
                     </div>
-                   
                   </div>
                 </div>
             </form>

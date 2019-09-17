@@ -102,6 +102,7 @@ $show = 5;
                           <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
+                          <td><?php echo thainumDigit($row["tel"]); ?></td>
                           <td><?php echo thainumDigit($row["fax"]); ?></td>
                           <td><?php echo thainumDigit($row["bulding"]); ?></td>
                           <td><?php echo thainumDigit($row["floor"]); ?></td>

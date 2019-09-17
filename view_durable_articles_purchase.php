@@ -71,53 +71,53 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="order_no">เลขที่ใบสั่งซื้อ : </label>
-                      <?php echo $row["order_no"]; ?>
+                      <?php echo thainumDigit($row["order_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
-                      <?php echo $row["purchase_date"]; ?>
+                      <?php echo thainumDigit($row["purchase_date"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                      <?php echo $row["attribute"]; ?>
+                      <?php echo thainumDigit($row["attribute"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="model">รุ่นแบบ : </label>
-                      <?php echo $row["model"]; ?>
+                      <?php echo thainumDigit($row["model"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark" for="order_by">ชื่อผู้จัดซื้อ : </label>
-                      <?php echo $row["order_by"]; ?>
+                      <?php echo thainumDigit($row["order_by"]); ?>
                     </div>
                     <div class="col-md-6">
                       <label class="text-dark" for="receiver">ชื่อผู้รับ : </label>
-                      <?php echo $row["receiver"]; ?>
+                      <?php echo thainumDigit($row["receiver"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
-                      <?php echo $row["receive_date"]; ?>
+                      <?php echo thainumDigit($row["receive_date"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="receive_address">สถานที่จัดส่ง : </label>
-                      <?php echo $row["receive_address"]; ?>
+                      <?php echo thainumDigit($row["receive_address"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="number">จำนวนปีครุภัณฑ์ : </label>
-                      <?php echo $row["number"]; ?>
+                      <?php echo thainumDigit($row["number"]); ?>
                     </div>
                   </div>
                 </div>
