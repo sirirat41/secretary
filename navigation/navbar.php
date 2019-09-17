@@ -422,20 +422,7 @@ if(isset($_SESSION['user_id']))
             </div>
           </li>
 
-          <!-- Nav Item - Users Collapse Menu -->
-          <li class="nav-item nav-users">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
-              <i class="fas fa-fw fa-users"></i>
-              <span>ผู้ดูแลระบบ</span>
-            </a>
-            <div id="collapseUsers" class="collapse collapse-users" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item display" href="login.html">แสดงรายชื่อ</a>
-                <a class="collapse-item insert" href="register.html">เพิ่มผู้ดูแลระบบ</a>
-                <a class="collapse-item report" href="forgot-password.html">รายงาน</a>
-              </div>
-            </div>
-          </li>
+     
 
           <!-- Nav Item - Approve Collapse Menu -->
           <li class="nav-item nav-approve">

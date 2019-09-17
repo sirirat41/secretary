@@ -154,7 +154,6 @@ $show = 10;
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
             for ($i = 0; $i < $page; $i++) {
-<<<<<<< HEAD
 
               if (isset($_GET["keyword"])) {
                 ?>
@@ -167,19 +166,6 @@ $show = 10;
             <?php
             }}
 
-=======
-              if (isset($_GET["keyword"])) {
-                ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
-              <?php
-                } else {
-                  ?>
-
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-            <?php
-              }
-            }
->>>>>>> 711c67d207dd5d7beab72cb64726ed797dd1e118
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

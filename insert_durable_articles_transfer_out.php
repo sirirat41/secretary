@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show=10;
 ?>
 <!DOCTYPE html>
 <html lang="en">

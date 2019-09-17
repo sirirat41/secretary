@@ -1,10 +1,6 @@
 <?php
 require "service/connection.php";
-<<<<<<< HEAD
-$show = 5;
-=======
 $show = 10;
->>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,11 +80,7 @@ $show = 10;
                       </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
                       <?php
-=======
-                    <?php
->>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -99,10 +91,6 @@ $show = 10;
                       $sqlSelect = "SELECT * FROM durable_articles_type";
                       $sqlSelect .= "";
                       if (isset($_GET["keyword"])) {
-<<<<<<< HEAD
-                        $keyword = $_GET["keyword"];
-=======
->>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";
                       }
@@ -143,21 +131,13 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM durable_articles_type";
-<<<<<<< HEAD
-            $sqlSelectCount .= "";
-=======
             $sqlSelectCount .= " WHERE status = 1";
->>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%')";
             }
-<<<<<<< HEAD
-            $sqlSelectCount .= " Order by id desc";
-=======
             // echo $sqlSelect;
             $sqlSelectCount .= " Order by id desc LIMIT $start, $show";
->>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
@@ -168,18 +148,10 @@ $show = 10;
               <?php
                 } else {
                   ?>
-<<<<<<< HEAD
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
               }
             }
-=======
-
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-            <?php
-
-            }}
->>>>>>> 9d913d549e01055493e8573fb3c8d2d506612026
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
