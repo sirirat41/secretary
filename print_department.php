@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
@@ -87,7 +87,7 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="shortname">หน่วยงาน (ย่อ) : </label>
+                    <label class="text" for="shortname">ตำแหน่ง : </label>
                     <?php echo $row["shortname"]; ?>
                   </div>
                 </div>
@@ -97,8 +97,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
-                    <?php echo $row["owner"]; ?>
+                    <label class="text-dark" for="fax">โทรสาร : </label>
+                    <?php echo thainumDigit($row["fax"]); ?>
                   </div>
                 </div>
               </td>
@@ -108,7 +108,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text-dark" for="bulding">อาคาร : </label>
-                    <?php echo $row["bulding"]; ?>
+                    <?php echo thainumDigit($row["bulding"]); ?>
                   </div>
                 </div>
               </td>
@@ -118,7 +118,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text-dark" for="floor">ชั้น : </label>
-                    <?php echo $row["floor"]; ?>
+                    <?php echo thainumDigit($row["floor"]); ?>
                   </div>
                 </div>
               </td>

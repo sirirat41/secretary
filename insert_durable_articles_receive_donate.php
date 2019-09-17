@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show=10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@ require "service/connection.php";
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">insert_durable_articles_receive_donate</secretary>
 
   <!-- Custom fonts for this template-->
@@ -233,65 +234,97 @@ require "service/connection.php";
               <form>
                 <div class="row">
                   <div class="col-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
+                  <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
-                            <th>รูปภาพ</th>
-                            <th>ลำดับ</th>
-                            <th>เลขที่ใบเบิก</th>
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>ประเภท</th>
-                            <th>การทำงาน</th>
+                            <td>#</td>
+                            <td>รูปภาพ</td>
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสครุภัณฑ์</td>
+                            <td>ประเภท</td>
                           </tr class="text-center">
                         </thead>
                         <tbody id="modal-articles-body">
+                          <!-- ///ดึงข้อมูล -->
                           <?php
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
                           $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
                           $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
                           if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
+                            $keyword = arabicnumDigit($_GET["keyword"]);
                             $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                           }
+                          $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
+                            $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["picture"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
+                              <td><?php echo thainumDigit($row["id"]); ?></td>
+                              <td><?php echo thainumDigit($row["picture"]); ?></td>
+                              <td><?php echo thainumDigit($row["seq"]); ?></td>
                               <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                               <td><?php echo thainumDigit($row["code"]); ?></td>
                               <td><?php echo $row["name"]; ?></td>
                               <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedarticles(<?php echo $row["id"]; ?>);">
                                   <i class="fas fa-check"></i>
                                 </button>
+
                               </td>
                             </tr>
                           <?php
                           }
+
                           ?>
+
                         </tbody>
                       </table>
-                    </div>
-                  </div>
-                </div>
               </form>
             </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
+          </div>
+        </div>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <?php
+                $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+                if (isset($_GET["keyword"])) {
+                  $keyword = arabicnumDigit($_GET["keyword"]);
+                  $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                }
+                $sqlSelectCount .= " Order by a.id desc LIMIT $start, $show";
+                $resultCount = mysqli_query($conn, $sqlSelectCount);
+                $total = mysqli_num_rows($resultCount);
+                $page = ceil($total / $show);
+                for ($i = 0; $i < $page; $i++) {
+
+                  if (isset($_GET["keyword"])) {
+                    ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                  <?php
+                    } else {
+                      ?>
+
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <?php
+                  }
+                }
+
+                ?> 
+
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                   </a>

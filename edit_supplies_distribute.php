@@ -23,7 +23,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display : none">insert_suplies_distribute</secretary>
 
   <!-- Custom fonts for this template-->
@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสครุภัณฑ์</label>
+                      <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
@@ -244,7 +244,7 @@ if (isset($_GET["id"])) {
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แก้ไขข้อมูลครุภัณฑ์</h6>
+                      <i class="fas fa-business-time"></i> แก้ไขข้อมูลวัสดุ</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>
@@ -258,66 +258,97 @@ if (isset($_GET["id"])) {
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
-                  <table class="table table-hover ">
-                    <thead>
-                      <tr class="text-center">
-                        <th>#</th>
-                        <th>ลำดับ</th>
-                        <th>เลขที่ใบเบิก</th>
-                        <th>รหัสวัสดุ</th>
-                        <th>คุณสมบัติ</th>
-                        <th>ประเภทวัสดุ</th>
-                        <th class="text-center">การทำงาน</th>
-                      </tr>
-                    </thead>
-                    <tbody id="modal-supplies-body">
-                      <!-- ///ดึงข้อมูล -->
-                      <?php
-                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                      $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or t.name like '%$keyword%')";
-                      }
-                      //echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["id"]); ?></td>
-                        <td><?php echo thainumDigit($row["seq"]); ?></td>
-                        <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo $row["name"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
-                            <i class="fas fa-check"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
+                <table class="table table-hover ">
+                        <thead>
+                          <tr class="text-center">
+                            <td>#</td>
+                            <td>รูปภาพ</td>
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสวัสดุ</td>
+                            <td>ประเภท</td>
+                          </tr class="text-center">
+                        </thead>
+                        <tbody id="modal-material-body">
+                          <!-- ///ดึงข้อมูล -->
+                          <?php
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
+                          $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
+                          $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                          if (isset($_GET["keyword"])) {
+                            $keyword = arabicnumDigit($_GET["keyword"]);
+                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          }
+                          $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
+                          $result = mysqli_query($conn, $sqlSelect);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row["id"]
+                            ?>
+                            <tr class="text-center">
+                              <td><?php echo thainumDigit($row["id"]); ?></td>
+                              <td><?php echo thainumDigit($row["picture"]); ?></td>
+                              <td><?php echo thainumDigit($row["seq"]); ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
 
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+
+                          ?>
+
+                        </tbody>
+                      </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <?php
+                $sqlSelectCount = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
+                $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+                if (isset($_GET["keyword"])) {
+                  $keyword = arabicnumDigit($_GET["keyword"]);
+                  $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                }
+                $sqlSelectCount .= " Order by a.id desc LIMIT $start, $show";
+                $resultCount = mysqli_query($conn, $sqlSelectCount);
+                $total = mysqli_num_rows($resultCount);
+                $page = ceil($total / $show);
+                for ($i = 0; $i < $page; $i++) {
+
+                  if (isset($_GET["keyword"])) {
+                    ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                  <?php
+                    } else {
+                      ?>
+
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <?php
+                  }
+                }
+
+                ?> 
+
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

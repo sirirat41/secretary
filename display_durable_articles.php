@@ -12,7 +12,7 @@ $show = 10;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display : none">display_durable_articles</secretary>
 
   <!-- Custom fonts for this template-->
@@ -154,16 +154,18 @@ $show = 10;
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
             for ($i = 0; $i < $page; $i++) {
+
               if (isset($_GET["keyword"])) {
                 ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else { 
                 ?>
+
               <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
-              }
-            }
+            }}
+
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

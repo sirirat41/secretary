@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-
+  <title>secretary</title>
   <secretary style="display: none">display_durable_articles_repair</secretary>
 
   <!-- Custom fonts for this template-->
@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-12">
       <div class="table-responsive">
         <table width="800" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการซ่อม(ครุภัณฑ์)</h6>
           <form>
             <div class="card-body">
               <div class="row">
@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                            <?php echo $row["code"]; ?>
+                            <?php echo thainumDigit($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -83,7 +83,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                          <?php echo $row["attribute"]; ?>
+                          <?php echo thainumDigit($row["attribute"]); ?>
                         </div>
                       </div>
                     </td>
@@ -93,7 +93,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="model">รุ่นแบบ : </label>
-                          <?php echo $row["model"]; ?>
+                          <?php echo thainumDigit($row["model"]); ?>
                         </div>
                       </div>
                     </td>
@@ -103,7 +103,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="repair_date">วันที่ซ่อม : </label>
-                            <?php echo $row["repair_date"]; ?>
+                            <?php echo thainumDigit($row["repair_date"]); ?>
                           </div>
                       </td>
                       <td>

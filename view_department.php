@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
@@ -76,14 +76,24 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+<<<<<<< HEAD
                       <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
                       <?php echo thainumDigit ($row["shortname"]); ?>
+=======
+                      <label class="text-dark" for="shortname">ตำแหน่ง : </label>
+                      <?php echo $row["shortname"]; ?>
+>>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
+<<<<<<< HEAD
                       <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
                       <?php echo thainumDigit ($row["owner"]); ?>
+=======
+                      <label class="text-dark" for="owner">โทรสาร : </label>
+                      <?php echo $row["fax"]; ?>
+>>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                     </div>
                   </div>
                   <div class="row">

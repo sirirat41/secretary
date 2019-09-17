@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">display_supplies_distribute</secretary>
 
   <!-- Custom fonts for this template-->
@@ -72,7 +72,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-6">
                             <label class="text" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
-                            <?php echo $row["code"]; ?>
+                            <?php echo thainumDigit($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -82,7 +82,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="number">จำนวน : </label>
-                            <?php echo $row["number"]; ?>
+                            <?php echo thainumDigit($row["number"]); ?>
                           </div>
                         </div>
                       </td>
@@ -92,7 +92,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text-dark" for="distribute_date">วันที่แจกจ่าย : </label>
-                            <?php echo $row["distribute_date"]; ?>
+                            <?php echo thainumDigit($row["distribute_date"]); ?>
                           </div>
                         </div>
                       </td>
@@ -102,7 +102,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text-dark" for="department_id">หน่วยงาน : </label>
-                            <?php echo $row["department_id"]; ?>
+                            <?php echo thainumDigit($row["department_id"]); ?>
                           </div>
                         </div>
                       </td>

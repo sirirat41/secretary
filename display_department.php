@@ -2,7 +2,8 @@
 <html lang="en">
 <?php
 require "service/connection.php";
-$show = 5;
+
+$show = 10;
 ?>
 
 <head>
@@ -13,7 +14,7 @@ $show = 5;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display : none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
@@ -79,8 +80,8 @@ $show = 5;
                       <tr class="text-center">
                         <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
-                        <th>ตัวย่อ(หน่วยงาน)</th>
-                        <th>เจ้าหน้าที่</th>
+                        <th>ตำแหน่ง</th>
+                        <th>โทรสาร</th>
                         <th>อาคาร</th>
                         <th>ชั้น</th>
                         <th class="text-center">การทำงาน</th>
@@ -99,7 +100,7 @@ $show = 5;
                       $sqlSelect = "SELECT * FROM department";
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
+                        $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (fullname like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
@@ -108,26 +109,27 @@ $show = 5;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
-                          <td><?php echo thainumDigit($row["fullname"]); ?></td>
-                          <td><?php echo thainumDigit($row["shortname"]); ?></td>
-                          <td><?php echo thainumDigit($row["owner"]); ?></td>
-                          <td><?php echo thainumDigit($row["bulding"]); ?></td>
-                          <td><?php echo thainumDigit($row["floor"]); ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
+                          <td><?php echo $row["id"]; ?></td>
+                            <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
+                            <?php echo $row["fullname"]; ?></a></td>
+                            <td><?php echo thainumDigit($row["shortname"]); ?></td>
+                            <td><?php echo thainumDigit($row["fax"]); ?></td>
+                            <td><?php echo thainumDigit($row["bulding"]); ?></td>
+                            <td><?php echo thainumDigit($row["floor"]); ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
+                                <i class="fas fa-pencil-alt"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
+                                <i class="fas fa-clipboard-list"></i>
+                              </button>
+                              <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
+                                <i class="fas fa-print"></i>
+                              </a>
+                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
                         </tr>
                       <?php
                       }

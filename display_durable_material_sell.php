@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show=10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@ require "service/connection.php";
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display : none">display_durable_material_sell</secretary>
 
   <!-- Custom fonts for this template-->
@@ -80,38 +81,45 @@ require "service/connection.php";
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
-                      $sqlSelect .= " WHERE s.product_id = m.id and s.status = 1";
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
+                      $sqlSelect = "SELECT s.*, a.code FROM durable_material_sell as s, durable_material as a";
+                      $sqlSelect .= " WHERE s.product_id = a.id and s.status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
                       }
                       //echo $sqlSelect;
+                      $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["sell_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["buyer"]; ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_sell.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-sell').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
+                      <tr class="text-center">
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["sell_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["document_no"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["buyer"]; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-clipboard-list"></i>
+                          </button>
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_sell.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <i class="fas fa-print"></i>
+                          </a>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-sell').val('<?php echo $id; ?>')">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
                       <?php
                       }
                       ?>
@@ -129,9 +137,30 @@ require "service/connection.php";
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+              $sqlSelectCount = "SELECT s.*, a.code FROM durable_material_sell as s, durable_material as a";
+              $sqlSelectCount .= " WHERE s.product_id = a.id and s.status = 1";
+              if (isset($_GET["keyword"])) {
+                $keyword = arabicnumDigit($_GET["keyword"]);
+                $sqlSelectCount .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
+             }
+             $sqlSelectCount .= " Order by s.id desc LIMIT $start, $show";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+
+            }}
+            ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

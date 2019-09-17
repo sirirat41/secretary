@@ -13,7 +13,7 @@ $show = 10;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display : none">display_durable_articles_damage</secretary>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -101,7 +101,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
+<<<<<<< HEAD
                         <td><?php echo thainumDigit($row["id"]); ?></td>
+=======
+>>>>>>> 4a345288efa42a51febafa6102a678547bcd6616
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo thainumDigit($row["damage_date"]); ?></td>
                         <td><?php echo thainumDigit($row["flag"]); ?></td>

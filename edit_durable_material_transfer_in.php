@@ -2,13 +2,14 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_transfer_in WHERE id = $id";
+  $sql = "SELECT * FROM durable_material_transfer_in WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["transfer_date"];
   // $purchaseDate = $item["permit_date"];
   // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
   $newreceiveDate = date("ํd-m-Y", strtotime($receiveDate));
+  $show = 10;
 }
 ?>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">insert_durable_articles_transfer_in</secretary>
 
   <!-- Custom fonts for this template-->
@@ -56,11 +57,11 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                <i class="fas fa-box-open"></i> เพิ่มข้อมูลการโอนเข้า(วัสดุ)</h6>
             </div>
 
             <div class="card-body">
-              <form method="post" action="service/service_edit_durable_articles_transfer_in.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_durable_material_transfer_in.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -78,12 +79,12 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสครุภัณฑ์</label>
+                      <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material where status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -134,7 +135,7 @@ if (isset($_GET["id"])) {
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+                            คุณต้องการบันทึกข้อมูลการโอนเข้าวัสดุใช่หรือไม่
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -235,7 +236,7 @@ if (isset($_GET["id"])) {
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>
@@ -249,43 +250,50 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-12">
                   <div class="table-responsive">
-                    <table class="table table-hover ">
+                  <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                          <td>#</td>
                           <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
-                          <td>รหัสครุภัณฑ์</td>
+                          <td>รหัสวัสดุ</td>
                           <td>ประเภท</td>
+                          <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
-                      <tbody id="modal-articles-body">
-                        <!-- ///ดึงข้อมูล -->
-                        <?php
-                        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = $_GET["keyword"];
-                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                        }
-                        $result = mysqli_query($conn, $sqlSelect);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $id = $row["id"]
-                          ?>
-                          <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["picture"]; ?></td>
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
-                            </td>
-                          </tr>
+                      <tbody>
+                      <!-- ///ดึงข้อมูล -->
+                      <?php
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
+                      $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
+                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                      }
+                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                        <tr class="text-center">
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                          <td><?php echo thainumDigit($row["seq"]); ?></td>
+                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                              <i class="fas fa-check"></i>
+                            </button>
+                          </td>
+                        </tr>
                         <?php
                         }
                         ?>
@@ -296,19 +304,41 @@ if (isset($_GET["id"])) {
               </div>
             </div>
             <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <?php
+            $sqlSelectCount = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by a.id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $page = ceil($total / $show);
+            for ($i = 0; $i < $page; $i++) {
+
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else { 
+                ?>
+
+              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+            }}
+
+            ?>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
                 </li>
               </ul>
             </nav>
@@ -325,7 +355,7 @@ if (isset($_GET["id"])) {
     function search() {
       var kw = $("#keyword").val();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_material.php',
         dataType: 'JSON',
         type: 'GET',
         data: {
@@ -333,7 +363,7 @@ if (isset($_GET["id"])) {
         },
         
         success: function(data) {
-          var tbody = $('#modal-articles-body');
+          var tbody = $('#modal-material-body');
           tbody.empty();
           for(i = 0; i< data.length; i++) {
            var item = data[i];
@@ -344,7 +374,7 @@ if (isset($_GET["id"])) {
            $('<td>'+item.bill_no+'</td>').appendTo(tr);
            $('<td>'+item.code+'</td>').appendTo(tr);
            $('<td>'+item.type+'</td>').appendTo(tr);
-           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+           $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial('+item.id+');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
 				 }
         },
         error: function(error) {
@@ -353,7 +383,7 @@ if (isset($_GET["id"])) {
       })
     }
 
-    function selectedArticles(id) {
+    function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }

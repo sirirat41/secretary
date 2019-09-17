@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-
+  <title>secretary</title>
   <secretary style="display: none">display_durable_articles_sell</secretary>
 
   <!-- Custom fonts for this template-->
@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="document_no">เลขที่เอกสาร : </label>
-                            <?php echo $row["document_no"]; ?>
+                            <?php echo thainumDigit($row["document_no"]); ?>
                           </div>
                         </div>
                       </td>
@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                            <?php echo $row["code"]; ?>
+                            <?php echo thainumDigit($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -90,7 +90,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="sell_date">วันที่ขาย : </label>
-                            <?php echo $row["sell_date"]; ?>
+                            <?php echo thainumDigit($row["sell_date"]); ?>
                           </div>
                       </td>
                       <td>

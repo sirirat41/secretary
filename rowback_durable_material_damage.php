@@ -14,7 +14,7 @@ $show = 5;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">rowback_durable_material_damage</secretary>
 
   <!-- Custom fonts for this template-->

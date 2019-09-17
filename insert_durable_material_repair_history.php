@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show=10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@ require "service/connection.php";
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display: none">insert_durable_material_repair_history</secretary>
 
 
@@ -253,14 +254,21 @@ require "service/connection.php";
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
-                          <?php
+                        <?php
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
                           $sqlSelect = "SELECT r.*, a.code FROM durable_material as a, durable_material_repair as r";
                           $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                           if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
+                            $keyword = arabicnumDigit($_GET["keyword"]);
                             $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
                           }
                           //echo $sqlSelect;
+                          $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
@@ -295,10 +303,33 @@ require "service/connection.php";
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
+                <?php
+               $sqlSelect = "SELECT r.*, a.code FROM durable_material as a, durable_material_repair as r";
+               $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+               if (isset($_GET["keyword"])) {
+                 $keyword = arabicnumDigit($_GET["keyword"]);
+                 $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
+               }
+               //echo $sqlSelect;
+               $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
+                $resultCount = mysqli_query($conn, $sqlSelectCount);
+                $total = mysqli_num_rows($resultCount);
+                $page = ceil($total / $show);
+                for ($i = 0; $i < $page; $i++) {
+
+                  if (isset($_GET["keyword"])) {
+                    ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                  <?php
+                    } else {
+                      ?>
+
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <?php
+                  }
+                }
+
+                ?> 
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                   </a>

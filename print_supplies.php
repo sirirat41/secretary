@@ -19,7 +19,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>secretary</title>
   <secretary style="display : none">print_supplies</secretary>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -104,7 +104,7 @@ if (isset($_GET["id"])) {
         <label class="text" for="code">
           <h7>รหัส :</h7>
         </label>
-        <?php echo $row["code"]; ?>
+        <?php echo thainumDigit($row["code"]); ?>
       </div>
     </div>
     <div class="row">
@@ -112,7 +112,7 @@ if (isset($_GET["id"])) {
         <label class="text" for="attribute">
           <h7>ขนาดหรือลักษณะ :</h7>
         </label>
-        <?php echo $row["attribute"]; ?>
+        <?php echo thainumDigit($row["attribute"]); ?>
       </div>
     </div>
     <div class="row">
@@ -120,19 +120,19 @@ if (isset($_GET["id"])) {
         <label class="text" for="unit">
           <h7>หน่วยที่นับ : </h7>
         </label>
-        <?php echo $row["unit_name"]; ?>
+        <?php echo thainumDigit($row["unit_name"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="fullname">
           <h7>ที่เก็บ :</h7>
         </label>
-        <?php echo $row["fullname"]; ?>/
+        <?php echo thainumDigit($row["fullname"]); ?>/
         <label class="text" for="bulding">อาคาร
         </label>
         <?php echo $row["bulding"]; ?>/
         <label class="text" for="floor">ชั้น
         </label>
-        <?php echo $row["floor"]; ?>
+        <?php echo thainumDigit($row["floor"]); ?>
       </div>
     </div>
 

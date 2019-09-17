@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-
+  <title>secretary</title>
   <secretary style="display: none">display_durable_material_repair_history</secretary>
 
   <!-- Custom fonts for this template-->
@@ -69,8 +69,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                            <?php echo $row["code"]; ?>
+                            <label class="text" for="code">รหัสวัสดุ : </label>
+                            <?php echo thainumDigit($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -80,12 +80,12 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="receive_date">วันที่ซ่อม : </label>
-                            <?php echo $row["receive_date"]; ?>
+                            <?php echo thainumDigit($row["receive_date"]); ?>
                           </div>
                       </td>
                       <td>
                         <div class="col-sm-12">
-                          <label class="text" for="fix">รายการซ่อมครุภัณฑ์ : </label>
+                          <label class="text" for="fix">รายการซ่อมวัสดุ : </label>
                           <?php echo $row["fix"]; ?>
                         </div>
                       </td>
@@ -95,7 +95,7 @@ if (isset($_GET["id"])) {
                         <div class="row">
                           <div class="col-sm-12">
                             <label class="text" for="price">ราคา : </label>
-                            <?php echo $row["price"]; ?>
+                            <?php echo thainumDigit($row["price"]); ?>
                           </div>
                         </div>
                       </td>

@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-
+  <title>secretary</title>
   <secretary style="display: none">display_user</secretary>
 
   <!-- Custom fonts for this template-->
@@ -59,72 +59,70 @@ if (isset($_GET["id"])) {
         <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
         <form>
           <div class="card-body">
-           
-              <tbody>
-                <thead>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <label class="text-dark" for="username">ชื่อสมาชิก : </label>
-                          <?php echo $row["username"]; ?>
-                        </div>
+            <tbody>
+              <thead>
+                <tr>
+                  <td colspan="2">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="text-dark" for="username">ชื่อสมาชิก : </label>
+                        <?php echo $row["username"]; ?>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="password">รหัสผ่าน : </label>
-                          <?php echo $row["password"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="surname">ชื่อ : </label>
-                          <?php echo $row["surname"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="lastname">นามสกุล : </label>
-                          <?php echo $row["lastname"]; ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark" for="position">ตำแหน่ง : </label>
-                          <?php echo $row["position"]; ?>
-                        </div>
-                    </td>
-                    <td>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <div class="row">
                       <div class="col-sm-12">
-                        <label class="text-dark" for="t_code">ประเภท : </label>
-                        <?php echo $row["t_code"]; ?>
+                        <label class="text-dark" for="password">รหัสผ่าน : </label>
+                        <?php echo thainumDigit($row["password"]); ?>
                       </div>
-            </div>
-            </td>
-            </tr>
-      
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="text-dark" for="surname">ชื่อ : </label>
+                        <?php echo $row["surname"]; ?>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="text-dark" for="lastname">นามสกุล : </label>
+                        <?php echo $row["lastname"]; ?>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="text-dark" for="position">ตำแหน่ง : </label>
+                        <?php echo $row["position"]; ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="col-sm-12">
+                      <label class="text-dark" for="t_code">ประเภท : </label>
+                      <?php echo $row["t_code"]; ?>
+                    </div>
+          </div>
+          </td>
+          </tr>
           <tr>
             <td colspan="2">
               <div class="row">
                 <div class="col-sm-12">
                   <label class="text-dark" for="tel">เบอร์โทร : </label>
-                  <?php echo $row["tel"]; ?>
+                  <?php echo thainumDigit($row["tel"]); ?>
                 </div>
               </div>
             </td>
