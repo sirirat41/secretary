@@ -64,7 +64,7 @@ require "service/connection.php";
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">หน่วยงาน (ย่อ)</label>
+                      <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control" name="shortname" type="text" placeholder="shortname" id="shortname" >
                     </div>
                   </div>

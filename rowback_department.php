@@ -70,7 +70,7 @@ $show = 5;
                         <tr>
                           <th class="text-center">#</th>
                           <th>ชื่อหน่วยงาน</th>
-                          <th>ตัวย่อ(หน่วยงาน)</th>
+                          <th>ตำแหน่ง</th>
                           <th>โทรสาร</th>
                           <th>อาคาร</th>
                           <th>ชั้น</th>

@@ -58,7 +58,7 @@ require "service/connection.php";
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">หน่วยงาน</font></th>
-                        <th><font size="2">หน่วยงาน (ย่อ) </font></th>
+                        <th><font size="2">ตำแหน่ง</font></th>
                         <th><font size="2">โทรสาร</font></th>
                         <th><font size="2">อาคาร</font></th>
                         <th><font size="2">ชั้น</font></th>

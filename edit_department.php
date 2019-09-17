@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">ตัวย่อ(หน่วยงาน)</label>
+                      <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortdepartment" value="<?php echo $item["shortname"]; ?>">
                     </div>
                   </div>
@@ -239,7 +239,7 @@ if (isset($_GET["id"])) {
                 <tr>
                   <th class="text-center">#</th>
                   <th>ชื่อหน่วยงาน</th>
-                  <th>ตัวย่อ(หน่วยงาน)</th>
+                  <th>ตำแหน่ง</th>
                   <th>โทรสาร</th>
                   <th>อาคาร</th>
                   <th>ชั้น</th>

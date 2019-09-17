@@ -87,7 +87,7 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="shortname">หน่วยงาน (ย่อ) : </label>
+                    <label class="text" for="shortname">ตำแหน่ง : </label>
                     <?php echo $row["shortname"]; ?>
                   </div>
                 </div>
