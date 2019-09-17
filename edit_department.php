@@ -81,8 +81,8 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class=" col-12">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">เจ้าหน้าที่</label>
-                      <input class="form-control" name="owner" type="text" placeholder="owner" id="owner" value="<?php echo $item["owner"]; ?>">
+                      <label class="bmd-label-floating">โทรสาร</label>
+                      <input class="form-control" name="fax" type="text" placeholder="fax" id="fax" value="<?php echo $item["fax"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -240,7 +240,7 @@ if (isset($_GET["id"])) {
                   <th class="text-center">#</th>
                   <th>ชื่อหน่วยงาน</th>
                   <th>ตัวย่อ(หน่วยงาน)</th>
-                  <th>เจ้าหน้าที่</th>
+                  <th>โทรสาร</th>
                   <th>อาคาร</th>
                   <th>ชั้น</th>
                   <th class="text-center">การทำงาน</th>
@@ -255,7 +255,7 @@ if (isset($_GET["id"])) {
                   <td><?php echo thainumDigit($row["id"]); ?></td>
                   <td><?php echo thainumDigit($row["fullname"]); ?></td>
                   <td><?php echo thainumDigit($row["shortname"]); ?></td>
-                  <td><?php echo thainumDigit($row["owner"]); ?></td>
+                  <td><?php echo thainumDigit($row["fax"]); ?></td>
                   <td><?php echo thainumDigit($row["bulding"]); ?></td>
                   <td><?php echo thainumDigit($row["floor"]); ?></td>
                   <td class="td-actions text-center">

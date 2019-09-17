@@ -71,7 +71,7 @@ $show = 5;
                           <th class="text-center">#</th>
                           <th>ชื่อหน่วยงาน</th>
                           <th>ตัวย่อ(หน่วยงาน)</th>
-                          <th>เจ้าหน้าที่</th>
+                          <th>โทรสาร</th>
                           <th>อาคาร</th>
                           <th>ชั้น</th>
                           <th class="text-center">การทำงาน</th>
@@ -102,7 +102,7 @@ $show = 5;
                           <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
-                          <td><?php echo thainumDigit($row["owner"]); ?></td>
+                          <td><?php echo thainumDigit($row["fax"]); ?></td>
                           <td><?php echo thainumDigit($row["bulding"]); ?></td>
                           <td><?php echo thainumDigit($row["floor"]); ?></td>
                           <td class="td-actions text-center">

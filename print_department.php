@@ -97,8 +97,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
-                    <?php echo $row["owner"]; ?>
+                    <label class="text-dark" for="fax">โทรสาร : </label>
+                    <?php echo $row["fax"]; ?>
                   </div>
                 </div>
               </td>

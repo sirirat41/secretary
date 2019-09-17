@@ -59,7 +59,7 @@ require "service/connection.php";
                         <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">หน่วยงาน</font></th>
                         <th><font size="2">หน่วยงาน (ย่อ) </font></th>
-                        <th><font size="2">เจ้าหน้าที่</font></th>
+                        <th><font size="2">โทรสาร</font></th>
                         <th><font size="2">อาคาร</font></th>
                         <th><font size="2">ชั้น</font></th>
                       </tr>
@@ -80,7 +80,7 @@ require "service/connection.php";
                         <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["fullname"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["shortname"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["owner"]); ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["fax"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["bulding"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["floor"]); ?></font></td>
                       </tr>

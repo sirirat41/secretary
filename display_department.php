@@ -81,7 +81,7 @@ $show = 10;
                         <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
                         <th>ตัวย่อ(หน่วยงาน)</th>
-                        <th>เจ้าหน้าที่</th>
+                        <th>โทรสาร</th>
                         <th>อาคาร</th>
                         <th>ชั้น</th>
                         <th class="text-center">การทำงาน</th>
@@ -113,9 +113,9 @@ $show = 10;
                             <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                             <?php echo $row["fullname"]; ?></a></td>
                             <td><?php echo $row["shortname"]; ?></td>
-                            <td><?php echo thainumDigit($row["owner"]); ?></td>
-                            <td><?php echo thainumDigit($row["bulding"]); ?></td>
-                            <td><?php echo thainumDigit($row["floor"]); ?></td>
+                            <td><?php echo $row["fax"]; ?></td>
+                            <td><?php echo $row["bulding"]; ?></td>
+                            <td><?php echo $row["floor"]; ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
                                 <i class="fas fa-pencil-alt"></i>

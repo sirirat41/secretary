@@ -82,8 +82,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="owner">เจ้าหน้าที่ : </label>
-                      <?php echo $row["owner"]; ?>
+                      <label class="text-dark" for="owner">โทรสาร : </label>
+                      <?php echo $row["fax"]; ?>
                     </div>
                   </div>
                   <div class="row">
