@@ -81,7 +81,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 text-center">
+                  <div class="col-md-12 text-center" href ="insert_user.php">
                     <a href="#">สมัครสมาชิก</a>
                   </div>
                 </div>
