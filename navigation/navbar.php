@@ -51,7 +51,6 @@ if(isset($_SESSION['user_id']))
           <a class="collapse-item transferO" href="display_durable_articles_transfer_out.php">โอนออก</a>
           <a class="collapse-item donate" href="display_durable_articles_receive_donate.php">บริจาคเข้า</a>
           <a class="collapse-item donateO" href="display_durable_articles_donate.php">บริจาคออก </a>
-          <a class="collapse-item report" href="buttons.html">รายงาน</a>
         </div>
       </div>
     </li>
@@ -74,7 +73,6 @@ if(isset($_SESSION['user_id']))
           <a class="collapse-item transferO" href="display_durable_material_transfer_out.php">โอนออก</a>
           <a class="collapse-item donates" href="display_durable_material_receive_donate.php">บริจาคเข้า</a>
           <a class="collapse-item donatesO" href="display_durable_material_donate.php">บริจาคออก</a>
-          <a class="collapse-item report" href="buttons.html">รายงาน</a>
         </div>
       </div>
     </li>
@@ -91,7 +89,6 @@ if(isset($_SESSION['user_id']))
           <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
           <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
           <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
-          <a class="collapse-item report" href="buttons.html">รายงาน</a>
         </div>
       </div>
     </li>
@@ -109,7 +106,6 @@ if(isset($_SESSION['user_id']))
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item display" href="display_department.php">แสดงหน่วยงาน</a>
           <a class="collapse-item insert" href="insert_department.php">เพิ่มหน่วยงาน</a>
-          <a class="collapse-item report" href="forgot-password.html">รายงาน</a>
         </div>
       </div>
     </li>
@@ -124,7 +120,6 @@ if(isset($_SESSION['user_id']))
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item display" href="login.html">แสดงรายชื่อ</a>
           <a class="collapse-item insert" href="register.html">เพิ่มผู้ดูแลระบบ</a>
-          <a class="collapse-item report" href="forgot-password.html">รายงาน</a>
         </div>
       </div>
     </li>
@@ -399,7 +394,6 @@ if(isset($_SESSION['user_id']))
                 <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
                 <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
                 <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
-                <a class="collapse-item report" href="buttons.html">รายงาน</a>
               </div>
             </div>
           </li>
@@ -417,7 +411,6 @@ if(isset($_SESSION['user_id']))
               <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item display" href="display_department.php">แสดงหน่วยงาน</a>
                 <a class="collapse-item insert" href="insert_department.php">เพิ่มหน่วยงาน</a>
-                <a class="collapse-item report" href="forgot-password.html">รายงาน</a>
               </div>
             </div>
           </li>
