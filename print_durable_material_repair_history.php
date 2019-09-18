@@ -49,7 +49,6 @@ if (isset($_GET["id"])) {
       </div>
   </div>
   <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
-
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">

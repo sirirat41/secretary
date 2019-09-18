@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  หน่วยงาน
+                  แก้ไขข้อมูลหน่วยงาน
                 </h6>
               </div>
             </div>
@@ -79,7 +79,13 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class=" col-12">
+                <div class=" col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">โทรสาร</label>
+                      <input class="form-control" name="tel" type="text" placeholder="tel" id="tel" value="<?php echo $item["tel"]; ?>">
+                    </div>
+                  </div>
+                  <div class=" col-6">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">โทรสาร</label>
                       <input class="form-control" name="fax" type="text" placeholder="fax" id="fax" value="<?php echo $item["fax"]; ?>">

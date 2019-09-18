@@ -42,12 +42,12 @@ require "service/connection.php";
         <div class="col-md-12">
           <div class="table-responsive">
             <table width="600" border="1" align="center">
-              <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลร้านค้า</h6>
+              <h6 class="m-3 font-weight-bold " align="center">แสดงข้อมูลร้านค้า</h6>
               <form>
                 <thead>
                   <tr class="text-center">
                     <th>
-                      <font size="2">#</font>
+                      <font size="2">ลำดับ</font>
                     </th>
                     <th>
                       <font size="2">ชื่อร้าน</font>

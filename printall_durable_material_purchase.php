@@ -23,16 +23,12 @@ require "service/connection.php";
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
  
- 
 </head>
-
 
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
 
     </nav>
     <!-- End of Topbar -->
@@ -47,7 +43,7 @@ require "service/connection.php";
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการจัดซื้อ(วัสดุคงทน)</h6>
                      <form>
                         <thead>
                       <tr class="text-center">

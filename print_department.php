@@ -107,6 +107,16 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
+                    <label class="text-dark" for="tel">โทรสาร : </label>
+                    <?php echo thainumDigit($row["tel"]); ?>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="row">
+                  <div class="col-sm-12">
                     <label class="text-dark" for="bulding">อาคาร : </label>
                     <?php echo thainumDigit($row["bulding"]); ?>
                   </div>

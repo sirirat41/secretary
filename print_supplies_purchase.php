@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="900" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลจัดซื้อ (วัสดุคงทน)</h6>
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการจัดซื้อ (วัสดุสิ้นเปลือง)</h6>
         <form>
           <div class="card-body">
             <div class="row">

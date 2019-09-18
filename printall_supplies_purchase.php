@@ -22,17 +22,13 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
- 
- 
-</head>
 
+</head>
 
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
 
     </nav>
     <!-- End of Topbar -->
@@ -43,88 +39,107 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-                     <form>
-                        <thead>
-                      <tr class="text-center">
-                        <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">เลขที่ใบสั่งซื้อ</font></th>
-                         <th><font size="2">วันที่จัดซื้อ</font></th>
-                         <th><font size="2">คุณสมบัติ/ลักษณะ</font></th>
-                        <th><font size="2">จำนวน</font></th>
-                        <th><font size="2">ชื่อผู้จัดซื้อ</font></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT p.*,a.attribute FROM supplies_purchase as p,supplies as a";
-                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 Group by order_no";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (p.order_no like '%$keyword%' or p.order_by like '%$keyword%')";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                      <tr class="text-center">
-                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["order_no"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["purchase_date"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["number"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["order_by"]; ?></font></td>
-                      </tr>
-                          <?php
-                          }
-                          ?>
-                    </tbody>
-                  </table>
-                  <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9"><font size="2">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-4 offset-sm-8">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-              </label></font>
-            </div>
-          </div>
-        </div>
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">เลขที่ใบสั่งซื้อ</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่จัดซื้อ</font>
+                    </th>
+                    <th>
+                      <font size="2">คุณสมบัติ/ลักษณะ</font>
+                    </th>
+                    <th>
+                      <font size="2">จำนวน</font>
+                    </th>
+                    <th>
+                      <font size="2">ชื่อผู้จัดซื้อ</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT p.*,a.attribute FROM supplies_purchase as p,supplies as a";
+                  $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 Group by order_no";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (p.order_no like '%$keyword%' or p.order_by like '%$keyword%')";
+                  }
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"];
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["order_no"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["purchase_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["attribute"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["number"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["order_by"]; ?></font>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+            </table>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <font size="2">
+                    <label class="text">ตรวจแล้วถูกต้อง</label>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-4 offset-sm-8">
+                  <label class="text">พ.ต.ท.หญิง......................................................</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+                  </label></font>
                 </div>
               </div>
             </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-
+    <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-   
+
   </footer>
   <!-- End of Footer -->
 

@@ -49,7 +49,7 @@ $show=10;
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
-                  เพิ่มข้อมูลบริจาคออก (วัสดุคงทน)
+                  เพิ่มข้อมูลการบริจาคออก (วัสดุคงทน)
                 </h6>
               </div>
             </div>

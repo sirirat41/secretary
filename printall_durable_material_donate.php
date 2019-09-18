@@ -31,13 +31,10 @@ require "service/connection.php";
  
 </head>
 
-
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
 
     </nav>
     <!-- End of Topbar -->
@@ -52,13 +49,13 @@ require "service/connection.php";
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลบริจาคออก (ครุภัณฑ์) </h6>
+                <h6 class="m-3 font-weight-bold " align="center">ข้อมูลการบริจาคออก(วัสดุคงทน) </h6>
                      <form>
                         <thead>
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">เลขที่เอกสาร</font></th>
-                        <th><font size="2">รหัส</font></th>
+                        <th><font size="2">รหัสวัสดุ</font></th>
                         <th><font size="2">ชื่อบริจาค</font></th>
                         <th><font size="2">วันที่บริจาคออก</font></th>
                         <th><font size="2">หมายเหตุ</font></th>

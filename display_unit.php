@@ -48,7 +48,7 @@ $show = 5;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยนับห</h6>
+                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยนับ</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                   <div>

@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แก้ไขข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_receive_donate.php?id=<?php echo $id; ?>" id="form_insert">

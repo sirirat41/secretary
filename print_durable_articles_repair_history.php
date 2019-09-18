@@ -39,17 +39,13 @@ if (isset($_GET["id"])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-
     </nav>
     <!-- End of Topbar -->
-
 
     <!-- Begin Page Content -->
 
     <body onLoad="window.print()">
-      <div class="container-fluid">
-
-      </div>
+      <div class="container-fluid"></div>
   </div>
   <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
 

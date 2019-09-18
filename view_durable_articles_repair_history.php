@@ -68,37 +68,37 @@ if (isset($_GET["id"])) {
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="seq">ลำดับ : </label>
-                        <?php echo $row["seq"]; ?>
+                        <?php echo thainumDigit($row["seq"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                        <?php echo $row["code"]; ?>
+                        <?php echo thainumDigit($row["code"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <label class="text-dark" for="receive_date">วันที่ซ่อม : </label>
-                        <?php echo $row["receive_date"]; ?>
+                        <?php echo thainumDigit($row["receive_date"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="fix">รายการซ่อมครุภัณฑ์ : </label>
-                        <?php echo $row["fix"]; ?>
+                        <?php echo thainumDigit($row["fix"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="price">ราคา : </label>
-                        <?php echo $row["price"]; ?>
+                        <?php echo thainumDigit($row["price"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark" for="flag">หมายเหตุ : </label>
-                        <?php echo $row["flag"]; ?>
+                        <?php echo thainumDigit($row["flag"]); ?>
                       </div>
                     </div>
                   </div>

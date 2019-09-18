@@ -33,8 +33,6 @@ $show=10;
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -59,7 +57,7 @@ $show=10;
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
-                  เพิ่มข้อมูลบริจาคออก (วัสดุ)
+                  แก้ไขข้อมูลการบริจาคออก (วัสดุคงทน)
                 </h6>
               </div>
             </div>

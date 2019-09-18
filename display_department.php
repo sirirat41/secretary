@@ -65,12 +65,10 @@ $show = 10;
                     <a rel="tooltip" class="btn btn-outline-primary" href="printall_department.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
-
                 </form>
             </div>
           </div>
           </nav>
-
           <form>
             <div class="row">
               <div class="col-md-12">
@@ -81,6 +79,7 @@ $show = 10;
                         <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
                         <th>ตำแหน่ง</th>
+                        <th>เบอร์โทร</th>
                         <th>โทรสาร</th>
                         <th>อาคาร</th>
                         <th>ชั้น</th>
@@ -110,26 +109,27 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo $row["id"]; ?></td>
-                            <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
-                            <?php echo $row["fullname"]; ?></a></td>
-                            <td><?php echo thainumDigit($row["shortname"]); ?></td>
-                            <td><?php echo thainumDigit($row["fax"]); ?></td>
-                            <td><?php echo thainumDigit($row["bulding"]); ?></td>
-                            <td><?php echo thainumDigit($row["floor"]); ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
-                                <i class="fas fa-pencil-alt"></i>
-                              </button>
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
-                                <i class="fas fa-clipboard-list"></i>
-                              </button>
-                              <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
-                                <i class="fas fa-print"></i>
-                              </a>
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
-                              </button>
-                            </td>
+                          <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
+                              <?php echo $row["fullname"]; ?></a></td>
+                          <td><?php echo thainumDigit($row["shortname"]); ?></td>
+                          <td><?php echo thainumDigit($row["tel"]); ?></td>
+                          <td><?php echo thainumDigit($row["fax"]); ?></td>
+                          <td><?php echo thainumDigit($row["bulding"]); ?></td>
+                          <td><?php echo thainumDigit($row["floor"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
                         </tr>
                       <?php
                       }
@@ -169,11 +169,9 @@ $show = 10;
                   ?>
 
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-
             <?php
               }
             }
-
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
