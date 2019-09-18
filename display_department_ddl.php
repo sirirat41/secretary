@@ -72,18 +72,15 @@ $show = 1;
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">รหัสครุภัณฑ์</th>
-                      <th scope="col">ชื่อครุภัณฑ์</th>
-                      <th scope="col">รุ่นแบบ</th>
-                    </tr>
+                <table class="table table-hover" >
+                  <thead id="table-name">
+                   
                   </thead>
                   <tbody id="body-content">
 
                   </tbody>
                 </table>
+              </div>
               </div>
             </div>
           </div>
@@ -160,12 +157,15 @@ $show = 1;
     function changePage(page) {
       var item = $('#selected').find(':selected').val();
       var body = $('#body-content');
+      var tble = $('#table-name');
       body.empty();
       var max = page * itemPerPage;
       var start = max - itemPerPage;
       for (let i = start; i < max; i++) {
         const element = jsonData[i];
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var thead = $('<thead></thead>').appendTo(tr);
+        var tble = $('<th scope="col"></th>').appendTo(thead);
         var code = element["code"];
         var attr = element["attribute"];
         var model = "";
@@ -173,11 +173,16 @@ $show = 1;
           model = element["name"];
         } else {
           model = element["model"];
-        }
-        $('<td>' + code + '</td>').appendTo(tr);
+        } 
+         $('<th>รหัส</th>').appendTo(thead);
+        $('<th>วัสดุ</th>').appendTo(thead);
+        $('<th>พพพ</th>').appendTo(thead);
+       
+      }
+         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + attr + '</td>').appendTo(tr);
         $('<td>' + model + '</td>').appendTo(tr);
-      }
+
     }
 
     function selectedDepartment() {

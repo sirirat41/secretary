@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@ $show = 5;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(วัสดุคงทน)</h6>
+                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -68,8 +68,8 @@ $show = 5;
                     <thead>
                       <tr class="text-center">
                         <th>#</th>
-                        <th>ชื่อประเภทวัสดุ</th>
-                        <th>ชื่อย่อประเภทวัสดุ</th>
+                        <th>ชื่อประเภทครุภัณฑ์</th>
+                        <th>ชื่อย่อประเภทครุภัณฑ์</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -228,7 +228,7 @@ $show = 5;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการกู้ข้อมูลประเภทวัสดุใช่หรือไม่
+          คุณต้องการกู้ข้อมูลประเภทครุภัณฑ์ใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_type.php">
             <input type="hidden" id="rowback-type" name="type_id">
           </form>
