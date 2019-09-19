@@ -63,7 +63,7 @@ if (isset($_GET["id"])) {
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-cubes"></i>
-                  แก้ไขข้อมูลครุภัณฑ์
+                  เพิ่มข้อมูลครุภัณฑ์
                 </h6>
               </div>
             </div>
@@ -363,6 +363,8 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
+=======
                 <br>
                 <div class="row">
                   <div class="col-6">
@@ -382,6 +384,7 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
+>>>>>>> f37cfb4b17c9022ec70cacad94052d056e98ba1c
                 <br><br>
                 <div class="row">
                   <div class="col-12">
@@ -398,6 +401,15 @@ if (isset($_GET["id"])) {
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
+<<<<<<< HEAD
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+=======
                           </div>
                           <div class="modal-body ">
                             คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
@@ -446,6 +458,7 @@ if (isset($_GET["id"])) {
                                 </div>
                               </div>
                             </div>
+>>>>>>> f37cfb4b17c9022ec70cacad94052d056e98ba1c
                           </div>
                         </div>
                       </div>
@@ -456,6 +469,7 @@ if (isset($_GET["id"])) {
             </div>
           </div>
         </div>
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>

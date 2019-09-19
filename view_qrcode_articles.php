@@ -10,7 +10,7 @@ if (isset($_GET["id"])) {
 
 
   }
-}
+
 ?>
 
 <!DOCTYPE html>

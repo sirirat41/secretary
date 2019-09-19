@@ -316,44 +316,21 @@ if (isset($_GET["id"])) {
               </div>
             </div>
             <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <?php
-            $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-            $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
-            if (isset($_GET["keyword"])) {
-              $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-            }
-            $sqlSelectCount .= " Order by a.id desc";
-            $resultCount = mysqli_query($conn, $sqlSelectCount);
-            $total = mysqli_num_rows($resultCount);
-            $page = ceil($total / $show);
-            for ($i = 0; $i < $page; $i++) {
-
-              if (isset($_GET["keyword"])) {
-                ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"];?>"><?php echo ($i + 1); ?></a></li>
-              <?php
-                } else { 
-                ?>
-
-              <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-            <?php
-            }}
-
-            ?>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-                </li>
-              </ul>
-            </nav>
+    <ul class="pagination justify-content-center" id="pagination">
+      <li class="page-item" id="prev-page">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item" id="next-page">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
           </div>
         </div>
       </div>
@@ -364,6 +341,16 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
+       var itemPerPage = 1;
+    var jsonData;
+    $(document).ready(function() {
+      search();
+      $('#form-search').on('submit', function(e) {
+        e.preventDefault();
+        search();
+      })
+
+    })
     function search() {
       var kw = $("#keyword").val();
       $.ajax({
@@ -375,6 +362,9 @@ if (isset($_GET["id"])) {
         },
 
         success: function(data) {
+          $('#pagination').empty();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
           var tbody = $('#modal-articles-body');
           tbody.empty();
           for (i = 0; i < data.length; i++) {
@@ -387,6 +377,13 @@ if (isset($_GET["id"])) {
             $('<td>' + item.code + '</td>').appendTo(tr);
             $('<td>' + item.type + '</td>').appendTo(tr);
             $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+           },
+           jsonData = data;
+          search(1);
+          $('new-page').removeClass();
+          var numberOfPage = data.length / itemPerPage;
+          for (let i = 0; i < numberOfPage; i++) {
+            $('<li class="page-item new-page"><a class="page-link" onclick="search(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
         }, 
         error: function(error) {

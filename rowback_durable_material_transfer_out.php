@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-box-open"></i> แสดงข้อมูลการโอนออก(ครุภัณฑ์)</h6>
+                  <i class="fas fa-box-open"></i> แสดงข้อมูลการโอนออก(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -73,7 +73,7 @@ $show = 10;
                         <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ชื่อผู้โอนให้</th>
                         <th>การทำงาน</th>
                       </tr>
@@ -236,7 +236,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการกู้ข้อมูลการโอนออกครุภัณฑ์ใช่หรือไม่
+          คุณต้องการกู้ข้อมูลการโอนออกวัสดุใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_material_transfer_out.php">
             <input type="hidden" id="rowback-transfer_out" name="transfer_out_id">
           </form>

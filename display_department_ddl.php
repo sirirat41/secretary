@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 require "service/connection.php";
-$show = 1;
+$show = 10;
 ?>
 
 <head>
@@ -55,7 +55,7 @@ $show = 1;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                  <i class="fas fa-city" id="dis"></i></h6>
                 <form class="form-inline" id="form-search">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                   <div>
@@ -73,12 +73,10 @@ $show = 1;
             <div class="col-md-12">
               <div class="table-responsive">
                 <table class="table table-hover">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">รหัสครุภัณฑ์</th>
-                      <th scope="col">ชื่อครุภัณฑ์</th>
-                      <th scope="col">รุ่นแบบ</th>
-                    </tr>
+                  <thead id="table-name" align="center">
+                    <th scope="col" id="th-1"></th>
+                    <th scope="col">คุณสมบัติ/ลักษณะ</th>
+                    <th scope="col" id="th-2"></th>
                   </thead>
                   <tbody id="body-content">
 
@@ -90,6 +88,7 @@ $show = 1;
         </div>
       </div>
     </div>
+  </div>
   </div>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center" id="pagination">
@@ -160,6 +159,7 @@ $show = 1;
     function changePage(page) {
       var item = $('#selected').find(':selected').val();
       var body = $('#body-content');
+      var tble = $('#table-name');
       body.empty();
       var max = page * itemPerPage;
       var start = max - itemPerPage;
@@ -177,6 +177,22 @@ $show = 1;
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + attr + '</td>').appendTo(tr);
         $('<td>' + model + '</td>').appendTo(tr);
+      }
+
+      if (item != 1) {
+        $('#th-1').text('รหัสวัสดุ');
+        $('#th-2').text('ชื่อวัสดุ');
+      } else {
+
+        $('#th-1').text('รหัสครุภัณฑ์');
+        $('#th-2').text('รุ่นแบบ');
+      }
+
+      if (item != 1) {
+        $('#dis').text(' แสดงข้อมูลวัสดุ');
+      } else {
+        $('#dis').text(' แสดงข้อมูลครุภัณฑ์');
+
       }
     }
 

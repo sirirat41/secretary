@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +69,7 @@ $show = 5;
                       <tr class="text-center">
                         <th>#</th>
                         <th>เลขที่หนังสือ</th>
-                        <th>รหัสวัสดุ</th>
+                        <th>รหัสครุภัณฑ์</th>
                         <th>วันที่ยืม</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
@@ -229,7 +229,7 @@ $show = 5;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการกู้ข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          คุณต้องการกู้ข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_permits.php">
             <input type="hidden" id="rowback-permits" name="permits_id">
           </form>
