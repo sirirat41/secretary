@@ -73,7 +73,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อผู้ใช้งาน</th>
                         <th>ชื่อ</th>
                         <th>นามสกุล</th>
@@ -104,7 +103,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["username"]); ?></td>
                         <td><?php echo thainumDigit($row["surname"]); ?></td>
                         <td><?php echo $row["lastname"]; ?></td>

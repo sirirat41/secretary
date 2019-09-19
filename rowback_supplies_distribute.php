@@ -68,7 +68,6 @@ $show = 10;
                     <thead>
                       <thead>
                         <tr class="text-center">
-                          <th>#</th>
                           <th>รหัสวัสดุ</th>
                           <th>หน่วยงาน</th>
                           <th>วันที่แจกจ่าย</th>
@@ -98,7 +97,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
                           <td><?php echo thainumDigit($row["distribute_date"]); ?></td>

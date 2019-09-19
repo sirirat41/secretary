@@ -67,7 +67,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
                         <th>จำนวน</th>
@@ -97,7 +96,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["order_no"]); ?></td>
                           <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
                           <td><?php echo thainumDigit($row["number"]); ?></td>

@@ -64,7 +64,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่บริจาค</th>
                         <th>รหัสครุภัณฑ์</th>
@@ -95,7 +94,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo $row["receive_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>

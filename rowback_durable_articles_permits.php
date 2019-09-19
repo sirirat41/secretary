@@ -67,7 +67,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่หนังสือ</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>วันที่ยืม</th>
@@ -83,19 +82,18 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, m.code FROM durable_articles_permits as p,durable_articles as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
+                      $sqlSelect = "SELECT p.*, a.code FROM durable_articles_permits as p,durable_articles as a";
+                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
@@ -122,11 +120,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT p.*, m.code FROM durable_articles_permits as p,durable_articles as m";
-            $sqlSelectCount .= " WHERE p.product_id = m.id and p.status = 0";
+            $sqlSelectCount = "SELECT p.*, a.code FROM durable_articles_permits as p,durable_articles as a";
+            $sqlSelectCount .= " WHERE p.product_id = a.id and p.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

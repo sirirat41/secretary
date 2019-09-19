@@ -65,7 +65,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
                         <th>รหัสการซ่อม(ครุภัณฑ์)</th>
@@ -83,11 +82,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
-                      $sqlSelect .= " WHERE h.repair_id = r.id and h.status = 0";
+                      $sqlSelect = "SELECT h.*, a.code FROM durable_articles_repair_history as h, durable_articles as a";
+                      $sqlSelect .= " WHERE h.repair_id = a.id and h.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by h.id desc LIMIT $start, $show";
@@ -96,7 +95,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["seq"]; ?></td>
                           <td><?php echo $row["receive_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -125,11 +123,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT h.*, r.code FROM durable_articles_repair_history as h, durable_articles as r";
-            $sqlSelectCount .= " WHERE h.repair_id = r.id and h.status = 0";
+            $sqlSelectCount = "SELECT h.*, a.code FROM durable_articles_repair_history as h, durable_articles as a";
+            $sqlSelectCount .= " WHERE h.repair_id = a.id and h.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (r.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or h.fix like '%$keyword%' or h.receive_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by h.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

@@ -76,7 +76,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
                         <th>ตำแหน่ง</th>
                         <th>เบอร์โทร</th>
@@ -108,7 +107,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                               <?php echo $row["fullname"]; ?></a></td>
                           <td><?php echo thainumDigit($row["shortname"]); ?></td>

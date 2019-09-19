@@ -67,8 +67,7 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <thead>
-                        <tr>
-                          <th class="text-center">#</th>
+                        <tr class="text-center">
                           <th>ชื่อหน่วยงาน</th>
                           <th>ตำแหน่ง</th>
                           <th>โทรสาร</th>
@@ -93,13 +92,12 @@ $show = 10;
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (fullname like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td><?php echo thainumDigit($row["tel"]); ?></td>
@@ -135,7 +133,7 @@ $show = 10;
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (fullname like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by m.id desc";
+            $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);

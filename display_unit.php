@@ -76,7 +76,6 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                      <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
@@ -103,7 +102,6 @@ $show = 5;
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><?php echo thainumDigit($row["id"]); ?></td>
                         <td><?php echo thainumDigit($row["name"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_unit.php?id=<?php echo $row['id']; ?>'">

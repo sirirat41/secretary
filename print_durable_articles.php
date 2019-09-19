@@ -356,6 +356,34 @@ if (isset($_GET["id"])) {
           </table>
         </div>
       </div>
+      <br>
+        <br>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ตรวจแล้วถูกต้อง</label>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text">พ.ต.ท.หญิง......................................................</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(กรรณิการ์ เหล่าทัพ)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รอง ผกก.ฝอ.สลก.ตร.
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </form>
 
     <!-- Optional JavaScript -->

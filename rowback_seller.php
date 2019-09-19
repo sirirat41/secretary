@@ -63,7 +63,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อร้าน</th>
                         <th>เบอร์โทร</th>
                         <th>แฟกต์</th>
@@ -94,7 +93,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td><?php echo thainumDigit($row["tel"]); ?></td>
                           <td><?php echo thainumDigit($row["fax"]); ?></td>

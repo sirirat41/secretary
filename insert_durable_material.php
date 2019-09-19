@@ -192,7 +192,14 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
+                      <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">

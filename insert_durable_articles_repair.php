@@ -61,7 +61,7 @@ $show=10;
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
+                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
                     </div>
                   </div>
                 </div>

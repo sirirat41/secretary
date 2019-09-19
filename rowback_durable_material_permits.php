@@ -67,7 +67,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่หนังสือ</th>
                         <th>รหัสวัสดุ</th>
                         <th>วันที่ยืม</th>
@@ -95,7 +94,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>

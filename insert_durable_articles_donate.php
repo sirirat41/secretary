@@ -225,7 +225,7 @@ $show=10;
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> เพิ่มข้อมูลครุภัณฑ์</h6>
+                      <i class="fas fa-archive"></i> เพิ่มข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>

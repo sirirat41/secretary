@@ -60,8 +60,8 @@ $show = 10;
                       <i class="fas fa-sync-alt"></i>
                     </button>
                     <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material_type.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
+                      <i class="fas fa-print"></i>
+                    </a>
                 </form>
             </div>
           </div>
@@ -73,14 +73,13 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อประเภทวัสดุ</th>
                         <th>ชื่อย่อประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -101,16 +100,15 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_type.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_type.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-type').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
                           <?php
                           }
 
@@ -131,14 +129,14 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT * FROM durable_material_type";
-           $sqlSelectCount .= " WHERE status = 1";
-           if (isset($_GET["keyword"])) {
-             $keyword = arabicnumDigit($_GET["keyword"]);
-             $sqlSelectCount .= " and (name like '%$keyword%')";
-           }
-           // echo $sqlSelect;
-           $sqlSelectCount .= " Order by id desc LIMIT $start, $show";
+            $sqlSelectCount = "SELECT * FROM durable_material_type";
+            $sqlSelectCount .= " WHERE status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (name like '%$keyword%')";
+            }
+            // echo $sqlSelect;
+            $sqlSelectCount .= " Order by id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
@@ -153,7 +151,8 @@ $show = 10;
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
 
-            }}
+              }
+            }
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
