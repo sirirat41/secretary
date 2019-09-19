@@ -88,7 +88,7 @@ $show = 5;
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
@@ -126,7 +126,7 @@ $show = 5;
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by m.id desc";
+            $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);

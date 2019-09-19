@@ -243,15 +243,14 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลชำรุด (ครุภัณฑ์)ใช่หรือไม่
-
+          คุณต้องการลบข้อมูลชำรุด(ครุภัณฑ์)ใช่หรือไม่?
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_damage.php">
             <input type="hidden" id="remove-articles" name="damage_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>
