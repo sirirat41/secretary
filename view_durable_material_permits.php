@@ -50,15 +50,9 @@ if (isset($_GET["id"])) {
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-<<<<<<< HEAD
             <nav class="navbar navbar-light bg-light">
               <h6 class="m-0 font-weight-bold text-danger">
                 <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
-=======
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(วัสดุ)</h6>
->>>>>>> c04b549bf07eb115c231e92c1c68b46eea04ff48
                 <form class="form-inline">
             </div>
             </nav>

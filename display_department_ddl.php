@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 require "service/connection.php";
-$show = 1;
+$show = 10;
 ?>
 
 <head>
@@ -55,7 +55,7 @@ $show = 1;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                  <i class="fas fa-city" id="dis"></i></h6>
                 <form class="form-inline" id="form-search">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                   <div>
@@ -72,21 +72,23 @@ $show = 1;
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
-                <table class="table table-hover" >
-                  <thead id="table-name">
-                   
+                <table class="table table-hover">
+                  <thead id="table-name" align="center">
+                    <th scope="col" id="th-1"></th>
+                    <th scope="col">คุณสมบัติ/ลักษณะ</th>
+                    <th scope="col" id="th-2"></th>
                   </thead>
                   <tbody id="body-content">
 
                   </tbody>
                 </table>
               </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center" id="pagination">
@@ -164,8 +166,6 @@ $show = 1;
       for (let i = start; i < max; i++) {
         const element = jsonData[i];
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var thead = $('<thead></thead>').appendTo(tr);
-        var tble = $('<th scope="col"></th>').appendTo(thead);
         var code = element["code"];
         var attr = element["attribute"];
         var model = "";
@@ -173,16 +173,27 @@ $show = 1;
           model = element["name"];
         } else {
           model = element["model"];
-        } 
-         $('<th>รหัส</th>').appendTo(thead);
-        $('<th>วัสดุ</th>').appendTo(thead);
-        $('<th>พพพ</th>').appendTo(thead);
-       
-      }
-         $('<td>' + code + '</td>').appendTo(tr);
+        }
+        $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + attr + '</td>').appendTo(tr);
         $('<td>' + model + '</td>').appendTo(tr);
+      }
 
+      if (item != 1) {
+        $('#th-1').text('รหัสวัสดุ');
+        $('#th-2').text('ชื่อวัสดุ');
+      } else {
+
+        $('#th-1').text('รหัสครุภัณฑ์');
+        $('#th-2').text('รุ่นแบบ');
+      }
+
+      if (item != 1) {
+        $('#dis').text(' แสดงข้อมูลวัสดุ');
+      } else {
+        $('#dis').text(' แสดงข้อมูลครุภัณฑ์');
+
+      }
     }
 
     function selectedDepartment() {
