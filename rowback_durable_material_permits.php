@@ -67,9 +67,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>เลขที่หนังสือ</th>
-                        <th>รหัสวัสดุ</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>วันที่ยืม</th>
+                        <th>วันที่คืน</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -82,7 +83,7 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, m.code FROM durable_material_permits as p,durable_material as m";
+                      $sqlSelect = "SELECT p.*, m.code , m.attribute ,m.name FROM durable_material_permits as p,durable_material as m";
                       $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -94,9 +95,10 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>

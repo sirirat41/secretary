@@ -227,7 +227,6 @@ $show=10;
                     <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
                             <th>รหัสครุภัณฑ์</th>
                             <th>วันที่ชำรุด</th>
                             <th>การทำงาน</th>
@@ -253,7 +252,6 @@ $show=10;
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
                               <td><?php echo thainumDigit($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td class="td-actions text-center">

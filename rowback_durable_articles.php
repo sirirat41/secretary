@@ -67,8 +67,8 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>รูปภาพ</th>
                         <th>ลำดับ</th>
+                        <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ประเภท</th>
@@ -96,8 +96,8 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo $row["seq"]; ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>

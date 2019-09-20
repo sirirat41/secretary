@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,6 @@ $show=10;
               <h6 class="m-0 font-weight-bold text-danger">
                 <i class="fas fa-business-time"></i> เพิ่มข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
             </div>
-
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_material_permits.php" id="form_insert">
                 <div class="row">
@@ -87,13 +86,13 @@ $show=10;
                   <div class="col-md-6 ">
                     <div class="form-group ">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
+                      <input type="date" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
                     </div>
                   </div>
                 </div>
@@ -251,71 +250,69 @@ $show=10;
               <div class="row">
                 <div class="col-12">
                   <div class="table-responsive">
-                  <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-                            <td>#</td>
-                            <td>รูปภาพ</td>
-                            <td>ลำดับ</td>
-                            <td>เลขที่ใบเบิก</td>
-                            <td>รหัสวัสดุ</td>
-                            <td>ประเภท</td>
-                          </tr class="text-center">
-                        </thead>
-                        <tbody id="modal-material-body">
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center">
+                          <td>รูปภาพ</td>
+                          <td>ลำดับ</td>
+                          <td>เลขที่ใบเบิก</td>
+                          <td>รหัสวัสดุ</td>
+                          <td>ประเภท</td>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-material-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
                         if (isset($_GET["page"])) {
                           $page = $_GET["page"];
                         } else {
                           $page = 1;
                         }
                         $start = ($page - 1) * $show;
-                          $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
-                          $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo thainumDigit($row["id"]); ?></td>
-                              <td><?php echo thainumDigit($row["picture"]); ?></td>
-                              <td><?php echo thainumDigit($row["seq"]); ?></td>
-                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["name"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-
-                              </td>
-                            </tr>
-                          <?php
-                          }
-
+                        $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
+                        $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
                           ?>
+                          <tr class="text-center">
+                            <td><?php echo thainumDigit($row["picture"]); ?></td>
+                            <td><?php echo thainumDigit($row["seq"]); ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
 
-                        </tbody>
-                      </table>
-              </form>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+
+                        ?>
+
+                      </tbody>
+                    </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <?php
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <?php
                 $sqlSelectCount = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
                 $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
                 if (isset($_GET["keyword"])) {
@@ -340,7 +337,7 @@ $show=10;
                   }
                 }
 
-                ?> 
+                ?>
 
                 <li class="page-item">
                   <a class="page-link" href="#" aria-label="Next">

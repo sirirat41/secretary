@@ -89,11 +89,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, m.code , m.attribute ,m.model FROM durable_articles_permits as p,durable_articles as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
+                      $sqlSelect = "SELECT p.*, a.code , a.attribute ,a.model FROM durable_articles_permits as p,durable_articles as a";
+                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);

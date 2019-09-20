@@ -68,6 +68,7 @@ $show = 10;
                     <thead>
                       <tr class="text-center">
                         <th>ลำดับ</th>
+                        <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
                         <th>ประเภท</th>
@@ -97,6 +98,7 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["seq"]); ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>

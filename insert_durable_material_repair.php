@@ -61,14 +61,14 @@ $show=10;
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
+                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
+                      <label for="damage_id">รหัสวัสดุ(ชำรุด)</label>
                       <div class="row">
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
@@ -227,7 +227,6 @@ $show=10;
                     <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
                             <th>รหัสครุภัณฑ์</th>
                             <th>วันที่ชำรุด</th>
                             <th>การทำงาน</th>
@@ -241,11 +240,11 @@ $show=10;
                           $page = 1;
                         }
                         $start = ($page - 1) * $show;
-                          $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
-                          $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
+                          $sqlSelect = "SELECT da.*, m.code FROM durable_material_damage as da, durable_material as m";
+                          $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                            $sqlSelect .= " and (da.product_id like '%$keyword%' or m.code like '%$keyword%')";
                           }
                           $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                           $result = mysqli_query($conn, $sqlSelect);
@@ -253,7 +252,6 @@ $show=10;
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
                               <td><?php echo thainumDigit($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td class="td-actions text-center">
@@ -278,11 +276,11 @@ $show=10;
                   </a>
                 </li>
                 <?php
-                $sqlSelectCount = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
-                $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
+                $sqlSelectCount = "SELECT da.*, m.code FROM durable_material_damage as da, durable_material as m";
+                $sqlSelectCount .= " WHERE da.product_id = m.id and da.status = 1";
                 if (isset($_GET["keyword"])) {
                   $keyword = arabicnumDigit($_GET["keyword"]);
-                  $sqlSelectCount .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                  $sqlSelectCount .= " and (da.product_id like '%$keyword%' or m.code like '%$keyword%')";
                 }
                 $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
                 $resultCount = mysqli_query($conn, $sqlSelectCount);

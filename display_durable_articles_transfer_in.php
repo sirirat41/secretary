@@ -60,9 +60,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_transfer_in.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_transfer_in.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_transfer_in.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a>
                 </form>
             </div>
           </div>
@@ -82,7 +82,7 @@ $show = 10;
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -108,8 +108,7 @@ $show = 10;
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>'">
@@ -118,17 +117,14 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal"
-                            data-target="#exampleModal" onclick="$('#remove-transfer_in').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_in').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
                       <?php
                       }
-
                       ?>
-
                     </tbody>
                   </table>
                 </div>
@@ -136,19 +132,19 @@ $show = 10;
             </div>
           </form>
         </div>
-         <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <?php
-              $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
-              $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
-              if (isset($_GET["keyword"])) {
-                $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <?php
+            $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
+            $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by trans.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -165,14 +161,15 @@ $show = 10;
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
 
-            }}
+              }
+            }
             ?>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
               </a>
-          </li>
-        </ul>
+            </li>
+          </ul>
         </nav>
       </div>
     </div>
@@ -255,7 +252,7 @@ $show = 10;
           คุณต้องการลบข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
             <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
-            </form>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

@@ -251,7 +251,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการบริจาคออกของวัสดุ (คงทน) ใช่หรือไม่
+          คุณต้องการลบข้อมูลการบริจาคออกวัสดุ(คงทน)ใช่หรือไม่?
 
           <form id="form-drop" method="post" action="service/service_drop_durable_material_donate.php">
             <input type="hidden" id="remove-material" name="donate_id">
@@ -259,7 +259,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>
