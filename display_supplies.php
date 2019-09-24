@@ -47,9 +47,8 @@ $show = 5;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
                 <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
-
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -63,7 +62,6 @@ $show = 5;
                     <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
-
                 </form>
             </div>
           </div>

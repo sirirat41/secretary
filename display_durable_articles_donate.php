@@ -93,7 +93,7 @@ $show = 10;
                     $sqlSelect .= " WHERE do.product_id = a.id and do.status = 1";
                     if (isset($_GET["keyword"])) {
                       $keyword = arabicnumDigit($_GET["keyword"]);
-                      $sqlSelect .= " and (do.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                      $sqlSelect .= " and (do.donate_name like '%$keyword%' or a.code like '%$keyword%' or do.receive_date like '%$keyword%')";
                     }
                     $sqlSelect .= " Order by do.id desc LIMIT $start, $show";
                     $result = mysqli_query($conn, $sqlSelect);
@@ -142,7 +142,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE do.product_id = a.id and do.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (do.product_id like '%$keyword%' or a.code like '%$keyword%')";
+              $sqlSelectCount .= " and (do.donate_name like '%$keyword%' or a.code like '%$keyword%' or do.receive_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

@@ -51,7 +51,7 @@ $show = 5;
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -96,7 +96,7 @@ $show = 5;
                       $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
+                        $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -145,7 +145,7 @@ $show = 5;
             $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
+              $sqlSelectCount .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by sd.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

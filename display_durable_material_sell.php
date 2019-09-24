@@ -99,7 +99,7 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["sell_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["sell_date"]); ?></td>
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["buyer"]; ?></td>

@@ -104,8 +104,8 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["seq"]; ?></td>
-                        <td><?php echo $row["repair_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["seq"]); ?></td>
+                        <td><?php echo thainumDigit($row["repair_date"]); ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>

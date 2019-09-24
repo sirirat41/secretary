@@ -93,7 +93,7 @@ $show = 5;
                       $sqlSelect = "SELECT * FROM durable_articles_purchase";
                       $sqlSelect .= " WHERE status = 1 Group by order_no";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
+                        $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
                       }
                        // echo $sqlSelect;

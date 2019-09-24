@@ -87,11 +87,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
-                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      $sqlSelect = "SELECT d.*, m.code FROM durable_material_receive_donate as d, durable_material as m";
+                      $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by d.id desc LIMIT $start, $show";
@@ -101,7 +101,7 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td class="td-actions text-center">
@@ -137,11 +137,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
-            $sqlSelectCount .= " WHERE d.product_id = a.id and d.status = 1";
+            $sqlSelectCount = "SELECT d.*, m.code FROM durable_material_receive_donate as d, durable_material as m";
+            $sqlSelectCount .= " WHERE d.product_id = m.id and d.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by d.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

@@ -82,46 +82,45 @@ $show = 5;
                     </thead>
                     <tbody>
                       <?php
-                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                       if (isset($_GET["page"])) {
+                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                      if (isset($_GET["page"])) {
                         $page = $_GET["page"];
                       } else {
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_material_purchase";
-                      $sqlSelect .= " WHERE status = 1 Group by order_no ";
+                      $sqlSelect .= " WHERE status = 1 Group by order_no";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
                       }
-                      // echo $sqlSelect;
+                      echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                        <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
-                        <td><?php echo thainumDigit($row["number"]); ?></td>
-                        <td><?php echo thainumDigit($row["order_by"]); ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_purchase.php?id=<?php echo $row['id']; ?>" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                        <tr class="text-center">
+                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["number"]); ?></td>
+                          <td><?php echo thainumDigit($row["order_by"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_purchase.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
                           <?php
                           }
-
                           ?>
                     </tbody>
                   </table>
@@ -138,11 +137,11 @@ $show = 5;
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT * FROM durable_material_purchase";
-             $sqlSelectCount .= " WHERE status = 1 Group by order_no ";
+            $sqlSelectCount = "SELECT * FROM durable_material_purchase";
+            $sqlSelectCount .= " WHERE status = 1 Group by order_no";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+              $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

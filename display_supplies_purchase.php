@@ -93,9 +93,9 @@ $show = 5;
                       $sqlSelect .= " WHERE status = 1 Group by order_no ";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $sqlSelect .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%' or order_by like '%$keyword%')";
                       }
-                      // echo $sqlSelect;
+                      //echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -121,7 +121,6 @@ $show = 5;
                             </button>
                           <?php
                           }
-
                           ?>
                     </tbody>
                   </table>
@@ -142,7 +141,7 @@ $show = 5;
             $sqlSelectCount .= " WHERE status = 1 Group by order_no ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+              $sqlSelectCount .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%' or order_by like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

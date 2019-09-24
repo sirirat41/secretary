@@ -51,7 +51,7 @@ $show = 10;
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
