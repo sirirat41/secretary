@@ -124,8 +124,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelect = "SELECT * FROM supplies_purchase";
-            $sqlSelect .= " WHERE status = 0";
+            $sqlSelectCount = "SELECT * FROM supplies_purchase";
+            $sqlSelectCount .= " WHERE status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";

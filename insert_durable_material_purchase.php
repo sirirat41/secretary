@@ -81,7 +81,7 @@ require "service/connection.php";
                     <div class="form-group">
                       <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
                       <input class="form-control" type="text" placeholder="รหัสวัสดุฑ์ตั้งต้น" name="material_pattern">
-                      <small style="color: red"> *ตัวอย่าง: ว.สนง. {run_4}/59</small>
+                      <small style="color: red"> *ตัวอย่าง: ว.สนง. {run_4}/62</small>
                     </div>
                   </div>
                 </div>

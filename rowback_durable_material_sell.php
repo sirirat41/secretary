@@ -121,12 +121,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $$sqlSelectCount  = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
-            $$sqlSelectCount  .= " WHERE s.product_id = m.id and s.status = 0";
+            $sqlSelectCount = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
+            $sqlSelectCount .= " WHERE s.product_id = m.id and s.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " Order by s.id desc";
-              $$sqlSelectCount  .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
+              $$sqlSelectCount .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

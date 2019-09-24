@@ -98,7 +98,7 @@ $show = 10;
                         $sqlSelect .= " and (m.code like '%$keyword%' or m.name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
@@ -152,7 +152,7 @@ $show = 10;
              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.name like '%$keyword%')";
            }
            //echo $sqlSelect;
-           $sqlSelectCount .= " Order by m.id desc LIMIT $start, $show";
+           $sqlSelectCount .= " Order by r.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);

@@ -122,11 +122,11 @@ $show = 10;
               </a>
             </li>
             <?php
-             $sqlSelect = "SELECT * FROM seller ";
-             $sqlSelect .= " WHERE status = 0";
+             $sqlSelectCount = "SELECT * FROM seller ";
+             $sqlSelectCount .= " WHERE status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelect .= " and (name like '%$keyword%' or address like '%$keyword%')";
+              $sqlSelectCount .= " and (name like '%$keyword%' or address like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

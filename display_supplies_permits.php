@@ -250,7 +250,7 @@ $show = 10;
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
+          <form id="form-drop" method="post" action="service/service_drop_supplies_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>

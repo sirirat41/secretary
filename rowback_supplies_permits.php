@@ -120,8 +120,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelect = "SELECT p.*, s.code FROM supplies_permits as p,supplies as s";
-            $sqlSelect .= " WHERE p.product_id = s.id and p.status = 0";
+            $sqlSelectCount = "SELECT p.*, s.code FROM supplies_permits as p,supplies as s";
+            $sqlSelectCount .= " WHERE p.product_id = s.id and p.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelect .= " and (p.code like '%$keyword%' or p.permit_date like '%$keyword%')";
