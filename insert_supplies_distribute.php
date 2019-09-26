@@ -88,10 +88,10 @@ $show=10;
                       <input class="form-control" type="text" placeholder="number" name="number" id="number">
                     </div>
                   </div>
-                  <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">วันที่แจกจ่าย</label>
-                      <input class="form-control" type="text" placeholder="distribute_date" name="distribute_date" id="distribute_date">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="distribute_date">วันที่แจกจ่าย</label>
+                      <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="distribute_date" name="distribute_date">
                     </div>
                   </div>
                 </div>

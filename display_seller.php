@@ -69,7 +69,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อร้าน</th>
                         <th>เบอร์โทร</th>
                         <th>แฟกต์</th>
@@ -87,33 +86,26 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM seller";
-                      $sqlSelect .= "";
+                      $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%' or address like '%$keyword%')";
                       }
-                      // echo $sqlSelect;
+                       //echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td><?php echo thainumDigit($row["tel"]); ?></td>
                           <td><?php echo thainumDigit($row["fax"]); ?></td>
                           <td><?php echo thainumDigit($row["address"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_seller?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_seller.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_seller.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_seller.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-seller').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
@@ -136,7 +128,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM seller ";
-            $sqlSelectCount .= "";
+            $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%' or address like '%$keyword%')";
@@ -242,7 +234,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการขายทอดตลาดวัสดุใช่หรือไม่
+          คุณต้องการลบข้อมูลร้านค้าใช่หรือไม่?
           <form id="form-drop" method="post" action="service/service_drop_seller.php">
             <input type="hidden" id="remove-seller" name="seller_id">
         </div>

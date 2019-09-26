@@ -100,7 +100,7 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td class="td-actions text-center">

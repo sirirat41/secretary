@@ -78,11 +78,11 @@ $show = 10;
                         <th>วันที่ยืม</th>
                         <th>วันที่คืน</th>
                         <th>การทำงาน</th>
-                     
+
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -90,8 +90,8 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                       $sqlSelect = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
-                       $sqlSelect .= " WHERE p.product_id = s.id and p.status = 1";
+                      $sqlSelect = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
+                      $sqlSelect .= " WHERE p.product_id = s.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
@@ -103,27 +103,25 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["permit_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_supplies_permits.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_permits.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_permits.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
                             <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_permits.php?id=<?php echo $row['id']; ?>" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
+                              <i class="fas fa-print"></i>
+                            </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           <?php
                           }
-
                           ?>
                     </tbody>
                   </table>
@@ -132,7 +130,6 @@ $show = 10;
             </div>
           </form>
         </div>
-
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
@@ -141,12 +138,12 @@ $show = 10;
               </a>
             </li>
             <?php
-               $sqlSelectCount = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
-               $sqlSelectCount .= " WHERE p.product_id = s.id and p.status = 1";
-              if (isset($_GET["keyword"])) {
-                $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
-             }
+            $sqlSelectCount = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
+            $sqlSelectCount .= " WHERE p.product_id = s.id and p.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -162,7 +159,8 @@ $show = 10;
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
 
-            }}
+              }
+            }
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
@@ -173,11 +171,9 @@ $show = 10;
         </nav>
       </div>
     </div>
-
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
 
   </div>
   <!-- End of Main Content -->
@@ -250,7 +246,7 @@ $show = 10;
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
+          <form id="form-drop" method="post" action="service/service_drop_supplies_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>

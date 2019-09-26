@@ -95,13 +95,13 @@ $show=10;
                   <div class="col-md-6 ">
                     <div class="form-group ">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="datetime-local" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
+                      <input type="date" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="datetime-local" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
                     </div>
                   </div>
                 </div>

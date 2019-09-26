@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">rowback_durable_material_repair</secretary>
+  <secretary style="display: none">display_durable_material_repair</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -67,7 +67,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
                         <th>รหัสวัสดุ(ชำรุด)</th>
@@ -85,11 +84,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT r.*, a.code FROM durable_material_repair as r, durable_material as a";
-                      $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 0";
+                      $sqlSelect = "SELECT r.*, m.code FROM durable_material_repair as r, durable_material as m";
+                      $sqlSelect .= " WHERE r.damage_id = m.id and r.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or r.place like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
@@ -98,7 +97,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["seq"]; ?></td>
                           <td><?php echo $row["repair_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -127,11 +125,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT r.*, a.code FROM durable_material_repair as r, durable_material as a";
-            $sqlSelectCount .= " WHERE r.damage_id = a.id and r.status = 0";
+            $sqlSelectCount = "SELECT r.*, m.code FROM durable_material_repair as r, durable_material as m";
+            $sqlSelectCount .= " WHERE r.damage_id = m.id and r.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or r.place like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by m.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

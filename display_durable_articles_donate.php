@@ -48,7 +48,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการบริจาคออก(ครุภัณฑ์)</h6>
+                  <i class="fas fa-archive"></i> แสดงข้อมูลการบริจาคออก(ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -93,7 +93,7 @@ $show = 10;
                     $sqlSelect .= " WHERE do.product_id = a.id and do.status = 1";
                     if (isset($_GET["keyword"])) {
                       $keyword = arabicnumDigit($_GET["keyword"]);
-                      $sqlSelect .= " and (do.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                      $sqlSelect .= " and (do.donate_name like '%$keyword%' or a.code like '%$keyword%' or do.receive_date like '%$keyword%')";
                     }
                     $sqlSelect .= " Order by do.id desc LIMIT $start, $show";
                     $result = mysqli_query($conn, $sqlSelect);
@@ -142,7 +142,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE do.product_id = a.id and do.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (do.product_id like '%$keyword%' or a.code like '%$keyword%')";
+              $sqlSelectCount .= " and (do.donate_name like '%$keyword%' or a.code like '%$keyword%' or do.receive_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -251,7 +251,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

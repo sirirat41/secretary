@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">rowback_department</secretary>
+  <secretary style="display: none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -67,8 +67,7 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <thead>
-                        <tr>
-                          <th class="text-center">#</th>
+                        <tr class="text-center">
                           <th>ชื่อหน่วยงาน</th>
                           <th>ตำแหน่ง</th>
                           <th>โทรสาร</th>
@@ -93,13 +92,12 @@ $show = 10;
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (fullname like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td><?php echo thainumDigit($row["tel"]); ?></td>
@@ -135,7 +133,7 @@ $show = 10;
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (fullname like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by m.id desc";
+            $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
@@ -243,7 +241,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

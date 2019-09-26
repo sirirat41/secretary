@@ -246,6 +246,7 @@ if (isset($_GET["id"])) {
                 <div class="col-12">
                   <div class="table-responsive">
                     <table class="table table-hover ">
+<<<<<<< HEAD
                       <thead>
                         <tr class="text-center">
                           <td>รูปภาพ</td>
@@ -271,6 +272,51 @@ if (isset($_GET["id"])) {
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
+=======
+                        <thead>
+                          <tr class="text-center">
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสวัสดุ</td>
+                            <td>ประเภท</td>
+                          </tr class="text-center">
+                        </thead>
+                        <tbody id="modal-material-body">
+                          <!-- ///ดึงข้อมูล -->
+                          <?php
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
+                          $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
+                          $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                          if (isset($_GET["keyword"])) {
+                            $keyword = arabicnumDigit($_GET["keyword"]);
+                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          }
+                          $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
+                          $result = mysqli_query($conn, $sqlSelect);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row["id"]
+                            ?>
+                            <tr class="text-center">
+                              <td><?php echo thainumDigit($row["seq"]); ?></td>
+                              <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo $row["name"]; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
+
+                              </td>
+                            </tr>
+                          <?php
+                          }
+
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                           ?>
                           <tr class="text-center">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>

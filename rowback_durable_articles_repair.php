@@ -67,7 +67,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
                         <th>รหัสครุภัณฑ์(ชำรุด)</th>
@@ -98,7 +97,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["seq"]; ?></td>
                           <td><?php echo $row["repair_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>

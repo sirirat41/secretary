@@ -57,7 +57,11 @@ require "service/connection.php";
                         <thead>
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
+<<<<<<< HEAD
                         <th><font size="2">รหัส</font></th>
+=======
+                        <th><font size="2">รหัสวัสดุ</font></th>
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                         <th><font size="2">เลขสินทรัพท์</font></th>
                         <th><font size="2">ประเภท</font></th>
                         <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>

@@ -111,7 +111,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group">
                       <label for="receive_date">วันที่ตรวจรับ</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>

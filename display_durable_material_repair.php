@@ -91,21 +91,21 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.name FROM durable_material_repair as r, durable_material as a";
-                      $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+                      $sqlSelect = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
+                      $sqlSelect .= " WHERE r.damage_id = m.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or a.name like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or m.name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
-                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["seq"]; ?></td>
-                        <td><?php echo $row["repair_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["seq"]); ?></td>
+                        <td><?php echo thainumDigit($row["repair_date"]); ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
@@ -145,14 +145,14 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT r.*, a.code ,a.attribute , a.name FROM durable_material_repair as r, durable_material as a";
-           $sqlSelectCount .= " WHERE r.damage_id = a.id and r.status = 1";
+           $sqlSelectCount = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
+           $sqlSelectCount .= " WHERE r.damage_id = m.id and r.status = 1";
            if (isset($_GET["keyword"])) {
              $keyword = arabicnumDigit($_GET["keyword"]);
-             $sqlSelectCount .= " and (a.code like '%$keyword%' or a.name like '%$keyword%')";
+             $sqlSelectCount .= " and (m.code like '%$keyword%' or m.name like '%$keyword%')";
            }
            //echo $sqlSelect;
-           $sqlSelectCount .= " Order by a.id desc LIMIT $start, $show";
+           $sqlSelectCount .= " Order by r.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);

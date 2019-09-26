@@ -34,8 +34,6 @@ if (isset($_GET["id"])) {
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -103,9 +101,9 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                   <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
-                      <label for="distribute_date" class="bmd-label-floating">วันที่แจกจ่าย</label>
-                      <input class="form-control" type="text" placeholder="distribute_date" name="distribute_date" id="distribute_date" value="<?php echo $newOrderDate; ?>">
+                    <div class="form-group">
+                      <label for="distribute_date">วันที่แจกจ่าย</label>
+                      <input class="form-control" type="date" placeholder="distribute_date" name="distribute_date" id="distribute_date" value="<?php echo $newOrderDate; ?>">
                     </div>
                   </div>
                 </div>
@@ -125,7 +123,7 @@ if (isset($_GET["id"])) {
                           }
                         }
                         ?>
-                        
+
                       </select>
                     </div>
                   </div>
@@ -151,7 +149,7 @@ if (isset($_GET["id"])) {
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                             <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -256,16 +254,25 @@ if (isset($_GET["id"])) {
               </div>
               </nav>
               <div class="row">
+<<<<<<< HEAD
                 <div class="col-12">
+=======
+                <div class="col-md-12">
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
+<<<<<<< HEAD
+=======
+                          <td>#</td>
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                           <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสวัสดุ</td>
                           <td>ประเภท</td>
+<<<<<<< HEAD
                           <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
@@ -281,11 +288,32 @@ if (isset($_GET["id"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
+=======
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-material-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        if (isset($_GET["page"])) {
+                          $page = $_GET["page"];
+                        } else {
+                          $page = 1;
+                        }
+                        $start = ($page - 1) * $show;
+                        $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
                           <tr class="text-center">
+<<<<<<< HEAD
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo thainumDigit($row["seq"]); ?></td>
                             <td><?php echo thainumDigit($row["bill_no"]); ?></td>
@@ -295,18 +323,41 @@ if (isset($_GET["id"])) {
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
+=======
+                            <td><?php echo thainumDigit($row["id"]); ?></td>
+                            <td><?php echo thainumDigit($row["picture"]); ?></td>
+                            <td><?php echo thainumDigit($row["seq"]); ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                             </td>
                           </tr>
                         <?php
                         }
+<<<<<<< HEAD
                         ?>
                       </tbody>
                     </table>
+=======
+
+                        ?>
+
+                      </tbody>
+                    </table>
+                    </form>
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                   </div>
                 </div>
               </div>
             </div>
             <nav aria-label="Page navigation example">
+<<<<<<< HEAD
               <ul class="pagination justify-content-center" id="pagination">
                 <li class="page-item" id="prev-page">
                   <a class="page-link" href="#" aria-label="Previous">
@@ -318,12 +369,51 @@ if (isset($_GET["id"])) {
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
+=======
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <?php
+                $sqlSelectCount = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
+                $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
+                if (isset($_GET["keyword"])) {
+                  $keyword = arabicnumDigit($_GET["keyword"]);
+                  $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                }
+                $sqlSelectCount .= " Order by a.id desc LIMIT $start, $show";
+                $resultCount = mysqli_query($conn, $sqlSelectCount);
+                $total = mysqli_num_rows($resultCount);
+                $page = ceil($total / $show);
+                for ($i = 0; $i < $page; $i++) {
+
+                  if (isset($_GET["keyword"])) {
+                    ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                  <?php
+                    } else {
+                      ?>
+
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <?php
+                  }
+                }
+
+                ?>
+
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                   </a>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
+<<<<<<< HEAD
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -394,6 +484,52 @@ if (isset($_GET["id"])) {
       $('#product_id').val(id);
     }
   </script>
+=======
+      </div>
+      <script>
+        function search() {
+          var kw = $("#keyword").val();
+          $.ajax({
+            url: 'service/service_search_json_supplies.php',
+            dataType: 'JSON',
+            type: 'GET',
+            data: {
+              keyword: kw
+            },
+            success: function(data) {
+              var tbody = $('#modal-supplies-body');
+              tbody.empty();
+              console.log(data);
+              for (i = 0; i < data.length; i++) {
+                var item = data[i];
+                var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+                $('<td>' + item.id + '</td>').appendTo(tr);
+                $('<td>' + item.seq + '</td>').appendTo(tr);
+                $('<td>' + item.bill_no + '</td>').appendTo(tr);
+                $('<td>' + item.code + '</td>').appendTo(tr);
+                $('<td>' + item.attribute + '</td>').appendTo(tr);
+                $('<td>' + item.name + '</td>').appendTo(tr);
+                $('<td class="td-actions text-center"> <button type="button" rel="tooltip" class="btn btn-success" onclick ="selectedSupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+
+
+              }
+            },
+
+            error: function(error) {
+              console.log(error);
+            }
+          })
+        }
+
+        function selectedSupplies(id) {
+          console.log(id);
+          $('#modal-form-search').modal('hide');
+          $('#product_id').val(id);
+
+        }
+      </script>
+</body>
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
 
 </body>
 

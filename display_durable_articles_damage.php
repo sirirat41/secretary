@@ -93,7 +93,7 @@ $show = 10;
                       $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                        $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -141,7 +141,7 @@ $show = 10;
              $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
              if (isset($_GET["keyword"])) {
                $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+               $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
              }
              $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -243,15 +243,14 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลชำรุด (ครุภัณฑ์)ใช่หรือไม่
-
+          คุณต้องการลบข้อมูลชำรุด(ครุภัณฑ์)ใช่หรือไม่?
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_damage.php">
             <input type="hidden" id="remove-articles" name="damage_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

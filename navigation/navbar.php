@@ -105,21 +105,19 @@ if(isset($_SESSION['user_id']))
       <div id="collapseDepartment" class="collapse collapse-department" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item display" href="display_department.php">แสดงหน่วยงาน</a>
-          <a class="collapse-item insert" href="insert_department.php">เพิ่มหน่วยงาน</a>
         </div>
       </div>
     </li>
 
     <!-- Nav Item - Users Collapse Menu -->
-    <li class="nav-item nav-users">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
+    <li class="nav-item nav-user">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
         <i class="fas fa-fw fa-users"></i>
         <span>ผู้ดูแลระบบ</span>
       </a>
-      <div id="collapseUsers" class="collapse collapse-users" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div id="collapseUser" class="collapse collapse-user" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item display" href="login.html">แสดงรายชื่อ</a>
-          <a class="collapse-item insert" href="register.html">เพิ่มผู้ดูแลระบบ</a>
+          <a class="collapse-item displayu" href="display_user.php">แสดงรายชื่อ</a>
         </div>
       </div>
     </li>
@@ -140,13 +138,9 @@ if(isset($_SESSION['user_id']))
       <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
-          <a class="collapse-item insertse" href="insert_seller.php">เพิ่มร้านค้า</a>
           <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
-          <a class="collapse-item insertun" href="insert_unit.php">เพิ่มหน่วยนับ</a>
           <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
-          <a class="collapse-item inserta" href="insert_durable_articles_type.php">เพิ่มประเภทของครุภัณฑ์</a>
           <a class="collapse-item displaym" href="display_durable_material_type.php">แสดงประเภทของวัสดุ</a>
-          <a class="collapse-item insertm" href="insert_durable_material_type.php">เพิ่มประเภทของวัสดุ</a>
 
         </div>
       </div>
@@ -410,7 +404,6 @@ if(isset($_SESSION['user_id']))
             <div id="collapseDepartment" class="collapse collapse-department" aria-labelledby="headingPages" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item display" href="display_department.php">แสดงหน่วยงาน</a>
-                <a class="collapse-item insert" href="insert_department.php">เพิ่มหน่วยงาน</a>
               </div>
             </div>
           </li>
@@ -433,13 +426,9 @@ if(isset($_SESSION['user_id']))
             <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
-                <a class="collapse-item insertse" href="insert_seller.php">เพิ่มร้านค้า</a>
                 <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
-                <a class="collapse-item insertun" href="insert_unit.php">เพิ่มหน่วยนับ</a>
                 <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
-                <a class="collapse-item inserta" href="insert_durable_articles_type.php">เพิ่มประเภทของครุภัณฑ์</a>
                 <a class="collapse-item displaym" href="display_durable_material_type.php">แสดงประเภทของวัสดุ</a>
-                <a class="collapse-item insertm" href="insert_durable_material_type.php">เพิ่มประเภทของวัสดุ</a>
 
               </div>
             </div>

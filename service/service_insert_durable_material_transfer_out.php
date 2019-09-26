@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql .= " VALUES($document, $productId , '$transferto', '$transferdate', '$flag')"; 
 
         if (mysqli_query($conn, $sql)) {
-            header('Location: ../display_material_transfer_out.php?message=เพิ่มข้อมูลสำเร็จ');
+            header('Location: ../display_durable_material_transfer_out.php?message=เพิ่มข้อมูลสำเร็จ');
         } else {
-            header('Location: ../display_material_transfer_out.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+            header('Location: ../display_durable_material_transfer_out.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
 
 } else {

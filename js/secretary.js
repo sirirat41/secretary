@@ -235,6 +235,19 @@ $(document).ready(function () {
             $('.collapse-department .insert').addClass('active');
             break;
 
+        // ตั้งค่า user
+        case "display_user":
+            $('.nav-user').addClass('active');
+            $('.collapse-user').addClass('show');
+            $('.collapse-user .displayu').addClass('active');
+            break;
+        case "insert_user":
+            $('.nav-user').addClass('active');
+            $('.collapse-user').addClass('show');
+            $('.collapse-user .insertu').addClass('active');
+            break;
+
+
         // ตั้งค่า insert
 
         case "insert_seller":
@@ -286,7 +299,6 @@ $(document).ready(function () {
             $('.collapse-setting').addClass('show');
             $('.collapse-setting .displaym').addClass('active');
             break;
-
 
     }
 })

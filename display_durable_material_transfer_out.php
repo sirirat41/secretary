@@ -59,9 +59,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_transfer_out.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_material_transfer_out.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material_transfer_out.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a>
                 </form>
             </div>
           </div>
@@ -81,7 +81,7 @@ $show = 10;
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -101,24 +101,24 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["transfer_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["attribute"]; ?></td>
-                        <td><?php echo $row["transfer_to"]; ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
+                        <tr class="text-center">
+                          <td><?php echo thainumDigit($row["transfer_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo $row["transfer_to"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
                             <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_transfer_out.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
                           <?php
                           }
 
@@ -138,14 +138,14 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute  FROM durable_material as ar, durable_material_transfer_out as trans";
-           $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
-           if (isset($_GET["keyword"])) {
-             $keyword = arabicnumDigit($_GET["keyword"]);
-             $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
-           }
-           // echo $sqlSelect;
-           $sqlSelectCount .= " Order by trans.id desc LIMIT $start, $show";
+            $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute  FROM durable_material as ar, durable_material_transfer_out as trans";
+            $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
+            }
+            // echo $sqlSelect;
+            $sqlSelectCount .= " Order by trans.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);
@@ -160,7 +160,8 @@ $show = 10;
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
 
-            }}
+              }
+            }
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

@@ -70,7 +70,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
                         <th>รหัสวัสดุ</th>
@@ -87,8 +86,8 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_out as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 0";
+                      $sqlSelect = "SELECT trans.*, m.code FROM durable_material as m, durable_material_transfer_out as trans";
+                      $sqlSelect .= " WHERE trans.product_id = m.id and trans.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
@@ -100,7 +99,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["document_no"]; ?></td>
                           <td><?php echo $row["transfer_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -129,13 +127,13 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_out as trans";
-            $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 0";
+            $sqlSelectCount = "SELECT trans.*, m.code FROM durable_material as m, durable_material_transfer_out as trans";
+            $sqlSelectCount .= " WHERE trans.product_id = m.id and trans.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by a.id desc";
+            $sqlSelectCount .= " Order by trans.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $page = ceil($total / $show);

@@ -61,7 +61,7 @@ $show=10;
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
+                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -227,7 +227,10 @@ $show=10;
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
+<<<<<<< HEAD
                             
+=======
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                             <th>รหัสครุภัณฑ์</th>
                             <th>วันที่ชำรุด</th>
                             <th>หมายเหตุ</th>

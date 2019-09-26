@@ -68,7 +68,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
                         <th>รหัสวัสดุ</th>
@@ -98,7 +97,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["document_no"]; ?></td>
                           <td><?php echo $row["transfer_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -129,8 +127,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $$sqlSelectCount  = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_in as trans";
-            $$sqlSelectCount  .= " WHERE trans.product_id = ar.id and trans.status = 0";
+            $sqlSelectCount  = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_in as trans";
+            $sqlSelectCount  .= " WHERE trans.product_id = ar.id and trans.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";

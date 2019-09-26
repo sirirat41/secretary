@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT t.*, a.code ,a.attribute , a.name FROM durable_material as a,durable_material_transfer_in as t WHERE t.id = $id";
-  $sql .= " and t.product_id = a.id ";
+  $sql = "SELECT t.*, m.code ,m.attribute , m.name ,m.picture FROM durable_material as m,durable_material_transfer_in as t WHERE t.id = $id";
+  $sql .= " and t.product_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -63,19 +63,19 @@ if (isset($_GET["id"])) {
         <div class="row">
           <div class="col-sm-12" align="center">
             <div class="center" style="width: 200px;">
-              <img class="card-img-top" align="center" src="./img/bg.jpg">
+              <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
             </div>
           </div>
           <tbody>
             <thead>
               <tr>
                 <td colspan="2">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark" for="document_no">เลขที่หนังสือ : </label>
-                        <?php echo thainumDigit($row["document_no"]); ?>
-                      </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="document_no">เลขที่หนังสือ : </label>
+                      <?php echo thainumDigit($row["document_no"]); ?>
                     </div>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -95,72 +95,72 @@ if (isset($_GET["id"])) {
                       <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
                       <?php echo thainumDigit($row["attribute"]); ?>
                     </div>
-                    </td>
-                    <td>
-                    <div class="col-md-12">
-                      <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                      <?php echo thainumDigit($row["name"]); ?>
-                  </div> 
-                 </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="text-dark" for="transfer_date">วันที่โอน : </label>
-                      <?php echo thainumDigit($row["transfer_date"]); ?>
-                    </div>
                 </td>
                 <td>
-                    <div class="col-md-12">
-                      <label class="text-dark" for="transfer_from">ชื่อผู้โอน : </label>
-                      <?php echo $row["transfer_from"]; ?>
-                    </div>
+                  <div class="col-md-12">
+                    <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                    <?php echo thainumDigit($row["name"]); ?>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="text-dark" for="flag">หมายเหตุ : </label>
-                      <?php echo $row["flag"]; ?>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-              <br>
-        <br>
-        <div class="card-body">
+        </div>
+        </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-dark" for="transfer_date">วันที่โอน : </label>
+                <?php echo thainumDigit($row["transfer_date"]); ?>
+              </div>
+          </td>
+          <td>
+            <div class="col-md-12">
+              <label class="text-dark" for="transfer_from">ชื่อผู้โอน : </label>
+              <?php echo $row["transfer_from"]; ?>
+            </div>
+      </div>
+      </td>
+      </tr>
+      <tr>
+        <td colspan="2">
           <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
+            <div class="col-md-12">
+              <label class="text-dark" for="flag">หมายเหตุ : </label>
+              <?php echo $row["flag"]; ?>
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-4 offset-sm-8" >
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-              </label>
-            </div>
+        </td>
+      </tr>
+      </table>
+      <br>
+      <br>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">ตรวจแล้วถูกต้อง</label>
           </div>
         </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-4 offset-sm-8">
+            <label class="text">พ.ต.ท.หญิง......................................................</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+            </label>
+          </div>
         </div>
       </div>
-    </form>
   </div>
+</div>
+</form>
+</div>
 </div>
 </div>
 </div>

@@ -12,10 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= " VALUES('$documentno', $productid, '$receivedate', '$donatename', '$flag')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Insert data complete";
+        header('Location: ../display_durable_material_donate.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {
-        echo $sql . "<br/>";
-        echo mysqli_error($conn);
+        header('Location: ../display_durable_material_donate.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }
 
 } else {

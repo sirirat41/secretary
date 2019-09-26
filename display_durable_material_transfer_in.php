@@ -102,7 +102,7 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["transfer_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["transfer_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>

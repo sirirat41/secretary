@@ -73,7 +73,6 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
                         <th>จำนวน</th>
@@ -94,16 +93,15 @@ $show = 5;
                       $sqlSelect .= " WHERE status = 1 Group by order_no ";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $sqlSelect .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%' or order_by like '%$keyword%')";
                       }
-                      // echo $sqlSelect;
+                      //echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["order_no"]); ?></td>
                           <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
                           <td><?php echo thainumDigit($row["number"]); ?></td>
@@ -123,7 +121,6 @@ $show = 5;
                             </button>
                           <?php
                           }
-
                           ?>
                     </tbody>
                   </table>
@@ -144,7 +141,7 @@ $show = 5;
             $sqlSelectCount .= " WHERE status = 1 Group by order_no ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+              $sqlSelectCount .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%' or order_by like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

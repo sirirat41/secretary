@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a WHERE d.id = $id";
+  $sql = "SELECT d.*, a.code , a.picture FROM durable_articles_receive_donate as d, durable_articles as a WHERE d.id = $id";
   $sql .= " and d.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -61,7 +61,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-sm-12" align="center">
                   <div class="center" style="width: 200px;">
-                    <img class="card-img-top" align="center" src="./img/bg.jpg">
+                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <tbody>
