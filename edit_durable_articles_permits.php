@@ -10,7 +10,7 @@ if (isset($_GET["id"])) {
   $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
   $newpermitDate = date("ํd-m-Y", strtotime($permitDate));
 
-  $show = 10;
+  $show = 2;
 }
 ?>
 <!DOCTYPE html>
@@ -88,7 +88,8 @@ if (isset($_GET["id"])) {
                           </select>
                         </div>
                         <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                          
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                             <i class="fas fa-search"></i>
                         </div>
                       </div>
@@ -112,7 +113,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                    <label for="department_id">หน่วยงานที่ยืม</label>
+                      <label for="department_id">หน่วยงานที่ยืม</label>
                       <select class="form-control" data-style="btn btn-link" id="department_id" name="department_id" value="<?php echo $item["department_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
@@ -134,7 +135,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
                       <textarea type="text" class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
-                    </div> 
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -249,10 +250,10 @@ if (isset($_GET["id"])) {
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
-                      <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                    <form class="form-inline" id="form-search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
+                   <div>
+                        <button class="btn btn-outline-danger" type="submit" >
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -273,39 +274,34 @@ if (isset($_GET["id"])) {
                           <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
-                      <tbody>
-                      <!-- ///ดึงข้อมูล -->
-                      <?php
-                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                      if (isset($_GET["page"])) {
-                        $page = $_GET["page"];
-                      } else {
-                        $page = 1;
-                      }
-                      $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                      $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                      }
-                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
-                        ?>
-                        <tr class="text-center">
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                          <td><?php echo thainumDigit($row["seq"]); ?></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["name"]); ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                              <i class="fas fa-check"></i>
-                            </button>
-                          </td>
-                        </tr>
+                      <tbody id="modal-articles-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                   
+                        
+                        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
+                          <tr class="text-center">
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                            <td><?php echo thainumDigit($row["seq"]); ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
                         <?php
                         }
                         ?>
@@ -316,21 +312,21 @@ if (isset($_GET["id"])) {
               </div>
             </div>
             <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center" id="pagination">
-      <li class="page-item" id="prev-page">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item" id="next-page">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+              <ul class="pagination justify-content-center" id="pagination">
+                <li class="page-item" id="prev-page">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item" id="next-page">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -341,56 +337,62 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
-       var itemPerPage = 1;
+    var itemPerPage = 10;
     var jsonData;
-    $(document).ready(function() {
-      search();
-      $('#form-search').on('submit', function(e) {
+    $('#form-search').on('submit', function(e) {
         e.preventDefault();
         search();
       })
-
-    })
     function search() {
-      var kw = $("#keyword").val();
+      $('#pagination').empty();
+          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+        
+        
+      var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php',
+        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
         dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        },
-
+         type: 'GET',
         success: function(data) {
-          $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-          var tbody = $('#modal-articles-body');
-          tbody.empty();
-          for (i = 0; i < data.length; i++) {
-            var item = data[i];
-            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.picture + '</td>').appendTo(tr);
-            $('<td>' + item.seq + '</td>').appendTo(tr);
-            $('<td>' + item.bill_no + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.type + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-           },
-           jsonData = data;
-          search(1);
+          
+          jsonData = data;
+          changePage(1);
           $('new-page').removeClass();
-          var numberOfPage = data.length / itemPerPage;
+          var numberOfPage = Math.ceil(data.length / itemPerPage);
           for (let i = 0; i < numberOfPage; i++) {
-            $('<li class="page-item new-page"><a class="page-link" onclick="search(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
+            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
-        }, 
+        },
         error: function(error) {
           console.log(error);
         }
       })
     }
+    function changePage(page) {
+      var body = $('#modal-articles-body');
+      body.empty();
+      var max = page * itemPerPage;
+      var start = max - itemPerPage;
+      if (max > jsonData.length) max = jsonData.length;
+      for (let i = start; i < max; i++) {
+        const item = jsonData[i];
+        //console.log(item);
+        var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var picture = item["picture"];
+        var seq = item["seq"];
+        var bill_no = item["bill_no"];
+        var code = item["code"];
+        var type = item["type"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
+        $('<td>' + seq + '</td>').appendTo(tr);
+        $('<td>' + bill_no + '</td>').appendTo(tr);
+        $('<td>' + code + '</td>').appendTo(tr);
+        $('<td>' + type + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+      }
+    }
+
 
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');

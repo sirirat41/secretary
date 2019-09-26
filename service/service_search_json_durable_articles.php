@@ -3,7 +3,7 @@
     require 'connection.php';
 
     if (isset($_GET["keyword"])){
-        $keyword = $_GET["keyword"];
+        $keyword = isset($_GET["keyword"]) ? $_GET["keyword"] : null;
         $thai = thainumDigit($keyword);
         $arabic = arabicnumDigit ($keyword);
         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";

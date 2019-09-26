@@ -3,17 +3,17 @@
     require 'connection.php';
 
     if (isset($_GET["keyword"])){
-        $keyword = $_GET["keyword"];
+        $keyword = isset($_GET["keyword"]) ? $_GET["keyword"] : null;
         $thai = thainumDigit($keyword);
         $arabic = arabicnumDigit($keyword);
-        $sqlSelect = "SELECT * FROM durable_material_damage d, durable_material a";
-        $sqlSelect .=" WHERE d.product_id = a.id and d.status = 1";
-        $sqlSelect .=" and (d.product_id like '%$thai%' or d.damage_date like '%$thai%'";
-        $sqlSelect .= " or d.product_id like '%$arabic%' or d.damage_date like '%$arabic%')";
+        $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.name FROM durable_material_repair as r, durable_material as a";
+        $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+        $sqlSelect .=" and (a.code like '%$thai%' or a.model like '%$thai%'";
+        $sqlSelect .= " or a.code like '%$arabic%' or a.model like '%$arabic%')";
         $data = array();
         $result = mysqli_query($conn, $sqlSelect);
         while ($row = mysqli_fetch_assoc($result)){
-            $row["product_id"] = thainumDigit($row["product_id"]);
+            $row["damage_id"] = thainumDigit($row["damage_id"]);
             array_push($data, $row);
             
         }

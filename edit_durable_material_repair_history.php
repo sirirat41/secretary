@@ -9,7 +9,7 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $receivedate = $item["receive_date"];
   $newReceivedate = date("ํY-m-d", strtotime($receivedate));
-  $show=10;
+  $show = 10;
 }
 ?>
 
@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แก้ไขรายละเอียดการซ่อม(วัสดุคงทน)</h6>
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แก้ไขรายละเอียดการซ่อม(วัสดุ)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_repair_history.php?id=<?php echo $id; ?>" id="form_insert">
@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
+                      <label for="repair_id">รหัสการซ่อมวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10">
                           <select class="form-control" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
@@ -94,12 +94,11 @@ if (isset($_GET["id"])) {
                           </select>
                         </div>
                         <div class="col-md-2">
-                          <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
-                              <i class="fas fa-search"></i>
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
                             </button>
                           </div>
-                        </div>
+                      
                       </div>
                     </div>
                   </div>
@@ -107,7 +106,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-8">
                     <div class="form-group">
-                      <label for="fix">รายการซ่อมครุภัณฑ์</label>
+                      <label for="fix">รายการซ่อมวัสดุ</label>
                       <input type="text" class="form-control" name="fix" id="fix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
                     </div>
                   </div>
@@ -141,7 +140,7 @@ if (isset($_GET["id"])) {
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+                            คุณต้องการบันทึกข้อมูลรายการซ่อมวัสดุหรือไม่ ?
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -223,6 +222,42 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/secretary.js"></script>
+
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -232,119 +267,88 @@ if (isset($_GET["id"])) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-left">
           <div class="row">
             <div class="col-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
-                      <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
+                    <form class="form-inline" id="form-search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
+                   <div>
+                        <button class="btn btn-outline-danger" type="submit" >
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-                            <th>#</th>
-                            <th>ลำดับ</th>
-                            <th>วันที่ซ่อม</th>
-                            <th>รหัสครภัณฑ์(ชำรุด)</th>
-                            <th>สถานที่</th>
-                            <th>การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody id="modal-material-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center">
+                          <th>ลำดับ</th>
+                          <th>วันที่ซ่อม</th>
+                          <th>รหัสวัสดุ(ชำรุด)</th>
+                          <th>ลักษณะ/คุณสมบัติ</th>
+                          <th>ชื่อวัสดุ</th>
+                          <th>การทำงาน</th>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-material-body">
+                        <!-- ///ดึงข้อมูล -->
                         <?php
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
-                          $sqlSelect = "SELECT r.*, a.code FROM durable_material as a, durable_material_repair as r";
-                          $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
-                          }
-                          //echo $sqlSelect;
-                          $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo $row["seq"]; ?></td>
-                              <td><?php echo $row["repair_date"]; ?></td>
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["place"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-                              </td>
-                            </tr>
-                          <?php
-                          }
+
+                        $sqlSelect = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
+                        $sqlSelect .= " WHERE r.damage_id = m.id and r.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (m.code like '%$keyword%' or m.name like '%$keyword%')";
+                        }
+                        //echo $sqlSelect;
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
                           ?>
-                        </tbody>
-                      </table>
-                    </div>
+                          <tr class="text-center">
+                            <td><?php echo $row["seq"]; ?></td>
+                            <td><?php echo $row["repair_date"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["attribute"]; ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
+              <ul class="pagination justify-content-center" id="pagination">
+                <li class="page-item" id="prev-page">
                   <a class="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
                   </a>
                 </li>
-                <?php
-               $sqlSelect = "SELECT r.*, a.code FROM durable_material as a, durable_material_repair as r";
-               $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
-               if (isset($_GET["keyword"])) {
-                 $keyword = arabicnumDigit($_GET["keyword"]);
-                 $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or a.receive_date like '%$keyword%')";
-               }
-               //echo $sqlSelect;
-               $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
-                $resultCount = mysqli_query($conn, $sqlSelectCount);
-                $total = mysqli_num_rows($resultCount);
-                $page = ceil($total / $show);
-                for ($i = 0; $i < $page; $i++) {
-
-                  if (isset($_GET["keyword"])) {
-                    ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
-                  <?php
-                    } else {
-                      ?>
-
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-                <?php
-                  }
-                }
-
-                ?> 
-                <li class="page-item">
+                <li class="page-item" id="next-page">
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
                   </a>
                 </li>
               </ul>
@@ -353,34 +357,37 @@ if (isset($_GET["id"])) {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
   </div>
   <script>
+    var itemPerPage = 10;
+    var jsonData;
+    $('#form-search').on('submit', function(e) {
+        e.preventDefault();
+        search();
+      })
     function search() {
-      var kw = $('#keyword').val();
+      $('#pagination').empty();
+          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+        
+        
+      var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_material_repair_history.php',
+        url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        },
+         type: 'GET',
         success: function(data) {
-          var tbody = $('#modal-material-body');
-          tbody.empty();
-          console.log(data);
-          for (i = 0; i < data.length; i++) {
-            var item = data[i];
-            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.seq + '</td>').appendTo(tr);
-            $('<td>' + item.repair_date + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.place + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          
+          jsonData = data;
+          changePage(1);
+          $('new-page').removeClass();
+          var numberOfPage = Math.ceil(data.length / itemPerPage);
+          for (let i = 0; i < numberOfPage; i++) {
+            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
         },
         error: function(error) {
@@ -388,9 +395,35 @@ if (isset($_GET["id"])) {
         }
       })
     }
+    function changePage(page) {
+      var body = $('#modal-material-body');
+      body.empty();
+      var max = page * itemPerPage;
+      var start = max - itemPerPage;
+      if (max > jsonData.length) max = jsonData.length;
+      for (let i = start; i < max; i++) {
+        const item = jsonData[i];
+        //console.log(item);
+        var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var seq = item["seq"];
+        var repair_date = item["repair_date"];
+        var code = item["code"];
+        var attribute = item["attribute"];
+        var name = item["name"];
+        $('<td>' + seq + '</td>').appendTo(tr);
+        $('<td>' + repair_date + '</td>').appendTo(tr);
+        $('<td>' + code + '</td>').appendTo(tr);
+        $('<td>' + attribute + '</td>').appendTo(tr);
+        $('<td>' + name + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+      }
+    }
+
 
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
+      $('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
       $('#repair_id').val(id);
     }
   </script>
