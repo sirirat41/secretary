@@ -72,9 +72,9 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อครุภัณฑ์</th>
+                        <th>ชื่อวัสดุ</th>
                         <th>วันที่ยืม</th>
                         <th>วันที่คืน</th>
                         <th>การทำงาน</th>
