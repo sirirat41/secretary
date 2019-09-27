@@ -246,6 +246,33 @@ if (isset($_GET["id"])) {
                 <div class="col-12">
                   <div class="table-responsive">
                     <table class="table table-hover ">
+<<<<<<< HEAD
+                      <thead>
+                        <tr class="text-center">
+                          <td>รูปภาพ</td>
+                          <td>ลำดับ</td>
+                          <td>เลขที่ใบเบิก</td>
+                          <td>รหัสวัสดุ</td>
+                          <td>ประเภท</td>
+                          <td>การทำงาน</td>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-material-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                   
+                        
+                        $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+=======
                         <thead>
                           <tr class="text-center">
                             <td>ลำดับ</td>
@@ -287,6 +314,7 @@ if (isset($_GET["id"])) {
                             </tr>
                           <?php
                           }
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                           ?>
                       </tbody>
                     </table>

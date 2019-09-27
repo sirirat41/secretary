@@ -8,8 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bulding = $_POST["bulding"];
     $floor = $_POST["floor"];
 
-    $sql = "INSERT INTO department(fullname, shortname, fax, bulding, floor)";
-    $sql .= " VALUES('$fullname', '$shortname', '$fax', '$bulding', '$floor')";
+
+    $target_dir = "../depart/";
+    $imgeName = $_FILES["image"]["name"];
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } 
+    $sql = "INSERT INTO department(fullname, shortname, fax, bulding, floor ,pic)";
+    $sql .= " VALUES('$fullname', '$shortname', '$fax', '$bulding', '$floor','$imgeName')";
 
     if (mysqli_query($conn, $sql)) {
         header('Location: ../insert_department.php?message=เพิ่มข้อมูลสำเร็จ');

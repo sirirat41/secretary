@@ -89,7 +89,7 @@ $show = 10;
       </div>
     </div>
   </div>
-  </div>
+ 
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center" id="pagination">
       <li class="page-item" id="prev-page">
@@ -106,7 +106,7 @@ $show = 10;
       </li>
     </ul>
   </nav>
-
+ </div>
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -145,7 +145,7 @@ $show = 10;
   <script src="js/secretary.js"></script>
 
   <script>
-    var itemPerPage = 1;
+    var itemPerPage = 10;
     var jsonData;
     $(document).ready(function() {
       selectedDepartment();
@@ -163,6 +163,7 @@ $show = 10;
       body.empty();
       var max = page * itemPerPage;
       var start = max - itemPerPage;
+      if (max > jsonData.length) max = jsonData.length;
       for (let i = start; i < max; i++) {
         const element = jsonData[i];
         var tr = $('<tr class="text-center"></tr>').appendTo(body);

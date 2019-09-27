@@ -297,7 +297,13 @@ if (isset($_GET["id"])) {
                           </tr>
                         <?php
                         }
+<<<<<<< HEAD
+
                         ?>
+
+=======
+                        ?>
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                       </tbody>
                     </table>
                     </form>

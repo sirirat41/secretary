@@ -226,6 +226,10 @@ $show = 10;
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
+<<<<<<< HEAD
+                        
+=======
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                             <th>รหัสวัสดุ</th>
                             <th>วันที่ชำรุด</th>
                             <th>หมายเหตุ</th>
@@ -233,7 +237,12 @@ $show = 10;
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
+<<<<<<< HEAD
+                        <?php
+                     
+=======
                           <?php
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                           $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
