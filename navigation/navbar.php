@@ -85,7 +85,7 @@ if(isset($_SESSION['user_id']))
       </a>
       <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item display" href="display_supplies.php">แสดงข้อมูล</a>
+          <a class="collapse-item supplies" href="display_supplies.php">แสดงข้อมูล</a>
           <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
           <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
           <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>

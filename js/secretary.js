@@ -140,7 +140,7 @@ $(document).ready(function () {
         case "display_supplies":  //วัสดุสิ้นเปลือง
             $('.nav-supplies').addClass('active');
             $('.collapse-supplies').addClass('show');
-            $('.collapse-supplies .display').addClass('active');
+            $('.collapse-supplies .supplies').addClass('active');
             break;
 
         case "display_supplies_purchase":  //จัดซื้อ
