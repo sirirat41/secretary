@@ -2,45 +2,6 @@ $(document).ready(function () {
     var title = $('secretary').text();
     switch (title) {
 
-        // //Articles ครุภัณฑ์ Insert 
-        // case "insert_durable_articles_purchase":  //จัดซื้อ 
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .purchase').addClass('active');
-        //     break;
-
-        // case "insert_durable_articles": //ครุภัณฑ์
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .insert').addClass('active');
-        //     break;
-
-        // case "insert_durable_articles_damage":  //ชำรุด
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .insertdamage').addClass('active');
-        //     break;
-
-        // case "insert_durable_articles_donate":  // บริจาค
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .insertdonate').addClass('active');
-        //     break;
-
-        //  case "insert_durable_articles_transfer_in":  //โอนเข้า
-        //      $('.nav-articles').addClass('active');
-        //      $('.collapse-articles').addClass('show');
-        //      $('.collapse-articles .transfer').addClass('active');
-        //      break;
-
-        // case "insert_durable_articles_permits":  // ยืมคืน 
-        //      $('.nav-articles').addClass('active');
-        //      $('.collapse-articles').addClass('show');
-        //      $('.collapse-articles .insertpermits').addClass('active');
-        //      break;
-
-
-
         // Articles ครุภัณฑ์ Display
 
         case "display_durable_articles_permits":  // ยืมคืน 
@@ -102,31 +63,6 @@ $(document).ready(function () {
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .sell').addClass('active');
             break;
-
-
-
-
-        //     // Material  วัสดุคงทน Insert
-
-        // case "insert_durable_material_donate":    //บริจาค
-        //     $('.nav-material').addClass('active');
-        //     $('.collapse-material').addClass('show');
-        //     $('.collapse-material .insertdonates').addClass('active');
-        //     break;
-
-        // case "insert_durable_material_damage":  //ชำรุด
-        //     $('.nav-material').addClass('active');
-        //     $('.collapse-material').addClass('show');
-        //     $('.collapse-material .insertdamage').addClass('active');
-        //     break;
-
-        // case "insert_supplies'_distribute":  //แจกจ่าย
-        //     $('.nav-supplies').addClass('active');
-        //     $('.collapse-supplies').addClass('show');
-        //     $('.collapse-supplies .insertdistribute').addClass('active');
-        //     break;
-
-
 
         // Material  วัสดุคงทน Display
 

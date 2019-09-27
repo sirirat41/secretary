@@ -19,7 +19,7 @@
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_articles_type</secretary>
+  <secretary style="display: none">display_durable_articles_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

@@ -14,7 +14,7 @@ $show=10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">insert_durable_articles_damage</secretary>
+  <secretary style="display : none">display_durable_articles_damage</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

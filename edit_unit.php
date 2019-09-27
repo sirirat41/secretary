@@ -19,7 +19,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_seller</secretary>
+  <secretary style="display: none">display_seller</secretary>
 
 
   <!-- Custom fonts for this template-->

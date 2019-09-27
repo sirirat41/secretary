@@ -22,7 +22,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_material_repair_history</secretary>
+  <secretary style="display: none">display_durable_material_repair_history</secretary>
 
 
   <!-- Custom fonts for this template-->
