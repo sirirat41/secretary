@@ -73,6 +73,7 @@ $show = 10;
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่บริจาค</th>
                         <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อผู้บริจาค</th>
                         <th>การทำงาน</th>
                       </tr>
@@ -86,7 +87,7 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
+                      $sqlSelect = "SELECT d.*, a.code, a.attribute FROM durable_articles_receive_donate as d, durable_articles as a";
                       $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
@@ -102,6 +103,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_articles_receive_donate.php?id=<?php echo $row['id']; ?>'">

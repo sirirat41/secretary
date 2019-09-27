@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_supplies_purchase</secretary>
+  <secretary style="display: none">display_supplies_purchase</secretary>
 
 
   <!-- Custom fonts for this template-->

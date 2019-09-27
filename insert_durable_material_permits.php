@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">Display_durable_material_permits</secretary>
+  <secretary style="display: none">display_durable_material_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -291,7 +291,13 @@ $show = 10;
                           </tr>
                         <?php
                         }
+<<<<<<< HEAD
                         ?>
+=======
+
+                        ?>
+
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                       </tbody>
                     </table>
                     </form>

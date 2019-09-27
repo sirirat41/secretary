@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ $show=10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_material_repair</secretary>
+  <secretary style="display: none">display_durable_material_repair</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -226,7 +226,10 @@ $show=10;
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                             <th>รหัสวัสดุ</th>
                             <th>วันที่ชำรุด</th>
                             <th>หมายเหตุ</th>
@@ -234,8 +237,12 @@ $show=10;
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
+<<<<<<< HEAD
                         <?php
                      
+=======
+                          <?php
+>>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
                           $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
@@ -293,22 +300,23 @@ $show=10;
     var itemPerPage = 10;
     var jsonData;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       $('#pagination').empty();
-          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-        
-        
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+
+
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
-          
+
           jsonData = data;
           changePage(1);
           $('new-page').removeClass();
@@ -322,6 +330,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       var body = $('#modal-material-body');
       body.empty();
@@ -337,12 +346,13 @@ $show=10;
         var bill_no = item["bill_no"];
         var code = item["code"];
         var flag = item["flag"];
-            $('<td>' + item.damage_date + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.flag + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          }
-        }
+        $('<td>' + item.damage_date + '</td>').appendTo(tr);
+        $('<td>' + item.code + '</td>').appendTo(tr);
+        $('<td>' + item.flag + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+      }
+    }
+
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);

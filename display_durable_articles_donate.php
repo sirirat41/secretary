@@ -76,9 +76,10 @@ $show = 10;
                     <thead>
                       <tr class="text-center">
                         <th>เลขที่เอกสาร</th>
-                        <th>รหัสครุภัณฑ์</th>
-                        <th>ชื่อบริจาค</th>
                         <th>วันที่บริจาค</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ชื่อบริจาค</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -89,7 +90,7 @@ $show = 10;
                       $page = 1;
                     }
                     $start = ($page - 1) * $show;
-                    $sqlSelect = "SELECT do.*, a.code FROM durable_articles_donate as do, durable_articles as a";
+                    $sqlSelect = "SELECT do.*, a.code, a.attribute FROM durable_articles_donate as do, durable_articles as a";
                     $sqlSelect .= " WHERE do.product_id = a.id and do.status = 1";
                     if (isset($_GET["keyword"])) {
                       $keyword = arabicnumDigit($_GET["keyword"]);
@@ -102,9 +103,10 @@ $show = 10;
                       ?>
                       <tr class="text-center">
                         <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["donate_name"]); ?></td>
                         <td><?php echo thainumDigit($row["receive_date"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo $row["attribute"]; ?></td>
+                        <td><?php echo thainumDigit($row["donate_name"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_donate.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>

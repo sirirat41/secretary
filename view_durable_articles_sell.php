@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_durable_articles_repair</secretary>
+  <secretary style="display: none">display_durable_articles_sell</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

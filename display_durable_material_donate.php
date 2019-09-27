@@ -76,9 +76,10 @@ $show = 10;
                     <thead>
                       <tr class="text-center">
                         <th>เลขที่เอกสาร</th>
-                        <th>รหัสวัสดุ</th>
-                        <th>ชื่อบริจาค</th>
                         <th>วันที่บริจาค</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ชื่อบริจาค</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -91,7 +92,7 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT do.*, m.code FROM durable_material_donate as do, durable_material as m";
+                      $sqlSelect = "SELECT do.*, m.code, m.attribute FROM durable_material_donate as do, durable_material as m";
                       $sqlSelect .= " WHERE do.product_id = m.id and do.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
@@ -104,9 +105,10 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["donate_name"]); ?></td>
                           <td><?php echo thainumDigit($row["receive_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo thainumDigit($row["donate_name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -143,8 +145,8 @@ $show = 10;
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT do.*, m.code FROM durable_material_donate as do, durable_material as m";
-             $sqlSelectCount .= " WHERE do.product_id = m.id and do.status = 1";
+            $sqlSelectCount = "SELECT do.*, m.code FROM durable_material_donate as do, durable_material as m";
+            $sqlSelectCount .= " WHERE do.product_id = m.id and do.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (do.donate_name like '%$keyword%' or m.code like '%$keyword%' or do.receive_date like '%$keyword%')";

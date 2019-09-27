@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, s.code ,s.attribute ,s.name, s.picture FROM supplies_purchase as p ,supplies as s WHERE p.product_id = s.id";
-  $sql .= " and s.status = 1 ";
+  $sql = "SELECT p.*, s.code ,s.attribute ,s.name, s.picture FROM supplies_purchase as p ,supplies as s WHERE p.id = $id";
+  $sql .= " and p.product_id = s.id and s.status = 1";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_suplies_purchase</secretary>
+  <secretary style="display: none">display_supplies_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
