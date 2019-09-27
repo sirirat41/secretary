@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute , a.model, d.fullname , a.picture FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code ,a.attribute , a.model, d.fullname , a.picture ,d.bulding ,d.floor FROM durable_articles as a,durable_articles_permits as p ,department as d WHERE p.id = $id";
   $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -91,7 +91,7 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                          <label class="text" for="attribute">คุณสมบัติ/ลักษณะ : </label>
                           <?php echo thainumDigit($row["attribute"]); ?>
                         </div>
                       </div>
@@ -101,7 +101,7 @@ if (isset($_GET["id"])) {
                     <td colspan="2">
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="model">รุ่นแบบ : </label>
+                          <label class="text" for="model">รุ่นแบบ : </label>
                           <?php echo thainumDigit($row["model"]); ?>
                         </div>
                       </div>
@@ -125,12 +125,16 @@ if (isset($_GET["id"])) {
             </tr>
             <tr>
               <td colspan="2">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
-                    <?php echo $row["fullname"]; ?>
-                  </div>
-                </div>
+              <div class="row">
+                      <div class="col-md-12">
+                        <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
+                        <?php echo thainumDigit($row["fullname"]); ?>
+                        <label class="text" for="bulding"> ตึก </label>
+                        <?php echo thainumDigit($row["bulding"]); ?>
+                        <label class="text" for="floor"> ชั้น </label>
+                        <?php echo thainumDigit($row["floor"]); ?>
+                      </div>
+                    </div>
               </td>
             </tr>
             <tr>

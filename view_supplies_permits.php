@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute, a.name ,d.fullname FROM supplies as a,supplies_permits as p ,department as d WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code ,a.attribute, a.name ,d.fullname ,d.pic,d.bulding ,d.floor FROM supplies as a,supplies_permits as p ,department as d WHERE p.id = $id";
   $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -59,7 +59,12 @@ if (isset($_GET["id"])) {
             </nav>
             <form>
               <div class="card-body">
-                <div class="row">
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="card" style="width: 200px;">
+                      <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                    </div>
+                  </div>
                   <div class="col-md-8">
                     <div class="row">
                       <div class="col-md-12">
@@ -99,10 +104,15 @@ if (isset($_GET["id"])) {
                       <div class="col-md-12">
                         <label class="text-dark" for="fullname">หน่วยงานที่ยืม : </label>
                         <?php echo thainumDigit($row["fullname"]); ?>
+                        <label class="text-dark" for="bulding"> ตึก </label>
+                        <?php echo thainumDigit($row["bulding"]); ?>
+                        <label class="text-dark" for="floor"> ชั้น </label>
+                        <?php echo thainumDigit($row["floor"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
+                    
                         <label class="text-dark" for="flag">หมายเหตุ : </label>
                         <?php echo thainumDigit($row["flag"]); ?>
                       </div>
@@ -112,6 +122,14 @@ if (isset($_GET["id"])) {
             </form>
           </div>
         </div>
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-12" align="center">
+              <h4><label class="text-dark">แผนผัง</label></h4>
+                <img class="img-thumbnail" width="2000" src="depart/<?php echo $row["pic"]; ?>">
+              </div>
+            </div>
+          </div>
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->

@@ -105,7 +105,7 @@ $show = 10;
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . " ตึก" . $row["bulding"] . " ชั้น" . $row["floor"] . '</option>';
                         }
                         ?>
                       </select>
@@ -238,9 +238,9 @@ $show = 10;
                     <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -258,88 +258,48 @@ $show = 10;
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสวัสดุ</td>
                           <td>ประเภท</td>
-<<<<<<< HEAD
                           <td>การทำงาน</td>
-=======
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                         </tr class="text-center">
                       </thead>
                       <tbody id="modal-material-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
-<<<<<<< HEAD
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
+
+
                         $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
-=======
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
-                        $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-                        $sqlSelect .= " WHERE m.type = t.id and m.status = 1";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                        }
-                        $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
                           <tr class="text-center">
-<<<<<<< HEAD
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo thainumDigit($row["seq"]); ?></td>
                             <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo thainumDigit($row["name"]); ?></td>
-=======
-                            <td><?php echo thainumDigit($row["picture"]); ?></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["name"]; ?></td>
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                             </td>
                           </tr>
                         <?php
                         }
-<<<<<<< HEAD
                         ?>
-                      </tbody>
-                    </table>
-=======
-
-                        ?>
-
                       </tbody>
                     </table>
                     </form>
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                   </div>
                 </div>
               </div>
             </div>
             <nav aria-label="Page navigation example">
-<<<<<<< HEAD
               <ul class="pagination justify-content-center" id="pagination">
                 <li class="page-item" id="prev-page">
                   <a class="page-link" href="#" aria-label="Previous">
@@ -348,42 +308,6 @@ $show = 10;
                   </a>
                 </li>
                 <li class="page-item" id="next-page">
-=======
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <?php
-                $sqlSelectCount = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
-                $sqlSelectCount .= " WHERE a.type = t.id and a.status = 1";
-                if (isset($_GET["keyword"])) {
-                  $keyword = arabicnumDigit($_GET["keyword"]);
-                  $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                }
-                $sqlSelectCount .= " Order by a.id desc LIMIT $start, $show";
-                $resultCount = mysqli_query($conn, $sqlSelectCount);
-                $total = mysqli_num_rows($resultCount);
-                $page = ceil($total / $show);
-                for ($i = 0; $i < $page; $i++) {
-
-                  if (isset($_GET["keyword"])) {
-                    ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
-                  <?php
-                    } else {
-                      ?>
-
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-                <?php
-                  }
-                }
-
-                ?>
-
-                <li class="page-item">
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
@@ -404,22 +328,23 @@ $show = 10;
     var itemPerPage = 10;
     var jsonData;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       $('#pagination').empty();
-          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-        
-        
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+
+
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
-          
+
           jsonData = data;
           changePage(1);
           $('new-page').removeClass();
@@ -433,6 +358,7 @@ $show = 10;
         }
       })
     }
+
     function changePage(page) {
       var body = $('#modal-material-body');
       body.empty();

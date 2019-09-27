@@ -2,10 +2,12 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, s.code ,s.attribute , s.name ,d.fullname , s.picture FROM supplies as s, supplies_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = s.id and p.department_id = d.id";
+  $sql = "SELECT p.*, a.code ,a.attribute, a.name ,d.fullname ,d.pic,d.bulding ,d.floor FROM supplies as a,supplies_permits as p ,department as d WHERE p.id = $id";
+  $sql .= " and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+
+
 }
 ?>
 
@@ -57,7 +59,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-12">
       <div class="table-responsive">
         <table width="900" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุสิ้นเปลือง)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
           <form>
             <div class="card-body">
               <div class="row">
@@ -92,7 +94,7 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                            <label class="text" for="attribute">คุณสมบัติ/ลักษณะ : </label>
                             <?php echo thainumDigit($row["attribute"]); ?>
                           </div>
                         </div>
@@ -102,7 +104,7 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                            <label class="text" for="name">ชื่อวัสดุ : </label>
                             <?php echo thainumDigit($row["name"]); ?>
                           </div>
                         </div>
@@ -119,19 +121,23 @@ if (isset($_GET["id"])) {
                       <td>
                         <div class="col-sm-12">
                           <label class="text" for="receive_date">วันที่คืน : </label>
-                          <?php echo $row["receive_date"]; ?>
+                          <?php echo thainumDigit($row["receive_date"]); ?>
                         </div>
-                    </div>
-                </td>
+              </div>
+              </td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
-                      <?php echo $row["fullname"]; ?>
+                <div class="row">
+                      <div class="col-md-12">
+                        <label class="text" for="fullname">หน่วยงานที่ยืม : </label>
+                        <?php echo thainumDigit($row["fullname"]); ?>
+                        <label class="text" for="bulding"> ตึก </label>
+                        <?php echo thainumDigit($row["bulding"]); ?>
+                        <label class="text" for="floor"> ชั้น </label>
+                        <?php echo thainumDigit($row["floor"]); ?>
+                      </div>
                     </div>
-                  </div>
                 </td>
               </tr>
               <tr>
@@ -146,7 +152,7 @@ if (isset($_GET["id"])) {
               </tr>
               </thead>
               </tbody>
-          </table>
+        </table>
         <br>
         <br>
         <div class="card-body">

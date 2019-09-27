@@ -226,12 +226,8 @@ $show=10;
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-<<<<<<< HEAD
                         
                             <th>รหัสวัสดุ</th>
-=======
-                            <th>รหัสครุภัณฑ์</th>
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                             <th>วันที่ชำรุด</th>
                             <th>หมายเหตุ</th>
                             <th>การทำงาน</th>
@@ -239,20 +235,9 @@ $show=10;
                         </thead>
                         <tbody id="modal-material-body">
                         <?php
-<<<<<<< HEAD
                      
                           $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
-=======
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
-                          $sqlSelect = "SELECT da.*, m.code FROM durable_material_damage as da, durable_material as m";
-                          $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
                             $sqlSelect .= " and (da.product_id like '%$keyword%' or m.code like '%$keyword%')";
@@ -287,37 +272,7 @@ $show=10;
                     <span class="sr-only">Previous</span>
                   </a>
                 </li>
-<<<<<<< HEAD
                 <li class="page-item" id="next-page">
-=======
-                <?php
-                $sqlSelectCount = "SELECT da.*, m.code FROM durable_material_damage as da, durable_material as m";
-                $sqlSelectCount .= " WHERE da.product_id = m.id and da.status = 1";
-                if (isset($_GET["keyword"])) {
-                  $keyword = arabicnumDigit($_GET["keyword"]);
-                  $sqlSelectCount .= " and (da.product_id like '%$keyword%' or m.code like '%$keyword%')";
-                }
-                $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
-                $resultCount = mysqli_query($conn, $sqlSelectCount);
-                $total = mysqli_num_rows($resultCount);
-                $page = ceil($total / $show);
-                for ($i = 0; $i < $page; $i++) {
-
-                  if (isset($_GET["keyword"])) {
-                    ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
-                  <?php
-                    } else {
-                      ?>
-
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-                <?php
-                  }
-                }
-
-                ?> 
-                <li class="page-item">
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
