@@ -7,9 +7,6 @@ if (isset($_GET["id"])) {
   $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id and a.receive_date = p.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-
-
-  }
 }
 ?>
 
