@@ -89,11 +89,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, m.code , m.attribute ,m.model FROM durable_articles_permits as p,durable_articles as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
+                      $sqlSelect = "SELECT p.*, a.code , a.attribute ,a.model FROM durable_articles_permits as p,durable_articles as a";
+                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -103,8 +103,8 @@ $show = 10;
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["permit_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_permits.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>

@@ -21,6 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
 
 }
-header('Location: ../display_durable_articles_donate.php?message=แก้ไขข้อมูลสำเร็จ');
+header('Location: ../display_durable_articles_donate.php?message=เพิ่มข้อมูลสำเร็จ');
 
 ?>

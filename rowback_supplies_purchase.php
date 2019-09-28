@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">rowback_supplies_purchase</secretary>
+  <secretary style="display: none">display_supplies_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลจัดซื้อวัสดุสิ้นเปลือง</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -68,7 +68,6 @@ $show = 10;
                     <thead>
                       <thead>
                         <tr class="text-center">
-                          <th>#</th>
                           <th>เลขที่ใบสั่งซื้อ</th>
                           <th>วันที่จัดซื้อ</th>
                           <th>จำนวน</th>
@@ -98,7 +97,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["order_no"]); ?></td>
                           <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
                           <td><?php echo thainumDigit($row["number"]); ?></td>
@@ -126,8 +124,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelect = "SELECT * FROM supplies_purchase";
-            $sqlSelect .= " WHERE status = 0";
+            $sqlSelectCount = "SELECT * FROM supplies_purchase";
+            $sqlSelectCount .= " WHERE status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
@@ -239,7 +237,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ $show=10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_articles_repair</secretary>
+  <secretary style="display: none">display_durable_articles_repair</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -61,7 +61,7 @@ $show=10;
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="datetime-local" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
+                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@ $show=10;
                         </div>
                         <div class="col-md-2">
                           <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                               <i class="fas fa-search"></i>
                             </button>
                           </div>
@@ -204,12 +204,12 @@ $show=10;
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-10 offset-1 ">
+            <div class="col-md-12 ">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัครุภัณฑ์)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
                       <div>
@@ -224,38 +224,38 @@ $show=10;
                 <div class="row">
                   <div class="col-md-12">
                     <div class="table-responsive">
-                    <table class="table table-hover ">
+                      <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
+<<<<<<< HEAD
+                            
+=======
+>>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                             <th>รหัสครุภัณฑ์</th>
                             <th>วันที่ชำรุด</th>
+                            <th>หมายเหตุ</th>
                             <th>การทำงาน</th>
+                            
                           </tr>
                         </thead>
                         <tbody id="modal-articles-body">
                         <?php
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
+                     
                           $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
                             $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
                           }
-                          $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
                               <td><?php echo thainumDigit($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
+                              <td><?php echo $row["flag"]; ?></td>
+
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                   <i class="fas fa-check"></i>
@@ -271,41 +271,17 @@ $show=10;
               </form>
             </div>
             <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
+              <ul class="pagination justify-content-center" id="pagination">
+                <li class="page-item" id="prev-page">
                   <a class="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
                   </a>
                 </li>
-                <?php
-                $sqlSelectCount = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
-                $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
-                if (isset($_GET["keyword"])) {
-                  $keyword = arabicnumDigit($_GET["keyword"]);
-                  $sqlSelectCount .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
-                }
-                $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
-                $resultCount = mysqli_query($conn, $sqlSelectCount);
-                $total = mysqli_num_rows($resultCount);
-                $page = ceil($total / $show);
-                for ($i = 0; $i < $page; $i++) {
-
-                  if (isset($_GET["keyword"])) {
-                    ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
-                  <?php
-                    } else {
-                      ?>
-
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-                <?php
-                  }
-                }
-
-                ?> 
-                <li class="page-item">
+                <li class="page-item" id="next-page">
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
                   </a>
                 </li>
               </ul>
@@ -314,33 +290,37 @@ $show=10;
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
   </div>
   <script>
+    var itemPerPage = 10;
+    var jsonData;
+    $('#form-search').on('submit', function(e) {
+        e.preventDefault();
+        search();
+      })
     function search() {
-      var kw = $("#keyword").val();
+      $('#pagination').empty();
+          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+        
+        
+      var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles_repair.php',
+        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
         dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        },
-
+         type: 'GET',
         success: function(data) {
-          var tbody = $('#modal-articles-body');
-          tbody.empty();
-          console.log(data);
-          for (i = 0; i < data.length; i++) {
-            var item = data[i];
-            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.damage_date + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          
+          jsonData = data;
+          changePage(1);
+          $('new-page').removeClass();
+          var numberOfPage = Math.ceil(data.length / itemPerPage);
+          for (let i = 0; i < numberOfPage; i++) {
+            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
         },
         error: function(error) {
@@ -348,13 +328,33 @@ $show=10;
         }
       })
     }
+    function changePage(page) {
+      var body = $('#modal-articles-body');
+      body.empty();
+      var max = page * itemPerPage;
+      var start = max - itemPerPage;
+      if (max > jsonData.length) max = jsonData.length;
+      for (let i = start; i < max; i++) {
+        const item = jsonData[i];
+        //console.log(item);
+        var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var picture = item["picture"];
+        var seq = item["seq"];
+        var bill_no = item["bill_no"];
+        var code = item["code"];
+        var flag = item["flag"];
+            $('<td>' + item.damage_date + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.flag + '</td>').appendTo(tr);
 
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
+        }
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
   </script>
-
 
 </body>
 

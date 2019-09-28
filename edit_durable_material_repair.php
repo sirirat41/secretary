@@ -22,7 +22,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_material_repair</secretary>
+  <secretary style="display: none">display_durable_material_repair</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มข้อมูลซ่อม(ครุภัณฑ์)</h6>
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แก้ไขข้อมูลซ่อม(วัสดุคงทน)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_repair.php?id=<?php echo $id; ?>" id="form_insert">
@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
+                      <label for="damage_id">รหัสวัสดุ(ชำรุด)</label>
                       <div class="row">
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
@@ -95,7 +95,7 @@ if (isset($_GET["id"])) {
                         </div>
                         <div class="col-md-2">
                           <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                               <i class="fas fa-search"></i>
                             </button>
                           </div>
@@ -125,7 +125,7 @@ if (isset($_GET["id"])) {
                             </button>
                           </div>
                           <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
+                            คุณต้องการบันทึกข้อมูลการซ่อมวัสดุหรือไม่ ?
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -236,38 +236,33 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="table-responsive">
-                    <table class="table table-hover ">
+                      <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
-                            <th>รหัสครุภัณฑ์</th>
+                        
+                          <th>รหัสวัสดุ</th>
                             <th>วันที่ชำรุด</th>
+                            <th>หมายเหตุ</th>
                             <th>การทำงาน</th>
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
                         <?php
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
+                     
                           $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
                             $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
                           }
-                          $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo $row["id"]; ?></td>
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
+                              <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
                                   <i class="fas fa-check"></i>
@@ -283,41 +278,17 @@ if (isset($_GET["id"])) {
               </form>
             </div>
             <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
+              <ul class="pagination justify-content-center" id="pagination">
+                <li class="page-item" id="prev-page">
                   <a class="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
                   </a>
                 </li>
-                <?php
-                $sqlSelectCount = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
-                $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
-                if (isset($_GET["keyword"])) {
-                  $keyword = arabicnumDigit($_GET["keyword"]);
-                  $sqlSelectCount .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
-                }
-                $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
-                $resultCount = mysqli_query($conn, $sqlSelectCount);
-                $total = mysqli_num_rows($resultCount);
-                $page = ceil($total / $show);
-                for ($i = 0; $i < $page; $i++) {
-
-                  if (isset($_GET["keyword"])) {
-                    ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
-                  <?php
-                    } else {
-                      ?>
-
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-                <?php
-                  }
-                }
-
-                ?> 
-                <li class="page-item">
+                <li class="page-item" id="next-page">
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
                   </a>
                 </li>
               </ul>
@@ -326,32 +297,37 @@ if (isset($_GET["id"])) {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
   </div>
   <script>
+    var itemPerPage = 10;
+    var jsonData;
+    $('#form-search').on('submit', function(e) {
+        e.preventDefault();
+        search();
+      })
     function search() {
-      var kw = $("#keyword").val();
+      $('#pagination').empty();
+          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+        
+        
+      var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_material_repair.php',
+        url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-        type: 'GET',
-        data: {
-          keyword: kw
-        },
-
+         type: 'GET',
         success: function(data) {
-          var tbody = $('#modal-material-body');
-          tbody.empty();
-          for (i = 0; i < data.length; i++) {
-            var item = data[i];
-            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-            $('<td>' + item.id + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.damage_date + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          
+          jsonData = data;
+          changePage(1);
+          $('new-page').removeClass();
+          var numberOfPage = Math.ceil(data.length / itemPerPage);
+          for (let i = 0; i < numberOfPage; i++) {
+            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
         },
         error: function(error) {
@@ -359,10 +335,30 @@ if (isset($_GET["id"])) {
         }
       })
     }
-
+    function changePage(page) {
+      var body = $('#modal-material-body');
+      body.empty();
+      var max = page * itemPerPage;
+      var start = max - itemPerPage;
+      if (max > jsonData.length) max = jsonData.length;
+      for (let i = start; i < max; i++) {
+        const item = jsonData[i];
+        //console.log(item);
+        var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var picture = item["picture"];
+        var seq = item["seq"];
+        var bill_no = item["bill_no"];
+        var code = item["code"];
+        var flag = item["flag"];
+            $('<td>' + item.damage_date + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.flag + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
+        }
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
-      $('#damage_id').val(id);
+      $('#product_id').val(id);
     }
   </script>
 

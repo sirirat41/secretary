@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ $show = 5;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">rowback_durable_articles_permits</secretary>
+  <secretary style="display: none">display_durable_articles_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -67,10 +67,10 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
-                        <th>เลขที่หนังสือ</th>
-                        <th>รหัสวัสดุ</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>วันที่ยืม</th>
+                        <th>วันที่คืน</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -83,22 +83,22 @@ $show = 5;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, m.code FROM durable_articles_permits as p,durable_articles as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
+                      $sqlSelect = "SELECT p.*, a.code , a.attribute ,a.model FROM durable_articles_permits as p,durable_articles as a";
+                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
+                          <td><?php echo $row["receive_date"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
@@ -122,11 +122,11 @@ $show = 5;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT p.*, m.code FROM durable_articles_permits as p,durable_articles as m";
-            $sqlSelectCount .= " WHERE p.product_id = m.id and p.status = 0";
+            $sqlSelectCount = "SELECT p.*, a.code FROM durable_articles_permits as p,durable_articles as a";
+            $sqlSelectCount .= " WHERE p.product_id = a.id and p.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -229,7 +229,7 @@ $show = 5;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการกู้ข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          คุณต้องการกู้ข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_articles_permits.php">
             <input type="hidden" id="rowback-permits" name="permits_id">
           </form>

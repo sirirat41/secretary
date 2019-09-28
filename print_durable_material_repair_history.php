@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code FROM durable_material as a,durable_material_repair_history as r WHERE r.id = $id";
-  $sql .= " and r.repair_id = a.id ";
+  $sql = "SELECT r.*, m.code , m.picture FROM durable_material as m,durable_material_repair_history as r WHERE r.id = $id";
+  $sql .= " and r.repair_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -49,7 +49,6 @@ if (isset($_GET["id"])) {
       </div>
   </div>
   <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
-
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
@@ -60,7 +59,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-sm-12" align="center">
                   <div class="center" style="width: 200px;">
-                    <img class="card-img-top" align="center" src="./img/bg.jpg">
+                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <tbody>

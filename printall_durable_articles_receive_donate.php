@@ -22,7 +22,7 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
- 
+
 </head>
 
 <body onLoad="window.print()">
@@ -39,62 +39,76 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> แสดงข้อมูลรับบริจาค(ครุภัณฑ์)</h6>
-                     <form>
-                        <thead>
-                      <tr class="text-center">
-                        <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">เลขที่เอกสาร</font></th>
-                        <th><font size="2">วันที่บริจาค</font></th>
-                        <th><font size="2">รหัสครุภัณฑ์</font></th>
-                        <th><font size="2">ชื่อผู้บริจาค</font></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
-                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                      <tr class="text-center">
-                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["document_no"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["receive_date"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["donate_name"]; ?></font></td>
-                      </tr>
-                          <?php
-                          }
-                          ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center">ข้อมูลการรับบริจาค(ครุภัณฑ์)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">เลขที่เอกสาร</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่บริจาค</font>
+                    </th>
+                    <th>
+                      <font size="2">รหัสครุภัณฑ์</font>
+                    </th>
+                    <th>
+                      <font size="2">ชื่อผู้บริจาค</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
+                  $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                  }
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"];
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["document_no"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["receive_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["donate_name"]; ?></font>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+            </table>
+            </form>
+          </div>
         </div>
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-
+    <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-   
+
   </footer>
   <!-- End of Footer -->
 

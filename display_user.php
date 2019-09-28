@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลผู้ใช้งาน</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -73,7 +73,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อผู้ใช้งาน</th>
                         <th>ชื่อ</th>
                         <th>นามสกุล</th>
@@ -104,7 +103,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["username"]); ?></td>
                         <td><?php echo thainumDigit($row["surname"]); ?></td>
                         <td><?php echo $row["lastname"]; ?></td>

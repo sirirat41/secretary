@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">insert_durable_material</secretary>
+  <secretary style="display : none">display_durable_material</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  เพิ่มข้อมูลวัสดุ (คงทน)
+                  เพิ่มข้อมูล(วัสดุคงทน)
                 </h6>
               </div>
             </div>
@@ -192,7 +192,14 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
+                      <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group">

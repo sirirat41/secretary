@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">insert_department</secretary>
+  <secretary style="display : none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,38 +48,26 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  หน่วยงาน
+                  เพิ่มข้อมูลหน่วยงาน
                 </h6>
               </div>
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_department.php" id="form_insert">
+              <form method="post" action="service/service_insert_department.php" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
-                  <div class=" col-6 ">
+                  <div class=" col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
                       <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department">
                     </div>
                   </div>
-                  <div class="col-6 ">
+                </div>
+                <div class="row">
+                  <div class="col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control" name="shortname" type="text" placeholder="shortname" id="shortname">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class=" col-12">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">โทรสาร</label>
-                      <input class="form-control" name="tel" type="text" placeholder="tel" id="tel">
-                    </div>
-                  </div>
-                  <div class=" col-12">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">โทรสาร</label>
-                      <input class="form-control" name="fax" type="text" placeholder="fax" id="fax">
                     </div>
                   </div>
                 </div>
@@ -97,6 +85,40 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class=" col-12">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">โทรศัพท์</label>
+                      <input class="form-control" name="tel" type="text" placeholder="tel" id="tel">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class=" col-12">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">โทรสาร</label>
+                      <input class="form-control" name="fax" type="text" placeholder="fax" id="fax">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail img-raised">
+                        <img src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png"  width="100"  alt="...">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                        
+                          <div class="col-2">
+                            <input type="file" name="image" />
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
@@ -105,33 +127,17 @@ require "service/connection.php";
                       <div class="ripple-container"></div>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลหน่วยงานหรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
 
                   </div>
                 </div>
             </div>
           </div>
-          </form>
+         
         </div>
-      </div>
+      </div> 
+    </form>
+    <br>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
@@ -196,37 +202,55 @@ require "service/connection.php";
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-    <script>
-      $(document).ready(function() {
-        <?php
-        if (isset($_GET["message"])); {
-          $message = $_GET["message"];
-          echo "$('#modal-message').modal();";
-        }
-        ?>
-      })
-    </script>
-    <!-- Message Modal-->
-    <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <?php echo $_GET["message"]; ?>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
-          </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+          คุณต้องการบันทึกข้อมูลหน่วยงานหรือไม่ ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      <?php
+      if (isset($_GET["message"])); {
+        $message = $_GET["message"];
+        echo "$('#modal-message').modal();";
+      }
+      ?>
+    })
+  </script>
+  <!-- Message Modal-->
+  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <?php echo $_GET["message"]; ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

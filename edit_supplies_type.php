@@ -19,7 +19,7 @@
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_supplies_type</secretary>
+  <secretary style="display: none">display_supplies_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,7 +50,7 @@
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
                       <h6 class="m-0 font-weight-bold text-danger">
-                          <i class="fas fa-clipboard-list"></i> เพิ่มข้อมูลประเภท(ครุภัณฑ์)</h6>
+                          <i class="fas fa-clipboard-list"></i> แก้ไขข้อมูลประเภท(วัสดุสิ้นเปลือง)</h6>
                             </div>
                           
                           <div class="card-body">

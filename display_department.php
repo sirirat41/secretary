@@ -51,7 +51,7 @@ $show = 10;
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -76,13 +76,13 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อหน่วยงาน</th>
                         <th>ตำแหน่ง</th>
-                        <th>เบอร์โทร</th>
-                        <th>โทรสาร</th>
                         <th>อาคาร</th>
                         <th>ชั้น</th>
+                        <th>เบอร์โทร</th>
+                        <th>โทรสาร</th>
+
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -108,14 +108,14 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                               <?php echo $row["fullname"]; ?></a></td>
                           <td><?php echo thainumDigit($row["shortname"]); ?></td>
-                          <td><?php echo thainumDigit($row["tel"]); ?></td>
-                          <td><?php echo thainumDigit($row["fax"]); ?></td>
                           <td><?php echo thainumDigit($row["bulding"]); ?></td>
                           <td><?php echo thainumDigit($row["floor"]); ?></td>
+                          <td><?php echo thainumDigit($row["tel"]); ?></td>
+                          <td><?php echo thainumDigit($row["fax"]); ?></td>
+
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>

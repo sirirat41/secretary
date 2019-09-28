@@ -59,7 +59,6 @@ $monthDay = ($dateMouth - $day) + 1;
 
     <!-- End of Topbar -->
 
-
     <!-- Begin Page Content -->
 
     <body onLoad="window.print()">
@@ -211,15 +210,15 @@ $monthDay = ($dateMouth - $day) + 1;
               <td> <?php echo thainumDigit($row["attribute"] . "<br>"); ?>** <?php echo thainumDigit($row["name"]); ?>**</td>
               <td>๑</td>
               <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
-            <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
-                <td><?php echo thainumDigit($row["durable_year"]); ?></td>
-                <td><?php $rate = 100 / $row["durable_year"];
-                    echo thainumDigit(number_format($rate, 2, '.', '')); ?>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="td-actions text-center">
+              <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
+              <td><?php echo thainumDigit($row["durable_year"]); ?></td>
+              <td><?php $rate = 100 / $row["durable_year"];
+                  echo thainumDigit(number_format($rate, 2, '.', '')); ?>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="td-actions text-center">
             </tr>
 
             <?php
@@ -229,20 +228,20 @@ $monthDay = ($dateMouth - $day) + 1;
             for ($i = 0; $i < $lifetime + 1; $i++) {
 
               ?>
-              <tr class="text-center" >
+              <tr class="text-center">
                 <td width="10%">
                   <?php if ($i == ($lifetime)) {
-                        echo thainumDigit($purchase->format('d'));
-                      } else {
-                        echo thainumDigit($dateMouth);
-                      }
-                      echo thainumDigit(" " . $month . " ");
-                      if ($i >= 1) {
-                        echo thainumDigit($year + $i);
-                      } else {
-                        echo thainumDigit($year);
-                      }
-                      ?>
+                      echo thainumDigit($purchase->format('d'));
+                    } else {
+                      echo thainumDigit($dateMouth);
+                    }
+                    echo thainumDigit(" " . $month . " ");
+                    if ($i >= 1) {
+                      echo thainumDigit($year + $i);
+                    } else {
+                      echo thainumDigit($year);
+                    }
+                    ?>
                 </td>
                 <td></td>
                 <td>คิดค่าเสื่อม</td>
@@ -306,6 +305,34 @@ $monthDay = ($dateMouth - $day) + 1;
           </thead>
           </table>
         </div>
+      </div>
+      <br>
+      <br>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ตรวจแล้วถูกต้อง</label>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-5 offset-sm-7" align="right">
+            <label class="text">พ.ต.ท.หญิง......................................................</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(กรรณิการ์ เหล่าทัพ)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 offset-sm-9">
+            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รอง ผกก.ฝอ.สลก.ตร.
+            </label>
+          </div>
+        </div>
+      </div>
+      </div>
       </div>
     </form>
     <!-- Optional JavaScript -->

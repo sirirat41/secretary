@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์คงทน)</h6>
+                  <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -59,9 +59,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_repair.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_articles_repair.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_repair.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a>
                 </form>
             </div>
           </div>
@@ -102,30 +102,28 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo $row["seq"]; ?></td>
-                        <td><?php echo $row["repair_date"]; ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo $row["model"]; ?></td>
-                        <td class="td-actions text-center">
-                        <button type="button" rel="tooltip" class="btn btn-warning"
-                            onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
+                        <tr class="text-center">
+                          <td><?php echo thainumDigit($row["seq"]); ?></td>
+                          <td><?php echo thainumDigit($row["repair_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo thainumDigit($row["model"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                       
+
                             <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_repair.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>

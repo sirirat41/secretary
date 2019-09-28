@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, m.code, m.attribute ,m.name FROM durable_material_purchase as p ,durable_material as m WHERE p.product_id = m.id";
-  $sql .= " and m.status = 1 ";
+  $sql = "SELECT p.*, m.code, m.attribute ,m.name , m.picture FROM durable_material_purchase as p ,durable_material as m WHERE p.id = $id";
+  $sql .= " and p.product_id = m.id and m.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลจัดซื้อ (วัสดุ)</h6>
+                  <i class="fas fa-business-time"></i> ข้อมูลการจัดซื้อ(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <div>
                 </form>

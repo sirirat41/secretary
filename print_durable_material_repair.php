@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code ,a.attribute ,a.name FROM durable_material as a,durable_material_repair as r WHERE r.id = $id";
-  $sql .= " and r.damage_id = a.id ";
+  $sql = "SELECT r.*, m.code ,m.attribute ,m.name , m.picture FROM durable_material as m,durable_material_repair as r WHERE r.id = $id";
+  $sql .= " and r.damage_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -57,13 +57,13 @@ if (isset($_GET["id"])) {
     <div class="col-sm-12">
       <div class="table-responsive">
         <table width="800" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(วัสดุคงทน)</h6>
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการซ่อม(วัสดุคงทน)</h6>
           <form>
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-12" align="center">
                   <div class="center" style="width: 200px;">
-                    <img class="card-img-top" align="center" src="./img/bg.jpg">
+                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <tbody>

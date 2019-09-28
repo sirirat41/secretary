@@ -26,18 +26,14 @@ require "service/connection.php";
     @page {
       size: landscape;
     }
-   
   </style>
- 
-</head>
 
+</head>
 
 <body onLoad="window.print()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
 
     </nav>
     <!-- End of Topbar -->
@@ -48,93 +44,108 @@ require "service/connection.php";
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
         <div class="col-md-12">
-         
-        
-            <div class="row">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
-                     <form>
-                        <thead>
-                      <tr class="text-center">
-                        <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">วันที่โอน</font></th>
-                        <th><font size="2">รหัสครุภัณฑ์</font></th>
-                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
-                        <th><font size="2">รุ่นแบบ</font></th>
-                        <th><font size="2">ชื่อผู้โอน</font></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
-                      }
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                      <tr class="text-center">
-                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["transfer_date"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["model"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["transfer_from"]; ?></font></td>
-                      </tr>
-                          <?php
-                          }
+          <div class="table-responsive">
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+              <form>
+                <thead>
+                  <tr class="text-center">
+                    <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่โอน</font>
+                    </th>
+                    <th>
+                      <font size="2">รหัสครุภัณฑ์</font>
+                    </th>
+                    <th>
+                      <font size="2">ลักษณะ/คุณสมบัติ</font>
+                    </th>
+                    <th>
+                      <font size="2">รุ่นแบบ</font>
+                    </th>
+                    <th>
+                      <font size="2">ชื่อผู้โอน</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_in as trans";
+                  $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                  if (isset($_GET["keyword"])) {
+                    $keyword = $_GET["keyword"];
+                    $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                  }
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"];
+                    ?>
+                    <tr class="text-center">
+                      <td>
+                        <font size="2"><?php echo $row["id"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["transfer_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["attribute"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["model"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["transfer_from"]; ?></font>
+                      </td>
+                    </tr>
+                  <?php
+                  }
 
-                          ?>
-                    </tbody>
-                  </table>
-                  <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9"><font size="2">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-4 offset-sm-8">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-              </label></font>
-            </div>
-          </div>
-        </div>
+                  ?>
+                </tbody>
+            </table>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <font size="2">
+                    <label class="text">ตรวจแล้วถูกต้อง</label>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-4 offset-sm-8">
+                  <label class="text">พ.ต.ท.หญิง......................................................</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+                  </label></font>
                 </div>
               </div>
             </div>
-          </form>
+            </form>
+          </div>
         </div>
-        
       </div>
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-
-
+    <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
-   
+
   </footer>
   <!-- End of Footer -->
 

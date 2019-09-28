@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_supplies</secretary>
+  <secretary style="display: none">display_supplies</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -46,7 +46,6 @@ require "service/connection.php";
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
                   เพิ่มข้อมูล(วัสดุสิ้นเปลือง)
@@ -83,7 +82,7 @@ require "service/connection.php";
                     <div class="form-group">
                       <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
                       <input class="form-control" type="text" placeholder="รหัสวัสดุตั้งต้น" name="supplies_pattern">
-                      <small style="color: red">ตัวอย่าง: ว.สนง {run_1}</small>
+                      <small style="color: red">ตัวอย่าง: ว.สนง {run_4}</small>
                     </div>
                   </div>
                 </div>
@@ -211,73 +210,75 @@ require "service/connection.php";
                       <input class="form-control" type="text" placeholder="number" name="number">
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail img-raised">
-                          <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
-                        </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                        <div>
-                          <span class="btn btn-raised btn-round btn-default btn-file">
-                            <br>
-                            <div class="col-2 offset-1">
-                              <input type="file" name="image" />
-                            </div>
-                          </span>
-                        </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail img-raised">
+                        <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                          <br>
+                          <div class="col-2 offset-1">
+                            <input type="file" name="image" />
+                          </div>
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <br><br>
-                  <div class="row">
-                    <div class="col-12">
-                      <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                        บันทึก
-                        <div class="ripple-container"></div></button>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body ">
-                              คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                              <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                            </div>
+                </div>
+                <br><br>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
+                      <div class="ripple-container"></div></button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
               </form>
             </div>
           </div>
-          <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
-      <br>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+      <!-- /.container-fluid -->
     </div>
-    <!-- End of Content Wrapper -->
+    <br>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->

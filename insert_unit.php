@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">insert_unit</secretary>
+  <secretary style="display : none">display_unit</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
                 <div class="card-text">
                   <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-fw fa-house-damage"></i>
-                      หน่วยนับ
+                      เพิ่มข้อมูลหน่วยนับ
                   </h6>
                 </div>
               </div>

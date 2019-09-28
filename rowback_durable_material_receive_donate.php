@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@ $show = 5;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
 
                 <form class="form-inline">
                   <div>
@@ -65,10 +65,9 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่บริจาค</th>
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ชื่อผู้บริจาค</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
@@ -95,7 +94,6 @@ $show = 5;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo $row["receive_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>

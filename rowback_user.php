@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+$show=10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@ require "service/connection.php";
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลผู้ใช้งาน</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -66,11 +67,10 @@ require "service/connection.php";
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อผู้ใช้งาน</th>
                         <th>ชื่อ</th>
                         <th>นามสกุล</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -86,7 +86,6 @@ require "service/connection.php";
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><?php echo $row["id"]; ?></td>
                         <td><?php echo thainumDigit($row["username"]); ?></td>
                         <td><?php echo thainumDigit($row["surname"]); ?></td>
                         <td><?php echo $row["lastname"]; ?></td>
@@ -200,7 +199,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการกู้ข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          คุณต้องการกู้ข้อมูลผู้ใช้งานใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_user.php">
             <input type="hidden" id="rowback-user" name="user_id">
           </form>

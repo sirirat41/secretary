@@ -1,7 +1,7 @@
 <?php
 
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,10 +68,9 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
-                        <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
                         <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อผู้โอนให้</th>
                         <th>การทำงาน</th>
                       </tr>
@@ -85,7 +84,7 @@ $show = 5;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT trans.*, ar.code FROM durable_articles as ar, durable_articles_transfer_out as trans";
+                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.model FROM durable_articles as ar, durable_articles_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
@@ -98,10 +97,9 @@ $show = 5;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
-                          <td><?php echo $row["document_no"]; ?></td>
-                          <td><?php echo $row["transfer_date"]; ?></td>
+                        <td><?php echo $row["transfer_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["transfer_to"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-transfer_out').val('<?php echo $id; ?>')">

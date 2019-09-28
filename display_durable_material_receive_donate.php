@@ -45,7 +45,7 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลรับบริจาค(วัสดุคงทน)</h6>
+                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
 
                 <form class="form-inline">
                   <div>
@@ -71,10 +71,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่บริจาค</th>
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อผู้บริจาค</th>
                         <th>การทำงาน</th>
                       </tr>
@@ -88,11 +88,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
-                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      $sqlSelect = "SELECT d.*, m.code, m.attribute  FROM durable_material_receive_donate as d, durable_material as m";
+                      $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by d.id desc LIMIT $start, $show";
@@ -101,10 +101,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_receive_donate.php?id=<?php echo $row['id']; ?>'">
@@ -139,11 +139,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
-            $sqlSelectCount .= " WHERE d.product_id = a.id and d.status = 1";
+            $sqlSelectCount = "SELECT d.*, m.code FROM durable_material_receive_donate as d, durable_material as m";
+            $sqlSelectCount .= " WHERE d.product_id = m.id and d.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by d.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

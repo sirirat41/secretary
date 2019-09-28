@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_articles_purchase</secretary>
+  <secretary style="display: none">display_durable_articles_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@ require "service/connection.php";
             <div class="card-text">
               <h6 class="m-0 font-weight-bold text-danger">
                 <i class="fas fa-fw fa-cubes"></i>
-                เพิ่มข้อมูลครุภัณฑ์
+                เพิ่มข้อมูล(ครุภัณฑ์)
               </h6>
             </div>
           </div>
@@ -81,7 +81,7 @@ require "service/connection.php";
                   <div class="form-group">
                     <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
                     <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="articles_pattern">
-                    <small style="color: red"> *ตัวอย่าง: ค.สง 7700-100-{run_4}-2557</small>
+                    <small style="color: red"> *ตัวอย่าง: ค.สนง 7700-100-{run_4}-3-2557</small>
                   </div>
                 </div>
               </div>
@@ -179,6 +179,7 @@ require "service/connection.php";
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
                     <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                    <small style="color: red"> *ตัวอย่าง: 100000321941</small>
                   </div>
                 </div>
                 <div class="col-md-6">

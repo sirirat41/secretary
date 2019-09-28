@@ -31,7 +31,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_material_purchase</secretary>
+  <secretary style="display: none">display_durable_material_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,7 +65,7 @@ if (isset($_GET["id"])) {
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  เพิ่มข้อมูลจัดซื้อวัสดุ (คงทน)
+                  แก้ไขข้อมูลการจัดซื้อ (วัสดุคงทน)
                 </h6>
               </div>
             </div>
@@ -113,7 +113,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่ตรวจรับ</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>

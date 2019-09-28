@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,9 +47,8 @@ $show = 5;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
                 <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
-
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
@@ -63,7 +62,6 @@ $show = 5;
                     <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
-
                 </form>
             </div>
           </div>
@@ -74,11 +72,10 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ลำดับ</th>
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
-                        <th>รหัส</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
@@ -106,9 +103,8 @@ $show = 5;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["seq"]); ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>

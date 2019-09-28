@@ -3,7 +3,7 @@ require "service/connection.php";
 include 'qrcode/phpqrcode/qrlib.php';
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*, t.name as durable_material_type_name ,un.name as unit_name, s.picture ,se.name as seller_name, d.shortname ,d.fullname FROM supplies as s ,durable_articles_type as t , seller as se , department as d , unit as un WHERE s.id = $id";
+  $sql = "SELECT s.*, t.name as durable_material_type_name ,un.name as unit_name, s.picture ,se.name as seller_name, d.shortname ,d.fullname FROM supplies as s ,durable_material_type as t , seller as se , department as d , unit as un , supplies_purchase as pu WHERE s.id = $id and pu.id = $id";
   $sql .= " and s.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);

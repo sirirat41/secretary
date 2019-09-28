@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">rowback_supplies</secretary>
+  <secretary style="display: none">display_supplies</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -68,12 +68,12 @@ $show = 10;
                     <thead>
                       <thead>
                         <tr class="text-center">
-                          <th>#</th>
                           <th>ลำดับ</th>
+                          <th>รูปภาพ</th>
                           <th>เลขที่ใบเบิก</th>
-                          <th>ชื่อวัสดุ</th>
+                          <th>รหัสวัสดุ</th>
                           <th>ประเภทวัสดุ</th>
-                          <th class="text-center">การทำงาน</th>
+                          <th>การทำงาน</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -91,8 +91,8 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["id"]); ?></td>
                           <td><?php echo thainumDigit($row["seq"]); ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
@@ -133,7 +133,6 @@ $show = 10;
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
 
   </div>
   <!-- End of Main Content -->
@@ -212,7 +211,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
+          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

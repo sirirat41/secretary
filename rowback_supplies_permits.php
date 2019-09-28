@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">rowback_supplies_permits</secretary>
+  <secretary style="display: none">display_supplies_permits</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลการยืม-คืน(วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -67,11 +67,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่หนังสือ</th>
                         <th>รหัสวัสดุ</th>
                         <th>วันที่ยืม</th>
-                        <th class="text-center">การทำงาน</th>
+                        <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -83,11 +82,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, m.code FROM supplies_permits as p,supplies as m";
-                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
+                      $sqlSelect = "SELECT p.*, s.code FROM supplies_permits as p,supplies as s";
+                      $sqlSelect .= " WHERE p.product_id = s.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -95,7 +94,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo thainumDigit($row["book_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["permit_date"]; ?></td>
@@ -122,8 +120,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelect = "SELECT p.*, m.code FROM supplies_permits as p,supplies as m";
-            $sqlSelect .= " WHERE p.product_id = m.id and p.status = 0";
+            $sqlSelectCount = "SELECT p.*, s.code FROM supplies_permits as p,supplies as s";
+            $sqlSelectCount .= " WHERE p.product_id = s.id and p.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelect .= " and (p.code like '%$keyword%' or p.permit_date like '%$keyword%')";

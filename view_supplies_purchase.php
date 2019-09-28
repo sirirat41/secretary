@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, s.code ,s.attribute ,s.name, s.picture FROM supplies_purchase as p ,supplies as s WHERE p.product_id = s.id";
-  $sql .= " and s.status = 1 ";
+  $sql = "SELECT p.*, s.code ,s.attribute ,s.name, s.picture FROM supplies_purchase as p ,supplies as s WHERE p.id = $id";
+  $sql .= " and p.product_id = s.id and s.status = 1";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_suplies_purchase</secretary>
+  <secretary style="display: none">display_supplies_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลจัดซื้อ (ครุภัณฑ์)</h6>
+                  <i class="fas fa-business-time"></i> ข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <div>
                 </form>

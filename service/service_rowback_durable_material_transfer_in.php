@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["transfer_in_id"] )) {
     } else {
         header('Location: ../rowback_durable_material_transfer_in.php?message=กู้ข้อมูลไม่สำเร็จ');
     }
-h
+
 } else {
     header('Location: ../rowback_durable_material_transfer_in.php?message=ข้อมูลผิดพลาด');
 }

@@ -52,12 +52,12 @@ require "service/connection.php";
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลครุภัณฑ์</h6>
+                <h6 class="m-3 font-weight-bold " align="center">ข้อมูลครุภัณฑ์</h6>
                      <form>
                         <thead>
                       <tr class="text-center">
                         <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">รหัส</font></th>
+                        <th><font size="2">รหัสครุภัณฑ์</font></th>
                         <th><font size="2">เลขสินทรัพท์</font></th>
                         <th><font size="2">ประเภท</font></th>
                         <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>

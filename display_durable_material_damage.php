@@ -93,7 +93,7 @@ $show = 10;
                       $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (da.product_id like '%$keyword%' or m.code like '%$keyword%')";
+                        $sqlSelect .= " and (da.damage_date like '%$keyword%' or m.code like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -102,7 +102,7 @@ $show = 10;
                         ?>
                       <tr class="text-center">
                         <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo $row["damage_date"]; ?></td>
+                        <td><?php echo thainumDigit($row["damage_date"]); ?></td>
                         <td><?php echo $row["flag"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
@@ -141,7 +141,7 @@ $show = 10;
              $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
              if (isset($_GET["keyword"])) {
                $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+               $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
              }
              $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -251,7 +251,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูลบันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

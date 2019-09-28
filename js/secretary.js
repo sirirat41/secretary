@@ -2,45 +2,6 @@ $(document).ready(function () {
     var title = $('secretary').text();
     switch (title) {
 
-        // //Articles ครุภัณฑ์ Insert 
-        // case "insert_durable_articles_purchase":  //จัดซื้อ 
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .purchase').addClass('active');
-        //     break;
-
-        // case "insert_durable_articles": //ครุภัณฑ์
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .insert').addClass('active');
-        //     break;
-
-        // case "insert_durable_articles_damage":  //ชำรุด
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .insertdamage').addClass('active');
-        //     break;
-
-        // case "insert_durable_articles_donate":  // บริจาค
-        //     $('.nav-articles').addClass('active');
-        //     $('.collapse-articles').addClass('show');
-        //     $('.collapse-articles .insertdonate').addClass('active');
-        //     break;
-
-        //  case "insert_durable_articles_transfer_in":  //โอนเข้า
-        //      $('.nav-articles').addClass('active');
-        //      $('.collapse-articles').addClass('show');
-        //      $('.collapse-articles .transfer').addClass('active');
-        //      break;
-
-        // case "insert_durable_articles_permits":  // ยืมคืน 
-        //      $('.nav-articles').addClass('active');
-        //      $('.collapse-articles').addClass('show');
-        //      $('.collapse-articles .insertpermits').addClass('active');
-        //      break;
-
-
-
         // Articles ครุภัณฑ์ Display
 
         case "display_durable_articles_permits":  // ยืมคืน 
@@ -102,31 +63,6 @@ $(document).ready(function () {
             $('.collapse-articles').addClass('show');
             $('.collapse-articles .sell').addClass('active');
             break;
-
-
-
-
-        //     // Material  วัสดุคงทน Insert
-
-        // case "insert_durable_material_donate":    //บริจาค
-        //     $('.nav-material').addClass('active');
-        //     $('.collapse-material').addClass('show');
-        //     $('.collapse-material .insertdonates').addClass('active');
-        //     break;
-
-        // case "insert_durable_material_damage":  //ชำรุด
-        //     $('.nav-material').addClass('active');
-        //     $('.collapse-material').addClass('show');
-        //     $('.collapse-material .insertdamage').addClass('active');
-        //     break;
-
-        // case "insert_supplies'_distribute":  //แจกจ่าย
-        //     $('.nav-supplies').addClass('active');
-        //     $('.collapse-supplies').addClass('show');
-        //     $('.collapse-supplies .insertdistribute').addClass('active');
-        //     break;
-
-
 
         // Material  วัสดุคงทน Display
 
@@ -204,7 +140,7 @@ $(document).ready(function () {
         case "display_supplies":  //วัสดุสิ้นเปลือง
             $('.nav-supplies').addClass('active');
             $('.collapse-supplies').addClass('show');
-            $('.collapse-supplies .display').addClass('active');
+            $('.collapse-supplies .supplies').addClass('active');
             break;
 
         case "display_supplies_purchase":  //จัดซื้อ
@@ -234,6 +170,19 @@ $(document).ready(function () {
             $('.collapse-department').addClass('show');
             $('.collapse-department .insert').addClass('active');
             break;
+
+        // ตั้งค่า user
+        case "display_user":
+            $('.nav-user').addClass('active');
+            $('.collapse-user').addClass('show');
+            $('.collapse-user .displayu').addClass('active');
+            break;
+        case "insert_user":
+            $('.nav-user').addClass('active');
+            $('.collapse-user').addClass('show');
+            $('.collapse-user .insertu').addClass('active');
+            break;
+
 
         // ตั้งค่า insert
 
@@ -286,7 +235,6 @@ $(document).ready(function () {
             $('.collapse-setting').addClass('show');
             $('.collapse-setting .displaym').addClass('active');
             break;
-
 
     }
 })

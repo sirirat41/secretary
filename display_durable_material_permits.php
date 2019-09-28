@@ -81,7 +81,7 @@ $show = 10;
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -103,8 +103,8 @@ $show = 10;
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo thainumDigit($row["permit_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_permits.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -136,13 +136,13 @@ $show = 10;
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-        <?php
-               $sqlSelectCount = "SELECT p.*, m.code , m.attribute ,m.name FROM durable_material_permits as p,durable_material as m";
-               $sqlSelectCount .= " WHERE p.product_id = m.id and p.status = 1";
-               if (isset($_GET["keyword"])) {
-                 $keyword = arabicnumDigit($_GET["keyword"]);
-                 $sqlSelectCount .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
-             }
+            <?php
+            $sqlSelectCount = "SELECT p.*, m.code , m.attribute ,m.name FROM durable_material_permits as p,durable_material as m";
+            $sqlSelectCount .= " WHERE p.product_id = m.id and p.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -158,7 +158,8 @@ $show = 10;
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
             <?php
 
-            }}
+              }
+            }
             ?>
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">

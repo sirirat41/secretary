@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute, a.name ,d.fullname ,a.picture FROM durable_material as a,durable_material_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and p.department_id = d.id";
+  $sql = "SELECT p.*, m.code ,m.attribute, m.name ,d.fullname ,m.picture ,d.pic,d.bulding ,d.floor FROM durable_material as m ,durable_material_permits as p ,department as d WHERE p.id = $id";
+  $sql .= " and p.product_id = m.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -50,9 +50,9 @@ if (isset($_GET["id"])) {
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(วัสดุ)</h6>
+            <nav class="navbar navbar-light bg-light">
+              <h6 class="m-0 font-weight-bold text-danger">
+                <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(วัสดุคงทน)</h6>
                 <form class="form-inline">
             </div>
             </nav>
@@ -103,6 +103,10 @@ if (isset($_GET["id"])) {
                       <div class="col-md-12">
                         <label class="text-dark" for="fullname">หน่วยงานที่ยืม : </label>
                         <?php echo thainumDigit($row["fullname"]); ?>
+                        <label class="text-dark" for="bulding"> ตึก </label>
+                        <?php echo thainumDigit($row["bulding"]); ?>
+                        <label class="text-dark" for="floor"> ชั้น </label>
+                        <?php echo thainumDigit($row["floor"]); ?>
                       </div>
                     </div>
                     <div class="row">
@@ -116,6 +120,14 @@ if (isset($_GET["id"])) {
             </form>
           </div>
         </div>
+        <div class="card-body">
+            <div class="row">
+            <div class="col-md-12" align="center">
+              <div class="col-md-12">
+                <img class="img-thumbnail" width="2000" src="depart/<?php echo $row["pic"]; ?>">
+              </div>
+            </div>
+          </div>
       </div>
     </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->

@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_durable_material_purchase</secretary>
+  <secretary style="display: none">display_durable_material_purchase</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@ require "service/connection.php";
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-city"></i>
-                  เพิ่มข้อมูลจัดซื้อวัสดุ (คงทน)
+                  เพิ่มข้อมูลจัดซื้อ(วัสดุคงทน)
                 </h6>
               </div>
             </div>
@@ -79,9 +79,9 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group">
-                      <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
+                      <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
                       <input class="form-control" type="text" placeholder="รหัสวัสดุฑ์ตั้งต้น" name="material_pattern">
-                      <small style="color: red"> *ตัวอย่าง: ว.สดง. 0018/59</small>
+                      <small style="color: red"> *ตัวอย่าง: ว.สนง. {run_4}/62</small>
                     </div>
                   </div>
                 </div>

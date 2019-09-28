@@ -64,7 +64,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่ขาย</th>
                         <th>รหัสวัสดุ</th>
@@ -94,7 +93,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["sell_date"]; ?></td>
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -123,12 +121,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $$sqlSelectCount  = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
-            $$sqlSelectCount  .= " WHERE s.product_id = m.id and s.status = 0";
+            $sqlSelectCount = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
+            $sqlSelectCount .= " WHERE s.product_id = m.id and s.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " Order by s.id desc";
-              $$sqlSelectCount  .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
+              $$sqlSelectCount .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

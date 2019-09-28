@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 5;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,6 @@ $show = 5;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่ขาย</th>
                         <th>รหัสครุภัณฑ์</th>
@@ -96,7 +95,6 @@ $show = 5;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["sell_date"]; ?></td>
                           <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>

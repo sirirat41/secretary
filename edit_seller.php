@@ -19,7 +19,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_seller</secretary>
+  <secretary style="display: none">display_seller</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-6">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลร้านค้า</h6>
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แก้ไขข้อมูลร้านค้า</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_seller.php?id=<?php echo $id; ?>" id="form_insert">

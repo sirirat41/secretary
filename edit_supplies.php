@@ -26,7 +26,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">insert_supplies</secretary>
+  <secretary style="display: none">display_supplies</secretary>
 
 
   <!-- Custom fonts for this template-->
@@ -62,7 +62,7 @@ if (isset($_GET["id"])) {
 
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-archive"></i>
-                  เพิ่มข้อมูล(วัสดุสิ้นเปลือง)
+                  แก้ไขข้อมูล(วัสดุสิ้นเปลือง)
                 </h6>
               </div>
             </div>

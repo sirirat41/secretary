@@ -47,7 +47,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-box-open"></i> เเสดงข้อมูลการโอนเข้า(ครุภัณฑ์)</h6>
+                  <i class="fas fa-box-open"></i> เเสดงข้อมูลการโอนเข้า(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -68,10 +68,9 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>เลขที่เอกสาร</th>
                         <th>วันที่โอน</th>
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ชื่อผู้โอน</th>
                         <th>การทำงาน</th>
                       </tr>
@@ -98,7 +97,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["document_no"]; ?></td>
                           <td><?php echo $row["transfer_date"]; ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -129,8 +127,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $$sqlSelectCount  = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_in as trans";
-            $$sqlSelectCount  .= " WHERE trans.product_id = ar.id and trans.status = 0";
+            $sqlSelectCount  = "SELECT trans.*, ar.code FROM durable_material as ar, durable_material_transfer_in as trans";
+            $sqlSelectCount  .= " WHERE trans.product_id = ar.id and trans.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
@@ -235,7 +233,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการกู้ข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+          คุณต้องการกู้ข้อมูลการโอนเข้าวัสดุใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_material_transfer_in.php">
             <input type="hidden" id="rowback-transfer_in" name="transfer_in_id">
           </form>

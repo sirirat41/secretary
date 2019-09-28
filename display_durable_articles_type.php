@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(วัสดุคงทน)</h6>
+                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -73,7 +73,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>#</th>
                         <th>ชื่อประเภทวัสดุ</th>
                         <th>ชื่อย่อประเภทวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
@@ -89,7 +88,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_articles_type";
-                      $sqlSelect .= "";
+                      $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";
@@ -101,7 +100,6 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo $row["id"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td><?php echo $row["shortname"]; ?></td>
                           <td class="td-actions text-center">

@@ -38,11 +38,6 @@ if (isset($_GET['id'])) {
     $assetNo = $_POST["asset_no"];
     $articles_pattern = $_POST["articles_pattern"];
 
-    $pattern = convertPattern($articles_pattern);
-    $sqlCheck = "SELECT * FROM durable_articles WHERE code like '$pattern'";
-    $resultCheck = mysqli_query($conn, $sqlCheck);
-    $numberBefore = mysqli_num_rows($resultCheck);
-
     $updateMaterial = "UPDATE durable_material SET short_goverment = '$shortGoverment',";
     $updateMaterial .= " type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name', picture = '$imgeName',asset_no = '$assetNo'";

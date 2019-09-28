@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="600" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
+        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลผู้ใช้งาน</h6>
         <form>
           <div class="card-body">
             <tbody>
