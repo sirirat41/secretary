@@ -43,7 +43,7 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-10 offset-1">
+        <div class="col-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -79,7 +79,7 @@ $show = 10;
                         <th>วันที่บริจาค</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อบริจาค</th>
+                        <th>ชื่อผู้บริจาค</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -135,7 +135,14 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+            <?php
+              $prevPage = "#";
+              if ($page > 1) {
+                $prevPage = "?page=" . ($page - 1);
+              }
+
+              ?>
+              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
@@ -149,8 +156,8 @@ $show = 10;
             $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
-            $page = ceil($total / $show);
-            for ($i = 0; $i < $page; $i++) {
+            $pageNumber = ceil($total / $show);
+            for ($i = 0; $i < $pageNumber; $i++) {
               if (isset($_GET["keyword"])) {
                 ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keywprd"]; ?>"><?php echo ($i + 1); ?></a></li>
@@ -162,8 +169,15 @@ $show = 10;
               }
             }
             ?>
+            <?php
+            if ($page < $pageNumber) {
+              $nextPage = "#";
+              $nextPage = "?page=" . ($page + 1);
+            }
+
+            ?>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

@@ -6,10 +6,11 @@ if (isset($_GET["id"])) {
   $sql = "SELECT d.* , d.pic FROM department as d WHERE d.id =$id";
 =======
   $sql = "SELECT d.*, d.pic FROM department as d WHERE d.id =$id";
->>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
+>>>>>>> e9c71b1a5b42f4c8cc693fdf3a564416739388fb
   $sql .= " and d.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+
 }
 ?>
 

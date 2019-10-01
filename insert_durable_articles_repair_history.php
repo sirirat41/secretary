@@ -83,7 +83,7 @@ $show=10;
                         </div>
                         <div class="col-md-2">
                           <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                               <i class="fas fa-search"></i>
                             </button>
                           </div>
@@ -328,7 +328,7 @@ $show=10;
         
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_articles_repair.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {

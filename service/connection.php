@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION["user_type"])) {
-    header('location: login.php'); 
+    header('location: index.php'); 
 }
     $servername = "localhost";
     $username = "root";
