@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION["user_type"] = "99";
     require 'connection.php';
     $response["result"] = false;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,14 +18,14 @@
                 $response["data"] = $user;
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["user_type"] = $user["u_type"];
-     
-
+            } else {
+                session_destroy();
             }
-
         }
     } else {
         $response["result"] = false;
         $response["message"] = "Method not allow";
+        session_destroy();
     }
     echo json_encode($response);
 ?>

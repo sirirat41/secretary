@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +22,6 @@
     body {
       background-color: #880000;
     }
-
   </style>
 </head>
 
@@ -73,7 +71,7 @@
 
                 <div class="row">
                   <div class="col-md-10 offset-1">
-                    <button type="button" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
+                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
                       เข้าสู่ระบบ
                     </button>
                     <hr color="red">
@@ -81,7 +79,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 text-center" href ="insert_user.php">
+                  <div class="col-md-12 text-center" href="insert_user.php">
                     <a href="#">สมัครสมาชิก</a>
                   </div>
                 </div>
@@ -159,28 +157,33 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
   <script>
-    $('#btn-login').on('click', function() {
-      $.ajax({
-        url: "service/service_login.php",
-        dataType: "JSON",
-        type: "POST",
-        data: {
-          username: $('#username').val(),
-          password: $('#password').val()
-        },
-        success: function(response) {
-          if (response.result) {
-            window.location = "display_durable_articles.php";
-          } else {
-            alert('username หรือ password ผิด');
-          }
-        },
-        error: function(error) {
-          console.log(error);
-          alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
-        }
-      })
+    $('#form').on('submit', function(e) {
+      e.preventDefault();
+      login();
     })
+
+    function login() {
+      $.ajax({
+          url: "service/service_login.php",
+          dataType: "JSON",
+          type: "POST",
+          data: {
+            username: $('#username').val(),
+            password: $('#password').val()
+          },
+          success: function(response) {
+            if (response.result) {
+              window.location = "display_durable_articles.php";
+            } else {
+              alert('username หรือ password ผิด');
+            }
+          },
+          error: function(error) {
+            console.log(error);
+            alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
+          }
+      })
+    }
   </script>
 </body>
 

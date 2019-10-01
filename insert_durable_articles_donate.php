@@ -225,19 +225,11 @@ $show=10;
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-<<<<<<< HEAD
                       <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline" id="form-search">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
                    <div>
                         <button class="btn btn-outline-danger" type="submit" >
-=======
-                      <i class="fas fa-archive"></i> เพิ่มข้อมูลครุภัณฑ์</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
-                      <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
