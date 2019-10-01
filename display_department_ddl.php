@@ -89,7 +89,7 @@ $show = 10;
       </div>
     </div>
   </div>
- 
+
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center" id="pagination">
       <li class="page-item" id="prev-page">
@@ -106,7 +106,7 @@ $show = 10;
       </li>
     </ul>
   </nav>
- </div>
+  </div>
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -145,8 +145,10 @@ $show = 10;
   <script src="js/secretary.js"></script>
 
   <script>
-    var itemPerPage = 10;
+    var itemPerPage = 1;
     var jsonData;
+    var currentPage = 1;
+    var maxPage = 1;
     $(document).ready(function() {
       selectedDepartment();
       $('#form-search').on('submit', function(e) {
@@ -157,6 +159,7 @@ $show = 10;
     })
 
     function changePage(page) {
+      currentPage = page;
       var item = $('#selected').find(':selected').val();
       var body = $('#body-content');
       var tble = $('#table-name');
@@ -196,11 +199,24 @@ $show = 10;
 
       }
     }
+    function nextPage() {
+      if (currentPage < maxPage) {
+        currentPage = currentPage + 1;
+        changePage(currentPage);
+
+    }
+}
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage = currentPage - 1;
+        changePage(currentPage);
+      }
+    }
 
     function selectedDepartment() {
       $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
       var dep = "<?php echo $_GET["id"]; ?>";
       var item = $('#selected').find(':selected').val();
       var keyword = $('#input-search').val().trim();
@@ -212,6 +228,7 @@ $show = 10;
           changePage(1);
           $('new-page').removeClass();
           var numberOfPage = response.length / itemPerPage;
+          maxPage = numberOfPage;
           for (let i = 0; i < numberOfPage; i++) {
             $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
@@ -221,6 +238,8 @@ $show = 10;
         }
       })
     }
+    
+ 
   </script>
 
 </body>

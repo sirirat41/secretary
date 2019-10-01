@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,66 +209,61 @@ $show=10;
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัครุภัณฑ์)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
+                    <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-<<<<<<< HEAD
-                            
-=======
->>>>>>> 8ba7a1344002186d2b357a3108cfb220b8c83a73
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>วันที่ชำรุด</th>
-                            <th>หมายเหตุ</th>
-                            <th>การทำงาน</th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody id="modal-articles-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center">
+                          <th>วันที่ชำรุด</th>
+                          <th>รหัสครุภัณฑ์</th>
+                          <th>หมายเหตุ</th>
+                          <th>การทำงาน</th>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-articles-body">
+                        <!-- ///ดึงข้อมูล -->
                         <?php
-                     
-                          $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
-                          $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
-                          }
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["damage_date"]; ?></td>
-                              <td><?php echo $row["flag"]; ?></td>
-
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              <?php
-                              }
-                              ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+                        $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
+                          <tr class="text-center">
+                            <td><?php echo $row["damage_date"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["flag"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center" id="pagination">
@@ -299,22 +294,23 @@ $show=10;
     var itemPerPage = 10;
     var jsonData;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       $('#pagination').empty();
-          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-        
-        
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+
+
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_articles_damage.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
-          
+
           jsonData = data;
           changePage(1);
           $('new-page').removeClass();
@@ -328,6 +324,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       var body = $('#modal-articles-body');
       body.empty();
@@ -338,21 +335,20 @@ $show=10;
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var damage = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
-            $('<td>' + item.damage_date + '</td>').appendTo(tr);
+        $('<td>' + item.damage_date + '</td>').appendTo(tr);
             $('<td>' + item.code + '</td>').appendTo(tr);
             $('<td>' + item.flag + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+      }
+    }
 
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          }
-        }
+
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
+      $('#damage_id').val(id);
     }
   </script>
 

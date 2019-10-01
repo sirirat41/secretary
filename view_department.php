@@ -2,11 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-<<<<<<< HEAD
-  $sql = "SELECT d.* , d.pic FROM department as d WHERE d.id =$id";
-=======
   $sql = "SELECT d.*, d.pic FROM department as d WHERE d.id =$id";
->>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
   $sql .= " and d.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);

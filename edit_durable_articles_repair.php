@@ -97,7 +97,7 @@ if (isset($_GET["id"])) {
                         </div>
                         <div class="col-md-2">
                           <div class="form-group">
-                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search">
+                            <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                               <i class="fas fa-search"></i>
                             </button>
                           </div>
@@ -224,10 +224,10 @@ if (isset($_GET["id"])) {
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                    <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -241,11 +241,10 @@ if (isset($_GET["id"])) {
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center">
-                            <th>#</th>
-                            <th>รหัสครุภัณฑ์</th>
                             <th>วันที่ชำรุด</th>
-                            <th>หมายเหตุ</th>
-                            <th>การทำงาน</th>
+                          <th>รหัสครุภัณฑ์</th>
+                          <th>หมายเหตุ</th>
+                          <th>การทำงาน</th>
                           </tr>
                         </thead>
                         <tbody id="modal-articles-body">
@@ -255,7 +254,7 @@ if (isset($_GET["id"])) {
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (da.product_id like '%$keyword%' or a.code like '%$keyword%')";
+                            $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
                           }
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
@@ -319,7 +318,7 @@ if (isset($_GET["id"])) {
         
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_articles_damage.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {
@@ -360,7 +359,7 @@ if (isset($_GET["id"])) {
         }
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
+      $('#damage_id').val(id);
     }
   </script>
 

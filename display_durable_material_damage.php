@@ -131,8 +131,15 @@ $show = 10;
         </div>
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+          <li class="page-item">
+            <?php
+              $prevPage = "#";
+              if ($page > 1) {
+                $prevPage = "?page=" . ($page - 1);
+              }
+
+              ?>
+              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
@@ -143,11 +150,11 @@ $show = 10;
                $keyword = arabicnumDigit($_GET["keyword"]);
                $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
              }
-             $sqlSelectCount .= " Order by da.id desc LIMIT $start, $show";
+             $sqlSelectCount .= " Order by da.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
-            $page = ceil($total / $show);
-            for ($i = 0; $i < $page; $i++) {
+            $pageNumber = ceil($total / $show);
+            for ($i = 0; $i < $pageNumber; $i++) {
               if (isset($_GET["keyword"])) {
                 ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
@@ -160,8 +167,15 @@ $show = 10;
 
             }}
             ?>
+            <?php
+            if ($page < $pageNumber) {
+              $nextPage = "#";
+              $nextPage = "?page=" . ($page + 1);
+            }
+
+            ?>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

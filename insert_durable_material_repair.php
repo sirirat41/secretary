@@ -192,6 +192,7 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -203,73 +204,67 @@ $show = 10;
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-10 offset-1 ">
+            <div class="col-md-12 ">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุ)</h6>
+                    <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center">
-<<<<<<< HEAD
-                        
-=======
->>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
-                            <th>รหัสวัสดุ</th>
-                            <th>วันที่ชำรุด</th>
-                            <th>หมายเหตุ</th>
-                            <th>การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody id="modal-material-body">
-<<<<<<< HEAD
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center">
+                          <th>วันที่ชำรุด</th>
+                          <th>รหัสวัสดุ</th>
+                          <th>หมายเหตุ</th>
+                          <th>การทำงาน</th>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-material-body">
+                        <!-- ///ดึงข้อมูล -->
                         <?php
-                     
-=======
-                          <?php
->>>>>>> 67e7c16cb1d63c31ceb45f927ff39059d9017036
-                          $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
-                          $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (da.product_id like '%$keyword%' or m.code like '%$keyword%')";
-                          }
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
-                              <td><?php echo $row["damage_date"]; ?></td>
-                              <td><?php echo $row["flag"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              <?php
-                              }
-                              ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+                        $sqlSelect = "SELECT d.*, m.code FROM durable_material_damage as d, durable_material as m";
+                        $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (d.damage_date like '%$keyword%' or m.code like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
+                          <tr class="text-center">
+                            <td><?php echo $row["damage_date"]; ?></td>
+                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["flag"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center" id="pagination">
@@ -299,6 +294,8 @@ $show = 10;
   <script>
     var itemPerPage = 10;
     var jsonData;
+    var currentPage = 1;
+    var maxPage = 1;
     $('#form-search').on('submit', function(e) {
       e.preventDefault();
       search();
@@ -306,13 +303,11 @@ $show = 10;
 
     function search() {
       $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-
-
-      var keyword = $('#input-search').val().trim();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+        var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_material_damage.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {
@@ -321,6 +316,7 @@ $show = 10;
           changePage(1);
           $('new-page').removeClass();
           var numberOfPage = Math.ceil(data.length / itemPerPage);
+          maxPage = numberOfPage;
           for (let i = 0; i < numberOfPage; i++) {
             $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
@@ -341,21 +337,32 @@ $show = 10;
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var damage = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
-        $('<td>' + item.code + '</td>').appendTo(tr);
-        $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td>' + item.flag + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
       }
     }
 
+    function nextPage() {
+      if (currentPage < maxPage) {
+        currentPage = currentPage + 1;
+        changePage(currentPage);
+
+    }
+}
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage = currentPage - 1;
+        changePage(currentPage);
+      }
+    }
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
+      $('#damage_id').val(id);
     }
   </script>
 

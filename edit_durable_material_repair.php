@@ -222,10 +222,10 @@ if (isset($_GET["id"])) {
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">
+                    <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search"  placeholder="Search" aria-label="Search" id="input-search">
                       <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
+                        <button class="btn btn-outline-danger" type="submit" >
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -317,7 +317,7 @@ if (isset($_GET["id"])) {
         
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_material_damage.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {

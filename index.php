@@ -64,16 +64,14 @@
 
 
                       <input type="password" class="form-control" name="password" id="password" placeholder="password">
-                      <div class="text-right">
-                        <a href="#">ลืมรหัสผ่าน?</a>
-                      </div>
+                     
                     </div>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-10 offset-1">
-                    <button type="button" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
+                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
                       เข้าสู่ระบบ
                     </button>
                     <hr color="red">
@@ -81,8 +79,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 text-center" href ="insert_user.php">
-                    <a href="#">สมัครสมาชิก</a>
+                  <div class="col-md-12 text-center" >
+                    <a href ="forget_user.php">ลืมรหัสผ่าน?</a>
                   </div>
                 </div>
             </div>
@@ -159,7 +157,11 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
   <script>
-    $('#btn-login').on('click', function() {
+    $('#form').on('submit', function(e) {
+      e.preventDefault();
+      login();
+    })
+      function login(){
       $.ajax({
         url: "service/service_login.php",
         dataType: "JSON",
@@ -179,8 +181,9 @@
           console.log(error);
           alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
         }
+      
       })
-    })
+    }
   </script>
 </body>
 

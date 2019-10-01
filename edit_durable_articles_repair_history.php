@@ -377,7 +377,7 @@ if (isset($_GET["id"])) {
         
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_articles_repair.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {

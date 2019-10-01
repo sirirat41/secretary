@@ -31,6 +31,7 @@ $show = 10;
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -46,7 +47,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
+                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (วัสดุคงทน )</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -90,12 +91,12 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM supplies_purchase";
-                      $sqlSelect .= " WHERE status = 1 Group by order_no ";
+                      $sqlSelect .= " WHERE status = 1 Group by order_no";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%' or order_by like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
                       }
-                      //echo $sqlSelect;
+                       // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -107,7 +108,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["number"]); ?></td>
                           <td><?php echo thainumDigit($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
@@ -121,6 +122,7 @@ $show = 10;
                             </button>
                           <?php
                           }
+
                           ?>
                     </tbody>
                   </table>
@@ -138,10 +140,10 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM supplies_purchase";
-            $sqlSelectCount .= " WHERE status = 1 Group by order_no ";
+            $sqlSelectCount .= " WHERE status = 1 Group by order_no";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%' or order_by like '%$keyword%')";
+              $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -246,7 +248,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการจัดซื้อครุภัณฑ์ใช่หรือไม่
+          คุณต้องการลบข้อมูลการจัดซื้อวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_supplies_purchase.php">
             <input type="hidden" id="remove-purchase" name="purchase_id">
           </form>
