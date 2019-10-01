@@ -178,8 +178,8 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                    <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
-                    <small style="color: red"> *ตัวอย่าง: 100000321941</small>
+                    <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no">
+                    <small style="color: red"> *ตัวอย่าง:100000312{run_3}</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -192,15 +192,7 @@ require "service/connection.php";
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">เลขที่หนังสือ :</label>
-                      <input class="form-control" type="text" placeholder="book_no" name="book_no">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
+                <div class="col-12">
                   <label for="exampleFormControlSelect1">ชื่อผู้ขาย : </label>
                   <select class="form-control" name="seller_id">
                     <?php

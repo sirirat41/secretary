@@ -73,7 +73,7 @@
 
                 <div class="row">
                   <div class="col-md-10 offset-1">
-                    <button type="button" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
+                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
                       เข้าสู่ระบบ
                     </button>
                     <hr color="red">
@@ -159,7 +159,12 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
   <script>
-    $('#btn-login').on('click', function() {
+    $('#form').on('submit', function(e) {
+      e.preventDefault();
+      login();
+    })
+    function login(){
+      
       $.ajax({
         url: "service/service_login.php",
         dataType: "JSON",
@@ -169,6 +174,7 @@
           password: $('#password').val()
         },
         success: function(response) {
+          console.log(response);
           if (response.result) {
             window.location = "display_durable_articles.php";
           } else {
@@ -180,7 +186,7 @@
           alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
         }
       })
-    })
+    }
   </script>
 </body>
 
