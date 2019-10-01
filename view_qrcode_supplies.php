@@ -1,25 +1,20 @@
 <?php
+session_start();
+if (!isset($_SESSION["user_type"])) {
+  $_SESSION["user_type"] = "99";
+}
 require "service/connection.php";
+if ($_SESSION["user_type"] == "99") {
+  session_destroy();
+}
 
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name as durable_articles_type_name , un.name as unit_name, p.receive_date as receive_date ,se.name as seller_name, d.shortname ,d.fullname FROM durable_articles as a , durable_articles_purchase as p ,durable_articles_type as t , seller as se , department as d , unit as un WHERE a.id = $id";
-  $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id and a.receive_date = p.id";
+  $sql = "SELECT s.*, p.receive_date FROM supplies as s ,supplies_purchase as p WHERE s.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-
-  //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
-  //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
-  //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
-  //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
-  if (isset($_GET["id"])) {
-    $id = $_GET["id"];
-    $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un WHERE a.id = $id";
-    $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-  }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +29,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_qrcode_supplies</secretary>
+  <secretary style="display: none">display_durable_material</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,7 +41,7 @@ if (isset($_GET["id"])) {
 
 </head>
 
-<body id="page-top">
+<body style="padding: 30px">
   <!-- Page Wrapper -->
   <div id="wrapper">
     </nav>
@@ -62,9 +57,9 @@ if (isset($_GET["id"])) {
               <form>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="card" style="width: 200px;">
-                        <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                    <div class="col-md-12" align="center">
+                      <div class="card" style="width: 200px;" >
+                        <img class="img-thumbnail"  src="uploads/<?php echo $row["picture"]; ?>">
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -77,18 +72,18 @@ if (isset($_GET["id"])) {
                       <div class="row">
 
                         <div class="col-md-12">
-                          <label class="text-dark" for="model">รุ่นแบบ : </label>
-                          <?php echo thainumDigit($row["model"]); ?>
+                          <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                          <?php echo thainumDigit($row["name"]); ?>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
                           <?php echo thainumDigit($row["attribute"]); ?>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
                           <?php echo thainumDigit($row["receive_date"]); ?>
                         </div>
@@ -177,7 +172,7 @@ if (isset($_GET["id"])) {
           </button>
         </div>
         <div class="modal-body" align="center">
-          <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
+          <img src="generate_qrcode_material.php?id=<?php echo $id; ?>">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

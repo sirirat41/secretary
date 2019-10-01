@@ -430,7 +430,7 @@ if (isset($_GET["id"])) {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary" style="color: white; cursor: pointer" download>ดาวโหลด</a>
+          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-danger" style="color: white; cursor: pointer" download>ดาวโหลด</a>
         </div>
       </div>
     </div>

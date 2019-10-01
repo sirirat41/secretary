@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         
         if (mysqli_query($conn, $sql)) {
-            echo "Insert data complete";
+            header('Location: ../display_durable_purchase.php?message=เพิ่มข้อมูลสำเร็จ');
         } else {
             echo "Can't insert data, please check this:" . mysqli_error($conn);
         }

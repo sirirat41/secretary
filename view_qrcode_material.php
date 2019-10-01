@@ -1,18 +1,20 @@
 <?php
+session_start();
+if (!isset($_SESSION["user_type"])) {
+  $_SESSION["user_type"] = "99";
+}
 require "service/connection.php";
+if ($_SESSION["user_type"] == "99") {
+  session_destroy();
+}
 
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT m.*, t.name as durable_material_type_name , p.receive_date as 	receive_date ,un.name as unit_name, se.name as seller_name, d.shortname ,d.fullname FROM durable_material as m , durable_material_purchase as p ,durable_material_type as t , seller as se , department as d , unit as un WHERE m.id = $id";
-  $sql .= " and m.type = t.id and m.seller_id = se.id and m.department_id = d.id and m.unit = un.id and m.receive_date = p.id";
+  $sql = "SELECT m.*, p.receive_date FROM durable_material as m , durable_material_purchase as p WHERE m.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-
-  //   $depPerYear = ($row["price"] - 1) / $row["durable_year"];
-  //   $depPerMonth = ($row["price"] - 1) / $row["durable_year"] / 12;
-  //   echo "Year :" . + number_format($depPerYear, 2, '.', '') . "<br>";
-  //   echo "Month :" . + number_format($depPerMonth, 2, '.', '');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +29,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_qrcode_material</secretary>
+  <secretary style="display: none">display_durable_material</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,13 +41,9 @@ if (isset($_GET["id"])) {
 
 </head>
 
-<body id="page-top">
-
+<body style="padding: 30px">
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
-
     </nav>
     <!-- End of Topbar -->
 
@@ -59,12 +57,12 @@ if (isset($_GET["id"])) {
               <form>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="card" style="width: 200px;">
-                        <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                    <div class="col-md-12" align="center">
+                      <div class="card" style="width: 200px;" >
+                        <img class="img-thumbnail"  src="uploads/<?php echo $row["picture"]; ?>">
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="row">
                         <div class="col-md-12">
                           <label class="text-dark" for="code">รหัส : </label>
@@ -72,13 +70,20 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+
+                        <div class="col-md-12">
+                          <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                          <?php echo thainumDigit($row["name"]); ?>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
                           <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
                           <?php echo thainumDigit($row["attribute"]); ?>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
                           <?php echo thainumDigit($row["receive_date"]); ?>
                         </div>
@@ -167,7 +172,7 @@ if (isset($_GET["id"])) {
           </button>
         </div>
         <div class="modal-body" align="center">
-          <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
+          <img src="generate_qrcode_material.php?id=<?php echo $id; ?>">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -177,4 +182,5 @@ if (isset($_GET["id"])) {
     </div>
   </div>
 </body>
+
 </html>
