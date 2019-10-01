@@ -37,281 +37,261 @@ require "service/connection.php";
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-6">
-            <div class="card card-chart">
-              <div class="card-header card-header-warning">
-                <div class="ct-chart" id="dailySalesChart"></div>
-                <style>
-                  #chartdiv {
-                    width: 100%;
-                    height: 250px;
-                  }
-                </style>
-                <!-- Resources -->
-                <script src="https://www.amcharts.com/lib/4/core.js"></script>
-                <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-                <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-                <!-- Chart code -->
-                <script>
-                  am4core.ready(function() {
-
-                    // Themes begin
-                    am4core.useTheme(am4themes_animated);
-                    // Themes end
-
-                    var chart = am4core.create("chartdiv", am4charts.XYChart);
-                    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
-
-                    chart.data = [{
-                        country: "ม.ค",
-                        visits: 23725
-                      },
-                      {
-                        country: "ก.พ",
-                        visits: 1882
-                      },
-                      {
-                        country: "มี.ค",
-                        visits: 1809
-                      },
-                      {
-                        country: "เม.ษ",
-                        visits: 1322
-                      },
-                      {
-                        country: "พ.ค",
-                        visits: 1122
-                      },
-                      {
-                        country: "มิ.ย",
-                        visits: 1114
-                      },
-                      {
-                        country: "ก.ค",
-                        visits: 984
-                      },
-                      {
-                        country: "ส.ค",
-                        visits: 711
-                      },
-                      {
-                        country: "ก.ย",
-                        visits: 665
-                      },
-                      {
-                        country: "ต.ค",
-                        visits: 580
-                      },
-                      {
-                        country: "พ.ย",
-                        visits: 443
-                      },
-                      {
-                        country: "ธ.ค",
-                        visits: 441
-                      }
-                    ];
-
-                    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-                    categoryAxis.renderer.grid.template.location = 0;
-                    categoryAxis.dataFields.category = "country";
-                    categoryAxis.renderer.minGridDistance = 40;
-                    categoryAxis.fontSize = 11;
-
-                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-                    valueAxis.min = 0;
-                    valueAxis.max = 24000;
-                    valueAxis.strictMinMax = true;
-                    valueAxis.renderer.minGridDistance = 30;
-                    // axis break
-                    var axisBreak = valueAxis.axisBreaks.create();
-                    axisBreak.startValue = 2100;
-                    axisBreak.endValue = 22900;
-                    axisBreak.breakSize = 0.005;
-
-                    axisBreak.defaultState.transitionDuration = 1000;
-                    var series = chart.series.push(new am4charts.ColumnSeries());
-                    series.dataFields.categoryX = "country";
-                    series.dataFields.valueY = "visits";
-                    series.columns.template.tooltipText = "{valueY.value}";
-                    series.columns.template.tooltipY = 0;
-                    series.columns.template.strokeOpacity = 0;
-
-                    series.columns.template.adapter.add("fill", function(fill, target) {
-                      return chart.colors.getIndex(target.dataItem.index);
-                    });
-
-                  }); // end am4core.ready()
-                </script>
-
-                <!-- HTML -->
-                <div id="chartdiv"></div>
-              </div>
-              <div class="card-body">
-                <h4 class="card-title text">จำนวนครุภัณฑ์</h4>
-                <p class="card-category">
-                  <span class=""></span>จำนวนครุภัณฑ์คงที่ในเดือนนี้</p>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                </div>
+          <div class="col-md-4">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <nav class="navbar navbar-light bg-light">
+                  <h6 class="m-0 font-weight-bold">
+                    <div class="card-icon text-danger"><i class="fas fa-business-time"> ครุภัณฑ์</i></div>
+                    <div class="card-header card-header-warning card-header-icon">
+                      <h3 class="card-title text-danger">25
+                        <small>ชิ้น</small>
+                      </h3>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <i class="material-icons"></i>
+                        <a href="#">แสดงรายการครุภัณฑ์</a>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <h6 class="card-title">
+                          <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
+                        </h6>
+                      </div>
+                    </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-warning card-header-icon">
-                <h6 class="text-danger">
-                  <div class="card-icon">
-                    <i class="fas fa-business-time"> ครุภัณฑ์</i>
-                  </div>
-                  <h3 class="card-title">25
-                    <small>ชิ้น</small>
-                  </h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i>
-                  <a href="#">แสดงรายการครุภัณฑ์</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-chart">
-              <div class="card-header card-header-success">
-                <div class="ct-chart" id="websiteViewsChart"></div>
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">จำนวนวัสดุคงทน</h4>
-                <p class="card-category">
-                  <span class="text-success">
-                    <i class="fa fa-long-arrow-up"> </i> 40%
-                  </span>
-                  จำนวนวัสดุคงทนเพิ่มขึ้น
-                </p>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                </div>
+          <div class="col-md-4">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <nav class="navbar navbar-light bg-light">
+                  <h6 class="m-0 font-weight-bold">
+                    <div class="card-icon text-danger"><i class="fas fa-business-time"> วัสดุคงทน</i></div>
+                    <div class="card-header card-header-warning card-header-icon">
+                      <h3 class="card-title text-danger">26
+                        <small>ชิ้น</small>
+                      </h3>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <i class="material-icons"></i>
+                        <a href="#">แสดงรายการวัสดุคงทน</a>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <h6 class="card-title">
+                          <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
+                        </h6>
+                      </div>
+                    </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-success card-header-icon">
-                <h6 class="text-danger">
-                  <div class="card-icon">
-                    <i class="fas fa-business-time"> วัสดุคงทน</i>
-                  </div>
-                  <h3 class="card-title">170
-                    <small>ชิ้น</small>
-                  </h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i>
-                  <a href="#">แสดงรายการวัสดุคงทน</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card card-chart">
-              <div class="card-header card-header-info">
-                <div class="ct-chart" id="websiteViewsChart1"></div>
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">จำนวนวัสดุสำนักงาน</h4>
-                <p class="card-category">
-                  <span class="text-danger">
-                    <i class="fa fa-long-arrow-down"> </i> 8%
-                  </span>
-                  จำนวนวัสดุคงทนลดลง
-                </p>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-info card-header-icon">
-                <h6 class="text-danger">
-                  <div class="card-icon">
-                    <i class="fas fa-business-time"> วัสดุสำนักงาน</i>
-                  </div>
-                  <h3 class="card-title">912
-                    <small>ชิ้น</small>
-                  </h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i>
-                  <a href="#">แสดงรายการวัสดุสำนักงาน</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card card-chart">
-              <div class="card-header card-header-danger">
-                <div class="ct-chart" id="completedTasksChart"></div>
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">จำนวนชำรุดและส่งซ่อม</h4>
-                <p class="card-category">
-                  <span class="text-danger">
-                    <i class="fa fa-long-arrow-up"> </i> 15%
-                  </span>
-                  จำนวนชำรุดและส่งซ่อมเพิ่มขึ้น
-                </p>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-danger card-header-icon">
-                <h6 class="text-danger">
-                  <div class="card-icon">
-                    <i class="fas fa-business-time">ชำรุด & ส่งซ่อม</i>
-                  </div>
-                  <h3 class="card-title">30
-                    <small>ชิ้น</small>
-                  </h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i>
-                  <a href="#">แสดงรายการชำรุดและส่งซ่อม</a>
-                </div>
+          <div class="col-md-4">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <nav class="navbar navbar-light bg-light">
+                  <h6 class="m-0 font-weight-bold">
+                    <div class="card-icon text-danger"><i class="fas fa-business-time"> วัสดุสิ้นเปลือง</i></div>
+                    <div class="card-header card-header-warning card-header-icon">
+                      <h3 class="card-title text-danger">27
+                        <small>ชิ้น</small>
+                      </h3>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <i class="material-icons"></i>
+                        <a href="#">แสดงรายการวัสดุสิ้นเปลือง</a>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <h6 class="card-title">
+                          <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
+                        </h6>
+                      </div>
+                    </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="ct-chart" id="dailySalesChart"></div>
+      <style>
+        #chartdiv {
+          width: 100%;
+          height: 250px;
+        }
+      </style>
+      <!-- Resources -->
+      <script src="https://www.amcharts.com/lib/4/core.js"></script>
+      <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+      <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+      <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+      <script>
+        am4core.ready(function() {
+
+          // Themes begin
+          am4core.useTheme(am4themes_dataviz);
+          am4core.useTheme(am4themes_animated);
+          // Themes end
+
+          // Create chart instance
+          var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+          // Increase contrast by taking evey second color
+          chart.colors.step = 2;
+
+          // Add data
+          chart.data = generateChartMonth();
+
+          // Create axes
+          var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+          dateAxis.renderer.minGridDistance = 50;
+
+          // Create series
+          function createAxisAndSeries(field, name, opposite, bullet) {
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = field;
+            series.dataFields.dateX = "date";
+            series.strokeWidth = 2;
+            series.yAxis = valueAxis;
+            series.name = name;
+            series.tooltipText = "{name}: [bold]{valueY}[/]";
+            series.tensionX = 0.8;
+
+            var interfaceColors = new am4core.InterfaceColorSet();
+
+            switch (bullet) {
+              case "triangle":
+                var bullet = series.bullets.push(new am4charts.Bullet());
+                bullet.width = 12;
+                bullet.height = 12;
+                bullet.horizontalCenter = "middle";
+                bullet.verticalCenter = "middle";
+
+                var triangle = bullet.createChild(am4core.Triangle);
+                triangle.stroke = interfaceColors.getFor("background");
+                triangle.strokeWidth = 2;
+                triangle.direction = "top";
+                triangle.width = 12;
+                triangle.height = 12;
+                break;
+              case "rectangle":
+                var bullet = series.bullets.push(new am4charts.Bullet());
+                bullet.width = 10;
+                bullet.height = 10;
+                bullet.horizontalCenter = "middle";
+                bullet.verticalCenter = "middle";
+
+                var rectangle = bullet.createChild(am4core.Rectangle);
+                rectangle.stroke = interfaceColors.getFor("background");
+                rectangle.strokeWidth = 2;
+                rectangle.width = 10;
+                rectangle.height = 10;
+                break;
+              default:
+                var bullet = series.bullets.push(new am4charts.CircleBullet());
+                bullet.circle.stroke = interfaceColors.getFor("background");
+                bullet.circle.strokeWidth = 2;
+                break;
+            }
+
+            valueAxis.renderer.line.strokeOpacity = 1;
+            valueAxis.renderer.line.strokeWidth = 2;
+            valueAxis.renderer.line.stroke = series.stroke;
+            valueAxis.renderer.labels.template.fill = series.stroke;
+            valueAxis.renderer.opposite = opposite;
+            valueAxis.renderer.grid.template.disabled = true;
+          }
+
+          createAxisAndSeries("articles", "ครุภัณฑ์", false, "circle");
+          createAxisAndSeries("material", "วัสดุคงทน", true, "triangle");
+          createAxisAndSeries("supplies", "วัสดุสิ้นเปลือง", true, "rectangle");
+
+          // Add legend
+          chart.legend = new am4charts.Legend();
+
+          // Add cursor
+          chart.cursor = new am4charts.XYCursor();
+
+
+          // generate some random data, quite different range
+          function generateChartMonth() {
+            var chartData = [];
+            var firstDate = new Date();
+            firstDate.setMonth(firstDate.getMonth() - 6);
+
+            var articles = 100;
+            var material = 100;
+            var supplies = 100;
+          
+          <?php
+          for ($i = 6; $i > 0; $i--) {
+            $year = date('Y', strtotime("-$i months"));
+            $month = date('m', strtotime("-$i months"));
+
+            $date = new DateTime();
+            $date->setDate($year, $month, 1);
+            $useDate = $date->format('Y-m-d');
+            $sqlArticles = "SELECT COUNT(*) as total FROM durable_articles a, durable_articles_purchase p ";
+            $sqlArticles .= " WHERE a.id = p.product_id and p.receive_date < '$useDate'";
+            $sqlMaterial = "SELECT COUNT(*) as total FROM durable_material m, durable_material_purchase p ";
+            $sqlMaterial .= " WHERE m.id = p.product_id and p.receive_date < '$useDate'";
+            $sqlSupplies = "SELECT COUNT(*) as total FROM supplies s, supplies_purchase p ";
+            $sqlSupplies .= " WHERE s.id = p.product_id and p.receive_date < '$useDate'";
+            $resultA = mysqli_query($conn, $sql);
+            $totalA = (mysqli_fetch_assoc($resultA))["total"];
+            $resultM = mysqli_query($conn, $sql);
+            $totalM = (mysqli_fetch_assoc($resultM))["total"];
+            $resultS = mysqli_query($conn, $sql);
+            $totalS = (mysqli_fetch_assoc($resultS))["total"];
+          
+          ?>
+
+          for (var i = 0; i < 6; i++) {
+            var newDate = new Date(firstDate);
+            newDate.setMonth(newDate.getMonth() + i);
+
+            articles = <?php echo $totalA; ?>;
+            material = <?php echo $totalM; ?>;
+            supplies = <?php echo $totalS; ?>;
+
+            chartData.push({
+              date: newDate,
+              articles: articles, //1000
+              material: material, //1500
+              supplies: supplies //2000
+
+            });
+            <?php
+          }
+            ?>
+          }
+          return chartData;
+        }
+
+        }); // end am4core.ready()
+      </script>
+
+      <!-- HTML -->
+      <div id="chartdiv"></div>
+    </div>
+  </div>
+  <br>
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
       </div>
     </div>
-    <br>
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-        </div>
-      </div>
-    </footer>
+  </footer>
   </div>
   </div>
 

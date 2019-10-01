@@ -18,12 +18,17 @@
                 $response["data"] = $user;
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["user_type"] = $user["u_type"];
+<<<<<<< HEAD
+            } else {
+=======
             }else{
                 session_destroy();
             
 
+            }else {
+>>>>>>> 13361fb3a6c4c6ed66520f1545250ca69f63c900
+                session_destroy();
             }
-
         }
     } else {
         $response["result"] = false;

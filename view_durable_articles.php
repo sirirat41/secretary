@@ -4,10 +4,11 @@ include 'qrcode/phpqrcode/qrlib.php';
 
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor , pu.purchase_date FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un , durable_articles_purchase as pu WHERE a.id = $id and pu.id = $id";
+  $sql = "SELECT a.*, t.name as durable_articles_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor , pu.purchase_date FROM durable_articles as a ,durable_articles_type as t , seller as se , department as d , unit as un , durable_articles_purchase as pu WHERE a.id = $id and pu.product_id = $id";
   $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id and pu.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  
 
   // $depPerYear = ($row["price"] - 1) / $row["durable_year"];
   // $depPerMouth = $depPerYear / 12;

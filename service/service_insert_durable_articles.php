@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $money_type = $_POST["money_type"];
     $acquiring = $_POST["acquiring"];
     $asset_no = $_POST["asset_no"];
-    $assetNoArray = explode(",", $asset_no);
     $d_gen = $_POST["d_gen"];
     $seller_id = $_POST["seller_id"];
     $goverment = "สำนักงานตำรวจแห่งชาติ";
@@ -26,16 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $storage = $_POST["storage"];
     $articles_pattern = $_POST["articles_pattern"];
     $status = 1;
-    $bookNo = $_POST["book_no"];
 
     //อัฟโหลดรูปภาพ
     $target_dir = "../uploads/";
     $imgeName = $_FILES["image"]["name"];
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } 
+    }
 
     //purchase
 
@@ -70,15 +68,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $replacement .= "_";
             }
             $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
+
+            
         }
 
-        $sqlInsertArticles = "INSERT INTO durable_articles ( seq, code, type, attribute, model, bill_no, budget, department_id, money_type ,";
-        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status , book_no, picture)";
-        $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
-        $sqlInsertArticles .= " '$money_type', '$acquiring', '$assetNoArray[$i]', '$d_gen', $seller_id, '$goverment', $unit, ";
-        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status , '$bookNo','$imgeName')";
+        $runAsset = $asset_no++;
+        
 
-        echo $sqlInsertArticles;
+        $sqlInsertArticles = "INSERT INTO durable_articles ( seq, code, type, attribute, model, bill_no, budget, department_id, money_type ,";
+        $sqlInsertArticles .= " acquiring, asset_no, d_gen, seller_id, goverment, unit, price, short_goverment, durable_year, storage, status ,picture)";
+        $sqlInsertArticles .= " VALUES($seq,'$newCode', $type, '$attribute', '$model', '$bill_no', '$budget', $department_id ,";
+        $sqlInsertArticles .= " '$money_type', '$acquiring', '$runAsset', '$d_gen', $seller_id, '$goverment', $unit, ";
+        $sqlInsertArticles .= " $price, '$short_goverment', $durable_year, '$storage', $status ,'$imgeName')";
+
+        // echo $sqlInsertArticles;
         mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));
         $productID = mysqli_insert_id($conn);
 
@@ -87,11 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
     }
-
-   header('location: ../display_durable_articles.php');
+    header('location: ../display_durable_articles.php');
 } else {
     header('location: ../display_durable_articles.php');
 }
+
 
 function convertPattern($pattern)
 {
@@ -114,6 +117,9 @@ function convertPattern($pattern)
     }
     return $pattern;
 }
+
+
+
 function autoRun($current, $format)
 {
     $auto = "";
