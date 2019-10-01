@@ -108,15 +108,49 @@ $show=10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+            <?php
+              $prevPage = "#";
+              if ($page > 1) {
+                $prevPage = "?page=" . ($page - 1);
+              }
+
+              ?>
+              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <?php
+            $sqlSelectCount = "SELECT * FROM user";
+            $sqlSelectCount .= " WHERE status = 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = $_GET["keyword"];
+              $sqlSelectCount .= " and (username like '%$keyword%' or surname like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by id desc";
+            $resultCount = mysqli_query($conn, $sqlSelectCount);
+            $total = mysqli_num_rows($resultCount);
+            $pageNumber = ceil($total / $show);
+            for ($i = 0; $i < $pageNumber; $i++) {
+              if (isset($_GET["keyword"])) {
+                ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+            <?php
+              }
+            }
+            ?>
+            <?php
+            if ($page < $pageNumber) {
+              $nextPage = "#";
+              $nextPage = "?page=" . ($page + 1);
+            }
+
+            ?>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

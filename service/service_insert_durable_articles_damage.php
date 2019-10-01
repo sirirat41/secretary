@@ -9,8 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO durable_articles_damage(product_id ,damage_date ,flag)";
     $sql .= " VALUES($productid ,'$damagedate' ,'$flag')";
 
+
     if (mysqli_query($conn, $sql)) {
         echo "Insert data complete";
+        $sqlUpdate ="UPDATE durable_articles SET status = 3 WHERE id = $productid";
+        mysqli_query($conn ,$sqlUpdate);
     } else {
         echo "Can't insert data, please check this:" . mysqli_error($conn);
     }

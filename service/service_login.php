@@ -18,7 +18,9 @@
                 $response["data"] = $user;
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["user_type"] = $user["u_type"];
-     
+            }else{
+                session_destroy();
+            
 
             }else {
                 session_destroy();

@@ -31,6 +31,7 @@ $show = 10;
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -46,7 +47,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ(วัสดุคงทน)</h6>
+                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (วัสดุคงทน )</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -95,7 +96,7 @@ $show = 10;
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
                       }
-                      echo $sqlSelect;
+                       // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -121,6 +122,7 @@ $show = 10;
                             </button>
                           <?php
                           }
+
                           ?>
                     </tbody>
                   </table>
@@ -246,7 +248,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการจัดซื้อครุภัณฑ์ใช่หรือไม่
+          คุณต้องการลบข้อมูลการจัดซื้อวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_purchase.php">
             <input type="hidden" id="remove-purchase" name="purchase_id">
           </form>

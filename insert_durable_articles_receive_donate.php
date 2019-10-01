@@ -310,17 +310,17 @@ $show=10;
   <script>
     var itemPerPage = 10;
     var jsonData;
+    var currentPage = 1;
+    var maxPage = 1;
     $('#form-search').on('submit', function(e) {
         e.preventDefault();
         search();
       })
     function search() {
       $('#pagination').empty();
-          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-        
-        
-      var keyword = $('#input-search').val().trim();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+     var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
         dataType: 'JSON',
@@ -331,6 +331,7 @@ $show=10;
           changePage(1);
           $('new-page').removeClass();
           var numberOfPage = Math.ceil(data.length / itemPerPage);
+          maxPage = numberOfPage;
           for (let i = 0; i < numberOfPage; i++) {
             $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
           }
@@ -363,7 +364,19 @@ $show=10;
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
       }
     }
+    function nextPage() {
+      if (currentPage < maxPage) {
+        currentPage = currentPage + 1;
+        changePage(currentPage);
 
+    }
+}
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage = currentPage - 1;
+        changePage(currentPage);
+      }
+    }
 
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');

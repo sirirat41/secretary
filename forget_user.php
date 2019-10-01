@@ -45,46 +45,29 @@
           <div class="card border-warning shadow mb-6 ">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger text-center">
-                <i class="fas fa-user-lock"></i> เข้าสู่ระบบ</h6>
+                <i class="fas fa-user-lock"></i> ลืมรหัสผ่าน</h6>
             </div>
 
             <div class="card-body">
-              <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+              <form name="form" id="form" class="form-horizontal" action="service/service_forget_user.php" enctype="multipart/form-data" method="POST">
                 <div class="row">
                   <div class="col-md-10 offset-1">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="username" id="username" placeholder="username" autofocus>
+                      <input type="text" class="form-control" name="email" id="email" placeholder="email" autofocus>
 
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-10 offset-1">
-                    <div class="form-group">
-
-
-                      <input type="password" class="form-control" name="password" id="password" placeholder="password">
-                      <div class="text-right">
-                        <a href="#">ลืมรหัสผ่าน?</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-10 offset-1">
-                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
-                      เข้าสู่ระบบ
+                    <button type="submit" href="#"  class="btn btn-danger btn-md btn-block">
+                      ยืนยัน
                     </button>
                     <hr color="red">
                     <br>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12 text-center" href ="insert_user.php">
-                    <a href="#">สมัครสมาชิก</a>
-                  </div>
-                </div>
+               
             </div>
           </div>
         </div>
@@ -158,36 +141,7 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  <script>
-    $('#form').on('submit', function(e) {
-      e.preventDefault();
-      login();
-    })
-    function login(){
-      
-      $.ajax({
-        url: "service/service_login.php",
-        dataType: "JSON",
-        type: "POST",
-        data: {
-          username: $('#username').val(),
-          password: $('#password').val()
-        },
-        success: function(response) {
-          console.log(response);
-          if (response.result) {
-            window.location = "display_durable_articles.php";
-          } else {
-            alert('username หรือ password ผิด');
-          }
-        },
-        error: function(error) {
-          console.log(error);
-          alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
-        }
-      })
-    }
-  </script>
+
 </body>
 
 </html>
