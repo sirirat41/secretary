@@ -179,7 +179,6 @@ require "service/connection.php";
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
                     <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no">
-                    <small style="color: red"> *ตัวอย่าง:100000312{run_3}</small>
                   </div>
                 </div>
                 <div class="col-md-6">

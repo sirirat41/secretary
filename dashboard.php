@@ -1,5 +1,15 @@
 <?php
 require "service/connection.php";
+$sqlA = "SELECT COUNT(id) as totalA FROM durable_articles";
+$resultA = mysqli_query($conn, $sqlA);
+$rowa = mysqli_fetch_assoc($resultA);
+$sqlM = "SELECT COUNT(id) as totalM FROM durable_material";
+$resultM = mysqli_query($conn, $sqlM);
+$rowm = mysqli_fetch_assoc($resultM);
+$sqlS = "SELECT COUNT(id) as totalS FROM supplies";
+$resultS = mysqli_query($conn, $sqlS);
+$rows = mysqli_fetch_assoc($resultS);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +23,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary> </secretary>
+  <secretary style="display : none">dashboard</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,21 +54,17 @@ require "service/connection.php";
                   <h6 class="m-0 font-weight-bold">
                     <div class="card-icon text-danger"><i class="fas fa-business-time"> ครุภัณฑ์</i></div>
                     <div class="card-header card-header-warning card-header-icon">
-                      <h3 class="card-title text-danger">25
+                      <h3 class="card-title text-danger">
+                        <?php
+                        echo $rowa["totalA"];
+                        ?>
                         <small>ชิ้น</small>
                       </h3>
                     </div>
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
-                        <a href="#">แสดงรายการครุภัณฑ์</a>
-                      </div>
-                    </div>
-                    <div class="card-footer">
-                      <div class="stats">
-                        <h6 class="card-title">
-                          <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                        </h6>
+                        <a href='display_durable_articles.php'>แสดงรายการครุภัณฑ์</a>
                       </div>
                     </div>
               </div>
@@ -71,21 +77,17 @@ require "service/connection.php";
                   <h6 class="m-0 font-weight-bold">
                     <div class="card-icon text-danger"><i class="fas fa-business-time"> วัสดุคงทน</i></div>
                     <div class="card-header card-header-warning card-header-icon">
-                      <h3 class="card-title text-danger">26
+                      <h3 class="card-title text-danger">
+                        <?php
+                        echo $rowm["totalM"];
+                        ?>
                         <small>ชิ้น</small>
                       </h3>
                     </div>
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
-                        <a href="#">แสดงรายการวัสดุคงทน</a>
-                      </div>
-                    </div>
-                    <div class="card-footer">
-                      <div class="stats">
-                        <h6 class="card-title">
-                          <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                        </h6>
+                        <a href='display_durable_material.php'>แสดงรายการวัสดุคงทน</a>
                       </div>
                     </div>
               </div>
@@ -98,21 +100,17 @@ require "service/connection.php";
                   <h6 class="m-0 font-weight-bold">
                     <div class="card-icon text-danger"><i class="fas fa-business-time"> วัสดุสิ้นเปลือง</i></div>
                     <div class="card-header card-header-warning card-header-icon">
-                      <h3 class="card-title text-danger">27
+                      <h3 class="card-title text-danger">
+                        <?php
+                        echo $rows["totalS"];
+                        ?>
                         <small>ชิ้น</small>
                       </h3>
                     </div>
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
-                        <a href="#">แสดงรายการวัสดุสิ้นเปลือง</a>
-                      </div>
-                    </div>
-                    <div class="card-footer">
-                      <div class="stats">
-                        <h6 class="card-title">
-                          <i class="material-icons"></i> อัพเดทเมื่อ 4 นาทีก่อน
-                        </h6>
+                        <a href='display_supplies.php'>แสดงรายการวัสดุสิ้นเปลือง</a>
                       </div>
                     </div>
               </div>
@@ -227,55 +225,60 @@ require "service/connection.php";
             var chartData = [];
             var firstDate = new Date();
             firstDate.setMonth(firstDate.getMonth() - 6);
-
             var articles = 100;
             var material = 100;
             var supplies = 100;
-          
-          <?php
-          for ($i = 6; $i > 0; $i--) {
-            $year = date('Y', strtotime("-$i months"));
-            $month = date('m', strtotime("-$i months"));
 
-            $date = new DateTime();
-            $date->setDate($year, $month, 1);
-            $useDate = $date->format('Y-m-d');
-            $sqlArticles = "SELECT COUNT(*) as total FROM durable_articles a, durable_articles_purchase p ";
-            $sqlArticles .= " WHERE a.id = p.product_id and p.receive_date < '$useDate'";
-            $sqlMaterial = "SELECT COUNT(*) as total FROM durable_material m, durable_material_purchase p ";
-            $sqlMaterial .= " WHERE m.id = p.product_id and p.receive_date < '$useDate'";
-            $sqlSupplies = "SELECT COUNT(*) as total FROM supplies s, supplies_purchase p ";
-            $sqlSupplies .= " WHERE s.id = p.product_id and p.receive_date < '$useDate'";
-            $resultA = mysqli_query($conn, $sql);
-            $totalA = (mysqli_fetch_assoc($resultA))["total"];
-            $resultM = mysqli_query($conn, $sql);
-            $totalM = (mysqli_fetch_assoc($resultM))["total"];
-            $resultS = mysqli_query($conn, $sql);
-            $totalS = (mysqli_fetch_assoc($resultS))["total"];
-          
-          ?>
-
-          for (var i = 0; i < 6; i++) {
-            var newDate = new Date(firstDate);
-            newDate.setMonth(newDate.getMonth() + i);
-
-            articles = <?php echo $totalA; ?>;
-            material = <?php echo $totalM; ?>;
-            supplies = <?php echo $totalS; ?>;
-
-            chartData.push({
-              date: newDate,
-              articles: articles, //1000
-              material: material, //1500
-              supplies: supplies //2000
-
-            });
             <?php
-          }
+            $jsonA = array();
+            $jsonM = array();
+            $jsonS = array();
+
+            for ($i = 6; $i > 0; $i--) {
+              $year = date('Y', strtotime("-$i months"));
+              $month = date('m', strtotime("-$i months"));
+
+              $date = new DateTime();
+              $date->setDate($year, $month, 1);
+              $useDate = $date->format('Y-m-d');
+              $sqlArticles = "SELECT COUNT(*) as total FROM durable_articles a, durable_articles_purchase p ";
+              $sqlArticles .= " WHERE a.id = p.product_id and p.receive_date < '$useDate'";
+              $sqlMaterial = "SELECT COUNT(*) as total FROM durable_material m, durable_material_purchase p ";
+              $sqlMaterial .= " WHERE m.id = p.product_id and p.receive_date < '$useDate'";
+              $sqlSupplies = "SELECT COUNT(*) as total FROM supplies s, supplies_purchase p ";
+              $sqlSupplies .= " WHERE s.id = p.product_id and p.receive_date < '$useDate'";
+              $resultA = mysqli_query($conn, $sqlArticles);
+              $totalA = (mysqli_fetch_assoc($resultA))["total"];
+              $resultM = mysqli_query($conn, $sqlMaterial);
+              $totalM = (mysqli_fetch_assoc($resultM))["total"];
+              $resultS = mysqli_query($conn, $sqlSupplies);
+              $totalS = (mysqli_fetch_assoc($resultS))["total"];
+              array_push($jsonA, $totalA);
+              array_push($jsonM, $totalM);
+              array_push($jsonS, $totalS);
+            }
             ?>
+            var dataA = <?php echo json_encode($jsonA); ?>;
+            var dataM = <?php echo json_encode($jsonM); ?>;
+            var dataS = <?php echo json_encode($jsonS); ?>;
+            for (var i = 0; i < 6; i++) {
+              var newDate = new Date(firstDate);
+              newDate.setMonth(newDate.getMonth() + i);
+
+              articles = dataA[i];
+              material = dataM[i];
+              supplies = dataS[i];
+
+              chartData.push({
+                date: newDate,
+                articles: articles, //1000
+                material: material, //1500
+                supplies: supplies //2000
+
+              });
+            }
+            return chartData;
           }
-          return chartData;
-        }
 
         }); // end am4core.ready()
       </script>
