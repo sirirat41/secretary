@@ -8,10 +8,11 @@ if(isset($_GET["id"])) {
     $book_no = $_POST["book_no"];
     $permit_date = $_POST["permit_date"];
     $receivedate = $_POST["receive_date"];
+    $department_id = $_POST["department_id"];
     $flag = $_POST["flag"];
     
     $updatepermit = "UPDATE durable_articles_permits SET product_id = '$product_id',";
-    $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', flag = '$flag'";
+    $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', department_id = $department_id, flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
         if ($keyword != null) {

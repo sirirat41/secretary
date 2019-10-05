@@ -73,10 +73,9 @@ $show = 10;
                     <thead>
                       <tr class="text-center">
                         <th>รหัสวัสดุ</th>
-                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ชื่อวัสดุ</th>
+                        <th>จำนวนที่ยืม</th>
                         <th>วันที่ยืม</th>
-                        <th>วันที่คืน</th>
                         <th>การทำงาน</th>
 
                       </tr>
@@ -90,11 +89,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
-                      $sqlSelect .= " WHERE p.product_id = s.id and p.status = 1";
+                      $sqlSelect = "SELECT p.*, s.code , s.supplies_id ,ss.supplies_name,ss.stock FROM supplies_permits as p,supplies as s ,supplies_stock as ss";
+                      $sqlSelect .= " WHERE p.product_id = s.id and s.supplies_id = ss.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or p.permit_date like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -103,10 +102,9 @@ $show = 10;
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                          <td><?php echo $row["name"]; ?></td>
+                          <td><?php echo $row["supplies_name"]; ?></td>
+                          <td><?php echo thainumDigit($row["number"]); ?></td>
                           <td><?php echo thainumDigit($row["permit_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_permits.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -133,7 +131,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -145,11 +143,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT p.*, s.code , s.attribute ,s.name FROM supplies_permits as p,supplies as s";
-            $sqlSelectCount .= " WHERE p.product_id = s.id and p.status = 1";
+            $sqlSelectCount = "SELECT p.*, s.code , s.supplies_id ,ss.supplies_name,ss.stock FROM supplies_permits as p,supplies as s ,supplies_stock as ss";
+            $sqlSelectCount .= " WHERE p.product_id = s.id and s.supplies_id = ss.id and p.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (s.code like '%$keyword%' or permit_date like '%$keyword%')";
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or p.permit_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -270,6 +268,37 @@ $show = 10;
         </div>
       </div>
     </div>
+    </div>
+    <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left"><?php echo $_GET["message"]; ?><div>
+         
+          <form id="form-drop" method="post" action="service/service_insert_supplies_permits.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+        <?php 
+        if (isset($_GET["message"])) {
+          echo "$('#modal-message').modal();";
+        }
+        ?>
+      })
+      </script>
 </body>
 
 </html>

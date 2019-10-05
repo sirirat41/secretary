@@ -95,7 +95,7 @@ $show = 10
                       $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
                       $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
+                        $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
@@ -276,6 +276,36 @@ $show = 10
       </div>
     </div>
   </div>
+  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-left"><?php echo $_GET["message"]; ?><div>
+         
+          <form id="form-drop" method="post" action="service/service_insert_supplies_distribute.php">
+            <input type="hidden" id="remove-permits" name="permits_id">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+        <?php 
+        if (isset($_GET["message"])) {
+          echo "$('#modal-message').modal();";
+        }
+        ?>
+      })
+      </script>
 </body>
 
 </html>

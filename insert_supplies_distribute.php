@@ -65,10 +65,10 @@ $show=10;
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1 Group by code";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              echo '<option value="' . $row["code"] . '">' . $row["code"] . '</option>';
                             }
                             ?>
                           </select>

@@ -87,6 +87,30 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label for="supplies_id">ชื่อวัสดุ</label>
+                      <div class="row">
+                        <div class="col-md-10 ">
+                          <select class="form-control" name="supplies_id"  id="supplies_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM supplies_stock ";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-6 ">
                     <div class="form-group ">
                       <label for="receiver">ชื่อผู้รับ</label>
@@ -109,43 +133,30 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
                       <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" id="type">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM durable_material_type";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                        }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
+                 
                 </div>
                 <div class="row">
-                  <div class="col-6">
+                  <!-- <div class="col-6">
                     <div class="form-group">
                       <label for="attribute">ลักษณะ/คุณสมบัติ</label>
                       <input type="text" class="form-control" name="attribute" id="inputattribute" aria-describedby="attribute" placeholder="attribute" id="attribute">
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="name">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="name" name="name" id="name">
+                      <label for="bill_no">เลขที่ใบเบิก</label>
+                      <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
                     </div>
                   </div>
-                </div>
-                <div class="row">
+                  </div>
+                  <div class="row">
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">หน่วยงาน</label>
@@ -160,15 +171,8 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="bill_no">เลขที่ใบเบิก</label>
-                      <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
+             
+                    <div class="col-6">
                     <div class="form-group">
                       <label class="bmd-label-floating">หน่วยนับ :</label>
                       <select class="form-control" name="unit">
@@ -182,15 +186,24 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
+                </div>
+                <div class="row">
+            
                   <div class="col-6">
                     <div class="form-group">
                       <label for="price">จำนวนเงิน</label>
                       <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-6">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">จำนวนวัสดุ</label>
+                      <input class="form-control" type="text" placeholder="number" name="number">
+                    </div>
+                  </div>
+                  </div>
+                <div class="row">
+                  <div class="col-12">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
@@ -204,12 +217,7 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">จำนวนวัสดุ</label>
-                      <input class="form-control" type="text" placeholder="number" name="number">
-                    </div>
-                  </div>
+               
                 </div>
                 <div class="row">
                   <div class="col-6">

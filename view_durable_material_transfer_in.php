@@ -72,7 +72,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                        <label class="text-dark" for="code">รหัสวัสดุ : </label>
                         <?php echo thainumDigit($row["code"]); ?>
                       </div>
                     </div>
@@ -84,7 +84,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
+                        <label class="text-dark" for="name">ชื่อวัสดุ : </label>
                         <?php echo thainumDigit($row["name"]); ?>
                       </div>
                     </div>

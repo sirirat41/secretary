@@ -41,7 +41,7 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
@@ -70,10 +70,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>เลขที่เอกสาร</th>
-                        <th>วันที่ขาย</th>
-                        <th>รหัสวัสดุ</th>
-                        <th>ชื่อผู้ซื้อ</th>
+                      <th>วันที่ขาย</th>
+                        <th>รหัสครุภัณฑ์</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>รุ่นแบบ</th>
                         <th>การทำงาน</th>
                       </tr>
                     </thead>
@@ -86,11 +86,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT s.*, a.code FROM durable_material_sell as s, durable_material as a";
-                      $sqlSelect .= " WHERE s.product_id = a.id and s.status = 1";
+                      $sqlSelect = "SELECT s.*, m.code, m.attribute ,m.name FROM durable_material_sell as s, durable_material as m";
+                      $sqlSelect .= " WHERE s.product_id = m.id and s.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
@@ -99,10 +99,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["sell_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo $row["buyer"]; ?></td>
+                        <td><?php echo thainumDigit($row["sell_date"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
+                        <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>

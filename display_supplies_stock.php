@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ $show=10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_durable_articles_sell</secretary>
+  <secretary style="display : none">display_supplies_stock</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +24,8 @@ $show=10;
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
+
+
 </head>
 
 <body id="page-top">
@@ -32,8 +34,8 @@ $show=10;
   <div id="wrapper">
 
     <!-- Sidebar -->
-
     <?php include "navigation/navbar.php"; ?>
+
     </nav>
     <!-- End of Topbar -->
 
@@ -42,83 +44,82 @@ $show=10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> แสดงข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
-
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ(คงเหลือ)</h6>
                 <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_sell.php';">
+                    <button class="btn btn-outline-danger" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_stock.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles_sell.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_stock.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles_sell.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_stock.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
             </div>
           </div>
+          </nav>
           <form>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-12">
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>วันที่ขาย</th>
-                        <th>รหัสครุภัณฑ์</th>
-                        <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>รุ่นแบบ</th>
+                        <th>ชื่อวัสดุ</th>
+                        <th>จำนวนคงเหลือ</th>
                         <th>การทำงาน</th>
-                      </tr>
+                      </tr class="text-center">
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT s.*, a.code ,a.attribute ,a.model FROM durable_articles_sell as s, durable_articles as a";
-                      $sqlSelect .= " WHERE s.product_id = a.id and s.status = 1";
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
+                      $sqlSelect = "SELECT ss.* FROM supplies_stock as ss";
+                      // $sqlSelect .= " WHERE ss.supplies_name = s.id "
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
+                        $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
-                      //echo $sqlSelect;
-                      $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
+                      // echo $sqlSelect;
+                      $sqlSelect .= " Order by ss.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["sell_date"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo thainumDigit($row["model"]); ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href = 'view_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles_sell.php?id=<?php echo $row['id']; ?>" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-sell').val('<?php echo $id; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                      </tr>
+                        <tr class="text-center">
+                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
+                          <td><?php echo thainumDigit($row["stock"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_stock.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_stock.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_stock.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-stock').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -144,13 +145,13 @@ $show=10;
               </a>
             </li>
             <?php
-              $sqlSelectCount = "SELECT s.*, a.code FROM durable_articles_sell as s, durable_articles as a";
-              $sqlSelectCount .= " WHERE s.product_id = a.id and s.status = 1";
-              if (isset($_GET["keyword"])) {
-                $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
-             }
-             $sqlSelectCount .= " Order by s.id desc LIMIT $start, $show";
+            $sqlSelectCount = "SELECT ss.* FROM supplies_stock as ss";
+            // $sqlSelectCount .= " WHERE ss.supplies_name = s.id";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by ss.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -163,9 +164,10 @@ $show=10;
                   ?>
 
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-            <?php
 
-            }}
+            <?php
+              }
+            }
             ?>
             <?php
             if ($page < $pageNumber) {
@@ -186,8 +188,6 @@ $show=10;
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -220,7 +220,7 @@ $show=10;
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
-          </button>
+          </button>g
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
@@ -259,9 +259,12 @@ $show=10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการขายทอดตลาดครุภัณฑ์ใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_sell.php">
-            <input type="hidden" id="remove-sell" name="product_id">
+
+          คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
+
+          <form id="form-drop" method="post" action="service/service_drop_supplies_stock.php">
+            <input type="hidden" id="remove-stock" name="stock_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -270,7 +273,6 @@ $show=10;
       </div>
     </div>
   </div>
-
 </body>
 
 </html>

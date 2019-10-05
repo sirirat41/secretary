@@ -42,7 +42,7 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">

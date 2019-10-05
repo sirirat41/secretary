@@ -43,7 +43,7 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-10 offset-1">
+        <div class="col-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -75,11 +75,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>เลขที่เอกสาร</th>
                         <th>วันที่บริจาค</th>
                         <th>รหัสวัสดุ</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อบริจาค</th>
+                        <th>ชื่อวัสดุ</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -92,7 +91,7 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT do.*, m.code, m.attribute FROM durable_material_donate as do, durable_material as m";
+                      $sqlSelect = "SELECT do.*, m.code, m.attribute,m.name FROM durable_material_donate as do, durable_material as m";
                       $sqlSelect .= " WHERE do.product_id = m.id and do.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
@@ -104,11 +103,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["document_no"]); ?></td>
                           <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo thainumDigit($row["donate_name"]); ?></td>
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_donate.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>

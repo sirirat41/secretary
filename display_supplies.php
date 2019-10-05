@@ -76,7 +76,7 @@ $show = 10;
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
-                        <th>ประเภทวัสดุ</th>
+                        <th>ชื่อวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -90,13 +90,13 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                      $sqlSelect .= " WHERE s.type = t.id and s.status != 0";
+                      $sqlSelect = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
+                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
-                      //echo $sqlSelect;
+                      // echo $sqlSelect;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -107,7 +107,7 @@ $show = 10;
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["name"]); ?></td>
+                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -148,12 +148,12 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-            $sqlSelectCount .= " WHERE s.type = t.id and s.status != 0";
-            if (isset($_GET["keyword"])) {
-              $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-            }
+           $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
+           $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
+           if (isset($_GET["keyword"])) {
+             $keyword = $_GET["keyword"];
+             $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+           }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);

@@ -1,3 +1,14 @@
+<?php
+require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT ss.*, s.code,s.picture ,p.order_no ROM supplies_stock as ss , supplies as s ,supplies_purchase as p WHERE ss.id = $id";
+  $sql .= " and ss.product_id = s.id ";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +21,8 @@
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">index</secretary>
+  <secretary style="display: none">display_supplies_distribute</secretary>
+
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -18,87 +30,89 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #880000;
-    }
-  </style>
+
 </head>
 
-
-<body style="padding: 150px">
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <?php include "navigation/navbar.php"; ?>
 
+    </nav>
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->
-
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-4 offset-4">
-          <div class="card border-warning shadow mb-6 ">
+        <div class="col-md-8 offset-2">
+          <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger text-center">
-                <i class="fas fa-user-lock"></i> เข้าสู่ระบบ</h6>
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h6>
+                <form class="form-inline">
             </div>
-
-            <div class="card-body">
-              <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-                <div class="row">
-                  <div class="col-md-10 offset-1">
-                    <div class="form-group">
-                      <input type="text" class="form-control" name="username" id="username" placeholder="username" autofocus>
-
+            </nav>
+            <form>
+              <form>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card" style="width: 200px;">
+                        <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label class="text-dark" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
+                          <?php echo thainumDigit($row["code"]); ?>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label class="text-dark" for="number">จำนวน : </label>
+                          <?php echo thainumDigit($row["number"]); ?>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label class="text-dark" for="distribute_date">วันที่แจกจ่าย : </label>
+                          <?php echo thainumDigit($row["distribute_date"]); ?>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label class="text-dark" for="department_id">หน่วยงาน : </label>
+                          <?php echo thainumDigit($row["department_id"]); ?>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label class="text-dark" for="flag">หมายเหตุ : </label>
+                          <?php echo thainumDigit($row["flag"]); ?>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-10 offset-1">
-                    <div class="form-group">
-
-
-                      <input type="password" class="form-control" name="password" id="password" placeholder="password">
-                     
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-10 offset-1">
-                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
-                      เข้าสู่ระบบ
-                    </button>
-                    <hr color="red">
-                    <br>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 text-center" >
-                    <a href ="forget_user.php">ลืมรหัสผ่าน?</a>
-                  </div>
-                </div>
-            </div>
+              </form>
           </div>
         </div>
       </div>
-
-
-      </form>
-
-      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- /.container-fluid -->
+    <!-- สิ้นสุดการเขียนตรงนี้ -->
+  </div>
+  <!-- /.container-fluid -->
 
 
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
-  <footer class="sticky-footer">
+  <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
@@ -154,37 +168,7 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  <script>
-    $('#form').on('submit', function(e) {
-      e.preventDefault();
-      login();
-    })
 
-      function login(){
-      $.ajax({
-        url: "service/service_login.php",
-        dataType: "JSON",
-        type: "POST",
-        data: {
-          username: $('#username').val(),
-          password: $('#password').val()
-        },
-        success: function(response) {
-          console.log(response);
-          if (response.result) {
-            window.location = "display_durable_articles.php";
-          } else {
-            alert('username หรือ password ผิด');
-          }
-        },
-        error: function(error) {
-          console.log(error);
-          alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
-        }
-      
-      })
-    }
-  </script>
 </body>
 
 </html>
