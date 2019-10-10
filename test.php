@@ -1,20 +1,13 @@
 <?php
-
-echo autoRun(1, 4) . "<br>";
-echo autoRun(5, 2) . "<br>";
-echo autoRun(10, 5) . "<br>";
-echo autoRun(10, 8) . "<br>";
-
-function autoRun($current, $format)
-{
-  $auto = "";
-  $diff = $format - strlen($current);
-  for ($i = 0; $i < $diff; $i++) {
-    $auto .= "0";
-  }
-
-  $auto .= $current;
-  return $auto;
-}
-
+require "service/connection.php";
 ?>
+
+  <?php
+  $sql = "SELECT * FROM durable_articles_purchase";
+  $data = array();
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    array_push($data, $row);
+  }
+  echo json_encode($data);
+  ?>

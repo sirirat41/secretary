@@ -159,7 +159,11 @@
       e.preventDefault();
       login();
     })
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 22d26dd70daf4861eacb443c1231f1ce69f4da9f
       function login(){
       $.ajax({
         url: "service/service_login.php",

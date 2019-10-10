@@ -184,8 +184,12 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
+<<<<<<< HEAD
                     <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no" id="asset_no">
                     <small style="color: red"> *ตัวอย่าง:100000312{run_3}</small>
+=======
+                    <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no">
+>>>>>>> 22d26dd70daf4861eacb443c1231f1ce69f4da9f
                   </div>
                 </div>
                 <div class="col-md-6">
