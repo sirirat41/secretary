@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO durable_material_receive_donate(document_no, product_id, receive_date, donate_name, number, flag)";
     $sql .= " VALUES('$documentno', $productid, '$receivedate', '$donatename', $number, '$flag')";
 
+    $log = "เพิ่มข้อมูลการรับบริจาค";
+    logServer($conn, $log);
     if (mysqli_query($conn, $sql)) {
         header('Location: ../display_durable_material_receive_donate.php?message=เพิ่มข้อมูลสำเร็จ');
         $sqlUpdate ="UPDATE durable_material SET status = 7 WHERE id = $productid";

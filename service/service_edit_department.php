@@ -9,6 +9,9 @@ if(isset($_GET['id'])) {
     $bulding = $_POST["bulding"];
     $floor = $_POST["floor"];
 
+    $log = "แก้ไขข้อมูลหน่วยงาน รหัส " . $id ;
+    logServer($conn, $log);
+
     $target_dir = "../depart/";
     $imgeName = $_FILES["image"]["name"];
     $target_file = $target_dir . basename($_FILES["image"]["name"]);

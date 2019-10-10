@@ -4,7 +4,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material as a , durable_material_purchase as p WHERE a.id = $id and p.product_id = a.id ";
+  $sql = "SELECT *,durable_material_purchase.id as pid FROM durable_material LEFT JOIN durable_material_purchase ON durable_material.id = durable_material_purchase.product_id ";
+  $sql .= "WHERE durable_material.id = $id ";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
@@ -87,10 +88,16 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-6">
                     <div class="form-group">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขที่เอกสาร :</label>
+                      <input class="form-control" type="text" placeholder="document_no" name="document_no" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -98,7 +105,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
-                      <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="articles_pattern" value="<?php echo $item["code"]; ?>">
+                      <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="material_pattern" value="<?php echo $item["code"]; ?>">
                       <small style="color: red"> *ว.สดง. 0018/59</small>
                     </div>
                   </div>
@@ -429,7 +436,7 @@ if (isset($_GET["id"])) {
                             <th>การทำงาน</th>
                           </tr>
                         </thead>
-                        <tbody id="modal-articles-body">
+                        <tbody id="modal-material-body">
                           <?php
                           $sqlSelect = "SELECT * FROM durable_material_purchase";
                           $sqlSelect .= " WHERE status = 1";

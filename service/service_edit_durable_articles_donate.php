@@ -9,6 +9,9 @@ if(isset($_GET['id'])) {
     $donateName = $_POST["donate_name"];
     $flag = $_POST["flag"];
 
+    $log = "แก้ไขข้อมูลการบริจาคครุภัณฑ์ รหัส " . $id ;
+    logServer($conn, $log);
+
     $updateDonate = "UPDATE durable_articles_donate SET document_no = '$documentNo',";
     $updateDonate .= " receive_date = '$documentNo', product_id = '$productId', ";
     $updateDonate .= " donate_name = '$donateName', flag = '$flag'";

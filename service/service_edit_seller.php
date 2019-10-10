@@ -8,6 +8,9 @@ if(isset($_GET['id'])) {
     $fax = $_POST["fax"];
     $address = $_POST["address"];
 
+    $log = "แก้ไขข้อมูลร้านค้า รหัส " . $id ;
+    logServer($conn, $log);
+
     $updateSeller = "UPDATE seller SET name = '$name',";
     $updateSeller .= " tel = '$tel', fax = '$fax', address = '$address'";
     $updateSeller .= " WHERE id = $id";

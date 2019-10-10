@@ -4,8 +4,8 @@ include 'qrcode/phpqrcode/qrlib.php';
 
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor , pu.purchase_date FROM durable_material as a ,durable_material_type as t , seller as se , department as d , unit as un , durable_material_purchase as pu WHERE a.id = $id and pu.id = $id";
-  $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id and pu.id";
+  $sql = "SELECT *,durable_material_purchase.id as pid, department.id as d, unit.id as unit_name, durable_material_type.id as durable_material_type_name, seller.id as seller_name FROM durable_material LEFT JOIN durable_material_purchase ON durable_material.id = durable_material_purchase.product_id LEFT JOIN department ON durable_material.id = department.id LEFT JOIN unit ON durable_material.id = unit.id LEFT JOIN durable_material_type ON durable_material.id = durable_material_type.name LEFT JOIN seller ON durable_material.id = seller.name";
+  $sql .= " WHERE durable_material.id = $id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -149,6 +149,12 @@ $monthDay = ($dateMouth - $day) + 1;
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+                      <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
+                      <?php echo thainumDigit($row["document_no"]); ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
                       <label class="text-dark" for="durable_year">จำนวนปีวัสดุ : </label>
                       <?php echo thainumDigit($row["durable_year"]); ?>
                     </div>
@@ -196,8 +202,12 @@ $monthDay = ($dateMouth - $day) + 1;
                 </div>
                 <thead>
                   <tr class="text-center">
-                    <td><?php $dayY =  $purchase->format('d m Y');
+                    <td><?php $dayY =  $purchase->format('d') . "\n";
+                        $month =  $purchase->format('m') . "\n";
+                        $year =  $purchase->format('Y');
                         echo thainumDigit($dayY);
+                        echo month($month);
+                        echo thainumDigit($year);
                         ?>
                     </td>
                     <td></td>

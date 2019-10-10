@@ -42,7 +42,7 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -54,7 +54,7 @@ $show = 10;
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_purchase.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                     <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_purchase.php';">
@@ -148,19 +148,46 @@ $show = 10;
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
-            $page = ceil($total / $show);
-            for ($i = 0; $i < $page; $i++) {
-              if (isset($_GET["keyword"])) {
+            $pageNumber = ceil($total / $show);
+            $maxshowpage = $pageNumber;
+            $pageNumber = 10;
+            $page = 1;
+            if (isset($_GET["page"])) {
+              $page = $_GET["page"];
+              $page == $page = 0 ? 1 : $page;
+            }
+            $countDiv = intdiv($page - 1, $pageNumber);
+            $start_i = ($countDiv * $pageNumber);
+            $sectionGroup = (($countDiv * $pageNumber) + $pageNumber);
+            $end_i =  $sectionGroup > $maxshowpage ? $maxshowpage : $sectionGroup;
+
+            for ($i = $start_i; $i < $end_i; $i++) {
+              if ($i != 0 && $i == $start_i) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
+              <?php
+                }
+                if (isset($_GET["keyword"])) {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <?php
+                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                      ?>
+                  <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
+                }
               }
+            }
+            ?>
+      <?php
+             $nextPage = "#";
+            if ($page < $maxshowpage) {
+              
+              $nextPage = "?page=" . ($page + 1);
             }
 
             ?>

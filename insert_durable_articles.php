@@ -70,10 +70,16 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 ">
+                  <div class="col-6 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
                       <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                    </div>
+                    <div class="col-6 ">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">เลขที่เอกสาร :</label>
+                        <input class="form-control" type="text" placeholder="document_no" name="document_no">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -330,17 +336,17 @@ require "service/connection.php";
                             </div>
                             <br>
                             <div class="row">
-                              <div class="col-6">
+                              <div class="col-4">
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                   <div class="fileinput-new thumbnail img-raised">
-                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                                    <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png" alt="..." id="image-preview">
                                   </div>
                                   <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                                   <div>
                                     <span class="btn btn-raised btn-round btn-default btn-file">
-                                      <br>
-                                      <div class="col-2 offset-1">
-                                        <input type="file" name="..." />
+
+                                      <div class="col-2">
+                                        <input type="file" name="image" id="image" />
                                       </div>
                                     </span>
                                   </div>

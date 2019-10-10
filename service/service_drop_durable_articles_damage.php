@@ -4,6 +4,9 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['damage_id'])) {
     $damage_id = $_POST["damage_id"];
 
+    $log = "ลบข้อมูลการชำรุดครุภัณฑ์ รหัส " . $damage_id;
+    logServer($conn, $log);
+
     $sqlUpdate = "UPDATE durable_articles_damage SET status = 0 WHERE id = " . $damage_id;
     if (mysqli_query($conn, $sqlUpdate)) {
         header('Location: ../display_durable_articles_damage.php?message=ลบข้อมูลสำเร็จ');

@@ -7,6 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO unit(name)";
     $sql .= " VALUES('$name')";
 
+    $log = "เพิ่มข้อมูลหน่วยนับ ";
+    logServer($conn, $log);
+
     if (mysqli_query($conn, $sql)) {
         header('Location: ../insert_unit.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {

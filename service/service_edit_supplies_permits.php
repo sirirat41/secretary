@@ -13,6 +13,10 @@ if(isset($_GET["id"])) {
     $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
+    $log = "แก้ไขข้อมูลการยืม-คืนวัสดุสิ้นเปลือง รหัส " . $id ;
+    logServer($conn, $log);
+
+  
     mysqli_query($conn, $updatepermit) or die("Cannot update permits". mysqli_error($conn));
     header('Location: ../display_supplies_permits.php?message=แก้ไขข้อมูลสำเร็จ');
 }

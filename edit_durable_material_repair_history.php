@@ -222,42 +222,6 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-  <script src="js/secretary.js"></script>
-
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -291,37 +255,36 @@ if (isset($_GET["id"])) {
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                          <th>ลำดับ</th>
-                          <th>วันที่ซ่อม</th>
-                          <th>รหัสวัสดุ(ชำรุด)</th>
-                          <th>ลักษณะ/คุณสมบัติ</th>
-                          <th>ชื่อวัสดุ</th>
-                          <th>การทำงาน</th>
+                          <td>รูปภาพ</td>
+                          <td>ลำดับ</td>
+                          <td>เลขที่ใบเบิก</td>
+                          <td>รหัสวัสดุ</td>
+                          <td>ประเภท</td>
+                          <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
                       <tbody id="modal-material-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-
-
-                        $sqlSelect = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
-                        $sqlSelect .= " WHERE r.damage_id = m.id and r.status = 1";
+                   
+                        
+                        $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (m.code like '%$keyword%' or m.name like '%$keyword%')";
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
-                        //echo $sqlSelect;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
                           <tr class="text-center">
-                            <td><?php echo $row["seq"]; ?></td>
-                            <td><?php echo $row["repair_date"]; ?></td>
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                            <td><?php echo thainumDigit($row["seq"]); ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo $row["attribute"]; ?></td>
-                            <td><?php echo $row["name"]; ?></td>
+                            <td><?php echo thainumDigit($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -363,32 +326,26 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
-    var itemPerPage = 10;
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
+    var currentPage = 1;
+    var maxPage = 1;
+    var showPageSection = 10; //จำนวนเลขหน้า
+    var numberOfPage;
     $('#form-search').on('submit', function(e) {
         e.preventDefault();
         search();
       })
     function search() {
-      $('#pagination').empty();
-          $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-          $('<li class="page-item" id="next-page"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-        
-        
-      var keyword = $('#input-search').val().trim();
+       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material_repair.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {
-          
           jsonData = data;
+          numberOfPage = data.length / itemPerPage;
           changePage(1);
-          $('new-page').removeClass();
-          var numberOfPage = Math.ceil(data.length / itemPerPage);
-          for (let i = 0; i < numberOfPage; i++) {
-            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
-          }
         },
         error: function(error) {
           console.log(error);
@@ -396,6 +353,8 @@ if (isset($_GET["id"])) {
       })
     }
     function changePage(page) {
+      currentPage = page;
+
       var body = $('#modal-material-body');
       body.empty();
       var max = page * itemPerPage;
@@ -405,25 +364,80 @@ if (isset($_GET["id"])) {
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var picture = item["picture"];
         var seq = item["seq"];
-        var repair_date = item["repair_date"];
+        var bill_no = item["bill_no"];
         var code = item["code"];
-        var attribute = item["attribute"];
-        var name = item["name"];
-        $('<td>' + seq + '</td>').appendTo(tr);
-        $('<td>' + repair_date + '</td>').appendTo(tr);
-        $('<td>' + code + '</td>').appendTo(tr);
-        $('<td>' + attribute + '</td>').appendTo(tr);
-        $('<td>' + name + '</td>').appendTo(tr);
+        var type = item["name"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
+        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
+    
       }
     }
 
+    function nextPage() {
+      if (currentPage < maxPage) {
+        currentPage = currentPage + 1;
+        changePage(currentPage);
 
+    }
+}
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage = currentPage - 1;
+        changePage(currentPage);
+      }
+    }
+    function generatePagination() {
+      $('#pagination').empty();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+      $('new-page').removeClass();
+      maxPage = numberOfPage;
+
+      var countDiv = parseInt((currentPage - 1) / showPageSection);
+      var start_i = (countDiv * showPageSection);
+      var sectionGroup = ((countDiv * showPageSection) + showPageSection);
+      var end_i = sectionGroup > maxPage ? maxPage : sectionGroup;
+
+      for (let i = start_i; i < end_i; i++) {
+        if (i != 0 && i == start_i) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        if ((i + 1) < maxPage && i == end_i - 1) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+      }
+
+    }
+
+    function thaiNumber(num) {
+      var array = {
+        "1": "๑",
+        "2": "๒",
+        "3": "๓",
+        "4": "๔",
+        "5": "๕",
+        "6": "๖",
+        "7": "๗",
+        "8": "๘",
+        "9": "๙",
+        "0": "๐"
+      };
+      var str = num.toString();
+      for (var val in array) {
+        str = str.split(val).join(array[val]);
+      }
+      return str;
+    }
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
-      $('body').removeClass('modal-open');
-$('.modal-backdrop').remove();
       $('#repair_id').val(id);
     }
   </script>

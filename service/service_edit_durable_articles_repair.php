@@ -8,6 +8,10 @@ if(isset($_GET["id"])) {
     $repairdate = $_POST["repair_date"];
     $damageid = $_POST["damage_id"];
     $place = $_POST["place"];
+
+    $log = "แก้ไขข้อมูลการซ่อมครุภัณฑ์ รหัส " . $id ;
+    logServer($conn, $log);
+    
     $updaterepair = "UPDATE durable_articles_repair SET seq = $seq,";
     $updaterepair .= " repair_date = '$repairdate', damage_id = $damageid , place = '$place' ";
     $updaterepair .= " WHERE id = $id";

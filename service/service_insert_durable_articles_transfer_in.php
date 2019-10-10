@@ -10,10 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO durable_articles_transfer_in(document_no ,product_id ,transfer_from ,transfer_date, flag)";
         $sql .= " VALUES($document, $productId , '$transferfrom', '$transferdate', '$flag')"; 
-
+        $log = "เพิ่มข้อมูลการโอนเข้าครุภัณฑ์";
+        logServer($conn, $log);
         if (mysqli_query($conn, $sql)) {
             header('Location: ../display_durable_articles_transfer_in.php?message=เพิ่มข้อมูลสำเร็จ');
-            $sqlUpdate ="UPDATE durable_articles SET status = 5 WHERE id = $productid";
+            $sqlUpdate ="UPDATE durable_articles SET status = 5 WHERE id = $productId";
             mysqli_query($conn ,$sqlUpdate);
         } else {
             header('Location: ../display_durable_articles_transfer_in.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');

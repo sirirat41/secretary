@@ -68,7 +68,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_edit_supplies.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
+              <form method="post" action="service/service_edit_supplies_purchase.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group">
@@ -124,40 +124,13 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" id="type" value="<?php echo $item["type"]; ?>">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM durable_material_type";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          if ($item["type"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-                          } else {
-                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                          }
-                        }
-                        ?>
-                      </select>
+                      <label for="bill_no">เลขที่ใบเบิก</label>
+                      <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
                     </div>
                   </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="attribute">คุณลักษณะ</label>
-                      <input type="text" class="form-control" name="attribute" id="inputattribute" aria-describedby="attribute" placeholder="attribute" id="attribute" value="<?php echo $item["attribute"]; ?>">
-                    </div>
                   </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="name">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="name" name="name" id="name" value="<?php echo $item["name"]; ?>">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
+                  <div class="row">
+                  <div class="col-8">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">หน่วยงาน</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
@@ -175,13 +148,42 @@ if (isset($_GET["id"])) {
                       </select>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="form-group">
-                      <label for="bill_no">เลขที่ใบเบิก</label>
-                      <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                      <label for="price">จำนวนเงิน</label>
+                      <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                 </div>
+                  <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label for="supplies_id">ชื่อวัสดุ</label>
+                      <div class="row">
+                        <div class="col-md-10 ">
+                          <select class="form-control" name="supplies_id"  id="supplies_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM supplies_stock ";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["unit"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["supplies_name"] . '</option>';
+                              } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
+                            }
+                          }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group">
@@ -200,15 +202,7 @@ if (isset($_GET["id"])) {
                         ?>
                       </select>
                     </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="price">จำนวนเงิน</label>
-                      <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
                     </div>
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
@@ -225,12 +219,6 @@ if (isset($_GET["id"])) {
                         }
                         ?>
                       </select>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="status">สถานะ</label>
-                      <input type="text" class="form-control" name="status" id="inputstatus" aria-describedby="status" placeholder="status" value="<?php echo $item["status"]; ?>">
                     </div>
                   </div>
                 </div>

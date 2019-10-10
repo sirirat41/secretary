@@ -11,6 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO durable_articles_sell(product_id, buyer, sell_date, document_no, flag)";
     $sql .= " VALUES($productid, '$buyer', '$selldate', '$documentno', '$flag')";
 
+    $log = "เพิ่มข้อมูลการขายทอดตลาดครุภัณฑ์";
+    logServer($conn, $log);
     if (mysqli_query($conn, $sql)) {
         header('Location: ../display_durable_articles_sell.php?message=เพิ่มข้อมูลสำเร็จ');
         $sqlUpdate ="UPDATE durable_articles SET status = 9 WHERE id = $productid";

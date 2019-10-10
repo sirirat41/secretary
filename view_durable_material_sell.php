@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*, m.code ,m.picture FROM durable_material_sell as s,durable_material as m WHERE s.id = $id";
+  $sql = "SELECT s.*, m.code ,m.picture ,m.attribute,m.name FROM durable_material_sell as s,durable_material as m WHERE s.id = $id";
   $sql .= " and s.product_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -76,6 +76,18 @@ if (isset($_GET["id"])) {
                         <?php echo thainumDigit($row["code"]); ?>
                       </div>
                     </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
+                      <?php echo thainumDigit($row["attribute"]); ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                      <?php echo thainumDigit($row["name"]); ?>
+                    </div>
+                  </div>
                     <div class="row">
                       <div class="col-md-6">
                         <label class="text-dark" for="sell_date">วันที่ขาย : </label>

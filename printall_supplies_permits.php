@@ -74,8 +74,8 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT p.*, m.code ,m.attribute ,m.name FROM supplies_permits as p,supplies as m";
-                  $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1";
+                  $sqlSelect = "SELECT p.*, m.code ,ss.attribute ,ss.supplies_name FROM supplies_permits as p,supplies as m ,supplies_stock as ss";
+                  $sqlSelect .= " WHERE m.supplies_id = ss.id and p.product_id = m.id and p.status = 1";
                   if (isset($_GET["keyword"])) {
                     $keyword = $_GET["keyword"];
                     $sqlSelect .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%')";
@@ -98,7 +98,7 @@ require "service/connection.php";
                         <font size="2"><?php echo $row["attribute"]; ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo $row["name"]; ?></font>
+                        <font size="2"><?php echo $row["supplies_name"]; ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo $row["permit_date"]; ?></font>

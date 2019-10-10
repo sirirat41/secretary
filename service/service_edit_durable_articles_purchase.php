@@ -7,9 +7,10 @@ if (isset($_GET['id'])) {
     $orderBy = $_POST["order_by"];
     $receiver = $_POST["receiver"];
     $receiviceAddress = $_POST["receive_address"];
+    $document_no = $_POST["document_no"];
 
     $updatePurchase = "UPDATE durable_articles_purchase SET order_no = '$orderNo',";
-    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_address = '$receiviceAddress'";
+    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_address = '$receiviceAddress', document_no = '$document_no'";
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
@@ -39,12 +40,14 @@ if (isset($_GET['id'])) {
     $storage = $_POST["storage"];
     $moneyType = $_POST["money_type"];
     $acquiring = $_POST["acquiring"];
-    $bookNo = $_POST["book_no"];
+
+    $log = "แก้ไขข้อมูลการจัดซื้อครุภัณฑ์ รหัส " . $id ;
+    logServer($conn, $log);
 
     $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
     $updateArticles .= " type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateArticles .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";
-    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', book_no = '$bookNo', picture = '$imgeName'";
+    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', picture = '$imgeName'";
     $updateArticles .= " WHERE id = $id";
     mysqli_query($conn, $updateArticles) or die("Cannot update articles" . mysqli_error($conn));
     header('Location: ../display_durable_articles.php?message=แก้ไขข้อมูลสำเร็จ');

@@ -28,4 +28,13 @@ if (!isset($_SESSION["user_type"])) {
         $num);
     };
 
-?>
+    function logServer($conn ,$action) {
+        $userID = $_SESSION["user_id"];
+        $sql = "INSERT INTO log(user_id, action) VALUES($userID ,'$action')";
+        mysqli_query($conn ,$sql);
+    }
+    function month($month){
+        return str_replace(array( '01' , '02' , '03' , '04' , '05' , '06' , '07' ,'08' , '09' , '10' , '11' , '12' ),
+        array( 'ม.ค.' , 'ก.พ.' , 'มี.ค.' , 'เม.ษ.' , 'พ.ค.' , 'มิ.ย.' , 'ก.ค.' ,'ส.ค.' , 'ก.ย.' , 'ต.ค.', 'พ.ย.' , 'ธ.ค.' ),
+        $month);
+    };
