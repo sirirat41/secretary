@@ -173,7 +173,7 @@ require "service/connection.php";
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        echo '<option value="' . $row["id"] . '">' . $row["bulding"] . $row["floor"] . '</option>';
                       }
                       ?>
                     </select>
