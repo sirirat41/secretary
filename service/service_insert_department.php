@@ -8,6 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bulding = $_POST["bulding"];
     $floor = $_POST["floor"];
 
+    $log = "เพิ่มข้อมูลหน่วยงาน " . $fullname ;
+    logServer($conn, $log);
 
     $target_dir = "../depart/";
     $imgeName = $_FILES["image"]["name"];

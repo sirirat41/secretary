@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการโอนออก(ครุภัณฑ์)</h6>
+                  <i class="fas fa-business-time"></i> ข้อมูลการโอนออก(วัสดุ)</h6>
             </div>
             </nav>
             <form>
@@ -72,7 +72,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
+                        <label class="text-dark" for="code">รหัสวัสดุ : </label>
                         <?php echo thainumDigit($row["code"]); ?>
                       </div>
                     </div>
@@ -84,7 +84,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="name">ชื่อครุภัณฑ์ : </label>
+                        <label class="text-dark" for="name">ชื่อวัสดุ : </label>
                         <?php echo thainumDigit($row["name"]); ?>
                       </div>
                     </div>

@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT da.*, m.code ,m.picture FROM durable_material_damage as da ,durable_material as m WHERE da.id = $id";
-  $sql .= " and da.product_id = m.id and m.status = 1 ";
+  $sql = "SELECT da.*, m.code ,m.picture ,m.attribute ,m.name  FROM durable_material_damage as da ,durable_material as m WHERE da.id = $id";
+  $sql .= " and da.product_id = m.id and da.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -76,6 +76,18 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+                      <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
+                      <?php echo thainumDigit($row["attribute"]); ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="name">ชื่อวัสดุ : </label>
+                      <?php echo thainumDigit($row["name"]); ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
                       <label class="text-dark" for="damage_date">วันที่ชำรุด : </label>
                       <?php echo thainumDigit($row["damage_date"]); ?>
                     </div>
@@ -90,6 +102,7 @@ if (isset($_GET["id"])) {
           </form>
         </div>
       </div>
+    </div>
     </div>
   </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->

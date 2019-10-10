@@ -9,6 +9,10 @@ if(isset($_GET["id"])) {
     $selldate = $_POST["sell_date"];
     $documentno = $_POST["document_no"];
     $flag = $_POST["flag"];
+
+    $log = "แก้ไขข้อมูลการขายทอดตลาดวัสดุคงทน รหัส " . $id ;
+    logServer($conn, $log);
+
     $updatesell = "UPDATE durable_material_sell SET product_id = $productid,";
     $updatesell .= " buyer = '$buyer', sell_date = '$selldate', document_no = '$documentno', flag = '$flag' ";
     $updatesell .= " WHERE id = $id";

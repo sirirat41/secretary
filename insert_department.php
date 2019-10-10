@@ -105,14 +105,14 @@ require "service/connection.php";
                   <div class="col-4">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png"  width="100"  alt="...">
+                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png" alt="..." id="image-preview">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>
                         <span class="btn btn-raised btn-round btn-default btn-file">
-                        
+
                           <div class="col-2">
-                            <input type="file" name="image" />
+                            <input type="file" name="image" id="image" />
                           </div>
                         </span>
                       </div>
@@ -133,11 +133,11 @@ require "service/connection.php";
                 </div>
             </div>
           </div>
-         
+
         </div>
-      </div> 
-    </form>
-    <br>
+      </div>
+      </form>
+      <br>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
@@ -225,12 +225,29 @@ require "service/connection.php";
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
       ?>
+
     })
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('#image-preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#image").change(function() {
+      readURL(this);
+    });
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

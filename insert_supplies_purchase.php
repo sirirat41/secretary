@@ -55,7 +55,7 @@ require "service/connection.php";
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_supplies_purchase.php" id="form_insert">
+              <form method="post" action="service/service_insert_supplies.php" id="form_insert">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">

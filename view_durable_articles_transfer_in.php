@@ -84,7 +84,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="model">ชื่อครุภัณฑ์ : </label>
+                        <label class="text-dark" for="model">รุ่นแบบ : </label>
                         <?php echo thainumDigit($row["model"]); ?>
                       </div>
                     </div>

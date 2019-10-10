@@ -15,7 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO supplies_purchase(product_id ,order_no ,purchase_date ,seller_id ,order_by ,receiver ,receive_date ,receive_address ,number )";
         $sql .= " VALUES($productId ,'$orderno' ,'$purchasedate' ,$sellerid ,'$orderby' ,'$receiver' ,'$receivedate' ,'$receiveaddress' ,$number)"; 
 
-        
+        $log = "เพิ่มข้อมูลการจัดซื้อวัสดุสิ้นเปลือง";
+        logServer($conn, $log);
+
         if (mysqli_query($conn, $sql)) {
             header('Location: ../display_supplies_purchase.php?message=เพิ่มข้อมูลสำเร็จ');
         } else {

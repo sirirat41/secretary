@@ -12,6 +12,9 @@ if(isset($_GET["id"])) {
     $updatepermit .= " seq = $seq , repair_date = '$repair_date', place = '$place'";
     $updatepermit .= " WHERE id = $id";
   
+    $log = "แก้ไขข้อมูลการซ่อมวัสดุคงทน รหัส " . $id ;
+    logServer($conn, $log);
+
     mysqli_query($conn, $updatepermit) or die("Cannot update repair". mysqli_error($conn));
     header('Location: ../display_durable_material_repair.php?message=แก้ไขข้อมูลสำเร็จ');
 }

@@ -16,6 +16,9 @@ if(isset($_GET["id"])) {
     $updateuser .= " password = '$password', surname = '$surname', lastname = '$lastname', tel = '$tel', position = '$position', email = '$email', u_type = '$utype'";
     $updateuser .= " WHERE id = $id";
   
+    $log = "แก้ไขข้อมูลผู้ใช้งาน ประเภทผู้ใช้ชื่อ " . $username ;
+    logServer($conn, $log);
+
     mysqli_query($conn, $updateuser) or die("Cannot update user". mysqli_error($conn));
     header('Location: ../display_user.php?message=แก้ไขข้อมูลสำเร็จ');
 }

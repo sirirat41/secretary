@@ -145,10 +145,12 @@ $show = 10;
   <script src="js/secretary.js"></script>
 
   <script>
-    var itemPerPage = 1;
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
+    var showPageSection = 10; //จำนวนเลขหน้า
+    var numberOfPage;
     $(document).ready(function() {
       selectedDepartment();
       $('#form-search').on('submit', function(e) {
@@ -196,16 +198,19 @@ $show = 10;
         $('#dis').text(' แสดงข้อมูลวัสดุ');
       } else {
         $('#dis').text(' แสดงข้อมูลครุภัณฑ์');
+        generatePagination();
 
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
@@ -214,9 +219,7 @@ $show = 10;
     }
 
     function selectedDepartment() {
-      $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+
       var dep = "<?php echo $_GET["id"]; ?>";
       var item = $('#selected').find(':selected').val();
       var keyword = $('#input-search').val().trim();
@@ -225,21 +228,63 @@ $show = 10;
         dataType: 'JSON',
         success: function(response) {
           jsonData = response;
+          numberOfPage = response.length / itemPerPage;
           changePage(1);
-          $('new-page').removeClass();
-          var numberOfPage = response.length / itemPerPage;
-          maxPage = numberOfPage;
-          for (let i = 0; i < numberOfPage; i++) {
-            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
-          }
+
         },
         error: function(error) {
           console.log(error);
+
         }
       })
     }
-    
- 
+
+
+    function generatePagination() {
+      $('#pagination').empty();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+      $('new-page').removeClass();
+      maxPage = numberOfPage;
+
+      var countDiv = parseInt((currentPage - 1) / showPageSection);
+      var start_i = (countDiv * showPageSection);
+      var sectionGroup = ((countDiv * showPageSection) + showPageSection);
+      var end_i = sectionGroup > maxPage ? maxPage : sectionGroup;
+
+      for (let i = start_i; i < end_i; i++) {
+        if (i != 0 && i == start_i) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        if ((i + 1) < maxPage && i == end_i - 1) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+      }
+
+    }
+
+    function thaiNumber(num) {
+      var array = {
+        "1": "๑",
+        "2": "๒",
+        "3": "๓",
+        "4": "๔",
+        "5": "๕",
+        "6": "๖",
+        "7": "๗",
+        "8": "๘",
+        "9": "๙",
+        "0": "๐"
+      };
+      var str = num.toString();
+      for (var val in array) {
+        str = str.split(val).join(array[val]);
+      }
+      return str;
+    }
+
+    var thaiNum = thaiNumber(12345);
   </script>
 
 </body>

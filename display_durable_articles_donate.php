@@ -75,11 +75,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>เลขที่เอกสาร</th>
                         <th>วันที่บริจาค</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อผู้บริจาค</th>
+                        <th>รุ่นแบบ</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -90,7 +89,7 @@ $show = 10;
                       $page = 1;
                     }
                     $start = ($page - 1) * $show;
-                    $sqlSelect = "SELECT do.*, a.code, a.attribute FROM durable_articles_donate as do, durable_articles as a";
+                    $sqlSelect = "SELECT do.*, a.code, a.attribute,a.model FROM durable_articles_donate as do, durable_articles as a";
                     $sqlSelect .= " WHERE do.product_id = a.id and do.status = 1";
                     if (isset($_GET["keyword"])) {
                       $keyword = arabicnumDigit($_GET["keyword"]);
@@ -102,11 +101,10 @@ $show = 10;
                       $id = $row["id"]
                       ?>
                       <tr class="text-center">
-                        <td><?php echo thainumDigit($row["document_no"]); ?></td>
                         <td><?php echo thainumDigit($row["receive_date"]); ?></td>
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo $row["attribute"]; ?></td>
-                        <td><?php echo thainumDigit($row["donate_name"]); ?></td>
+                        <td><?php echo thainumDigit($row["model"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_donate.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -157,21 +155,44 @@ $show = 10;
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
-            for ($i = 0; $i < $pageNumber; $i++) {
-              if (isset($_GET["keyword"])) {
+            $maxshowpage = $pageNumber;
+            $pageNumber = 10;
+            $page = 1;
+            if (isset($_GET["page"])) {
+              $page = $_GET["page"];
+              $page == $page = 0 ? 1 : $page;
+            }
+            $countDiv = intdiv($page - 1, $pageNumber);
+            $start_i = ($countDiv * $pageNumber);
+            $sectionGroup = (($countDiv * $pageNumber) + $pageNumber);
+            $end_i =  $sectionGroup > $maxshowpage ? $maxshowpage : $sectionGroup;
+
+            for ($i = $start_i; $i < $end_i; $i++) {
+              if ($i != 0 && $i == $start_i) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keywprd"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
+              <?php
+                }
+                if (isset($_GET["keyword"])) {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <?php
+                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                      ?>
+                  <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
+                }
               }
             }
             ?>
-            <?php
-            if ($page < $pageNumber) {
-              $nextPage = "#";
+        <?php
+             $nextPage = "#";
+            if ($page < $maxshowpage) {
+              
               $nextPage = "?page=" . ($page + 1);
             }
 

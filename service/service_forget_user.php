@@ -48,6 +48,9 @@ if ($_POST["email"]) {
             $mail->Body    = "สวัสดีคุณ $surname หากต้องการแก้ไขรหัสผ่านของท่านในระบบ Secretary กรุณา <a href='http://localhost:/secretary/confirmpassword.php?id=$id&email=$email'>คลิกที่นี่</a>";
 
             $mail->send();
+
+            $log = "ลืมรหัสผ่าน " . $username ;
+            logServer($conn, $log);
             header('location: ../index.php');
            
         } catch (Exception $e) {

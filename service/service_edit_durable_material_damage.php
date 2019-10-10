@@ -7,6 +7,9 @@ if(isset($_GET['id'])) {
     $damageDate = $_POST["damage_date"];
     $flag = $_POST["flag"];
 
+    $log = "แก้ไขข้อมูลการชำรุดวัสดุคงทน รหัส " . $id ;
+    logServer($conn, $log);
+
     $updatePurchase = "UPDATE durable_material_damage SET product_id = '$productId',";
     $updatePurchase .= " damage_date = '$damageDate', flag = '$flag'";
     $updatePurchase .= " WHERE id = $id";

@@ -5,6 +5,10 @@ if(isset($_GET['id'])) {
     $id = $_GET["id"];
     $name = $_POST["name"];
 
+
+    $log = "แก้ไขข้อมูลหน่วยงาน รหัส " . $id ;
+    logServer($conn, $log);
+
     $updateUnit = "UPDATE unit SET name = '$name'";
     $updateUnit .= " WHERE id = $id";
     mysqli_query($conn, $updateUnit) or die("Cannot update unit: " . mysqli_error($conn));

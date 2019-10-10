@@ -365,7 +365,7 @@ $show=10;
         var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
-        var type = item["type"];
+        var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + seq + '</td>').appendTo(tr);
         $('<td>' + bill_no + '</td>').appendTo(tr);

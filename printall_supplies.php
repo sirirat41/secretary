@@ -29,16 +29,24 @@ require "service/connection.php";
   </style>
 
 </head>
-
-<body onLoad="window.print()">
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    </nav>
+
     <!-- End of Topbar -->
 
+
     <!-- Begin Page Content -->
+
+    <body onLoad="window.print()">
+      <div class="container-fluid">
+
+      </div>
+  </div>
+
+  <body style="padding: 16px">
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
@@ -78,13 +86,13 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT s.*, t.name as durable_articles_type_name , d.fullname ,un.name as unit_name FROM supplies as s, durable_material_type as t, department as d, unit as un";
-                  $sqlSelect .= " WHERE s.type = t.id and s.department_id = d.id and s.unit = un.id and s.status = 1";
+                  $sqlSelect = "SELECT s.* , d.fullname ,un.name ,ss.supplies_name ,ss.type,ss.attribute ,t.name as tname FROM supplies as s, durable_material_type as t, department as d, unit as un ,supplies_stock as ss";
+                  $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.id and s.department_id = d.id and s.unit = un.id and s.status = 1";
                   if (isset($_GET["keyword"])) {
                     $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                    $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%')";
                   }
-                  //echo $sqlSelect;
+                  // echo $sqlSelect;
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"]
@@ -100,16 +108,16 @@ require "service/connection.php";
                         <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["durable_articles_type_name"]); ?></font>
+                        <font size="2"><?php echo thainumDigit($row["tname"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["unit_name"]); ?></font>
+                        <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
+                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo thainumDigit($row["fullname"]); ?></font>
