@@ -69,10 +69,16 @@ require "service/connection.php";
                 </div>
               </div>
               <div class="row">
-                <div class="col-12 ">
+                <div class="col-6 ">
                   <div class="form-group">
                     <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
                     <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                  </div>
+                </div>
+                <div class="col-6 ">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">เลขที่เอกสาร :</label>
+                    <input class="form-control" type="text" placeholder="document_no" name="document_no">
                   </div>
                 </div>
               </div>
@@ -178,7 +184,8 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                    <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no">
+                    <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no" id="asset_no">
+                    <small style="color: red"> *ตัวอย่าง:100000312000</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -232,11 +239,17 @@ require "service/connection.php";
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
                     <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
-                      <option value="0">1</option>
-                      <option value="1">2</option>
-                      <option value="2">3</option>
-                      <option value="3">4</option>
-                      <option value="4">5</option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
                     </select>
                   </div>
                 </div>
@@ -558,7 +571,7 @@ require "service/connection.php";
           function search() {
             var kw = $("#keyword").val();
             $.ajax({
-              url: 'service/service_search_json_durable_articles.php',
+              url: 'service/service_search_json_durables_articles.php',
               dataType: 'JSON',
               type: 'GET',
               data: {
@@ -572,21 +585,30 @@ require "service/connection.php";
               }
             })
           }
-          function readURL(input) {
-            if (input.files && input.files[0]) {
-              var reader = new FileReader();
+          $(document).ready(function() {
+            $('#asset_no').focusout(function() {
+              var assetNo = $('#asset_no').val();
+              $.ajax({
+                url: 'service/service_check.php',
+                dataType: 'JSON',
+                type: 'POST',
+                data: {
+                  asset_no: assetNo
+                },
+                success: function(data) {
+                  if (!data.result) {
+                    alert("มีข้อมูลซ้ำ" + data.data);
+                  }
+                  console.log(data);
+                },
+                error: function(error) {
+                  console.log(error);
+                }
 
-              reader.onload = function(e) {
-                $('#image-preview').attr('src', e.target.result);
-              }
+              })
 
-              reader.readAsDataURL(input.files[0]);
-            }
-          }
-
-          $("#image").change(function() {
-            readURL(this);
-          });
+            })
+          })
         </script>
 </body>
 

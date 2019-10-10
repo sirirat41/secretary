@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $receiver = $_POST["receiver"];
     $receive_date = $_POST["receive_date"];
     $receive_address = $_POST["receive_address"];
+    $document_no = $_POST["document_no"];
 
     $pattern = convertPattern($articles_pattern);
     $sqlCheck = "SELECT * FROM durable_articles WHERE code like '$pattern'";
@@ -87,8 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($conn, $sqlInsertArticles) or die(mysqli_error($conn));
         $productID = mysqli_insert_id($conn);
 
-        $sqlInsertPurchase = "INSERT INTO durable_articles_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, status)";
-        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date' , $seller_id, '$receiver', '$order_by', '$receive_date', '$receive_address', $number, $status)";
+        $sqlInsertPurchase = "INSERT INTO durable_articles_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, status, document_no)";
+        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date' , $seller_id, '$receiver', '$order_by', '$receive_date', '$receive_address', $number, $status, '$document_no')";
 
         mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
     }

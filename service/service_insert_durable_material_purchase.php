@@ -11,9 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $receivedate = $_POST["receive_date"];
         $receiveaddress = $_POST["receive_address"];
         $number = $_POST["number"];
+        $document_no = $_POST["document_no"];
 
-        $sql = "INSERT INTO durable_material_purchase(product_id ,order_no ,purchase_date ,seller_id ,order_by ,receiver ,receive_date ,receive_address ,number )";
-        $sql .= " VALUES($productId ,'$orderno' ,'$purchasedate' ,$sellerid ,'$orderby' ,'$receiver' ,'$receivedate' ,'$receiveaddress' ,$number)"; 
+        $sql = "INSERT INTO durable_material_purchase(product_id ,order_no ,purchase_date ,seller_id ,order_by ,receiver ,receive_date ,receive_address ,number, document_no)";
+        $sql .= " VALUES($productId ,'$orderno' ,'$purchasedate' ,$sellerid ,'$orderby' ,'$receiver' ,'$receivedate' ,'$receiveaddress' ,$number, '$document_no')"; 
 
         $log = "เพิ่มข้อมูลการจัดซื้อวัสดุคงทน";
         logServer($conn, $log);

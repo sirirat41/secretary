@@ -2,8 +2,12 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor , pu.purchase_date FROM durable_material as a ,durable_material_type as t , seller as se , department as d , unit as un , durable_material_purchase as pu WHERE a.id = $id and pu.id = $id";
-  $sql .= " and a.type = t.id and a.seller_id = se.id and a.department_id = d.id and a.unit = un.id and pu.id";
+  $sql = "SELECT *, s.name as seller_name, t.name as durable_material_type_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no FROM durable_material as a 
+  LEFT JOIN durable_material_purchase as p ON a.id = p.product_id 
+  LEFT JOIN seller as s ON a.seller_id = s.id 
+  LEFT JOIN department as d ON a.department_id = d.id 
+  LEFT JOIN durable_material_type as t ON a.type = t.id
+  WHERE a.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -159,16 +163,16 @@ $monthDay = ($dateMouth - $day) + 1;
         <label class="text" for="seller_id">
           <h7>ชื่อผู้ขาย :</h7>
         </label>
-        <?php echo $row["seller_name"]; ?>
+        <?php echo $row["seller_name"] == "" ? "<ไม่มีข้อมูล>" : $row["seller_name"]; ?>
       </div>
       <div class="col-sm-6">
         <label class="text" for="seller_tel">
           <h7>โทรศัพท์/FAX :</h7>
         </label>
-        <?php echo thainumDigit($row["seller_tel"]); ?>/
+        <?php echo $row["seller_tel"] == "" ? "<ไม่มีข้อมูล>" : $row["seller_tel"]; ?>/
         <label class="text" for="seller_fax">
         </label>
-        <?php echo thainumDigit($row["seller_fax"]); ?>
+        <?php echo $row["seller_fax"] == "" ? "<ไม่มีข้อมูล>" : $row["seller_fax"]; ?>
       </div>
     </div>
     <style type="text/css" media="print">
@@ -181,39 +185,48 @@ $monthDay = ($dateMouth - $day) + 1;
       <div class="row">
         <div class="col-12">
           <div class="table-responsive">
-            <table class='border-color-gray' align="left" cellpadding="5" cellspacing="5" border="1" width="100%">
-              <thead>
-                <tr class="text-center">
-                  <th>วัน/เดือน/ปี</th>
-                  <th>เลขที่เอกสาร</th>
-                  <th>รายการ</th>
-                  <th>จำนวนหน่วย</th>
-                  <th>ราคาต่อหน่วย/ชุด/กลุ่ม</th>
-                  <th>มูลค่ารวม</th>
-                  <th>อายุการใช้งาน</th>
-                  <th>อัตราค่าเสื่อมราคา</th>
-                  <th>ค่าเสื่อมราคาประจำปี</th>
-                  <th>ค่าเสื่อมราคาสะสม</th>
-                  <th>มูลค่าสุทธิ</th>
-                  <th>หมายเหตุ</th>
-                </tr class="text-center">
-              </thead>
+            <?php
+            //echo "purchasedate => ".$row["purchase_date"];
+            if ($row["purchase_date"] != "" && $row["purchase_date"] != "0000-00-00") {
+
+              ?>
+              <table class='border-color-gray' align="left" cellpadding="5" cellspacing="5" border="1" width="100%">
+                <thead>
+                  <tr class="text-center">
+                    <th>วัน/เดือน/ปี</th>
+                    <th>เลขที่เอกสาร</th>
+                    <th>รายการ</th>
+                    <th>จำนวนหน่วย</th>
+                    <th>ราคาต่อหน่วย/ชุด/กลุ่ม</th>
+                    <th>มูลค่ารวม</th>
+                    <th>อายุการใช้งาน</th>
+                    <th>อัตราค่าเสื่อมราคา</th>
+                    <th>ค่าเสื่อมราคาประจำปี</th>
+                    <th>ค่าเสื่อมราคาสะสม</th>
+                    <th>มูลค่าสุทธิ</th>
+                    <th>หมายเหตุ</th>
+                  </tr class="text-center">
+                </thead>
 
           </div>
           <thead>
             <tr class="text-center">
-              <td><?php $dayY =  $purchase->format('d m Y');
-                  echo thainumDigit($dayY);
-                  ?>
+              <td><?php $dayY =  $purchase->format('d') . "\n";
+                    $month =  $purchase->format('m') . "\n";
+                    $year =  $purchase->format('Y');
+                    echo thainumDigit($dayY);
+                    echo month($month);
+                    echo thainumDigit($year);
+                    ?>
               </td>
-              <td></td>
+              <td> <?php echo thainumDigit($row["document_no"] . "<br>"); ?></td>
               <td> <?php echo thainumDigit($row["attribute"] . "<br>"); ?>** <?php echo thainumDigit($row["name"]); ?>**</td>
               <td>๑</td>
               <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
               <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
               <td><?php echo thainumDigit($row["durable_year"]); ?></td>
               <td><?php $rate = 100 / $row["durable_year"];
-                  echo thainumDigit(number_format($rate, 2, '.', '')); ?>
+                    echo thainumDigit(number_format($rate, 2, '.', '')); ?>
               </td>
               <td></td>
               <td></td>
@@ -222,26 +235,26 @@ $monthDay = ($dateMouth - $day) + 1;
             </tr>
 
             <?php
-            $deptotal = 0;
-            $firstDep = 0;
-            $totalAll = 0;
-            for ($i = 0; $i < $lifetime + 1; $i++) {
+              $deptotal = 0;
+              $firstDep = 0;
+              $totalAll = 0;
+              for ($i = 0; $i < $lifetime + 1; $i++) {
 
-              ?>
+                ?>
               <tr class="text-center">
                 <td width="10%">
                   <?php if ($i == ($lifetime)) {
-                      echo thainumDigit($purchase->format('d'));
-                    } else {
-                      echo thainumDigit($dateMouth);
-                    }
-                    echo thainumDigit(" " . $month . " ");
-                    if ($i >= 1) {
-                      echo thainumDigit($year + $i);
-                    } else {
-                      echo thainumDigit($year);
-                    }
-                    ?>
+                        echo thainumDigit($purchase->format('d'));
+                      } else {
+                        echo thainumDigit($dateMouth);
+                      }
+                      echo thainumDigit(" " . $month . " ");
+                      if ($i >= 1) {
+                        echo thainumDigit($year + $i);
+                      } else {
+                        echo thainumDigit($year);
+                      }
+                      ?>
                 </td>
                 <td></td>
                 <td>คิดค่าเสื่อม</td>
@@ -252,56 +265,56 @@ $monthDay = ($dateMouth - $day) + 1;
                 <td></td>
                 <td>
                   <?php
-                    if ($i == 0) {
-                      $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
-                      $firstDep = number_format($depPerYear, 2, '.', '');
-                      $deptotal += number_format($depPerYear, 2, '.', '');
-                      echo thainumDigit(number_format($depPerYear, 2, '.', ''));
-                    } else if ($i == $lifetime) {
-                      //$NETT = ($netvalue  + $Yearcumu) - 1;
-                      //$deptotal += number_format($NETT, 2, '.', '');
-                      // echo number_format($NETT, 2, '.', '') . "<br>";
-                      $depPerYearM = $total * $rate / 100;
-                      $lastMoney = $depPerYearM - $firstDep;
-                      $deptotal += number_format($lastMoney, 2, '.', '') - 1;
-                      echo thainumDigit(number_format($lastMoney, 2, '.', ''));
-                    } else {
-                      $depPerYearM = $total * $rate / 100;
-                      $deptotal += number_format($depPerYearM, 2, '.', '');
-                      echo thainumDigit(number_format($depPerYearM, 2, '.', ''));
-                    }
+                      if ($i == 0) {
+                        $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
+                        $firstDep = number_format($depPerYear, 2, '.', '');
+                        $deptotal += number_format($depPerYear, 2, '.', '');
+                        echo thainumDigit(number_format($depPerYear, 2, '.', ''));
+                      } else if ($i == $lifetime) {
+                        //$NETT = ($netvalue  + $Yearcumu) - 1;
+                        //$deptotal += number_format($NETT, 2, '.', '');
+                        // echo number_format($NETT, 2, '.', '') . "<br>";
+                        $depPerYearM = $total * $rate / 100;
+                        $lastMoney = $depPerYearM - $firstDep;
+                        $deptotal += number_format($lastMoney, 2, '.', '') - 1;
+                        echo thainumDigit(number_format($lastMoney, 2, '.', ''));
+                      } else {
+                        $depPerYearM = $total * $rate / 100;
+                        $deptotal += number_format($depPerYearM, 2, '.', '');
+                        echo thainumDigit(number_format($depPerYearM, 2, '.', ''));
+                      }
 
 
-                    ?>
+                      ?>
                 </td>
                 <td>
                   <?php
-                    // if ($i == 0) {
-                    //   $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
-                    //   echo number_format($depPerYear, 2, '.', '');
-                    // } else if ($i == $lifetime) {
-                    //   $Yearcumu = $depPerYearM  + $depPerYear;
-                    //   echo number_format($Yearcumu, 2, '.', '') . "<br>";
-                    // } else {
-                    //   $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
-                    //   echo number_format($depPerYear, 2, '.', '') . "<br>";
-                    // }
-                    echo thainumDigit(number_format($deptotal, 2, '.', ''));
+                      // if ($i == 0) {
+                      //   $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
+                      //   echo number_format($depPerYear, 2, '.', '');
+                      // } else if ($i == $lifetime) {
+                      //   $Yearcumu = $depPerYearM  + $depPerYear;
+                      //   echo number_format($Yearcumu, 2, '.', '') . "<br>";
+                      // } else {
+                      //   $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
+                      //   echo number_format($depPerYear, 2, '.', '') . "<br>";
+                      // }
+                      echo thainumDigit(number_format($deptotal, 2, '.', ''));
 
-                    ?>
+                      ?>
                 </td>
 
                 <td>
                   <?php
-                    $totalAll = $total - $deptotal;
-                    echo thainumDigit(number_format($totalAll, 2, '.', ''));
-                    ?>
+                      $totalAll = $total - $deptotal;
+                      echo thainumDigit(number_format($totalAll, 2, '.', ''));
+                      ?>
                 </td>
                 <td></td>
               </tr>
             <?php
-            }
-            ?>
+              }
+              ?>
           </thead>
           </table>
         </div>
@@ -332,8 +345,7 @@ $monthDay = ($dateMouth - $day) + 1;
           </div>
         </div>
       </div>
-      </div>
-      </div>
+    <?php }  ?>
     </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
