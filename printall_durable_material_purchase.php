@@ -50,6 +50,7 @@ require "service/connection.php";
                         <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">เลขที่ใบสั่งซื้อ</font></th>
                          <th><font size="2">วันที่จัดซื้อ</font></th>
+                         <th><font size="2">เลขที่เอกสาร</font></th>
                          <th><font size="2">คุณสมบัติ/ลักษณะ</font></th>
                         <th><font size="2">จำนวน</font></th>
                         <th><font size="2">ชื่อผู้จัดซื้อ</font></th>
@@ -71,6 +72,7 @@ require "service/connection.php";
                         <td><font size="2"><?php echo $row["id"]; ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["order_no"]); ?></font></td>
                         <td><font size="2"><?php echo $row["purchase_date"]; ?></font></td>
+                        <td><font size="2"><?php echo $row["document_no"]; ?></font></td>
                         <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
                         <td><font size="2"><?php echo $row["number"]; ?></font></td>
                         <td><font size="2"><?php echo $row["order_by"]; ?></font></td>

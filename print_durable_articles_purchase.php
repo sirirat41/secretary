@@ -76,12 +76,21 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </td>
-
                     <td>
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
                           <?php echo thainumDigit($row["purchase_date"]); ?>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
+                          <?php echo thainumDigit($row["document_no"]); ?>
                         </div>
                       </div>
                     </td>

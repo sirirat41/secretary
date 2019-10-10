@@ -4,7 +4,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles as a , durable_articles_purchase as p WHERE a.id = $id and p.product_id = a.id ";
+  $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles LEFT JOIN durable_articles_purchase ON durable_articles.id = durable_articles_purchase.product_id ";
+  $sql .= "WHERE durable_articles.id = $id ";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
@@ -85,10 +86,16 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 ">
+                  <div class="col-6 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
                       <input class="form-control" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">เลขที่เอกสาร :</label>
+                      <input class="form-control" type="text" placeholder="document_no" name="document_no" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -210,7 +217,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group">
                       <div class="form-group">
                         <label class="bmd-label-floating">เอกสารสำรองเงิน :</label>
-                        <input class="form-control" type="text" placeholder="D-GEN" name="d_gen" value="<?php echo $item["d_gen"]; ?>">
+                        <input class="form-control" type="text" placeholder="d_gen" name="d_gen" id="d_gen" value="<?php echo $item["d_gen"]; ?>">
                       </div>
                     </div>
                   </div>
@@ -266,7 +273,7 @@ if (isset($_GET["id"])) {
                       <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
                         <?php
-                        for ($i = 1; $i <= 5; $i++) {
+                        for ($i = 0; $i <= 10; $i++) {
                           if ($item["durable_year"] == $i) {
                             echo "<option value='$i' selected>$i</option>";
                           } else {

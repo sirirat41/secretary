@@ -70,10 +70,16 @@ require "service/connection.php";
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 ">
+                  <div class="col-6 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
                       <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                    </div>
+                    <div class="col-6 ">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">เลขที่เอกสาร :</label>
+                        <input class="form-control" type="text" placeholder="document_no" name="document_no">
+                      </div>
                     </div>
                   </div>
                 </div>

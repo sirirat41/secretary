@@ -82,6 +82,12 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+                      <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
+                      <?php echo thainumDigit($row["document_no"]); ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
                       <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
                       <?php echo thainumDigit($row["attribute"]); ?>
                     </div>

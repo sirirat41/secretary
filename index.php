@@ -77,13 +77,8 @@
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD:login.php
-                  <div class="col-md-12 text-center" href="insert_user.php">
-                    <a href="#">สมัครสมาชิก</a>
-=======
                   <div class="col-md-12 text-center" >
                     <a href ="forget_user.php">ลืมรหัสผ่าน?</a>
->>>>>>> 13361fb3a6c4c6ed66520f1545250ca69f63c900:index.php
                   </div>
                 </div>
             </div>
@@ -164,35 +159,8 @@
       e.preventDefault();
       login();
     })
-<<<<<<< HEAD:login.php
 
-    function login() {
-      $.ajax({
-          url: "service/service_login.php",
-          dataType: "JSON",
-          type: "POST",
-          data: {
-            username: $('#username').val(),
-            password: $('#password').val()
-          },
-          success: function(response) {
-            if (response.result) {
-              window.location = "display_durable_articles.php";
-            } else {
-              alert('username หรือ password ผิด');
-            }
-          },
-          error: function(error) {
-            console.log(error);
-            alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
-          }
-=======
-<<<<<<< HEAD:login.php
-    function login(){
-      
-=======
       function login(){
->>>>>>> e9c71b1a5b42f4c8cc693fdf3a564416739388fb:index.php
       $.ajax({
         url: "service/service_login.php",
         dataType: "JSON",
@@ -214,7 +182,6 @@
           alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
         }
       
->>>>>>> 13361fb3a6c4c6ed66520f1545250ca69f63c900:index.php
       })
     }
   </script>
