@@ -114,7 +114,7 @@ if (isset($_GET["id"])) {
                   <div class="col-4">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png" width="100" alt="...">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["pic"]; ?>" width="100" alt="...">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>
