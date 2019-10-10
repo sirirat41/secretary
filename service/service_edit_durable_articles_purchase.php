@@ -41,6 +41,9 @@ if (isset($_GET['id'])) {
     $acquiring = $_POST["acquiring"];
     $bookNo = $_POST["book_no"];
 
+    $log = "แก้ไขข้อมูลการจัดซื้อครุภัณฑ์ รหัส " . $id ;
+    logServer($conn, $log);
+
     $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
     $updateArticles .= " type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateArticles .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";

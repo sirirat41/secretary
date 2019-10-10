@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $articles_pattern = $_POST["articles_pattern"];
     $status = 1;
 
+    $log = "เพิ่มข้อมูลครุภัณฑ์";
+    logServer($conn, $log);
     //อัฟโหลดรูปภาพ
     $target_dir = "../uploads/";
     $imgeName = $_FILES["image"]["name"];

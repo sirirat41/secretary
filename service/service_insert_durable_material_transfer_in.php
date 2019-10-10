@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO durable_material_transfer_in(document_no ,product_id ,transfer_from ,transfer_date, flag)";
         $sql .= " VALUES($document, $productId , '$transferfrom', '$transferdate', '$flag')"; 
-
+        $log = "เพิ่มข้อมูลการโอนเข้าวัสดุคงทน ";
+        logServer($conn, $log);
         
         if (mysqli_query($conn, $sql)) {
             header('Location: ../display_durable_material_transfer_in.php?message=เพิ่มข้อมูลสำเร็จ');

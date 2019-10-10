@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.attribute, a.name ,d.fullname ,d.pic,d.bulding ,d.floor FROM supplies as a,supplies_permits as p ,department as d WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and p.department_id = d.id";
+  $sql = "SELECT p.*, a.code ,a.supplies_id ,ss.attribute, ss.supplies_name ,d.fullname ,d.pic,d.bulding ,d.floor FROM supplies as a,supplies_permits as p ,department as d , supplies_stock as ss WHERE p.id = $id";
+  $sql .= " and a.supplies_id = ss.id and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
@@ -104,8 +104,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="name">ชื่อวัสดุ : </label>
-                            <?php echo thainumDigit($row["name"]); ?>
+                            <label class="text" for="supplies_name">ชื่อวัสดุ : </label>
+                            <?php echo thainumDigit($row["supplies_name"]); ?>
                           </div>
                         </div>
                       </td>

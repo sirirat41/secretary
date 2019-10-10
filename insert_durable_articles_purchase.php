@@ -179,7 +179,6 @@ require "service/connection.php";
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
                     <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no">
-                    <small style="color: red"> *ตัวอย่าง:100000312{run_3}</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -336,23 +335,23 @@ require "service/connection.php";
               </div>
               <br>
               <div class="row">
-                <div class="col-6">
-                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                    <div class="fileinput-new thumbnail img-raised">
-                      <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
-                    </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                    <div>
-                      <span class="btn btn-raised btn-round btn-default btn-file">
-                        <br>
-                        <div class="col-2 offset-1">
-                          <input type="file" name="image" />
-                        </div>
-                      </span>
+                  <div class="col-4">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail img-raised">
+                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png"  alt="..." id="image-preview">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                        
+                          <div class="col-2">
+                            <input type="file" name="image" id = "image"/>
+                          </div>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               <br><br>
               <div class="row">
                 <div class="col-12">
@@ -573,6 +572,21 @@ require "service/connection.php";
               }
             })
           }
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                $('#image-preview').attr('src', e.target.result);
+              }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+
+          $("#image").change(function() {
+            readURL(this);
+          });
         </script>
 </body>
 

@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO durable_articles_permits(product_id ,book_no ,permit_date ,receive_date,department_id, flag)";
         $sql .= " VALUES($productId, '$bookno' , '$permitdate', '$receivedate', $department_id, '$flag')"; 
 
+        $log = "เพิ่มข้อมูลการยืม-คืนครุภัณฑ์";
+        logServer($conn, $log);
         if (mysqli_query($conn, $sql)) {
             header('Location: ../display_durable_articles_permits.php?message=เพิ่มข้อมูลสำเร็จ');
             $sqlUpdate ="UPDATE durable_articles SET status = 2 WHERE id = $productid";

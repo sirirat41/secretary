@@ -55,7 +55,6 @@ require "service/connection.php";
             <br>
             <div class="card-body">
               <form method="post" action="service/service_insert_supplies_stock.php" id="form_insert">
-          
               <div class="row">
                 <div class="col-12">
                     <div class="form-group">
@@ -64,28 +63,7 @@ require "service/connection.php";
                     </div>
                     </div> 
                   </div>
-                  <!-- <div class="col-3">
-                    <div class="form-group bmd-form-group">
-                      <label class="bmd-label-floating">จำนวนวัสดุ</label>
-                      <input class="form-control" type="text" placeholder="stock" name="stock" id="stock">
-                    </div>
-                  </div> -->
-                <!-- </div> -->
-                <!-- <div class="row">
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="purchase_date"></label>
-                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date" id="purchase_date">
-                    </div>
-                  </div>
-<!-- 
-                  <div class="col-6">
-                    <div class="form-group ">
-                      <label for="order_by">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="name" name="order_by" id="order_by">
-                    </div>
-                  </div> -->
-                <!-- </div> --> 
+               
                 <div class="row">
                 <div class="col-12">
                     <div class="form-group">

@@ -109,7 +109,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies.php?id=<?php echo $row['id']; ?>'">
@@ -158,23 +158,44 @@ $show = 10;
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
-            for ($i = 0; $i < $pageNumber; $i++) {
-              if (isset($_GET["keyword"])) {
+            $maxshowpage = $pageNumber;
+            $pageNumber = 10;
+            $page = 1;
+            if (isset($_GET["page"])) {
+              $page = $_GET["page"];
+              $page == $page = 0 ? 1 : $page;
+            }
+            $countDiv = intdiv($page - 1, $pageNumber);
+            $start_i = ($countDiv * $pageNumber);
+            $sectionGroup = (($countDiv * $pageNumber) + $pageNumber);
+            $end_i =  $sectionGroup > $maxshowpage ? $maxshowpage : $sectionGroup;
+
+            for ($i = $start_i; $i < $end_i; $i++) {
+              if ($i != 0 && $i == $start_i) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
+              <?php
+                }
+                if (isset($_GET["keyword"])) {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
-
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <?php
+                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                      ?>
+                  <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
+                }
               }
             }
             ?>
-            <?php
-            if ($page < $pageNumber) {
-              $nextPage = "#";
+      <?php
+             $nextPage = "#";
+            if ($page < $maxshowpage) {
+              
               $nextPage = "?page=" . ($page + 1);
             }
 

@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*, t.name as durable_material_type_name ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor FROM supplies as s ,durable_material_type as t , seller as se , department as d , unit as un WHERE s.id = $id";
-  $sql .= " and s.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
+  $sql = "SELECT s.*, t.name as tname ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor, ss.type , ss.attribute ,ss.supplies_name FROM supplies as s ,durable_material_type as t , seller as se , department as d , unit as un, supplies_stock as ss WHERE s.id = $id";
+  $sql .= " and s.supplies_id = ss.id and ss.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -92,13 +92,13 @@ if (isset($_GET["id"])) {
         <label class="text" for="type">
           <h7>ประเภท :</h7>
         </label>
-        <?php echo $row["durable_material_type_name"]; ?>
+        <?php echo $row["tname"]; ?>
       </div>
       <div class="col-sm-4">
-        <label class="text" for="name">
+        <label class="text" for="supplies_name">
           <h7>ชื่อหรือชนิดวัสดุ :</h7>
         </label>
-        <?php echo $row["name"]; ?>
+        <?php echo thainumDigit($row["supplies_name"]); ?>
       </div>
       <div class="col-sm-4">
         <label class="text" for="code">
@@ -126,10 +126,10 @@ if (isset($_GET["id"])) {
         <label class="text" for="fullname">
           <h7>ที่เก็บ :</h7>
         </label>
-        <?php echo thainumDigit($row["fullname"]); ?>/
+        <?php echo thainumDigit($row["fullname"]); ?>
         <label class="text" for="bulding">อาคาร
         </label>
-        <?php echo $row["bulding"]; ?>/
+        <?php echo thainumDigit($row["bulding"]); ?>
         <label class="text" for="floor">ชั้น
         </label>
         <?php echo thainumDigit($row["floor"]); ?>
@@ -167,7 +167,398 @@ if (isset($_GET["id"])) {
                   <td width="7%">คงเหลือ</td>
                   </<tr class="text-center">
               </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
+              <thead>
+              <tr class="text-center" height="30">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+              </tr class="text-center">       
+              </thead>
             </table>
+            
             <!-- <tr class="text-center">
                 <td>วัน/เดือน/ปี</td>
                 <td>รับจาก</td>

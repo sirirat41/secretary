@@ -14,7 +14,8 @@ if (isset($_GET['id'])) {
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
-    
+    $log = "แก้ไขข้อมูลการจัดซื้อวัสดุคงทน รหัส " . $id ;
+    logServer($conn, $log);
 
     //อัฟโหลดรูปภาพ
     $target_dir = "../uploads/";

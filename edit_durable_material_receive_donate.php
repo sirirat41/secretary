@@ -265,13 +265,13 @@ if (isset($_GET["id"])) {
                           <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
-                      <tbody id="modal-articles-body">
+                      <tbody id="modal-material-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                    
                         
-                        $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
+                        $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
@@ -328,33 +328,26 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
-    var itemPerPage = 10;
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
+    var showPageSection = 10; //จำนวนเลขหน้า
+    var numberOfPage;
     $('#form-search').on('submit', function(e) {
         e.preventDefault();
         search();
       })
     function search() {
-      $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
        var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {
-          
           jsonData = data;
+          numberOfPage = data.length / itemPerPage;
           changePage(1);
-          $('new-page').removeClass();
-          var numberOfPage = Math.ceil(data.length / itemPerPage);
-          maxPage = numberOfPage;
-          for (let i = 0; i < numberOfPage; i++) {
-            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
-          }
         },
         error: function(error) {
           console.log(error);
@@ -362,7 +355,9 @@ if (isset($_GET["id"])) {
       })
     }
     function changePage(page) {
-      var body = $('#modal-articles-body');
+      currentPage = page;
+
+      var body = $('#modal-material-body');
       body.empty();
       var max = page * itemPerPage;
       var start = max - itemPerPage;
@@ -375,15 +370,18 @@ if (isset($_GET["id"])) {
         var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
-        var type = item["type"];
+        var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + seq + '</td>').appendTo(tr);
-        $('<td>' + bill_no + '</td>').appendTo(tr);
-        $('<td>' + code + '</td>').appendTo(tr);
-        $('<td>' + type + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
+    
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
@@ -397,7 +395,49 @@ if (isset($_GET["id"])) {
         changePage(currentPage);
       }
     }
+    function generatePagination() {
+      $('#pagination').empty();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+      $('new-page').removeClass();
+      maxPage = numberOfPage;
 
+      var countDiv = parseInt((currentPage - 1) / showPageSection);
+      var start_i = (countDiv * showPageSection);
+      var sectionGroup = ((countDiv * showPageSection) + showPageSection);
+      var end_i = sectionGroup > maxPage ? maxPage : sectionGroup;
+
+      for (let i = start_i; i < end_i; i++) {
+        if (i != 0 && i == start_i) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        if ((i + 1) < maxPage && i == end_i - 1) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+      }
+
+    }
+
+    function thaiNumber(num) {
+      var array = {
+        "1": "๑",
+        "2": "๒",
+        "3": "๓",
+        "4": "๔",
+        "5": "๕",
+        "6": "๖",
+        "7": "๗",
+        "8": "๘",
+        "9": "๙",
+        "0": "๐"
+      };
+      var str = num.toString();
+      for (var val in array) {
+        str = str.split(val).join(array[val]);
+      }
+      return str;
+    }
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);

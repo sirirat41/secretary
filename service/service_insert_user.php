@@ -11,6 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $utype = $_POST["u_type"];
 
+    $log = "เพิ่มข้อมูลผู้ใช้งาน ประเภทผู้ใช้ชื่อ " . $username;
+    logServer($conn, $log);
 
     $sql = "INSERT INTO user(username, password, surname, lastname, tel, position, email, u_type)";
     $sql .= " VALUES('$username', '$password', '$surname', '$lastname', $tel, '$position', '$email', '$utype')";

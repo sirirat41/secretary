@@ -10,6 +10,10 @@ if(isset($_GET["id"])) {
     $receivedate = $_POST["receive_date"];
     $department_id = $_POST["department_id"];
     $flag = $_POST["flag"];
+
+    $log = "แก้ไขข้อมูลการยืม-คืนวัสดุคงทน รหัส " . $id ;
+    logServer($conn, $log);
+
     $updatepermit = "UPDATE durable_material_permits SET product_id = '$product_id',";
     $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', department_id = $department_id, flag = '$flag'";
     $updatepermit .= " WHERE id = $id";

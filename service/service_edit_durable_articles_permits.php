@@ -11,6 +11,9 @@ if(isset($_GET["id"])) {
     $department_id = $_POST["department_id"];
     $flag = $_POST["flag"];
     
+    $log = "แก้ไขข้อมูลการยืม-คืนครุภัณฑ์ รหัส " . $id ;
+    logServer($conn, $log);
+
     $updatepermit = "UPDATE durable_articles_permits SET product_id = '$product_id',";
     $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', department_id = $department_id, flag = '$flag'";
     $updatepermit .= " WHERE id = $id";

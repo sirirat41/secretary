@@ -159,7 +159,6 @@
       e.preventDefault();
       login();
     })
-
       function login(){
       $.ajax({
         url: "service/service_login.php",

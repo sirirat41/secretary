@@ -13,6 +13,9 @@ if(isset($_GET["id"])) {
     $updatepermit .= " document_no = $document_no, transfer_date = '$transfer_date', transfer_to = '$transfer_to', flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
+    $log = "แก้ไขข้อมูลการโอนออกครุภัณฑ์ รหัส " . $id ;
+    logServer($conn, $log);
+
     mysqli_query($conn, $updatepermit) or die("Cannot update transfer_out". mysqli_error($conn));
     header('Location: ../display_durable_articles_transfer_out.php?message=แก้ไขข้อมูลสำเร็จ');
 }

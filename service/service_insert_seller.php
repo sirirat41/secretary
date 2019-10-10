@@ -10,6 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO seller(name, tel, fax, address)";
     $sql .= " VALUES('$name', '$tel', '$fax', '$address')";
 
+    $log = "เพิ่มข้อมูลร้านค้า";
+    logServer($conn, $log); 
+
     if (mysqli_query($conn, $sql)) {
         header('Location: ../display_seller.php?message=เพิ่มข้อมูลสำเร็จ');
     } else {

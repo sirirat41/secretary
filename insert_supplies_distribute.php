@@ -1,6 +1,5 @@
 <?php
 require "service/connection.php";
-$show=10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +67,7 @@ $show=10;
                             $sqlSelectType = "SELECT * FROM supplies WHERE status = 1 Group by code";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["code"] . '">' . $row["code"] . '</option>';
+                              echo '<option value="' . $row["id"] . ':' . $row["code"] . '">' . $row["code"] . '</option>';
                             }
                             ?>
                           </select>
@@ -236,10 +235,10 @@ $show=10;
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
-                    <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -252,36 +251,30 @@ $show=10;
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                          <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
-                          <td>เลขที่ใบเบิก</td>
-                          <td>รหัสวัสดุ</td>
-                          <td>ประเภท</td>
-                          <td>การทำงาน</td>
+                        <th>รหัสวัสดุ</th>
+                            <th>ชื่อวัสดุ</th>
+                            <th>การทำงาน</th>
                         </tr class="text-center">
                       </thead>
                       <tbody id="modal-supplies-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
-                        $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+
+
+                        $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
+                        $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                         }
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
                           <tr class="text-center">
-                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -293,6 +286,7 @@ $show=10;
                         ?>
                       </tbody>
                     </table>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -328,20 +322,21 @@ $show=10;
     var currentPage = 1;
     var maxPage = 1;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
       $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-     var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
-          
+
           jsonData = data;
           changePage(1);
           $('new-page').removeClass();
@@ -356,6 +351,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       var body = $('#modal-supplies-body');
       body.empty();
@@ -366,16 +362,10 @@ $show=10;
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
         var code = item["code"];
-        var type = item["type"];
-        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + seq + '</td>').appendTo(tr);
-        $('<td>' + bill_no + '</td>').appendTo(tr);
+        var name = item["supplies_name"];
         $('<td>' + code + '</td>').appendTo(tr);
-        $('<td>' + type + '</td>').appendTo(tr);
+        $('<td>' + name + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
       }
     }
@@ -395,7 +385,7 @@ $show=10;
 
     function selectedsupplies(id) {
       $('#modal-form-search').modal('hide');
-      $('#product_id').val(id);
+      $('#code').val(id);
     }
   </script>
 

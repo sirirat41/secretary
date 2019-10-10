@@ -4,6 +4,9 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["seller_id"])) {
     $sellerid = $_POST["seller_id"];
     
+    $log = "กู้คืนข้อมูลร้านค้า รหัส " . $sellerid ;
+    logServer($conn, $log);
+
     $sqlUpdate = "UPDATE seller SET status = 1 WHERE id = " . $sellerid;
     if (mysqli_query($conn, $sqlUpdate)) {
         header('Location: ../rowback_seller.php?message=ลบข้อมูลสำเร็จ');

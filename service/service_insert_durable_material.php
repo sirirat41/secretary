@@ -23,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = 1;
     $asset_no = $_POST["asset_no"];
 
+    $log = "เพิ่มข้อมูลวัสดุคงทน";
+    logServer($conn, $log);
 
       //อัฟโหลดรูปภาพ
       $target_dir = "../uploads/";

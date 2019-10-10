@@ -7,6 +7,8 @@ if(isset($_GET['id'])) {
     $distributeDate = $_POST["distribute_date"];
     $departmentId = $_POST["department_id"];
     
+    $log = "แก้ไขข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง รหัส " . $id ;
+    logServer($conn, $log);
 
     $updatesupplies = "UPDATE supplies_distribute SET number = $number,";
     $updatesupplies .= " distribute_date = '$distributeDate', department_id = $departmentId";

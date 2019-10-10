@@ -10,6 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO durable_articles_repair(seq, damage_id, repair_date, place)";
     $sql .= " VALUES($seq, $damageid, '$repairdate', '$place')";
 
+    $log = "เพิ่มข้อมูลการซ่อมครุภัณฑ์";
+    logServer($conn, $log);
     if (mysqli_query($conn, $sql)) {
         header('Location: ../display_durable_articles_repair.php?message=เพิ่มข้อมูลสำเร็จ');
         $sqlUpdate ="UPDATE durable_articles SET status = 4 WHERE id = $damageid";

@@ -18,6 +18,8 @@
                 $response["data"] = $user;
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["user_type"] = $user["u_type"];
+                $_SESSION["fullname"] = $user["surname"] . " " . $user ["lastname"];
+                logServer($conn, "เข้าสู่ระบบ");
             } else {
                 session_destroy();
             }

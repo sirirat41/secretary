@@ -2,6 +2,12 @@ $(document).ready(function () {
     var title = $('secretary').text();
     switch (title) {
 
+        case "dashboard":  // ยืมคืน 
+            $('.nav-home').addClass('active');
+            $('.collapse-dashboard').addClass('show');
+            $('.collapse-dashboard').addClass('active');
+            break; 
+
         // Articles ครุภัณฑ์ Display
 
         case "display_durable_articles_permits":  // ยืมคืน 

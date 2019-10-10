@@ -4,6 +4,9 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['material_id'])) { 
     $materialid = $_POST["material_id"];
 
+    $log = "กู้คืนข้อมูลวัสดุคงทน รหัส " . $materialid ;
+    logServer($conn, $log);
+
     $sqlUpdate = "UPDATE durable_material SET status = 1 WHERE id = " .$materialid;
     if (mysqli_query($conn, $sqlUpdate)) {
         header('Location: ../rowback_durable_material.php?message=ลบข้อมูลสำเร็จ');
