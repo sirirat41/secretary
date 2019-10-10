@@ -173,7 +173,7 @@ require "service/connection.php";
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                        echo '<option value="' . $row["id"] . '">' . $row["bulding"] . $row["floor"] . '</option>';
                       }
                       ?>
                     </select>
@@ -184,12 +184,8 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no" id="asset_no">
-                    <small style="color: red"> *ตัวอย่าง:100000312{run_3}</small>
-=======
-                    <input class="form-control" type="text" placeholder="เลขสินทรัพย์" name="asset_no">
->>>>>>> 22d26dd70daf4861eacb443c1231f1ce69f4da9f
+                    <small style="color: red"> *ตัวอย่าง:100000312000</small>
                   </div>
                 </div>
                 <div class="col-md-6">
