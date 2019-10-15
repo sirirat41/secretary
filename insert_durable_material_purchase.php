@@ -124,7 +124,8 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group">
                       <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                      <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                      <input class="form-control" type="text" placeholder="asset_no" name="asset_no" id="asset_no">
+                      <small style="color: red"> *ตัวอย่าง:100000312000</small>
                     </div>
                   </div>
                 </div>
@@ -248,14 +249,14 @@ require "service/connection.php";
                   <div class="col-4">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png"  alt="..." id="image-preview">
+                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png" alt="..." id="image-preview">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>
                         <span class="btn btn-raised btn-round btn-default btn-file">
-                        
+
                           <div class="col-2">
-                            <input type="file" name="image" id = "image"/>
+                            <input type="file" name="image" id="image" />
                           </div>
                         </span>
                       </div>
@@ -483,21 +484,30 @@ require "service/connection.php";
               }
             })
           }
-          function readURL(input) {
-            if (input.files && input.files[0]) {
-              var reader = new FileReader();
+          $(document).ready(function() {
+            $('#asset_no').focusout(function() {
+              var assetNo = $('#asset_no').val();
+              $.ajax({
+                url: 'service/service_check1.php',
+                dataType: 'JSON',
+                type: 'POST',
+                data: {
+                  asset_no: assetNo
+                },
+                success: function(data) {
+                  if (!data.result) {
+                    alert("มีข้อมูลซ้ำ" + data.data);
+                  }
+                  console.log(data);
+                },
+                error: function(error) {
+                  console.log(error);
+                }
 
-              reader.onload = function(e) {
-                $('#image-preview').attr('src', e.target.result);
-              }
+              })
 
-              reader.readAsDataURL(input.files[0]);
-            }
-          }
-
-          $("#image").change(function() {
-            readURL(this);
-          });
+            })
+          })
         </script>
 </body>
 

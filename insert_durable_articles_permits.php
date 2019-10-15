@@ -84,13 +84,13 @@ $show=10;
                   <div class="col-md-6 ">
                     <div class="form-group">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="date" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
+                      <input type="date" class="form-control" name="permit_date" placeholder="permitdate">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
+                      <input type="date" class="form-control" name="receive_date" placeholder="receivedate">
                     </div>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ $show=10;
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . " ตึก" . $row["bulding"] . " ชั้น" . $row["floor"] .'</option>';
+                          echo '<option value="' . $row["id"] . '">' . $row["bulding"] . " ชั้น" . $row["floor"] .'</option>';
                           // <option><?php echo $row["id"] . " " . $row["name"]; 
                         }
                         ?>

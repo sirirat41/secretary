@@ -72,7 +72,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="inputEmail3">วันที่โอน</label>
-                      <input type="datetime-local" class="form-control" name="transfer_date" id="transfer_date" placeholder="receivedate" value="<?php echo $item["transfer_date"]; ?>">
+                      <input type="date" class="form-control" name="transfer_date" id="transfer_date" placeholder="receivedate" value="<?php echo $item["transfer_date"]; ?>">
                     </div>
                   </div>
                 </div>

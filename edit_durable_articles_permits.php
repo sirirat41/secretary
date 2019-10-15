@@ -3,11 +3,12 @@ require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT * FROM durable_articles_permits WHERE id = $id";
+  echo $sql;
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
   $permitDate = $item["permit_date"];
-  $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
+  $newReceiveDate = date("ํd-m-Y", strtotime($receiveDate));
   $newpermitDate = date("ํd-m-Y", strtotime($permitDate));
 
   $show = 2;
@@ -120,9 +121,9 @@ if (isset($_GET["id"])) {
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
                           if ($item["department_id"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . " ตึก" . $row["bulding"] . " ชั้น" . $row["floor"] .'</option>';
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["bulding"] . " ชั้น" . $row["floor"] .'</option>';
                           } else {
-                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . " ตึก" . $row["bulding"] . " ชั้น" . $row["floor"] .'</option>';
+                            echo '<option value="' . $row["id"] . '">' . $row["bulding"] . " ชั้น" . $row["floor"] .'</option>';
                           }
                         }
                         ?>

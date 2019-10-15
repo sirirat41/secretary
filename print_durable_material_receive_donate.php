@@ -63,7 +63,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-sm-12" align="center">
                   <div class="center" style="width: 200px;">
-                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                   </div>
                 </div>
                 <tbody>
@@ -96,13 +96,14 @@ if (isset($_GET["id"])) {
                             <?php echo thainumDigit($row["receive_date"]); ?>
                           </div>
                       </td>
-                      <td>
-                        <div class="col-sm-12">
-                          <label class="text" for="donate_name">ชื่อผู้บริจาค : </label>
-                          <?php echo $row["donate_name"]; ?>
-                        </div>
-                    </div>
-                </td>
+                    </tr>
+                    <td>
+                      <div class="col-sm-12">
+                        <label class="text" for="donate_name">ชื่อผู้บริจาค : </label>
+                        <?php echo $row["donate_name"]; ?>
+                      </div>
+              </div>
+              </td>
               </tr>
               <tr>
                 <td colspan="2">
@@ -126,7 +127,7 @@ if (isset($_GET["id"])) {
               </tr>
               </thead>
               </tbody>
-          </table>
+        </table>
         <br>
         <br>
         <div class="card-body">

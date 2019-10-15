@@ -209,22 +209,15 @@ if (isset($_SESSION['user_id'])) {
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <?php
-                    $sqlReuqest = "SELECT * FROM supplies_request";
-                    $sqlResult = mysqli_query($conn, $sqlReuqest);
-                    $numberOfRequest = mysqli_num_rows($sqlResult);
-                    ?>
-                <span class="badge badge-danger badge-counter"><?php echo ($numberOfRequest <= 3) ? $numberOfRequest : "3+"; ?></span>
+                Counter - Alerts
+                
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
-                <?php
-                    while ($row = mysqli_fetch_assoc($sqlResult)) {
-                      ?>
+               
                   <a class="dropdown-item d-flex align-items-center" href="edit_supplies_request.php?id=<?php echo $row["id"]; ?>">
                     <div class="mr-3">
                       <div class="icon-circle bg-primary">
@@ -232,12 +225,10 @@ if (isset($_SESSION['user_id'])) {
                       </div>
                     </div>
                     <div>
-                      <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+                     
                     </div>
                   </a>
-                <?php
-                    }
-                    ?>
+                
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>

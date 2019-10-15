@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $document_no = $_POST["document_no"];
 
     $updatePurchase = "UPDATE durable_material_purchase SET order_no = '$orderNo',";
-    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_date = '$receiveDate', receive_address = '$receiviceAddress, document_no = '$document_no'";
+    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_date = '$receiveDate', receive_address = '$receiviceAddress', document_no = '$document_no'";
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
@@ -39,6 +39,9 @@ if (isset($_GET['id'])) {
     $name = $_POST["name"];
     $assetNo = $_POST["asset_no"];
     $articles_pattern = $_POST["articles_pattern"];
+
+    $log = "แก้ไขข้อมูลการจัดซื้อวัสดุ รหัส " . $id ;
+    logServer($conn, $log);
 
     $updateMaterial = "UPDATE durable_material SET short_goverment = '$shortGoverment',";
     $updateMaterial .= " type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";

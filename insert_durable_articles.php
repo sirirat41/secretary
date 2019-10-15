@@ -233,17 +233,22 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
-                        <option value="0">1</option>
-                        <option value="1">2</option>
-                        <option value="2">3</option>
-                        <option value="3">4</option>
-                        <option value="4">5</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                       </select>
                     </div>
                   </div>
