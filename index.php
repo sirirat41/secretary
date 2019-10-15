@@ -159,11 +159,6 @@
       e.preventDefault();
       login();
     })
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> 6e1bfe72941f324599af1289b532ebdb6b23f9e9
       function login(){
       $.ajax({
         url: "service/service_login.php",
@@ -176,7 +171,7 @@
         success: function(response) {
           console.log(response);
           if (response.result) {
-            window.location = "display_durable_articles.php";
+            window.location = "dashboard.php";
           } else {
             alert('username หรือ password ผิด');
           }

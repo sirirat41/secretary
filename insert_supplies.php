@@ -425,33 +425,26 @@ require "service/connection.php";
   </div>
   </div>
   <script>
-  var itemPerPage = 10;
+   var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
+    var showPageSection = 10; //จำนวนเลขหน้า
+    var numberOfPage;
     $('#form-search').on('submit', function(e) {
         e.preventDefault();
         search();
       })
     function search() {
-      $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
        var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {
-          
           jsonData = data;
+          numberOfPage = data.length / itemPerPage;
           changePage(1);
-          $('new-page').removeClass();
-          var numberOfPage = Math.ceil(data.length / itemPerPage);
-          maxPage = numberOfPage;
-          for (let i = 0; i < numberOfPage; i++) {
-            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
-          }
         },
         error: function(error) {
           console.log(error);
@@ -459,6 +452,8 @@ require "service/connection.php";
       })
     }
     function changePage(page) {
+      currentPage = page;
+
       var body = $('#modal-supplies-body');
       body.empty();
       var max = page * itemPerPage;
@@ -468,13 +463,22 @@ require "service/connection.php";
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var supplies_name = item["supplies_name"];
-        var stock = item["stock"];
-        $('<td>' + supplies_name + '</td>').appendTo(tr);
-        $('<td>' + stock + '</td>').appendTo(tr);
+        var picture = item["picture"];
+        var seq = item["seq"];
+        var bill_no = item["bill_no"];
+        var code = item["code"];
+        var type = item["name"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
+        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
+    
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
@@ -488,7 +492,49 @@ require "service/connection.php";
         changePage(currentPage);
       }
     }
+    function generatePagination() {
+      $('#pagination').empty();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+      $('new-page').removeClass();
+      maxPage = numberOfPage;
 
+      var countDiv = parseInt((currentPage - 1) / showPageSection);
+      var start_i = (countDiv * showPageSection);
+      var sectionGroup = ((countDiv * showPageSection) + showPageSection);
+      var end_i = sectionGroup > maxPage ? maxPage : sectionGroup;
+
+      for (let i = start_i; i < end_i; i++) {
+        if (i != 0 && i == start_i) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        if ((i + 1) < maxPage && i == end_i - 1) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+      }
+
+    }
+
+    function thaiNumber(num) {
+      var array = {
+        "1": "๑",
+        "2": "๒",
+        "3": "๓",
+        "4": "๔",
+        "5": "๕",
+        "6": "๖",
+        "7": "๗",
+        "8": "๘",
+        "9": "๙",
+        "0": "๐"
+      };
+      var str = num.toString();
+      for (var val in array) {
+        str = str.split(val).join(array[val]);
+      }
+      return str;
+    }
     function selectedsupplies(id) {
       $('#modal-form-search').modal('hide');
       $('#supplies_id').val(id);

@@ -10,8 +10,8 @@ if(isset($_GET['id'])) {
     $log = "แก้ไขข้อมูลการชำรุดวัสดุคงทน รหัส " . $id ;
     logServer($conn, $log);
 
-    $updatePurchase = "UPDATE durable_material_damage SET product_id = '$productId',";
-    $updatePurchase .= " damage_date = '$damageDate', flag = '$flag'";
+    $updatePurchase = "UPDATE durable_material_damage SET damage_date = '$damageDate',";
+    $updatePurchase .= " flag = '$flag'";
     $updatePurchase .= " WHERE id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update damage: " . mysqli_error($conn));
     header('Location: ../display_durable_material_damage.php?message=แก้ไขข้อมูลสำเร็จ');

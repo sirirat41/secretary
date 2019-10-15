@@ -34,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $sqlUpdatestock = "UPDATE supplies_stock SET stock = stock - $number WHERE id = $stockID";
             mysqli_query($conn, $sqlUpdatestock);
-            header('Location: ../display_supplies_permits.php?message=เพิ่มข้อมูลสำเร็จ');
+            header('Location: ../display_supplies_permits.php?messagee=เพิ่มข้อมูลสำเร็จ');
         } else {
-            header('Location: ../display_supplies_permits.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+            header('Location: ../display_supplies_permits.php?messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
     } else {
 

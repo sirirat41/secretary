@@ -27,14 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($conn, $sql)) {
             
-       $sqlUpdate = "UPDATE supplies SET status = 10 WHERE id IN ( SELECT id FROM( SELECT id FROM supplies WHERE status = 1 and code = '$idcode[1]' LIMIT $number)tmp)";
+       $sqlUpdate = "UPDATE supplies SET status = 10 WHERE id IN ( SELECT id FROM( SELECT id FROM supplies WHERE status = 1 and code = $idcode[1] LIMIT '$number')tmp)";
         mysqli_query($conn, $sqlUpdate);
         
             $sqlUpdatestock = "UPDATE supplies_stock SET stock = stock - $number WHERE id = $stockID";
             mysqli_query($conn, $sqlUpdatestock);
-            header('Location: ../display_supplies_distribute.php?message=เพิ่มข้อมูลสำเร็จ');
+            header('Location: ../display_supplies_distribute.php?messagee=เพิ่มข้อมูลสำเร็จ');
         } else {
-            header('Location: ../display_supplies_distribute.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+            header('Location: ../display_supplies_distribute.php?messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
     } else {
 

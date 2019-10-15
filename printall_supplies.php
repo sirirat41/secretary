@@ -58,9 +58,7 @@ require "service/connection.php";
               <form>
                 <thead>
                   <tr class="text-center">
-                    <th>
-                      <font size="2">ลำดับ</font>
-                    </th>
+                   
                     <th>
                       <font size="2">เลขที่ใบเบิก</font>
                     </th>
@@ -71,14 +69,15 @@ require "service/connection.php";
                       <font size="2">ประเภท</font>
                     </th>
                     <th>
+                      <font size="2">รายการ</font>
+                    </th>
+                    <th>
                       <font size="2">ลักษณะ/คุณสมบัติ</font>
                     </th>
                     <th>
                       <font size="2">หน่วยนับ</font>
                     </th>
-                    <th>
-                      <font size="2">รายการ</font>
-                    </th>
+                  
                     <th>
                       <font size="2">หน่วยงานที่รับผิดชอบ</font>
                     </th>
@@ -98,9 +97,7 @@ require "service/connection.php";
                     $id = $row["id"]
                     ?>
                     <tr class="text-center">
-                      <td>
-                        <font size="2"><?php echo thainumDigit($row["id"]); ?></font>
-                      </td>
+                     
                       <td>
                         <font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font>
                       </td>
@@ -111,14 +108,15 @@ require "service/connection.php";
                         <font size="2"><?php echo thainumDigit($row["tname"]); ?></font>
                       </td>
                       <td>
+                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
+                      </td>
+                      <td>
                         <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
                       </td>
-                      <td>
-                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
-                      </td>
+                    
                       <td>
                         <font size="2"><?php echo thainumDigit($row["fullname"]); ?></font>
                       </td>

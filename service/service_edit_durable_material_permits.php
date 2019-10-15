@@ -14,7 +14,7 @@ if(isset($_GET["id"])) {
     $log = "แก้ไขข้อมูลการยืม-คืนวัสดุคงทน รหัส " . $id ;
     logServer($conn, $log);
 
-    $updatepermit = "UPDATE durable_material_permits SET product_id = '$product_id',";
+    $updatepermit = "UPDATE durable_material_permits SET book_no = '$book_no',";
     $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', department_id = $department_id, flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
     mysqli_query($conn, $updatepermit) or die("Cannot update permits". mysqli_error($conn));

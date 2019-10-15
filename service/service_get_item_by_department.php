@@ -10,7 +10,7 @@ if (isset($_GET["dep"]) && isset($_GET["item"])) {
         } else if ($item == 2) {
                 $sql = "SELECT * FROM durable_material WHERE department_id = $dep";
         } else if ($item == 3) {
-                $sql = "SELECT * FROM supplies WHERE department_id = $dep";
+                $sql = "SELECT * FROM supplies as s ,supplies_stock as ss WHERE s.supplies_id = ss.id and s.department_id = $dep";
         }
 
         if ($keyword != null) {

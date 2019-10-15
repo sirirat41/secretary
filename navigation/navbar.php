@@ -88,6 +88,8 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
             <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
             <a class="collapse-item stock" href="display_supplies_stock.php">จำนวนคงเหลือ</a>
+            <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
+
 
           </div>
         </div>
@@ -184,7 +186,11 @@ if (isset($_SESSION['user_id'])) {
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
+          <li class="nav-item">
+        <a class="nav-link" href="display_log.php">
+          <i class="fas fa-fw fa-"></i>
+          <span>การเข้าใช้งาน</span></a>
+      </li>
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -210,34 +216,25 @@ if (isset($_SESSION['user_id'])) {
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <?php
-                    $sqlReuqest = "SELECT * FROM supplies_request";
-                    $sqlResult = mysqli_query($conn, $sqlReuqest);
-                    $numberOfRequest = mysqli_num_rows($sqlResult);
-                    ?>
-                <span class="badge badge-danger badge-counter"><?php echo ($numberOfRequest <= 3) ? $numberOfRequest : "3+"; ?></span>
+               
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
-                <?php
-                    while ($row = mysqli_fetch_assoc($sqlResult)) {
-                      ?>
-                  <a class="dropdown-item d-flex align-items-center" href="edit_supplies_request.php?id=<?php echo $row["id"]; ?>">
+                
+                  <a class="dropdown-item d-flex align-items-center">
                     <div class="mr-3">
                       <div class="icon-circle bg-primary">
                         <i class="fas fa-file-alt text-white"></i>
                       </div>
                     </div>
                     <div>
-                      <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+                     
                     </div>
                   </a>
-                <?php
-                    }
-                    ?>
+             
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
@@ -322,6 +319,7 @@ if (isset($_SESSION['user_id'])) {
                 <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
                 <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
                 <a class="collapse-item stock" href="display_supplies_stock.php">จำนวนคงเหลือ</a>
+                <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
               </div>
             </div>
           </li>

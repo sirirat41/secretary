@@ -9,8 +9,8 @@ if(isset($_GET["id"])) {
     $transfer_date = $_POST["transfer_date"];
     $transfer_from = $_POST["transfer_from"];
     $flag = $_POST["flag"];
-    $updatepermit = "UPDATE durable_articles_transfer_in SET product_id = $product_id ,";
-    $updatepermit .= " document_no = $document_no, transfer_date = '$transfer_date', transfer_from = '$transfer_from', flag = '$flag'";
+    $updatepermit = "UPDATE durable_articles_transfer_in SET document_no = '$document_no',";
+    $updatepermit .= "  transfer_date = '$transfer_date', transfer_from = '$transfer_from', flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
     $log = "แก้ไขข้อมูลการโอนเข้าครุภัณฑ์ รหัส " . $id ;

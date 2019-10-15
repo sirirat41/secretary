@@ -15,7 +15,7 @@ if(isset($_GET["id"])) {
     logServer($conn, $log);
 
     $updaterepairhistory = "UPDATE durable_articles_repair_history SET seq = $seq,";
-    $updaterepairhistory .= " repair_id = $repairid, price = $price, receive_date = '$receivedate', fix = '$fix', flag = '$flag' ";
+    $updaterepairhistory .= " price = $price, receive_date = '$receivedate', fix = '$fix', flag = '$flag' ";
     $updaterepairhistory .= " WHERE id = $id";
     mysqli_query($conn, $updaterepairhistory) or die("Cannot update repair_history" . mysqli_error($conn));
     header('Location: ../display_durable_articles_repair_history.php?message=แก้ไขข้อมูลสำเร็จ');

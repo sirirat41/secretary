@@ -11,7 +11,7 @@ if (isset($_GET["id"])) {
   $receiveDate = $item["receive_date"];
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
-  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+  $newOrderDate = date("Y-m-d", strtotime($orderDate));
 
   //item.code java odject , item["code"] php
 
