@@ -13,7 +13,10 @@ if (isset($_GET["id"])) {
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
+<<<<<<< HEAD
   
+=======
+>>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
 
   //item.code java odject , item["code"] php
 
@@ -377,7 +380,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>

@@ -128,11 +128,11 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
               </div>
-          </form>
+          
         </div>
       </div>
     </div>
-  </div>
+  </div></form>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->

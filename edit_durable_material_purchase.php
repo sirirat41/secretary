@@ -102,13 +102,12 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 ">
+                  <div class="col-md-12 ">
                     <div class="form-group">
-                      <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
-                      <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="material_pattern" value="<?php echo $item["code"]; ?>">
-                      <small style="color: red"> *ว.สดง. 0018/59</small>
-                    </div>
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
+                </div>
                 </div>
                 <div class="row">
                   <div class="col-6 ">
@@ -282,7 +281,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" align="center" alt="...">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>

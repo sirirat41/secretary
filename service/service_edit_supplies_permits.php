@@ -9,8 +9,8 @@ if(isset($_GET["id"])) {
     $permit_date = $_POST["permit_date"];
     $receivedate = $_POST["receive_date"];
     $flag = $_POST["flag"];
-    $updatepermit = "UPDATE supplies_permits SET product_id = '$product_id',";
-    $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', flag = '$flag'";
+    $updatepermit = "UPDATE supplies_permits SET book_no = '$book_no',";
+    $updatepermit .= " permit_date = '$permit_date', receive_date = '$receivedate', flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
     $log = "แก้ไขข้อมูลการยืม-คืนวัสดุสิ้นเปลือง รหัส " . $id ;
@@ -18,5 +18,5 @@ if(isset($_GET["id"])) {
 
   
     mysqli_query($conn, $updatepermit) or die("Cannot update permits". mysqli_error($conn));
-    header('Location: ../display_supplies_permits.php?message=แก้ไขข้อมูลสำเร็จ');
+    header('Location: ../display_supplies_permits.php?messagee=แก้ไขข้อมูลสำเร็จ');
 }

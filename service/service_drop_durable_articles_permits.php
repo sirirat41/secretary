@@ -9,6 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["permits_id"] )) {
     logServer($conn, $log);
 
     if (mysqli_query($conn, $sqlUpdate)) {
+        
+
+        $sqlUpdate1 ="UPDATE durable_articles SET status = 1 WHERE id = $permitsID";
+        mysqli_query($conn ,$sqlUpdate1);
         header('Location: ../display_durable_articles_permits.php?message=ลบข้อมูลสำเร็จ');
     } else {
         header('Location: ../display_durable_articles_permits.php?message=ลบข้อมูลไม่สำเร็จ');

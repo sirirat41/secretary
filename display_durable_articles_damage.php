@@ -94,7 +94,7 @@ $show = 10;
                       $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
+                        $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -146,11 +146,11 @@ $show = 10;
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+             $sqlSelectCount = "SELECT da.*, a.code ,a.attribute ,a.model FROM durable_articles_damage as da, durable_articles as a";
              $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
              if (isset($_GET["keyword"])) {
                $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
+               $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
              }
              $sqlSelectCount .= " Order by da.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

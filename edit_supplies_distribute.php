@@ -4,11 +4,11 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM supplies_distribute WHERE id = $id";
+  $sql = "SELECT * FROM supplies_distribute as d ,supplies as s WHERE d.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["distribute_date"];
-  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+  $newOrderDate = date("Y-m-d", strtotime($orderDate));
 
   //item.code java odject , item["code"] php
 
@@ -65,33 +65,13 @@ if (isset($_GET["id"])) {
             <br>
             <div class="card-body">
               <form method="post" action="service/service_edit_supplies_distribute.php?id=<?php echo $id; ?>" id="form_insert">
-                <div class="row">
-                  <div class="col-12 ">
+              <div class="row">
+                  <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <div class="row">
-                        <div class="col-md-10 ">
-                          <select class="form-control" name="product_id" id="product_id">
-                            <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["product_id"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
-                              } else {
-                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                              }
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" >
-                            <i class="fas fa-search"></i>
-                        </div>
-                      </div>
-                    </div>
+                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
+                </div>
                 </div>
                 <div class="row">
                   <div class="col-6">

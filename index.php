@@ -171,7 +171,7 @@
         success: function(response) {
           console.log(response);
           if (response.result) {
-            window.location = "display_durable_articles.php";
+            window.location = "dashboard.php";
           } else {
             alert('username หรือ password ผิด');
           }

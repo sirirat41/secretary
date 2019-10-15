@@ -60,7 +60,7 @@ if (isset($_GET["id"])) {
             <div class="row">
               <div class="col-sm-12" align="center">
                 <div class="center" style="width: 200px;">
-                <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                 </div>
               </div>
               <tbody>
@@ -74,14 +74,24 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </td>
-
                     <td>
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
-                          <?php echo thainumDigit($row["purchase_date"]); ?>
+                          <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
+                          <?php echo thainumDigit($row["document_no"]); ?>
                         </div>
                       </div>
+                    </td>
+                   </tr>
+                
+                  <tr>
+                  <td colspan="2">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="text-dark" for="purchase_date">วันที่จัดซื้อ : </label>
+                        <?php echo thainumDigit($row["purchase_date"]); ?>
+                      </div>
+                    </div>
                     </td>
                   </tr>
                   <tr>
@@ -132,7 +142,7 @@ if (isset($_GET["id"])) {
                     <td>
                       <div class="row">
                         <div class="col-sm-12">
-                          <label class="text-dark" for="number">จำนวนปีครุภัณฑ์ : </label>
+                          <label class="text-dark" for="number">จำนวนวัสดุ : </label>
                           <?php echo thainumDigit($row["number"]); ?>
                         </div>
                       </div>

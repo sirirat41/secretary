@@ -4,11 +4,11 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_repair_history WHERE id = $id";
+  $sql = "SELECT * FROM durable_articles_repair_history as r ,durable_articles as a WHERE r.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receivedate = $item["receive_date"];
-  $newReceivedate = date("ํY-m-d", strtotime($receivedate));
+  $newReceivedate = date("Y-m-d", strtotime($receivedate));
   $show = 10;
 }
 ?>
@@ -74,34 +74,12 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
-                      <div class="row">
-                        <div class="col-md-10">
-                          <select class="form-control" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
-                            <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["repair_id"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
-                              } else {
-                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                              }
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
-                            <i class="fas fa-search"></i>
-                            </button>
-                          </div>
-                      
-                      </div>
-                    </div>
+                      <input class="form-control" name="repair_id" type="text" placeholder="repair_id" id="repair_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
+                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-8">

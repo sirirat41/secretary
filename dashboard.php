@@ -125,7 +125,6 @@ $rows = mysqli_fetch_assoc($resultS);
           height: 250px;
         }
       </style>
-      <!-- Resources -->
       <script src="https://www.amcharts.com/lib/4/core.js"></script>
       <script src="https://www.amcharts.com/lib/4/charts.js"></script>
       <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
@@ -133,25 +132,18 @@ $rows = mysqli_fetch_assoc($resultS);
       <script>
         am4core.ready(function() {
 
-          // Themes begin
           am4core.useTheme(am4themes_dataviz);
           am4core.useTheme(am4themes_animated);
-          // Themes end
 
-          // Create chart instance
           var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-          // Increase contrast by taking evey second color
           chart.colors.step = 2;
 
-          // Add data
           chart.data = generateChartMonth();
 
-          // Create axes
           var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
           dateAxis.renderer.minGridDistance = 50;
 
-          // Create series
           function createAxisAndSeries(field, name, opposite, bullet) {
             var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
@@ -213,21 +205,14 @@ $rows = mysqli_fetch_assoc($resultS);
           createAxisAndSeries("material", "วัสดุคงทน", true, "triangle");
           createAxisAndSeries("supplies", "วัสดุสิ้นเปลือง", true, "rectangle");
 
-          // Add legend
           chart.legend = new am4charts.Legend();
 
-          // Add cursor
           chart.cursor = new am4charts.XYCursor();
 
-
-          // generate some random data, quite different range
           function generateChartMonth() {
             var chartData = [];
             var firstDate = new Date();
             firstDate.setMonth(firstDate.getMonth() - 6);
-            var articles = 100;
-            var material = 100;
-            var supplies = 100;
 
             <?php
             $jsonA = array();
@@ -283,7 +268,6 @@ $rows = mysqli_fetch_assoc($resultS);
         }); // end am4core.ready()
       </script>
 
-      <!-- HTML -->
       <div id="chartdiv"></div>
     </div>
   </div>

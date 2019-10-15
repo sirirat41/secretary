@@ -13,7 +13,7 @@ if(isset($_GET['id'])) {
     logServer($conn, $log);
 
     $updateDonate = "UPDATE durable_articles_donate SET document_no = '$documentNo',";
-    $updateDonate .= " receive_date = '$documentNo', product_id = '$productId', ";
+    $updateDonate .= " receive_date = '$receiveDate', ";
     $updateDonate .= " donate_name = '$donateName', flag = '$flag'";
     $updateDonate .= " WHERE id = $id";
     mysqli_query($conn, $updateDonate) or die("Cannot update donate: " . mysqli_error($conn));

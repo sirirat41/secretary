@@ -173,7 +173,7 @@ require "service/connection.php";
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["bulding"] . $row["floor"] . '</option>';
+                        echo '<option value="' . $row["id"] . '">' . "อาคาร ". $row["bulding"] . "ชั้น ". $row["floor"] . '</option>';
                       }
                       ?>
                     </select>
@@ -609,6 +609,21 @@ require "service/connection.php";
 
             })
           })
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                $('#image-preview').attr('src', e.target.result);
+              }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+
+          $("#image").change(function() {
+            readURL(this);
+          });
         </script>
 </body>
 

@@ -4,11 +4,11 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_donate WHERE id = $id";
+  $sql = "SELECT * FROM durable_articles_donate as d ,durable_articles as a WHERE d.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["receive_date"];
-  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+  $newOrderDate = date("Y-m-d", strtotime($orderDate));
 $show=10;
   //item.code java odject , item["code"] php
 
@@ -79,46 +79,28 @@ $show=10;
                     </div>
                   </div>
                 </div>
-                <div class="row">
+               <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสครุภัณฑ์</label>
-                      <div class="row">
-                        <div class="col-md-10 ">
-                          <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
-                            <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["product_id"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
-                              } else {
-                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                              }
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search"  onclick="search()">
-                            <i class="fas fa-search"></i>
-                        </div>
-                      </div>
-                    </div>
+                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
+                </div>
                 </div>
 
                 <div class="row">
-                  <div class=" col-6 ">
+                  <div class=" col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
                       <input class="form-control" name="donate_name" type="text" placeholder="donate_name" id="donate_name" value="<?php echo $item["donate_name"]; ?>">
                     </div>
                   </div>
-                  <div class="col-6 ">
+                  </div>
+                <div class="row">
+                  <div class="col-12">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label-floating">หมายเหตุ</label>
-                      <input class="form-control" name="flag" name="flag" type="text" placeholder="flag" id="flag" value="<?php echo $item["flag"]; ?>">
+                      <textarea type="text" class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -269,7 +251,7 @@ $show=10;
                    
                         
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status = 8";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";

@@ -2,7 +2,13 @@
 <html lang="en">
 <?php
 require "service/connection.php";
+if (isset($_GET["id"])) {
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM department as d WHERE d.id = $id";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
 $show = 10;
+}
 ?>
 
 <head>
@@ -83,8 +89,10 @@ $show = 10;
                   </tbody>
                 </table>
               </div>
+
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -106,7 +114,15 @@ $show = 10;
       </li>
     </ul>
   </nav>
+  <div class="card-body">
+            <div class="row">
+            <div class="col-md-12" align="center">
+                <img class="img-thumbnail" width="800" src="depart/<?php echo $row["pic"]; ?>">
+              </div>
+          </div>
   </div>
+  </div>
+  
   <!-- Footer -->
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -175,10 +191,12 @@ $show = 10;
         var code = element["code"];
         var attr = element["attribute"];
         var model = "";
-        if (item == 2 || item == 3) {
-          model = element["name"];
-        } else {
+        if (item == 1) {
           model = element["model"];
+         } else if (item == 2) {
+          model = element["name"];
+          } else if(item == 3) {
+          model = element["supplies_name"];
         }
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + attr + '</td>').appendTo(tr);

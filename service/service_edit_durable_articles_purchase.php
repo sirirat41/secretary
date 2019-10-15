@@ -6,11 +6,12 @@ if (isset($_GET['id'])) {
     $orderNo = $_POST["order_no"];
     $orderBy = $_POST["order_by"];
     $receiver = $_POST["receiver"];
+    $purchase_date = $_POST["purchase_date"];
     $receiviceAddress = $_POST["receive_address"];
     $document_no = $_POST["document_no"];
 
     $updatePurchase = "UPDATE durable_articles_purchase SET order_no = '$orderNo',";
-    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_address = '$receiviceAddress', document_no = '$document_no'";
+    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver',purchase_date = '$purchase_date', receive_address = '$receiviceAddress', document_no = '$document_no'";
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 

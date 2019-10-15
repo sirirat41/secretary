@@ -11,8 +11,8 @@ if (isset($_GET['id'])) {
     $log = "แก้ไขข้อมูลการชำรุดครุภัณฑ์ รหัส " . $id ;
     logServer($conn, $log);
 
-    $updateDamage = "UPDATE durable_articles_damage SET product_id = '$product_id',";
-    $updateDamage .= " damage_date = '$damage_date',  flag = '$flag'";
+    $updateDamage = "UPDATE durable_articles_damage SET damage_date = '$damage_date',";
+    $updateDamage .= " flag = '$flag'";
     $updateDamage .= " WHERE id = $id";
 
     mysqli_query($conn, $updateDamage) or die("Cannot update damage: ". mysqli_error($conn));

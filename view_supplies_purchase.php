@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, s.code ,s.attribute ,s.name, s.picture FROM supplies_purchase as p ,supplies as s WHERE p.id = $id";
-  $sql .= " and p.product_id = s.id and s.status = 1";
+  $sql = "SELECT p.*, s.code ,ss.attribute ,ss.supplies_name, s.picture ,sl.name FROM supplies_purchase as p ,supplies as s ,supplies_stock as ss ,seller as sl WHERE p.id = $id";
+  $sql .= " and p.product_id = s.id and p.seller_id = sl.id and s.supplies_id = ss.id and s.status = 1";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -94,8 +94,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="name">รุ่นแบบ : </label>
-                      <?php echo thainumDigit($row["name"]); ?>
+                      <label class="text-dark" for="supplies_name">ชื่อวัสดุ : </label>
+                      <?php echo thainumDigit($row["supplies_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
@@ -122,8 +122,14 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="number">จำนวนปีครุภัณฑ์ : </label>
+                      <label class="text-dark" for="number">จำนวนวัสดุ : </label>
                       <?php echo thainumDigit($row["number"]); ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-dark" for="name">ร้านค้า : </label>
+                      <?php echo thainumDigit($row["name"]); ?>
                     </div>
                   </div>
                 </div>

@@ -8,8 +8,8 @@ if(isset($_GET["id"])) {
     $seq = $_POST["seq"];
     $repair_date = $_POST["repair_date"];
     $place = $_POST["place"];
-    $updatepermit = "UPDATE durable_material_repair SET damage_id = '$damage_id',";
-    $updatepermit .= " seq = $seq , repair_date = '$repair_date', place = '$place'";
+    $updatepermit = "UPDATE durable_material_repair SET seq = $seq ,";
+    $updatepermit .= " repair_date = '$repair_date', place = '$place'";
     $updatepermit .= " WHERE id = $id";
   
     $log = "แก้ไขข้อมูลการซ่อมวัสดุคงทน รหัส " . $id ;
