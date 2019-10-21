@@ -6,12 +6,17 @@ if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles LEFT JOIN durable_articles_purchase ON durable_articles.id = durable_articles_purchase.product_id ";
   $sql .= "WHERE durable_articles.id = $id ";
+  echo $sql ;
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
-  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+  $newOrderDate = date("Y-m-d", strtotime($orderDate));
+<<<<<<< HEAD
+  
+=======
+>>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
 
   //item.code java odject , item["code"] php
 
@@ -86,10 +91,10 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-6 ">
+                  <div class="col-6">
                     <div class="form-group">
-                      <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
-                      <input class="form-control" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
+                      <label for="order_no">ชื่อผู้จัดซื้อ</label>
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
@@ -110,9 +115,9 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-6 ">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">ชื่อผู้รับ :</label>
-                      <input class="form-control" type="text" placeholder="receiver" name="receiver" value="<?php echo $item["receiver"]; ?>">
+                    <div class="form-group ">
+                      <label for="receiver">ชื่อผู้รับ</label>
+                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $item["receiver"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
@@ -225,7 +230,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-12">
                     <label for="exampleFormControlSelect1">ชื่อผู้ขาย : </label>
-                    <select class="form-control" name="seller_id">
+                    <select class="form-control" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
                       <?php
                       $sqlSelectType = "SELECT * FROM seller";
                       $resultType = mysqli_query($conn, $sqlSelectType);

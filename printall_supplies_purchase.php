@@ -45,14 +45,21 @@ require "service/connection.php";
               <form>
                 <thead>
                   <tr class="text-center">
-                    <th>
-                      <font size="2">ลำดับ</font>
-                    </th>
+                   
                     <th>
                       <font size="2">เลขที่ใบสั่งซื้อ</font>
                     </th>
                     <th>
+                      <font size="2">รหัววัสดุ</font>
+                    </th>
+                    <th>
                       <font size="2">วันที่จัดซื้อ</font>
+                    </th>
+                    <th>
+                      <font size="2">วันที่รับ</font>
+                    </th>
+                    <th>
+                      <font size="2">รายการ</font>
                     </th>
                     <th>
                       <font size="2">คุณสมบัติ/ลักษณะ</font>
@@ -67,7 +74,7 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT p.*,ss.attribute ,a.code FROM supplies_purchase as p,supplies as a , supplies_stock as ss";
+                  $sqlSelect = "SELECT p.*,ss.attribute ,a.code ,ss.supplies_name FROM supplies_purchase as p,supplies as a , supplies_stock as ss";
                   $sqlSelect .= " WHERE a.supplies_id = ss.id and p.product_id = a.id and p.status = 1 Group by order_no";
                   if (isset($_GET["keyword"])) {
                     $keyword = $_GET["keyword"];
@@ -78,14 +85,21 @@ require "service/connection.php";
                     $id = $row["id"];
                     ?>
                     <tr class="text-center">
-                      <td>
-                        <font size="2"><?php echo $row["id"]; ?></font>
-                      </td>
+                   
                       <td>
                         <font size="2"><?php echo thainumDigit($row["order_no"]); ?></font>
                       </td>
                       <td>
+                        <font size="2"><?php echo $row["code"]; ?></font>
+                      </td>
+                      <td>
                         <font size="2"><?php echo $row["purchase_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["receive_date"]; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo $row["supplies_name"]; ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo $row["attribute"]; ?></font>

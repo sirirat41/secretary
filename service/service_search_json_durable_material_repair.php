@@ -7,7 +7,7 @@
         $thai = thainumDigit($keyword);
         $arabic = arabicnumDigit($keyword);
         $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.name FROM durable_material_repair as r, durable_material as a";
-        $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+        $sqlSelect .= " WHERE r.damage_id = a.id ";
         $sqlSelect .=" and (a.code like '%$thai%' or a.model like '%$thai%'";
         $sqlSelect .= " or a.code like '%$arabic%' or a.model like '%$arabic%')";
         $data = array();

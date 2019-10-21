@@ -4,8 +4,13 @@ include 'qrcode/phpqrcode/qrlib.php';
 
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT *,durable_material_purchase.id as pid, department.id as d, unit.id as unit_name, durable_material_type.id as durable_material_type_name, seller.id as seller_name FROM durable_material LEFT JOIN durable_material_purchase ON durable_material.id = durable_material_purchase.product_id LEFT JOIN department ON durable_material.id = department.id LEFT JOIN unit ON durable_material.id = unit.id LEFT JOIN durable_material_type ON durable_material.id = durable_material_type.name LEFT JOIN seller ON durable_material.id = seller.name";
-  $sql .= " WHERE durable_material.id = $id ";
+  $sql = "SELECT *, m.name, s.name as seller_name, t.name as durable_material_type_name, u.name as unit_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no FROM durable_material as m 
+  LEFT JOIN durable_material_purchase as p ON m.id = p.product_id 
+  LEFT JOIN seller as s ON m.seller_id = s.id 
+  LEFT JOIN department as d ON m.department_id = d.id 
+  LEFT JOIN durable_material_type as t ON m.type = t.id
+  LEFT JOIN unit as u ON m.unit = u.id 
+  WHERE m.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -67,7 +72,7 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-9 offset-2">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -179,7 +184,7 @@ $monthDay = ($dateMouth - $day) + 1;
           </div>
           <form>
             <div class="row">
-              <div class="col-12">
+              <div class="col-md-12">
                 <div class="table-responsive">
                   <table class='border-color-gray' align="left" cellpadding="5" cellspacing="5" border="1" width="100%">
                     <thead>

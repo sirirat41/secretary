@@ -2,8 +2,13 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code, a.attribute ,a.model , a.picture FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and a.status = 1 ";
+  $sql = "SELECT *, s.name as seller_name, t.name as durable_articles_type_name, u.name as unit_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no FROM durable_articles as a 
+  LEFT JOIN durable_articles_purchase as p ON a.id = p.product_id 
+  LEFT JOIN seller as s ON a.seller_id = s.id 
+  LEFT JOIN department as d ON a.department_id = d.id 
+  LEFT JOIN durable_articles_type as t ON a.type = t.id
+  LEFT JOIN unit as u ON a.unit = u.id 
+  WHERE a.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }

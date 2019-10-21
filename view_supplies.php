@@ -3,10 +3,11 @@ require "service/connection.php";
 include 'qrcode/phpqrcode/qrlib.php';
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*, t.name as durable_material_type_name ,un.name as unit_name, s.picture ,se.name as seller_name, d.shortname ,d.fullname FROM supplies as s ,durable_material_type as t , seller as se , department as d , unit as un , supplies_purchase as pu WHERE s.id = $id and pu.id = $id";
-  $sql .= " and s.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
+  $sql = "SELECT s.*,ss.type ,ss.attribute,ss.supplies_name, t.name as durable_material_type_name ,un.name as unit_name, s.picture ,se.name as seller_name, d.shortname ,d.fullname FROM supplies as s ,durable_material_type as t , seller as se , department as d , unit as un , supplies_purchase as pu ,supplies_stock as ss WHERE s.id = $id and pu.id = $id";
+  $sql .= " and s.supplies_id = ss.id and ss.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+
 }
 ?>
 
@@ -109,8 +110,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                      <?php echo thainumDigit($row["name"]); ?>
+                      <label class="text-dark" for="supplies_name">ชื่อวัสดุ : </label>
+                      <?php echo thainumDigit($row["supplies_name"]); ?>
                     </div>
                   </div>
                   <div class="row">

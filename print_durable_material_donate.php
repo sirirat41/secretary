@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT do.*, m.code , m.picture FROM durable_material_donate as do ,durable_material as m WHERE do.id = $id";
-  $sql .= " and do.product_id = m.id and m.status = 1 ";
+  $sql = "SELECT d.*, m.code , m.picture FROM durable_material_donate as d, durable_material as m WHERE d.id = $id";
+  $sql .= " and d.product_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }
@@ -51,125 +51,118 @@ if (isset($_GET["id"])) {
   </div>
   <!-- เริ่มเขียนโค๊ดตรงนี้ -->
   <div class="row">
-    <div class="col-md-10 offset-1">
+    <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการบริจาคออก(วัสดุคงทน)</h6>
-          <form class="form-inline">
-            <div>
-          </form>
-      </div>
-    </div>
-    </nav>
-    <form>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <div class="center" style="width: 200px;">
-          <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
-          </div>
-        </div>
-      </div>
-      <tbody>
-        <thead>
-          <tr>
-            <td colspan="2">
+          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
+          <form>
+            <div class="card-body">
               <div class="row">
-                <div class="col-sm-6">
-                  <label class="text" for="document_no">เลขที่เอกสาร : </label>
-                  <?php echo thainumDigit($row["document_no"]); ?>
+                <div class="col-sm-12" align="center">
+                  <div class="center" style="width: 200px;">
+                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                  </div>
                 </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <div class="row">
-                <div class="col-sm-12">
-                  <label class="text" for="receive_date">วันที่บริจาค : </label>
-                  <?php echo thainumDigit($row["receive_date"]); ?>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <div class="row">
-                <div class="col-sm-12">
-                  <label class="text-dark" for="code">รหัสวัสดุ : </label>
-                  <?php echo thainumDigit($row["code"]); ?>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <div class="row">
-                <div class="col-sm-12">
-                  <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>
-                  <?php echo $row["donate_name"]; ?>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="row">
-                <div class="col-sm-12">
-                  <label class="text" for="flag">หมายเหตุ : </label>
-                  <?php echo $row["flag"]; ?>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </thead>
-      </tbody>
-      </table>
-      <br>
-      <br>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">ตรวจแล้วถูกต้อง</label>
-          </div>
-        </div>
+                <tbody>
+                  <thead>
+                    <tr>
+                      <td colspan="2">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <label class="text" for="document_no">เลขที่เอกสาร : </label>
+                            <?php echo thainumDigit($row["document_no"]); ?>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <label class="text" for="receive_date">วันที่บริจาค : </label>
+                            <?php echo thainumDigit($row["receive_date"]); ?>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <label class="text-dark" for="code">รหัสวัสดุ : </label>
+                            <?php echo thainumDigit($row["code"]); ?>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>
+                            <?php echo $row["donate_name"]; ?>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <label class="text" for="flag">หมายเหตุ : </label>
+                            <?php echo $row["flag"]; ?>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </thead>
+                </tbody>
+        </table>
         <br>
-        <div class="row">
-          <div class="col-sm-5 offset-sm-7" align="right">
-            <label class="text">พ.ต.ท.หญิง......................................................</label>
+        <br>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">ตรวจแล้วถูกต้อง</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+          <br>
+          <div class="row">
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text">พ.ต.ท.หญิง......................................................</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-            </label>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              </label>
+            </div>
+          </div>
+          </form>
         </div>
+
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
-  </div>
-  </div>
-  </form>
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
+      <!-- /.container-fluid -->
 
 
-  </div>
-  <!-- End of Main Content -->
+    </div>
+    <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <!-- <footer class="sticky-footer bg-white">
+    <!-- Footer -->
+    <!-- <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
       </div>
     </div>
   </footer> -->
-  <!-- End of Footer -->
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->

@@ -64,11 +64,12 @@ require "service/connection.php";
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1 Group by code";
+                            $sqlSelectType = "SELECT * FROM supplies";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . ':' . $row["code"] . '">' . $row["code"] . '</option>';
                             }
+                            // 
                             ?>
                           </select>
                         </div>
@@ -251,25 +252,30 @@ require "service/connection.php";
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center">
-                        <th>รหัสวัสดุ</th>
-                            <th>ชื่อวัสดุ</th>
-                            <th>การทำงาน</th>
+                        <td>รูปภาพ</td>
+                          <td>ลำดับ</td>
+                          <td>เลขที่ใบเบิก</td>
+                          <td>รหัสวัสดุ</td>
+                          <td>ประเภท</td>
+                          <td>การทำงาน</td>
                         </tr class="text-center">
                       </thead>
                       <tbody id="modal-supplies-body">
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-<<<<<<< HEAD
+
                    
                         $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
-=======
+
 
 
                         $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
+
+
                         $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
->>>>>>> bc33a95aaa4c938d4deb5437b57cf0b72aae6d99
+
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
@@ -279,6 +285,8 @@ require "service/connection.php";
                           $id = $row["id"]
                           ?>
                           <tr class="text-center">
+                          <td><?php echo thainumDigit($row["seq"]); ?></td>
+                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                             <td class="td-actions text-center">
@@ -323,42 +331,35 @@ require "service/connection.php";
   </div>
   </div>
   <script>
-    var itemPerPage = 10;
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
+    var showPageSection = 10; //จำนวนเลขหน้า
+    var numberOfPage;
     $('#form-search').on('submit', function(e) {
-      e.preventDefault();
-      search();
-    })
-
+        e.preventDefault();
+        search();
+      })
     function search() {
-      $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-      var keyword = $('#input-search').val().trim();
+       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
-        type: 'GET',
+         type: 'GET',
         success: function(data) {
-
           jsonData = data;
+          numberOfPage = data.length / itemPerPage;
           changePage(1);
-          $('new-page').removeClass();
-          var numberOfPage = Math.ceil(data.length / itemPerPage);
-          maxPage = numberOfPage;
-          for (let i = 0; i < numberOfPage; i++) {
-            $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
-          }
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
-
     function changePage(page) {
+      currentPage = page;
+
       var body = $('#modal-supplies-body');
       body.empty();
       var max = page * itemPerPage;
@@ -368,13 +369,23 @@ require "service/connection.php";
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var id = item["id"];
+        var picture = item["picture"];
+        var seq = item["seq"];
+        var bill_no = item["bill_no"];
         var code = item["code"];
-        var name = item["supplies_name"];
-        $('<td>' + code + '</td>').appendTo(tr);
-        $('<td>' + name + '</td>').appendTo(tr);
+        var type = item["name"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
+        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
+    
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
@@ -388,12 +399,55 @@ require "service/connection.php";
         changePage(currentPage);
       }
     }
+    function generatePagination() {
+      $('#pagination').empty();
+      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
+      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
+      $('new-page').removeClass();
+      maxPage = numberOfPage;
 
+      var countDiv = parseInt((currentPage - 1) / showPageSection);
+      var start_i = (countDiv * showPageSection);
+      var sectionGroup = ((countDiv * showPageSection) + showPageSection);
+      var end_i = sectionGroup > maxPage ? maxPage : sectionGroup;
+
+      for (let i = start_i; i < end_i; i++) {
+        if (i != 0 && i == start_i) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        if ((i + 1) < maxPage && i == end_i - 1) {
+          $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
+        }
+      }
+
+    }
+
+    function thaiNumber(num) {
+      var array = {
+        "1": "๑",
+        "2": "๒",
+        "3": "๓",
+        "4": "๔",
+        "5": "๕",
+        "6": "๖",
+        "7": "๗",
+        "8": "๘",
+        "9": "๙",
+        "0": "๐"
+      };
+      var str = num.toString();
+      for (var val in array) {
+        str = str.split(val).join(array[val]);
+      }
+      return str;
+    }
     function selectedsupplies(id) {
       $('#modal-form-search').modal('hide');
-      $('#code').val(id);
+      $('#product_id').val(id);
     }
   </script>
+
 
 </body>
 

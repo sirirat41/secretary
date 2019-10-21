@@ -47,49 +47,46 @@ require "service/connection.php";
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-fw fa-pen"></i>
-                  เพิ่มข้อมูลวัสดุ
+                <i class="fas fa-file-invoice-dollar"></i>
+                  เพิ่มข้อมูลบัญชีคุมวัสดุ
                 </h6>
               </div>
             </div>
             <br>
             <div class="card-body">
-              <form method="post" action="service/service_insert_supplies_stock.php" id="form_insert">
+              <form method="post" action="service/service_insert_supplies_account.php" id="form_insert">
+             
+
               <div class="row">
-                <div class="col-12">
+                  <div class="col-md-12">
                     <div class="form-group">
-                      <label for="supplies_name">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control" name="supplies_name" id="supplies_name" aria-describedby="supplies_name" placeholder="name">
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <div class="row">
+                        <div class="col-md-10">
+                          <select class="form-control" name="product_id"  id="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM supplies";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        
+                        <div class="col-md-1">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        
+                       
+                      </div>
                     </div>
-                    </div> 
                   </div>
+                </div>
                
-                <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
-                      <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" id="type">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM durable_material_type";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                        }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 ">
-                    <div class="form-group ">
-                      <label for="attribute">ลักษณะ/คุณสมบัติ</label>
-                      <textarea class="form-control" name="attribute" id="attribute" rows="3" placeholder="address" id="attribute"></textarea>
-                    </div>
-                  </div>
-                </div>
-
-
+             
+                <br>
                 <div class="row">
                   <div class="col-12">
                     <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">

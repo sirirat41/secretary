@@ -13,7 +13,7 @@ if(isset($_GET["id"])) {
     logServer($conn, $log);
     
     $updaterepair = "UPDATE durable_articles_repair SET seq = $seq,";
-    $updaterepair .= " repair_date = '$repairdate', damage_id = $damageid , place = '$place' ";
+    $updaterepair .= " repair_date = '$repairdate' , place = '$place' ";
     $updaterepair .= " WHERE id = $id";
     mysqli_query($conn, $updaterepair) or die("Cannot update repair" . mysqli_error($conn));
     header('Location: ../display_durable_articles_repair.php?message=แก้ไขข้อมูลสำเร็จ');

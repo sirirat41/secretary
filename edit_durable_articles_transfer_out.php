@@ -2,13 +2,13 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_transfer_out  WHERE id = $id";
+  $sql = "SELECT * FROM durable_articles_transfer_out as t ,durable_articles as s WHERE t.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["transfer_date"];
   // $purchaseDate = $item["permit_date"];
   // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
-  $newreceiveDate = date("ํd-m-Y", strtotime($receiveDate));
+  $newreceiveDate = date("Y-m-d", strtotime($receiveDate));
   $show = 10;
 }
 ?>
@@ -77,35 +77,15 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสครุภัณฑ์</label>
-                      <div class="row">
-                        <div class="col-md-10 ">
-                          <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
-                            <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles where status = 1";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["product_id"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '" selected>' . $row["code"] . '</option>';
-                              } else {
-                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                              }
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
-                            <i class="fas fa-search"></i>
-                        </div>
-                      </div>
-                    </div>
+                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
+                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group ">
                       <label for="transfer_to">ชื่อผู้โอนให้</label>
-                      <input type="text" class="form-control" name="transfer_to" id="transfer_to" placeholder="name" value="<?php echo $item["transfer_to"]; ?>">
+                      <input type="text" class="form-control" name="transfer_to" id="transfer_to" placeholder="name" value="<?php echo $newreceiveDate; ?>">
                     </div>
                   </div>
                 </div>

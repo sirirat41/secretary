@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         logServer($conn, $log);
         if (mysqli_query($conn, $sql)) {
             header('Location: ../display_durable_articles_permits.php?message=เพิ่มข้อมูลสำเร็จ');
-            $sqlUpdate ="UPDATE durable_articles SET status = 2 WHERE id = $productid";
+            $sqlUpdate ="UPDATE durable_articles SET status = 2 WHERE id = $productId";
             mysqli_query($conn ,$sqlUpdate);
         } else {
             header('Location: ../display_durable_articles_permits.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');

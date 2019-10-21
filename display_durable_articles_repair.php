@@ -94,7 +94,7 @@ $show = 10;
                       $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or a.model like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
@@ -153,7 +153,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE r.damage_id = a.id and r.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by r.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

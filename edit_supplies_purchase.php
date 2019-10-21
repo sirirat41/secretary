@@ -10,7 +10,7 @@ if (isset($_GET["id"])) {
   $receiveDate = $item["receive_date"];
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
-  $newOrderDate = date("d-m-Y", strtotime($orderDate));
+  $newOrderDate = date("Y-m-d", strtotime($orderDate));
 
   //item.code java odject , item["code"] php
 
@@ -155,35 +155,14 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
-                  <div class="row">
+                <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">
-                      <label for="supplies_id">ชื่อวัสดุ</label>
-                      <div class="row">
-                        <div class="col-md-10 ">
-                          <select class="form-control" name="supplies_id"  id="supplies_id">
-                            <?php
-                            $sqlSelectType = "SELECT * FROM supplies_stock ";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["unit"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '"selected>' . $row["supplies_name"] . '</option>';
-                              } else {
-                              echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
-                            }
-                          }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
-                            <i class="fas fa-search"></i>
-                        </div>
-                      </div>
-                    </div>
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
                 </div>
-               
+                </div>
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group">

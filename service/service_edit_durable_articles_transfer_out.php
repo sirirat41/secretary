@@ -9,7 +9,7 @@ if(isset($_GET["id"])) {
     $transfer_date = $_POST["transfer_date"];
     $transfer_to = $_POST["transfer_to"];
     $flag = $_POST["flag"];
-    $updatepermit = "UPDATE durable_articles_transfer_out SET product_id = '$product_id',";
+    $updatepermit = "UPDATE durable_articles_transfer_out SET document_no = '$document_no',";
     $updatepermit .= " document_no = $document_no, transfer_date = '$transfer_date', transfer_to = '$transfer_to', flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   

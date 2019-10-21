@@ -71,8 +71,8 @@ require "service/connection.php";
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group">
-                    <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
-                    <input class="form-control" type="text" placeholder="order_by" name="order_by">
+                    <label for="order_no">ชื่อผู้จัดซื้อ</label>
+                    <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by">
                   </div>
                 </div>
                 <div class="col-6 ">
@@ -93,9 +93,9 @@ require "service/connection.php";
               </div>
               <div class="row">
                 <div class="col-6 ">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">ชื่อผู้รับ :</label>
-                    <input class="form-control" type="text" placeholder="receiver" name="receiver" id="receiver">
+                  <div class="form-group ">
+                    <label for="receiver">ชื่อผู้รับ</label>
+                    <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver">
                   </div>
                 </div>
                 <div class="col-6 ">
@@ -173,7 +173,7 @@ require "service/connection.php";
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . $row["bulding"] . $row["floor"] . '</option>';
+                        echo '<option value="' . $row["id"] . '">' . "อาคาร ". $row["bulding"] . "ชั้น ". $row["floor"] . '</option>';
                       }
                       ?>
                     </select>
@@ -348,23 +348,23 @@ require "service/connection.php";
               </div>
               <br>
               <div class="row">
-                  <div class="col-4">
-                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                      <div class="fileinput-new thumbnail img-raised">
-                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png"  alt="..." id="image-preview">
-                      </div>
-                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                      <div>
-                        <span class="btn btn-raised btn-round btn-default btn-file">
-                        
-                          <div class="col-2">
-                            <input type="file" name="image" id = "image"/>
-                          </div>
-                        </span>
-                      </div>
+                <div class="col-4">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised">
+                      <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png" alt="..." id="image-preview">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                      <span class="btn btn-raised btn-round btn-default btn-file">
+
+                        <div class="col-2">
+                          <input type="file" name="image" id="image" />
+                        </div>
+                      </span>
                     </div>
                   </div>
                 </div>
+              </div>
               <br><br>
               <div class="row">
                 <div class="col-12">
@@ -609,6 +609,21 @@ require "service/connection.php";
 
             })
           })
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                $('#image-preview').attr('src', e.target.result);
+              }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+
+          $("#image").change(function() {
+            readURL(this);
+          });
         </script>
 </body>
 

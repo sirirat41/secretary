@@ -15,6 +15,6 @@ if(isset($_GET['id'])) {
     $updatesupplies .= " WHERE id = $id";
     mysqli_query($conn, $updatesupplies) or die("Cannot update supplies: " . mysqli_error($conn));
 
-    header('Location: ../display_supplies_distribute.php?message=แก้ไขข้อมูลสำเร็จ');
+    header('Location: ../display_supplies_distribute.php?messagee=แก้ไขข้อมูลสำเร็จ');
 }
 ?>
