@@ -8,7 +8,7 @@ if (!isset($_SESSION["user_type"])) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "secretary_production";
+    $database = "secretary";
 
     $conn = mysqli_connect($servername, $username, $password, $database);
     if (!$conn) {
