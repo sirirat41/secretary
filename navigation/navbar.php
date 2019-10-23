@@ -215,26 +215,54 @@ if (isset($_SESSION['user_id'])) {
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
+<<<<<<< HEAD
+                 </a>
+=======
+<<<<<<< HEAD
+                Counter - Alerts
+                
+=======
                 <!-- Counter - Alerts -->
                
+>>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
               </a>
+>>>>>>> e77ac1203133422058a9e443ff47719b5ede9739
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
+<<<<<<< HEAD
+                <a class="dropdown-item d-flex align-items-center" href="edit_supplies_request.php?id=<?php echo $row["id"]; ?>">
+=======
+<<<<<<< HEAD
+               
+                  <a class="dropdown-item d-flex align-items-center" href="edit_supplies_request.php?id=<?php echo $row["id"]; ?>">
+=======
                 
                   <a class="dropdown-item d-flex align-items-center">
+>>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
+>>>>>>> e77ac1203133422058a9e443ff47719b5ede9739
                     <div class="mr-3">
                       <div class="icon-circle bg-primary">
                         <i class="fas fa-file-alt text-white"></i>
                       </div>
                     </div>
                     <div>
+<<<<<<< HEAD
+                    </div>
+                  </a>
+
+=======
                      
                     </div>
                   </a>
+<<<<<<< HEAD
+                
+=======
              
+>>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
+>>>>>>> e77ac1203133422058a9e443ff47719b5ede9739
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>

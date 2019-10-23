@@ -99,6 +99,16 @@ $show = 10;
                       <textarea class="form-control" name="place" id="exampleFormControlTextarea1" placeholder="place" rows="3"></textarea>
                     </div>
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="flag">หมายเหตุ</label>
+                      <input class="form-control" name="flag" id="flag" aria-describedby="flag">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                       บันทึก
@@ -334,6 +344,12 @@ $show = 10;
         var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
+<<<<<<< HEAD
+        $('<td>' + item.damage_date + '</td>').appendTo(tr);
+        $('<td>' + item.code + '</td>').appendTo(tr);
+        $('<td>' + item.flag + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+=======
             $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
             $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
             $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
@@ -394,6 +410,7 @@ $show = 10;
       var str = num.toString();
       for (var val in array) {
         str = str.split(val).join(array[val]);
+>>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
       }
       return str;
     }

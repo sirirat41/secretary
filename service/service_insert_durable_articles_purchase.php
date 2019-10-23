@@ -13,19 +13,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $number = $_POST["number"];
         $document_no = $_POST["document_no"];
 
-        $sql = "INSERT INTO durable_articles_purchase(product_id ,order_no ,purchase_date ,seller_id ,order_by ,receiver ,receive_date ,receive_address ,number, document_no)";
+        $sql = "INSERT INTO durable_material_purchase(product_id ,order_no ,purchase_date ,seller_id ,order_by ,receiver ,receive_date ,receive_address ,number, document_no)";
         $sql .= " VALUES($productId ,'$orderno' ,'$purchasedate' ,$sellerid ,'$orderby' ,'$receiver' ,'$receivedate' ,'$receiveaddress' ,$number, '$document_no')"; 
 
-        $log = "เพิ่มข้อมูลการจัดซื้อครุภัณฑ์";
+        $log = "เพิ่มข้อมูลการจัดซื้อวัสดุคงทน";
         logServer($conn, $log);
         if (mysqli_query($conn, $sql)) {
-            header('Location: ../display_durable_purchase.php?message=เพิ่มข้อมูลสำเร็จ');
+            header('Location: ../display_durable_material_purchase.php?message=เพิ่มข้อมูลสำเร็จ');
         } else {
-            echo "Can't insert data, please check this:" . mysqli_error($conn);
+            header('Location: ../display_durable_material_purchase.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
-
-} else {
-
-
-}
+    
+    } else {
+    
+    }
 ?>
