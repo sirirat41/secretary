@@ -1,7 +1,6 @@
 <?php
 require "service/connection.php";
-
-$show = 10;
+$show = 10
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_supplies_purchase</secretary>
+  <secretary style="display : none">display_supplies_account</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +23,8 @@ $show = 10;
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+
+
 
 </head>
 
@@ -43,25 +44,25 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (วัสดุสิ้นเปลือง)</h6>
+                  <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลวัสดุสิ้นเปลือง(ทะเบียนคุม)</h6>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_account.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_purchase.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_account.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_purchase.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_account.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -70,61 +71,64 @@ $show = 10;
           </nav>
           <form>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-12">
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>เลขที่ใบสั่งซื้อ</th>
-                        <th>วันที่จัดซื้อ</th>
-                        <th>จำนวน</th>
-                        <th>ชื่อผู้จัดซื้อ</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>ชื่อวัสดุ</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>จำนวนคงเหลือ</th>
+                        <th>ประเภท</th>
                         <th>การทำงาน</th>
-                      </tr>
+                      </tr class="text-center">
                     </thead>
                     <tbody>
+                      <!-- ///ดึงข้อมูล -->
                       <?php
-                      //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
                       } else {
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM supplies_purchase";
-                      $sqlSelect .= " WHERE status = 1 Group by order_no";
+                      $sqlSelect = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
+                      $sqlSelect .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
-                       // echo $sqlSelect;
-                      $sqlSelect .= " Order by id desc LIMIT $start, $show";
+                      // echo $sqlSelect;
+                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
+                        $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["number"]); ?></td>
-                          <td><?php echo thainumDigit($row["order_by"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
+                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
+                          <td><?php echo thainumDigit($row["stock"]); ?></td>
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_account.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_account.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_purchase.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_account.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-account').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-                          <?php
-                          }
-
-                          ?>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -135,18 +139,25 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+            <?php
+              $prevPage = "#";
+              if ($page > 1) {
+                $prevPage = "?page=" . ($page - 1);
+              }
+
+              ?>
+              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT * FROM supplies_purchase";
-            $sqlSelectCount .= " WHERE status = 1 Group by order_no";
+               $sqlSelectCount = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
+               $sqlSelectCount .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by id desc";
+            $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -193,7 +204,7 @@ $show = 10;
 
             ?>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
@@ -204,8 +215,6 @@ $show = 10;
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -238,7 +247,7 @@ $show = 10;
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
-          </button>
+          </button>g
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
@@ -266,6 +275,7 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -276,9 +286,9 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการจัดซื้อวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_supplies_purchase.php">
-            <input type="hidden" id="remove-purchase" name="purchase_id">
+          คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_supplies_account.php">
+            <input type="hidden" id="remove-account" name="account_id">
           </form>
         </div>
         <div class="modal-footer">

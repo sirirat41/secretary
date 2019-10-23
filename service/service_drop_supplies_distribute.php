@@ -2,6 +2,7 @@
 require "connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['distribute_id'])) {
+    $id = $_POST["id"];
     $distribute_id = $_POST["distribute_id"];
     $sqlUpdate = "UPDATE supplies_distribute SET status = 0 WHERE id = " . $distribute_id;
     

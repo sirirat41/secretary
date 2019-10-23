@@ -49,7 +49,7 @@ $show = 10
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลวัสดุ(คงเหลือ)</h6>
+                  <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลวัสดุสิ้นเปลือง</h6>
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -77,7 +77,6 @@ $show = 10
                     <thead>
                       <tr class="text-center">
                         <th>ชื่อวัสดุ</th>
-                        <th>จำนวนคงเหลือ</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>ประเภท</th>
                         <th>การทำงาน</th>
@@ -106,7 +105,6 @@ $show = 10
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                          <td><?php echo thainumDigit($row["stock"]); ?></td>
                           <td><?php echo thainumDigit($row["attribute"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">

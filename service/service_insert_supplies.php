@@ -2,7 +2,9 @@
 require "connection.php";
 //Supplies
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST["id"];
     $number = $_POST["number"];
+    $code = $_POST["code"];
     $supplies_id = $_POST["supplies_id"];
     $departmentid = $_POST["department_id"];
     $sellerid = $_POST["seller_id"];
@@ -34,36 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $receiver = $_POST["receiver"];
     $receive_date = $_POST["receive_date"];
     $receive_address = $_POST["receive_address"];
-    $stock  = $_POST["stock"];
-  
+ 
 
-    $pattern = convertPattern($suppliesPattern);
-    $sqlCheck = "SELECT * FROM supplies WHERE code like '$pattern'";
-    $resultCheck = mysqli_query($conn, $sqlCheck);
-    $numberBefore = mysqli_num_rows($resultCheck);
-
-    for ($i = 0; $i < $number; $i++) {
-        $seq = $i + 1;
-        $code = "";
-        if ($numberBefore > 0) {
-            $len = substr_count($pattern, "_");
-            $replacement = "";
-            for ($j = 0; $j < $len; $j++) {
-                $replacement .= "_";
-            }
-            $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
-        } else {
-            $len = substr_count($pattern, "_");
-            $replacement = "";
-            for ($j = 0; $j < $len; $j++) {
-                $replacement .= "_";
-            }
-            $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
-        }
-
-        $sqlInsertSupplies = "INSERT INTO supplies(code, seq, supplies_id , department_id,";
+        $sqlInsertSupplies = "INSERT INTO supplies(code, supplies_id , department_id,";
         $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status, picture)";
-        $sqlInsertSupplies .= " VALUES('$newCode', $seq, $supplies_id, $departmentid, ";
+        $sqlInsertSupplies .= " VALUES('$code', $supplies_id, $departmentid, ";
         $sqlInsertSupplies .= " $seller_id, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status,'$imgeName')";
 
         mysqli_query($conn, $sqlInsertSupplies) or die(mysqli_error($conn));
@@ -75,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlInsertPurchase .= " '$order_by', '$receiver', '$receive_date', '$receive_address', $number, $status)";
 
         mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
-    }
+    
   
     $sqlUpdate = "UPDATE supplies_stock SET stock = stock + $number WHERE id = $supplies_id";
     mysqli_query($conn, $sqlUpdate);
@@ -84,36 +61,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('location: ../display_supplies.php');
 }
 
-function convertPattern($pattern)
-{
-    $len = substr_count($pattern, "{");
-    for ($i = 0; $i < $len; $i++) {
-        $posA = strpos($pattern, "{");
-        $posB = strpos($pattern, "}");
-        $founded = substr("$pattern", $posA, 7);
-        $command = str_replace("{", "", $founded);
-        $command = str_replace("}", "", $command);
-        $command = explode("_", $command);
-        if (count($command) == 2) {
-            $runTotal = $command[1];
-            $underNum = "";
-            for ($j = 0; $j < $runTotal; $j++) {
-                $underNum .= "_";
-            }
-            $pattern = str_replace($founded, $underNum, $pattern);
-        } else { }
-    }
-    return $pattern;
-}
 
-function autoRun($current, $format)
-{
-    $auto = "";
-    $diff = $format - strlen($current);
-    for ($i = 0; $i < $diff; $i++) {
-        $auto .= "0";
-    }
-    $auto .= $current;
-
-    return $auto;
-}

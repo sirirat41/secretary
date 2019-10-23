@@ -322,9 +322,10 @@ if (isset($_GET["id"])) {
         search();
       })
     function search() {
+      var dep = "<?php echo $_GET["id"]; ?>";
        var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies.php?keyword=' + keyword, + dep ,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {
