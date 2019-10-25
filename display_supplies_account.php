@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 10
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +24,9 @@ $show = 10
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -79,7 +76,7 @@ $show = 10
                         <th>รหัสวัสดุ</th>
                         <th>ชื่อวัสดุ</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>จำนวนคงเหลือ</th>
+                  
                         <th>ประเภท</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
@@ -109,7 +106,7 @@ $show = 10
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                          <td><?php echo thainumDigit($row["stock"]); ?></td>
+                         
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_account.php?id=<?php echo $row['id']; ?>'">

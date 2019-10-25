@@ -2,8 +2,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute ,d.fullname ,d.bulding ,d.floor , u.name as unit_name FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t ,unit as u ,department as d";
-  $sql .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
+  $sql = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute ,u.name as unit_name ,d.fullname ,d.bulding ,d.floor FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t,unit as u,department as d WHERE a.id = $id";
+  $sql .= " and a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
   $a = 1;
@@ -73,6 +73,8 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-12">
         
+  <?php for($a=1;$a<=2;$a++){ ?>
+<div class="page-break<?=($a==1)?"-no":""?>"></div>
         <div class="table-responsive">
           <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
             <thead>
@@ -203,8 +205,9 @@ if (isset($_GET["id"])) {
               </tr class="text-center">
 
             </tbody>
-            
+            <?php } ?>
           </table>
+     
        
           <!-- <tr class="text-center">
                 <td>วัน/เดือน/ปี</td>

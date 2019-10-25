@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show = 10
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +77,8 @@ $show = 10
                     <thead>
                       <tr class="text-center">
                         <th>ชื่อวัสดุ</th>
-                        <th>ลักษณะ/คุณสมบัติ</th>
+                        <th>ลักษณะ/คุณสมบัติ</th> 
+                        <th>จำนวนคงเหลือ</th>
                         <th>ประเภท</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
@@ -106,6 +107,7 @@ $show = 10
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td><?php echo thainumDigit($row["attribute"]); ?></td>
+                          <td><?php echo thainumDigit($row["stock"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                       
