@@ -82,8 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($conn, $sqlInsertMaterial) or die(mysqli_error($conn));
         $productID = mysqli_insert_id($conn);
 
-        $sqlInsertPurchase = "INSERT INTO durable_material_purchase (product_id, order_no, purchase_date, seller_id, receiver, order_by, receive_date, receive_address, number, document_no)";
-        $sqlInsertPurchase .= " VALUES($productID, '$order_no', $purchase_date , $seller_id, '$receiver', '$order_by', '$receive_date', '$receive_address', $number, $document_no)";
+        $sqlInsertPurchase = "INSERT INTO durable_material_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, document_no)";
+        $sqlInsertPurchase .= " VALUES($productID, '$order_no', $purchase_date , $seller_id, '$order_by','$receiver', '$receive_date', '$receive_address', $number, $document_no)";
 
         mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));;
     }

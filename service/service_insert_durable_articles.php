@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productID = mysqli_insert_id($conn);
 
         $sqlInsertPurchase = "INSERT INTO durable_articles_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, status, document_no)";
-        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date' , $seller_id, '$receiver', '$order_by', '$receive_date', '$receive_address', $number, $status, '$document_no')";
+        $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date' , $seller_id, '$order_by','$receiver', '$receive_date', '$receive_address', $number, $status, '$document_no')";
 
         mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
     }
