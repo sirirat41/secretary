@@ -275,8 +275,8 @@ $show=10;
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
 
-                        $sqlSelect = "SELECT s.*,ss.supplies_name ,ss.type ,t.name ,ss.attribute  FROM supplies_stock as ss,supplies as s ,durable_material_type as t";
-                        $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.name and s.status = 1";
+                        $sqlSelect = "SELECT s.*,ss.supplies_name ,ss.type ,t.name ,ss.attribute  FROM supplies_stock as ss,supplies as s ,durable_material_type as t ";
+                        $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.name and s.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";

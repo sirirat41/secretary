@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_supplies_distribute</secretary>
+  <secretary style="display : none">display_supplies_account</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,12 +24,9 @@ $show = 10;
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -49,20 +46,20 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ</h6>
+                  <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลวัสดุสิ้นเปลือง(ทะเบียนคุม)</h6>
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_account.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_distribute.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_account.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_distribute.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_account.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -77,9 +74,10 @@ $show = 10;
                     <thead>
                       <tr class="text-center">
                         <th>รหัสวัสดุ</th>
-                        <th>หน่วยงาน</th>
-                        <th>วันที่แจกจ่าย</th>
-                        <th>จำนวน</th>
+                        <th>ชื่อวัสดุ</th>
+                        <th>ลักษณะ/คุณสมบัติ</th>
+                  
+                        <th>ประเภท</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -92,33 +90,35 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
-                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
+                      $sqlSelect = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
+                      $sqlSelect .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
+                      // echo $sqlSelect;
+                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["fullname"]); ?></td>
-                          <td><?php echo thainumDigit($row["distribute_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["number"]); ?></td>
+                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
+                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
+                         
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_account.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_account.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_distribute.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_account.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-distribute').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-account').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -148,13 +148,13 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
-            $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
+               $sqlSelectCount = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
+               $sqlSelectCount .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by sd.id desc";
+            $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -283,11 +283,9 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-
           คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
-
-          <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php">
-            <input type="hidden" id="remove-distribute" name="distribute_id">
+          <form id="form-drop" method="post" action="service/service_drop_supplies_account.php">
+            <input type="hidden" id="remove-account" name="account_id">
           </form>
         </div>
         <div class="modal-footer">
@@ -297,36 +295,6 @@ $show = 10;
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-left"><?php echo $_GET["message"]; ?><div>
-         
-          <form id="form-drop" method="post" action="service/service_insert_supplies_distribute.php">
-            <input type="hidden" id="remove-permits" name="permits_id">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      $(document).ready(function(){
-        <?php 
-        if (isset($_GET["message"])) {
-          echo "$('#modal-message').modal();";
-        }
-        ?>
-      })
-      </script>
 </body>
 
 </html>

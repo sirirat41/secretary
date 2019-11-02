@@ -1,5 +1,6 @@
 <?php
 require "service/connection.php";
+
 $show = 10;
 ?>
 <!DOCTYPE html>
@@ -47,7 +48,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (วัสดุคงทน )</h6>
+                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>

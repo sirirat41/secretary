@@ -1,6 +1,13 @@
 <?php
 require "service/connection.php";
+if (isset($_GET["id"])) {
+  
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM durable_material_type as t,supplies_stock as ss,supplies as s WHERE s.supplies_id = ss.id and ss.type = $id";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
 $show = 10;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +56,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ</h6>
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ (ประเภท<?php echo $row['name']; ?>)</h6>
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -92,8 +99,8 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
-                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
+                      $sqlSelect = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
+                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1 and s.supplies_id = ss.id and ss.type = $id";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
@@ -160,6 +167,7 @@ $show = 10;
             $pageNumber = ceil($total / $show);
             $maxshowpage = $pageNumber;
             $pageNumber = 10;
+            
             $page = 1;
             if (isset($_GET["page"])) {
               $page = $_GET["page"];
@@ -173,20 +181,20 @@ $show = 10;
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
+                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i); ?>">......</a></li>
               <?php
                 }
-                if (isset($_GET["keyword"])) {
+                if (isset($_GET["keyword"]) && isset($_GET["id"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
-                  <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
+                  <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
               }
@@ -319,6 +327,7 @@ $show = 10;
     </div>
 
     <script>
+    
       $(document).ready(function(){
         <?php 
         if (isset($_GET["message"])) {
