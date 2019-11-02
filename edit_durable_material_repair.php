@@ -2,14 +2,14 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material_repair as r ,durable_articles as a WHERE r.id = $id";
+  $sql = "SELECT * FROM durable_material_repair as r ,durable_material as a WHERE r.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $repairdate = $item["repair_date"];
   // $purchaseDate = $item["permit_date"];
   // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
   $newrepairdate = date("Y-m-d", strtotime($repairdate));
-  $show=10;
+  $show = 10;
 }
 ?>
 <!DOCTYPE html>
@@ -80,8 +80,8 @@ if (isset($_GET["id"])) {
                     <div class="form-group">
                       <label for="damage_id">รหัสวัสดุ</label>
                       <input class="form-control" name="damage_id" type="text" placeholder="damage_id" id="damage_id" value="<?php echo $item["code"]; ?>" readonly>
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
@@ -219,14 +219,14 @@ if (isset($_GET["id"])) {
                         <thead>
                           <tr class="text-center">
                             <th>วันที่ชำรุด</th>
-                          <th>รหัสวัสดุ</th>
-                          <th>หมายเหตุ</th>
-                          <th>การทำงาน</th>
+                            <th>รหัสวัสดุ</th>
+                            <th>หมายเหตุ</th>
+                            <th>การทำงาน</th>
                           </tr>
                         </thead>
                         <tbody id="modal-material-body">
-                        <?php
-                     
+                          <?php
+
                           $sqlSelect = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
@@ -238,7 +238,7 @@ if (isset($_GET["id"])) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
@@ -281,33 +281,35 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
-   var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material_damage.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
           changePage(1);
-     
+
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
       var body = $('#modal-material-body');
@@ -324,26 +326,29 @@ if (isset($_GET["id"])) {
         var bill_no = item["bill_no"];
         var code = item["code"];
         var flag = item["flag"];
-            $('<td>' + item.damage_date + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.flag + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          generatePagination();
+        $('<td>' + item.damage_date + '</td>').appendTo(tr);
+        $('<td>' + item.code + '</td>').appendTo(tr);
+        $('<td>' + item.flag + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));

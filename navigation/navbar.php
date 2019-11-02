@@ -186,11 +186,11 @@ if (isset($_SESSION['user_id'])) {
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-        <a class="nav-link" href="display_log.php">
-          <i class="fas fa-fw fa-"></i>
-          <span>การเข้าใช้งาน</span></a>
-      </li>
+            <li class="nav-item">
+              <a class="nav-link" href="display_log.php">
+                <i class="fas fa-fw fa-"></i>
+                <span>การเข้าใช้งาน</span></a>
+            </li>
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -319,9 +319,9 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+                <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
+                <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["fullname"]; ?></span>

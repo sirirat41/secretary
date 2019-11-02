@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material_sell as s,durable_articles as a WHERE s.id = $id";
+  $sql = "SELECT * FROM durable_material_sell as s,durable_material as a WHERE s.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $selldate = $item["sell_date"];

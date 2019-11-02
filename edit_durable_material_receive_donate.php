@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material_receive_donate as d,durable_articles as a WHERE d.id = $id";
+  $sql = "SELECT * FROM durable_material_receive_donate as d,durable_material as m WHERE d.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receivedate = $item["receive_date"];

@@ -93,7 +93,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                      $sqlSelect .= " WHERE a.type = t.id and a.status != 0 ";
+                      $sqlSelect .= " WHERE a.type = t.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%')";
@@ -152,7 +152,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-            $sqlSelectCount .= " WHERE a.type = t.id and a.status != 0";
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%')";

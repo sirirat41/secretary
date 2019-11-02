@@ -48,8 +48,8 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+                <h5 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h5>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -70,6 +70,7 @@ $show = 10;
           </div>
           </nav>
           <form>
+            <h5>
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
@@ -140,6 +141,7 @@ $show = 10;
                 </div>
               </div>
             </div>
+                    </h5>
           </form>
         </div>
         <nav aria-label="Page navigation example">

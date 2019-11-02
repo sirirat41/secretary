@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material_transfer_in as t,durable_articles as a WHERE t.id = $id";
+  $sql = "SELECT * FROM durable_material_transfer_in as t,durable_material as a WHERE t.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["transfer_date"];
