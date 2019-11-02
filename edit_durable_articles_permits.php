@@ -2,12 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-<<<<<<< HEAD
-  $sql = "SELECT * FROM durable_articles_permits WHERE id = $id";
-  echo $sql;
-=======
   $sql = "SELECT * FROM durable_articles_permits as p ,durable_articles as a WHERE p.id = $id";
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];

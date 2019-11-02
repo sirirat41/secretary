@@ -2,7 +2,6 @@
 require "connection.php";
 //Supplies
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST["id"];
     $number = $_POST["number"];
     $code = $_POST["code"];
     $supplies_id = $_POST["supplies_id"];
@@ -10,10 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sellerid = $_POST["seller_id"];
     $price = $_POST["price"];
     $billno = $_POST["bill_no"];
+
+
+
     $goverment = "สำนักงานตำรวจแห่งชาติ";
     $shortgoverment = $_POST["short_goverment"];
     $unit = $_POST["unit"];
-    $suppliesPattern = $_POST["supplies_pattern"];
     $status = 1;
 
     $log = "เพิ่มข้อมูลวัสดุสิ้นเปลือง ";
@@ -37,10 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $receive_date = $_POST["receive_date"];
     $receive_address = $_POST["receive_address"];
 
-
-    $sqlInsertSupplies = "INSERT INTO supplies(code, supplies_id , department_id,";
+    $sqlInsertSupplies = "INSERT INTO supplies(code,  supplies_id , department_id,";
     $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status, picture)";
-    $sqlInsertSupplies .= " VALUES('$code', $supplies_id, $departmentid, ";
+    $sqlInsertSupplies .= " VALUES('$code',  $supplies_id, $departmentid, ";
     $sqlInsertSupplies .= " $seller_id, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status,'$imgeName')";
 
     mysqli_query($conn, $sqlInsertSupplies) or die(mysqli_error($conn));

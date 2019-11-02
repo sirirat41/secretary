@@ -15,11 +15,11 @@ if (isset($_GET["id"])) {
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
 <<<<<<< HEAD
   
-=======
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
 
   //item.code java odject , item["code"] php
 
+=======
+>>>>>>> bbf69a38ecff27b1934b541b51e45a14045239aa
   // $sql = "SELECT * FROM durable_articles a, durable_articles_type t, department d WHERE id = $id and a.department = d.id";
   // $sql .= " and a.type = t.id";
   // $result = mysqli_query($conn,$sql);
@@ -93,7 +93,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="order_no">ชื่อผู้จัดซื้อ</label>
+                      <label for="order_by">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
                     </div>
                   </div>

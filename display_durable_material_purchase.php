@@ -94,7 +94,7 @@ $show = 10;
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
+                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or number like '%$keyword%' or purchase_date like '%$keyword%')";
                       }
                        // echo $sqlSelect;
                       $sqlSelect .= " Group by order_no Order by id desc LIMIT $start, $show";
@@ -140,12 +140,12 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM durable_material_purchase";
-            $sqlSelectCount .= " WHERE status = 1 Group by order_no";
+            $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%')";
+              $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or number like '%$keyword%' or purchase_date like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by id desc";
+            $sqlSelectCount .= " Group by order_no Order by id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);

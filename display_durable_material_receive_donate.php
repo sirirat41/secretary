@@ -87,11 +87,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT d.*, m.code, m.attribute,m.name  FROM durable_material_receive_donate as d, durable_material as m";
+                      $sqlSelect = "SELECT d.*, m.code, m.attribute, m.name FROM durable_material_receive_donate as d, durable_material as m";
                       $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%' or d.receive_date like '%$keyword%' or m.attribute like '%$keyword%' or m.name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by d.id desc LIMIT $start, $show";
@@ -144,11 +144,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT d.*, m.code FROM durable_material_receive_donate as d, durable_material as m";
+            $sqlSelectCount = "SELECT d.*, m.code, m.attribute, m.name FROM durable_material_receive_donate as d, durable_material as m";
             $sqlSelectCount .= " WHERE d.product_id = m.id and d.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%' or d.receive_date like '%$keyword%' or m.attribute like '%$keyword%' or m.name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by d.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

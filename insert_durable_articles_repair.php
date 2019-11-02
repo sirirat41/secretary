@@ -104,7 +104,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="flag">หมายเหตุ</label>
-                      <input class="form-control" name="flag" id="flag" aria-describedby="flag">
+                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="1"></textarea>
                     </div>
                   </div>
                 </div>

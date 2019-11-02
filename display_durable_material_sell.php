@@ -70,8 +70,8 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                      <th>วันที่ขาย</th>
-                        <th>รหัสครุภัณฑ์</th>
+                        <th>วันที่ขาย</th>
+                        <th>รหัสวัสดุ</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>รุ่นแบบ</th>
                         <th>การทำงาน</th>
@@ -90,7 +90,7 @@ $show = 10;
                       $sqlSelect .= " WHERE s.product_id = m.id and s.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%' or s.sell_date like '%$keyword%' or m.attribute like '%$keyword%' or m.name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
@@ -99,10 +99,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                        <td><?php echo thainumDigit($row["sell_date"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo thainumDigit($row["name"]); ?></td>
+                          <td><?php echo thainumDigit($row["sell_date"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
+                          <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -131,7 +131,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -143,11 +143,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT s.*, a.code FROM durable_material_sell as s, durable_material as a";
-            $sqlSelectCount .= " WHERE s.product_id = a.id and s.status = 1";
+            $sqlSelectCount = "SELECT s.*, m.code FROM durable_material_sell as s, durable_material as m";
+            $sqlSelectCount .= " WHERE s.product_id = m.id and s.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or s.document_no like '%$keyword%' or s.sell_date like '%$keyword%' or m.attribute like '%$keyword%' or m.name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by s.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -187,10 +187,10 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
