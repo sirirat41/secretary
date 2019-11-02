@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
+                  <i class="fas fa-hand-holding-usd"></i> ข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
             </div>
             </nav>
             <form>
