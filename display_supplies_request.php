@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_durable_material_purchase</secretary>
+  <secretary style="display : none">display_supplies_request</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,9 +30,9 @@ $show = 10;
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+    <?php include "navigation/navbar.php"; ?>
 
     <!-- Sidebar -->
-    <?php include "navigation/navbar.php"; ?>
 
     </nav>
     <!-- End of Topbar -->
@@ -45,28 +45,23 @@ $show = 10;
         <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-file-invoice-dollar"></i> แสดงข้อมูลการจัดซื้อ (วัสดุคงทน )</h6>
+              <nav class="navbar navbar-light bg-light justify-content-between">
+                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลการร้องขอ (วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_purchase.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_supplies.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_purchase.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material_purchase.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
             </div>
           </div>
-          </nav>
           <form>
             <div class="row">
               <div class="col-md-12">
@@ -74,14 +69,16 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>เลขที่ใบสั่งซื้อ</th>
-                        <th>วันที่จัดซื้อ</th>
-                        <th>จำนวน</th>
-                        <th>ชื่อผู้จัดซื้อ</th>
-                        <th>การทำงาน</th>
+                        <th>ลำดับ</th>
+                        <th>รูปภาพ</th>
+                        <th>เลขที่ใบเบิก</th>
+                        <th>รหัสวัสดุ</th>
+                        <th>ชื่อวัสดุ</th>
+                        <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <!-- ///ดึงข้อมูล -->
                       <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
@@ -90,40 +87,41 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM durable_material_purchase";
-                      $sqlSelect .= " WHERE status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or number like '%$keyword%' or purchase_date like '%$keyword%')";
+                      $userID = $_SESSION["user_id"];
+                      $sqlSelect = "SELECT s.*, ss.supplies_name FROM supplies_request as s, supplies_stock as ss";
+                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0";
+                      if ($_SESSION["user_type"] == 2) {
+                        $sqlSelect .= " and s.user_request = $userID";
                       }
-                       // echo $sqlSelect;
-                      $sqlSelect .= " Group by order_no Order by id desc LIMIT $start, $show";
+                      if (isset($_GET["keyword"])) {
+                        $keyword = $_GET["keyword"];
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                      }
+                      // echo $sqlSelect;
+                      $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
+                        $count = $start + 1;
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["number"]); ?></td>
-                          <td><?php echo thainumDigit($row["order_by"]); ?></td>
+                          <td><?php echo $count++; ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
+                              <i class="far fa-eye"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
+                            <button type="button" rel="tooltip" title="ไม่อนุมัติ" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                              <i class="far fa-times-circle"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_purchase.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-purchase').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          <?php
-                          }
-
-                          ?>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -134,18 +132,25 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+              <?php
+              $prevPage = "#";
+              if ($page > 1) {
+                $prevPage = "?page=" . ($page - 1);
+              }
+
+              ?>
+              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT * FROM durable_material_purchase";
-            $sqlSelectCount .= " WHERE status = 1";
+            $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies_request as s, supplies_stock as ss";
+            $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
             if (isset($_GET["keyword"])) {
-              $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or number like '%$keyword%' or purchase_date like '%$keyword%')";
+              $keyword = $_GET["keyword"];
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
             }
-            $sqlSelectCount .= " Group by order_no Order by id desc LIMIT $start, $show";
+            $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -183,16 +188,16 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
             ?>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
@@ -203,8 +208,6 @@ $show = 10;
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -265,6 +268,7 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -275,10 +279,9 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการจัดซื้อวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material_purchase.php">
-            <input type="hidden" id="remove-purchase" name="purchase_id">
-          </form>
+          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_supplies.php">
+            <input type="hidden" id="remove-supplies" name="supplies_id">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -287,6 +290,20 @@ $show = 10;
       </div>
     </div>
   </div>
+
 </body>
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+// Initialize tooltip component
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+// Initialize popover component
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
 
 </html>

@@ -260,7 +260,7 @@ $show = 10;
                             <td><?php echo $row["code"]; ?></td>
                             <td><?php echo $row["flag"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["product_id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -346,12 +346,8 @@ $show = 10;
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-<<<<<<< HEAD
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.product_id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-=======
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
->>>>>>> bbf69a38ecff27b1934b541b51e45a14045239aa
       }
     }
     function nextPage() {
@@ -411,7 +407,6 @@ $show = 10;
       }
       return str;
     }
-
 
     function selectedmaterial(id) {
       console.log(id);

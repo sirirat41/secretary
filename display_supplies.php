@@ -102,7 +102,13 @@ $show = 10;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
+                        $id = $row["id"];
+                        $editPath = "";
+                        if ($_SESSION["user_type"] == 1) {
+                          $editPath = "edit_supplies_purchase.php?id=" . $id;
+                        } else {
+                          $editPath = "edit_supplies_purchase_request.php?id=" . $id;
+                        }
                         ?>
                         <tr class="text-center">
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
@@ -110,7 +116,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = '<?php echo $editPath; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies.php?id=<?php echo $row['id']; ?>'">

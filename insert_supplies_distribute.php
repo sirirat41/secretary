@@ -443,6 +443,7 @@ require "service/connection.php";
       return str;
     }
     function selectedsupplies(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
