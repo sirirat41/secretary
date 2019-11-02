@@ -378,9 +378,9 @@ require "service/connection.php";
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
+        $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
     
       }
@@ -443,6 +443,7 @@ require "service/connection.php";
       return str;
     }
     function selectedsupplies(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }

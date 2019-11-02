@@ -226,6 +226,14 @@ $(document).ready(function () {
             $('.collapse-setting .insertm').addClass('active');
             break;
 
+        // Approve
+
+        case "display_supplies_request":
+            $('.nav-approve').addClass('active');
+            $('.collapse-approve').addClass('show');
+            $('.collapse-approve .display-request').addClass('active');
+            break;
+
         // ตั้งค่า display
 
         case "display_seller":

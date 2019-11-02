@@ -73,7 +73,7 @@ $show = 10;
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material ";
+                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 3";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -257,10 +257,10 @@ $show = 10;
                           ?>
                           <tr class="text-center">
                             <td><?php echo $row["damage_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["code"]; ?></td>
                             <td><?php echo $row["flag"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["product_id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -339,14 +339,15 @@ $show = 10;
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var product_id = item["product_id"];
+        var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.product_id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
       }
     }
     function nextPage() {
@@ -407,8 +408,8 @@ $show = 10;
       return str;
     }
 
-
     function selectedmaterial(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#damage_id').val(id);
     }

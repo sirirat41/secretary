@@ -56,7 +56,7 @@ $show = 10;
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">

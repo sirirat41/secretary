@@ -13,6 +13,13 @@ if (isset($_GET["id"])) {
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
+<<<<<<< HEAD
+  
+
+  //item.code java odject , item["code"] php
+
+=======
+>>>>>>> bbf69a38ecff27b1934b541b51e45a14045239aa
   // $sql = "SELECT * FROM durable_articles a, durable_articles_type t, department d WHERE id = $id and a.department = d.id";
   // $sql .= " and a.type = t.id";
   // $result = mysqli_query($conn,$sql);

@@ -15,7 +15,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_department</secretary>
+  <secretary style="display : none">display_supplies_distribute_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,27 +44,23 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-12 ">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+                  <i class="fas fa-city"></i> แสดงข้อมูลประเภทวัสดุสิ้นเปลือง (แจกจ่าย)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_department.php';">
+                              <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_department.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_department.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
+                   
+       
                 </form>
             </div>
           </div>
@@ -76,14 +72,8 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>ชื่อหน่วยงาน</th>
-                        <th>ตำแหน่ง</th>
-                        <th>อาคาร</th>
-                        <th>ชั้น</th>
-                        <th>เบอร์โทร</th>
-                        <th>โทรสาร</th>
-
-                        <th class="text-center">การทำงาน</th>
+                        <th>ชื่อประเภท</th>
+    
                       </tr>
                     </thead>
                     <tbody>
@@ -96,40 +86,23 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM department";
+                      $sqlSelect = "SELECT * FROM durable_material_type";
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (fullname like '%$keyword%')";
+                        $sqlSelect .= " and (name like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
+                        
+                      
                         ?>
                         <tr class="text-center">
-                          <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
-                              <?php echo $row["fullname"]; ?></a></td>
-                          <td><?php echo thainumDigit($row["shortname"]); ?></td>
-                          <td><?php echo thainumDigit($row["bulding"]); ?></td>
-                          <td><?php echo thainumDigit($row["floor"]); ?></td>
-                          <td><?php echo thainumDigit($row["tel"]); ?></td>
-                          <td><?php echo thainumDigit($row["fax"]); ?></td>
-
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-                          </td>
+                          <td><a class="nav-link active" href='display_supplies_distribute.php?type=<?php echo $row['id']; ?>'>
+                              <?php echo $row["name"]; ?></a></td>
+                  
                         </tr>
                       <?php
                       }
@@ -157,11 +130,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT * FROM department";
+            $sqlSelectCount = "SELECT * FROM durable_material_type";
             $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (fullname like '%$keyword%')";
+              $sqlSelectCount .= " and (name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
