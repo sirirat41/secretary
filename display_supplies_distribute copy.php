@@ -1,12 +1,11 @@
 <?php
 require "service/connection.php";
 if (isset($_GET["id"])) {
-  
   $id = $_GET["id"];
   $sql = "SELECT * FROM durable_material_type as t,supplies_stock as ss,supplies as s WHERE s.supplies_id = ss.id and ss.type = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-$show = 10;
+  $show = 10;
 }
 ?>
 <!DOCTYPE html>

@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_supplies</secretary>
+  <secretary style="display : none">display_supplies_request</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,18 +46,15 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
+                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลการร้องขอ (วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_supplies.php';">
                       <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
-                      <i class="fas fa-sync-alt"></i>
                     </button>
                     <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies.php" target="_blank">
                       <i class="fas fa-print"></i>
@@ -90,8 +87,12 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
+                      $userID = $_SESSION["user_id"];
+                      $sqlSelect = "SELECT s.*, ss.supplies_name FROM supplies_request as s, supplies_stock as ss";
                       $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0";
+                      if ($_SESSION["user_type"] == 2) {
+                        $sqlSelect .= " and s.user_request = $userID";
+                      }
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
@@ -101,31 +102,20 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
-                        $editPath = "";
-                        if ($_SESSION["user_type"] == 1) {
-                          $editPath = "edit_supplies_purchase.php?id=" . $id;
-                        } else {
-                          $editPath = "edit_supplies_purchase_request.php?id=" . $id;
-                        }
+                        $count = $start + 1;
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["seq"]); ?></td>
+                          <td><?php echo $count++; ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo thainumDigit($row["bill_no"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = '<?php echo $editPath; ?>'">
-                              <i class="fas fa-pencil-alt"></i>
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
+                              <i class="far fa-eye"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-clipboard-list"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies.php?id=<?php echo $row['id']; ?>" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
+                            <button type="button" rel="tooltip" title="ไม่อนุมัติ" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                              <i class="far fa-times-circle"></i>
                             </button>
                           </td>
                         </tr>
@@ -142,7 +132,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -154,12 +144,12 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
-           $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
-           if (isset($_GET["keyword"])) {
-             $keyword = $_GET["keyword"];
-             $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
-           }
+            $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies_request as s, supplies_stock as ss";
+            $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = $_GET["keyword"];
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -198,10 +188,10 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -302,5 +292,18 @@ $show = 10;
   </div>
 
 </body>
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+// Initialize tooltip component
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+// Initialize popover component
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
 
 </html>
