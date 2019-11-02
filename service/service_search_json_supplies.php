@@ -13,7 +13,7 @@ if (isset($_GET["keyword"])) {
     $data = array();
     $result = mysqli_query($conn, $sqlSelect);
     while ($row = mysqli_fetch_assoc($result)) {
-        $row["code"] = thainumDigit($row["code"]);
+        // $row["code"] = thainumDigit($row["code"]);
         array_push($data, $row);
     }
     echo json_encode($data);
