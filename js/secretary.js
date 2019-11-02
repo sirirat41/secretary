@@ -6,7 +6,7 @@ $(document).ready(function () {
             $('.nav-home').addClass('active');
             $('.collapse-dashboard').addClass('show');
             $('.collapse-dashboard').addClass('active');
-            break; 
+            break;
 
         // Articles ครุภัณฑ์ Display
 
@@ -159,6 +159,16 @@ $(document).ready(function () {
             $('.nav-supplies').addClass('active');
             $('.collapse-supplies').addClass('show');
             $('.collapse-supplies .permits').addClass('active');
+            break;
+        case "display_supplies_stock":  //จัดซื้อ
+            $('.nav-supplies').addClass('active');
+            $('.collapse-supplies').addClass('show');
+            $('.collapse-supplies .stock').addClass('active');
+            break;
+        case "display_supplies_account":  //จัดซื้อ
+            $('.nav-supplies').addClass('active');
+            $('.collapse-supplies').addClass('show');
+            $('.collapse-supplies .account').addClass('active');
             break;
 
         // หน่วยงาน Display

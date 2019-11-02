@@ -13,7 +13,7 @@ require "service/connection.php";
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_durable_articles_type</secretary>
+  <secretary style="display: none">display_supplies_account</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +22,11 @@ require "service/connection.php";
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
+  <style type="text/css" media="print">
+    @page {
+      size: landscape;
+    }
+  </style>
 
 </head>
 
@@ -40,8 +45,8 @@ require "service/connection.php";
       <div class="row">
         <div class="col-md-12">
           <div class="table-responsive">
-            <table width="100%" border="1">
-              <h6 class="m-3 font-weight-bold " align="center">ข้อมูลประเภท(ครุภัณฑ์)</h6>
+            <table width="100%" border="1" class="landscape">
+              <h6 class="m-3 font-weight-bold " align="center">ข้อมูลการแจกจ่าย(วัสดุสิ้นเปลือง) </h6>
               <form>
                 <thead>
                   <tr class="text-center">
@@ -49,67 +54,57 @@ require "service/connection.php";
                       <font size="2">ลำดับ</font>
                     </th>
                     <th>
-                      <font size="2">ชื่อประเภทครุภัณฑ์</font>
+                      <font size="2">รหัสวัสดุ</font>
                     </th>
                     <th>
-                      <font size="2">ชื่อย่อประเภทครุภัณฑ์</font>
+                      <font size="2">ชื่อวัสดุ</font>
                     </th>
+                    <th>
+                      <font size="2">ลักษณะ/คุณสมบัติ</font>
+                    </th>
+                    <th>
+                      <font size="2">ประเภท</font>
+                    </th>
+
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT * FROM durable_material_type";
-                  $sqlSelect .= " WHERE status = 1";
+                  $sqlSelect = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
+                  $sqlSelect .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
                   if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (name like '%$keyword%')";
+                    $keyword = arabicnumDigit($_GET["keyword"]);
+                    $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                   }
+                  $a = 1;
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
-                    $id = $row["id"];
+                    $id = $row["id"]
+
                     ?>
                     <tr class="text-center">
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["id"]); ?></font>
+                        <font size="2"><?php echo $a++; ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
+                      </td>
+                      <td>
+                        <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
                       </td>
-                      <td>
-                        <font size="2"><?php echo thainumDigit($row["shortname"]); ?></font>
-                      </td>
+
                     </tr>
                   <?php
                   }
-
                   ?>
                 </tbody>
             </table>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3 offset-sm-9">
-                  <font size="2">
-                    <label class="text">ตรวจแล้วถูกต้อง</label>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-4 offset-sm-8">
-                  <label class="text">พ.ต.ท.หญิง......................................................</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3 offset-sm-9">
-                  <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3 offset-sm-9">
-                  <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-                  </label></font>
-                </div>
-              </div>
-            </div>
             </form>
           </div>
         </div>
@@ -183,7 +178,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          คุณต้องการลบข้อมูลแจกจ่าย (วัสดุสิ้นเปลือง) ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
           </form>

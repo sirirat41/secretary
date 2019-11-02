@@ -1,9 +1,10 @@
-<?php
-require "service/connection.php";
-$show = 10;
-?>
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require "service/connection.php";
+
+$show = 10;
+?>
 
 <head>
 
@@ -14,7 +15,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_durable_material</secretary>
+  <secretary style="display : none">display_department</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +24,6 @@ $show = 10;
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
-
 
 
 </head>
@@ -44,25 +44,25 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-12">
+        <div class="col-md-12 ">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลวัสดุ</h6>
+                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_purchase.php';">
+                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_department.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material.php';">
+                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_department.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_department.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -76,14 +76,15 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
-                        <th>ลำดับ</th>
-                        <th>รูปภาพ</th>
-                        <th>เลขที่ใบเบิก</th>
-                        <th>รหัสวัสดุ</th>
-                        <th>เลขสินทรัพย์</th>
-                        <th>ประเภท</th>
-                        <th>การทำงาน</th>
-                      </tr class="text-center">
+                        <th>ชื่อหน่วยงาน</th>
+                        <th>ตำแหน่ง</th>
+                        <th>อาคาร</th>
+                        <th>ชั้น</th>
+                        <th>เบอร์โทร</th>
+                        <th>โทรสาร</th>
+
+                        <th class="text-center">การทำงาน</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
@@ -95,41 +96,44 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-                      $sqlSelect .= " WHERE m.type = t.id and m.status != 0";
+                      $sqlSelect = "SELECT * FROM department";
+                      $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (fullname like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
+                        $id = $row["id"];
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["seq"]); ?></td>
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["asset_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["name"]); ?></td>
+                          <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
+                              <?php echo $row["fullname"]; ?></a></td>
+                          <td><?php echo thainumDigit($row["shortname"]); ?></td>
+                          <td><?php echo thainumDigit($row["bulding"]); ?></td>
+                          <td><?php echo thainumDigit($row["floor"]); ?></td>
+                          <td><?php echo thainumDigit($row["tel"]); ?></td>
+                          <td><?php echo thainumDigit($row["fax"]); ?></td>
+
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
                       <?php
                       }
+
                       ?>
                     </tbody>
                   </table>
@@ -141,7 +145,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -153,13 +157,13 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-            $sqlSelectCount .= " WHERE m.type = t.id and m.status != 0";
+            $sqlSelectCount = "SELECT * FROM department";
+            $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%')";
+              $sqlSelectCount .= " and (fullname like '%$keyword%')";
             }
-            $sqlSelectCount .= " Order by m.id desc";
+            $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -217,6 +221,8 @@ $show = 10;
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
+
+
   </div>
   <!-- End of Main Content -->
 
@@ -288,9 +294,10 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_material.php">
-            <input type="hidden" id="remove-material" name="material_id">
+          คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_department.php">
+            <input type="hidden" id="remove-department" name="department_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

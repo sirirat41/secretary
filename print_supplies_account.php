@@ -2,10 +2,11 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT s.*, t.name as tname ,un.name as unit_name, se.name as seller_name, se.tel as seller_tel, se.fax as seller_fax, se.address as seller_address ,d.shortname ,d.fullname, d.bulding, d.floor, ss.type , ss.attribute ,ss.supplies_name FROM supplies as s ,durable_material_type as t , seller as se , department as d , unit as un, supplies_stock as ss WHERE s.id = $id";
-  $sql .= " and s.supplies_id = ss.id and ss.type = t.id and s.seller_id = se.id and s.department_id = d.id and s.unit = un.id";
+  $sql = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute ,u.name as unit_name ,d.fullname ,d.bulding ,d.floor FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t,unit as u,department as d WHERE a.id = $id";
+  $sql .= " and a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  $a = 1;
 }
 ?>
 <!doctype html>
@@ -31,6 +32,22 @@ if (isset($_GET["id"])) {
 
 </head>
 
+<style type="text/css" media="print">
+  @page {
+    size: landscape;
+  }
+  @media all
+{
+    .page-break { display:none; }
+    .page-break-no{ display:none; }
+}
+@media print
+{
+    .page-break { display:block;height:1px; page-break-before:always; }
+    .page-break-no{ display:block;height:1px; page-break-after:avoid; } 
+}
+</style>
+
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -48,108 +65,111 @@ if (isset($_GET["id"])) {
       </div>
   </div>
 
-  <body style="padding: 16px">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <h7>บัญชีคุม ประจำปี งบประมาณ .....</h7>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-7">
-        </div>
-        <div class="text" class="col-sm-">
-          <h7>ส่วนราชการ: </h7>
-        </div>
-        <div class="col-sm-3">
-          <h7>สำนักงานตำนวจแห่งชาติ</h7>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-7">
-        </div>
-        <div class="col-sm-">
-          <label class="text" for="short_goverment">
-            <div style="width:80px">
-              <h7>หน่วยงาน: </h7>
-          </label>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <?php echo $row["short_goverment"]; ?>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <label class="text">
-          <h7>แผ่นที่</h7>
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <label class="text" for="type">
-          <h7>ประเภท :</h7>
-        </label>
-        <?php echo $row["tname"]; ?>
-      </div>
-      <div class="col-sm-4">
-        <label class="text" for="supplies_name">
-          <h7>ชื่อหรือชนิดวัสดุ :</h7>
-        </label>
-        <?php echo thainumDigit($row["supplies_name"]); ?>
-      </div>
-      <div class="col-sm-4">
-        <label class="text" for="code">
-          <h7>รหัส :</h7>
-        </label>
-        <?php echo thainumDigit($row["code"]); ?>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <label class="text" for="attribute">
-          <h7>ขนาดหรือลักษณะ :</h7>
-        </label>
-        <?php echo thainumDigit($row["attribute"]); ?>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <label class="text" for="unit">
-          <h7>หน่วยที่นับ : </h7>
-        </label>
-        <?php echo thainumDigit($row["unit_name"]); ?>
-      </div>
-      <div class="col-sm-6">
-        <label class="text" for="fullname">
-          <h7>ที่เก็บ :</h7>
-        </label>
-        <?php echo thainumDigit($row["fullname"]); ?>
-        <label class="text" for="bulding">อาคาร
-        </label>
-        <?php echo thainumDigit($row["bulding"]); ?>
-        <label class="text" for="floor">ชั้น
-        </label>
-        <?php echo thainumDigit($row["floor"]); ?>
-      </div>
-    </div>
 
-    <style type="text/css" media="print">
-      @page {
-        size: landscape;
-      }
-    </style>
 
-    <br>
-    <form>
-      <div class="row">
-        <div class="col-12">
-          <div class="table-responsive">
-            <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
-              <thead>
-                <tr class="text-center">
+  <br>
+  <form>
+ 
+    <div class="row">
+      <div class="col-12">
+        
+  <?php for($a=1;$a<=2;$a++){ ?>
+<div class="page-break<?=($a==1)?"-no":""?>"></div>
+        <div class="table-responsive">
+          <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
+            <thead>
+              
+              <body style="padding: 16px">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-12" align="center">
+                      <h7>บัญชีคุม ประจำปี งบประมาณ .....</h7>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="text" class="col-sm-">
+                      <h7>ส่วนราชการ: </h7>
+                    </div>
+                    <div class="col-sm-3">
+                      <h7>สำนักงานตำรวจแห่งชาติ</h7>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-">
+                      <label class="text" for="short_goverment">
+                        <div style="width:80px">
+                          <h7>หน่วยงาน: </h7>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <h7>สลก.ตร.</h7>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label class="text">
+                      <h7>แผ่นที่</h7>
+                    </label>
+                    <?php echo $a++; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="text" for="type">
+                      <h7>ประเภท :</h7>
+                    </label>
+                    <?php echo $row["name"]; ?>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="text" for="supplies_name">
+                      <h7>ชื่อหรือชนิดวัสดุ :</h7>
+                    </label>
+                    <?php echo thainumDigit($row["supplies_name"]); ?>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="text" for="code">
+                      <h7>รหัส :</h7>
+                    </label>
+                    <?php echo thainumDigit($row["code"]); ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label class="text" for="attribute">
+                      <h7>ขนาดหรือลักษณะ :</h7>
+                    </label>
+                    <?php echo thainumDigit($row["attribute"]); ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="text" for="unit">
+                      <h7>หน่วยที่นับ : </h7>
+                    </label>
+                    <?php echo thainumDigit($row["unit_name"]); ?>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="text" for="fullname">
+                      <h7>ที่เก็บ :</h7>
+                    </label>
+                    <?php echo thainumDigit($row["fullname"]); ?>
+                    <label class="text" for="bulding">
+                    </label>
+                    <?php echo thainumDigit($row["bulding"]); ?>
+                    <label class="text" for="floor">
+                    </label>
+                    <?php echo thainumDigit($row["floor"]); ?>
+                  </div>
+                </div>
+                
+            <tr class="text-center">
+
                   <td rowspan="2">วัน/เดือน/ปี</td>
                   <td rowspan="2">รับจาก</td>
                   <td rowspan="2">จ่ายให้</td>
@@ -165,401 +185,31 @@ if (isset($_GET["id"])) {
                   <td width="7%">รับ</td>
                   <td width="7%">จ่าย</td>
                   <td width="7%">คงเหลือ</td>
-                  </<tr class="text-center">
-              </thead>
-              <thead>
+</tr class="text-center">
+            </thead>
+         
+            <tbody>
+
               <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["distribute_date"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["receive_from"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["distribute_to"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["document_no"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["baht"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["satang"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["unit"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["receive"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["distribute"]); ?></td>
+                <td rowspan="2"> <?php echo thainumDigit($row["stock"]); ?></td>
+                <td rowspan="2"><?php echo thainumDigit($row["flag"]); ?></td>
               </tr class="text-center">
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-              <thead>
-              <tr class="text-center" height="30">
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
-              </tr class="text-center">       
-              </thead>
-            </table>
-            
-            <!-- <tr class="text-center">
+
+            </tbody>
+            <?php } ?>
+          </table>
+     
+       
+          <!-- <tr class="text-center">
                 <td>วัน/เดือน/ปี</td>
                 <td>รับจาก</td>
                 <td>จ่ายให้</td>
@@ -579,16 +229,16 @@ if (isset($_GET["id"])) {
                 <td colspan="8">จ่าย</td>
                 <td colspan="8">เหลือ</td>
               </tr> -->
-          </div>
         </div>
       </div>
-    </form>
+    </div>
+  </form>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 
 </html>

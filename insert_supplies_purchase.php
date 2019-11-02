@@ -81,9 +81,9 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group">
-                      <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
-                      <input class="form-control" type="text" placeholder="รหัสวัสดุตั้งต้น" name="supplies_pattern">
-                      <small style="color: red">ตัวอย่าง: ว.สนง {run_1}</small> 
+                      <label for="code">รหัสวัสดุสิ้นเปลือง :</label>
+                      <input class="form-control" type="text" placeholder="รหัสวัสดุตั้งต้น" id="code" name="code">
+                  
                     </div>
                   </div>
                 </div>
