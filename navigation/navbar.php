@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item supplies" href="display_supplies.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
-            <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
+            <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
             <a class="collapse-item stock" href="display_supplies_stock.php">วัสดุสิ้นเปลือง</a>
             <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
 
@@ -395,7 +395,7 @@ if (isset($_SESSION['user_id'])) {
                 <a class="collapse-item display" href="display_supplies.php">แสดงข้อมูล</a>
                 <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
                 <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
-                <a class="collapse-item distribute" href="display_supplies_distribute.php">แจกจ่าย</a>
+                <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
                 <a class="collapse-item stock" href="display_supplies_stock.php">วัสดุสิ้นเปลือง</a>
                 <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
               </div>
