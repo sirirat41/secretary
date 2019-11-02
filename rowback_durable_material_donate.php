@@ -183,7 +183,6 @@ $show = 10;
             <li class="page-item">
               <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
-              </a>an aria-hidden="true">&raquo;</span>
               </a>
             </li>
           </ul>

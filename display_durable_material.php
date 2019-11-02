@@ -157,7 +157,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE m.type = t.id and m.status != 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by m.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

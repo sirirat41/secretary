@@ -56,22 +56,22 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT d.*, a.code FROM durable_material_receive_donate as d, durable_articles as a";
-                      $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
+                      $sqlSelect = "SELECT d.*, m.code FROM durable_material_receive_donate as d, durable_material as m";
+                      $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or d.donate_name like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo $row["id"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["document_no"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["receive_date"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["receive_date"]); ?></font></td>
                         <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["donate_name"]; ?></font></td>
+                        <td><font size="2"><?php echo thainumDigit($row["donate_name"]); ?></font></td>
                       </tr>
                           <?php
                           }

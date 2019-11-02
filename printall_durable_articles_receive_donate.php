@@ -76,19 +76,19 @@ require "service/connection.php";
                     ?>
                     <tr class="text-center">
                       <td>
-                        <font size="2"><?php echo $row["id"]; ?></font>
+                        <font size="2"><?php echo thainumDigit($row["id"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo thainumDigit($row["document_no"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo $row["receive_date"]; ?></font>
+                        <font size="2"><?php echo thainumDigit($row["receive_date"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo $row["donate_name"]; ?></font>
+                        <font size="2"><?php echo thainumDigit($row["donate_name"]); ?></font>
                       </td>
                     </tr>
                   <?php
