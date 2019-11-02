@@ -99,7 +99,7 @@ $show = 10;
                       $sqlSelect .= " WHERE m.type = t.id and m.status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);

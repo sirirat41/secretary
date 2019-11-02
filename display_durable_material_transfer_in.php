@@ -89,11 +89,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute FROM durable_material as ar, durable_material_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                      $sqlSelect = "SELECT trans.*, m.code ,m.attribute FROM durable_material as m, durable_material_transfer_in as trans";
+                      $sqlSelect .= " WHERE trans.product_id = m.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%' or m.attribute like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by trans.id desc LIMIT $start, $show";
@@ -148,11 +148,11 @@ $show = 10;
               </a>
             </li>
             <?php
-              $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute FROM durable_material as ar, durable_material_transfer_in as trans";
-              $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
+              $sqlSelectCount = "SELECT trans.*, m.code ,m.attribute FROM durable_material as m, durable_material_transfer_in as trans";
+              $sqlSelectCount .= " WHERE trans.product_id = m.id and trans.status = 1";
               if (isset($_GET["keyword"])) {
                 $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                $sqlSelectCount .= " and (m.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%'  or m.attribute like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by trans.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
