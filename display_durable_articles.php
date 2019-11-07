@@ -116,7 +116,7 @@ $show = 10;
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" class="btn btn-success" onclick="window.location = 'view_durable_articles.php?id=<?php echo $row['id']; ?>'">
-                              <i class="fas fa-eye"></i>
+                              <i class="fas fa-clipboard-list"></i>
                             </button>
                             <a rel="tooltip" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" style="color: white" href="print_durable_articles.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
