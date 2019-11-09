@@ -47,6 +47,11 @@ if (isset($_GET["id"])) {
     <!-- Begin Page Content -->
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
@@ -54,7 +59,6 @@ if (isset($_GET["id"])) {
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(ครุภัณฑ์)</h6>
-
             </div>
             </nav>
             <form>

@@ -39,7 +39,11 @@ require "service/connection.php";
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row "></div>
       <div class="col-8 offset-2">
         <div class="card">
@@ -173,7 +177,7 @@ require "service/connection.php";
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . "อาคาร ". $row["bulding"] . "ชั้น ". $row["floor"] . '</option>';
+                        echo '<option value="' . $row["id"] . '">' . "อาคาร " . $row["bulding"] . "ชั้น " . $row["floor"] . '</option>';
                       }
                       ?>
                     </select>
@@ -609,6 +613,7 @@ require "service/connection.php";
 
             })
           })
+
           function readURL(input) {
             if (input.files && input.files[0]) {
               var reader = new FileReader();

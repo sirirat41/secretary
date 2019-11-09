@@ -106,8 +106,11 @@ $show = 10;
                         $count = $start + 1;
                         $statusRequest = "";
                         switch ($row["status_request"]) {
+                          case "waiting_approve":
+                            $statusRequest = "<p style='color: red'>รอการอนุมัติ</p>";
+                            break;
                           case "approved":
-                            $statusRequest = "อนุมัติแล้ว";
+                            $statusRequest = "<p style='color: green'>อนุมัติแล้ว</p>";
                             break;
                         }
                         ?>
@@ -123,9 +126,9 @@ $show = 10;
                                 <i class="far fa-eye"></i>
                               </button>
                               <?php if ($_SESSION["user_type"] == 1) { ?>
-                              <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                                <i class="far fa-times-circle"></i>
-                              </button>
+                                <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                                  <i class="far fa-times-circle"></i>
+                                </button>
                               <?php }; ?>
                             </td>
                           </tr>

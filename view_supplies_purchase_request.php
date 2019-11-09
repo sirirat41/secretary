@@ -73,6 +73,11 @@ if (isset($_GET["id"])) {
 
         <div class="container-fluid">
             <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+            <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
             <div class="row">
                 <div class="col-12">
                     <label for="exampleFormControlSelect1">ร้องขอการแก้ไขโดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
@@ -430,11 +435,11 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <?php
-            if ($_SESSION["user_type"] == 1) {
+            if ($_SESSION["user_type"] == 1 && $item["status_request"] != "approved") {
                 ?>
                 <div class="row">
                     <div class="col-3 offset-2">
-                        <button style="width: 100%" type="button" class="btn btn-danger">ไม่อนุมัติ</button>
+                        <button style="width: 100%" type="button" data-toggle="modal" data-target="#modal-reject" class="btn btn-danger">ไม่อนุมัติ</button>
                     </div>
                     <div class="col-5">
                         <button style="width: 100%" data-toggle="modal" data-target="#modal-approve" type="button" class="btn btn-primary">อนุมัติ</button>
@@ -479,6 +484,24 @@ if (isset($_GET["id"])) {
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">ยกเลิก</button>
                     <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="$('#form_insert').submit()">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ยืนยันการปฎิเสธ</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">ระบบจะทำการแก้ไขข้อมูลทันที ไม่สามารถกลับไปแก้ไขเพิ่มเติมได้อีก</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">ยกเลิก</button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="">ยืนยัน</button>
                 </div>
             </div>
         </div>

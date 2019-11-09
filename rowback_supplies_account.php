@@ -24,8 +24,6 @@ $show = 10
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -43,6 +41,11 @@ $show = 10
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-12">
           <div class="card shadow mb-4">
