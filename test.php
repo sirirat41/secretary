@@ -1,18 +1,10 @@
 <?php
-    if ($_POST) {
-        
-    } else {
+    $obj["result"] = true ;
+    $obj["first_name"] = "Apimun";
+    $obj["last_name"] = "Klansakul";
+    $obj["mobile"] = ["023218993","0944895701"];
+    $obj["cars"] = [ "Ford", "BMW", "Fiat" ];
+
+
+    echo json_encode($obj);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
-<?php } ?>

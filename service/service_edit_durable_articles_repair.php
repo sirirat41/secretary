@@ -9,6 +9,7 @@ if(isset($_GET["id"])) {
     $damageid = $_POST["damage_id"];
     $place = $_POST["place"];
     $flag = $_POST["flag"];
+
     
     $updaterepair = "UPDATE durable_articles_repair SET seq = $seq,";
     $updaterepair .= " repair_date = '$repairdate' , place = '$place' , flag = '$flag'";
