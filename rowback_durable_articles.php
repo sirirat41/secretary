@@ -50,10 +50,10 @@ $show = 10;
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_durable_articles.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_durable_articles.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>
@@ -102,7 +102,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-articles').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-articles').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php
@@ -119,7 +119,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -175,10 +175,10 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -280,5 +280,17 @@ $show = 10;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>
