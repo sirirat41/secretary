@@ -84,8 +84,8 @@ $show = 10;
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                      $sqlSelect .= " WHERE s.type = t.id and s.status = 0";
+                      $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t, supplies_stock as st";
+                      $sqlSelect .= " WHERE t.id = st.type and s.status = 0 and st.id = s.supplies_id";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
@@ -102,7 +102,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-supplies').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-supplies').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php

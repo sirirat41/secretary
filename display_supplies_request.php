@@ -74,6 +74,7 @@ $show = 10;
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
                         <th>ชื่อวัสดุ</th>
+                        <th>ประเภทการร้องขอ</th>
                         <th>สถานะ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
@@ -105,36 +106,49 @@ $show = 10;
                         $id = $row["id"];
                         $count = $start + 1;
                         $statusRequest = "";
+                        $actionRequest = "";
                         switch ($row["status_request"]) {
                           case "waiting_approve":
-                            $statusRequest = "<p style='color: red'>รอการอนุมัติ</p>";
+                            $statusRequest = "<p style='color: #ffb300'>รอการอนุมัติ</p>";
                             break;
                           case "approved":
                             $statusRequest = "<p style='color: green'>อนุมัติแล้ว</p>";
                             break;
+                          case "rejected":
+                            $statusRequest = "<p style='color: red'>ปฎิเสธการร้องขอ</p>";
+                            break;
+                        }
+                        switch ($row["action_request"]) {
+                          case "request_update":
+                            $actionRequest = "ร้องขอการแก้ไข";
+                            break;
+                          case "request_delete":
+                            $actionRequest = "ร้องขอการลบข้อมูล";
+                            break;
                         }
                         ?>
-                          <tr class="text-center">
-                            <td><?php echo $count++; ?></td>
-                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo ($row["bill_no"]); ?></td>
-                            <td><?php echo ($row["code"]); ?></td>
-                            <td><?php echo ($row["supplies_name"]); ?></td>
-                            <td><?php echo $statusRequest; ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูขรายละเอียด้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
-                                <i class="far fa-eye"></i>
-                              </button>
-                              <?php if ($_SESSION["user_type"] == 1) { ?>
-                                <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                                  <i class="far fa-times-circle"></i>
+                            <tr class="text-center">
+                              <td><?php echo $count++; ?></td>
+                              <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                              <td><?php echo ($row["bill_no"]); ?></td>
+                              <td><?php echo ($row["code"]); ?></td>
+                              <td><?php echo ($row["supplies_name"]); ?></td>
+                              <td><?php echo $actionRequest; ?></td>
+                              <td><?php echo $statusRequest; ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูขรายละเอียด้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
+                                  <i class="far fa-eye"></i>
                                 </button>
-                              <?php }; ?>
-                            </td>
-                          </tr>
-                        <?php
-                        }
-                        ?>
+                                <?php if ($_SESSION["user_type"] == 1 && $row["status_request"] == "waiting_approve") { ?>
+                                  <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" class="btn btn-danger" onclick="showDialogReject(<?php echo $row["id"]; ?>);">
+                                    <i class="far fa-times-circle"></i>
+                                  </button>
+                                <?php }; ?>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
                     </tbody>
                   </table>
                 </div>
@@ -308,6 +322,29 @@ $show = 10;
   </div>
 
 </body>
+<div class="modal fade" id="modal-reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ยืนยันการปฎิเสธ</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">* กรุณาระบุเหตุผลในการปฎิเสธ: </div>
+      <div class="col-12">
+        <div>
+          <input type="hidden" value="" id="temp-id">
+          <textarea class="form-control" id="reject-reason" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">ยกเลิก</button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="rejectRequest();">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Initialize Bootstrap functionality -->
 <script>
@@ -332,6 +369,32 @@ $show = 10;
   $(function() {
     $('[data-toggle="popover"]').popover()
   })
+
+  function showDialogReject(id) {
+    $('#temp-id').val(id);
+    $('#modal-reject').modal();
+  }
+
+  function rejectRequest() {
+    var id = $('#temp-id').val();
+    var url = "service/service_reject_request.php?id=" + id;
+    var reason = $('#reject-reason').val();
+    if (reason != "") {
+      $.ajax({
+        url: url,
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+          reason: reason
+        },
+        success: function(data) {
+          window.location = "display_supplies_request.php";
+        }
+      })
+    } else {
+      alert('กรุณาระบเหตุผล');
+    }
+  }
 </script>
 
 </html>

@@ -74,10 +74,10 @@ if (isset($_GET["id"])) {
         <div class="container-fluid">
             <!-- เริ่มเขียนโค๊ดตรงนี้ -->
             <div class="row ">
-        <p class="" onclick="window.history.back()" style="cursor: pointer">
-          <i class="fas fa-angle-left"></i> กลับ
-        </p>
-      </div>
+                <p class="" onclick="window.history.back()" style="cursor: pointer">
+                    <i class="fas fa-angle-left"></i> กลับ
+                </p>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <label for="exampleFormControlSelect1">ร้องขอการแก้ไขโดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
@@ -86,7 +86,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="row">
-                <div class="col-6" <?php echo $item["status_request"] == "approved" ? "style='display: none'" : ""; ?>>
+                <div class="col-6" <?php echo $item["status_request"] != "waiting_approve" ? "style='display: none'" : ""; ?>>
                     <div class="card">
                         <div class="card-header card-header-text card-header-danger">
                             <div class="card-text">
@@ -254,7 +254,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <!-- สิ้นสุดการเขียนตรงนี้ -->
                 </div>
-                <div <?php echo $item["status_request"] == "approved" ? "class='col-8 offset-2'" : "class='col-6'"; ?>>
+                <div <?php echo $item["status_request"] != "waiting_approve" ? "class='col-8 offset-2'" : "class='col-6'"; ?>>
                     <div class="card">
                         <div class="card-header card-header-text card-header-danger">
                             <div class="card-text">
@@ -268,6 +268,7 @@ if (isset($_GET["id"])) {
                         <br>
                         <div class="card-body">
                             <form method="post" action="service/service_confirm_supplies_purchase_request.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
+                            <input type="hidden" name="action_request" value="<?php echo $item["action_request"]; ?>">
                                 <div class="row">
                                     <div class="col-6 ">
                                         <div class="form-group">
@@ -425,7 +426,18 @@ if (isset($_GET["id"])) {
                                     </div>
                                 </div>
                                 <br>
-                                <br><br>
+                                <?php
+                                if ($item["status_request"] == "rejected") {
+                                    ?>
+                                    <div class="row">
+                                        <label for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ: </label>
+                                        <div class="col-12">
+                                            <textarea class="form-control" rows="10" disabled><?php echo $item["reject"]; ?></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                <?php }; ?>
+                                <br>
                             </form>
                         </div>
                     </div>
@@ -435,7 +447,7 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <?php
-            if ($_SESSION["user_type"] == 1 && $item["status_request"] != "approved") {
+            if ($_SESSION["user_type"] == 1 && $item["status_request"] == "waiting_approve") {
                 ?>
                 <div class="row">
                     <div class="col-3 offset-2">
@@ -498,10 +510,15 @@ if (isset($_GET["id"])) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">ระบบจะทำการแก้ไขข้อมูลทันที ไม่สามารถกลับไปแก้ไขเพิ่มเติมได้อีก</div>
+                <div class="modal-body">* กรุณาระบุเหตุผลในการปฎิเสธ: </div>
+                <div class="col-12">
+                    <div>
+                        <textarea class="form-control" id="reject-reason" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="">ยืนยัน</button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="rejectRequest();">ยืนยัน</button>
                 </div>
             </div>
         </div>
@@ -636,6 +653,26 @@ if (isset($_GET["id"])) {
                                 console.log(error);
                             }
                         })
+                    }
+
+                    function rejectRequest() {
+                        var url = "service/service_reject_request.php?id=<?php echo $id; ?>";
+                        var reason = $('#reject-reason').val();
+                        if (reason != "") {
+                            $.ajax({
+                                url: url,
+                                dataType: 'JSON',
+                                type: 'POST',
+                                data: {
+                                    reason: reason
+                                },
+                                success: function(data) {
+                                    window.location = "display_supplies_request.php";
+                                }
+                            })
+                        } else {
+                            alert('กรุณาระบเหตุผล');
+                        }
                     }
                 </script>
 </body>

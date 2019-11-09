@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $unit = $_POST["unit"];
     $suppliesPattern = $_POST["supplies_pattern"];
     $productID = $_POST["product_id"];
+    $action_request = $_POST["action_request"];
     $status = 1;
 
     $log = "อนุมัติการแก้ไข";
@@ -26,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $supplies_id = $data["supplies_id"];
     $user_request = $_SESSION["user_id"];
     $reason = $_POST["reason"];
-    $action_request = "request_approve";
     $status_request = "approved";
 
     //อัฟโหลดรูปภาพ
@@ -50,18 +50,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $receive_date = $_POST["receive_date"];
     $receive_address = $_POST["receive_address"];
 
-    /*
-    $sqlInsertSupplies = "INSERT INTO supplies_request(code, supplies_id , department_id,";
-    $sqlInsertSupplies .= " seller_id, price, bill_no, goverment, short_goverment, unit, status, picture, user_request, reason, action_request, status_request)";
-    $sqlInsertSupplies .= " VALUES('$code', $supplies_id, $departmentid, ";
-    $sqlInsertSupplies .= " $seller_id, $price, '$billno', '$goverment', '$shortgoverment', $unit, $status,'$imageName', ";
-    $sqlInsertSupplies .= " $user_request, '$reason', '$action_request', '$status_request')";
-    */
-
-    $updateSupplies = "UPDATE supplies SET department_id = $departmentid, seller_id = $seller_id, price = $price, bill_no = '$billno', ";
-    $updateSupplies .= " goverment = '$goverment', short_goverment = '$shortgoverment', unit = $unit, picture = '$imageName' ";
-    $updateSupplies .= " WHERE id = $id";
-
+    if ($action_request == "request_update") {
+        $updateSupplies = "UPDATE supplies SET department_id = $departmentid, seller_id = $seller_id, price = $price, bill_no = '$billno', ";
+        $updateSupplies .= " goverment = '$goverment', short_goverment = '$shortgoverment', unit = $unit, picture = '$imageName' ";
+        $updateSupplies .= " WHERE id = $id";
+    } else {
+        $updateSupplies = "UPDATE supplies SET status = 0";
+        $updateSupplies .= " WHERE id = $supID";
+    }
+    echo $updateSupplies;
     mysqli_query($conn, $updateSupplies) or die("$updateSupplies ::error => ".mysqli_error($conn));
 
     $sqlUpdateStatus = "UPDATE supplies_request SET action_request = '$action_request', status_request = '$status_request' WHERE id = $id";
