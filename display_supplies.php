@@ -98,7 +98,7 @@ $show = 10;
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
                       // echo $sqlSelect;
-                    
+
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -125,7 +125,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_supplies.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" onclick="showDialog(<?php echo $row["id"]; ?>);">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -143,7 +143,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -155,12 +155,12 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
-           $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
-           if (isset($_GET["keyword"])) {
-             $keyword = $_GET["keyword"];
-             $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
-           }
+            $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
+            $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = $_GET["keyword"];
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -199,10 +199,10 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -290,13 +290,27 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          <?php if ($_SESSION["user_type"] == 1) { ?>
+            คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          <?php } else { ?>
+            กรุณาใส่เหตุการลบข้อมูล
+          <?php } ?>
+          <input type="hidden" id="temp-id">
           <form id="form-drop" method="post" action="service/service_drop_supplies.php">
             <input type="hidden" id="remove-supplies" name="supplies_id">
+          </form>
+          <?php if ($_SESSION["user_type"] == 2) { ?>
+            <br>
+            <textarea class="form-control" id="reason" cols="30" rows="10"></textarea>
+          <?php } ?>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <?php if ($_SESSION["user_type"] == 1) { ?>
+            <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit();">ยืนยันการลบข้อมูล</button>
+          <?php } else { ?>
+            <button type="button" class="btn btn-danger" onclick="rejectRequest();">ยืนยันการร้องขอลบข้อมูล</button>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -314,6 +328,33 @@ $show = 10;
   $(function() {
     $('[data-toggle="popover"]').popover()
   })
+
+  function showDialog(id) {
+    $('#temp-id').val(id);
+    $('#remove-supplies').val(id);
+    $('#exampleModal').modal();
+  }
+
+  function rejectRequest() {
+    var id = $('#temp-id').val();
+    var url = "service/service_delete_request.php?id=" + id;
+    var reason = $('#reason').val();
+    if (reason != "") {
+      $.ajax({
+        url: url,
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+          reason: reason
+        },
+        success: function(data) {
+          window.location = "display_supplies_request.php";
+        }
+      })
+    } else {
+      alert('กรุณาระบเหตุผล');
+    }
+  }
 </script>
 
 </html>
