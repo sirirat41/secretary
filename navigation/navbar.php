@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
       <br>
       <br>
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon ">
           <img src="./img/logo1.png" class="my-logo">
         </div>
@@ -85,7 +85,7 @@ if (isset($_SESSION['user_id'])) {
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item supplies" href="display_supplies.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
-            <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
+            <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
             <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
             <a class="collapse-item stock" href="display_supplies_stock.php">วัสดุสิ้นเปลือง</a>
             <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
@@ -191,11 +191,7 @@ if (isset($_SESSION['user_id'])) {
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="display_log.php">
-                <i class="fas fa-fw fa-"></i>
-                <span>การเข้าใช้งาน</span></a>
-            </li>
+       
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -334,22 +330,14 @@ if (isset($_SESSION['user_id'])) {
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="display_log.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  การเข้าใช้งาน
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="service/service_logout.php" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="service/service_logout.php" >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  ออกจากระบบ
                 </a>
               </div>
             </li>
@@ -399,7 +387,7 @@ if (isset($_SESSION['user_id'])) {
               <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item display" href="display_supplies.php">แสดงข้อมูล</a>
                 <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
-                <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a>
+                <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
                 <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
                 <a class="collapse-item stock" href="display_supplies_stock.php">วัสดุสิ้นเปลือง</a>
                 <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
@@ -627,23 +615,10 @@ if (isset($_SESSION['user_id'])) {
                   </a>
                   <!-- Dropdown - User Information -->
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
-                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Profile
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Settings
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Activity Log
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="service/service_logout.php" data-toggle="modal" data-target="#logoutModal">
-                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Logout
-                    </a>
+                  <a class="dropdown-item" href="service/service_logout.php" >
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  ออกจากระบบ
+                </a>
                   </div>
                 </li>
 
