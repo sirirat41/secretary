@@ -49,7 +49,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <br>
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-6 offset-3">
           <div class="card">

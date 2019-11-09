@@ -160,6 +160,11 @@ $(document).ready(function () {
             $('.collapse-supplies').addClass('show');
             $('.collapse-supplies .permits').addClass('active');
             break;
+        case "display_supplies_distribute_type":  //จัดซื้อ
+            $('.nav-supplies').addClass('active');
+            $('.collapse-supplies').addClass('show');
+            $('.collapse-supplies .distribute').addClass('active');
+            break;
         case "display_supplies_stock":  //จัดซื้อ
             $('.nav-supplies').addClass('active');
             $('.collapse-supplies').addClass('show');

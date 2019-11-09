@@ -39,6 +39,11 @@
 
         <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+        <div class="row ">
+            <p class="" onclick="window.history.back()" style="cursor: pointer">
+            <i class="fas fa-angle-left"></i> กลับ
+            </p>
+          </div>
           <div class="row">
               <div class="col-md-6 offset-3">
                   <div class="card shadow mb-4">

@@ -51,6 +51,11 @@ if (isset($_GET["id"])) {
     <!-- Begin Page Content -->
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">

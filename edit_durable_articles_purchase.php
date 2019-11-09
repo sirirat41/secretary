@@ -13,13 +13,10 @@ if (isset($_GET["id"])) {
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
-<<<<<<< HEAD
   
 
   //item.code java odject , item["code"] php
 
-=======
->>>>>>> bbf69a38ecff27b1934b541b51e45a14045239aa
   // $sql = "SELECT * FROM durable_articles a, durable_articles_type t, department d WHERE id = $id and a.department = d.id";
   // $sql .= " and a.type = t.id";
   // $result = mysqli_query($conn,$sql);
@@ -62,6 +59,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-8 offset-2">
           <div class="card">

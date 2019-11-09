@@ -43,6 +43,11 @@ $show = 10;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
@@ -246,7 +251,7 @@ $show = 10;
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                     
+
                         $sqlSelect = "SELECT d.*, a.code FROM durable_articles_damage as d, durable_articles as a";
                         $sqlSelect .= " WHERE d.product_id = a.id and d.status = 3";
                         if (isset($_GET["keyword"])) {
@@ -302,33 +307,35 @@ $show = 10;
   </div>
   </div>
   <script>
-   var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_articles_damage.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
           changePage(1);
-     
+
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
       var body = $('#modal-articles-body');
@@ -340,36 +347,39 @@ $show = 10;
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-    
+
         var damage_date = item["damage_date"];
         var code = item["code"];
-        var flag = item["flag"];
-<<<<<<< HEAD
+        var flag = item["flag"]; <<
+        << << < HEAD
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-=======
-            $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
-            $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
-            $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          generatePagination();
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr); ===
+        === =
+        $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -409,8 +419,8 @@ $show = 10;
       };
       var str = num.toString();
       for (var val in array) {
-        str = str.split(val).join(array[val]);
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
+        str = str.split(val).join(array[val]); >>>
+        >>> > 3248 d1df70661156939fe927059b2c42b0034dba
       }
       return str;
     }
