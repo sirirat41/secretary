@@ -153,69 +153,67 @@ require "service/connection.php";
           <div class="card">
 
 
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
-                    <thead>
-                      <tr class="text-center">
-                        <td rowspan="2">วัน/เดือน/ปี</td>
-                        <td rowspan="2">รับจาก</td>
-                        <td rowspan="2">จ่ายให้</td>
-                        <td rowspan="2">เลขที่เอกสาร</td>
-                        <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
-                        <td rowspan="2">หน่วยนับ</td>
-                        <td colspan="3">จำนวน</td>
-                        <td rowspan="2">หมายเหตุ</td>
-                      </tr class="text-center">
-                      <tr class="text-center">
-                        <td width="8%">บาท </td>
-                        <td width="6%">สตางค์</td>
-                        <td width="7%">รับ</td>
-                        <td width="7%">จ่าย</td>
-                        <td width="7%">คงเหลือ</td>
-                      </tr>
-                    </thead>
-                    <thead>
-                      <tr class="text-center" height="30" id="firstTr">
-
-                        <td> <input type="date" class="form-control" name="distribute_date[]" id="distribute_date" placeholder="" name="distribute_date"></td>
-                        <td> <input type="text" class="form-control" name="receive_from[]" id="receive_from" placeholder="" name="receive_from"></td>
-                        <td> <input type="text" class="form-control" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to"></td>
-                        <td> <input type="text" class="form-control" name="document_no[]" id="document_no" placeholder="" name="document_no"></td>
-                        <td> <input type="text" class="form-control" name="baht[]" id="baht" placeholder="" name="baht"></td>
-                        <td> <input type="text" class="form-control" name="satang[]" id="satang" placeholder="" name="satang"></td>
-                        <td> <input type="text" class="form-control" name="unit[]" id="unit" placeholder="" name="unit"></td>
-                        <td> <input type="text" class="form-control" name="receive[]" id="receive" placeholder="" name="receive"></td>
-                        <td> <input type="text" class="form-control" name="distribute[]" id="distribute" placeholder="" name="distribute"></td>
-                        <td> <input type="text" class="form-control" name="stock[]" id="stock" placeholder="" name="stock"></td>
-                        <td><input type="text" class="form-control" name="flag[]" id="flag" placeholder="" name="flag"></td>
-                      </tr>
-
-                    </thead>
-                  </table>
-                  <br>
-                  <table width="500" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td>
-                        <button id="addRow" type="button">+</button>
-                        <button id="removeRow" type="button">-</button>
-
-                      </td>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
+                  <thead>
+                    <tr class="text-center">
+                      <td rowspan="2">วัน/เดือน/ปี</td>
+                      <td rowspan="2">รับจาก</td>
+                      <td rowspan="2">จ่ายให้</td>
+                      <td rowspan="2">เลขที่เอกสาร</td>
+                      <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
+                      <td rowspan="2">หน่วยนับ</td>
+                      <td colspan="3">จำนวน</td>
+                      <td rowspan="2">หมายเหตุ</td>
+                    </tr class="text-center">
+                    <tr class="text-center">
+                      <td width="8%">บาท </td>
+                      <td width="6%">สตางค์</td>
+                      <td width="7%">รับ</td>
+                      <td width="7%">จ่าย</td>
+                      <td width="7%">คงเหลือ</td>
                     </tr>
-                  </table>
-                </div>
-
+                  </thead>
+                  <tbody id="tbody">
+                    <tr class="text-center" height="30" id="firstTr">
+                      <td> <input type="date" class="form-control distribute_date" name="distribute_date[]" id="distribute_date" placeholder=""></td>
+                      <td> <input type="text" class="form-control receive_from" name="receive_from[]" id="receive_from" placeholder=""></td>
+                      <td> <input type="text" class="form-control distribute_to" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to"></td>
+                      <td> <input type="text" class="form-control document_no" name="document_no[]" id="document_no" placeholder="" name="document_no"></td>
+                      <td> <input type="text" class="form-control baht" name="baht[]" id="baht" placeholder="" name="baht"></td>
+                      <td> <input type="text" class="form-control satang" name="satang[]" id="satang" placeholder="" name="satang"></td>
+                      <td> <input type="text" class="form-control unit" name="unit[]" id="unit" placeholder="" name="unit"></td>
+                      <td> <input type="text" class="form-control receive" name="receive[]" id="receive" placeholder="" name="receive"></td>
+                      <td> <input type="text" class="form-control table-distribute" name="distribute[]" id="distribute" placeholder="" name="distribute"></td>
+                      <td> <input type="text" class="form-control table-stock" name="stock[]" id="stock" placeholder=""></td>
+                      <td><input type="text" class="form-control flag" name="flag[]" id="flag" placeholder="" name="flag"></td>
+                    </tr>
+                  </tbody>
+                </table>
                 <br>
-                <div class="row">
-                  <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
-                      ตกลง
-                    </button>
-                    <!-- Modal -->
+                <table width="500" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <button id="addRow" type="button">+</button>
+                      <button id="removeRow" type="button">-</button>
 
-                  </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
+                    ตกลง
+                  </button>
+                  <!-- Modal -->
+
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -302,7 +300,7 @@ require "service/connection.php";
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+          <button type="button" class="btn btn-danger" onclick="sendData();">บันทึก</button>
         </div>
       </div>
     </div>
@@ -527,9 +525,12 @@ require "service/connection.php";
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
+
     $(function() {
       $("#addRow").click(function() {
-        $("#myTbl").append($("#firstTr").clone());
+        //$("#myTbl").append($("#firstTr").clone());
+        var tr = $('#firstTr').clone();
+        tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
@@ -539,6 +540,45 @@ require "service/connection.php";
         // }
       });
     });
+
+    function sendData() {
+      var params = {};
+      params["year"] = $('#year').val();
+      params["supplies_id"] = $('#supplies_id').val();
+      params["product_id"] = $('#product_id').val();
+      params["unit_id"] = $('#unit_id').val();
+      params["department"] = $('#department').val();
+      var data = [];
+      $('.distribute_date').each(function(i, e) {
+        var item = {};
+        item["distribute_date"] = $('.distribute_date:eq(' + i + ')').val();
+        item["receive_from"] = $('.receive_from:eq(' + i + ')').val();
+        item["distribute_to"] = $('.distribute_to:eq(' + i + ')').val();
+        item["document_no"] = $('.document_no:eq(' + i + ')').val();
+        item["baht"] = $('.baht:eq(' + i + ')').val();
+        item["satang"] = $('.satang:eq(' + i + ')').val();
+        item["unit"] = $('.unit:eq(' + i + ')').val();
+        item["receive"] = $('.receive:eq(' + i + ')').val();
+        item["distribute"] = $('.table-distribute:eq(' + i + ')').val();
+        item["stock"] = $('.table-stock:eq(' + i + ')').val();
+        item["flag"] = $('.flag:eq(' + i + ')').val();
+        data.push(item);
+      })
+      params["data"] = data;
+      $.ajax({
+        url: 'service/service_insert_supplies_account.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          body: params
+        }, success: function(data) {
+          if (data.result) {
+            window.location = "display_supplies_account.php";
+          }
+        }
+      })
+      //console.log(params);
+    }
   </script>
 </body>
 
