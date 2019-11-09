@@ -77,7 +77,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by">
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $_SESSION["fullname"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
@@ -100,7 +100,7 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group ">
                       <label for="receiver">ชื่อผู้รับ</label>
-                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver">
+                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $_SESSION["fullname"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">

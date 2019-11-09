@@ -384,7 +384,7 @@ require "service/connection.php";
         $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\''   + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
     
       }
