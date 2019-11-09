@@ -91,9 +91,10 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center">
+                      <th>วันที่แจกจ่าย</th>
                         <th>รหัสวัสดุ</th>
                         <th>หน่วยงาน</th>
-                        <th>วันที่แจกจ่าย</th>
+                       
                         <th>จำนวน</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
@@ -120,10 +121,11 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center">
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["fullname"]); ?></td>
-                          <td><?php echo thainumDigit($row["distribute_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["number"]); ?></td>
+                        <td><?php echo $row["distribute_date"]; ?></td>
+                          <td><?php echo $row["code"]; ?></td>
+                          <td><?php echo $row["fullname"]; ?></td>
+                         
+                          <td><?php echo $row["number"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_supplies_distribute.php?id=<?php echo $row['id']; ?>&type=<?php echo $type; ?>'">
                               <i class="fas fa-pencil-alt"></i>
