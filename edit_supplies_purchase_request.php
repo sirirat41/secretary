@@ -235,7 +235,7 @@ if (isset($_GET["id"])) {
                                 <div class="row">
                                     <div class="col-12">
                                         <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
-                                            บันทึก
+                                            ร้องขอการแก้ไข
                                             <div class="ripple-container"></div></button>
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $supplies_id = $data["supplies_id"];
     $user_request = $_SESSION["user_id"];
     $reason = $_POST["reason"];
-    $action_request = "request_approve";
+    $action_request = "request_update";
     $status_request = "waiting_approve";
 
     //อัฟโหลดรูปภาพ
