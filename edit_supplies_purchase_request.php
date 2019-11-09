@@ -55,10 +55,10 @@ if (isset($_GET["id"])) {
         <div class="container-fluid">
             <!-- เริ่มเขียนโค๊ดตรงนี้ -->
             <div class="row ">
-        <p class="" onclick="window.history.back()" style="cursor: pointer">
-          <i class="fas fa-angle-left"></i> กลับ
-        </p>
-      </div>
+                <p class="" onclick="window.history.back()" style="cursor: pointer">
+                    <i class="fas fa-angle-left"></i> กลับ
+                </p>
+            </div>
             <div class="row">
                 <div class="col-8 offset-2">
                     <div class="card">
@@ -242,25 +242,6 @@ if (isset($_GET["id"])) {
                                         <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                                             ร้องขอการแก้ไข
                                             <div class="ripple-container"></div></button>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body ">
-                                                        คุณต้องการร้องขอการแก้ไขข้อมูลครุภัณฑ์หรือไม่ ?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                                        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">ร้องขอ</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -308,6 +289,26 @@ if (isset($_GET["id"])) {
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    คุณต้องการร้องขอการแก้ไขข้อมูลครุภัณฑ์หรือไม่ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">ร้องขอ</button>
                 </div>
             </div>
         </div>
