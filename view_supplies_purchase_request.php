@@ -80,13 +80,13 @@ if (isset($_GET["id"])) {
       </div>
             <div class="row">
                 <div class="col-12">
-                <label for="exampleFormControlSelect1">ร้องขอการแก้ไขโดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
-                <textarea class="form-control" disabled name="reason" id="request" cols="30" rows="5" style="resize: none"><?php echo $item["reason"]; ?></textarea>
+                    <label for="exampleFormControlSelect1">ร้องขอการแก้ไขโดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
+                    <textarea class="form-control" disabled name="reason" id="request" cols="30" rows="5" style="resize: none"><?php echo $item["reason"]; ?></textarea>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-6">
+                <div class="col-6" <?php echo $item["status_request"] == "approved" ? "style='display: none'" : ""; ?>>
                     <div class="card">
                         <div class="card-header card-header-text card-header-danger">
                             <div class="card-text">
@@ -254,7 +254,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <!-- สิ้นสุดการเขียนตรงนี้ -->
                 </div>
-                <div class="col-6">
+                <div <?php echo $item["status_request"] == "approved" ? "class='col-8 offset-2'" : "class='col-6'"; ?>>
                     <div class="card">
                         <div class="card-header card-header-text card-header-danger">
                             <div class="card-text">
@@ -434,15 +434,19 @@ if (isset($_GET["id"])) {
                 <!-- /.container-fluid -->
             </div>
             <br>
-            <div class="row">
-                <div class="col-3 offset-2">
-                    <button style="width: 100%" type="button" class="btn btn-danger">ไม่อนุมัติ</button>
+            <?php
+            if ($_SESSION["user_type"] == 1) {
+                ?>
+                <div class="row">
+                    <div class="col-3 offset-2">
+                        <button style="width: 100%" type="button" class="btn btn-danger">ไม่อนุมัติ</button>
+                    </div>
+                    <div class="col-5">
+                        <button style="width: 100%" data-toggle="modal" data-target="#modal-approve" type="button" class="btn btn-primary">อนุมัติ</button>
+                    </div>
                 </div>
-                <div class="col-5">
-                    <button style="width: 100%" data-toggle="modal" data-target="#modal-approve" type="button" class="btn btn-primary">อนุมัติ</button>
-                </div>
-            </div>
-            <br>
+                <br>
+            <?php }; ?>
             <!-- End of Main Content -->
 
             <!-- Footer -->

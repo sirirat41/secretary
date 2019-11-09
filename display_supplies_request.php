@@ -74,6 +74,7 @@ $show = 10;
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
                         <th>ชื่อวัสดุ</th>
+                        <th>สถานะ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -103,25 +104,37 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         $count = $start + 1;
+                        $statusRequest = "";
+                        switch ($row["status_request"]) {
+                          case "waiting_approve":
+                            $statusRequest = "<p style='color: red'>รอการอนุมัติ</p>";
+                            break;
+                          case "approved":
+                            $statusRequest = "<p style='color: green'>อนุมัติแล้ว</p>";
+                            break;
+                        }
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo $count++; ?></td>
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                          <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูขรายละเอียด้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
-                              <i class="far fa-eye"></i>
-                            </button>
-                            <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล"  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
-                              <i class="far fa-times-circle"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      <?php
-                      }
-                      ?>
+                          <tr class="text-center">
+                            <td><?php echo $count++; ?></td>
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                            <td><?php echo ($row["bill_no"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["supplies_name"]); ?></td>
+                            <td><?php echo $statusRequest; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูขรายละเอียด้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
+                                <i class="far fa-eye"></i>
+                              </button>
+                              <?php if ($_SESSION["user_type"] == 1) { ?>
+                                <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                                  <i class="far fa-times-circle"></i>
+                                </button>
+                              <?php }; ?>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                   </table>
                 </div>
@@ -149,6 +162,9 @@ $show = 10;
             if (isset($_GET["keyword"])) {
               $keyword = $_GET["keyword"];
               $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+            }
+            if ($_SESSION["user_type"] == 2) {
+              $sqlSelectCount .= " and s.user_request = " . $_SESSION["user_id"];
             }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -295,15 +311,15 @@ $show = 10;
 
 <!-- Initialize Bootstrap functionality -->
 <script>
-// Initialize tooltip component
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
-// Initialize popover component
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
 </script>
 <!-- Initialize Bootstrap functionality -->
 <script>

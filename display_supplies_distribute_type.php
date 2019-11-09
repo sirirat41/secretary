@@ -56,11 +56,14 @@ $show = 10;
                     <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
+<<<<<<< HEAD
+=======
                               <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                    
        
+>>>>>>> 39bdb0645839439ae5a1f23fffb8058f329312e2
                 </form>
             </div>
           </div>

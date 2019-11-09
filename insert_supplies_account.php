@@ -172,8 +172,8 @@ require "service/connection.php";
                         <td rowspan="2">หมายเหตุ</td>
                       </tr class="text-center">
                       <tr class="text-center">
-                        <td width="10%">บาท </td>
-                        <td>สต.</td>
+                        <td width="8%">บาท </td>
+                        <td width="6%">สตางค์</td>
                         <td width="7%">รับ</td>
                         <td width="7%">จ่าย</td>
                         <td width="7%">คงเหลือ</td>
@@ -182,17 +182,17 @@ require "service/connection.php";
                     <thead>
                       <tr class="text-center" height="30" id="firstTr">
 
-                        <td> <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date"></td>
-                        <td> <input type="text" class="form-control" name="receive_from" id="receive_from" placeholder="" name="receive_from"></td>
-                        <td> <input type="text" class="form-control" name="distribute_to" id="distribute_to" placeholder="" name="distribute_to"></td>
-                        <td> <input type="text" class="form-control" name="document_no" id="document_no" placeholder="" name="document_no"></td>
-                        <td> <input type="text" class="form-control" name="baht" id="baht" placeholder="" name="baht"></td>
-                        <td> <input type="text" class="form-control" name="satang" id="satang" placeholder="" name="satang"></td>
-                        <td> <input type="text" class="form-control" name="unit" id="unit" placeholder="" name="unit"></td>
-                        <td> <input type="text" class="form-control" name="receive" id="receive" placeholder="" name="receive"></td>
-                        <td> <input type="text" class="form-control" name="distribute" id="distribute" placeholder="" name="distribute"></td>
-                        <td> <input type="text" class="form-control" name="stock" id="stock" placeholder="" name="stock"></td>
-                        <td><input type="text" class="form-control" name="flag" id="flag" placeholder="" name="flag"></td>
+                        <td> <input type="date" class="form-control" name="distribute_date[]" id="distribute_date" placeholder="" name="distribute_date"></td>
+                        <td> <input type="text" class="form-control" name="receive_from[]" id="receive_from" placeholder="" name="receive_from"></td>
+                        <td> <input type="text" class="form-control" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to"></td>
+                        <td> <input type="text" class="form-control" name="document_no[]" id="document_no" placeholder="" name="document_no"></td>
+                        <td> <input type="text" class="form-control" name="baht[]" id="baht" placeholder="" name="baht"></td>
+                        <td> <input type="text" class="form-control" name="satang[]" id="satang" placeholder="" name="satang"></td>
+                        <td> <input type="text" class="form-control" name="unit[]" id="unit" placeholder="" name="unit"></td>
+                        <td> <input type="text" class="form-control" name="receive[]" id="receive" placeholder="" name="receive"></td>
+                        <td> <input type="text" class="form-control" name="distribute[]" id="distribute" placeholder="" name="distribute"></td>
+                        <td> <input type="text" class="form-control" name="stock[]" id="stock" placeholder="" name="stock"></td>
+                        <td><input type="text" class="form-control" name="flag[]" id="flag" placeholder="" name="flag"></td>
                       </tr>
 
                     </thead>
