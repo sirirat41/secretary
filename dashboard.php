@@ -212,7 +212,7 @@ $rows = mysqli_fetch_assoc($resultS);
           function generateChartMonth() {
             var chartData = [];
             var firstDate = new Date();
-            firstDate.setMonth(firstDate.getMonth() - 6);
+            firstDate.setMonth(firstDate.getMonth() - 5);
 
             <?php
             $jsonA = array();
@@ -224,7 +224,7 @@ $rows = mysqli_fetch_assoc($resultS);
               $month = date('m', strtotime("-$i months"));
 
               $date = new DateTime();
-              $date->setDate($year, $month, 1);
+              $date->setDate($year, $month + 2, 1);
               $useDate = $date->format('Y-m-d');
               $sqlArticles = "SELECT COUNT(*) as total FROM durable_articles a, durable_articles_purchase p ";
               $sqlArticles .= " WHERE a.id = p.product_id and p.receive_date < '$useDate'";
