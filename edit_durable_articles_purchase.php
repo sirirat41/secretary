@@ -6,14 +6,14 @@ if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles LEFT JOIN durable_articles_purchase ON durable_articles.id = durable_articles_purchase.product_id ";
   $sql .= "WHERE durable_articles.id = $id ";
-  echo $sql ;
+  echo $sql;
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
-  
+
 
   //item.code java odject , item["code"] php
 
@@ -110,7 +110,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12 ">
                     <div class="form-group">
                       <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
-                      <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="articles_pattern" value="<?php echo $item["code"]; ?>">
+                      <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="code" value="<?php echo $item["code"]; ?>">
                       <small style="color: red"> *ตัวอย่าง: ค.สง 7700-100-{run_4}-2557</small>
                     </div>
                   </div>
@@ -399,30 +399,12 @@ if (isset($_GET["id"])) {
                 <br><br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </form>
@@ -495,8 +477,8 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- 
+  <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -590,26 +572,45 @@ if (isset($_GET["id"])) {
               </ul>
             </nav>
           </div>
-        </div>
-        <script>
-          function search() {
-            var kw = $("#keyword").val();
-            $.ajax({
-              url: 'service/service_search_json_durable_articles.php',
-              dataType: 'JSON',
-              type: 'GET',
-              data: {
-                keyword: kw
-              },
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            })
-          }
-        </script>
+        </div> -->
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_durable_articles.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+  </script>
 </body>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

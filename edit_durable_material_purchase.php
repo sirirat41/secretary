@@ -109,11 +109,12 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
-                  </div>
+                      <label for="code">รหัสวัสดุ</label>
+                      <input class="form-control" name="code" type="text" placeholder="code" id="code" value="<?php echo $item["code"]; ?>">
                 </div>
                 </div>
+                </div>
+
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group ">
@@ -308,25 +309,7 @@ if (isset($_GET["id"])) {
                       <div class="ripple-container"></div>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลวัสดุคงทนหรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                 
                   </div>
                 </div>
               </form>
@@ -399,7 +382,7 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -496,7 +479,7 @@ if (isset($_GET["id"])) {
               </ul>
             </nav>
           </div>
-        </div>
+        </div> -->
         <script>
           function search() {
             var kw = $("#keyword").val();
@@ -517,6 +500,24 @@ if (isset($_GET["id"])) {
           }
         </script>
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลวัสดุคงทนหรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 </html>

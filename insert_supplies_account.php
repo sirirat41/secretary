@@ -300,7 +300,7 @@ require "service/connection.php";
           </button>
         </div>
         <div class="modal-body ">
-          คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
+          คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

@@ -82,12 +82,32 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสครุภัณฑ์</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <div class="row">
+                        <div class="col-10 ">
+                        <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
@@ -109,26 +129,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  
                   </div>
                 </div>
             </div>
@@ -426,5 +427,24 @@ if (isset($_GET["id"])) {
   </script>
 
 </body>
-
+</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

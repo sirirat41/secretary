@@ -30,11 +30,7 @@ if (isset($_POST["body"])) {
 
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
     }
-<<<<<<< HEAD
        // header('Location: ../display_supplies_account.php?message=เพิ่มข้อมูลสำเร็จ');
-=======
-    header('Location: ../display_supplies_account.php?message=เพิ่มข้อมูลสำเร็จ');
->>>>>>> 9d13420affa11bf735ec29ab6571c70236ec861e
     $resp["result"] = true;
     echo json_encode($resp);
 }

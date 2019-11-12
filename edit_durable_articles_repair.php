@@ -81,10 +81,30 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-12 ">
                     <div class="form-group">
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
-                      <input class="form-control" name="damage_id" type="text" placeholder="damage_id" id="damage_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <div class="row">
+                        <div class="col-10 ">
+                          <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["damage_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

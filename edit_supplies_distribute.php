@@ -69,13 +69,33 @@ if (isset($_GET["id"])) {
             <br>
             <div class="card-body">
               <form method="post" action="service/service_edit_supplies_distribute.php?id=<?php echo $id; ?>&type=<?php echo $_GET["type"]; ?>" id="form_insert">
-              <div class="row">
-                  <div class="col-md-12 ">
+                <div class="row">
+                  <div class="col-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <div class="row">
+                        <div class="col-10 ">
+                        <select class="form-control" name="product_id" id="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM supplies";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] .'"selected>' . $row["code"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-6">
@@ -118,25 +138,7 @@ if (isset($_GET["id"])) {
                       ตกลง
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลแจกจ่ายวัสดุ (สิ้นเปลือง) หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                
                   </div>
                 </div>
               </form>
@@ -226,11 +228,11 @@ if (isset($_GET["id"])) {
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
+                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -244,8 +246,7 @@ if (isset($_GET["id"])) {
                       <thead>
                         <tr class="text-center">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
-                          <td>เลขที่ใบเบิก</td>
+                          <td>ชื่อวัสดุ</td>
                           <td>รหัสวัสดุ</td>
                           <td>ประเภท</td>
                           <td>การทำงาน</td>
@@ -255,10 +256,10 @@ if (isset($_GET["id"])) {
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
-                        $sqlSelect = "SELECT a.*, t.name ,ss.type FROM supplies as a, durable_material_type as t, supplies_stock as ss";
-                        $sqlSelect .= " WHERE a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
+
+
+                        $sqlSelect = "SELECT a.*, t.name,s.supplies_name,s.type,s.attribute FROM supplies as a, supplies_stock as s ,durable_material_type as t";
+                        $sqlSelect .= " WHERE a.supplies_id = s.id and s.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
@@ -269,8 +270,7 @@ if (isset($_GET["id"])) {
                           ?>
                           <tr class="text-center">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
+                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo thainumDigit($row["name"]); ?></td>
                             <td class="td-actions text-center">
@@ -322,16 +322,16 @@ if (isset($_GET["id"])) {
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-      var dep = "<?php echo $_GET["id"]; ?>";
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword, + dep ,
+        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -342,6 +342,7 @@ if (isset($_GET["id"])) {
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -355,18 +356,16 @@ if (isset($_GET["id"])) {
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var supplies_name = item["supplies_name"];
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(supplies_name) + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -375,14 +374,16 @@ if (isset($_GET["id"])) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -426,12 +427,32 @@ if (isset($_GET["id"])) {
       }
       return str;
     }
+
     function selectedsupplies(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
+    
   </script>
 
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลแจกจ่ายวัสดุ (สิ้นเปลือง) หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

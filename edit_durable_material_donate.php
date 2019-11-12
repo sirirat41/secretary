@@ -82,12 +82,32 @@ $show=10;
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-12 ">
                     <div class="form-group">
-                      <label for="product_id">รหัสครุภัณฑ์</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <div class="row">
+                        <div class="col-10 ">
+                          <select class="form-control" name="product_id" id="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_material";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] .'"selected>' . $row["code"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
                 </div>
 
                 <div class="row">

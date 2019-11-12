@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {

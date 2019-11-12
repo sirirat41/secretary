@@ -117,26 +117,7 @@ $show = 10;
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                       บันทึก
-                      <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                 
                   </div>
                 </div>
               </form>
@@ -433,5 +414,24 @@ $show = 10;
   </script>
 
 </body>
-
+<div class="ripple-container"></div></button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

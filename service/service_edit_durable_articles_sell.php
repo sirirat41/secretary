@@ -13,8 +13,20 @@ if(isset($_GET["id"])) {
     $log = "แก้ไขข้อมูลการขายทอดตลาดครุภัณฑ์ รหัส " . $id ;
     logServer($conn, $log);
 
+       
+    $sqlSelect = "SELECT * FROM durable_articles_sell WHERE id = $id";
+    $resultOld = mysqli_query($conn, $sqlSelect);
+    $dataOld = mysqli_fetch_assoc($resultOld);
+    $oldProductID = $dataOld["product_id"];
+    $updateOld = "UPDATE durable_articles SET status = 1 WHERE id = $oldProductID";
+    mysqli_query($conn, $updateOld);
+
+    $updatesell = "UPDATE durable_articles SET status = 9";
+    $updatesell .= " WHERE id = $productid";
+    mysqli_query($conn, $updatesell) or die("Cannot update sell: " . mysqli_error($conn));
+
     $updatesell = "UPDATE durable_articles_sell SET buyer = '$buyer',";
-    $updatesell .= " sell_date = '$selldate', document_no = '$documentno', flag = '$flag' ";
+    $updatesell .= " product_id = '$productid', sell_date = '$selldate', document_no = '$documentno', flag = '$flag' ";
     $updatesell .= " WHERE id = $id";
     mysqli_query($conn, $updatesell) or die("Cannot update sell" . mysqli_error($conn));
     header('Location: ../display_durable_articles_sell.php?message=แก้ไขข้อมูลสำเร็จ');
