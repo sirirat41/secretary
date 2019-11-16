@@ -1,18 +1,18 @@
 <?php
-    if ($_POST) {
-        
-    } else {
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+    $main["result"] = true;
+    $main["first_name"] = "Apimun";
+    $main["last_name"] = "Klansakul";
+    $main["salary"] = 50000.99;
     
-</body>
-</html>
-<?php } ?>
+    $mobileHome["type"] = "Home";
+    $mobileHome["number"] = "023218993";
+
+    $mobilePhone["type"] = "Mobile";
+    $mobilePhone["number"] = "0944895701";
+
+    $mobile = array();
+    array_push($mobile, $mobileHome);
+    array_push($mobile, $mobilePhone);
+    $main["contacts"] = $mobile;
+
+    echo json_encode($main);
