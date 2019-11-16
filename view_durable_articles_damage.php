@@ -6,6 +6,7 @@ if (isset($_GET["id"])) {
   $sql .= " and da.product_id = a.id and da.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  echo $row["code"];
 }
 ?>
 
@@ -75,31 +76,31 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark body-text" for="code">รหัสครุภัณฑ์ : </label>
-                      <?php echo  ($row["code"]); ?>
+                      <?php echo $row["code"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark body-text" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                      <?php echo ($row["attribute"]); ?>
+                      <?php echo $row["attribute"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark body-text" for="model">รุ่นแบบ : </label>
-                      <?php echo ($row["model"]); ?>
+                      <?php echo $row["model"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark body-text" for="damage_date">วันที่ชำรุด : </label>
-                      <?php echo ($row["damage_date"]); ?>
+                      <?php echo $row["damage_date"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label class="text-dark body-text" for="flag">หมายเหตุ : </label>
-                      <?php echo ($row["flag"]); ?>
+                      <?php echo $row["flag"]; ?>
                     </div>
                   </div>
                 </div>

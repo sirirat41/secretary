@@ -331,12 +331,12 @@ $show = 10;
 
         var damage_date = item["damage_date"];
         var code = item["code"];
-        var flag = item["flag"]; <<
-        << << < HEAD
-        $('<td>' + item.damage_date + '</td>').appendTo(tr);
-        $('<td>' + item.code + '</td>').appendTo(tr);
-        $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        var flag = item["flag"];
+            $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
+            $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
+            $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          generatePagination();
       }
     }
 
@@ -394,12 +394,9 @@ $show = 10;
       };
       var str = num.toString();
       for (var val in array) {
-<<<<<<< HEAD
+
         str = str.split(val).join(array[val]);
-=======
-        str = str.split(val).join(array[val]); >>>
-        >>> > 3248 d1df70661156939fe927059b2c42b0034dba
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+
       }
       return str;
     }

@@ -398,25 +398,25 @@ if (isset($_GET["id"])) {
                 </div>
                 <br>
                 <div class="row">
-                  <div class="col-12">
+                <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
-                      <div class="ripple-container"></div>
-                    </button>
-                    <!-- Modal -->
+                      <div class="ripple-container"></div></button>
+                  
                   </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
+      <br>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
+
+
   </div>
-  <br>
   <!-- End of Main Content -->
 
   <!-- Footer -->
