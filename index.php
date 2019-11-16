@@ -42,34 +42,28 @@
         <div class="col-md-4 offset-4">
           <div class="card border-warning shadow mb-6 ">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger text-center">
+              <h6 class="m-0 font-weight-bold text-danger text-center body-text">
                 <i class="fas fa-user-lock"></i> เข้าสู่ระบบ</h6>
             </div>
-
             <div class="card-body">
               <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
                 <div class="row">
                   <div class="col-md-10 offset-1">
                     <div class="form-group">
                       <input type="text" class="form-control" name="username" id="username" placeholder="username" autofocus>
-
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-10 offset-1">
                     <div class="form-group">
-
-
                       <input type="password" class="form-control" name="password" id="password" placeholder="password">
-                     
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-10 offset-1">
-                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block">
+                    <button type="submit" href="#" id="btn-login" class="btn btn-danger btn-md btn-block body-text">
                       เข้าสู่ระบบ
                     </button>
                     <hr color="red">
@@ -77,16 +71,14 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 text-center" >
-                    <a href ="forget_user.php">ลืมรหัสผ่าน?</a>
+                  <div class="col-md-12 text-center body-text">
+                    <a href="forget_user.php">ลืมรหัสผ่าน?</a>
                   </div>
                 </div>
             </div>
           </div>
         </div>
       </div>
-
-
       </form>
 
       <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -159,7 +151,8 @@
       e.preventDefault();
       login();
     })
-      function login(){
+
+    function login() {
       $.ajax({
         url: "service/service_login.php",
         dataType: "JSON",
@@ -180,7 +173,7 @@
           console.log(error);
           alert('ไม่สามารถ Login ได้ กรุณาลองอีกครั้ง');
         }
-      
+
       })
     }
   </script>

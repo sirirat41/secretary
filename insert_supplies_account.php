@@ -41,10 +41,10 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-6 offset-3">
           <div class="card">
@@ -534,16 +534,16 @@ require "service/connection.php";
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
         var tr = $('#myTbl tr:last').clone();
-        $.each(tr.find("input"), function(i,e) {
+        $.each(tr.find("input"), function(i, e) {
           $(e).val("");
-        });
+        })
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
-          if ($("#myTbl tr").length > 3) {
-        $("#myTbl tr:last").remove();
-          }
+        if ($("#myTbl tr").length > 3) {
+          $("#myTbl tr:last").remove();
+        }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }
@@ -580,7 +580,8 @@ require "service/connection.php";
         dataType: 'JSON',
         data: {
           body: params
-        }, success: function(data) {
+        },
+        success: function(data) {
           if (data.result) {
             window.location = "display_supplies_account.php";
           }

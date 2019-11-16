@@ -46,8 +46,13 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
+<<<<<<< HEAD
+                <h6 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-business-time "></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
+=======
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-house-damage"></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -73,13 +78,13 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                      <tr class="text-center">
-                        <th>รหัสครุภัณฑ์</th>
+                      <tr class="text-center body-text">
+                        <th class=>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>รุ่นแบบ</th>
                         <th>วันที่ชำรุด</th>
                         <th>การทำงาน</th>
-                      </tr class="text-center">
+                      </tr class="text-center body-text">
                     </thead>
                     <tbody>
                     <?php
@@ -101,6 +106,15 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
+<<<<<<< HEAD
+                      <tr class="text-center body-text">
+                        <td><?php echo ($row["code"]); ?></td>
+                        <td><?php echo ($row["attribute"]); ?></td>
+                        <td><?php echo ($row["model"]); ?></td>
+                        <td><?php echo ($row["damage_date"]); ?></td>
+                        <td class="td-actions text-center body-text">
+                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
+=======
                       <tr class="text-center">
                         <td><?php echo thainumDigit($row["code"]); ?></td>
                         <td><?php echo thainumDigit($row["attribute"]); ?></td>
@@ -108,6 +122,7 @@ $show = 10;
                         <td><?php echo thainumDigit($row["damage_date"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
@@ -176,11 +191,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
@@ -275,20 +290,20 @@ $show = 10;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-left">
+        <div class="modal-body text-left body-text">
           คุณต้องการลบข้อมูลชำรุด(ครุภัณฑ์)ใช่หรือไม่?
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_damage.php">
             <input type="hidden" id="remove-articles" name="damage_id">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

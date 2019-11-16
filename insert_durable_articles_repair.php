@@ -49,10 +49,10 @@ $show = 10;
         </p>
       </div>
       <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-8 offset-md-2">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มข้อมูลซ่อม(ครุภัณฑ์)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-wrench"></i> เพิ่มข้อมูลซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_articles_repair.php" id="form_insert">
@@ -64,7 +64,7 @@ $show = 10;
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="repair_date">วันที่ซ่อม</label>
                       <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
                     </div>
@@ -72,7 +72,7 @@ $show = 10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <div class="row">
                         <div class="col-md-10">
@@ -99,7 +99,7 @@ $show = 10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
                       <textarea class="form-control" name="place" id="exampleFormControlTextarea1" placeholder="place" rows="3"></textarea>
                     </div>
@@ -107,7 +107,7 @@ $show = 10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="1"></textarea>
                     </div>
@@ -115,9 +115,32 @@ $show = 10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
+<<<<<<< HEAD
+                      <div class="ripple-container"></div></button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body body-text">
+                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+=======
                  
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -193,7 +216,7 @@ $show = 10;
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -204,7 +227,7 @@ $show = 10;
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
@@ -221,7 +244,7 @@ $show = 10;
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <th>วันที่ชำรุด</th>
                           <th>รหัสครุภัณฑ์</th>
                           <th>หมายเหตุ</th>
@@ -243,7 +266,7 @@ $show = 10;
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><?php echo $row["damage_date"]; ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
                             <td><?php echo $row["flag"]; ?></td>
@@ -331,7 +354,20 @@ $show = 10;
 
         var damage_date = item["damage_date"];
         var code = item["code"];
+<<<<<<< HEAD
         var flag = item["flag"]; 
+=======
+<<<<<<< HEAD
+        var flag = item["flag"];
+            $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
+            $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
+            $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          generatePagination();
+=======
+        var flag = item["flag"]; <<
+        << << < HEAD
+>>>>>>> 6f71f55e8d3fa56d1dbaf548ec5b759ffad4d32d
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
@@ -342,6 +378,7 @@ $show = 10;
         $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
       }
     }
 
@@ -399,7 +436,16 @@ $show = 10;
       };
       var str = num.toString();
       for (var val in array) {
+<<<<<<< HEAD
         str = str.split(val).join(array[val]);
+=======
+<<<<<<< HEAD
+        str = str.split(val).join(array[val]);
+=======
+        str = str.split(val).join(array[val]); >>>
+        >>> > 3248 d1df70661156939fe927059b2c42b0034dba
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+>>>>>>> 6f71f55e8d3fa56d1dbaf548ec5b759ffad4d32d
       }
       return str;
     }

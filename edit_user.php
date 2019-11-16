@@ -39,13 +39,32 @@ if (isset($_GET["id"])) {
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include "navigation/navbar.php";?>
+    <?php include "navigation/navbar.php"; ?>
 
-        </nav>
-        <!-- End of Topbar -->
+    </nav>
+    <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
+    <!-- Begin Page Content -->
 
+<<<<<<< HEAD
+    <div class="container-fluid">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card shado mb-6">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-store"></i> แก้ไขข้อมูลผู้ใช้งาน</h6>
+            </div>
+            <div class="card-body">
+              <form method="post" action="service/service_edit_user.php?id=<?php echo $id; ?>" id="form_insert">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group body-text">
+                      <label for="username">ชื่อสมาชิก</label>
+                      <input type="text" class="form-control body-text" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
+                    </div>
+                  </div>
+=======
         <div class="container-fluid">
         <!-- เริ่มเขียนโค๊ดตรงนี้ -->
         <div class="row ">
@@ -58,71 +77,62 @@ if (isset($_GET["id"])) {
               <div class="card shado mb-6">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แก้ไขข้อมูลผู้ใช้งาน</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 </div>
-                <div class="card-body">
-                    <form method="post" action="service/service_edit_user.php?id=<?php echo $id; ?>" id="form_insert">
-                      <div class="row">
-                          <div class="col-md-12 ">
-                              <div class="form-group">
-                                <label for="username">ชื่อสมาชิก</label>
-                                <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
-                              </div>
-                          </div>
-                      </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="password">รหัสผ่าน</label>
-                              <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password" value="<?php echo $item["password"]; ?>">
-                            </div>
-                        </div>
-                    </div>
-
-                  <div class="row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="surname">ชื่อ</label>
-                            <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname" value="<?php echo $item["surname"]; ?>">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="lastname">นามสกุล</label>
-                          <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname" value="<?php echo $item["lastname"]; ?>">
-                        </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group body-text">
+                      <label for="password">รหัสผ่าน</label>
+                      <input type="text" class="form-control body-text" name="password" id="inputpassword" aria-describedby="password" placeholder="password" value="<?php echo $item["password"]; ?>">
                     </div>
                   </div>
+                </div>
 
-                
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="tel">เบอร์โทร</label>
-                          <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
-                        </div>
+                  <div class="col-md-6">
+                    <div class="form-group body-text">
+                      <label for="surname">ชื่อ</label>
+                      <input type="text" class="form-control body-text" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname" value="<?php echo $item["surname"]; ?>">
                     </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
-                          <label for="position">ตำแหน่ง</label>
-                          <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position" value="<?php echo $item["position"]; ?>">
-                        </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group body-text">
+                      <label for="lastname">นามสกุล</label>
+                      <input type="text" class="form-control body-text" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname" value="<?php echo $item["lastname"]; ?>">
                     </div>
+                  </div>
                 </div>
-                
+
+
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="email">อีเมล์</label>
-                          <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email" value="<?php echo $item["email"]; ?>">
-                        </div>
+                  <div class="col-md-4">
+                    <div class="form-group body-text">
+                      <label for="tel">เบอร์โทร</label>
+                      <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
                     </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="form-group body-text">
+                      <label for="position">ตำแหน่ง</label>
+                      <input type="text" class="form-control body-text" name="position" id="inputposition" aria-describedby="position" placeholder="position" value="<?php echo $item["position"]; ?>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group body-text">
+                      <label for="email">อีเมล์</label>
+                      <input type="text" class="form-control body-text" name="email" id="inputemail" aria-describedby="email" placeholder="email" value="<?php echo $item["email"]; ?>">
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="u_type" class="bmd-label-floating">ประเภท</label>
-                          <select class="form-control" id="u_type" name="u_type">
+                  <div class="col-md-12">
+                    <div class="form-group body-text">
+                      <label for="u_type" class="bmd-label-floating">ประเภท</label>
+                      <select class="form-control body-text" id="u_type" name="u_type">
                         <?php
                         $sqlSelectType = "SELECT * FROM u_type";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -135,64 +145,62 @@ if (isset($_GET["id"])) {
                         }
                         ?>
                       </select>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
                 </div>
-                
+
                 <div class="row">
-                    <div class="col-md-12">
-                      <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                        บันทึก
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
                       <div class="ripple-container"></div></button>
 
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger"onclick="$('#form_insert').submit();">บันทึก</button>
-                              </div>
-                            </div>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body body-text">
+                            คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
-                    </div>
-                      
-                    
                       </div>
-                    </form>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
-        <!-- /.container-fluid -->
-
-
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -238,8 +246,6 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
-
 </body>
 
 </html>

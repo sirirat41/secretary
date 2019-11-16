@@ -5,11 +5,11 @@ if (isset($_POST["body"])) {
     $body = $_POST["body"];
     //supplies_diatribute data
     $id = $_GET["id"];
-    $product_id = $_POST["product_id"];
-    $supplies_id = $_POST["supplies_id"];
-    $unit_id = $_POST["unit_id"];
-    $department = $_POST["department"];
-    $year = $_POST["year"];
+    $product_id = $body["product_id"];
+    $supplies_id = $body["supplies_id"];
+    $unit_id = $body["unit_id"];
+    $department = $body["department"];
+    $year = $body["year"];
     // $distribute_date = $_POST["distribute_date"];
     // $receive_from = $_POST["receive_from"];
     // $distribute_to = $_POST["distribute_to"];
@@ -32,12 +32,14 @@ if (isset($_POST["body"])) {
 
 
 
-    // $updatesupplies = "UPDATE supplies_account SET year = $year,";
-    // $updatesupplies .= " product_id = '$product_id',supplies_id = '$supplies_id',unit_id = '$unit_id',department = '$department',distribute_date = '$distribute_date', receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = '$stock', flag = '$flag'";
-    // $updatesupplies .= " WHERE id = $id";
+    $updatesupplies = "UPDATE supplies_account SET year = $year,";
+    $updatesupplies .= " product_id = '$product_id',supplies_id = '$supplies_id',unit_id = '$unit_id',department = '$department'";
+    $updatesupplies .= " WHERE id = $id";
+    mysqli_query($conn, $updatesupplies) or die(mysqli_error($conn));
 
-    for ($i = 0; $i < sizeof($body); $i++) {
-        $item = $body[$i];
+     $data = $body["data"];
+    for ($i = 0; $i < sizeof($data); $i++) {
+        $item = $data[$i];
         $account_id = isset($item["id"]) ? $item["id"] : null;
         $distribute_date = $item["distribute_date"];
         $receive_from = $item["receive_from"];
@@ -52,18 +54,25 @@ if (isset($_POST["body"])) {
         $flag = $item["flag"];
 
         if ($account_id == null) {
-            $updatesupplies = "INSERT INTO supplies_account(year ,supplies_id , product_id, unit_id,department ,distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit,receive , distribute,stock ,flag) VALUES($year , $supplies_id, $productId, $unit_id,$department ,'$disdate' ,'$receive_from1' ,'$distribute_to1',' $document_no1','$baht1' ,'$satang1 ', '$unit1',$receive1 ,$distribute1 , $stock1 ,'$flag1')";
+            if ($distribute_date == "" && $receive_from == "" && $distribute_to == "" && $document_no == "" && $baht == "" && $satang == "" && $unit == "" && $receive == "" && $distribute == "" && $stock == "" && $flag == "") {
+                continue;
+            }
+            $stock = $stock == "" ? 0 : $stock;
+            $distribute = $distribute == "" ? 0 : $distribute;
+            $receive = $receive == "" ? 0 : $receive;
+            $updatesupplies = "INSERT INTO supplies_account_detail(account_id ,distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit,receive , distribute,stock ,flag) VALUES($id ,'$distribute_date' ,'$receive_from' ,'$distribute_to',' $document_no','$baht' ,'$satang', '$unit',$receive ,$distribute , $stock ,'$flag')";
         } else {
-            $updatesupplies = "UPDATE supplies_account SET year = $year,";
-            $updatesupplies .= " product_id = '$product_id',supplies_id = '$supplies_id',unit_id = '$unit_id',department = '$department',distribute_date = '$distribute_date', receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = '$stock', flag = '$flag'";
+            $updatesupplies = "UPDATE supplies_account_detail SET distribute_date = '$distribute_date',";
+            $updatesupplies .= " receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = '$stock', flag = '$flag'";
             $updatesupplies .= " WHERE id = $account_id";
         }
 
-        $log = "แก้ไขข้อมูลmtทะเบียนคุมวัสดุสิ้นเปลือง รหัส " . $id;
-        logServer($conn, $log);
+ 
 
         mysqli_query($conn, $updatesupplies) or die(mysqli_error($conn));
-    }
+    }  
+         $log = "แก้ไขข้อมูลทะเบียนคุมวัสดุสิ้นเปลือง รหัส " . $id;
+        logServer($conn, $log);
     //header('Location: ../display_durable_articles_repair.php?message=เพิ่มข้อมูลสำเร็จ');
     $resp["result"] = true;
     echo json_encode($resp);

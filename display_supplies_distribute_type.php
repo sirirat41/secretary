@@ -48,8 +48,13 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
+<<<<<<< HEAD
+                <h6 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+=======
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-city"></i> แสดงข้อมูลประเภทวัสดุสิ้นเปลือง (แจกจ่าย)</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -66,9 +71,21 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
+<<<<<<< HEAD
+                      <tr class="text-center body-text">
+                        <th>ชื่อหน่วยงาน</th>
+                        <th>ตำแหน่ง</th>
+                        <th>อาคาร</th>
+                        <th>ชั้น</th>
+                        <th>เบอร์โทร</th>
+                        <th>โทรสาร</th>
+
+                        <th class="text-center">การทำงาน</th>
+=======
                       <tr class="text-center">
                         <th>ชื่อประเภท</th>
     
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                       </tr>
                     </thead>
                     <tbody>
@@ -94,10 +111,36 @@ $show = 10;
                         
                       
                         ?>
+<<<<<<< HEAD
+                        <tr class="text-center body-text">
+                          <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
+                              <?php echo $row["fullname"]; ?></a></td>
+                          <td><?php echo ($row["shortname"]); ?></td>
+                          <td><?php echo ($row["bulding"]); ?></td>
+                          <td><?php echo ($row["floor"]); ?></td>
+                          <td><?php echo ($row["tel"]); ?></td>
+                          <td><?php echo ($row["fax"]); ?></td>
+
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_department.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_department.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+=======
                         <tr class="text-center">
                           <td><a class="nav-link active" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" href='display_supplies_distribute.php?type=<?php echo $row['id']; ?>'>
                               <?php echo $row["name"]; ?></a></td>
                   
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         </tr>
                       <?php
                       }
@@ -155,11 +198,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
@@ -256,20 +299,20 @@ $show = 10;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-left">
+        <div class="modal-body text-left body-text">
           คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_department.php">
             <input type="hidden" id="remove-department" name="department_id">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>
