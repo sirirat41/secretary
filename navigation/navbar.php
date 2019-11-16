@@ -235,10 +235,10 @@ if (isset($_SESSION['user_id'])) {
                 </h6>
                 <?php
                     $count = 1;
-                    while ($row = mysqli_fetch_assoc($resultApprove)) {
+                    while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
                       $colorRequest = "bg-primary";
                       $iconRequest = "fa-file-alt";
-                      if ($row["action_request"] == "request_update") {
+                      if ($rowApproveNavbar["action_request"] == "request_update") {
                         $iconRequest = "fa-file-alt";
                         $colorRequest = "bg-primary";
                       } else {
@@ -249,15 +249,15 @@ if (isset($_SESSION['user_id'])) {
                         break;
                       }
                       ?>
-                  <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $row["id"]; ?>">
+                  <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApproveNavbar["id"]; ?>">
                     <div class="mr-3">
                       <div class="icon-circle <?php echo $colorRequest; ?>">
                         <i class="fas <?php echo $iconRequest; ?> text-white"></i>
                       </div>
                     </div>
                     <div>
-                      <div class="small text-gray-500"><?php echo $row["surname"] . " " . $row["lastname"]; ?></div>
-                      <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+                      <div class="small text-gray-500"><?php echo $rowApproveNavbar["surname"] . " " . $rowApproveNavbar["lastname"]; ?></div>
+                      <span class="font-weight-bold"><?php echo $rowApproveNavbar["reason"]; ?></span>
                     </div>
                   </a>
                 <?php $count++;
@@ -469,10 +469,10 @@ if (isset($_SESSION['user_id'])) {
                     </h6>
                     <?php
                       $count = 1;
-                      while ($row = mysqli_fetch_assoc($resultApprove)) {
+                      while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
                         $colorRequest = "bg-primary";
                         $iconRequest = "fa-file-alt";
-                        if ($row["action_request"] == "request_update") {
+                        if ($rowApproveNavbar["action_request"] == "request_update") {
                           $iconRequest = "fa-file-alt";
                           $colorRequest = "bg-primary";
                         } else {
@@ -483,15 +483,15 @@ if (isset($_SESSION['user_id'])) {
                           break;
                         }
                         ?>
-                      <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $row["id"]; ?>">
+                      <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApproveNavbar["id"]; ?>">
                         <div class="mr-3">
                           <div class="icon-circle <?php echo $colorRequest; ?>">
                             <i class="fas <?php echo $iconRequest; ?> text-white"></i>
                           </div>
                         </div>
                         <div>
-                          <div class="small text-gray-500"><?php echo $row["surname"] . " " . $row["lastname"]; ?></div>
-                          <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+                          <div class="small text-gray-500"><?php echo $rowApproveNavbar["surname"] . " " . $rowApproveNavbar["lastname"]; ?></div>
+                          <span class="font-weight-bold"><?php echo $rowApproveNavbar["reason"]; ?></span>
                         </div>
                       </a>
                     <?php $count++;

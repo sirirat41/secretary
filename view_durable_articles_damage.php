@@ -37,7 +37,6 @@ if (isset($_GET["id"])) {
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -76,7 +75,7 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-md-12">
                       <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                      <?php echo thainumDigit ($row["code"]); ?>
+                      <?php echo $row["code"]; ?>
                     </div>
                   </div>
                   <div class="row">
