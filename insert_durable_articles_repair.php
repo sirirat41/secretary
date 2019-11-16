@@ -331,13 +331,12 @@ $show = 10;
 
         var damage_date = item["damage_date"];
         var code = item["code"];
-        var flag = item["flag"]; <<
-        << << < HEAD
+        var flag = item["flag"]; 
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr); ===
-        === =
+ 
         $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
@@ -400,8 +399,7 @@ $show = 10;
       };
       var str = num.toString();
       for (var val in array) {
-        str = str.split(val).join(array[val]); >>>
-        >>> > 3248 d1df70661156939fe927059b2c42b0034dba
+        str = str.split(val).join(array[val]);
       }
       return str;
     }

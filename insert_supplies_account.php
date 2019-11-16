@@ -170,7 +170,7 @@ require "service/connection.php";
                       <td rowspan="2">หน่วยนับ</td>
                       <td colspan="3">จำนวน</td>
                       <td rowspan="2">หมายเหตุ</td>
-                    </tr class="text-center">
+                    </tr>
                     <tr class="text-center">
                       <td width="8%">บาท </td>
                       <td width="6%">สตางค์</td>
@@ -533,12 +533,17 @@ require "service/connection.php";
     $(function() {
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
-        var tr = $('#firstTr').clone();
+        var tr = $('#myTbl tr:last').clone();
+        $.each(tr.find("input"), function(i,e) {
+          $(e).val("");
+        });
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
+          if ($("#myTbl tr").length > 3) {
         $("#myTbl tr:last").remove();
+          }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }
