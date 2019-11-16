@@ -81,14 +81,6 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-md-12">
-                    <div class="form-group body-text">
-                      <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
-                      <input class="form-control body-text" name="damage_id" type="text" placeholder="damage_id" id="damage_id" value="<?php echo $item["code"]; ?>" readonly>
-                      </div>
-                      </div>
-=======
                   <div class="col-12 ">
                     <div class="form-group">
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
@@ -111,7 +103,6 @@ if (isset($_GET["id"])) {
                         <div class="col-md-2">
                           <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                             <i class="fas fa-search"></i>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         </div>
                       </div>
                     </div>
@@ -124,38 +115,11 @@ if (isset($_GET["id"])) {
                       <textarea class="form-control body-text" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
-<<<<<<< HEAD
-                  <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
-                      บันทึก
-                      <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-=======
                 </div>
                 <div class="col-md-12">
                   <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                     บันทึก
                     <div class="ripple-container"></div></button>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 </div>
               </form>
             </div>
@@ -181,6 +145,7 @@ if (isset($_GET["id"])) {
                       <tr class="text-center">
                         <td width="8%">บาท </td>
                         <td width="6%">สตางค์</td>
+                      </tr>
                     </thead>
                     <tbody id="tbody">
                       <?php
@@ -339,7 +304,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="table-responsive">
                       <table class="table table-hover ">
-                        <thead> 
+                        <thead>
                           <tr class="text-center body-text">
                             <th>วันที่ชำรุด</th>
                             <th>รหัสครุภัณฑ์</th>
@@ -360,13 +325,8 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
-<<<<<<< HEAD
-                            <tr class="text-center body-text">
-                            <td><?php echo ($row["code"]); ?></td>
-=======
                             <tr class="text-center">
                               <td><?php echo thainumDigit($row["code"]); ?></td>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
@@ -528,12 +488,17 @@ if (isset($_GET["id"])) {
     $(function() {
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
-        var tr = $('#firstTr').clone();
+        var tr = $('#myTbl tr:last').clone();
+        $.each(tr.find("input"), function(i, e) {
+          $(e).val("");
+        });
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
-        $("#myTbl tr:last").remove();
+        if ($("#myTbl tr").length > 3) {
+          $("#myTbl tr:last").remove();
+        }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }

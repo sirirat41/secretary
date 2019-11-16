@@ -79,9 +79,6 @@ if (isset($_GET["id"])) {
                   <div class="col-8">
                     <div class="form-group bmd-form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
-<<<<<<< HEAD
-                      <input type="text" class="form-control body-text" name="supplies_name" id="supplies_name" placeholder="supplies_name" name="supplies_name" value="<?php echo $item["supplies_name"]; ?>" readonly>
-=======
                       <select class="form-control" name="supplies_id" id="supplies_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM supplies_stock";
@@ -95,17 +92,10 @@ if (isset($_GET["id"])) {
                           }
                         ?>
                       </select>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     </div>
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-md-12">
-                    <div class="form-group bmd-form-group body-text">
-                      <label for="product_id">รหัสวัสดุ</label>
-                      <input type="text" class="form-control body-text" name="code" id="code" placeholder="code" name="code" value="<?php echo $item["code"]; ?>" readonly> 
-=======
                   <div class="col-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสวัสดุ</label>
@@ -124,7 +114,6 @@ if (isset($_GET["id"])) {
                             }
                             ?>
                           </select>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         </div>
                         <div class="col-md-2">
                           <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
@@ -135,13 +124,6 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-4">
-                    <div class="form-group bmd-form-group body-text">
-                      <label for="unit_id">หน่วยนับ</label>
-                      <input type="text" class="form-control body-text" name="name" id="name" placeholder="name" name="name" value="<?php echo $item["name"]; ?>" readonly> 
-                        </div>
-=======
                 <div class="col-4">
                     <div class="form-group bmd-form-group">
                       <label for="unit_id">หน่วยนับ</label>
@@ -158,18 +140,11 @@ if (isset($_GET["id"])) {
                           }
                         ?>
                       </select>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     </div>
                   </div>
                   <div class="col-8">
                     <div class="form-group bmd-form-group body-text">
                       <label for="department">หน่วยงานที่เก็บ</label>
-<<<<<<< HEAD
-                      <input type="text" class="form-control body-text" name="department" id="department" placeholder="department" name="department" value="<?php echo $item["fullname"]. " ".$item["bulding"]. " ".$item["floor"]; ?>" readonly> 
-                        </div>
-                    </div>
-                  </div>
-=======
                       <select class="form-control" name="department" id="department">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
@@ -189,7 +164,6 @@ if (isset($_GET["id"])) {
                 </div>
 
            
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <br>
             </div>
           </div>
@@ -253,19 +227,11 @@ if (isset($_GET["id"])) {
 
                 <br>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
-                      ตกลง
-                    </button>
-                    <!-- Modal -->
-=======
                 <div class="col-12">
                   <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
                     ตกลง
                   </button>
                   <!-- Modal -->
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
 
                 </div>
               </div>
@@ -351,14 +317,6 @@ if (isset($_GET["id"])) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-<<<<<<< HEAD
-        <div class="modal-body body-text">
-          คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-=======
         <div class="modal-body ">
           คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
         </div>
@@ -377,7 +335,6 @@ if (isset($_GET["id"])) {
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
         </div>
         <div class="modal-body text-left">
           <div class="row">
@@ -471,9 +428,6 @@ if (isset($_GET["id"])) {
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-</body>
-=======
   </div>
   <script>
     var itemPerPage = 10; //จำนวนข้อมูล
@@ -651,5 +605,4 @@ if (isset($_GET["id"])) {
 
 </body>
  
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
 </html>

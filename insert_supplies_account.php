@@ -520,12 +520,17 @@ require "service/connection.php";
     $(function() {
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
-        var tr = $('#firstTr').clone();
+        var tr = $('#myTbl tr:last').clone();
+        $.each(tr.find("input"), function(i, e) {
+          $(e).val("");
+        })
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
-        $("#myTbl tr:last").remove();
+        if ($("#myTbl tr").length > 3) {
+          $("#myTbl tr:last").remove();
+        }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }

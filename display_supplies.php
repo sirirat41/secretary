@@ -73,12 +73,7 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-<<<<<<< HEAD
-                      <tr class="text-center body-text">
-                        <th>ลำดับ</th>
-=======
                       <tr class="text-center">
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
@@ -115,12 +110,7 @@ $show = 10;
                           $editPath = "edit_supplies_purchase_request.php?id=" . $id;
                         }
                         ?>
-<<<<<<< HEAD
-                        <tr class="text-center body-text">
-                          <td><?php echo ($row["seq"]); ?></td>
-=======
                         <tr class="text-center">
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo ($row["bill_no"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
@@ -299,10 +289,6 @@ $show = 10;
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-<<<<<<< HEAD
-        <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
-=======
         <div class="modal-body text-left">
           <?php if ($_SESSION["user_type"] == 1) { ?>
             คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
@@ -310,7 +296,6 @@ $show = 10;
             กรุณาใส่เหตุการลบข้อมูล
           <?php } ?>
           <input type="hidden" id="temp-id">
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
           <form id="form-drop" method="post" action="service/service_drop_supplies.php">
             <input type="hidden" id="remove-supplies" name="supplies_id">
           </form>
@@ -320,17 +305,12 @@ $show = 10;
           <?php } ?>
         </div>
         <div class="modal-footer">
-<<<<<<< HEAD
-          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
-=======
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           <?php if ($_SESSION["user_type"] == 1) { ?>
             <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit();">ยืนยันการลบข้อมูล</button>
           <?php } else { ?>
             <button type="button" class="btn btn-danger" onclick="rejectRequest();">ยืนยันการร้องขอลบข้อมูล</button>
           <?php } ?>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
         </div>
       </div>
     </div>
