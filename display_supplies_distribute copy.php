@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ (ประเภท<?php echo $row['name']; ?>)</h6>
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -81,7 +81,7 @@ if (isset($_GET["id"])) {
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                      <tr class="text-center">
+                      <tr class="text-center body-text">
                         <th>รหัสวัสดุ</th>
                         <th>หน่วยงาน</th>
                         <th>วันที่แจกจ่าย</th>
@@ -109,11 +109,11 @@ if (isset($_GET["id"])) {
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["fullname"]); ?></td>
-                          <td><?php echo thainumDigit($row["distribute_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["number"]); ?></td>
+                        <tr class="text-center body-text">
+                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo ($row["fullname"]); ?></td>
+                          <td><?php echo ($row["distribute_date"]); ?></td>
+                          <td><?php echo ($row["number"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -185,11 +185,11 @@ if (isset($_GET["id"])) {
                 }
                 if (isset($_GET["keyword"]) && isset($_GET["id"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?id=<?php echo $_GET["id"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
@@ -284,12 +284,12 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-left">
+        <div class="modal-body text-left body-text">
 
           คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
 
@@ -298,8 +298,8 @@ if (isset($_GET["id"])) {
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>
@@ -308,7 +308,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -320,7 +320,7 @@ if (isset($_GET["id"])) {
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+          <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
         </div>
       </div>
     </div>

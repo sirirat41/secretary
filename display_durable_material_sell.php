@@ -44,7 +44,7 @@ $show = 10;
         <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light justify-content-between">
+              <nav class="navbar navbar-light bg-light justify-content-between body-text">
                 <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> แสดงข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
 
                 <form class="form-inline">
@@ -71,9 +71,15 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
+<<<<<<< HEAD
+                      <tr class="text-center body-text">
+                      <th>วันที่ขาย</th>
+                        <th>รหัสครุภัณฑ์</th>
+=======
                       <tr class="text-center">
                         <th>วันที่ขาย</th>
                         <th>รหัสวัสดุ</th>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>รุ่นแบบ</th>
                         <th>การทำงาน</th>
@@ -100,11 +106,19 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
+<<<<<<< HEAD
+                        <tr class="text-center body-text">
+                        <td><?php echo thainumDigit($row["sell_date"]); ?></td>
+                        <td><?php echo thainumDigit($row["code"]); ?></td>
+                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
+                        <td><?php echo thainumDigit($row["name"]); ?></td>
+=======
                         <tr class="text-center">
                           <td><?php echo thainumDigit($row["sell_date"]); ?></td>
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo thainumDigit($row["attribute"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -275,19 +289,19 @@ $show = 10;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-left">
+        <div class="modal-body text-left body-text">
           คุณต้องการลบข้อมูลการขายทอดตลาดวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_sell.php">
             <input type="hidden" id="remove-sell" name="product_id">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

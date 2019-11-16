@@ -60,7 +60,7 @@ if (isset($_GET["id"])) {
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-file-invoice-dollar"></i>
                   เพิ่มข้อมูลบัญชีคุมวัสดุ
                 </h6>
@@ -71,13 +71,13 @@ if (isset($_GET["id"])) {
               <form method="post" action="service/service_edit_supplies_account.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
-                      <input type="text" class="form-control" name="year" id="year" placeholder="year" name="year" value="<?php echo $item["year"]; ?>">
+                      <input type="text" class="form-control body-text" name="year" id="year" placeholder="year" name="year" value="<?php echo $item["year"]; ?>">
                     </div>
                   </div>
                   <div class="col-8">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
                       <select class="form-control" name="supplies_id" id="supplies_id">
                         <?php
@@ -143,7 +143,7 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                   <div class="col-8">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="department">หน่วยงานที่เก็บ</label>
                       <select class="form-control" name="department" id="department">
                         <?php
@@ -165,25 +165,19 @@ if (isset($_GET["id"])) {
 
            
                 <br>
-
-
-
             </div>
           </div>
         </div>
       </div>
-   
       <br>
       <div class="row ">
         <div class="col-12">
           <div class="card">
-
-
               <div class="card-body">
                 <div class="table-responsive">
                   <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
                     <thead>
-                      <tr class="text-center">
+                      <tr class="text-center body-text">
                         <td rowspan="2">วัน/เดือน/ปี</td>
                         <td rowspan="2">รับจาก</td>
                         <td rowspan="2">จ่ายให้</td>
@@ -202,7 +196,7 @@ if (isset($_GET["id"])) {
                       </tr>
                     </thead>
                     <thead>
-                      <tr class="text-center" height="30" id="firstTr">
+                      <tr class="text-center body-text" height="30" id="firstTr">
 
                         <td> <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
                         <td> <input type="text" class="form-control" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $item["receive_from"]; ?>"></td>
@@ -318,7 +312,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

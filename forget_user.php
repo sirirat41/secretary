@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +22,6 @@
     body {
       background-color: #880000;
     }
-
   </style>
 </head>
 
@@ -44,7 +42,7 @@
         <div class="col-md-4 offset-4">
           <div class="card border-warning shadow mb-6 ">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger text-center">
+              <h6 class="m-0 font-weight-bold text-danger text-center body-text">
                 <i class="fas fa-user-lock"></i> ลืมรหัสผ่าน</h6>
             </div>
 
@@ -54,28 +52,23 @@
                   <div class="col-md-10 offset-1">
                     <div class="form-group">
                       <input type="text" class="form-control" name="email" id="email" placeholder="email" autofocus>
-
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-10 offset-1">
-                    <button type="submit" href="#"  class="btn btn-danger btn-md btn-block">
+                    <button type="submit" href="#" class="btn btn-danger btn-md btn-block body-text">
                       ยืนยัน
                     </button>
                     <hr color="red">
                     <br>
                   </div>
                 </div>
-               
+              </form>
             </div>
           </div>
         </div>
       </div>
-
-
-      </form>
-
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
@@ -141,7 +134,6 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
 </body>
 
 </html>

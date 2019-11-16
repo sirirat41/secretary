@@ -55,11 +55,11 @@ if (isset($_GET["id"])) {
         </p>
       </div>
       <div class="row ">
-        <div class="col-6 offset-3">
+        <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-city"></i>
                   แก้ไขข้อมูลหน่วยงาน
                 </h6>
@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
               <form method="post" action="service/service_edit_department.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class=" col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
                       <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department" value="<?php echo $item["fullname"]; ?>">
                     </div>
@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortdepartment" value="<?php echo $item["shortname"]; ?>">
                     </div>
@@ -86,13 +86,13 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class=" col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
                       <input class="form-control" name="bulding" type="text" placeholder="bulding" id="bulding" value="<?php echo $item["bulding"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชั้น</label>
                       <input class="form-control" name="floor" type="text" placeholder="floor" id="floor" value="<?php echo $item["floor"]; ?>">
                     </div>
@@ -100,7 +100,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class=" col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรศัพท์</label>
                       <input class="form-control" name="tel" type="text" placeholder="tel" id="tel" value="<?php echo $item["tel"]; ?>">
                     </div>
@@ -108,7 +108,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class=" col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรสาร</label>
                       <input class="form-control" name="fax" type="text" placeholder="fax" id="fax" value="<?php echo $item["fax"]; ?>">
                     </div>
@@ -135,7 +135,7 @@ if (isset($_GET["id"])) {
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
@@ -217,17 +217,17 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body body-text">
           คุณต้องการบันทึกข้อมูลหน่วยงานหรือไม่ ?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
         </div>
       </div>
     </div>

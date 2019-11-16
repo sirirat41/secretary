@@ -59,24 +59,24 @@ if (isset($_GET["id"])) {
         </p>
       </div>
       <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-8 offset-md-2">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แก้ไขข้อมูลการซ่อม(ครุภัณฑ์)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-wrench"></i> แก้ไขข้อมูลการซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_articles_repair.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control body-text" name="seq" id="seq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
+                      <input type="date" class="form-control body-text" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
                     </div>
                   </div>
                 </div>
@@ -110,9 +110,9 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea class="form-control" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
+                      <textarea class="form-control body-text" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ if (isset($_GET["id"])) {
                       <tr class="text-center">
                         <td width="8%">บาท </td>
                         <td width="6%">สตางค์</td>
-                          </tr>
+                      </tr>
                     </thead>
                     <tbody id="tbody">
                       <?php
@@ -276,7 +276,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -287,8 +287,8 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h6>
+                    <h5 class="m-0 font-weight-bold text-danger">
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(ครุภัณฑ์)</h5>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
@@ -305,7 +305,7 @@ if (isset($_GET["id"])) {
                     <div class="table-responsive">
                       <table class="table table-hover ">
                         <thead>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <th>วันที่ชำรุด</th>
                             <th>รหัสครุภัณฑ์</th>
                             <th>หมายเหตุ</th>
@@ -488,12 +488,17 @@ if (isset($_GET["id"])) {
     $(function() {
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
-        var tr = $('#firstTr').clone();
+        var tr = $('#myTbl tr:last').clone();
+        $.each(tr.find("input"), function(i, e) {
+          $(e).val("");
+        });
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
-        $("#myTbl tr:last").remove();
+        if ($("#myTbl tr").length > 3) {
+          $("#myTbl tr:last").remove();
+        }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }
