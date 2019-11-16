@@ -36,16 +36,30 @@ if (isset($_GET["id"])) {
   @page {
     size: landscape;
   }
-  @media all
-{
-    .page-break { display:none; }
-    .page-break-no{ display:none; }
-}
-@media print
-{
-    .page-break { display:block;height:1px; page-break-before:always; }
-    .page-break-no{ display:block;height:1px; page-break-after:avoid; } 
-}
+
+  @media all {
+    .page-break {
+      display: none;
+    }
+
+    .page-break-no {
+      display: none;
+    }
+  }
+
+  @media print {
+    .page-break {
+      display: block;
+      height: 1px;
+      page-break-before: always;
+    }
+
+    .page-break-no {
+      display: block;
+      height: 1px;
+      page-break-after: avoid;
+    }
+  }
 </style>
 
 <body id="page-top">
@@ -61,155 +75,148 @@ if (isset($_GET["id"])) {
 
     <body onLoad="window.print()">
       <div class="container-fluid">
-
       </div>
   </div>
-
-
-
   <br>
   <form>
- 
     <div class="row">
       <div class="col-12">
-        
-  <?php for($a=1;$a<=2;$a++){ ?>
-<div class="page-break<?=($a==1)?"-no":""?>"></div>
-        <div class="table-responsive">
-          <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
-            <thead>
-              
-              <body style="padding: 16px">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-sm-12" align="center">
-                      <h7>บัญชีคุม ประจำปี งบประมาณ .....</h7>
+        <?php for ($a = 1; $a <= 2; $a++) { ?>
+          <div class="page-break<?= ($a == 1) ? "-no" : "" ?>"></div>
+          <div class="table-responsive">
+            <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
+              <thead>
+                <body style="padding: 16px">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-sm-12" align="center">
+                        <h5>บัญชีคุม ประจำปี งบประมาณ .....</h5>
+                      </div>
                     </div>
-                  </div>
-                  <br>
-                  <div class="row">
-                    <div class="col-sm-7">
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-7">
+                      </div>
+                      <div class="text " class="col-sm-">
+                        <h5>ส่วนราชการ: </h5>
+                      </div>
+                      <div class="col-sm-3">
+                        <h5>สำนักงานตำรวจแห่งชาติ</h5>
+                      </div>
                     </div>
-                    <div class="text" class="col-sm-">
-                      <h7>ส่วนราชการ: </h7>
+                    <div class="row">
+                      <div class="col-sm-7">
+                      </div>
+                      <div class="col-sm-">
+                        <label class="text " for="short_goverment">
+                          <div style="width:80px">
+                            <h5>หน่วยงาน: </h5>
+                        </label>
+                      </div>
                     </div>
                     <div class="col-sm-3">
-                      <h7>สำนักงานตำรวจแห่งชาติ</h7>
+                      <h5>สลก.ตร.</h5>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-7">
-                    </div>
-                    <div class="col-sm-">
-                      <label class="text" for="short_goverment">
-                        <div style="width:80px">
-                          <h7>หน่วยงาน: </h7>
+                    <div class="col-sm-6">
+                      <label class="text ">
+                        <h5>แผ่นที่</h5>
                       </label>
+                      <?php echo $a++; ?>
                     </div>
                   </div>
-                  <div class="col-sm-3">
-                    <h7>สลก.ตร.</h7>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label class="text " for="type">
+                        <h5>ประเภท :</h5>
+                      </label>
+                      <?php echo $row["name"]; ?>
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="text " for="supplies_name">
+                        <h5>ชื่อหรือชนิดวัสดุ :</h5>
+                      </label>
+                      <?php echo ($row["supplies_name"]); ?>
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="text " for="code">
+                        <h5>รหัส :</h5>
+                      </label>
+                      <?php echo ($row["code"]); ?>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label class="text">
-                      <h7>แผ่นที่</h7>
-                    </label>
-                    <?php echo $a++; ?>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="text " for="attribute">
+                        <h5>ขนาดหรือลักษณะ :</h5>
+                      </label>
+                      <?php echo ($row["attribute"]); ?>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <label class="text" for="type">
-                      <h7>ประเภท :</h7>
-                    </label>
-                    <?php echo $row["name"]; ?>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label class="text " for="unit">
+                        <h5>หน่วยที่นับ : </h5>
+                      </label>
+                      <?php echo ($row["unit_name"]); ?>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="text " for="fullname">
+                        <h5>ที่เก็บ :</h5>
+                      </label>
+                      <?php echo ($row["fullname"]); ?>
+                      <label class="text " for="bulding">
+                      </label>
+                      <?php echo ($row["bulding"]); ?>
+                      <label class="text " for="floor">
+                      </label>
+                      <?php echo ($row["floor"]); ?>
+                    </div>
                   </div>
-                  <div class="col-sm-4">
-                    <label class="text" for="supplies_name">
-                      <h7>ชื่อหรือชนิดวัสดุ :</h7>
-                    </label>
-                    <?php echo thainumDigit($row["supplies_name"]); ?>
-                  </div>
-                  <div class="col-sm-4">
-                    <label class="text" for="code">
-                      <h7>รหัส :</h7>
-                    </label>
-                    <?php echo thainumDigit($row["code"]); ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label class="text" for="attribute">
-                      <h7>ขนาดหรือลักษณะ :</h7>
-                    </label>
-                    <?php echo thainumDigit($row["attribute"]); ?>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <label class="text" for="unit">
-                      <h7>หน่วยที่นับ : </h7>
-                    </label>
-                    <?php echo thainumDigit($row["unit_name"]); ?>
-                  </div>
-                  <div class="col-sm-6">
-                    <label class="text" for="fullname">
-                      <h7>ที่เก็บ :</h7>
-                    </label>
-                    <?php echo thainumDigit($row["fullname"]); ?>
-                    <label class="text" for="bulding">
-                    </label>
-                    <?php echo thainumDigit($row["bulding"]); ?>
-                    <label class="text" for="floor">
-                    </label>
-                    <?php echo thainumDigit($row["floor"]); ?>
-                  </div>
-                </div>
-                
-            <tr class="text-center">
 
-                  <td rowspan="2">วัน/เดือน/ปี</td>
-                  <td rowspan="2">รับจาก</td>
-                  <td rowspan="2">จ่ายให้</td>
-                  <td rowspan="2">เลขที่เอกสาร</td>
-                  <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
-                  <td rowspan="2">หน่วยนับ</td>
-                  <td colspan="3">จำนวน</td>
-                  <td rowspan="2">หมายเหตุ</td>
+                  <tr class="text-center ">
+
+                    <td rowspan="2">วัน/เดือน/ปี</td>
+                    <td rowspan="2">รับจาก</td>
+                    <td rowspan="2">จ่ายให้</td>
+                    <td rowspan="2">เลขที่เอกสาร</td>
+                    <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
+                    <td rowspan="2">หน่วยนับ</td>
+                    <td colspan="3">จำนวน</td>
+                    <td rowspan="2">หมายเหตุ</td>
+                  </tr class="text-center">
+                  <tr class="text-center">
+                    <td width="10%">บาท </td>
+                    <td>สต.</td>
+                    <td width="7%">รับ</td>
+                    <td width="7%">จ่าย</td>
+                    <td width="7%">คงเหลือ</td>
+                  </tr class="text-center">
+              </thead>
+
+              <tbody>
+
+                <tr class="text-center " height="30">
+                  <td rowspan="2"> <?php echo ($row["distribute_date"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["receive_from"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["distribute_to"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["document_no"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["baht"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["satang"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["unit"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["receive"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["distribute"]); ?></td>
+                  <td rowspan="2"> <?php echo ($row["stock"]); ?></td>
+                  <td rowspan="2"><?php echo ($row["flag"]); ?></td>
                 </tr class="text-center">
-                <tr class="text-center">
-                  <td width="10%">บาท </td>
-                  <td>สต.</td>
-                  <td width="7%">รับ</td>
-                  <td width="7%">จ่าย</td>
-                  <td width="7%">คงเหลือ</td>
-</tr class="text-center">
-            </thead>
-         
-            <tbody>
 
-              <tr class="text-center" height="30">
-                <td rowspan="2"> <?php echo thainumDigit($row["distribute_date"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["receive_from"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["distribute_to"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["document_no"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["baht"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["satang"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["unit"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["receive"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["distribute"]); ?></td>
-                <td rowspan="2"> <?php echo thainumDigit($row["stock"]); ?></td>
-                <td rowspan="2"><?php echo thainumDigit($row["flag"]); ?></td>
-              </tr class="text-center">
-
-            </tbody>
+              </tbody>
             <?php } ?>
-          </table>
-     
-       
-          <!-- <tr class="text-center">
+            </table>
+
+
+            <!-- <tr class="text-center">
                 <td>วัน/เดือน/ปี</td>
                 <td>รับจาก</td>
                 <td>จ่ายให้</td>
@@ -229,7 +236,7 @@ if (isset($_GET["id"])) {
                 <td colspan="8">จ่าย</td>
                 <td colspan="8">เหลือ</td>
               </tr> -->
-        </div>
+          </div>
       </div>
     </div>
   </form>

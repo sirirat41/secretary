@@ -56,8 +56,8 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h6>
+                <h5 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h5>
                 <form class="form-inline">
             </div>
             </nav>
@@ -73,32 +73,32 @@ if (isset($_GET["id"])) {
                     <div class="col-md-8">
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
-                          <?php echo thainumDigit($row["code"]); ?>
+                          <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
+                          <?php echo ($row["code"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark" for="number">จำนวน : </label>
-                          <?php echo thainumDigit($row["number"]); ?>
+                          <label class="text-dark body-text" for="number">จำนวน : </label>
+                          <?php echo ($row["number"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
-                          <label class="text-dark" for="distribute_date">วันที่แจกจ่าย : </label>
-                          <?php echo thainumDigit($row["distribute_date"]); ?>
+                          <label class="text-dark body-text" for="distribute_date">วันที่แจกจ่าย : </label>
+                          <?php echo ($row["distribute_date"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
-                          <label class="text-dark" for="department_id">หน่วยงาน : </label>
-                          <?php echo thainumDigit($row["department_id"]); ?>
+                          <label class="text-dark body-text" for="department_id">หน่วยงาน : </label>
+                          <?php echo ($row["department_id"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
-                          <label class="text-dark" for="flag">หมายเหตุ : </label>
-                          <?php echo thainumDigit($row["flag"]); ?>
+                          <label class="text-dark body-text" for="flag">หมายเหตุ : </label>
+                          <?php echo ($row["flag"]); ?>
                         </div>
                       </div>
                     </div>

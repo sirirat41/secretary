@@ -99,26 +99,26 @@ require "service/connection.php";
                     <tr class="text-center">
                      
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font>
+                        <font size="2"><?php echo ($row["bill_no"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                        <font size="2"><?php echo ($row["code"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["tname"]); ?></font>
+                        <font size="2"><?php echo ($row["tname"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
+                        <font size="2"><?php echo ($row["supplies_name"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
+                        <font size="2"><?php echo ($row["attribute"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
+                        <font size="2"><?php echo ($row["name"]); ?></font>
                       </td>
                     
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["fullname"]); ?></font>
+                        <font size="2"><?php echo ($row["fullname"]); ?></font>
                       </td>
                     </tr>
                   <?php

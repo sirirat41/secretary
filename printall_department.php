@@ -78,13 +78,13 @@ require "service/connection.php";
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["fullname"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["shortname"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["tel"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["fax"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["bulding"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["floor"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["id"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["fullname"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["shortname"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["tel"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["fax"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["bulding"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["floor"]); ?></font></td>
                       </tr>
                           <?php
                           }

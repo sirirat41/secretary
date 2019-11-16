@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-business-time"></i> ข้อมูลรายละเอียดการซ่อม(วัสดุคงทน)</h6>
             </div>
             </nav>
@@ -71,38 +71,38 @@ if (isset($_GET["id"])) {
                   <div class="col-md-8">
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="seq">ลำดับ : </label>
-                        <?php echo thainumDigit($row["seq"]); ?>
+                        <label class="text-dark body-text" for="seq">ลำดับ : </label>
+                        <?php echo ($row["seq"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                        <?php echo thainumDigit($row["code"]); ?>
+                        <label class="text-dark body-text" for="code">รหัสครุภัณฑ์ : </label>
+                        <?php echo ($row["code"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                        <label class="text-dark" for="receive_date">วันที่ซ่อม : </label>
-                        <?php echo thainumDigit($row["receive_date"]); ?>
+                        <label class="text-dark body-text" for="receive_date">วันที่ซ่อม : </label>
+                        <?php echo ($row["receive_date"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="fix">รายการซ่อมครุภัณฑ์ : </label>
-                        <?php echo thainumDigit($row["fix"]); ?>
+                        <label class="text-dark body-text" for="fix">รายการซ่อมครุภัณฑ์ : </label>
+                        <?php echo ($row["fix"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="price">ราคา : </label>
-                        <?php echo thainumDigit($row["price"]); ?>
+                        <label class="text-dark body-text" for="price">ราคา : </label>
+                        <?php echo ($row["price"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="flag">หมายเหตุ : </label>
-                        <?php echo thainumDigit($row["flag"]); ?>
+                        <label class="text-dark body-text" for="flag">หมายเหตุ : </label>
+                        <?php echo ($row["flag"]); ?>
                       </div>
                     </div>
                   </div>

@@ -82,7 +82,7 @@ require "service/connection.php";
                             <font size="2"><?php echo $row["receive_date"]; ?></font>
                           </td>
                           <td>
-                            <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                            <font size="2"><?php echo ($row["code"]); ?></font>
                           </td>
                           <td>
                             <font size="2"><?php echo $row["fix"]; ?></font>

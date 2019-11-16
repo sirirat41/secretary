@@ -87,7 +87,7 @@ require "service/connection.php";
                     <tr class="text-center">
                    
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["order_no"]); ?></font>
+                        <font size="2"><?php echo ($row["order_no"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo $row["code"]; ?></font>

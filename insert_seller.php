@@ -40,21 +40,21 @@
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-6">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลร้านค้า</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-store"></i> เพิ่มข้อมูลร้านค้า</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_seller.php" id="form_insert">
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="name">ชื่อร้านค้า</label>
                       <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="nameseller">
                     </div>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
                       <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
                     </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="fax">แฟกต์</label>
                       <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax">
                     </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="address">ที่อยู่</label>
                       <textarea class="form-control" name="address" id="exampleFormControlTextarea1" placeholder="address" rows="3"></textarea>
                     </div>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -174,7 +174,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -183,7 +183,7 @@
           <?php echo $_GET["message"]; ?>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+          <button type="button" class="btn btn-dangerbody-text" data-dismiss="modal">ตกลง</button>
         </div>
       </div>
     </div>
@@ -192,22 +192,23 @@
 </body>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลร้านค้าหรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลร้านค้าหรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

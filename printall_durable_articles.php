@@ -83,15 +83,15 @@ require "service/connection.php";
                         $id = $row["id"] 
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["asset_no"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["id"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["asset_no"]); ?></font></td>
                         <td><font size="2"><?php echo $row["name"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["attribute"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["model"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["budget"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["d_gen"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["attribute"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["model"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["bill_no"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["budget"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["d_gen"]); ?></font></td>
                         <td><font size="2"><?php echo $row["fullname"]; ?></font></td>
                         <td><font size="2"><?php echo $row["money_type"]; ?></font></td>
                         <td><font size="2"><?php echo $row["acquiring"]; ?></font></td>

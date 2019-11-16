@@ -78,16 +78,16 @@ require "service/connection.php";
                     ?>
                     <tr class="text-center">
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["id"]); ?></font>
+                        <font size="2"><?php echo ($row["id"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                        <font size="2"><?php echo ($row["code"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["damage_date"]); ?></font>
+                        <font size="2"><?php echo ($row["damage_date"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["flag"]); ?></font>
+                        <font size="2"><?php echo ($row["flag"]); ?></font>
                       </td>
                     </tr>
                   <?php

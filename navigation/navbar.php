@@ -255,9 +255,27 @@ if (isset($_SESSION['user_id'])) {
                         <i class="fas <?php echo $iconRequest; ?> text-white"></i>
                       </div>
                     </div>
+<<<<<<< HEAD
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+=======
                     <div>
+<<<<<<< HEAD
                       <div class="small text-gray-500"><?php echo $rowApproveNavbar["surname"] . " " . $rowApproveNavbar["lastname"]; ?></div>
                       <span class="font-weight-bold"><?php echo $rowApproveNavbar["reason"]; ?></span>
+=======
+                      <div class="small text-gray-500"><?php echo $row["surname"] . " " . $row["lastname"]; ?></div>
+                      <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+>>>>>>> f6ea41913067c2dd55cf757049c1ca7e1ce5c1a5
+>>>>>>> b6bcebf763d51864fb681ddd2a473fdea7b889c5
                     </div>
                   </a>
                 <?php $count++;

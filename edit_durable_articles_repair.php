@@ -112,7 +112,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea class="form-control body-text" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
+                      <textarea type="text" class="form-control body-text" name="place" id="place" rows="3" placeholder="place"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
                 </div>

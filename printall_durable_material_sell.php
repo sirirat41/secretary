@@ -70,7 +70,7 @@ require "service/connection.php";
                         <td><font size="2"><?php echo $row["id"]; ?></font></td>
                         <td><font size="2"><?php echo $row["document_no"]; ?></font></td>
                         <td><font size="2"><?php echo $row["sell_date"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
                         <td><font size="2"><?php echo $row["buyer"]; ?></font></td>
                       </tr>
                           <?php
