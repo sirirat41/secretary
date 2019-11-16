@@ -88,10 +88,10 @@ require "service/connection.php";
                     <tr class="text-center">
                       <td><?php echo $row["id"]; ?></td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["username"]); ?></font>
+                        <font size="2"><?php echo ($row["username"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["surname"]); ?></font>
+                        <font size="2"><?php echo ($row["surname"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo $row["lastname"]; ?></font>

@@ -81,8 +81,8 @@ $monthDay = ($dateMouth - $day) + 1;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุคงทน</h6>
+                <h5 class="m-0 font-weight-bold text-danger ">
+                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุคงทน</h5>
                 <form class="form-inline">
                   <div>
                     <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
@@ -103,76 +103,76 @@ $monthDay = ($dateMouth - $day) + 1;
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
-                      <?php echo thainumDigit($row["fullname"]); ?>
+                      <label class="text-dark body-text" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
+                      <?php echo ($row["fullname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
-                      <?php echo thainumDigit($row["shortname"]); ?>
+                      <label class="text-dark body-text" for="shortname">หน่วยงาน (ย่อ) : </label>
+                      <?php echo ($row["shortname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="code">รหัสวัสดุ (คงทน) : </label>
-                      <?php echo thainumDigit($row["code"]); ?>
+                      <label class="text-dark body-text" for="code">รหัสวัสดุ (คงทน) : </label>
+                      <?php echo ($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="asset_no">เลขสินทรัพย์ : </label>
-                      <?php echo thainumDigit($row["asset_no"]); ?>
+                      <label class="text-dark body-text" for="asset_no">เลขสินทรัพย์ : </label>
+                      <?php echo ($row["asset_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="name">ประเภทวัสดุ : </label>
-                      <?php echo thainumDigit($row["durable_material_type_name"]); ?>
+                      <label class="text-dark body-text" for="name">ประเภทวัสดุ : </label>
+                      <?php echo ($row["durable_material_type_name"]); ?>
                     </div>
                     <div class="col-md-6">
-                      <label class="text-dark" for="name">ชื่อวัสดุ (คงทน) : </label>
-                      <?php echo thainumDigit($row["name"]); ?>
+                      <label class="text-dark body-text" for="name">ชื่อวัสดุ (คงทน) : </label>
+                      <?php echo ($row["name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                      <?php echo thainumDigit($row["attribute"]); ?>
+                      <label class="text-dark body-text" for="attribute">ลักษณะ/คุณสมบัติ : </label>
+                      <?php echo ($row["attribute"]); ?>
                     </div>
                     <div class="col-md-6">
-                      <label class="text-dark" for="name">หน่วยนับ : </label>
-                      <?php echo thainumDigit($row["unit_name"]); ?>
+                      <label class="text-dark body-text" for="name">หน่วยนับ : </label>
+                      <?php echo ($row["unit_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="name">ร้านค้า : </label>
-                      <?php echo thainumDigit($row["seller_name"]); ?>
+                      <label class="text-dark body-text" for="name">ร้านค้า : </label>
+                      <?php echo ($row["seller_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="bill_no">เลขที่ใบเบิก : </label>
-                      <?php echo thainumDigit($row["bill_no"]); ?>
+                      <label class="text-dark body-text" for="bill_no">เลขที่ใบเบิก : </label>
+                      <?php echo ($row["bill_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
-                      <?php echo thainumDigit($row["document_no"]); ?>
+                      <label class="text-dark body-text" for="document_no">เลขที่เอกสาร : </label>
+                      <?php echo ($row["document_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="durable_year">จำนวนปีวัสดุ : </label>
-                      <?php echo thainumDigit($row["durable_year"]); ?>
+                      <label class="text-dark body-text" for="durable_year">จำนวนปีวัสดุ : </label>
+                      <?php echo ($row["durable_year"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="price">จำนวนเงิน : </label>
-                      <?php echo thainumDigit($row["price"]); ?>
+                      <label class="text-dark body-text" for="price">จำนวนเงิน : </label>
+                      <?php echo ($row["price"]); ?>
                     </div>
                   </div>
                 </div>
@@ -184,8 +184,8 @@ $monthDay = ($dateMouth - $day) + 1;
         <div class="card shadow mb-4">
           <div class="py-3">
             <nav class="navbar navbar-light bg-light">
-              <h6 class="m-0 font-weight-bold text-danger">
-                <i class="fas fa-business-time"></i> ค่าเสื่อมรายปี</h6>
+              <h5 class="m-0 font-weight-bold text-danger">
+                <i class="fas fa-business-time"></i> ค่าเสื่อมรายปี</h5>
           </div>
           <form>
             <div class="row">
@@ -193,7 +193,7 @@ $monthDay = ($dateMouth - $day) + 1;
                 <div class="table-responsive">
                   <table class='border-color-gray' align="left" cellpadding="5" cellspacing="5" border="1" width="100%">
                     <thead>
-                      <tr class="text-center">
+                      <tr class="text-center body-text">
                         <th>วัน/เดือน/ปี</th>
                         <th>เลขที่เอกสาร</th>
                         <th>รายการ</th>
@@ -211,23 +211,23 @@ $monthDay = ($dateMouth - $day) + 1;
 
                 </div>
                 <thead>
-                  <tr class="text-center">
+                  <tr class="text-center body-text">
                     <td><?php $dayY =  $purchase->format('d') . "\n";
                         $month =  $purchase->format('m') . "\n";
                         $year =  $purchase->format('Y');
-                        echo thainumDigit($dayY);
+                        echo ($dayY);
                         echo month($month);
-                        echo thainumDigit($year);
+                        echo ($year);
                         ?>
                     </td>
                     <td></td>
-                    <td> <?php echo thainumDigit($row["attribute"] . "<br>"); ?>** <?php echo thainumDigit($row["name"]); ?>**</td>
+                    <td> <?php echo ($row["attribute"] . "<br>"); ?>** <?php echo ($row["name"]); ?>**</td>
                     <td>๑</td>
-                    <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
-                    <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
-                    <td><?php echo thainumDigit($row["durable_year"]); ?></td>
+                    <td><?php echo (number_format(($row["price"]), 2, '.', '')); ?></td>
+                    <td><?php echo (number_format(($row["price"]), 2, '.', '')); ?></td>
+                    <td><?php echo ($row["durable_year"]); ?></td>
                     <td><?php $rate = 100 / $row["durable_year"];
-                        echo thainumDigit(number_format($rate, 2, '.', '')); ?>
+                        echo (number_format($rate, 2, '.', '')); ?>
                     </td>
                     <td></td>
                     <td></td>
@@ -245,15 +245,15 @@ $monthDay = ($dateMouth - $day) + 1;
                     <tr class="text-center">
                       <td width="10%">
                         <?php if ($i == ($lifetime)) {
-                            echo thainumDigit($purchase->format('d'));
+                            echo ($purchase->format('d'));
                           } else {
-                            echo thainumDigit($dateMouth);
+                            echo ($dateMouth);
                           }
-                          echo thainumDigit(" " . $month . " ");
+                          echo (" " . $month . " ");
                           if ($i >= 1) {
-                            echo thainumDigit($year + $i);
+                            echo ($year + $i);
                           } else {
-                            echo thainumDigit($year);
+                            echo ($year);
                           }
                           ?>
                       </td>
@@ -270,7 +270,7 @@ $monthDay = ($dateMouth - $day) + 1;
                             $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
                             $firstDep = number_format($depPerYear, 2, '.', '');
                             $deptotal += number_format($depPerYear, 2, '.', '');
-                            echo thainumDigit(number_format($depPerYear, 2, '.', ''));
+                            echo (number_format($depPerYear, 2, '.', ''));
                           } else if ($i == $lifetime) {
                             //$NETT = ($netvalue  + $Yearcumu) - 1;
                             //$deptotal += number_format($NETT, 2, '.', '');
@@ -278,11 +278,11 @@ $monthDay = ($dateMouth - $day) + 1;
                             $depPerYearM = $total * $rate / 100;
                             $lastMoney = $depPerYearM - $firstDep;
                             $deptotal += number_format($lastMoney, 2, '.', '') - 1;
-                            echo thainumDigit(number_format($lastMoney, 2, '.', ''));
+                            echo (number_format($lastMoney, 2, '.', ''));
                           } else {
                             $depPerYearM = $total * $rate / 100;
                             $deptotal += number_format($depPerYearM, 2, '.', '');
-                            echo thainumDigit(number_format($depPerYearM, 2, '.', ''));
+                            echo (number_format($depPerYearM, 2, '.', ''));
                           }
                           ?>
                       </td>
@@ -298,7 +298,7 @@ $monthDay = ($dateMouth - $day) + 1;
                           //   $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
                           //   echo number_format($depPerYear, 2, '.', '') . "<br>";
                           // }
-                          echo thainumDigit(number_format($deptotal, 2, '.', ''));
+                          echo (number_format($deptotal, 2, '.', ''));
 
                           ?>
                       </td>
@@ -306,7 +306,7 @@ $monthDay = ($dateMouth - $day) + 1;
                       <td>
                         <?php
                           $totalAll = $total - $deptotal;
-                          echo thainumDigit(number_format($totalAll, 2, '.', ''));
+                          echo (number_format($totalAll, 2, '.', ''));
                           ?>
                       </td>
                       <td></td>
@@ -394,7 +394,7 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?> </h5>
+          <h4 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?> </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -403,8 +403,8 @@ $monthDay = ($dateMouth - $day) + 1;
           <img src="generate_qrcode_material.php?id=<?php echo $row["id"]; ?>">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <a href="generate_qrcode_material.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger" style="color: white; cusor: pointer" download>ดาวน์โหลด</a>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_material.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger body-text" style="color: white; cusor: pointer" download>ดาวน์โหลด</a>
         </div>
       </div>
     </div>

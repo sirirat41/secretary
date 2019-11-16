@@ -72,7 +72,7 @@ require "service/connection.php";
                         ?>
                       <tr class="text-center">
                         <td><font size="2"><?php echo $row["id"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["name"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["name"]); ?></font></td>
                         <td><font size="2"><?php echo $row["shortname"]; ?></font></td>
                       </tr>
                           <?php

@@ -41,16 +41,16 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-city"></i>
                   เพิ่มข้อมูลจัดซื้อ(วัสดุคงทน)
                 </h6>
@@ -61,13 +61,13 @@ require "service/connection.php";
               <form method="post" action="service/service_insert_durable_material.php" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
                       <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
                       <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
                     </div>
@@ -75,13 +75,13 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $_SESSION["fullname"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร :</label>
                       <input class="form-control" type="text" placeholder="document_no" name="document_no">
                     </div>
@@ -89,7 +89,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
                       <input class="form-control" type="text" placeholder="รหัสวัสดุฑ์ตั้งต้น" name="material_pattern">
                       <small style="color: red"> *ตัวอย่าง: ว.สนง. {run_4}/62</small>
@@ -98,13 +98,13 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6 ">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="receiver">ชื่อผู้รับ</label>
                       <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $_SESSION["fullname"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="receive_date">วันที่ตรวจรับ</label>
                       <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
                     </div>
@@ -112,7 +112,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="receive_address">สถานที่จัดส่ง</label>
                       <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" name="address"></textarea>
                     </div>
@@ -120,14 +120,14 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
                       <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
                       <input class="form-control" type="text" placeholder="asset_no" name="asset_no" id="asset_no">
                       <small style="color: red"> *ตัวอย่าง:100000312000</small>
@@ -136,7 +136,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="exampleFormControlSelect1">ประเภทวัสดุ: </label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type">
                         <?php
@@ -150,7 +150,7 @@ require "service/connection.php";
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
                       <input class="form-control" type="text" placeholder="attribute" name="attribute">
                     </div>
@@ -158,20 +158,20 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
                       <input class="form-control" type="text" placeholder="namemeterial" name="name">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="exampleFormControlSelect1">หน่วยงาน : </label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . "อาคาร" .$row["bulding"] ."ชั้น" .$row["floor"] .'</option>';
+                          echo '<option value="' . $row["id"] . '">' . "อาคาร" . $row["bulding"] . "ชั้น" . $row["floor"] . '</option>';
                         }
                         ?>
                       </select>
@@ -180,7 +180,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="exampleFormControlSelect1">ร้านค้า : </label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
                         <?php
@@ -194,7 +194,7 @@ require "service/connection.php";
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
                       <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
                     </div>
@@ -203,7 +203,7 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="exampleFormControlSelect1">จำนวนปีของวัสดุ :</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year">
                         <option value="0">1</option>
@@ -220,7 +220,7 @@ require "service/connection.php";
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
                       <input class="form-control" type="text" placeholder="price" name="price" id="price">
                     </div>
@@ -228,23 +228,21 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">หน่วยนับ :</label>
-                        <select class="form-control" name="unit">
-                          <?php
-                          $sqlSelectType = "SELECT * FROM unit";
-                          $resultType = mysqli_query($conn, $sqlSelectType);
-                          while ($row = mysqli_fetch_assoc($resultType)) {
-                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                          }
-                          ?>
-                        </select>
-                      </div>
+                    <div class="form-group bmd-form-group body-text">
+                      <label class="bmd-label-floating">หน่วยนับ :</label>
+                      <select class="form-control" name="unit">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM unit";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                        }
+                        ?>
+                      </select>
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวนวัสดุ :</label>
                       <input class="form-control" type="text" placeholder="number" name="number">
                     </div>
@@ -271,11 +269,11 @@ require "service/connection.php";
                 <br>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
-                  
+
                   </div>
                 </div>
               </form>
@@ -349,11 +347,11 @@ require "service/connection.php";
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -364,7 +362,7 @@ require "service/connection.php";
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุ)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -382,7 +380,7 @@ require "service/connection.php";
                     <div class="table-responsive">
                       <table class="table table-hover ">
                         <thead>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <th>#</th>
                             <th>เลขที่ใบสั่งซื้อ</th>
                             <th>วันที่จัดซื้อ</th>
@@ -406,12 +404,12 @@ require "service/connection.php";
                             $id = $row["id"];
                             ?>
 
-                            <tr class="text-center">
-                              <td><?php echo thainumDigit($row["id"]); ?></td>
-                              <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                              <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
-                              <td><?php echo thainumDigit($row["product_id"]); ?></td>
-                              <td><?php echo thainumDigit($row["order_by"]); ?></td>
+                            <tr class="text-center body-text">
+                              <td><?php echo ($row["id"]); ?></td>
+                              <td><?php echo ($row["order_no"]); ?></td>
+                              <td><?php echo ($row["purchase_date"]); ?></td>
+                              <td><?php echo ($row["product_id"]); ?></td>
+                              <td><?php echo ($row["order_by"]); ?></td>
                               <td><?php echo $row["number"]; ?></td>
                               <td class="td-actions text-center">
                                 <button type="button" rel="tooltip" class="btn btn-warning">
@@ -452,69 +450,70 @@ require "service/connection.php";
               </ul>
             </nav>
           </div>
-        </div> -->
-        <script>
-          function search() {
-            var kw = $("#keyword").val();
-            $.ajax({
-              url: 'service/service_search_json_durable_material.php',
-              dataType: 'JSON',
-              type: 'GET',
-              data: {
-                keyword: kw
-              },
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            })
+        </div>
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_durable_material.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+    $(document).ready(function() {
+      $('#asset_no').focusout(function() {
+        var assetNo = $('#asset_no').val();
+        $.ajax({
+          url: 'service/service_check1.php',
+          dataType: 'JSON',
+          type: 'POST',
+          data: {
+            asset_no: assetNo
+          },
+          success: function(data) {
+            if (!data.result) {
+              alert("มีข้อมูลซ้ำ" + data.data);
+            }
+            console.log(data);
+          },
+          error: function(error) {
+            console.log(error);
           }
-          $(document).ready(function() {
-            $('#asset_no').focusout(function() {
-              var assetNo = $('#asset_no').val();
-              $.ajax({
-                url: 'service/service_check1.php',
-                dataType: 'JSON',
-                type: 'POST',
-                data: {
-                  asset_no: assetNo
-                },
-                success: function(data) {
-                  if (!data.result) {
-                    alert("มีข้อมูลซ้ำ" + data.data);
-                  }
-                  console.log(data);
-                },
-                error: function(error) {
-                  console.log(error);
-                }
 
-              })
+        })
 
-            })
-          })
-        </script>
+      })
+    })
+  </script>
 </body>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการจัดซื้อวัสดุ (คงทน) ใช่หรือไม่
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลการจัดซื้อวัสดุ (คงทน) ใช่หรือไม่
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

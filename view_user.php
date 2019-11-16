@@ -56,62 +56,62 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลผู้ใช้งาน</h6>
+                <h5 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> ข้อมูลผู้ใช้งาน</h5>
             </div>
             </nav>
             <form>
               <div class="card-body">
                 <div class="row">
                       <div class="col-md-6">
-                        <label class="text-dark" for="username">ชื่อสมาชิก : </label>
-                        <?php echo thainumDigit($row["username"]); ?>
+                        <label class="text-dark body-text" for="username">ชื่อสมาชิก : </label>
+                        <?php echo ($row["username"]); ?>
                       </div>
                       <div class="col-md-6">
-                        <label class="text-dark" for="password">รหัสผ่าน : </label>
-                        <?php echo thainumDigit($row["password"]); ?>
+                        <label class="text-dark body-text" for="password">รหัสผ่าน : </label>
+                        <?php echo ($row["password"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                        <label class="text-dark" for="surname">ชื่อ : </label>
-                        <?php echo thainumDigit($row["surname"]); ?>
+                        <label class="text-dark body-text" for="surname">ชื่อ : </label>
+                        <?php echo ($row["surname"]); ?>
                       </div>
                       <div class="col-md-6">
-                        <label class="text-dark" for="lastname">นามสกุล : </label>
-                        <?php echo thainumDigit($row["lastname"]); ?>
+                        <label class="text-dark body-text" for="lastname">นามสกุล : </label>
+                        <?php echo ($row["lastname"]); ?>
                       </div>
                     </div>
                    
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="position">ตำแหน่ง : </label>
-                        <?php echo thainumDigit($row["position"]); ?>
+                        <label class="text-dark body-text" for="position">ตำแหน่ง : </label>
+                        <?php echo ($row["position"]); ?>
                       </div>
                       </div>
                       <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="t_code">ประเภท : </label>
-                        <?php echo thainumDigit($row["t_code"]); ?>
+                        <label class="text-dark body-text" for="t_code">ประเภท : </label>
+                        <?php echo ($row["t_code"]); ?>
                       </div>
                     </div>
                   
                     <hr>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="font-weight-bold text-dark">ข้อมูลติดต่อ</label>
+                        <label class="font-weight-bold text-dark body-text">ข้อมูลติดต่อ</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="tel">เบอร์โทร : </label>
-                        <?php echo thainumDigit($row["tel"]); ?>
+                        <label class="text-dark body-text" for="tel">เบอร์โทร : </label>
+                        <?php echo ($row["tel"]); ?>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark" for="email">อีเมล์ : </label>
-                        <?php echo thainumDigit($row["email"]); ?>
+                        <label class="text-dark body-text" for="email">อีเมล์ : </label>
+                        <?php echo ($row["email"]); ?>
                       </div>
                     </div>
                   </div>

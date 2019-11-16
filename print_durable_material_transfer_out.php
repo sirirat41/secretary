@@ -50,7 +50,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="900" border="1" align="center">
-        <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนออก(วัสดุคงทน)</h6>
+        <h5 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนออก(วัสดุคงทน)</h5>
     </div>
     </nav>
     <form>
@@ -67,8 +67,8 @@ if (isset($_GET["id"])) {
                 <td colspan="2">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="document_no">เลขที่หนังสือ : </label>
-                      <?php echo thainumDigit($row["document_no"]); ?>
+                      <label class="text-dark " for="document_no">เลขที่หนังสือ : </label>
+                      <?php echo ($row["document_no"]); ?>
                     </div>
                   </div>
                 </td>
@@ -77,8 +77,8 @@ if (isset($_GET["id"])) {
                 <td colspan="2">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="code">รหัสวัสดุ : </label>
-                      <?php echo thainumDigit($row["code"]); ?>
+                      <label class="text-dark " for="code">รหัสวัสดุ : </label>
+                      <?php echo ($row["code"]); ?>
                     </div>
                   </div>
                 </td>
@@ -87,14 +87,14 @@ if (isset($_GET["id"])) {
                 <td>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                      <?php echo thainumDigit($row["attribute"]); ?>
+                      <label class="text-dark " for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                      <?php echo ($row["attribute"]); ?>
                     </div>
                 </td>
                 <td>
                   <div class="col-md-12">
-                    <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                    <?php echo thainumDigit($row["name"]); ?>
+                    <label class="text-dark " for="name">ชื่อวัสดุ : </label>
+                    <?php echo ($row["name"]); ?>
                   </div>
                 </td>
         </div>
@@ -104,13 +104,13 @@ if (isset($_GET["id"])) {
           <td>
             <div class="row">
               <div class="col-md-12">
-                <label class="text-dark" for="transfer_date">วันที่โอน : </label>
-                <?php echo thainumDigit($row["transfer_date"]); ?>
+                <label class="text-dark " for="transfer_date">วันที่โอน : </label>
+                <?php echo ($row["transfer_date"]); ?>
               </div>
           </td>
           <td>
             <div class="col-md-12">
-              <label class="text-dark" for="transfer_to">ชื่อผู้โอนให้ : </label>
+              <label class="text-dark " for="transfer_to">ชื่อผู้โอนให้ : </label>
               <?php echo $row["transfer_to"]; ?>
             </div>
       </div>
@@ -120,7 +120,7 @@ if (isset($_GET["id"])) {
         <td colspan="2">
           <div class="row">
             <div class="col-md-12">
-              <label class="text-dark" for="flag">หมายเหตุ : </label>
+              <label class="text-dark " for="flag">หมายเหตุ : </label>
               <?php echo $row["flag"]; ?>
             </div>
           </div>

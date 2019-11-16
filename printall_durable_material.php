@@ -78,12 +78,12 @@ require "service/connection.php";
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["asset_no"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["id"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["asset_no"]); ?></font></td>
                         <td><font size="2"><?php echo $row["name"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["attribute"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["bill_no"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["attribute"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["bill_no"]); ?></font></td>
                         <td><font size="2"><?php echo $row["fullname"]; ?></font></td>
                       </tr>
                           <?php

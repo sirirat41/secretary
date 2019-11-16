@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-house-damage"></i> ข้อมูลชำรุด(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <div>
@@ -75,32 +75,32 @@ if (isset($_GET["id"])) {
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                      <?php echo thainumDigit($row["code"]); ?>
+                      <label class="text-dark body-text" for="code">รหัสครุภัณฑ์ : </label>
+                      <?php echo ($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                      <?php echo thainumDigit($row["attribute"]); ?>
+                      <label class="text-dark body-text" for="attribute">ลักษณะ/คุณสมบัติ : </label>
+                      <?php echo ($row["attribute"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                      <?php echo thainumDigit($row["name"]); ?>
+                      <label class="text-dark body-text" for="name">ชื่อวัสดุ : </label>
+                      <?php echo ($row["name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="damage_date">วันที่ชำรุด : </label>
-                      <?php echo thainumDigit($row["damage_date"]); ?>
+                      <label class="text-dark body-text" for="damage_date">วันที่ชำรุด : </label>
+                      <?php echo ($row["damage_date"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="flag">หมายเหตุ : </label>
-                      <?php echo thainumDigit($row["flag"]); ?>
+                      <label class="text-dark body-text" for="flag">หมายเหตุ : </label>
+                      <?php echo ($row["flag"]); ?>
                     </div>
                   </div>
                 </div>

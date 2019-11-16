@@ -82,25 +82,25 @@ require "service/connection.php";
                     ?>
                     <tr class="text-center">
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["id"]); ?></font>
+                        <font size="2"><?php echo ($row["id"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["order_no"]); ?></font>
+                        <font size="2"><?php echo ($row["order_no"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["purchase_date"]); ?></font>
+                        <font size="2"><?php echo ($row["purchase_date"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["document_no"]); ?></font>
+                        <font size="2"><?php echo ($row["document_no"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
+                        <font size="2"><?php echo ($row["attribute"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["number"]); ?></font>
+                        <font size="2"><?php echo ($row["number"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["order_by"]); ?></font>
+                        <font size="2"><?php echo ($row["order_by"]); ?></font>
                       </td>
                     </tr>
                   <?php

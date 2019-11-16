@@ -78,7 +78,7 @@ require "service/connection.php";
                       <tr class="text-center">
                         <td><font size="2"><?php echo $row["id"]; ?></font></td>
                         <td><font size="2"><?php echo $row["transfer_date"]; ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
                         <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
                         <td><font size="2"><?php echo $row["name"]; ?></font></td>
                         <td><font size="2"><?php echo $row["transfer_from"]; ?></font></td>
