@@ -145,6 +145,7 @@ if (isset($_GET["id"])) {
                       <tr class="text-center">
                         <td width="8%">บาท </td>
                         <td width="6%">สตางค์</td>
+                          </tr>
                     </thead>
                     <tbody id="tbody">
                       <?php
