@@ -46,8 +46,8 @@ $show = 10;
 
     <!-- Begin Page Content -->
     <div class="dropdown">
-      <h5 class="text-dark" align="center">เลือก
-        <select id="selected" class="btn btn-danger dropdown-toggle" onchange="selectedDepartment()">
+      <h6 class="text-dark body-text" align="center">เลือก
+        <select id="selected" class="btn btn-danger dropdown-toggle body-text" onchange="selectedDepartment()">
           <option value="1">1 : ข้อมูลครุภัณฑ์</option>
           <option value="2">2 : ข้อมูลวัสดุคงทน</option>
           <option value="3">3 : ข้อมูลวัสดุสิ้นเปลือง</option>
@@ -60,8 +60,8 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h5 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city" id="dis"></i></h5>
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-city" id="dis"></i></h6>
                 <form class="form-inline" id="form-search">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                   <div>

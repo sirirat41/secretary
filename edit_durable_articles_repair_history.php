@@ -55,57 +55,57 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แก้ไขรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-wrench"></i> แก้ไขรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_articles_repair_history.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="" value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control body-text" name="seq" id="seq" aria-describedby="seq" placeholder="" value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="receive_date">วันที่ซ่อม</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
-                      <input class="form-control" name="repair_id" type="text" placeholder="repair_id" id="repair_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="repair_id" type="text" placeholder="repair_id" id="repair_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
                 </div>
                 </div>
                 <div class="row">
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="fix">รายการซ่อมครุภัณฑ์</label>
-                      <input type="text" class="form-control" name="fix" id="fix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
+                      <input type="text" class="form-control body-text" name="fix" id="fix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="price">ราคา</label>
-                      <input type="text" class="form-control" name="price" id="price" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                      <input type="text" class="form-control body-text" name="price" id="price" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
 
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,12 +117,12 @@ if (isset($_GET["id"])) {
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -240,7 +240,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -251,7 +251,7 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline" id="form-search">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
@@ -268,7 +268,7 @@ if (isset($_GET["id"])) {
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <th>ลำดับ</th>
                           <th>วันที่ซ่อม</th>
                           <th>รหัสครุภัณฑ์(ชำรุด)</th>
@@ -294,10 +294,10 @@ if (isset($_GET["id"])) {
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><?php echo $row["seq"]; ?></td>
                             <td><?php echo $row["repair_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo $row["attribute"]; ?></td>
                             <td><?php echo $row["model"]; ?></td>
                             <td class="td-actions text-center">

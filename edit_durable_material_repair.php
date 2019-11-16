@@ -57,41 +57,41 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> แก้ไขข้อมูลการซ่อม(วัสดุ)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-wrench"></i> แก้ไขข้อมูลการซ่อม(วัสดุ)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_repair.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="seq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control body-text" name="seq" id="seq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-groupbody-text">
                       <label for="repair_date">วันที่ซ่อม</label>
-                      <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
+                      <input type="date" class="form-control body-text" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="damage_id">รหัสวัสดุ</label>
-                      <input class="form-control" name="damage_id" type="text" placeholder="damage_id" id="damage_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="damage_id" type="text" placeholder="damage_id" id="damage_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
                 </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea class="form-control" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
+                      <textarea class="form-control body-text" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,12 +103,12 @@ if (isset($_GET["id"])) {
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลการซ่อมวัสดุหรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -188,7 +188,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -199,7 +199,7 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
@@ -217,7 +217,7 @@ if (isset($_GET["id"])) {
                     <div class="table-responsive">
                       <table class="table table-hover ">
                         <thead>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <th>วันที่ชำรุด</th>
                           <th>รหัสวัสดุ</th>
                           <th>หมายเหตุ</th>
@@ -237,8 +237,8 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
-                            <tr class="text-center">
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <tr class="text-center body-text">
+                            <td><?php echo ($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
@@ -275,7 +275,7 @@ if (isset($_GET["id"])) {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>

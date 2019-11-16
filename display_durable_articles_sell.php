@@ -45,7 +45,7 @@ $show=10;
         <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <nav class="navbar navbar-light bg-light justify-content-between">
+              <nav class="navbar navbar-light bg-light justify-content-between body-text">
                 <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> แสดงข้อมูลการขายทอดตลาด(ครุภัณฑ์)</h6>
 
                 <form class="form-inline">
@@ -70,7 +70,7 @@ $show=10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                      <tr class="text-center">
+                      <tr class="text-center body-text">
                         <th>วันที่ขาย</th>
                         <th>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
@@ -99,11 +99,11 @@ $show=10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["sell_date"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo thainumDigit($row["model"]); ?></td>
+                      <tr class="text-center body-text">
+                        <td><?php echo ($row["sell_date"]); ?></td>
+                        <td><?php echo ($row["code"]); ?></td>
+                        <td><?php echo ($row["attribute"]); ?></td>
+                        <td><?php echo ($row["model"]); ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location.href = 'edit_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -174,11 +174,11 @@ $show=10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
@@ -275,19 +275,19 @@ $show=10;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-left">
+        <div class="modal-body text-left body-text">
           คุณต้องการลบข้อมูลการขายทอดตลาดครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_sell.php">
             <input type="hidden" id="remove-sell" name="product_id">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

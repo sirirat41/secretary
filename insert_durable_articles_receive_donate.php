@@ -45,19 +45,19 @@ $show=10;
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> เพิ่มข้อมูลการรับบริจาค(ครุภัณฑ์)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-archive"></i> เพิ่มข้อมูลการรับบริจาค(ครุภัณฑ์)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_articles_receive_donate.php" id="form_insert">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
                       <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="receive_date">วันที่รับบริจาค</label>
                       <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                     </div>
@@ -65,7 +65,7 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10">
@@ -80,7 +80,7 @@ $show=10;
                           </select>
                         </div>
                         <div class="col-md-2">
-                          <div class="form-group">
+                          <div class="form-group body-text">
                             <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                               <i class="fas fa-search"></i>
                             </button>
@@ -92,13 +92,13 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class="col-md-7">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="donate_name">ชื่อผู้บริจาค</label>
                       <input type="text" class="form-control" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
                     </div>
                   </div>
                   <div class="col-md-5">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="number">ราคา</label>
                       <input type="text" class="form-control" name="number" id="inputnumber" aria-describedby="number" placeholder="price">
                     </div>
@@ -106,7 +106,7 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
                     </div>
@@ -121,17 +121,17 @@ $show=10;
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลรับบริจาคครุภัณฑ์หรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -219,8 +219,8 @@ $show=10;
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                    <h4 class="m-0 font-weight-bold text-danger">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h4>
                     <form class="form-inline" id="form-search">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
                    <div>
@@ -236,7 +236,7 @@ $show=10;
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
@@ -261,12 +261,12 @@ $show=10;
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo ($row["seq"]); ?></td>
+                            <td><?php echo ($row["bill_no"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>

@@ -52,21 +52,21 @@ if (isset($_GET["id"])) {
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-6">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แก้ไขข้อมูลหน่วยนับ</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-store"></i> แก้ไขข้อมูลหน่วยนับ</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_unit.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="name">หน่วยนับ</label>
-                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="name" value="<?php echo $item["name"]; ?>">
+                      <input type="text" class="form-control body-text" name="name" id="inputname" aria-describedby="name" placeholder="name" value="<?php echo $item["name"]; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -74,17 +74,17 @@ if (isset($_GET["id"])) {
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลร้านค้าหรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -162,7 +162,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -173,7 +173,7 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-wrench"></i> แสดงข้อมูลหน่วยนับ</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" name="keyword" id="keyword" placeholder="Search" aria-label="Search">

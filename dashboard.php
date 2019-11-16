@@ -52,7 +52,7 @@ $rows = mysqli_fetch_assoc($resultS);
               <div class="card-header py-3">
                 <nav class="navbar navbar-light bg-light">
                   <h6 class="m-0 font-weight-bold">
-                    <div class="card-icon text-danger"><i class="fas fa-business-time"> ครุภัณฑ์</i></div>
+                    <div class="card-icon text-danger body-text"><i class="fas fa-business-time"> ครุภัณฑ์</i></div>
                     <div class="card-header card-header-warning card-header-icon">
                       <h3 class="card-title text-danger">
                         <?php
@@ -64,7 +64,7 @@ $rows = mysqli_fetch_assoc($resultS);
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
-                        <a href='display_durable_articles.php'>แสดงรายการครุภัณฑ์</a>
+                        <a class="body-text" href='display_durable_articles.php'>แสดงรายการครุภัณฑ์</a>
                       </div>
                     </div>
               </div>
@@ -75,7 +75,7 @@ $rows = mysqli_fetch_assoc($resultS);
               <div class="card-header py-3">
                 <nav class="navbar navbar-light bg-light">
                   <h6 class="m-0 font-weight-bold">
-                    <div class="card-icon text-danger"><i class="fas fa-business-time"> วัสดุคงทน</i></div>
+                    <div class="card-icon text-danger body-text"><i class="fas fa-business-time"> วัสดุคงทน</i></div>
                     <div class="card-header card-header-warning card-header-icon">
                       <h3 class="card-title text-danger">
                         <?php
@@ -87,7 +87,7 @@ $rows = mysqli_fetch_assoc($resultS);
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
-                        <a href='display_durable_material.php'>แสดงรายการวัสดุคงทน</a>
+                        <a href='display_durable_material.php' class="body-text">แสดงรายการวัสดุคงทน</a>
                       </div>
                     </div>
               </div>
@@ -98,7 +98,7 @@ $rows = mysqli_fetch_assoc($resultS);
               <div class="card-header py-3">
                 <nav class="navbar navbar-light bg-light">
                   <h6 class="m-0 font-weight-bold">
-                    <div class="card-icon text-danger"><i class="fas fa-business-time"> วัสดุสิ้นเปลือง</i></div>
+                    <div class="card-icon text-danger body-text"><i class="fas fa-business-time"> วัสดุสิ้นเปลือง</i></div>
                     <div class="card-header card-header-warning card-header-icon">
                       <h3 class="card-title text-danger">
                         <?php
@@ -110,7 +110,7 @@ $rows = mysqli_fetch_assoc($resultS);
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
-                        <a href='display_supplies.php'>แสดงรายการวัสดุสิ้นเปลือง</a>
+                        <a href='display_supplies.php' class="body-text">แสดงรายการวัสดุสิ้นเปลือง</a>
                       </div>
                     </div>
               </div>

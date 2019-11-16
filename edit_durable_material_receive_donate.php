@@ -9,7 +9,7 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $receivedate = $item["receive_date"];
   $newReceivedate = date("Y-m-d", strtotime($receivedate));
-  $show=10;
+  $show = 10;
 }
 ?>
 
@@ -51,60 +51,60 @@ if (isset($_GET["id"])) {
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-8 offset-md-2">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แก้ไขข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-archive"></i> แก้ไขข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_receive_donate.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno" value="<?php echo $item["document_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="receive_date">วันที่รับบริจาค</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="" value="<?php echo $newReceivedate; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-7">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="donate_name">ชื่อผู้บริจาค</label>
-                      <input type="text" class="form-control" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename" value="<?php echo $item["donate_name"]; ?>">
+                      <input type="text" class="form-control body-text" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename" value="<?php echo $item["donate_name"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-5">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="number">ราคา</label>
-                      <input type="text" class="form-control" name="number" id="inputnumber" aria-describedby="number" placeholder="price" value="<?php echo $item["number"]; ?>">
+                      <input type="text" class="form-control body-text" name="number" id="inputnumber" aria-describedby="number" placeholder="price" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -112,24 +112,23 @@ if (isset($_GET["id"])) {
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลรับบริจาควัสดุหรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
             </div>
             </form>
           </div>
@@ -205,7 +204,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -216,12 +215,12 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -233,7 +232,7 @@ if (isset($_GET["id"])) {
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
@@ -246,8 +245,8 @@ if (isset($_GET["id"])) {
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
+
+
                         $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
@@ -258,12 +257,12 @@ if (isset($_GET["id"])) {
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo ($row["seq"]); ?>s</td>
+                            <td><?php echo ($row["bill_no"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -312,15 +311,16 @@ if (isset($_GET["id"])) {
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -331,6 +331,7 @@ if (isset($_GET["id"])) {
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -355,7 +356,7 @@ if (isset($_GET["id"])) {
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -364,14 +365,16 @@ if (isset($_GET["id"])) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -415,6 +418,7 @@ if (isset($_GET["id"])) {
       }
       return str;
     }
+
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);

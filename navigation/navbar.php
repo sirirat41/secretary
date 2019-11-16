@@ -213,25 +213,6 @@ if (isset($_SESSION['user_id'])) {
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-<<<<<<< HEAD
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="edit_supplies_request.php?id=<?php echo $row["id"]; ?>">
-                  <a class="dropdown-item d-flex align-items-center">
-                    <div class="mr-3">
-                      <div class="icon-circle bg-primary">
-                        <i class="fas fa-file-alt text-white"></i>
-                      </div>
-                    </div>
-                  </a>
-                </a>
-=======
             <li class="nav-item dropdown no-arrow mx-1">
                   <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell fa-fw"></i>
@@ -337,7 +318,6 @@ if (isset($_SESSION['user_id'])) {
                 </li>
 
 
->>>>>>> ffa3962a83f6dc06feac745359b777e9a2331df4
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 

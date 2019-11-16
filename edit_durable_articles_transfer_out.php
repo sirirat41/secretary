@@ -51,7 +51,7 @@ if (isset($_GET["id"])) {
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger">
@@ -61,62 +61,62 @@ if (isset($_GET["id"])) {
               <form method="post" action="service/service_edit_durable_articles_transfer_out.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="document_no" placeholder="no" autofocus value="<?php echo $item["document_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="document_no" id="document_no" placeholder="no" autofocus value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="inputEmail3">วันที่โอน</label>
-                      <input type="date" class="form-control" name="transfer_date" id="transfer_date" placeholder="transdate" value="<?php echo $item["transfer_date"]; ?>">
+                      <input type="date" class="form-control body-text" name="transfer_date" id="transfer_date" placeholder="transdate" value="<?php echo $item["transfer_date"]; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสครุภัณฑ์</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="transfer_to">ชื่อผู้โอนให้</label>
-                      <input type="text" class="form-control" name="transfer_to" id="transfer_to" placeholder="name" value="<?php echo $newreceiveDate; ?>">
+                      <input type="text" class="form-control body-text" name="transfer_to" id="transfer_to" placeholder="name" value="<?php echo $newreceiveDate; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="inputEmail3">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                     </button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลการโอนออกครุภัณฑ์ใช่หรือไม่
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -124,12 +124,9 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
             </div>
-
-
           </div>
         </div>
       </div>
-
       </form>
 
       <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -201,7 +198,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -212,12 +209,12 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -229,7 +226,7 @@ if (isset($_GET["id"])) {
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
@@ -242,8 +239,8 @@ if (isset($_GET["id"])) {
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
+
+
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
@@ -254,12 +251,12 @@ if (isset($_GET["id"])) {
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo ($row["seq"]); ?></td>
+                            <td><?php echo ($row["bill_no"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -295,39 +292,41 @@ if (isset($_GET["id"])) {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
   </div>
   <script>
-   var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
           changePage(1);
-     
+
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
       var body = $('#modal-articles-body');
@@ -353,19 +352,22 @@ if (isset($_GET["id"])) {
         generatePagination();
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));

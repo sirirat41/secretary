@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-file-invoice-dollar"></i>
                   เพิ่มข้อมูลบัญชีคุมวัสดุ
                 </h6>
@@ -67,65 +67,55 @@ if (isset($_GET["id"])) {
               <form method="post" action="service/service_edit_supplies_account.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
-                      <input type="text" class="form-control" name="year" id="year" placeholder="year" name="year" value="<?php echo $item["year"]; ?>">
+                      <input type="text" class="form-control body-text" name="year" id="year" placeholder="year" name="year" value="<?php echo $item["year"]; ?>">
                     </div>
                   </div>
                   <div class="col-8">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control" name="supplies_name" id="supplies_name" placeholder="supplies_name" name="supplies_name" value="<?php echo $item["supplies_name"]; ?>" readonly>
+                      <input type="text" class="form-control body-text" name="supplies_name" id="supplies_name" placeholder="supplies_name" name="supplies_name" value="<?php echo $item["supplies_name"]; ?>" readonly>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input type="text" class="form-control" name="code" id="code" placeholder="code" name="code" value="<?php echo $item["code"]; ?>" readonly> 
+                      <input type="text" class="form-control body-text" name="code" id="code" placeholder="code" name="code" value="<?php echo $item["code"]; ?>" readonly> 
                         </div>
                   </div>
                 </div>
                 <div class="row">
-
-
                   <div class="col-4">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="unit_id">หน่วยนับ</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="name" name="name" value="<?php echo $item["name"]; ?>" readonly> 
+                      <input type="text" class="form-control body-text" name="name" id="name" placeholder="name" name="name" value="<?php echo $item["name"]; ?>" readonly> 
                         </div>
                     </div>
              
                   <div class="col-8">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="department">หน่วยงานที่เก็บ</label>
-                      <input type="text" class="form-control" name="department" id="department" placeholder="department" name="department" value="<?php echo $item["fullname"]. " ".$item["bulding"]. " ".$item["floor"]; ?>" readonly> 
+                      <input type="text" class="form-control body-text" name="department" id="department" placeholder="department" name="department" value="<?php echo $item["fullname"]. " ".$item["bulding"]. " ".$item["floor"]; ?>" readonly> 
                         </div>
-
                     </div>
                   </div>
-           
                 <br>
-
-
-
             </div>
           </div>
         </div>
       </div>
-   
       <br>
       <div class="row ">
         <div class="col-12">
           <div class="card">
-
-
               <div class="card-body">
                 <div class="table-responsive">
                   <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
                     <thead>
-                      <tr class="text-center">
+                      <tr class="text-center body-text">
                         <td rowspan="2">วัน/เดือน/ปี</td>
                         <td rowspan="2">รับจาก</td>
                         <td rowspan="2">จ่ายให้</td>
@@ -144,7 +134,7 @@ if (isset($_GET["id"])) {
                       </tr>
                     </thead>
                     <thead>
-                      <tr class="text-center" height="30" id="firstTr">
+                      <tr class="text-center body-text" height="30" id="firstTr">
 
                         <td> <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
                         <td> <input type="text" class="form-control" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $item["receive_from"]; ?>"></td>
@@ -176,7 +166,7 @@ if (isset($_GET["id"])) {
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       ตกลง
                     </button>
                     <!-- Modal -->
@@ -261,22 +251,20 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body body-text">
           คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
         </div>
       </div>
     </div>
   </div>
-
 </body>
-
 </html>

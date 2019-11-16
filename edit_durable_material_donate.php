@@ -51,11 +51,11 @@ $show=10;
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <br>
       <div class="row ">
-        <div class="col-6 offset-3">
+        <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-archive"></i>
                   แก้ไขข้อมูลการบริจาคออก (วัสดุคงทน)
                 </h6>
@@ -65,45 +65,45 @@ $show=10;
               <form method="post" action="service/service_edit_durable_material_donate.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
-                      <input class="form-control" name="document_no" type="text" id="document_no" placeholder="document_no" value="<?php echo $item["document_no"]; ?>">
+                      <input class="form-control body-text" name="document_no" type="text" id="document_no" placeholder="document_no" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
-                      <input class="form-control" name="receive_date" type="date" id="receive_date" placeholder="receive_date" value="<?php echo $newOrderDate; ?>">
+                      <input class="form-control body-text" name="receive_date" type="date" id="receive_date" placeholder="receive_date" value="<?php echo $newOrderDate; ?>">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสครุภัณฑ์</label>
-                      <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
                 </div>
                 </div>
 
                 <div class="row">
                   <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
-                      <input class="form-control" name="donate_name" type="text" placeholder="donate_name" id="donate_name" value="<?php echo $item["donate_name"]; ?>">
+                      <input class="form-control body-text" name="donate_name" type="text" placeholder="donate_name" id="donate_name" value="<?php echo $item["donate_name"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
-                      <input class="form-control" name="flag" name="flag" type="text" placeholder="flag" id="flag" value="<?php echo $item["flag"]; ?>">
+                      <input class="form-control body-text" name="flag" name="flag" type="text" placeholder="flag" id="flag" value="<?php echo $item["flag"]; ?>">
                     </div>
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                     </button>
                     <!-- Modal -->
@@ -111,17 +111,17 @@ $show=10;
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body ">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลบริจาคออก(วัสดุ)หรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
@@ -203,7 +203,7 @@ $show=10;
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -214,7 +214,7 @@ $show=10;
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
@@ -231,7 +231,7 @@ $show=10;
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
@@ -256,12 +256,12 @@ $show=10;
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo ($row["seq"]); ?></td>
+                            <td><?php echo ($row["bill_no"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>

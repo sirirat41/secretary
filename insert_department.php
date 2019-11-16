@@ -46,7 +46,7 @@ require "service/connection.php";
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-city"></i>
                   เพิ่มข้อมูลหน่วยงาน
                 </h6>
@@ -57,47 +57,47 @@ require "service/connection.php";
               <form method="post" action="service/service_insert_department.php" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class=" col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
-                      <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department">
+                      <input class="form-control body-text" name="fullname" type="text" autocomplete="off" placeholder="department" id="department">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
-                      <input class="form-control" name="shortname" type="text" placeholder="shortname" id="shortname">
+                      <input class="form-control body-text" name="shortname" type="text" placeholder="shortname" id="shortname">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class=" col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
-                      <input class="form-control" name="bulding" type="text" placeholder="bulding" id="bulding">
+                      <input class="form-control body-text" name="bulding" type="text" placeholder="bulding" id="bulding">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชั้น</label>
-                      <input class="form-control" name="floor" type="text" placeholder="floor" id="floor">
+                      <input class="form-control body-text" name="floor" type="text" placeholder="floor" id="floor">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class=" col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรศัพท์</label>
-                      <input class="form-control" name="tel" type="text" placeholder="tel" id="tel">
+                      <input class="form-control body-text" name="tel" type="text" placeholder="tel" id="tel">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class=" col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรสาร</label>
-                      <input class="form-control" name="fax" type="text" placeholder="fax" id="fax">
+                      <input class="form-control body-text" name="fax" type="text" placeholder="fax" id="fax">
                     </div>
                   </div>
                 </div>
@@ -122,13 +122,11 @@ require "service/connection.php";
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
                     <!-- Modal -->
-
-
                   </div>
                 </div>
             </div>
@@ -211,12 +209,12 @@ require "service/connection.php";
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body body-text">
           คุณต้องการบันทึกข้อมูลหน่วยงานหรือไม่ ?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
         </div>
       </div>
     </div>
@@ -263,12 +261,11 @@ require "service/connection.php";
           <?php echo $_GET["message"]; ?>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+          <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
         </div>
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
