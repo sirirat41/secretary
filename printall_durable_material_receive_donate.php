@@ -67,11 +67,11 @@ require "service/connection.php";
                         $id = $row["id"];
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["document_no"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["receive_date"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["donate_name"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["id"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["document_no"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["receive_date"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["donate_name"]); ?></font></td>
                       </tr>
                           <?php
                           }

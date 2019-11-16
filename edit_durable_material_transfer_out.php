@@ -80,18 +80,12 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-md-12 ">
-                    <div class="form-group body-text">
-                      <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
-=======
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-10 ">
-                        <select class="form-control" name="product_id" id="product_id">
+                        <select class="form-control body-text" name="product_id" id="product_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_material";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -110,7 +104,6 @@ if (isset($_GET["id"])) {
                             <i class="fas fa-search"></i>
                         </div>
                       </div>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     </div>
                   </div>
                 </div>
@@ -135,29 +128,7 @@ if (isset($_GET["id"])) {
                     <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                     </button>
-<<<<<<< HEAD
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลการโอนออกวัสดุใช่หรือไม่
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-=======
                   
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
             </div>

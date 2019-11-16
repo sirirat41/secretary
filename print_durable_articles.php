@@ -101,34 +101,34 @@ if (isset($_GET["id"])) {
   <body style="padding: 16px">
     <div class="row">
       <div class="col-sm-12" align="center">
-        <h7>ทะเบียนคุมทรัพย์สิน</h7>
+        <h5>ทะเบียนคุมทรัพย์สิน</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <label class="text" for="type">
-          <h7>ประเภท:</h7>
+        <label class="text " for="type">
+          <h5>ประเภท:</h5>
         </label>
         <?php echo $row["durable_articles_type_name"]; ?>
       </div>
-      <div class="text" class="col-sm-">
-        <h7>ส่วนราชการ: </h7>
+      <div class="text " class="col-sm-">
+        <h5>ส่วนราชการ: </h5>
       </div>
       <div class="col-sm-3">
-        <h7>สำนักงานตำนวจแห่งชาติ</h7>
+        <h5>สำนักงานตำนวจแห่งชาติ</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <label class="text" for="attribute">
-          <h7>ลักษณะ/คุณสมบัติ:</h7>
+        <label class="text " for="attribute">
+          <h5>ลักษณะ/คุณสมบัติ:</h5>
         </label>
-        <?php echo thainumDigit($row["attribute"]); ?>
+        <?php echo ($row["attribute"]); ?>
       </div>
       <div class="col-sm-">
-        <label class="text" for="short_goverment">
+        <label class="text " for="short_goverment">
           <div style="width:80px">
-            <h7>หน่วยงาน: </h7>
+            <h5>หน่วยงาน: </h5>
         </label>
       </div>
     </div>
@@ -138,63 +138,63 @@ if (isset($_GET["id"])) {
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="model">
-          <h7>รุ่นแบบ :</h7>
+        <label class="text " for="model">
+          <h5>รุ่นแบบ :</h5>
         </label>
-        <?php echo thainumDigit($row["model"]); ?>
+        <?php echo ($row["model"]); ?>
 
       </div>
       <div class="col-sm-6">
-        <label class="text" for="code">
-          <h7>รหัส :</h7>
+        <label class="text " for="code">
+          <h5>รหัส :</h5>
         </label>
-        <?php echo thainumDigit($row["code"]); ?>
+        <?php echo ($row["code"]); ?>
 
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="bill_no">
-          <h7>เลขที่ใบเบิก : </h7>
+        <label class="text " for="bill_no">
+          <h5>เลขที่ใบเบิก : </h5>
         </label>
-        <?php echo thainumDigit($row["bill_no"]); ?>
+        <?php echo ($row["bill_no"]); ?>
       </div>
       <div class="col-sm-6">
-        <label class="text" for="asset_no">
-          <h7>เลขสินทรัพย์ :</h7>
+        <label class="text " for="asset_no">
+          <h5>เลขสินทรัพย์ :</h5>
         </label>
-        <?php echo thainumDigit($row["asset_no"]); ?>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <label class="text" for="budget">
-          <h7>งบประมาณ : </h7>
-        </label>
-        <?php echo thainumDigit($row["budget"]); ?>
-      </div>
-      <div class="col-sm-6">
-        <label class="text" for="d_gen">
-          <h7>เอกสารสำรองเงิน : </h7>
-        </label>
-        <?php echo thainumDigit($row["d_gen"]); ?>
+        <?php echo ($row["asset_no"]); ?>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="fullname">
-          <h7>สถานที่ตั้ง / หน่วยงานที่รับผิดชอบ :</h7>
+        <label class="text " for="budget">
+          <h5>งบประมาณ : </h5>
         </label>
-        <?php echo thainumDigit($row["fullname"]); ?>
-        <label class="textk" for="bulding">อาคาร
-        </label>
-        <?php echo thainumDigit($row["bulding"]); ?>/
-        <label class="text" for="floor">ชั้น
-        </label>
-        <?php echo thainumDigit($row["floor"]); ?>
+        <?php echo ($row["budget"]); ?>
       </div>
       <div class="col-sm-6">
-        <label class="text" for="seller_id">
+        <label class="text " for="d_gen">
+          <h5>เอกสารสำรองเงิน : </h5>
+        </label>
+        <?php echo ($row["d_gen"]); ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="text " for="fullname">
+          <h5>สถานที่ตั้ง / หน่วยงานที่รับผิดชอบ :</h5>
+        </label>
+        <?php echo ($row["fullname"]); ?>
+        <label class="text " for="bulding">อาคาร
+        </label>
+        <?php echo ($row["bulding"]); ?>/
+        <label class="text " for="floor">ชั้น
+        </label>
+        <?php echo ($row["floor"]); ?>
+      </div>
+      <div class="col-sm-6">
+        <label class="text " for="seller_id">
           <h7>ชื่อผู้ขาย :</h7>
         </label>
         <?php echo $row["seller_name"] == "" ? "<ไม่มีข้อมูล>" : $row["seller_name"]; ?>
@@ -202,31 +202,31 @@ if (isset($_GET["id"])) {
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="seller_address">
+        <label class="text " for="seller_address">
           <h7>ที่อยู่ :</h7>
         </label>
-        <?php echo $row["seller_address"] == "" ? "<ไม่มีข้อมูล>" : thainumDigit($row["seller_address"]); ?>
+        <?php echo $row["seller_address"] == "" ? "<ไม่มีข้อมูล>" : ($row["seller_address"]); ?>
       </div>
       <div class="col-sm-6">
-        <label class="text" for="seller_tel">
-          <h7>โทรศัพท์/FAX :</h7>
+        <label class="text " for="seller_tel">
+          <h5>โทรศัพท์/FAX :</h5>
         </label>
-        <?php echo thainumDigit($row["seller_tel"]) == "" ? "<ไม่มีข้อมูล>" : thainumDigit($row["seller_tel"]); ?>
-        <label class="text" for="seller_fax">
+        <?php echo ($row["seller_tel"]) == "" ? "<ไม่มีข้อมูล>" : ($row["seller_tel"]); ?>
+        <label class="text " for="seller_fax">
         </label>
-        <?php echo thainumDigit($row["seller_fax"]); ?>
+        <?php echo ($row["seller_fax"]); ?>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label class="text" for="money_type">
-          <h7>ประเภทเงิน :</h7>
+        <label class="text " for="money_type">
+          <h5>ประเภทเงิน :</h5>
         </label>
         <?php echo $row["money_type"]; ?>
       </div>
       <div class="col-sm-6">
-        <label class="text" for="acquiring">
-          <h7>วิธีการได้มา :</h7>
+        <label class="text " for="acquiring">
+          <h5>วิธีการได้มา :</h5>
         </label>
         <?php echo $row["acquiring"]; ?>
       </div>
@@ -250,7 +250,7 @@ if (isset($_GET["id"])) {
             <table class='border-color-gray' align="left" cellpadding="5" cellspacing="5" border="1" width="100%">
               
                 <thead>
-                  <tr class="text-center">
+                  <tr class="text-center ">
                     <th>วัน/เดือน/ปี</th>
                     <th>เลขที่เอกสาร</th>
                     <th>รายการ</th>
@@ -268,15 +268,15 @@ if (isset($_GET["id"])) {
 
           </div>
           <thead>
-            <tr class="text-center">
+            <tr class="text-center ">
               <td><?php
 
                     $dayY =  $purchase->format('d') . "\n";
                     $month =  $purchase->format('m') . "\n";
                     $year =  $purchase->format('Y');
-                    echo thainumDigit($dayY);
+                    echo ($dayY);
                     echo month($month);
-                    echo thainumDigit($year);
+                    echo ($year);
 
                     // if ($purchase == "0") {
 
@@ -300,12 +300,12 @@ if (isset($_GET["id"])) {
 
                     ?>
               </td>
-              <td> <?php echo thainumDigit($row["document_no"] . "<br>"); ?></td>
-              <td> <?php echo thainumDigit($row["attribute"] . "<br>"); ?>** <?php echo thainumDigit($row["model"]); ?>**</td>
+              <td> <?php echo ($row["document_no"] . "<br>"); ?></td>
+              <td> <?php echo ($row["attribute"] . "<br>"); ?>** <?php echo ($row["model"]); ?>**</td>
               <td>๑</td>
-              <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
-              <td><?php echo thainumDigit(number_format(($row["price"]), 2, '.', '')); ?></td>
-              <td><?php echo thainumDigit($row["durable_year"]); ?></td>
+              <td><?php echo (number_format(($row["price"]), 2, '.', '')); ?></td>
+              <td><?php echo (number_format(($row["price"]), 2, '.', '')); ?></td>
+              <td><?php echo ($row["durable_year"]); ?></td>
               <td><?php
 
                     if (isset($_SESSION[$row["durable_year"]])) {
@@ -314,7 +314,7 @@ if (isset($_GET["id"])) {
                     } else if ($row["durable_year"]) {
 
                       $rate = 100 / $row["durable_year"];
-                      echo thainumDigit(number_format($rate, 2, '.', ''));
+                      echo (number_format($rate, 2, '.', ''));
                     } else {
 
                       $rate = "0";
@@ -326,7 +326,7 @@ if (isset($_GET["id"])) {
               <td></td>
               <td></td>
               <td></td>
-              <td class="td-actions text-center">
+              <td class="td-actions text-center ">
             </tr>
 
             <?php
@@ -336,18 +336,18 @@ if (isset($_GET["id"])) {
               for ($i = 0; $i < $lifetime + 1; $i++) {
 
                 ?>
-              <tr class="text-center">
+              <tr class="text-center ">
                 <td width="10%">
                   <?php if ($i == ($lifetime)) {
-                        echo thainumDigit($purchase->format('d'));
+                        echo ($purchase->format('d'));
                       } else {
-                        echo thainumDigit($dateMouth);
+                        echo ($dateMouth);
                       }
                       echo month(" " . $month . " ");
                       if ($i >= 1) {
-                        echo thainumDigit($year + $i);
+                        echo ($year + $i);
                       } else {
-                        echo thainumDigit($year);
+                        echo ($year);
                       }
                       ?>
                 </td>
@@ -364,7 +364,7 @@ if (isset($_GET["id"])) {
                         $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
                         $firstDep = number_format($depPerYear, 2, '.', '');
                         $deptotal += number_format($depPerYear, 2, '.', '');
-                        echo thainumDigit(number_format($depPerYear, 2, '.', ''));
+                        echo (number_format($depPerYear, 2, '.', ''));
                       } else if ($i == $lifetime) {
                         //$NETT = ($netvalue  + $Yearcumu) - 1;
                         //$deptotal += number_format($NETT, 2, '.', '');
@@ -372,11 +372,11 @@ if (isset($_GET["id"])) {
                         $depPerYearM = $total * $rate / 100;
                         $lastMoney = $depPerYearM - $firstDep;
                         $deptotal += number_format($lastMoney, 2, '.', '') - 1;
-                        echo thainumDigit(number_format($lastMoney, 2, '.', ''));
+                        echo (number_format($lastMoney, 2, '.', ''));
                       } else {
                         $depPerYearM = $total * $rate / 100;
                         $deptotal += number_format($depPerYearM, 2, '.', '');
-                        echo thainumDigit(number_format($depPerYearM, 2, '.', ''));
+                        echo (number_format($depPerYearM, 2, '.', ''));
                       }
 
 
@@ -394,7 +394,7 @@ if (isset($_GET["id"])) {
                       //   $depPerYear = ($total * $rate / 100) * ($monthDay / 365);
                       //   echo number_format($depPerYear, 2, '.', '') . "<br>";
                       // }
-                      echo thainumDigit(number_format($deptotal, 2, '.', ''));
+                      echo (number_format($deptotal, 2, '.', ''));
 
                       ?>
                 </td>
@@ -402,7 +402,7 @@ if (isset($_GET["id"])) {
                 <td>
                   <?php
                       $totalAll = $total - $deptotal;
-                      echo thainumDigit(number_format($totalAll, 2, '.', ''));
+                      echo (number_format($totalAll, 2, '.', ''));
                       ?>
                 </td>
                 <td></td>

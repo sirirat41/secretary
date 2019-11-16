@@ -50,7 +50,7 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -71,7 +71,7 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                      <tr class="text-center">
+                      <tr class="text-center body-text">
                         <th>ลำดับ</th>
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
@@ -100,11 +100,11 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <td><?php echo $row["seq"]; ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                          <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo ($row["bill_no"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-articles').val('<?php echo $id; ?>')">
@@ -166,11 +166,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
@@ -266,20 +266,20 @@ $show = 10;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-left">
+        <div class="modal-body text-left body-text">
           คุณต้องการกู้ข้อมูลชำรุดของครุภัณฑ์ใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_durable_articles.php">
             <input type="hidden" id="rowback-articles" name="articles_id">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-warning" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-warning body-text" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
         </div>
       </div>
     </div>

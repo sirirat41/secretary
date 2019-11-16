@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
     <div class="col-md-10 offset-1">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลการบริจาคออก (ครุภัณฑ์)</h6>
+          <h5 class="m-3 font-weight-bold " align="center"> ข้อมูลการบริจาคออก (ครุภัณฑ์)</h5>
           <form class="form-inline">
             <div>
           </form>
@@ -76,9 +76,9 @@ if (isset($_GET["id"])) {
             <tr>
               <td colspan="2">
                 <div class="row">
-                  <div class="col-sm-6">
-                    <label class="text" for="document_no">เลขที่เอกสาร : </label>
-                    <?php echo thainumDigit($row["document_no"]); ?>
+                  <div class="col-sm-6 ">
+                    <label class="text " for="document_no">เลขที่เอกสาร : </label>
+                    <?php echo ($row["document_no"]); ?>
                   </div>
                 </div>
               </td>
@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text" for="receive_date">วันที่บริจาค : </label>
-                    <?php echo thainumDigit($row["receive_date"]); ?>
+                    <?php echo ($row["receive_date"]); ?>
                   </div>
                 </div>
               </td>
@@ -98,7 +98,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                    <?php echo thainumDigit($row["code"]); ?>
+                    <?php echo ($row["code"]); ?>
                   </div>
                 </div>
               </td>
@@ -106,7 +106,7 @@ if (isset($_GET["id"])) {
             <tr>
               <td colspan="2">
                 <div class="row">
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 ">
                     <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>
                     <?php echo $row["donate_name"]; ?>
                   </div>
@@ -116,7 +116,7 @@ if (isset($_GET["id"])) {
             <tr>
               <td>
                 <div class="row">
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 ">
                     <label class="text" for="flag">หมายเหตุ : </label>
                     <?php echo $row["flag"]; ?>
                   </div>
@@ -152,9 +152,10 @@ if (isset($_GET["id"])) {
             </div>
           </div>
         </div>
+        </form>
       </div>
   </div>
-  </form>
+  
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->

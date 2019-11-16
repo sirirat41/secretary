@@ -52,7 +52,7 @@ $show=10;
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-wrench"></i> เพิ่มข้อมูลรายละเอียดการซ่อม(วัสดุคงทน)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-wrench"></i> เพิ่มข้อมูลรายละเอียดการซ่อม(วัสดุคงทน)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_material_repair_history.php" id="form_insert">
@@ -64,7 +64,7 @@ $show=10;
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="receive_date">วันที่ซ่อม</label>
                       <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
                     </div>
@@ -72,7 +72,7 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="repair_id">รหัสการซ่อมวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10">
@@ -87,7 +87,7 @@ $show=10;
                           </select>
                         </div>
                         <div class="col-md-2">
-                          <div class="form-group">
+                          <div class="form-group body-text">
                             <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                               <i class="fas fa-search"></i>
                             </button>
@@ -99,13 +99,13 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="fix">รายการซ่อมวัสดุ</label>
                       <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="listfix">
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="price">ราคา</label>
                       <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
                     </div>
@@ -114,14 +114,14 @@ $show=10;
 
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
                     </div>
                   </div>
 
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
                    
@@ -213,7 +213,7 @@ $show=10;
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
@@ -230,7 +230,7 @@ $show=10;
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <th>ลำดับ</th>
                           <th>วันที่ซ่อม</th>
                           <th>รหัสวัสดุ(ชำรุด)</th>
@@ -256,10 +256,10 @@ $show=10;
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><?php echo $row["seq"]; ?></td>
                             <td><?php echo $row["repair_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo $row["attribute"]; ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
@@ -297,7 +297,7 @@ $show=10;
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
@@ -424,17 +424,17 @@ $show=10;
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลรายการซ่อมวัสดุหรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>

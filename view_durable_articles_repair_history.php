@@ -56,9 +56,8 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลรายละเอียดการซ่อม(ครุภัณฑ์)</h6>
-
+                <h5 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-business-time"></i> ข้อมูลรายละเอียดการซ่อม(ครุภัณฑ์)</h5>
             </div>
             </nav>
             <form>
@@ -66,7 +65,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card" style="width: 200px;">
-                    <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+                      <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-8">

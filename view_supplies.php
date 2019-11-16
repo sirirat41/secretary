@@ -59,8 +59,8 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h6>
+                <h5 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h5>
                 <form class="form-inline">
                   <div>
                     <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
@@ -81,60 +81,60 @@ if (isset($_GET["id"])) {
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
-                      <?php echo thainumDigit($row["fullname"]); ?>
+                      <label class="text-dark body-text" for="fullname">หน่วยงานที่รับผิดชอบ : </label>
+                      <?php echo ($row["fullname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="shortname">หน่วยงาน (ย่อ) : </label>
-                      <?php echo thainumDigit($row["shortname"]); ?>
+                      <label class="text-dark body-text" for="shortname">หน่วยงาน (ย่อ) : </label>
+                      <?php echo ($row["shortname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="code">รหัส : </label>
-                      <?php echo thainumDigit($row["code"]); ?>
+                      <label class="text-dark body-text" for="code">รหัส : </label>
+                      <?php echo ($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="type">ประเภทวัสดุ : </label>
-                      <?php echo thainumDigit($row["durable_material_type_name"]); ?>
+                      <label class="text-dark body-text" for="type">ประเภทวัสดุ : </label>
+                      <?php echo ($row["durable_material_type_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                      <?php echo thainumDigit($row["attribute"]); ?>
+                      <label class="text-dark body-text" for="attribute">ลักษณะ/คุณสมบัติ : </label>
+                      <?php echo ($row["attribute"]); ?>
                     </div>
                     <div class="col-md-6">
-                      <label class="text-dark" for="unit">หน่วยนับ : </label>
-                      <?php echo thainumDigit($row["unit_name"]); ?>
+                      <label class="text-dark body-text" for="unit">หน่วยนับ : </label>
+                      <?php echo ($row["unit_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="supplies_name">ชื่อวัสดุ : </label>
-                      <?php echo thainumDigit($row["supplies_name"]); ?>
+                      <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุ : </label>
+                      <?php echo ($row["supplies_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="bill_no">เลขที่ใบเบิก : </label>
-                      <?php echo thainumDigit($row["bill_no"]); ?>
+                      <label class="text-dark body-text" for="bill_no">เลขที่ใบเบิก : </label>
+                      <?php echo ($row["bill_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="price">จำนวนเงิน : </label>
-                      <?php echo thainumDigit($row["price"]); ?>
+                      <label class="text-dark body-text" for="price">จำนวนเงิน : </label>
+                      <?php echo ($row["price"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="seller_id">ชื่อผู้ขาย : </label>
-                      <?php echo thainumDigit($row["seller_name"]); ?>
+                      <label class="text-dark body-text" for="seller_id">ชื่อผู้ขาย : </label>
+                      <?php echo ($row["seller_name"]); ?>
                     </div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?> </h5>
+          <h4 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?> </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -220,8 +220,8 @@ if (isset($_GET["id"])) {
           <img src="generate_qrcode_articles.php?id=<?php echo $id; ?>">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary" style="color: white; cursor: pointer" download>ดาวโหลด</a>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <a href="generate_qrcode_articles.php?id=<?php echo $id; ?>" class="btn btn-primary body-text" style="color: white; cursor: pointer" download>ดาวโหลด</a>
         </div>
       </div>
     </div>

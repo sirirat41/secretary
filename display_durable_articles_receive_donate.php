@@ -100,17 +100,10 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-<<<<<<< HEAD
                         <tr class="text-center body-text">
                           
                           <td><?php echo ($row["receive_date"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
-=======
-                        <tr class="text-center">
-
-                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["model"]; ?></td>
                           <td class="td-actions text-center">

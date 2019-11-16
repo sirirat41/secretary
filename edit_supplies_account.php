@@ -199,7 +199,7 @@ if (isset($_GET["id"])) {
                       <?php
                       $sqlSelect = "SELECT * FROM supplies_account_detail as a";
                       $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
-                      echo $sqlSelect;
+                      // echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];

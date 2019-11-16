@@ -39,16 +39,16 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-6 offset-3">
           <div class="card">
-            <div class="card-header card-header-text card-header-danger">
+            <div class="card-header card-header-text card-header-danger ">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-pen"></i>
                   เพิ่มข้อมูลวัสดุ
                 </h6>
@@ -57,18 +57,18 @@ require "service/connection.php";
             <br>
             <div class="card-body">
               <form method="post" action="service/service_insert_supplies_stock.php" id="form_insert">
-              <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group body-text">
                       <label for="supplies_name">ชื่อวัสดุ</label>
                       <input type="text" class="form-control" name="supplies_name" id="supplies_name" aria-describedby="supplies_name" placeholder="name">
                     </div>
-                    </div> 
                   </div>
-               
+                </div>
+
                 <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
+                  <div class="col-12">
+                    <div class="form-group body-text">
                       <label for="exampleFormControlSelect1">ประเภทวัสดุ</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" id="type">
                         <?php
@@ -84,7 +84,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="attribute">ลักษณะ/คุณสมบัติ</label>
                       <textarea class="form-control" name="attribute" id="attribute" rows="3" placeholder="address" id="attribute"></textarea>
                     </div>
@@ -94,26 +94,21 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       ตกลง
                     </button>
                     <!-- Modal -->
-
                   </div>
                 </div>
-
+              </form>
             </div>
           </div>
         </div>
       </div>
       <br>
-      </form>
-
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
-
-
   </div>
   <!-- End of Main Content -->
 
@@ -180,17 +175,17 @@ require "service/connection.php";
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body body-text">
           คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
         </div>
       </div>
     </div>

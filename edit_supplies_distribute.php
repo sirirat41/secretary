@@ -68,18 +68,10 @@ if (isset($_GET["id"])) {
             </div>
             <br>
             <div class="card-body">
-<<<<<<< HEAD
-              <form method="post" action="service/service_edit_supplies_distribute.php?id=<?php echo $id; ?>" id="form_insert">
-              <div class="row">
-                  <div class="col-md-12 ">
-                    <div class="form-group body-text">
-                      <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
-=======
               <form method="post" action="service/service_edit_supplies_distribute.php?id=<?php echo $id; ?>&type=<?php echo $_GET["type"]; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-10 ">
@@ -103,7 +95,6 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
                 <div class="row">
@@ -147,29 +138,7 @@ if (isset($_GET["id"])) {
                       ตกลง
                     </button>
                     <!-- Modal -->
-<<<<<<< HEAD
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลแจกจ่ายวัสดุ (สิ้นเปลือง) หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-=======
                 
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -258,13 +227,8 @@ if (isset($_GET["id"])) {
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-<<<<<<< HEAD
                     <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
-=======
-                    <h6 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
@@ -306,16 +270,9 @@ if (isset($_GET["id"])) {
                           ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-<<<<<<< HEAD
-                            <td><?php echo ($row["seq"]); ?></td>
-                            <td><?php echo ($row["bill_no"]); ?></td>
-                            <td><?php echo ($row["code"]); ?></td>
-                            <td><?php echo ($row["name"]); ?></td>
-=======
-                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+                            <td><?php echo $row["supplies_name"]; ?></td>
+                            <td><?php echo $row["code"]; ?></td>
+                            <td><?php echo $row["name"]; ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>

@@ -42,16 +42,16 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-6 offset-3">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-paper-plane"></i>
                   เพิ่มข้อมูลการแจกจ่ายวัสดุ
                 </h6>
@@ -62,7 +62,7 @@ require "service/connection.php";
               <form method="post" action="service/service_insert_supplies_distribute.php" id="form_insert">
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
@@ -87,13 +87,13 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวน</label>
                       <input class="form-control" type="text" placeholder="number" name="number" id="number">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="distribute_date">วันที่แจกจ่าย</label>
                       <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="distribute_date" name="distribute_date">
                     </div>
@@ -101,7 +101,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน</label>
                       <select class="form-control" name="department_id" name="department_id" id="department_id">
                         <?php
@@ -117,7 +117,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <input class="form-control" type="text" name="flag" placeholder="flag">
                     </div>
@@ -126,11 +126,11 @@ require "service/connection.php";
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       ตกลง
                     </button>
                     <!-- Modal -->
-                    
+
                   </div>
                 </div>
               </form>
@@ -220,9 +220,9 @@ require "service/connection.php";
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
-                      <form class="form-inline" id="form-search">
+                    <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
                         <button class="btn btn-outline-danger" type="submit">
@@ -237,8 +237,8 @@ require "service/connection.php";
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
-                        <td>รูปภาพ</td>
+                        <tr class="text-center body-text">
+                          <td>รูปภาพ</td>
                           <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสวัสดุ</td>
@@ -251,7 +251,7 @@ require "service/connection.php";
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-                   
+
                         $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
 
@@ -270,11 +270,11 @@ require "service/connection.php";
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
-                          <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
+                          <tr class="text-center body-text">
+                            <td><?php echo ($row["seq"]); ?></td>
+                            <td><?php echo ($row["bill_no"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["supplies_name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -324,15 +324,16 @@ require "service/connection.php";
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -343,6 +344,7 @@ require "service/connection.php";
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -366,9 +368,9 @@ require "service/connection.php";
         $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\''   + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -377,14 +379,16 @@ require "service/connection.php";
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -428,6 +432,7 @@ require "service/connection.php";
       }
       return str;
     }
+
     function selectedsupplies(id) {
       console.log(id);
       $('#modal-form-search').modal('hide');
@@ -438,22 +443,23 @@ require "service/connection.php";
 
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
