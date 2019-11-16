@@ -38,7 +38,6 @@ if (isset($_GET["id"])) {
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
