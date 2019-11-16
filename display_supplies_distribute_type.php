@@ -15,7 +15,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_department</secretary>
+  <secretary style="display : none">display_supplies_distribute_type</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,27 +44,23 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-12 ">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
+<<<<<<< HEAD
                 <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+=======
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-city"></i> แสดงข้อมูลประเภทวัสดุสิ้นเปลือง (แจกจ่าย)</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_department.php';">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_department.php';">
-                      <i class="fas fa-sync-alt"></i>
-                    </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_department.php" target="_blank">
-                      <i class="fas fa-print"></i>
-                    </a>
                 </form>
             </div>
           </div>
@@ -75,6 +71,7 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
+<<<<<<< HEAD
                       <tr class="text-center body-text">
                         <th>ชื่อหน่วยงาน</th>
                         <th>ตำแหน่ง</th>
@@ -84,6 +81,11 @@ $show = 10;
                         <th>โทรสาร</th>
 
                         <th class="text-center">การทำงาน</th>
+=======
+                      <tr class="text-center">
+                        <th>ชื่อประเภท</th>
+    
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                       </tr>
                     </thead>
                     <tbody>
@@ -96,17 +98,20 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM department";
+                      $sqlSelect = "SELECT * FROM durable_material_type";
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (fullname like '%$keyword%')";
+                        $sqlSelect .= " and (name like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
+                        
+                      
                         ?>
+<<<<<<< HEAD
                         <tr class="text-center body-text">
                           <td><a class="nav-link active" href='display_department_ddl.php?id=<?php echo $row['id']; ?>'>
                               <?php echo $row["fullname"]; ?></a></td>
@@ -130,6 +135,12 @@ $show = 10;
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
+=======
+                        <tr class="text-center">
+                          <td><a class="nav-link active" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" href='display_supplies_distribute.php?type=<?php echo $row['id']; ?>'>
+                              <?php echo $row["name"]; ?></a></td>
+                  
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         </tr>
                       <?php
                       }
@@ -157,11 +168,11 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT * FROM department";
+            $sqlSelectCount = "SELECT * FROM durable_material_type";
             $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (fullname like '%$keyword%')";
+              $sqlSelectCount .= " and (name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -307,5 +318,17 @@ $show = 10;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

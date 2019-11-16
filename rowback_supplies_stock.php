@@ -24,8 +24,6 @@ $show = 10
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -43,6 +41,11 @@ $show = 10
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-12">
           <div class="card shadow mb-4">
@@ -53,7 +56,10 @@ $show = 10
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                  <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_supplies_stock.php';">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_supplies_stock.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>
@@ -101,8 +107,8 @@ $show = 10
                           <td><?php echo thainumDigit($row["attribute"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
-                      
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-stock').val('<?php echo $id; ?>')">
+
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-stock').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -120,7 +126,7 @@ $show = 10
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -132,8 +138,8 @@ $show = 10
               </a>
             </li>
             <?php
-                 $sqlSelectCount = "SELECT ss.*, t.name FROM supplies_stock as ss, durable_material_type as t";
-                 $sqlSelectCount .= " WHERE ss.type = t.id and ss.status = 0";
+            $sqlSelectCount = "SELECT ss.*, t.name FROM supplies_stock as ss, durable_material_type as t";
+            $sqlSelectCount .= " WHERE ss.type = t.id and ss.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
@@ -176,10 +182,10 @@ $show = 10
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -280,5 +286,17 @@ $show = 10
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

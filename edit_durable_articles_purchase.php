@@ -4,16 +4,26 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
+<<<<<<< HEAD
   $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles_purchase LEFT JOIN durable_articles ON durable_articles.id = durable_articles_purchase.product_id ";
   $sql .= "WHERE durable_articles_purchase.id = $id ";
   //echo $sql ;
+=======
+  $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles LEFT JOIN durable_articles_purchase ON durable_articles.id = durable_articles_purchase.product_id ";
+  $sql .= "WHERE durable_articles.id = $id ";
+  echo $sql;
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
   $orderDate = $item["purchase_date"];
   $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
 
   //item.code java odject , item["code"] php
 
@@ -60,6 +70,11 @@ if (isset($_GET["id"])) {
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
+      <div class="row ">
         <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
@@ -90,8 +105,13 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6 body-text">
                     <div class="form-group">
+<<<<<<< HEAD
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control body-text" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
+=======
+                      <label for="order_by">ชื่อผู้จัดซื้อ</label>
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     </div>
                   </div>
                   <div class="col-6 body-text">
@@ -105,7 +125,11 @@ if (isset($_GET["id"])) {
                   <div class="col-12 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
+<<<<<<< HEAD
                       <input class="form-control body-text" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="articles_pattern" value="<?php echo $item["code"]; ?>" readonly>
+=======
+                      <input class="form-control" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="code" value="<?php echo $item["code"]; ?>">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                       <small style="color: red"> *ตัวอย่าง: ค.สง 7700-100-{run_4}-2557</small>
                     </div>
                   </div>
@@ -394,11 +418,16 @@ if (isset($_GET["id"])) {
                 <br>
                 <div class="row">
                   <div class="col-12">
+<<<<<<< HEAD
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+=======
+                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
                     <!-- Modal -->
+<<<<<<< HEAD
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -418,6 +447,9 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
+=======
+
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -490,8 +522,8 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- 
+  <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -585,26 +617,45 @@ if (isset($_GET["id"])) {
               </ul>
             </nav>
           </div>
-        </div>
-        <script>
-          function search() {
-            var kw = $("#keyword").val();
-            $.ajax({
-              url: 'service/service_search_json_durable_articles.php',
-              dataType: 'JSON',
-              type: 'GET',
-              data: {
-                keyword: kw
-              },
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            })
-          }
-        </script>
+        </div> -->
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_durable_articles.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+  </script>
 </body>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

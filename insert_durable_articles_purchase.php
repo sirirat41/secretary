@@ -39,7 +39,11 @@ require "service/connection.php";
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row "></div>
       <div class="col-10 offset-1">
         <div class="card">
@@ -70,9 +74,15 @@ require "service/connection.php";
               </div>
               <div class="row">
                 <div class="col-6 ">
+<<<<<<< HEAD
                   <div class="form-group body-text">
                     <label for="order_no">ชื่อผู้จัดซื้อ</label>
                     <input type="text" class="form-control body-text" name="order_by" id="order_by" placeholder="order_by">
+=======
+                  <div class="form-group">
+                    <label class="bmd-label-floating">ชื่อผู้จัดซื้อ</label>
+                    <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $_SESSION["fullname"]; ?>">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
                 <div class="col-6 ">
@@ -95,7 +105,11 @@ require "service/connection.php";
                 <div class="col-6 ">
                   <div class="form-group body-text">
                     <label for="receiver">ชื่อผู้รับ</label>
+<<<<<<< HEAD
                     <input type="text" class="form-control body-text" name="receiver" id="receiver" placeholder="receiver">
+=======
+                    <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $_SESSION["fullname"]; ?>">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
                 <div class="col-6 ">
@@ -173,7 +187,7 @@ require "service/connection.php";
                       $sqlSelectType = "SELECT * FROM department";
                       $resultType = mysqli_query($conn, $sqlSelectType);
                       while ($row = mysqli_fetch_assoc($resultType)) {
-                        echo '<option value="' . $row["id"] . '">' . "อาคาร ". $row["bulding"] . "ชั้น ". $row["floor"] . '</option>';
+                        echo '<option value="' . $row["id"] . '">' . "อาคาร " . $row["bulding"] . "ชั้น " . $row["floor"] . '</option>';
                       }
                       ?>
                     </select>
@@ -372,6 +386,7 @@ require "service/connection.php";
                     บันทึก
                     <div class="ripple-container"></div>
                   </button>
+<<<<<<< HEAD
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -392,6 +407,9 @@ require "service/connection.php";
                       </div>
                     </div>
                   </div>
+=======
+                
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 </div>
             </form>
           </div>
@@ -609,6 +627,7 @@ require "service/connection.php";
 
             })
           })
+
           function readURL(input) {
             if (input.files && input.files[0]) {
               var reader = new FileReader();
@@ -627,5 +646,24 @@ require "service/connection.php";
         </script>
 </body>
 
-
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body ">
+                          คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 </html>

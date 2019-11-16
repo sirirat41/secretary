@@ -33,85 +33,90 @@ require "service/connection.php";
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include "navigation/navbar.php";?>
+    <?php include "navigation/navbar.php"; ?>
 
-        </nav>
-        <!-- End of Topbar -->
+    </nav>
+    <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
+    <!-- Begin Page Content -->
 
-        <div class="container-fluid">
-        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-          <div class="row">
-            <div class="col-md-6 offset-md-3">
-              <div class="card shado mb-6">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลสมาชิก</h6>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="service/service_insert_user.php" id="form_insert">
-                      <div class="row">
-                          <div class="col-md-12 ">
-                              <div class="form-group">
-                                <label for="username">ชื่อสมาชิก</label>
-                                <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username">
-                              </div>
-                          </div>
-                      </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="password">รหัสผ่าน</label>
-                              <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password">
-                            </div>
-                        </div>
-                    </div>
-
-                  <div class="row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="surname">ชื่อ</label>
-                            <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="lastname">นามสกุล</label>
-                          <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname">
-                        </div>
+    <div class="container-fluid">
+      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card shado mb-6">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลสมาชิก</h6>
+            </div>
+            <div class="card-body">
+              <form method="post" action="service/service_insert_user.php" id="form_insert">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label for="username">ชื่อสมาชิก</label>
+                      <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username">
                     </div>
                   </div>
+                </div>
 
-                
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="tel">เบอร์โทร</label>
-                          <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
-                        </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="password">รหัสผ่าน</label>
+                      <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password">
                     </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
-                          <label for="position">ตำแหน่ง</label>
-                          <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position">
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                
+
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="email">อีเมล์</label>
-                          <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email">
-                        </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="surname">ชื่อ</label>
+                      <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname">
                     </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="lastname">นามสกุล</label>
+                      <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="tel">เบอร์โทร</label>
+                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label for="position">ตำแหน่ง</label>
+                      <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="email">อีเมล์</label>
+                      <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email">
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="u_type" class="bmd-label-floating">ประเภท</label>
-                          <select class="form-control" id="u_type" name="u_type">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="u_type" class="bmd-label-floating">ประเภท</label>
+                      <select class="form-control" id="u_type" name="u_type">
                         <?php
                         $sqlSelectType = "SELECT * FROM u_type";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -120,64 +125,45 @@ require "service/connection.php";
                         }
                         ?>
                       </select>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
                 </div>
-                
+
                 <div class="row">
-                    <div class="col-md-12">
-                      <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal" >
-                        บันทึก
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
                       <div class="ripple-container"></div></button>
 
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                  คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                <button type="button" class="btn btn-danger"onclick="$('#form_insert').submit();">บันทึก</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                      
-                    
-                      </div>
-                    </form>
+                  </div>
+
+
                 </div>
-              </div>
+              </form>
             </div>
           </div>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
-        <!-- /.container-fluid -->
-
-
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+      <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -227,4 +213,23 @@ require "service/connection.php";
 
 </body>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

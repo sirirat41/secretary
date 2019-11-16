@@ -42,6 +42,11 @@ $show = 5;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
@@ -51,8 +56,9 @@ $show = 5;
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_unit.php';">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
+                      <i class="fas fa-search"></i></button>
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_unit.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                     <form>
@@ -93,7 +99,7 @@ $show = 5;
                           <tr class="text-center">
                             <td><?php echo thainumDigit($row["name"]); ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-unit').val('<?php echo $id; ?>')">
+                              <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-unit').val('<?php echo $id; ?>')">
                                 <i class="fas fa-trash-alt"></i>
                               </button>
                             </td>
@@ -111,17 +117,17 @@ $show = 5;
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item">
-              <?php
-              $prevPage = "#";
-              if ($page > 1) {
-                $prevPage = "?page=" . ($page - 1);
-              }
+                <?php
+                $prevPage = "#";
+                if ($page > 1) {
+                  $prevPage = "?page=" . ($page - 1);
+                }
 
-              ?>
-              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
+                ?>
+                <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
               <?php
               $sqlSelectCount = "SELECT * FROM unit";
               $sqlSelectCount .= " WHERE status = 0";
@@ -144,7 +150,7 @@ $show = 5;
               $start_i = ($countDiv * $pageNumber);
               $sectionGroup = (($countDiv * $pageNumber) + $pageNumber);
               $end_i =  $sectionGroup > $maxshowpage ? $maxshowpage : $sectionGroup;
-  
+
               for ($i = $start_i; $i < $end_i; $i++) {
                 if ($i != 0 && $i == $start_i) {
                   ?>
@@ -167,13 +173,13 @@ $show = 5;
                 }
               }
               ?>
-        <?php
-               $nextPage = "#";
+              <?php
+              $nextPage = "#";
               if ($page < $maxshowpage) {
-                
+
                 $nextPage = "?page=" . ($page + 1);
               }
-  
+
               ?>
               <li class="page-item">
                 <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
@@ -272,5 +278,17 @@ $show = 5;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

@@ -1,6 +1,8 @@
 <?php
 require "service/connection.php";
 $show = 10;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,16 +52,16 @@ $show = 10;
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_supplies.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies.php';">
+                    <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_supplies.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_supplies.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -71,8 +73,12 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
+<<<<<<< HEAD
                       <tr class="text-center body-text">
                         <th>ลำดับ</th>
+=======
+                      <tr class="text-center">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
@@ -97,28 +103,39 @@ $show = 10;
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
                       // echo $sqlSelect;
+
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"]
+                        $id = $row["id"];
+                        $editPath = "";
+                        if ($_SESSION["user_type"] == 1) {
+                          $editPath = "edit_supplies_purchase.php?id=" . $id;
+                        } else {
+                          $editPath = "edit_supplies_purchase_request.php?id=" . $id;
+                        }
                         ?>
+<<<<<<< HEAD
                         <tr class="text-center body-text">
                           <td><?php echo ($row["seq"]); ?></td>
+=======
+                        <tr class="text-center">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo ($row["bill_no"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo ($row["supplies_name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = '<?php echo $editPath; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_supplies.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_supplies.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-supplies').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" onclick="showDialog(<?php echo $row["id"]; ?>);">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -136,7 +153,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -148,12 +165,12 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
-           $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
-           if (isset($_GET["keyword"])) {
-             $keyword = $_GET["keyword"];
-             $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
-           }
+            $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
+            $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
+            if (isset($_GET["keyword"])) {
+              $keyword = $_GET["keyword"];
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -192,10 +209,10 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -282,19 +299,82 @@ $show = 10;
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+<<<<<<< HEAD
         <div class="modal-body text-left body-text">
           คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+=======
+        <div class="modal-body text-left">
+          <?php if ($_SESSION["user_type"] == 1) { ?>
+            คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          <?php } else { ?>
+            กรุณาใส่เหตุการลบข้อมูล
+          <?php } ?>
+          <input type="hidden" id="temp-id">
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
           <form id="form-drop" method="post" action="service/service_drop_supplies.php">
             <input type="hidden" id="remove-supplies" name="supplies_id">
+          </form>
+          <?php if ($_SESSION["user_type"] == 2) { ?>
+            <br>
+            <textarea class="form-control" id="reason" cols="30" rows="10"></textarea>
+          <?php } ?>
         </div>
         <div class="modal-footer">
+<<<<<<< HEAD
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
           <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+=======
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <?php if ($_SESSION["user_type"] == 1) { ?>
+            <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit();">ยืนยันการลบข้อมูล</button>
+          <?php } else { ?>
+            <button type="button" class="btn btn-danger" onclick="rejectRequest();">ยืนยันการร้องขอลบข้อมูล</button>
+          <?php } ?>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
         </div>
       </div>
     </div>
   </div>
 
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+
+  function showDialog(id) {
+    $('#temp-id').val(id);
+    $('#remove-supplies').val(id);
+    $('#exampleModal').modal();
+  }
+
+  function rejectRequest() {
+    var id = $('#temp-id').val();
+    var url = "service/service_delete_request.php?id=" + id;
+    var reason = $('#reason').val();
+    if (reason != "") {
+      $.ajax({
+        url: url,
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+          reason: reason
+        },
+        success: function(data) {
+          window.location = "display_supplies_request.php";
+        }
+      })
+    } else {
+      alert('กรุณาระบเหตุผล');
+    }
+  }
+</script>
 
 </html>

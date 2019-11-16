@@ -40,6 +40,11 @@ $show = 10;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="card shadow mb-4">
@@ -50,8 +55,9 @@ $show = 10;
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button type="button" rel="tooltip" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_receive_donate.php';">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
+                      <i class="fas fa-search"></i></button>
+                    <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_receive_donate.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>
@@ -99,7 +105,7 @@ $show = 10;
                           <td><?php echo thainumDigit($row["code"]); ?></td>
                           <td><?php echo $row["donate_name"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-receive_donate').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-receive_donate').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
 
@@ -278,5 +284,17 @@ $show = 10;
   </div>
 
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+// Initialize tooltip component
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+// Initialize popover component
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
 
 </html>

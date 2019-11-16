@@ -50,16 +50,16 @@ $show = 10;
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_transfer_in.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_durable_material_transfer_in.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_transfer_in.php';">
+                    <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_material_transfer_in.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary"  href="printall_durable_material_transfer_in.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_material_transfer_in.php" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
                 </form>
@@ -89,11 +89,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute FROM durable_material as ar, durable_material_transfer_in as trans";
-                      $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
+                      $sqlSelect = "SELECT trans.*, m.code ,m.attribute FROM durable_material as m, durable_material_transfer_in as trans";
+                      $sqlSelect .= " WHERE trans.product_id = m.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%' or m.attribute like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by trans.id desc LIMIT $start, $show";
@@ -107,17 +107,17 @@ $show = 10;
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning"
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" 
                             onclick="window.location = 'edit_durable_material_transfer_in.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_transfer_in.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_durable_material_transfer_in.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_transfer_in.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_durable_material_transfer_in.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" 
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" 
                             data-target="#exampleModal" onclick="$('#remove-transfer_in').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
@@ -148,11 +148,11 @@ $show = 10;
               </a>
             </li>
             <?php
-              $sqlSelectCount = "SELECT trans.*, ar.code ,ar.attribute FROM durable_material as ar, durable_material_transfer_in as trans";
-              $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 1";
+              $sqlSelectCount = "SELECT trans.*, m.code ,m.attribute FROM durable_material as m, durable_material_transfer_in as trans";
+              $sqlSelectCount .= " WHERE trans.product_id = m.id and trans.status = 1";
               if (isset($_GET["keyword"])) {
                 $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%')";
+                $sqlSelectCount .= " and (m.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_from like '%$keyword%'  or m.attribute like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by trans.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -297,5 +297,17 @@ $show = 10;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

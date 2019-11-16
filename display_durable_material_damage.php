@@ -46,21 +46,26 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
+<<<<<<< HEAD
                 <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด(วัสดุคงทน)</h6>
+=======
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-fw fa-house-damage"></i> แสดงข้อมูลชำรุด(วัสดุคงทน)</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_material_damage.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_durable_material_damage.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_material_damage.php';">
+                    <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_material_damage.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_material_damage.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_material_damage.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -94,7 +99,7 @@ $show = 10;
                       $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (da.damage_date like '%$keyword%' or m.code like '%$keyword%')";
+                        $sqlSelect .= " and (da.damage_date like '%$keyword%' or m.code like '%$keyword%' or m.attribute like '%$keyword%' or m.name like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by da.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -107,16 +112,16 @@ $show = 10;
                         <td><?php echo ($row["name"]); ?></td>
                         <td><?php echo ($row["damage_date"]); ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
+                          <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_durable_material_damage.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-clipboard-list"></i>
                           </button>
-                          <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_material_damage.php?id=<?php echo $row['id']; ?>" target="_blank">
+                          <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_durable_material_damage.php?id=<?php echo $row['id']; ?>" target="_blank">
                             <i class="fas fa-print"></i>
                           </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-material').val('<?php echo $id; ?>')">
                             <i class="fas fa-trash-alt"></i>
                           </button>
                           <?php
@@ -146,11 +151,11 @@ $show = 10;
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT da.*, a.code FROM durable_material_damage as da, durable_material as a";
-             $sqlSelectCount .= " WHERE da.product_id = a.id and da.status = 1";
+             $sqlSelectCount = "SELECT da.*, m.code, m.picture ,m.attribute ,m.name FROM durable_material_damage as da, durable_material as m";
+             $sqlSelectCount .= " WHERE da.product_id = m.id and da.status = 1";
              if (isset($_GET["keyword"])) {
                $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
+               $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or m.code like '%$keyword%' or m.attribute like '%$keyword%' or m.name like '%$keyword%')";
              }
              $sqlSelectCount .= " Order by da.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -295,5 +300,17 @@ $show = 10;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

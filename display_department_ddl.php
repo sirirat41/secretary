@@ -56,7 +56,7 @@ $show = 10;
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -65,10 +65,10 @@ $show = 10;
                 <form class="form-inline" id="form-search">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_department.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_department.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -306,5 +306,17 @@ $show = 10;
   </script>
 
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

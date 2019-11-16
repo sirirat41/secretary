@@ -41,7 +41,11 @@ require "service/connection.php";
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <br>
+      <div class="row ">
+            <p class="" onclick="window.history.back()" style="cursor: pointer">
+            <i class="fas fa-angle-left"></i> กลับ
+            </p>
+          </div>
       <div class="row ">
         <div class="col-6 offset-3">
           <div class="card">
@@ -126,25 +130,7 @@ require "service/connection.php";
                       ตกลง
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </form>
@@ -378,9 +364,9 @@ require "service/connection.php";
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
+        $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\''   + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
     
       }
@@ -443,6 +429,7 @@ require "service/connection.php";
       return str;
     }
     function selectedsupplies(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
@@ -450,5 +437,23 @@ require "service/connection.php";
 
 
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลแจกจ่าย(วัสดุ)หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

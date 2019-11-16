@@ -6,9 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $damageid = $_POST["damage_id"];
     $repairdate = $_POST["repair_date"];
     $place = $_POST["place"];
+    $flag = $_POST["flag"];
 
-    $sql = "INSERT INTO durable_articles_repair(seq, damage_id, repair_date, place)";
-    $sql .= " VALUES($seq, $damageid, '$repairdate', '$place')";
+    $sql = "INSERT INTO durable_articles_repair(seq, damage_id, repair_date, place, flag)";
+    $sql .= " VALUES($seq, $damageid, '$repairdate', '$place', '$flag')";
 
     $log = "เพิ่มข้อมูลการซ่อมครุภัณฑ์";
     logServer($conn, $log);

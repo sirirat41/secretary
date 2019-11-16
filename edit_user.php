@@ -46,6 +46,7 @@ if (isset($_GET["id"])) {
 
     <!-- Begin Page Content -->
 
+<<<<<<< HEAD
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
@@ -63,6 +64,20 @@ if (isset($_GET["id"])) {
                       <input type="text" class="form-control body-text" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
                     </div>
                   </div>
+=======
+        <div class="container-fluid">
+        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+        <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="card shado mb-6">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> แก้ไขข้อมูลผู้ใช้งาน</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 </div>
 
                 <div class="row">

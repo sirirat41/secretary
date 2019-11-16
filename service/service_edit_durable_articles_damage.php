@@ -1,20 +1,30 @@
-<?php
+<?php 
 require 'connection.php';
-if (isset($_GET['id'])) {
+if(isset($_GET['id'])) {
+    //purchase data
     $id = $_GET["id"];
-
-    //damage data
     $productId = $_POST["product_id"];
-    $damage_date = $_POST["damage_date"];
+    $damageDate = $_POST["damage_date"];
     $flag = $_POST["flag"];
 
-    $log = "แก้ไขข้อมูลการชำรุดครุภัณฑ์ รหัส " . $id ;
+    $sqlSelect = "SELECT * FROM durable_articles_damage WHERE id = $id";
+    $resultOld = mysqli_query($conn, $sqlSelect);
+    $dataOld = mysqli_fetch_assoc($resultOld);
+    $oldProductID = $dataOld["product_id"];
+    $updateOld = "UPDATE durable_articles SET status = 1 WHERE id = $oldProductID";
+    mysqli_query($conn, $updateOld);
+
+    $log = "แก้ไขข้อมูลการชำรุดวัสดุคงทน รหัส " . $id ;
     logServer($conn, $log);
 
-    $updateDamage = "UPDATE durable_articles_damage SET damage_date = '$damage_date',";
-    $updateDamage .= " flag = '$flag'";
-    $updateDamage .= " WHERE id = $id";
+    $updatePurchase = "UPDATE durable_articles SET status = 3";
+    $updatePurchase .= " WHERE id = $productId";
+    mysqli_query($conn, $updatePurchase) or die("Cannot update damage: " . mysqli_error($conn));
 
-    mysqli_query($conn, $updateDamage) or die("Cannot update damage: ". mysqli_error($conn));
+    $updatePurchase = "UPDATE durable_articles_damage SET damage_date = '$damageDate',";
+    $updatePurchase .= " product_id = $productId, flag = '$flag'";
+    $updatePurchase .= " WHERE id = $id";
+    mysqli_query($conn, $updatePurchase) or die("Cannot update damage: " . mysqli_error($conn));
     header('Location: ../display_durable_articles_damage.php?message=แก้ไขข้อมูลสำเร็จ');
 }
+?>

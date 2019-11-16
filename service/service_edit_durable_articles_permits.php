@@ -14,8 +14,19 @@ if(isset($_GET["id"])) {
     $log = "แก้ไขข้อมูลการยืม-คืนครุภัณฑ์ รหัส " . $id ;
     logServer($conn, $log);
 
-    $updatepermit = "UPDATE durable_articles_permits SET book_no = '$book_no',";
-    $updatepermit .= " permit_date = '$permit_date', receive_date = '$receivedate', department_id = $department_id, flag = '$flag'";
+    $sqlSelect = "SELECT * FROM durable_articles_permits WHERE id = $id";
+    $resultOld = mysqli_query($conn, $sqlSelect);
+    $dataOld = mysqli_fetch_assoc($resultOld);
+    $oldProductID = $dataOld["product_id"];
+    $updateOld = "UPDATE durable_articles SET status = 1 WHERE id = $oldProductID";
+    mysqli_query($conn, $updateOld);
+
+    $updatepermit = "UPDATE durable_articles SET status = 2";
+    $updatepermit .= " WHERE id = $product_id";
+    mysqli_query($conn, $updatepermit) or die("Cannot update permits: " . mysqli_error($conn));
+
+    $updatepermit = "UPDATE durable_articles_permits SET product_id = $product_id,";
+    $updatepermit .= " book_no = '$book_no', permit_date = '$permit_date', receive_date = '$receivedate', department_id = $department_id, flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
         if ($keyword != null) {

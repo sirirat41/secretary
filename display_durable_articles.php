@@ -50,16 +50,16 @@ $show = 10;
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_durable_articles_purchase.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_durable_articles_purchase.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_durable_articles.php';">
+                    <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_articles.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_durable_articles.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_articles.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -93,7 +93,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                      $sqlSelect .= " WHERE a.type = t.id and a.status != 0 ";
+                      $sqlSelect .= " WHERE a.type = t.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%')";
@@ -112,16 +112,16 @@ $show = 10;
                           <td><?php echo ($row["asset_no"]); ?></td>
                           <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_durable_articles.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" class="btn btn-success" onclick="window.location = 'view_durable_articles.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_durable_articles.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" style="color: white" href="print_durable_articles.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-articles').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -138,8 +138,8 @@ $show = 10;
         </div>
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <?php
+            <li class="page-item">
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -152,7 +152,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-            $sqlSelectCount .= " WHERE a.type = t.id and a.status != 0";
+            $sqlSelectCount .= " WHERE a.type = t.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%')";
@@ -195,10 +195,10 @@ $show = 10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -298,5 +298,18 @@ $show = 10;
     </div>
   </div>
 </body>
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

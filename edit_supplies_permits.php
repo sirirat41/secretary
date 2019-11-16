@@ -50,6 +50,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
@@ -340,7 +345,7 @@ if (isset($_GET["id"])) {
     function search() {
        var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
          type: 'GET',
         success: function(data) {

@@ -11,9 +11,20 @@ if(isset($_GET['id'])) {
 
     $log = "แก้ไขข้อมูลการบริจาคครุภัณฑ์ รหัส " . $id ;
     logServer($conn, $log);
+    
+    $sqlSelect = "SELECT * FROM durable_articles_donate WHERE id = $id";
+    $resultOld = mysqli_query($conn, $sqlSelect);
+    $dataOld = mysqli_fetch_assoc($resultOld);
+    $oldProductID = $dataOld["product_id"];
+    $updateOld = "UPDATE durable_articles SET status = 1 WHERE id = $oldProductID";
+    mysqli_query($conn, $updateOld);
+    
+    $updateDonate = "UPDATE durable_articles SET status = 8";
+    $updateDonate .= " WHERE id = $productId";
+    mysqli_query($conn, $updateDonate) or die("Cannot update damage: " . mysqli_error($conn));
 
     $updateDonate = "UPDATE durable_articles_donate SET document_no = '$documentNo',";
-    $updateDonate .= " receive_date = '$receiveDate', ";
+    $updateDonate .= " product_id = $productId, receive_date = '$receiveDate', ";
     $updateDonate .= " donate_name = '$donateName', flag = '$flag'";
     $updateDonate .= " WHERE id = $id";
     mysqli_query($conn, $updateDonate) or die("Cannot update donate: " . mysqli_error($conn));

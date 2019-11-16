@@ -4,12 +4,12 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_material_damage as d ,durable_articles as a WHERE d.id = $id";
+  $sql = "SELECT * FROM durable_material_damage as d , durable_material as a WHERE d.id = $id and d.product_id = a.id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["damage_date"];
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
-$show=10;
+  $show = 10;
   //item.code java odject , item["code"] php
 
 }
@@ -51,7 +51,11 @@ $show=10;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <br>
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-8 offset-2">
           <div class="card">
@@ -67,12 +71,39 @@ $show=10;
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_damage.php?id=<?php echo $id; ?>" id="form_insert">
               <div class="row">
+<<<<<<< HEAD
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+=======
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label for="product_id">รหัสวัสดุ</label>
+                      <div class="row">
+                        <div class="col-10 ">
+                          <select class="form-control" name="product_id" id="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_material";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] .'"selected>' . $row["code"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-6 ">
@@ -95,6 +126,7 @@ $show=10;
                       บันทึก
                     </button>
                     <!-- Modal -->
+<<<<<<< HEAD
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -114,6 +146,9 @@ $show=10;
                         </div>
                       </div>
                     </div>
+=======
+
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -207,9 +242,9 @@ $show=10;
                     <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -234,8 +269,8 @@ $show=10;
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
+
+
                         $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
@@ -300,15 +335,16 @@ $show=10;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -319,6 +355,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -343,7 +380,7 @@ $show=10;
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -352,14 +389,16 @@ $show=10;
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -403,6 +442,7 @@ $show=10;
       }
       return str;
     }
+
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
@@ -411,5 +451,24 @@ $show=10;
 
 </body>
 
-</html>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        คุณต้องการบันทึกข้อมูลชำรุด(วัสดุ)หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+</html>

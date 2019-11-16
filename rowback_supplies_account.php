@@ -24,8 +24,6 @@ $show = 10
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -43,6 +41,11 @@ $show = 10
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-12">
           <div class="card shadow mb-4">
@@ -52,10 +55,11 @@ $show = 10
                   <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลวทะเบียนคุมวัสดุสิ้นเปลือง</h6>
                 <form class="form-inline">
                   <div>
-              
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_supplies_account.php';">
+
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
+                      <i class="fas fa-search"></i></button>
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_supplies_account.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>
@@ -105,7 +109,7 @@ $show = 10
                           <td><?php echo thainumDigit($row["stock"]); ?></td>
                           <td><?php echo thainumDigit($row["name"]); ?></td>
                           <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-account').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-account').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           </td>
@@ -123,7 +127,7 @@ $show = 10
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -135,8 +139,8 @@ $show = 10
               </a>
             </li>
             <?php
-               $sqlSelectCount = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
-               $sqlSelectCount .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 0 ";
+            $sqlSelectCount = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
+            $sqlSelectCount .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 0 ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
@@ -179,10 +183,10 @@ $show = 10
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -283,5 +287,17 @@ $show = 10
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

@@ -43,6 +43,11 @@ $show = 10;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+            <p class="" onclick="window.history.back()" style="cursor: pointer">
+            <i class="fas fa-angle-left"></i> กลับ
+            </p>
+          </div>
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
@@ -73,7 +78,7 @@ $show = 10;
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material ";
+                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 3";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -103,7 +108,7 @@ $show = 10;
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="place">หมายเหตุ</label>
+                      <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="1"></textarea>
                     </div>
                   </div>
@@ -113,25 +118,7 @@ $show = 10;
                     <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการซ่อมวัสดุหรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  
                   </div>
                 </div>
             </div>
@@ -257,10 +244,10 @@ $show = 10;
                           ?>
                           <tr class="text-center">
                             <td><?php echo $row["damage_date"]; ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
+                            <td><?php echo $row["code"]; ?></td>
                             <td><?php echo $row["flag"]; ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["product_id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -311,12 +298,6 @@ $show = 10;
         search();
       })
     function search() {
-<<<<<<< HEAD
-      $('#pagination').empty();
-      $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
-      $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
-=======
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material_damage.php?keyword=' + keyword,
@@ -345,22 +326,15 @@ $show = 10;
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var product_id = item["product_id"];
+        var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
-<<<<<<< HEAD
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-=======
-            $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
-            $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
-            $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          generatePagination();
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.product_id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
       }
     }
     function nextPage() {
@@ -377,8 +351,6 @@ $show = 10;
         changePage(currentPage);
       }
     }
-<<<<<<< HEAD
-=======
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -423,14 +395,31 @@ $show = 10;
       return str;
     }
 
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
-
     function selectedmaterial(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#damage_id').val(id);
     }
   </script>
 
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลการซ่อมวัสดุหรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

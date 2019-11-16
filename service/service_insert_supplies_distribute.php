@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = mysqli_fetch_assoc($result);
     $stockID = $row["id"];
     $stock = $row["stock"];
+    $type = $row["type"];
 
     $log = "เพิ่มข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
     logServer($conn, $log);
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
             $sqlUpdatestock = "UPDATE supplies_stock SET stock = stock - $number WHERE id = $stockID";
             mysqli_query($conn, $sqlUpdatestock);
-            header('Location: ../display_supplies_distribute.php?messagee=เพิ่มข้อมูลสำเร็จ');
+            header('Location: ../display_supplies_distribute.php?type='.$type.'&messagee=เพิ่มข้อมูลสำเร็จ');
         } else {
             header('Location: ../display_supplies_distribute.php?messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }

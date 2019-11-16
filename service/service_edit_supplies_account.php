@@ -4,6 +4,10 @@ require "connection.php";
 if(isset($_GET["id"])) {
     //supplies_diatribute data
     $id = $_GET["id"];
+    $product_id = $_POST["product_id"];
+    $supplies_id = $_POST["supplies_id"];
+    $unit_id = $_POST["unit_id"];
+    $department = $_POST["department"];
     $year = $_POST["year"];
         $distribute_date = $_POST["distribute_date"];
         $receive_from = $_POST["receive_from"];
@@ -29,7 +33,7 @@ if(isset($_GET["id"])) {
         logServer($conn, $log);
      
         $updatesupplies = "UPDATE supplies_account SET year = $year,";
-        $updatesupplies .= " distribute_date = '$distribute_date', receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = '$stock', flag = '$flag'";
+        $updatesupplies .= " product_id = '$product_id',supplies_id = '$supplies_id',unit_id = '$unit_id',department = '$department',distribute_date = '$distribute_date', receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = '$stock', flag = '$flag'";
         $updatesupplies .= " WHERE id = $id"; 
         if (mysqli_query($conn, $updatesupplies) or die("Cannot update unit: " . mysqli_error($conn))) {
             header('Location: ../display_supplies_account.php?message=เพิ่มข้อมูลสำเร็จ');

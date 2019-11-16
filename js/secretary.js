@@ -160,6 +160,11 @@ $(document).ready(function () {
             $('.collapse-supplies').addClass('show');
             $('.collapse-supplies .permits').addClass('active');
             break;
+        case "display_supplies_distribute_type":  //จัดซื้อ
+            $('.nav-supplies').addClass('active');
+            $('.collapse-supplies').addClass('show');
+            $('.collapse-supplies .distribute').addClass('active');
+            break;
         case "display_supplies_stock":  //จัดซื้อ
             $('.nav-supplies').addClass('active');
             $('.collapse-supplies').addClass('show');
@@ -224,6 +229,14 @@ $(document).ready(function () {
             $('.nav-setting').addClass('active');
             $('.collapse-setting').addClass('show');
             $('.collapse-setting .insertm').addClass('active');
+            break;
+
+        // Approve
+
+        case "display_supplies_request":
+            $('.nav-approve').addClass('active');
+            $('.collapse-approve').addClass('show');
+            $('.collapse-approve .display-request').addClass('active');
             break;
 
         // ตั้งค่า display

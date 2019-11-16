@@ -9,7 +9,7 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $receivedate = $item["receive_date"];
   $newReceivedate = date("Y-m-d", strtotime($receivedate));
-  $show=10;
+  $show = 10;
 }
 ?>
 
@@ -49,6 +49,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="card shado mb-4">
@@ -72,12 +77,39 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+=======
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label for="product_id">รหัสครุภัณฑ์</label>
+                      <div class="row">
+                        <div class="col-10 ">
+                          <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-7">
@@ -107,6 +139,7 @@ if (isset($_GET["id"])) {
                       บันทึก
                       <div class="ripple-container"></div></button>
 
+<<<<<<< HEAD
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -126,6 +159,8 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
+=======
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
             </div>
@@ -212,9 +247,9 @@ if (isset($_GET["id"])) {
                     <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -239,8 +274,8 @@ if (isset($_GET["id"])) {
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
+
+
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
@@ -298,22 +333,23 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
-  var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -324,6 +360,7 @@ if (isset($_GET["id"])) {
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
       var body = $('#modal-articles-body');
@@ -347,22 +384,25 @@ if (isset($_GET["id"])) {
         $('<td>' + type + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-      
+
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -406,6 +446,7 @@ if (isset($_GET["id"])) {
       }
       return str;
     }
+
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
@@ -413,5 +454,25 @@ if (isset($_GET["id"])) {
   </script>
 
 </body>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการบันทึกข้อมูลรับบริจาคครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

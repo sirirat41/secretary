@@ -1,7 +1,15 @@
 <?php
 require "service/connection.php";
+
+
+$selectOnlyType = "";
+if (isset($_GET["type"])) {
+  $type = $_GET["type"];
+  $selectOnlyType = " and ss.type = $type";
+}
 $show = 10;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +37,14 @@ $show = 10;
 </head>
 
 <body id="page-top">
-
+  <?php
+  if (isset($_GET["type"])) {
+    $id = $_GET["type"];
+    $sql = "SELECT * FROM durable_material_type WHERE id = $id";
+    $result = mysqli_query($conn, $sql) or die('cannot select data');
+    $item = mysqli_fetch_assoc($result);
+  }
+  ?>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -48,21 +63,26 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
+<<<<<<< HEAD
                 <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ</h6>
+=======
+                <h6 class="m-0 font-weight-bold text-danger">
+                  <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุ (ประเภท<?php echo $item["name"]; ?>)</h6>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-outline-warning" type="button" onclick="window.location.href='rowback_supplies_distribute.php';">
+                    <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_supplies_distribute.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" href="printall_supplies_distribute.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_supplies_distribute.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>
@@ -75,10 +95,15 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
+<<<<<<< HEAD
                       <tr class="text-center body-text">
+=======
+                      <tr class="text-center">
+                      <th>วันที่แจกจ่าย</th>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                         <th>รหัสวัสดุ</th>
                         <th>หน่วยงาน</th>
-                        <th>วันที่แจกจ่าย</th>
+                       
                         <th>จำนวน</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
@@ -92,33 +117,43 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
-                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
+                      $sqlSelect = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
+                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
                       }
+                      $sqlSelect .= $selectOnlyType;
                       $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
+<<<<<<< HEAD
                         <tr class="text-center body-text">
                           <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo ($row["fullname"]); ?></td>
                           <td><?php echo ($row["distribute_date"]); ?></td>
                           <td><?php echo ($row["number"]); ?></td>
+=======
+                        <tr class="text-center">
+                        <td><?php echo $row["distribute_date"]; ?></td>
+                          <td><?php echo $row["code"]; ?></td>
+                          <td><?php echo $row["fullname"]; ?></td>
+                         
+                          <td><?php echo $row["number"]; ?></td>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_supplies_distribute.php?id=<?php echo $row['id']; ?>&type=<?php echo $type; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location = 'view_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_supplies_distribute.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                            <a rel="tooltip" class="btn btn-primary" style="color: white" href="print_supplies_distribute.php?id=<?php echo $row['id']; ?>" target="_blank">
+                            <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_supplies_distribute.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-distribute').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-distribute').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -136,7 +171,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -148,18 +183,20 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
-            $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
+            $sqlSelectCount = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
+            $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
             }
+            $sqlSelectCount .= $selectOnlyType;
             $sqlSelectCount .= " Order by sd.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
             $maxshowpage = $pageNumber;
             $pageNumber = 10;
+
             $page = 1;
             if (isset($_GET["page"])) {
               $page = $_GET["page"];
@@ -173,29 +210,37 @@ $show = 10;
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i); ?>">......</a></li>
               <?php
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
+<<<<<<< HEAD
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+=======
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+              <?php
+                } else {
+                  ?>
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
-                  <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
+                  <li class="page-item"><a class="page-link" href="?typ=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -307,6 +352,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left"><?php echo $_GET["message"]; ?><div>
+<<<<<<< HEAD
          
           <form id="form-drop" method="post" action="service/service_insert_supplies_distribute.php">
             <input type="hidden" id="remove-permits" name="permits_id">
@@ -314,19 +360,40 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
+=======
+
+            <form id="form-drop" method="post" action="service/service_insert_supplies_distribute.php">
+              <input type="hidden" id="remove-permits" name="permits_id">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+          </div>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
         </div>
       </div>
-    </div>
 
-    <script>
-      $(document).ready(function(){
-        <?php 
-        if (isset($_GET["message"])) {
-          echo "$('#modal-message').modal();";
-        }
-        ?>
-      })
+      <script>
+        $(document).ready(function() {
+          <?php
+          if (isset($_GET["message"])) {
+            echo "$('#modal-message').modal();";
+          }
+          ?>
+        })
       </script>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

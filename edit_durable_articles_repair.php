@@ -8,8 +8,8 @@ if (isset($_GET["id"])) {
   $repairdate = $item["repair_date"];
   // $purchaseDate = $item["permit_date"];
   // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
-  $newrepairdate = date("Y-d-m", strtotime($repairdate));
-  $show=10;
+  $newrepairdate = date("Y-m-d", strtotime($repairdate));
+  $show = 10;
 }
 ?>
 <!DOCTYPE html>
@@ -53,6 +53,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="card shado mb-4">
@@ -76,14 +81,42 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <input class="form-control body-text" name="damage_id" type="text" placeholder="damage_id" id="damage_id" value="<?php echo $item["code"]; ?>" readonly>
                       </div>
                       </div>
+=======
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
+                      <div class="row">
+                        <div class="col-10 ">
+                          <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["damage_id"] == $row["id"]) {
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
+                            }
+                            ?>
+                          </select>
                         </div>
-              
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
@@ -91,6 +124,7 @@ if (isset($_GET["id"])) {
                       <textarea class="form-control body-text" name="place" id="place" placeholder="place" rows="3"><?php echo $item["place"]; ?></textarea>
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
@@ -115,8 +149,96 @@ if (isset($_GET["id"])) {
                       </div>
                     </div>
                   </div>
+=======
+                </div>
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    บันทึก
+                    <div class="ripple-container"></div></button>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
+                    <thead>
+                      <tr class="text-center">
+                        <td rowspan="2">ลำดับ</td>
+                        <td rowspan="2">เลขระยะทางเมื่อเข้าซ่อม</td>
+                        <td rowspan="2">รายการซ่อม</td>
+                        <td colspan="2" width="15%" height="10">จำนวนเงิน</td>
+                        <td rowspan="2">สถานที่ซ่อม</td>
+                        <td rowspan="2">วันตรวจรับ</td>
+                        <td rowspan="2">หมายเหตุ</td>
+                      </tr class="text-center">
+                      <tr class="text-center">
+                        <td width="8%">บาท </td>
+                        <td width="6%">สตางค์</td>
+                    </thead>
+                    <tbody id="tbody">
+                      <?php
+                      $sqlSelect = "SELECT * FROM durable_articles_repair_history as h";
+                      $sqlSelect .= " WHERE h.repair_id = " . $_GET["id"];
+                      //echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"]
+                        ?>
+                        <tr class="text-center" height="30" id="firstTr">
+                          <td> <input type="hidden" class="form-control history_id" name="seq[]" id="seq" placeholder="" value="<?php echo $row["id"]; ?>"><input type="text" class="form-control seq" name="seq[]" id="seq" placeholder="" value="<?php echo $row["seq"]; ?>"></td>
+                          <td> <input type="text" class="form-control mileage_number" name="mileage_number[]" id="mileage_numberm" placeholder="" value="<?php echo $row["mileage_number"]; ?>"></td>
+                          <td> <input type="text" class="form-control fix" name="fix[]" id="fix" placeholder="" name="fix" value="<?php echo $row["fix"]; ?>"></td>
+                          <td> <input type="text" class="form-control baht" name="baht[]" id="baht" placeholder="" name="baht" value="<?php echo $row["baht"]; ?>"></td>
+                          <td> <input type="text" class="form-control satang" name="satang[]" id="satang" placeholder="" name="satang" value="<?php echo $row["satang"]; ?>"></td>
+                          <td> <input type="text" class="form-control place" name="place[]" id="place" placeholder="" name="place" value="<?php echo $row["place"]; ?>"></td>
+                          <td> <input type="date" class="form-control receive_date" name="receive_date[]" id="receive_date" placeholder="" value="<?php echo $newrepairdate; ?>"></td>
+                          <td><input type="text" class="form-control flag" name="flag[]" id="flag" placeholder="" name="flag" value="<?php echo $row["flag"]; ?>"></td>
+                        </tr>
+
+                      <?php
+                      }
+                      ?>
+                      <tr class="text-center" height="30" id="firstTr">
+                        <td> <input type="text" class="form-control seq" name="seq[]" id="seq" placeholder=""></td>
+                        <td> <input type="text" class="form-control mileage_number" name="mileage_number[]" id="mileage_numberm" placeholder=""></td>
+                        <td> <input type="text" class="form-control fix" name="fix[]" id="fix" placeholder="" name="fix"></td>
+                        <td> <input type="text" class="form-control baht" name="baht[]" id="baht" placeholder="" name="baht"></td>
+                        <td> <input type="text" class="form-control satang" name="satang[]" id="satang" placeholder="" name="satang"></td>
+                        <td> <input type="text" class="form-control place" name="place[]" id="place" placeholder="" name="place"></td>
+                        <td> <input type="date" class="form-control receive_date" name="receive_date[]" id="receive_date" placeholder=""></td>
+                        <td><input type="text" class="form-control flag" name="flag[]" id="flag" placeholder="" name="flag"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                  <table width="500" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td>
+                        <button id="addRow" type="button">+</button>
+                        <button id="removeRow" type="button">-</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal1">
+                      ตกลง
+                    </button>
+                    <!-- Modal -->
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -220,14 +342,14 @@ if (isset($_GET["id"])) {
                         <thead> 
                           <tr class="text-center body-text">
                             <th>วันที่ชำรุด</th>
-                          <th>รหัสครุภัณฑ์</th>
-                          <th>หมายเหตุ</th>
-                          <th>การทำงาน</th>
+                            <th>รหัสครุภัณฑ์</th>
+                            <th>หมายเหตุ</th>
+                            <th>การทำงาน</th>
                           </tr>
                         </thead>
                         <tbody id="modal-articles-body">
-                        <?php
-                     
+                          <?php
+
                           $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
@@ -238,8 +360,13 @@ if (isset($_GET["id"])) {
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
+<<<<<<< HEAD
                             <tr class="text-center body-text">
                             <td><?php echo ($row["code"]); ?></td>
+=======
+                            <tr class="text-center">
+                              <td><?php echo thainumDigit($row["code"]); ?></td>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
@@ -282,33 +409,35 @@ if (isset($_GET["id"])) {
   </div>
   </div>
   <script>
-   var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_articles_damage.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
           changePage(1);
-     
+
         },
         error: function(error) {
           console.log(error);
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
       var body = $('#modal-articles-body');
@@ -325,26 +454,29 @@ if (isset($_GET["id"])) {
         var bill_no = item["bill_no"];
         var code = item["code"];
         var flag = item["flag"];
-            $('<td>' + item.damage_date + '</td>').appendTo(tr);
-            $('<td>' + item.code + '</td>').appendTo(tr);
-            $('<td>' + item.flag + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          generatePagination();
+        $('<td>' + item.damage_date + '</td>').appendTo(tr);
+        $('<td>' + item.code + '</td>').appendTo(tr);
+        $('<td>' + item.flag + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
       }
     }
+
     function nextPage() {
       if (currentPage < maxPage) {
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -389,13 +521,107 @@ if (isset($_GET["id"])) {
       return str;
     }
 
-
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#damage_id').val(id);
     }
-  </script>
+    $(function() {
+      $("#addRow").click(function() {
+        //$("#myTbl").append($("#firstTr").clone());
+        var tr = $('#firstTr').clone();
+        tr.appendTo($('#tbody'));
+      });
+      $("#removeRow").click(function() {
+        // if ($("#myTbl tr").parents() > 1) {
+        $("#myTbl tr:last").remove();
+        // } else {
+        //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
+        // }
+      });
+    });
 
+    function sendData() {
+      //var params = {};
+      // params["seq"] = $('#seq').val();
+      // params["repair_date"] = $('#repair_date').val();
+      // params["damage_id"] = $('#damage_id').val();
+      // params["place"] = $('#place').val();
+      // params["flag"] = $('#flag').val();
+      var data = [];
+      $('.receive_date').each(function(i, e) {
+        var item = {};
+        item["id"] = $('.history_id:eq(' + i + ')').val();
+        item["seq"] = $('.seq:eq(' + i + ')').val();
+        item["mileage_number"] = $('.mileage_number:eq(' + i + ')').val();
+        item["fix"] = $('.fix:eq(' + i + ')').val();
+        item["baht"] = $('.baht:eq(' + i + ')').val();
+        item["satang"] = $('.satang:eq(' + i + ')').val();
+        item["place"] = $('.place:eq(' + i + ')').val();
+        item["receive_date"] = $('.receive_date:eq(' + i + ')').val();
+        item["flag"] = $('.flag:eq(' + i + ')').val();
+        data.push(item);
+      })
+      // console.log(data);
+      // params["data"] = data;
+      $.ajax({
+        url: 'service/service_edit_durable_articles_repair_history.php?id=<?php echo $_GET["id"]; ?>',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          body: data
+        },
+        success: function(data) {
+          console.log(data);
+          if (data.result) {
+            window.location = "display_durable_articles_repair.php";
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+      //console.log(params);
+    }
+  </script>
 </body>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการแก้ไขข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการเพิ่มข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="sendData();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

@@ -46,13 +46,18 @@ if (isset($_GET["id"])) {
     <!-- Begin Page Content -->
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
+                  <i class="fas fa-archive"></i> ข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
                 <form class="form-inline">
                   <div>
                 </form>

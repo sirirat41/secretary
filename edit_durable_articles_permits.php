@@ -2,8 +2,12 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
+<<<<<<< HEAD
   $sql = "SELECT * FROM durable_articles_permits WHERE id = $id";
   //echo $sql;
+=======
+  $sql = "SELECT p.*,a.code FROM durable_articles_permits as p ,durable_articles as a WHERE p.id = $id and p.product_id = a.id";
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
@@ -51,6 +55,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
@@ -64,17 +73,44 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="book_no">เลขที่หนังสือ</label>
-                      <input type="text" class="form-control" name="book_no" id="book_no" placeholder="no" autofocus value="<?php echo $item["book_no"]; ?>">
+                      <input type="text" class="form-control" name="book_no" id="book_no" placeholder="no"  value="<?php echo $item["book_no"]; ?>" autofocus>
                     </div>
                   </div>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
+=======
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label for="product_id">รหัสครุภัณฑ์</label>
+                      <div class="row">
+                        <div class="col-10 ">
+                        <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6 ">
@@ -123,6 +159,7 @@ if (isset($_GET["id"])) {
                     <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                     </button>
+<<<<<<< HEAD
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -142,6 +179,9 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
+=======
+                   
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -438,5 +478,23 @@ if (isset($_GET["id"])) {
   </script>
 
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            คุณต้องการบันทึกข้อมูลการยืม-คืนครุภัณฑ์ใช่หรือไม่
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +40,11 @@ $show=10;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="card shadow mb-4">
@@ -50,10 +55,10 @@ $show=10;
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" type="button" onclick="window.location.href='display_user.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_user.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>
@@ -74,7 +79,7 @@ $show=10;
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -91,13 +96,12 @@ $show=10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["username"]); ?></td>
-                        <td><?php echo thainumDigit($row["surname"]); ?></td>
-                        <td><?php echo $row["lastname"]; ?></td>
-                        <td class="td-actions text-center">
-                        <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#rowback-user').val('<?php echo $id; ?>')">
+                        <tr class="text-center">
+                          <td><?php echo thainumDigit($row["username"]); ?></td>
+                          <td><?php echo thainumDigit($row["surname"]); ?></td>
+                          <td><?php echo $row["lastname"]; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-user').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php
@@ -114,7 +118,7 @@ $show=10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -170,10 +174,10 @@ $show=10;
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -275,5 +279,17 @@ $show=10;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>

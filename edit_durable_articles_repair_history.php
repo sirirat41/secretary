@@ -51,6 +51,11 @@ if (isset($_GET["id"])) {
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+      <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
@@ -74,12 +79,39 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
                       <input class="form-control body-text" name="repair_id" type="text" placeholder="repair_id" id="repair_id" value="<?php echo $item["code"]; ?>" readonly>
+=======
+                  <div class="col-12 ">
+                    <div class="form-group">
+                      <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
+                      <div class="row">
+                        <div class="col-10 ">
+                        <select class="form-control" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["repair_id"] == $row["id"]) {
+                              echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                            } else {
+                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                            }
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
-                </div>
                 </div>
                 <div class="row">
                   <div class="col-md-8">

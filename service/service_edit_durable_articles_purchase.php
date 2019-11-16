@@ -3,6 +3,7 @@ require 'connection.php';
 if (isset($_GET['id'])) {
     //purchase data
     $id = $_GET["id"];
+    
     $orderNo = $_POST["order_no"];
     $orderBy = $_POST["order_by"];
     $receiver = $_POST["receiver"];
@@ -26,6 +27,7 @@ if (isset($_GET['id'])) {
 
     //articles data
     $shortGoverment = $_POST["short_goverment"];
+    $code = $_POST["code"];
     $type = $_POST["type"];
     $attribute = $_POST["attribute"];
     $model = $_POST["model"];
@@ -46,7 +48,7 @@ if (isset($_GET['id'])) {
     logServer($conn, $log);
 
     $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
-    $updateArticles .= " type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
+    $updateArticles .= " code = '$code' ,type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateArticles .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";
     $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', picture = '$imgeName'";
     $updateArticles .= " WHERE id = $id";

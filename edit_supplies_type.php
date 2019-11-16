@@ -36,6 +36,7 @@ if (isset($_GET["id"])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+<<<<<<< HEAD
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -60,6 +61,75 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="name">ชื่อประเภทครุภัณฑ์</label>
                       <input type="text" class="form-control body-text" name="name" id="name" placeholder="name" value="<?php echo $item["name"]; ?>">
+=======
+  <?php include "navigation/navbar.php";?>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+
+        <div class="container-fluid">
+        <!-- เริ่มเขียนโค๊ดตรงนี้ -->
+        <div class="row ">
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
+          <div class="row">
+              <div class="col-md-6 offset-3">
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-danger">
+                          <i class="fas fa-clipboard-list"></i> แก้ไขข้อมูลประเภท(วัสดุสิ้นเปลือง)</h6>
+                            </div>
+                          
+                          <div class="card-body">
+                          <form method="post" action="service/service_edit_supplies_type.php?id=<?php echo $id; ?>" id="form_insert">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label for="name">ชื่อประเภทครุภัณฑ์</label>
+                                          <input type="text" class="form-control" name="name" id="name" placeholder="name" value="<?php echo $item["name"]; ?>"> 
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12 ">
+                                  <div class="form-group">
+                                 <label for="shortname">ชื่อย่อ</label>
+                                  <input type="text" class="form-control" name="shortname" id="shortname" placeholder="shortname" value="<?php echo $item["shortname"]; ?>">
+                                </div>
+                              </div>
+                            </div> 
+                          </form>
+                      <div class="row">
+                          <div class="col-md-12">
+                      <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                          บันทึก
+                        </button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  คุณต้องการบันทึกข้อมูลประเภทครุภัณฑ์ใช่หรือไม่
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                  <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     </div>
                   </div>
                 </div>

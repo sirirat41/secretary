@@ -44,7 +44,7 @@ $show = 10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-10 offset-1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
@@ -53,14 +53,12 @@ $show = 10;
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                              <button class="btn btn-outline-info" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
+                              <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
                       <i class="fas fa-plus"></i>
                     </button>
-                   
-       
                 </form>
             </div>
           </div>
@@ -73,7 +71,6 @@ $show = 10;
                     <thead>
                       <tr class="text-center body-text">
                         <th>ชื่อประเภท</th>
-    
                       </tr>
                     </thead>
                     <tbody>
@@ -96,11 +93,14 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
-                        
-                      
                         ?>
+<<<<<<< HEAD
                         <tr class="text-center body-text">
                           <td><a class="nav-link active" href='display_supplies_distribute copy.php?id=<?php echo $row['id']; ?>'>
+=======
+                        <tr class="text-center">
+                          <td><a class="nav-link active body-text" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" href='display_supplies_distribute copy.php?id=<?php echo $row['id']; ?>'>
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                               <?php echo $row["name"]; ?></a></td>
                   
                         </tr>
@@ -280,5 +280,17 @@ $show = 10;
     </div>
   </div>
 </body>
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
 
 </html>
