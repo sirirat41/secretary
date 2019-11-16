@@ -41,16 +41,16 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row ">
         <div class="col-6 offset-3">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-file-invoice-dollar"></i>
                   เพิ่มข้อมูลบัญชีคุมวัสดุ
                 </h6>
@@ -61,13 +61,13 @@ require "service/connection.php";
               <form method="post" action="service/service_insert_supplies_account.php" id="form_insert">
                 <div class="row">
                   <div class="col-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
                       <input type="text" class="form-control" name="year" id="year" placeholder="year" name="year">
                     </div>
                   </div>
                   <div class="col-8">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
                       <select class="form-control" name="supplies_id" id="supplies_id">
                         <?php
@@ -83,7 +83,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10">
@@ -97,22 +97,17 @@ require "service/connection.php";
                             ?>
                           </select>
                         </div>
-
                         <div class="col-md-1">
                           <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                             <i class="fas fa-search"></i>
                         </div>
-
-
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-
-
                   <div class="col-4">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="unit_id">หน่วยนับ</label>
                       <select class="form-control" name="unit_id" id="unit_id">
                         <?php
@@ -126,7 +121,7 @@ require "service/connection.php";
                     </div>
                   </div>
                   <div class="col-8">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="department">หน่วยงานที่เก็บ</label>
                       <select class="form-control" name="department" id="department">
                         <?php
@@ -137,31 +132,23 @@ require "service/connection.php";
                         }
                         ?>
                       </select>
-
                     </div>
                   </div>
                 </div>
-
                 <br>
-
-
-
             </div>
           </div>
         </div>
       </div>
       <br>
-
       <div class="row ">
         <div class="col-12">
           <div class="card">
-
-
             <div class="card-body">
               <div class="table-responsive">
                 <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
                   <thead>
-                    <tr class="text-center">
+                    <tr class="text-center body-text">
                       <td rowspan="2">วัน/เดือน/ปี</td>
                       <td rowspan="2">รับจาก</td>
                       <td rowspan="2">จ่ายให้</td>
@@ -171,7 +158,7 @@ require "service/connection.php";
                       <td colspan="3">จำนวน</td>
                       <td rowspan="2">หมายเหตุ</td>
                     </tr class="text-center">
-                    <tr class="text-center">
+                    <tr class="text-center body-text">
                       <td width="8%">บาท </td>
                       <td width="6%">สตางค์</td>
                       <td width="7%">รับ</td>
@@ -180,7 +167,7 @@ require "service/connection.php";
                     </tr>
                   </thead>
                   <tbody id="tbody">
-                    <tr class="text-center" height="30" id="firstTr">
+                    <tr class="text-center body-text" height="30" id="firstTr">
                       <td> <input type="date" class="form-control distribute_date" name="distribute_date[]" id="distribute_date" placeholder=""></td>
                       <td> <input type="text" class="form-control receive_from" name="receive_from[]" id="receive_from" placeholder=""></td>
                       <td> <input type="text" class="form-control distribute_to" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to"></td>
@@ -210,7 +197,7 @@ require "service/connection.php";
               <br>
               <div class="row">
                 <div class="col-12">
-                  <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
+                  <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                     ตกลง
                   </button>
                   <!-- Modal -->
@@ -294,17 +281,17 @@ require "service/connection.php";
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body body-text">
           คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="sendData();">บันทึก</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="sendData();">บันทึก</button>
         </div>
       </div>
     </div>
@@ -313,7 +300,7 @@ require "service/connection.php";
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -324,7 +311,7 @@ require "service/connection.php";
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
@@ -341,7 +328,7 @@ require "service/connection.php";
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-center">
+                        <tr class="text-center body-text">
                           <td>รูปภาพ</td>
                           <td>ชื่อวัสดุ</td>
                           <td>รหัสวัสดุ</td>
@@ -365,11 +352,11 @@ require "service/connection.php";
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo ($row["supplies_name"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -575,7 +562,8 @@ require "service/connection.php";
         dataType: 'JSON',
         data: {
           body: params
-        }, success: function(data) {
+        },
+        success: function(data) {
           if (data.result) {
             window.location = "display_supplies_account.php";
           }

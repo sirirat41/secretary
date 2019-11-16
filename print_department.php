@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
     <div class="col-md-8 offset-2">
       <div class="table-responsive">
         <table width="500" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลหน่วยงาน</h6>
+          <h5 class="m-3 font-weight-bold " align="center"> ข้อมูลหน่วยงาน</h5>
           <form class="form-inline">
             <div>
           </form>
@@ -77,7 +77,7 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="fullname">หน่วยงาน : </label>
+                    <label class="text " for="fullname">หน่วยงาน : </label>
                     <?php echo $row["fullname"]; ?>
                   </div>
                 </div>
@@ -87,7 +87,7 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="shortname">ตำแหน่ง : </label>
+                    <label class="text " for="shortname">ตำแหน่ง : </label>
                     <?php echo $row["shortname"]; ?>
                   </div>
                 </div>
@@ -97,8 +97,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="fax">โทรสาร : </label>
-                    <?php echo thainumDigit($row["fax"]); ?>
+                    <label class="text-dark " for="fax">โทรสาร : </label>
+                    <?php echo ($row["fax"]); ?>
                   </div>
                 </div>
               </td>
@@ -107,8 +107,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="tel">โทรสาร : </label>
-                    <?php echo thainumDigit($row["tel"]); ?>
+                    <label class="text-dark " for="tel">โทรสาร : </label>
+                    <?php echo ($row["tel"]); ?>
                   </div>
                 </div>
               </td>
@@ -117,8 +117,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="bulding">อาคาร : </label>
-                    <?php echo thainumDigit($row["bulding"]); ?>
+                    <label class="text-dark " for="bulding">อาคาร : </label>
+                    <?php echo ($row["bulding"]); ?>
                   </div>
                 </div>
               </td>
@@ -127,8 +127,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="floor">ชั้น : </label>
-                    <?php echo thainumDigit($row["floor"]); ?>
+                    <label class="text-dark " for="floor">ชั้น : </label>
+                    <?php echo ($row["floor"]); ?>
                   </div>
                 </div>
               </td>
@@ -162,13 +162,7 @@ if (isset($_GET["id"])) {
             </div>
           </div>
         </div>
-      </div>
-  </div>
-  </form>
-  </div>
-  </div>
-  </div>
-  </div>
+    </form>
   </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>

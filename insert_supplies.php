@@ -42,16 +42,16 @@ require "service/connection.php";
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-8 offset-2">
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-archive"></i>
                   เพิ่มข้อมูล(วัสดุสิ้นเปลือง)
                 </h6>
@@ -62,13 +62,13 @@ require "service/connection.php";
               <form method="post" action="service/service_insert_supplies.php" id="form_insert" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
                       <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus id="order_no">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
                       <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date" id="purchase_date">
                     </div>
@@ -76,7 +76,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="order_by">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control" name="order_by" id="order_by" placeholder="name" name="order_by" id="order_by">
                     </div>
@@ -84,22 +84,22 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label class="bmd-label-floating">รหัสวัสดุสิ้นเปลือง :</label>
                       <input class="form-control" type="text" placeholder="" name="code">
                     </div>
                   </div>
                 </div>
-         
+
                 <div class="row">
                   <div class="col-6 ">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="receiver">ชื่อผู้รับ</label>
                       <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" id="receiver">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="receive_date">วันที่ตรวจรับ</label>
                       <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date">
                     </div>
@@ -107,7 +107,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group ">
+                    <div class="form-group body-text">
                       <label for="receive_address">สถานที่จัดส่ง</label>
                       <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"></textarea>
                     </div>
@@ -115,23 +115,23 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
                       <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
-                 
+
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="bill_no">เลขที่ใบเบิก</label>
                       <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no">
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="exampleFormControlSelect1">หน่วยงาน</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id">
                         <?php
@@ -144,15 +144,15 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-             
-                  </div>
+
+                </div>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control" name="supplies_id"  id="supplies_id">
+                          <select class="form-control" name="supplies_id" id="supplies_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM supplies_stock ";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -170,10 +170,8 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-              
-                  <div class="row">
-                 
-                    <div class="col-6">
+                <div class="row">
+                  <div class="col-6">
                     <div class="form-group">
                       <label class="bmd-label-floating">หน่วยนับ :</label>
                       <select class="form-control" name="unit">
@@ -187,25 +185,22 @@ require "service/connection.php";
                       </select>
                     </div>
                   </div>
-                
-               
-            
                   <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="price">จำนวนเงิน</label>
                       <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
                     </div>
                   </div>
                 </div>
-                   <div class="row">
+                <div class="row">
                   <div class="col-4">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวนวัสดุ</label>
                       <input class="form-control" type="text" placeholder="number" name="number">
                     </div>
                   </div>
                   <div class="col-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
                       <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id">
                         <?php
@@ -219,19 +214,19 @@ require "service/connection.php";
                     </div>
                   </div>
                 </div>
-                <br/>
-                  <div class="row">
+                <br />
+                <div class="row">
                   <div class="col-4">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png"  alt="..." id="image-preview">
+                        <img class="img-thumbnail" src="https://brilliantplus.com/wp_main/wp-content/themes/brilliantplus/images/agent/noimage.png" alt="..." id="image-preview">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>
                         <span class="btn btn-raised btn-round btn-default btn-file">
-                        
+
                           <div class="col-2">
-                            <input type="file" name="image" id = "image"/>
+                            <input type="file" name="image" id="image" />
                           </div>
                         </span>
                       </div>
@@ -241,10 +236,10 @@ require "service/connection.php";
                 <br><br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
-                   
+
                   </div>
                 </div>
               </form>
@@ -319,7 +314,7 @@ require "service/connection.php";
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -330,7 +325,7 @@ require "service/connection.php";
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุ)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
@@ -348,7 +343,7 @@ require "service/connection.php";
                     <div class="table-responsive">
                       <table class="table table-hover ">
                         <thead>
-                          <tr class="text-center">
+                          <tr class="text-center body-text">
                             <th>ชื่อวัสดุ</th>
                             <th>จำนวน</th>
                             <th>การทำงาน</th>
@@ -356,11 +351,11 @@ require "service/connection.php";
                         </thead>
                         <tbody>
                           <?php
-                         $sqlSelect = "SELECT * FROM supplies_stock as ss";
-                      // $sqlSelect .= " WHERE ss.supplies_name = s.id "
-                      if (isset($_GET["keyword"])) {
-                        $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                          $sqlSelect = "SELECT * FROM supplies_stock as ss";
+                          // $sqlSelect .= " WHERE ss.supplies_name = s.id "
+                          if (isset($_GET["keyword"])) {
+                            $keyword = arabicnumDigit($_GET["keyword"]);
+                            $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                           }
                           // echo $sqlSelect;
                           $result = mysqli_query($conn, $sqlSelect);
@@ -368,13 +363,13 @@ require "service/connection.php";
                             $id = $row["id"];
                             ?>
 
-                            <tr class="text-center">
-                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                          <td><?php echo thainumDigit($row["stock"]); ?></td>
+                            <tr class="text-center body-text">
+                              <td><?php echo ($row["supplies_name"]); ?></td>
+                              <td><?php echo ($row["stock"]); ?></td>
                               <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
-                              </button>
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
                               <?php
                               }
                               ?>
@@ -405,28 +400,29 @@ require "service/connection.php";
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
   </div>
   <script>
-   var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_supplies.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -437,6 +433,7 @@ require "service/connection.php";
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -461,7 +458,7 @@ require "service/connection.php";
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -470,14 +467,16 @@ require "service/connection.php";
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -521,46 +520,48 @@ require "service/connection.php";
       }
       return str;
     }
+
     function selectedsupplies(id) {
       $('#modal-form-search').modal('hide');
       $('#supplies_id').val(id);
     }
+
     function readURL(input) {
-            if (input.files && input.files[0]) {
-              var reader = new FileReader();
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-              reader.onload = function(e) {
-                $('#image-preview').attr('src', e.target.result);
-              }
+        reader.onload = function(e) {
+          $('#image-preview').attr('src', e.target.result);
+        }
 
-              reader.readAsDataURL(input.files[0]);
-            }
-          }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
 
-          $("#image").change(function() {
-            readURL(this);
-          });
-
+    $("#image").change(function() {
+      readURL(this);
+    });
   </script>
 
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

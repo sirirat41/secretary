@@ -93,10 +93,10 @@ require "service/connection.php";
                             <font size="2"><?php echo $row["id"]; ?></font>
                           </td>
                           <td>
-                            <font size="2"><?php echo thainumDigit($row["book_no"]); ?></font>
+                            <font size="2"><?php echo ($row["book_no"]); ?></font>
                           </td>
                           <td>
-                            <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                            <font size="2"><?php echo ($row["code"]); ?></font>
                           </td>
                           <td>
                             <font size="2"><?php echo $row["attribute"]; ?></font>

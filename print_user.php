@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
                     <div class="row">
                       <div class="col-sm-12">
                         <label class="text-dark" for="password">รหัสผ่าน : </label>
-                        <?php echo thainumDigit($row["password"]); ?>
+                        <?php echo ($row["password"]); ?>
                       </div>
                     </div>
                   </td>
@@ -122,7 +122,7 @@ if (isset($_GET["id"])) {
               <div class="row">
                 <div class="col-sm-12">
                   <label class="text-dark" for="tel">เบอร์โทร : </label>
-                  <?php echo thainumDigit($row["tel"]); ?>
+                  <?php echo ($row["tel"]); ?>
                 </div>
               </div>
             </td>

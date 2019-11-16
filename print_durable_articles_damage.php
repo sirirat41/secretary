@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
     <div class="col-md-8 offset-2">
       <div class="table-responsive">
         <table width="500" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลชำรุด (ครุภัณฑ์)</h6>
+          <h5 class="m-3 font-weight-bold " align="center"> ข้อมูลชำรุด (ครุภัณฑ์)</h5>
           <form class="form-inline">
             <div>
           </form>
@@ -66,7 +66,7 @@ if (isset($_GET["id"])) {
         <div class="row">
           <div class="col-sm-12" align="center">
             <div class="center" style="width: 200px;">
-            <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+              <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
             </div>
           </div>
         </div>
@@ -77,8 +77,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="code">รหัสครุภัณฑ์ : </label>
-                    <?php echo thainumDigit($row["code"]); ?>
+                    <label class="text " for="code">รหัสครุภัณฑ์ : </label>
+                    <?php echo ($row["code"]); ?>
                   </div>
                 </div>
               </td>
@@ -87,8 +87,8 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text" for="damage_date">วันที่ชำรุด : </label>
-                    <?php echo thainumDigit($row["damage_date"]); ?>
+                    <label class="text " for="damage_date">วันที่ชำรุด : </label>
+                    <?php echo ($row["damage_date"]); ?>
                   </div>
                 </div>
               </td>
@@ -97,7 +97,7 @@ if (isset($_GET["id"])) {
               <td colspan="2">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="text-dark" for="flag">หมายเหตุ : </label>
+                    <label class="text-dark " for="flag">หมายเหตุ : </label>
                     <?php echo $row["flag"]; ?>
                   </div>
                 </div>
@@ -131,13 +131,7 @@ if (isset($_GET["id"])) {
             </div>
           </div>
         </div>
-      </div>
-  </div>
-  </form>
-  </div>
-  </div>
-  </div>
-  </div>
+    </form>
   </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>

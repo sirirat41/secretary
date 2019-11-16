@@ -56,8 +56,8 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-archive"></i> ข้อมูลการรับบริจาค (ครุภัณฑ์)</h6>
+                <h5 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-archive"></i> ข้อมูลการรับบริจาค (ครุภัณฑ์)</h5>
                 <form class="form-inline">
                   <div>
                 </form>
@@ -75,50 +75,50 @@ if (isset($_GET["id"])) {
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="document_no">เลขที่เอกสาร : </label>
-                      <?php echo thainumDigit($row["document_no"]); ?>
+                      <label class="text-dark body-text" for="document_no">เลขที่เอกสาร : </label>
+                      <?php echo ($row["document_no"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="receive_date">วันที่รับบริจาค : </label>
-                      <?php echo thainumDigit($row["receive_date"]); ?>
+                      <label class="text-dark body-text" for="receive_date">วันที่รับบริจาค : </label>
+                      <?php echo ($row["receive_date"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="code">รหัสครุภัณฑ์ : </label>
-                      <?php echo thainumDigit($row["code"]); ?>
+                      <label class="text-dark body-text" for="code">รหัสครุภัณฑ์ : </label>
+                      <?php echo ($row["code"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                      <?php echo thainumDigit($row["attribute"]); ?>
+                      <label class="text-dark body-text" for="attribute">คุณสมบัติ/ลักษณะ : </label>
+                      <?php echo ($row["attribute"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="model">รุ่นแบบ : </label>
-                      <?php echo thainumDigit($row["model"]); ?>
+                      <label class="text-dark body-text" for="model">รุ่นแบบ : </label>
+                      <?php echo ($row["model"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="donate_name">ชื่อผู้บริจาค : </label>
-                      <?php echo thainumDigit($row["donate_name"]); ?>
+                      <label class="text-dark body-text" for="donate_name">ชื่อผู้บริจาค : </label>
+                      <?php echo ($row["donate_name"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="number">ราคา : </label>
-                      <?php echo thainumDigit($row["number"]); ?>
+                      <label class="text-dark body-text" for="number">ราคา : </label>
+                      <?php echo ($row["number"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="flag">หมายเหตุ : </label>
-                      <?php echo thainumDigit($row["flag"]); ?>
+                      <label class="text-dark body-text" for="flag">หมายเหตุ : </label>
+                      <?php echo ($row["flag"]); ?>
                     </div>
                   </div>
                 </div>

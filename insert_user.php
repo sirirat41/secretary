@@ -51,13 +51,14 @@ require "service/connection.php";
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-6">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-store"></i> เพิ่มข้อมูลสมาชิก</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text">
+                <i class="fas fa-store"></i> เพิ่มข้อมูลสมาชิก</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_user.php" id="form_insert">
                 <div class="row">
                   <div class="col-md-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="username">ชื่อสมาชิก</label>
                       <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username">
                     </div>
@@ -66,7 +67,7 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="password">รหัสผ่าน</label>
                       <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password">
                     </div>
@@ -75,13 +76,13 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="surname">ชื่อ</label>
                       <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname">
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="lastname">นามสกุล</label>
                       <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname">
                     </div>
@@ -91,13 +92,13 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
                       <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="position">ตำแหน่ง</label>
                       <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position">
                     </div>
@@ -106,7 +107,7 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="email">อีเมล์</label>
                       <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email">
                     </div>
@@ -114,7 +115,7 @@ require "service/connection.php";
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="u_type" class="bmd-label-floating">ประเภท</label>
                       <select class="form-control" id="u_type" name="u_type">
                         <?php
@@ -131,13 +132,10 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
-
                   </div>
-
-
                 </div>
               </form>
             </div>
@@ -214,22 +212,23 @@ require "service/connection.php";
 </body>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

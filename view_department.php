@@ -57,8 +57,8 @@ if (isset($_GET["id"])) {
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลหน่วยงาน</h6>
+                <h5 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-business-time"></i> ข้อมูลหน่วยงาน</h5>
                 <form class="form-inline">
                   <div>
                 </form>
@@ -70,38 +70,38 @@ if (isset($_GET["id"])) {
 
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="fullname">ชื่อหน่วยงาน : </label>
-                      <?php echo thainumDigit ($row["fullname"]); ?>
+                      <label class="text-dark body-text" for="fullname">ชื่อหน่วยงาน : </label>
+                      <?php echo  ($row["fullname"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark" for="shortname">ตำแหน่ง : </label>
+                      <label class="text-dark body-text" for="shortname">ตำแหน่ง : </label>
                       <?php echo $row["shortname"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="tel">เบอร์โทรศัพท์ : </label>
+                      <label class="text-dark body-text" for="tel">เบอร์โทรศัพท์ : </label>
                       <?php echo $row["tel"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="fax">โทรสาร : </label>
+                      <label class="text-dark body-text" for="fax">โทรสาร : </label>
                       <?php echo $row["fax"]; ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="bulding">อาคาร : </label>
-                      <?php echo thainumDigit($row["bulding"]); ?>
+                      <label class="text-dark body-text" for="bulding">อาคาร : </label>
+                      <?php echo ($row["bulding"]); ?>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark" for="floor">ชั้น : </label>
-                      <?php echo thainumDigit($row["floor"]); ?>
+                      <label class="text-dark body-text" for="floor">ชั้น : </label>
+                      <?php echo ($row["floor"]); ?>
                     </div>
                   </div>
                 </div>

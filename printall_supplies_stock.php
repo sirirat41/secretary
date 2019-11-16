@@ -85,7 +85,7 @@ require "service/connection.php";
                         <font size="2"><?php echo $count++; ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
+                        <font size="2"><?php echo ($row["supplies_name"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo $row["stock"]; ?></font>

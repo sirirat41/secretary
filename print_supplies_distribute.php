@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
     <div class="col-md-8 offset-2">
       <div class="table-responsive">
         <table width="600" border="1" align="center">
-          <h6 class="m-3 font-weight-bold " align="center">ข้อมูลการแจกจ่าย(วัสดุสิ้นเปลือง)</h6>
+          <h5 class="m-3 font-weight-bold " align="center">ข้อมูลการแจกจ่าย(วัสดุสิ้นเปลือง)</h5>
           <form>
             <form>
               <div class="card-body">
@@ -71,8 +71,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-6">
-                            <label class="text" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
-                            <?php echo thainumDigit($row["code"]); ?>
+                            <label class="text " for=" code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
+                            <?php echo ($row["code"]); ?>
                           </div>
                         </div>
                       </td>
@@ -81,8 +81,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="number">จำนวน : </label>
-                            <?php echo thainumDigit($row["number"]); ?>
+                            <label class="text " for="number">จำนวน : </label>
+                            <?php echo ($row["number"]); ?>
                           </div>
                         </div>
                       </td>
@@ -91,8 +91,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text-dark" for="distribute_date">วันที่แจกจ่าย : </label>
-                            <?php echo thainumDigit($row["distribute_date"]); ?>
+                            <label class="text-dark " for="distribute_date">วันที่แจกจ่าย : </label>
+                            <?php echo ($row["distribute_date"]); ?>
                           </div>
                         </div>
                       </td>
@@ -101,8 +101,8 @@ if (isset($_GET["id"])) {
                       <td colspan="2">
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text-dark" for="department_id">หน่วยงาน : </label>
-                            <?php echo thainumDigit($row["department_id"]); ?>
+                            <label class="text-dark " for="department_id">หน่วยงาน : </label>
+                            <?php echo ($row["department_id"]); ?>
                           </div>
                         </div>
                       </td>
@@ -111,7 +111,7 @@ if (isset($_GET["id"])) {
                       <td>
                         <div class="row">
                           <div class="col-sm-12">
-                            <label class="text" for="flag">หมายเหตุ : </label>
+                            <label class="text " for="flag">หมายเหตุ : </label>
                             <?php echo $row["flag"]; ?>
                           </div>
                       </td>

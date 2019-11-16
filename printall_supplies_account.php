@@ -87,16 +87,16 @@ require "service/connection.php";
                         <font size="2"><?php echo $a++; ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["code"]); ?></font>
+                        <font size="2"><?php echo ($row["code"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["supplies_name"]); ?></font>
+                        <font size="2"><?php echo ($row["supplies_name"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["attribute"]); ?></font>
+                        <font size="2"><?php echo ($row["attribute"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo thainumDigit($row["name"]); ?></font>
+                        <font size="2"><?php echo ($row["name"]); ?></font>
                       </td>
 
                     </tr>

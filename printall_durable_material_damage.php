@@ -72,10 +72,10 @@ require "service/connection.php";
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo thainumDigit($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["damage_date"]); ?></font></td>
-                        <td><font size="2"><?php echo thainumDigit($row["flag"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["id"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["damage_date"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["flag"]); ?></font></td>
                       </tr>
                           <?php
                           }

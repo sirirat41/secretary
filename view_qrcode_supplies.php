@@ -70,27 +70,27 @@ if (isset($_GET["id"])) {
                     <div class="col-md-12">
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark" for="code">รหัส : </label>
-                          <?php echo thainumDigit($row["code"]); ?>
+                          <label class="text-dark body-text" for="code">รหัส : </label>
+                          <?php echo ($row["code"]); ?>
                         </div>
                       </div>
                       <div class="row">
 
                         <div class="col-md-12">
-                          <label class="text-dark" for="name">ชื่อวัสดุ : </label>
-                          <?php echo thainumDigit($row["name"]); ?>
+                          <label class="text-dark body-text" for="name">ชื่อวัสดุ : </label>
+                          <?php echo ($row["name"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark" for="attribute">ลักษณะ/คุณสมบัติ : </label>
-                          <?php echo thainumDigit($row["attribute"]); ?>
+                          <label class="text-dark body-text" for="attribute">ลักษณะ/คุณสมบัติ : </label>
+                          <?php echo ($row["attribute"]); ?>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark" for="receive_date">วันที่ตรวจรับ : </label>
-                          <?php echo thainumDigit($row["receive_date"]); ?>
+                          <label class="text-dark body-text" for="receive_date">วันที่ตรวจรับ : </label>
+                          <?php echo ($row["receive_date"]); ?>
                         </div>
                       </div>
                     </div>
@@ -171,7 +171,7 @@ if (isset($_GET["id"])) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?></h5>
+          <h4 class="modal-title" id="exampleModalLabel">QR Code สำหรับ <?php echo $row["code"]; ?></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -180,8 +180,8 @@ if (isset($_GET["id"])) {
           <img src="generate_qrcode_material.php?id=<?php echo $id; ?>">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">ดาวโหลด</button>
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">ดาวโหลด</button>
         </div>
       </div>
     </div>

@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="bill_no">เลขที่ใบเบิก : </label>
-                          <?php echo thainumDigit($row["bill_no"]); ?>
+                          <?php echo ($row["bill_no"]); ?>
                         </div>
                       </div>
                     </td>
@@ -79,7 +79,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="code">รหัสวัสดุ : </label>
-                          <?php echo thainumDigit($row["code"]); ?>
+                          <?php echo ($row["code"]); ?>
                         </div>
                       </div>
                     </td>
@@ -89,7 +89,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                         <label class="text-dark" for="supplies_name">ชื่อวัสดุ : </label>
-                          <?php echo thainumDigit($row["supplies_name"]); ?>
+                          <?php echo ($row["supplies_name"]); ?>
                    
                         </div>
                       </div>
@@ -100,7 +100,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                         <label class="text-dark" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                          <?php echo thainumDigit($row["attribute"]); ?>
+                          <?php echo ($row["attribute"]); ?>
                         </div>
                       </div>
                     </td>
@@ -108,7 +108,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="uname">หน่วยนับ : </label>
-                          <?php echo thainumDigit($row["uname"]); ?>
+                          <?php echo ($row["uname"]); ?>
                         </div>
                       </div>
                     </td>
@@ -135,7 +135,7 @@ if (isset($_GET["id"])) {
                       <div class="row">
                         <div class="col-sm-12">
                           <label class="text-dark" for="name">ร้านค้า : </label>
-                          <?php echo thainumDigit($row["name"]); ?>
+                          <?php echo ($row["name"]); ?>
                         </div>
                     </td>
                    
