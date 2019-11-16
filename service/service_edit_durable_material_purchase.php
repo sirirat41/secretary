@@ -28,6 +28,7 @@ if (isset($_GET['id'])) {
     }
     //material data
     $shortGoverment = $_POST["short_goverment"];
+    $code = $_POST["code"];
     $type = $_POST["type"];
     $attribute = $_POST["attribute"];
     $billNo = $_POST["bill_no"];
@@ -38,13 +39,12 @@ if (isset($_GET['id'])) {
     $durableYear = $_POST["durable_year"];
     $name = $_POST["name"];
     $assetNo = $_POST["asset_no"];
-    $articles_pattern = $_POST["articles_pattern"];
 
     $log = "แก้ไขข้อมูลการจัดซื้อวัสดุ รหัส " . $id ;
     logServer($conn, $log);
 
     $updateMaterial = "UPDATE durable_material SET short_goverment = '$shortGoverment',";
-    $updateMaterial .= " type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";
+    $updateMaterial .= " code = '$code' , type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name', picture = '$imgeName',asset_no = '$assetNo'";
     $updateMaterial .= " WHERE id = $id";
     mysqli_query($conn, $updateMaterial) or die("Cannot update material" . mysqli_error($conn));

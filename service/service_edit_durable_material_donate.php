@@ -9,11 +9,22 @@ if(isset($_GET['id'])) {
     $donateName = $_POST["donate_name"];
     $flag = $_POST["flag"];
 
-    $log = "แก้ไขข้อมูลการบริจาควัสดุคงทน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการบริจาควัสดุุ รหัส " . $id ;
     logServer($conn, $log);
+    
+    $sqlSelect = "SELECT * FROM durable_material_donate WHERE id = $id";
+    $resultOld = mysqli_query($conn, $sqlSelect);
+    $dataOld = mysqli_fetch_assoc($resultOld);
+    $oldProductID = $dataOld["product_id"];
+    $updateOld = "UPDATE durable_material SET status = 1 WHERE id = $oldProductID";
+    mysqli_query($conn, $updateOld);
+    
+    $updateDonate = "UPDATE durable_material SET status = 8";
+    $updateDonate .= " WHERE id = $productId";
+    mysqli_query($conn, $updateDonate) or die("Cannot update donate: " . mysqli_error($conn));
 
     $updateDonate = "UPDATE durable_material_donate SET document_no = '$documentNo',";
-    $updateDonate .= " receive_date = '$receive_date', ";
+    $updateDonate .= " product_id = $productId, receive_date = '$receiveDate', ";
     $updateDonate .= " donate_name = '$donateName', flag = '$flag'";
     $updateDonate .= " WHERE id = $id";
     mysqli_query($conn, $updateDonate) or die("Cannot update donate: " . mysqli_error($conn));

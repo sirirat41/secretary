@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +51,7 @@ $show=10;
           <div class="card">
             <div class="card-header card-header-text card-header-danger">
               <div class="card-text">
-                <h6 class="m-0 font-weight-bold text-danger">
+                <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-fw fa-archive"></i>
                   เพิ่มข้อมูลการบริจาคออก (วัสดุคงทน)
                 </h6>
@@ -61,7 +61,7 @@ $show=10;
               <form method="post" action="service/service_insert_durable_material_donate.php" id="form_insert">
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-10 ">
@@ -85,13 +85,13 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
                       <input class="form-control" name="document_no" type="text" placeholder="document_no" id="document_no">
                     </div>
                   </div>
                   <div class=" col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อบริจาค</label>
                       <input class="form-control" name="donate_name" type="text" placeholder="donate_name" id="donate_name">
                     </div>
@@ -99,13 +99,13 @@ $show=10;
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
                       <input class="form-control" name="receive_date" type="date" placeholder="receive_date">
                     </div>
                   </div>
                   <div class="col-6 ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
                       <input class="form-control" name="flag" type="text" placeholder="flag" id="flag">
                     </div>
@@ -114,30 +114,33 @@ $show=10;
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                     </button>
+<<<<<<< HEAD
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body ">
+                          <div class="modal-body body-text">
                             คุณต้องการบันทึกข้อมูลบริจาค(วัสดุ)หรือไม่ ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
                           </div>
                         </div>
                       </div>
                     </div>
-
+=======
+                   
+>>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -215,7 +218,7 @@ $show=10;
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -226,101 +229,99 @@ $show=10;
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger">
-<<<<<<< HEAD
-                      <i class="fas fa-archive"></i> แสดงข้อมูลวัสดุ</h6>
+                    <h6 class="m-0 font-weight-bold text-danger body-text">
+                      <<<<<<< HEAD <i class="fas fa-archive"></i> แสดงข้อมูลวัสดุ
+                    </h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" id="keyword" aria-label="Search">
                       <div>
-                        <button class="btn btn-outline-danger" type="button" onclick="search();">
-=======
-                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
-                    <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
->>>>>>> 3248d1df70661156939fe927059b2c42b0034dba
-                          <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-              </div>
-              </nav>
-              <div class="row">
-                <div class="col-12">
-                  <div class="table-responsive">
-                    <table class="table table-hover ">
-                      <thead>
-                        <tr class="text-center">
-                          <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
-                          <td>เลขที่ใบเบิก</td>
-                          <td>รหัสวัสดุ</td>
-                          <td>ประเภท</td>
-                          <td>การทำงาน</td>
-                        </tr class="text-center">
-                      </thead>
-                      <tbody id="modal-material-body">
-                        <!-- ///ดึงข้อมูล -->
-                        <?php
-                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
-                        $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
-                        if (isset($_GET["keyword"])) {
-                          $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                        }
-                        $result = mysqli_query($conn, $sqlSelect);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $id = $row["id"]
-                          ?>
-                          <tr class="text-center">
-                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["seq"]); ?></td>
-                            <td><?php echo thainumDigit($row["bill_no"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
-                            <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
-                                <i class="fas fa-check"></i>
+                        <button class="btn btn-outline-danger body-text" type="button" onclick="search();">
+                          <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
+                          <form class="form-inline" id="form-search">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                            <div>
+                              <button class="btn btn-outline-danger" type="submit">
+                                <i class="fas fa-search"></i>
                               </button>
-                            </td>
-                          </tr>
-                        <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                          </form>
+                      </div>
+                </div>
+                </nav>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover ">
+                        <thead>
+                          <tr class="text-center body-text">
+                            <td>รูปภาพ</td>
+                            <td>ลำดับ</td>
+                            <td>เลขที่ใบเบิก</td>
+                            <td>รหัสวัสดุ</td>
+                            <td>ประเภท</td>
+                            <td>การทำงาน</td>
+                          </tr class="text-center">
+                        </thead>
+                        <tbody id="modal-material-body">
+                          <!-- ///ดึงข้อมูล -->
+                          <?php
+                          //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+
+                          $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
+                          $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                          if (isset($_GET["keyword"])) {
+                            $keyword = arabicnumDigit($_GET["keyword"]);
+                            $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          }
+                          $result = mysqli_query($conn, $sqlSelect);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row["id"]
+                            ?>
+                            <tr class="text-center body-text">
+                              <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                              <td><?php echo ($row["seq"]); ?></td>
+                              <td><?php echo ($row["bill_no"]); ?></td>
+                              <td><?php echo ($row["code"]); ?></td>
+                              <td><?php echo ($row["name"]); ?></td>
+                              <td class="td-actions text-center">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["id"]; ?>);">
+                                  <i class="fas fa-check"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center" id="pagination">
+                  <li class="page-item" id="prev-page">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item" id="next-page">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center" id="pagination">
-                <li class="page-item" id="prev-page">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item" id="next-page">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <script>
     var itemPerPage = 10; //จำนวนข้อมูล
@@ -330,15 +331,16 @@ $show=10;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -349,6 +351,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -373,7 +376,7 @@ $show=10;
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -382,14 +385,16 @@ $show=10;
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -433,6 +438,7 @@ $show=10;
       }
       return str;
     }
+
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
@@ -440,5 +446,25 @@ $show=10;
   </script>
 
 </body>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body ">
+                            คุณต้องการบันทึกข้อมูลบริจาค(วัสดุ)หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 </html>
