@@ -398,6 +398,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <br>
                 <div class="row">
+<<<<<<< HEAD
                   <div class="col-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
@@ -423,19 +424,27 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
+=======
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                      บันทึก
+                      <div class="ripple-container"></div></button>
+                  
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                   </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
+      <br>
       <!-- สิ้นสุดการเขียนตรงนี้ -->
     </div>
     <!-- /.container-fluid -->
+
+
   </div>
-  <br>
   <!-- End of Main Content -->
 
   <!-- Footer -->

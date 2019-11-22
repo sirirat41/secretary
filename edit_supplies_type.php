@@ -36,32 +36,6 @@ if (isset($_GET["id"])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-<<<<<<< HEAD
-    <?php include "navigation/navbar.php"; ?>
-
-    </nav>
-    <!-- End of Topbar -->
-
-    <!-- Begin Page Content -->
-
-    <div class="container-fluid">
-      <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <div class="row">
-        <div class="col-md-6 offset-3">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger body-text">
-                <i class="fas fa-clipboard-list"></i> แก้ไขข้อมูลประเภท(วัสดุสิ้นเปลือง)</h6>
-            </div>
-
-            <div class="card-body">
-              <form method="post" action="service/service_edit_supplies_type.php?id=<?php echo $id; ?>" id="form_insert">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group body-text">
-                      <label for="name">ชื่อประเภทครุภัณฑ์</label>
-                      <input type="text" class="form-control body-text" name="name" id="name" placeholder="name" value="<?php echo $item["name"]; ?>">
-=======
   <?php include "navigation/navbar.php";?>
 
         </nav>
@@ -129,7 +103,6 @@ if (isset($_GET["id"])) {
                           </div>
                         </div>
                       </div>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                     </div>
                   </div>
                 </div>

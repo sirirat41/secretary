@@ -79,18 +79,12 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-md-12 ">
-                    <div class="form-group body-text">
-                      <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
-                      <input class="form-control body-text" name="repair_id" type="text" placeholder="repair_id" id="repair_id" value="<?php echo $item["code"]; ?>" readonly>
-=======
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="repair_id">รหัสการซ่อมครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-10 ">
-                        <select class="form-control" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
+                        <select class="form-control body-text" name="repair_id" id="repair_id" value="<?php echo $item["repair_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -110,7 +104,6 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
                 <div class="row">
@@ -135,30 +128,12 @@ if (isset($_GET["id"])) {
                       <textarea class="form-control body-text" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
-
+                  <div class="row">
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  
                   </div>
                 </div>
               </form>
@@ -478,5 +453,23 @@ $('.modal-backdrop').remove();
   </script>
 
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body body-text">
+                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </html>

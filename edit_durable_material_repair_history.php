@@ -79,18 +79,12 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                  <div class="col-md-12 ">
-                    <div class="form-group body-text">
-                      <label for="repair_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="repair_id" type="text" placeholder="repair_id" id="repair_id" value="<?php echo $item["code"]; ?>" readonly>
-=======
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="repair_id">รหัสการซ่อมวัสดุ</label>
                       <div class="row">
                         <div class="col-10 ">
-                          <select class="form-control" name="repair_id" id="repair_id">
+                          <select class="form-control body-text" name="repair_id" id="repair_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_material";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -110,7 +104,6 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                     </div>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
                 <div class="row">

@@ -83,19 +83,13 @@ $show=10;
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
                <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
-=======
-                <div class="row">
-                  <div class="col-12 ">
-                    <div class="form-group">
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-10 ">
-                        <select class="form-control" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
+                        <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -141,29 +135,7 @@ $show=10;
                       บันทึก
                     </button>
                     <!-- Modal -->
-<<<<<<< HEAD
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลบริจาคออก(ครุภัณฑ์)หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-=======
                    
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>

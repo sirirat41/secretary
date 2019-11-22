@@ -82,11 +82,11 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-12 ">
-                    <div class="form-group">
+                    <div class="form-group body-text">
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <div class="row">
                         <div class="col-10 ">
-                          <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
+                          <select class="form-control body-text" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_material";
                             $resultType = mysqli_query($conn, $sqlSelectType);

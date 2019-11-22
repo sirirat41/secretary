@@ -235,10 +235,17 @@ if (isset($_SESSION['user_id'])) {
                 </h6>
                 <?php
                     $count = 1;
+<<<<<<< HEAD
                     while ($rowApprove = mysqli_fetch_assoc($resultApprove)) {
                       $colorRequest = "bg-primary";
                       $iconRequest = "fa-file-alt";
                       if ($rowApprove["action_request"] == "request_update") {
+=======
+                    while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
+                      $colorRequest = "bg-primary";
+                      $iconRequest = "fa-file-alt";
+                      if ($rowApproveNavbar["action_request"] == "request_update") {
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                         $iconRequest = "fa-file-alt";
                         $colorRequest = "bg-primary";
                       } else {
@@ -249,15 +256,24 @@ if (isset($_SESSION['user_id'])) {
                         break;
                       }
                       ?>
+<<<<<<< HEAD
                   <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApprove["id"]; ?>">
+=======
+                  <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApproveNavbar["id"]; ?>">
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                     <div class="mr-3">
                       <div class="icon-circle <?php echo $colorRequest; ?>">
                         <i class="fas <?php echo $iconRequest; ?> text-white body-text-menu"></i>
                       </div>
                     </div>
                     <div>
+<<<<<<< HEAD
                       <div class="small text-gray-500 body-text-menu"><?php echo $rowApprove["surname"] . " " . $rowApprove["lastname"]; ?></div>
                       <span class="font-weight-bold body-text-menu"><?php echo $rowApprove["reason"]; ?></span>
+=======
+                      <div class="small text-gray-500"><?php echo $rowApproveNavbar["surname"] . " " . $rowApproveNavbar["lastname"]; ?></div>
+                      <span class="font-weight-bold"><?php echo $rowApproveNavbar["reason"]; ?></span>
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                     </div>
                   </a>
                 <?php $count++;
@@ -469,10 +485,17 @@ if (isset($_SESSION['user_id'])) {
                     </h4>
                     <?php
                       $count = 1;
+<<<<<<< HEAD
                       while ($rowApprove = mysqli_fetch_assoc($resultApprove)) {
                         $colorRequest = "bg-primary";
                         $iconRequest = "fa-file-alt";
                         if ($rowApprove["action_request"] == "request_update") {
+=======
+                      while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
+                        $colorRequest = "bg-primary";
+                        $iconRequest = "fa-file-alt";
+                        if ($rowApproveNavbar["action_request"] == "request_update") {
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                           $iconRequest = "fa-file-alt";
                           $colorRequest = "bg-primary";
                         } else {
@@ -483,15 +506,24 @@ if (isset($_SESSION['user_id'])) {
                           break;
                         }
                         ?>
+<<<<<<< HEAD
                       <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApprove["id"]; ?>">
+=======
+                      <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApproveNavbar["id"]; ?>">
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                         <div class="mr-3">
                           <div class="icon-circle <?php echo $colorRequest; ?>">
                             <i class="fas <?php echo $iconRequest; ?> text-white"></i>
                           </div>
                         </div>
                         <div>
+<<<<<<< HEAD
                           <div class="small text-gray-500"><?php echo $rowApprove["surname"] . " " . $rowApprove["lastname"]; ?></div>
                           <span class="font-weight-bold"><?php echo $rowApprove["reason"]; ?></span>
+=======
+                          <div class="small text-gray-500"><?php echo $rowApproveNavbar["surname"] . " " . $rowApproveNavbar["lastname"]; ?></div>
+                          <span class="font-weight-bold"><?php echo $rowApproveNavbar["reason"]; ?></span>
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                         </div>
                       </a>
                     <?php $count++;

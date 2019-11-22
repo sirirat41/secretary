@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM supplies_account as d ,supplies as s ,supplies_stock as ss ,department as p ,unit as u  WHERE d.department = p.id and d.unit_id = u.id and s.supplies_id = ss.id and d.product_id = s.id and d.id = $id";
+  $sql = "SELECT * FROM supplies_account_detail as d ,supplies_account as s WHERE d.account_id = s.id and d.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["distribute_date"];
@@ -195,23 +195,46 @@ if (isset($_GET["id"])) {
                         <td width="7%">คงเหลือ</td>
                       </tr>
                     </thead>
-                    <thead>
-                      <tr class="text-center body-text" height="30" id="firstTr">
-
-                        <td> <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
-                        <td> <input type="text" class="form-control" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $item["receive_from"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="distribute_to" id="distribute_to" placeholder="" name="distribute_to" value="<?php echo $item["distribute_to"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="document_no" id="document_no" placeholder="" name="document_no" value="<?php echo $item["document_no"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="baht" id="baht" placeholder="" name="baht" value="<?php echo $item["baht"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="satang" id="satang" placeholder="" name="satang" value="<?php echo $item["satang"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="unit" id="unit" placeholder="" name="unit" value="<?php echo $item["unit"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="receive" id="receive" placeholder="" name="receive" value="<?php echo $item["receive"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="distribute" id="distribute" placeholder="" name="distribute" value="<?php echo $item["distribute"]; ?>"></td>
-                        <td> <input type="text" class="form-control" name="stock" id="stock" placeholder="" name="stock" value="<?php echo $item["stock"]; ?>"></td>
-                        <td><input type="text" class="form-control" name="flag" id="flag" placeholder="" name="flag" value="<?php echo $item["flag"]; ?>"></td>
+                    <tbody id="tbody">
+                      <?php
+                      $sqlSelect = "SELECT * FROM supplies_account_detail as a";
+                      $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
+                      // echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                        ?>
+                      <tr class="text-center" height="30" id="firstTr">
+                        <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
+                        <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $row["receive_from"]; ?>"></td>
+                        <td> <input type="text" class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" name="distribute_to" value="<?php echo $row["distribute_to"]; ?>"></td>
+                        <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no" value="<?php echo $row["document_no"]; ?>"></td>
+                        <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht" value="<?php echo $row["baht"]; ?>"></td>
+                        <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang" value="<?php echo $row["satang"]; ?>"></td>
+                        <td> <input type="text" class="form-control unit" name="unit" id="unit" placeholder="" name="unit" value="<?php echo $row["unit"]; ?>"></td>
+                        <td> <input type="text" class="form-control receive" name="receive" id="receive" placeholder="" name="receive" value="<?php echo $row["receive"]; ?>"></td>
+                        <td> <input type="text" class="form-control table-distribute" name="distribute" id="distribute" placeholder="" name="distribute" value="<?php echo $row["distribute"]; ?>"></td>
+                        <td> <input type="text" class="form-control table-stock" name="stock" id="stock" placeholder="" name="stock" value="<?php echo $row["stock"]; ?>"></td>
+                        <td><input type="text" class="form-control flag" name="flag" id="flag" placeholder="" name="flag" value="<?php echo $row["flag"]; ?>"></td>
                       </tr>
 
-                    </thead>
+                      <?php
+                      }
+                      ?>
+                <tr class="text-center" height="30" id="firstTr">
+                        <td> <input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" ></td>
+                        <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" ></td>
+                        <td> <input type="text" class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" name="distribute_to" ></td>
+                        <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no" ></td>
+                        <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht" ></td>
+                        <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang"></td>
+                        <td> <input type="text" class="form-control unit" name="unit" id="unit" placeholder="" name="unit" ></td>
+                        <td> <input type="text" class="form-control receive" name="receive" id="receive" placeholder="" name="receive" ></td>
+                        <td> <input type="text" class="form-control table-distribute" name="distribute" id="distribute" placeholder="" name="distribute" ></td>
+                        <td> <input type="text" class="form-control table-stock" name="stock" id="stock" placeholder="" name="stock" ></td>
+                        <td><input type="text" class="form-control flag" name="flag" id="flag" placeholder="" name="flag" ></td>
+                      </tr>
+                      </tbody>
                   </table>
                   <br>
                   <table width="500" border="0" cellspacing="0" cellpadding="0">
@@ -308,25 +331,7 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body ">
-          คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="sendData();">บันทึก</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -548,15 +553,21 @@ if (isset($_GET["id"])) {
       $('#product_id').val(id);
     }
     
+   
     $(function() {
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
-        var tr = $('#firstTr').clone();
+        var tr = $('#myTbl tr:last').clone();
+        $.each(tr.find("input"), function(i,e) {
+          $(e).val("");
+        });
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
+          if ($("#myTbl tr").length > 3) {
         $("#myTbl tr:last").remove();
+          }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }
@@ -573,6 +584,7 @@ if (isset($_GET["id"])) {
       var data = [];
       $('.distribute_date').each(function(i, e) {
         var item = {};
+        item["id"] = $('.account_id:eq(' + i + ')').val();
         item["distribute_date"] = $('.distribute_date:eq(' + i + ')').val();
         item["receive_from"] = $('.receive_from:eq(' + i + ')').val();
         item["distribute_to"] = $('.distribute_to:eq(' + i + ')').val();
@@ -588,7 +600,7 @@ if (isset($_GET["id"])) {
       })
       params["data"] = data;
       $.ajax({
-        url: 'service/service_insert_supplies_account.php',
+        url: 'service/service_edit_supplies_account.php?id=<?php echo $_GET["id"]; ?>',
         type: 'POST',
         dataType: 'JSON',
         data: {
@@ -597,12 +609,33 @@ if (isset($_GET["id"])) {
           if (data.result) {
             window.location = "display_supplies_account.php";
           }
+        },
+        error: function(error) {
+          console.log(error);
         }
       })
-      //console.log(params);
+      console.log(params);
     }
   </script>
 
 </body>
- 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+          คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" onclick="sendData();">บันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>

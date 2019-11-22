@@ -117,30 +117,7 @@ $show = 10;
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
-<<<<<<< HEAD
-                      <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-=======
                  
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                   </div>
                 </div>
               </form>
@@ -354,27 +331,12 @@ $show = 10;
 
         var damage_date = item["damage_date"];
         var code = item["code"];
-<<<<<<< HEAD
         var flag = item["flag"];
             $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
             $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
             $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
             $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
           generatePagination();
-=======
-        var flag = item["flag"]; <<
-        << << < HEAD
-        $('<td>' + item.damage_date + '</td>').appendTo(tr);
-        $('<td>' + item.code + '</td>').appendTo(tr);
-        $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr); ===
-        === =
-        $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-        generatePagination();
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
       }
     }
 
@@ -432,12 +394,9 @@ $show = 10;
       };
       var str = num.toString();
       for (var val in array) {
-<<<<<<< HEAD
+
         str = str.split(val).join(array[val]);
-=======
-        str = str.split(val).join(array[val]); >>>
-        >>> > 3248 d1df70661156939fe927059b2c42b0034dba
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+
       }
       return str;
     }

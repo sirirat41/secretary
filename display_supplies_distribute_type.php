@@ -48,8 +48,13 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
+<<<<<<< HEAD
                 <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-city"></i> แสดงข้อมูลประเภทวัสดุสิ้นเปลือง (แจกจ่าย)</h6>
+=======
+                <h6 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+>>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -95,7 +100,7 @@ $show = 10;
                       
                         ?>
                         <tr class="text-center">
-                          <td><a class="nav-link active" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" href='display_supplies_distribute.php?type=<?php echo $row['id']; ?>'>
+                          <td><a class="nav-link active"  href='display_supplies_distribute.php?type=<?php echo $row['id']; ?>'>
                               <?php echo $row["name"]; ?></a></td>
                   
                         </tr>
