@@ -211,6 +211,7 @@ $show = 10;
 
 
   </div>
+  
   <!-- End of Main Content -->
 
   <!-- Footer -->
@@ -270,7 +271,22 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
+</body>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -292,18 +308,4 @@ $show = 10;
       </div>
     </div>
   </div>
-</body>
-<!-- Initialize Bootstrap functionality -->
-<script>
-  // Initialize tooltip component
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
-  // Initialize popover component
-  $(function() {
-    $('[data-toggle="popover"]').popover()
-  })
-</script>
-
 </html>

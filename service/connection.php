@@ -7,7 +7,7 @@ if (!isset($_SESSION["user_type"])) {
 }
     $servername = "localhost";
     $username = "root";
-    $password = "root";
+    $password = "";
     $database = "secretary";
 
     $conn = mysqli_connect($servername, $username, $password, $database);

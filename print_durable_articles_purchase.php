@@ -3,7 +3,7 @@ require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT p.*, a.code ,a.attribute ,a.model , a.picture FROM durable_articles_purchase as p ,durable_articles as a WHERE p.id = $id";
-  $sql .= " and p.product_id = a.id and a.status = 1 ";
+  $sql .= " and p.product_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 }

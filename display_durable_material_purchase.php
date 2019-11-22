@@ -103,10 +103,10 @@ $show = 10;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center body-text">
-                          <td><?php echo thainumDigit($row["order_no"]); ?></td>
-                          <td><?php echo thainumDigit($row["purchase_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["number"]); ?></td>
-                          <td><?php echo thainumDigit($row["order_by"]); ?></td>
+                          <td><?php echo ($row["order_no"]); ?></td>
+                          <td><?php echo ($row["purchase_date"]); ?></td>
+                          <td><?php echo ($row["number"]); ?></td>
+                          <td><?php echo ($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -169,11 +169,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>

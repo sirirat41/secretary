@@ -127,7 +127,7 @@ if (isset($_GET["id"])) {
       </div>
       <div class="col-sm-">
         <label class="text " for="short_goverment">
-          <div style="width:80px">
+          <div style="width:100px">
             <h5>หน่วยงาน: </h5>
         </label>
       </div>

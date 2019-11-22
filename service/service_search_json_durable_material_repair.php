@@ -13,7 +13,7 @@
         $data = array();
         $result = mysqli_query($conn, $sqlSelect);
         while ($row = mysqli_fetch_assoc($result)){
-            $row["damage_id"] = thainumDigit($row["damage_id"]);
+ 
             array_push($data, $row);
             
         }

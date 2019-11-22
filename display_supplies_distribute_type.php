@@ -48,8 +48,8 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger body-text">
-                  <i class="fas fa-city"></i> แสดงข้อมูลหน่วยงาน</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text">
+                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภทการแจกจ่าย(วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>

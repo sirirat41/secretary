@@ -46,13 +46,8 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-<<<<<<< HEAD
                 <h6 class="m-0 font-weight-bold text-danger body-text">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด(วัสดุคงทน)</h6>
-=======
-                <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-fw fa-house-damage"></i> แสดงข้อมูลชำรุด(วัสดุคงทน)</h6>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>

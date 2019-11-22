@@ -102,8 +102,8 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center body-text">
-                          <td><?php echo thainumDigit($row["receive_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo ($row["receive_date"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td class="td-actions text-center">
@@ -176,11 +176,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>

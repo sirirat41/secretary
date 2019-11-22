@@ -105,10 +105,10 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center body-text">
-                          <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                          <td><?php echo thainumDigit($row["stock"]); ?></td>
-                          <td><?php echo thainumDigit($row["name"]); ?></td>
+                          <td><?php echo ($row["supplies_name"]); ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
+                          <td><?php echo ($row["stock"]); ?></td>
+                          <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
                       
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-stock').val('<?php echo $id; ?>')">
@@ -171,11 +171,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>

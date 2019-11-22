@@ -8,18 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["permits_id"] )) {
     $log = "ลบข้อมูลการยืม-คืนครุภัณฑ์ รหัส " . $permitsID;
     logServer($conn, $log);
 
-    if (mysqli_query($conn, $sqlUpdate)) {
-        
+    
+    $sqlUpdate = "UPDATE durable_articles SET status = 1";
+    $sqlUpdate .= " WHERE id = $permitsID";
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update damage: " . mysqli_error($conn));
 
-        $sqlUpdate1 ="UPDATE durable_articles SET status = 1 WHERE id = $permitsID";
-        mysqli_query($conn ,$sqlUpdate1);
         header('Location: ../display_durable_articles_permits.php?message=ลบข้อมูลสำเร็จ');
-    } else {
-        header('Location: ../display_durable_articles_permits.php?message=ลบข้อมูลไม่สำเร็จ');
-    }
-
-} else {
-    header('Location: ../display_durable_articles_permits.php?message=ข้อมูลผิดพลาด');
+   
 }
 
 ?>

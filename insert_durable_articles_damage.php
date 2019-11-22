@@ -402,6 +402,7 @@ $show = 10;
 
 
     function selectedArticles(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }

@@ -234,7 +234,7 @@ $show = 10;
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
                         $sqlSelect = "SELECT d.*, a.code FROM durable_articles_damage as d, durable_articles as a";
-                        $sqlSelect .= " WHERE d.product_id = a.id and d.status = 3";
+                        $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (d.damage_date like '%$keyword%' or a.code like '%$keyword%')";

@@ -90,7 +90,7 @@ if (isset($_GET["id"])) {
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-sm-12" align="center">
-                        <h5>บัญชีคุม ประจำปี งบประมาณ .....</h5>
+                        <h5>บัญชีคุม ประจำปี งบประมาณ <?php echo $row["year"]; ?></h5>
                       </div>
                     </div>
                     <br>
@@ -109,7 +109,7 @@ if (isset($_GET["id"])) {
                       </div>
                       <div class="col-sm-">
                         <label class="text " for="short_goverment">
-                          <div style="width:80px">
+                          <div style="width:100px">
                             <h5>หน่วยงาน: </h5>
                         </label>
                       </div>
@@ -194,24 +194,33 @@ if (isset($_GET["id"])) {
                     <td width="7%">คงเหลือ</td>
                   </tr class="text-center">
               </thead>
+              <tbody id="tbody">
+                      <?php
+                      $sqlSelect = "SELECT * FROM supplies_account_detail as a";
+                      $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
+                      // echo $sqlSelect;
+                      $result = mysqli_query($conn, $sqlSelect);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                        ?>
+                      <tr class="text-center" height="30" id="firstTr">
+                        <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><?php echo $row["distribute_date"]; ?></td>
+                        <td> <?php echo $row["receive_from"]; ?></td>
+                        <td> <?php echo $row["distribute_to"]; ?></td>
+                        <td> <?php echo $row["document_no"]; ?></td>
+                        <td> <?php echo $row["baht"]; ?></td>
+                        <td> <?php echo $row["satang"]; ?></td>
+                        <td> <?php echo $row["unit"]; ?></td>
+                        <td> <?php echo $row["receive"]; ?></td>
+                        <td> <?php echo $row["distribute"]; ?></td>
+                        <td> <?php echo $row["stock"]; ?></td>
+                        <td><?php echo $row["flag"]; ?></td>
+                      </tr>
 
-              <tbody>
-
-                <tr class="text-center " height="30">
-                  <td rowspan="2"> <?php echo ($row["distribute_date"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["receive_from"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["distribute_to"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["document_no"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["baht"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["satang"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["unit"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["receive"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["distribute"]); ?></td>
-                  <td rowspan="2"> <?php echo ($row["stock"]); ?></td>
-                  <td rowspan="2"><?php echo ($row["flag"]); ?></td>
-                </tr class="text-center">
-
-              </tbody>
+                      <?php
+                      }
+                      ?>
+                
             <?php } ?>
             </table>
 

@@ -101,15 +101,6 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-<<<<<<< HEAD
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo thainumDigit($row["model"]); ?></td>
-                        <td><?php echo thainumDigit($row["damage_date"]); ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
-=======
                       <tr class="text-center body-text">
                         <td><?php echo ($row["code"]); ?></td>
                         <td><?php echo ($row["attribute"]); ?></td>
@@ -117,7 +108,6 @@ $show = 10;
                         <td><?php echo ($row["damage_date"]); ?></td>
                         <td class="td-actions text-center body-text">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
->>>>>>> b6bcebf763d51864fb681ddd2a473fdea7b889c5
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">

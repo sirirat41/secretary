@@ -7,8 +7,8 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
   $permitDate = $item["permit_date"];
-  $newReceiveDate = date("ํd-m-Y", strtotime($receiveDate));
-  $newpermitDate = date("ํd-m-Y", strtotime($permitDate));
+  $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
+  $newpermitDate = date("Y-m-d", strtotime($permitDate));
 
   $show = 2;
 }
