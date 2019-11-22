@@ -35,10 +35,10 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-articles">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="true" aria-controls="collapseArticles">
           <i class="fas fa-fw fa-cubes"></i>
-          <span>ทะเบียนคุม</span>
+          <span class="body-text-menu">ทะเบียนคุม</span>
         </a>
-        <div id="collapseArticles" class="collapse collapse-articles" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+        <div id="collapseArticles" class="collapse collapse-articles " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
             <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
@@ -57,10 +57,10 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-material">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial">
           <i class="fas fa-fw fa-box"></i>
-          <span>วัสดุคงทน</span>
+          <span class="body-text-menu">วัสดุคงทน</span>
         </a>
         <div id="collapseMaterial" class="collapse collapse-material" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
             <a class="collapse-item display" href="display_durable_material.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_durable_material_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_material_permits.php">ยืม-คืน</a>
@@ -79,10 +79,10 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-supplies">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplies" aria-expanded="true" aria-controls="collapseSupplies">
           <i class="fas fa-fw fa-box-open"></i>
-          <span>วัสดุสิ้นเปลือง</span>
+          <span class="body-text-menu">วัสดุสิ้นเปลือง</span>
         </a>
         <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
             <a class="collapse-item supplies" href="display_supplies.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
             <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
@@ -102,11 +102,11 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-department">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
           <i class="fas fa-fw fa-city"></i>
-          <span>หน่วยงาน</span>
+          <span class="body-text-menu">หน่วยงาน</span>
         </a>
         <div id="collapseDepartment" class="collapse collapse-department" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item display" href="display_department.php">แสดงหน่วยงาน</a>
+            <a class="collapse-item display body-text-menu" href="display_department.php">แสดงหน่วยงาน</a>
           </div>
         </div>
       </li>
@@ -115,11 +115,11 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-user">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
           <i class="fas fa-fw fa-users"></i>
-          <span>ผู้ดูแลระบบ</span>
+          <span class="body-text-menu">ผู้ดูแลระบบ</span>
         </a>
         <div id="collapseUser" class="collapse collapse-user" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item displayu" href="display_user.php">แสดงรายชื่อ</a>
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
+            <a class="collapse-item displayu " href="display_user.php">แสดงรายชื่อ</a>
           </div>
         </div>
       </li>
@@ -128,10 +128,10 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-approve">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
           <i class="fas fa-fw fa-folder"></i>
-          <span>รายการรออนุมัติ</span>
+          <span class="body-text-menu">รายการรออนุมัติ</span>
         </a>
         <div id="collapseApprove" class="collapse collapse-approve" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
             <a class="collapse-item display-request" href="display_supplies_request.php">แสดงรายการรออนุมัติ</a>
           </div>
         </div>
@@ -140,10 +140,10 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-setting">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
           <i class="fas fa-fw fa-setting"></i>
-          <span>ตั้งค่า</span>
+          <span class="body-text-menu">ตั้งค่า</span>
         </a>
         <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
             <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
             <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
             <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
@@ -156,7 +156,7 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item">
         <a class="nav-link" href="service/service_logout.php">
           <i class="fas fa-fw fa-"></i>
-          <span>ออกจากระบบ</span></a>
+          <span class="body-text-menu">ออกจากระบบ</span></a>
       </li>
 
 
@@ -235,10 +235,10 @@ if (isset($_SESSION['user_id'])) {
                 </h6>
                 <?php
                     $count = 1;
-                    while ($row = mysqli_fetch_assoc($resultApprove)) {
+                    while ($rowApprove = mysqli_fetch_assoc($resultApprove)) {
                       $colorRequest = "bg-primary";
                       $iconRequest = "fa-file-alt";
-                      if ($row["action_request"] == "request_update") {
+                      if ($rowApprove["action_request"] == "request_update") {
                         $iconRequest = "fa-file-alt";
                         $colorRequest = "bg-primary";
                       } else {
@@ -249,20 +249,20 @@ if (isset($_SESSION['user_id'])) {
                         break;
                       }
                       ?>
-                  <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $row["id"]; ?>">
+                  <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApprove["id"]; ?>">
                     <div class="mr-3">
                       <div class="icon-circle <?php echo $colorRequest; ?>">
-                        <i class="fas <?php echo $iconRequest; ?> text-white"></i>
+                        <i class="fas <?php echo $iconRequest; ?> text-white body-text-menu"></i>
                       </div>
                     </div>
                     <div>
-                      <div class="small text-gray-500"><?php echo $row["surname"] . " " . $row["lastname"]; ?></div>
-                      <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+                      <div class="small text-gray-500 body-text-menu"><?php echo $rowApprove["surname"] . " " . $rowApprove["lastname"]; ?></div>
+                      <span class="font-weight-bold body-text-menu"><?php echo $rowApprove["reason"]; ?></span>
                     </div>
                   </a>
                 <?php $count++;
                     } ?>
-                <a class="dropdown-item text-center small text-gray-500" href="display_supplies_request.php">แสดงแจ้งเตือนทั้งหมด</a>
+                <a class="dropdown-item text-center small text-gray-500 body-text-menu" href="display_supplies_request.php">แสดงแจ้งเตือนทั้งหมด</a>
               </div>
             </li>
 
@@ -277,12 +277,12 @@ if (isset($_SESSION['user_id'])) {
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="display_log.php">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
                   การเข้าใช้งาน
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="service/service_logout.php">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
                   ออกจากระบบ
                 </a>
               </div>
@@ -314,7 +314,7 @@ if (isset($_SESSION['user_id'])) {
           <li class="nav-item nav-home">
             <a class="nav-link" href="index.html">
               <i class="fas fa-fw fa-home"></i>
-              <span>หน้าหลัก</span></a>
+              <span class="body-text-menu">หน้าหลัก</span></a>
           </li>
 
           <!-- Divider -->
@@ -327,7 +327,7 @@ if (isset($_SESSION['user_id'])) {
           <li class="nav-item nav-supplies">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplies" aria-expanded="true" aria-controls="collapseSupplies">
               <i class="fas fa-fw fa-box-open"></i>
-              <span>วัสดุสิ้นเปลือง</span>
+              <span class="body-text-menu">วัสดุสิ้นเปลือง</span>
             </a>
             <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
@@ -348,7 +348,7 @@ if (isset($_SESSION['user_id'])) {
           <li class="nav-item nav-department">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
               <i class="fas fa-fw fa-city"></i>
-              <span>หน่วยงาน</span>
+              <span class="body-text-menu">หน่วยงาน</span>
             </a>
             <div id="collapseDepartment" class="collapse collapse-department" aria-labelledby="headingPages" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
@@ -361,10 +361,10 @@ if (isset($_SESSION['user_id'])) {
           <li class="nav-item nav-approve">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
               <i class="fas fa-fw fa-folder"></i>
-              <span>รายการรออนุมัติ</span>
+              <span class="body-text-menu">รายการรออนุมัติ</span>
             </a>
             <div id="collapseApprove" class="collapse collapse-approve" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
+              <div class="bg-white py-2 collapse-inner rounded body-text-menu">
                 <a class="collapse-item display-request" href="display_supplies_request.php">แสดงรายการรออนุมัติ</a>
               </div>
             </div>
@@ -373,10 +373,10 @@ if (isset($_SESSION['user_id'])) {
           <li class="nav-item nav-setting">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
               <i class="fas fa-fw fa-setting"></i>
-              <span>ตั้งค่า</span>
+              <span class="body-text-menu">ตั้งค่า</span>
             </a>
             <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
+              <div class="bg-white py-2 collapse-inner rounded body-text-menu">
                 <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
                 <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
                 <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
@@ -389,7 +389,7 @@ if (isset($_SESSION['user_id'])) {
           <li class="nav-item">
             <a class="nav-link" href="service/service_logout.php">
               <i class="fas fa-fw fa-"></i>
-              <span>ออกจากระบบ</span></a>
+              <span class="body-text-menu">ออกจากระบบ</span></a>
           </li>
 
 
@@ -464,15 +464,15 @@ if (isset($_SESSION['user_id'])) {
                   </a>
                   <!-- Dropdown - Alerts -->
                   <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header bg-danger" style="border: none">
+                    <h4 class="dropdown-header bg-danger" style="border: none">
                       แจ้งเตือน
-                    </h6>
+                    </h4>
                     <?php
                       $count = 1;
-                      while ($row = mysqli_fetch_assoc($resultApprove)) {
+                      while ($rowApprove = mysqli_fetch_assoc($resultApprove)) {
                         $colorRequest = "bg-primary";
                         $iconRequest = "fa-file-alt";
-                        if ($row["action_request"] == "request_update") {
+                        if ($rowApprove["action_request"] == "request_update") {
                           $iconRequest = "fa-file-alt";
                           $colorRequest = "bg-primary";
                         } else {
@@ -483,20 +483,20 @@ if (isset($_SESSION['user_id'])) {
                           break;
                         }
                         ?>
-                      <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $row["id"]; ?>">
+                      <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApprove["id"]; ?>">
                         <div class="mr-3">
                           <div class="icon-circle <?php echo $colorRequest; ?>">
                             <i class="fas <?php echo $iconRequest; ?> text-white"></i>
                           </div>
                         </div>
                         <div>
-                          <div class="small text-gray-500"><?php echo $row["surname"] . " " . $row["lastname"]; ?></div>
-                          <span class="font-weight-bold"><?php echo $row["reason"]; ?></span>
+                          <div class="small text-gray-500"><?php echo $rowApprove["surname"] . " " . $rowApprove["lastname"]; ?></div>
+                          <span class="font-weight-bold"><?php echo $rowApprove["reason"]; ?></span>
                         </div>
                       </a>
                     <?php $count++;
                       } ?>
-                    <a class="dropdown-item text-center small text-gray-500" href="display_supplies_request.php">แสดงแจ้งเตือนทั้งหมด</a>
+                    <a class="dropdown-item text-center small text-gray-500 body-text-menu" href="display_supplies_request.php">แสดงแจ้งเตือนทั้งหมด</a>
                   </div>
                 </li>
 
@@ -511,7 +511,7 @@ if (isset($_SESSION['user_id'])) {
                   <!-- Dropdown - User Information -->
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="service/service_logout.php">
-                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
                       ออกจากระบบ
                     </a>
                   </div>

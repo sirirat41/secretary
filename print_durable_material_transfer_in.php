@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
   <div class="col-sm-12">
     <div class="table-responsive">
       <table width="900" border="1" align="center">
-        <h5 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(วัสดุคงทน)</h5>
+        <h7 class="m-3 font-weight-bold " align="center"> ข้อมูลการโอนเข้า(วัสดุคงทน)</h7>
     </div>
     </nav>
     <form>
@@ -194,7 +194,7 @@ if (isset($_GET["id"])) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <h7 class="modal-title" id="exampleModalLabel">Ready to Leave?</h7>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>

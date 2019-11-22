@@ -326,7 +326,7 @@ if (isset($_GET["id"])) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo ($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">

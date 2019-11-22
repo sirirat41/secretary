@@ -1,7 +1,7 @@
-<?php
-require "service/connection.php";
-$show = 10;
-?>
+z<?php
+  require "service/connection.php";
+  $show = 10;
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,15 +71,9 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-<<<<<<< HEAD
                       <tr class="text-center body-text">
-                      <th>วันที่ขาย</th>
-                        <th>รหัสครุภัณฑ์</th>
-=======
-                      <tr class="text-center">
                         <th>วันที่ขาย</th>
-                        <th>รหัสวัสดุ</th>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+                        <th>รหัสครุภัณฑ์</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
                         <th>รุ่นแบบ</th>
                         <th>การทำงาน</th>
@@ -106,19 +100,11 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-<<<<<<< HEAD
                         <tr class="text-center body-text">
-                        <td><?php echo thainumDigit($row["sell_date"]); ?></td>
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo thainumDigit($row["name"]); ?></td>
-=======
-                        <tr class="text-center">
-                          <td><?php echo thainumDigit($row["sell_date"]); ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
-                          <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                          <td><?php echo thainumDigit($row["name"]); ?></td>
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+                          <td><?php echo ($row["sell_date"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
+                          <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -189,11 +175,11 @@ $show = 10;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>

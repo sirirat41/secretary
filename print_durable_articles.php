@@ -101,34 +101,34 @@ if (isset($_GET["id"])) {
   <body style="padding: 16px">
     <div class="row">
       <div class="col-sm-12" align="center">
-        <h5>ทะเบียนคุมทรัพย์สิน</h5>
+        <h7>ทะเบียนคุมทรัพย์สิน</h7>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
         <label class="text " for="type">
-          <h5>ประเภท:</h5>
+          <h7>ประเภท:</h7>
         </label>
         <?php echo $row["durable_articles_type_name"]; ?>
       </div>
       <div class="text " class="col-sm-">
-        <h5>ส่วนราชการ: </h5>
+        <h7>ส่วนราชการ: </h7>
       </div>
       <div class="col-sm-3">
-        <h5>สำนักงานตำนวจแห่งชาติ</h5>
+        <h7>สำนักงานตำนวจแห่งชาติ</h7>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
         <label class="text " for="attribute">
-          <h5>ลักษณะ/คุณสมบัติ:</h5>
+          <h7>ลักษณะ/คุณสมบัติ:</h7>
         </label>
         <?php echo ($row["attribute"]); ?>
       </div>
       <div class="col-sm-">
         <label class="text " for="short_goverment">
           <div style="width:80px">
-            <h5>หน่วยงาน: </h5>
+            <h7>หน่วยงาน: </h7>
         </label>
       </div>
     </div>
@@ -139,14 +139,14 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="model">
-          <h5>รุ่นแบบ :</h5>
+          <h7>รุ่นแบบ :</h7>
         </label>
         <?php echo ($row["model"]); ?>
 
       </div>
       <div class="col-sm-6">
         <label class="text " for="code">
-          <h5>รหัส :</h5>
+          <h7>รหัส :</h7>
         </label>
         <?php echo ($row["code"]); ?>
 
@@ -155,13 +155,13 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="bill_no">
-          <h5>เลขที่ใบเบิก : </h5>
+          <h7>เลขที่ใบเบิก : </h7>
         </label>
         <?php echo ($row["bill_no"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="asset_no">
-          <h5>เลขสินทรัพย์ :</h5>
+          <h7>เลขสินทรัพย์ :</h7>
         </label>
         <?php echo ($row["asset_no"]); ?>
       </div>
@@ -169,13 +169,13 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="budget">
-          <h5>งบประมาณ : </h5>
+          <h7>งบประมาณ : </h7>
         </label>
         <?php echo ($row["budget"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="d_gen">
-          <h5>เอกสารสำรองเงิน : </h5>
+          <h7>เอกสารสำรองเงิน : </h7>
         </label>
         <?php echo ($row["d_gen"]); ?>
       </div>
@@ -183,7 +183,7 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="fullname">
-          <h5>สถานที่ตั้ง / หน่วยงานที่รับผิดชอบ :</h5>
+          <h7>สถานที่ตั้ง / หน่วยงานที่รับผิดชอบ :</h7>
         </label>
         <?php echo ($row["fullname"]); ?>
         <label class="text " for="bulding">อาคาร
@@ -209,7 +209,7 @@ if (isset($_GET["id"])) {
       </div>
       <div class="col-sm-6">
         <label class="text " for="seller_tel">
-          <h5>โทรศัพท์/FAX :</h5>
+          <h7>โทรศัพท์/FAX :</h7>
         </label>
         <?php echo ($row["seller_tel"]) == "" ? "<ไม่มีข้อมูล>" : ($row["seller_tel"]); ?>
         <label class="text " for="seller_fax">
@@ -220,13 +220,13 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="money_type">
-          <h5>ประเภทเงิน :</h5>
+          <h7>ประเภทเงิน :</h7>
         </label>
         <?php echo $row["money_type"]; ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="acquiring">
-          <h5>วิธีการได้มา :</h5>
+          <h7>วิธีการได้มา :</h7>
         </label>
         <?php echo $row["acquiring"]; ?>
       </div>

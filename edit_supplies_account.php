@@ -385,9 +385,9 @@ if (isset($_GET["id"])) {
                           ?>
                           <tr class="text-center">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo thainumDigit($row["supplies_name"]); ?></td>
-                            <td><?php echo thainumDigit($row["code"]); ?></td>
-                            <td><?php echo thainumDigit($row["name"]); ?></td>
+                            <td><?php echo ($row["supplies_name"]); ?></td>
+                            <td><?php echo ($row["code"]); ?></td>
+                            <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>

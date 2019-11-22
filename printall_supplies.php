@@ -158,7 +158,7 @@ require "service/connection.php";
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h7 class="modal-title" id="exampleModalLabel">Ready to Leave?</h7>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -193,7 +193,7 @@ require "service/connection.php";
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
+          <h7 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h7>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

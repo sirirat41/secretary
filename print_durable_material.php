@@ -75,34 +75,34 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12" align="center">
-          <h5>วัสดุคงทน</h5>
+          <h7>วัสดุคงทน</h7>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-8">
           <label class="text " for="type">
-            <h5>ประเภทวัสดุ :</h5>
+            <h7>ประเภทวัสดุ :</h7>
           </label>
           <?php echo $row["durable_material_type_name"]; ?>
         </div>
         <div class="text " class="col-sm-">
-          <h5>ส่วนราชการ: </h5>
+          <h7>ส่วนราชการ: </h7>
         </div>
         <div class="col-sm-3">
-          <h5>สำนักงานตำนวจแห่งชาติ</h5>
+          <h7>สำนักงานตำนวจแห่งชาติ</h7>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-8">
           <label class="text " for="attribute">
-            <h5>ลักษณะ/คุณสมบัติ:</h5>
+            <h7>ลักษณะ/คุณสมบัติ:</h7>
           </label>
           <?php echo ($row["attribute"]); ?>
         </div>
         <div class="col-sm-">
           <label class="text " for="short_goverment">
             <div style="width:80px">
-              <h5>หน่วยงาน: </h5>
+              <h7>หน่วยงาน: </h7>
           </label>
         </div>
       </div>
@@ -113,13 +113,13 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="code">
-          <h5>รหัส :</h5>
+          <h7>รหัส :</h7>
         </label>
         <?php echo $row["code"]; ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="bill_no">
-          <h5>เลขที่ใบเบิก :</h5>
+          <h7>เลขที่ใบเบิก :</h7>
         </label>
         <?php echo ($row["bill_no"]); ?>
       </div>
@@ -127,13 +127,13 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="asset_no">
-          <h5>เลขสินทรัพย์ :</h5>
+          <h7>เลขสินทรัพย์ :</h7>
         </label>
         <?php echo ($row["asset_no"]); ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="fullname">
-          <h5>สถานที่ตั้ง/หน่วยงานที่รับผิดชอบ :</h5>
+          <h7>สถานที่ตั้ง/หน่วยงานที่รับผิดชอบ :</h7>
         </label>
         <?php echo $row["fullname"]; ?>
         <label class="text " for="bulding">อาคาร
@@ -147,13 +147,13 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="name">
-          <h5>รายการวัสดุ :</h5>
+          <h7>รายการวัสดุ :</h7>
         </label>
         <?php echo $row["name"]; ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="seller_address">
-          <h5>ที่อยู่ :</h5>
+          <h7>ที่อยู่ :</h7>
         </label>
         <?php echo ($row["seller_address"]); ?>
       </div>
@@ -161,13 +161,13 @@ $monthDay = ($dateMouth - $day) + 1;
     <div class="row">
       <div class="col-sm-6">
         <label class="text " for="seller_id">
-          <h5>ชื่อผู้ขาย :</h5>
+          <h7>ชื่อผู้ขาย :</h7>
         </label>
         <?php echo $row["seller_name"] == "" ? "<ไม่มีข้อมูล>" : $row["seller_name"]; ?>
       </div>
       <div class="col-sm-6">
         <label class="text " for="seller_tel">
-          <h5>โทรศัพท์/FAX :</h5>
+          <h7>โทรศัพท์/FAX :</h7>
         </label>
         <?php echo $row["seller_tel"] == "" ? "<ไม่มีข้อมูล>" : $row["seller_tel"]; ?>/
         <label class="text " for="seller_fax">
