@@ -63,8 +63,9 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-                <h6 class="m-0 font-weight-bold text-danger">
+                     <h6 class="m-0 font-weight-bold text-danger">
                   <i class="fas fa-business-time"></i> แสดงข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง (ประเภท<?php echo $item["name"]; ?>)</h6>
+
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -94,7 +95,6 @@ $show = 10;
                       <th>วันที่แจกจ่าย</th>
                         <th>รหัสวัสดุ</th>
                         <th>หน่วยงาน</th>
-                       
                         <th>จำนวน</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
@@ -332,7 +332,7 @@ $show = 10;
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
+            <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
           </div>
         </div>
       </div>

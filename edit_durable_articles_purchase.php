@@ -5,7 +5,7 @@ require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles_purchase LEFT JOIN durable_articles ON durable_articles.id = durable_articles_purchase.product_id ";
-  $sql .= "WHERE durable_articles_purchase.id = $id ";
+  $sql .= "WHERE durable_articles_purchase.product_id = $id ";
   //echo $sql ;
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
@@ -398,11 +398,12 @@ if (isset($_GET["id"])) {
                 </div>
                 <br>
                 <div class="row">
-                <div class="col-md-12">
+                  <div class="col-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
-                      <div class="ripple-container"></div></button>
-                  
+                      <div class="ripple-container"></div>
+                    </button>
+                    <!-- Modal -->
                   </div>
                 </div>
               </form>

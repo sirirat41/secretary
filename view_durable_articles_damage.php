@@ -6,7 +6,7 @@ if (isset($_GET["id"])) {
   $sql .= " and da.product_id = a.id and da.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-  echo $row["code"];
+  // echo $row["code"];
 }
 ?>
 

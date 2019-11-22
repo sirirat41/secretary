@@ -98,10 +98,10 @@ if (isset($_GET["id"])) {
                       <div class="col-sm-7">
                       </div>
                       <div class="text " class="col-sm-">
-                        <h5>ส่วนราชการ: </h5>
+                        <h7>ส่วนราชการ: </h7>
                       </div>
                       <div class="col-sm-3">
-                        <h5>สำนักงานตำรวจแห่งชาติ</h5>
+                        <h7>สำนักงานตำรวจแห่งชาติ</h7>
                       </div>
                     </div>
                     <div class="row">
@@ -115,13 +115,13 @@ if (isset($_GET["id"])) {
                       </div>
                     </div>
                     <div class="col-sm-3">
-                      <h5>สลก.ตร.</h5>
+                      <h7>สลก.ตร.</h7>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-6">
                       <label class="text ">
-                        <h5>แผ่นที่</h5>
+                        <h7>แผ่นที่</h7>
                       </label>
                       <?php echo $a++; ?>
                     </div>
@@ -129,19 +129,19 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-sm-4">
                       <label class="text " for="type">
-                        <h5>ประเภท :</h5>
+                        <h7>ประเภท :</h7>
                       </label>
                       <?php echo $row["name"]; ?>
                     </div>
                     <div class="col-sm-4">
                       <label class="text " for="supplies_name">
-                        <h5>ชื่อหรือชนิดวัสดุ :</h5>
+                        <h7>ชื่อหรือชนิดวัสดุ :</h7>
                       </label>
                       <?php echo ($row["supplies_name"]); ?>
                     </div>
                     <div class="col-sm-4">
                       <label class="text " for="code">
-                        <h5>รหัส :</h5>
+                        <h7>รหัส :</h7>
                       </label>
                       <?php echo ($row["code"]); ?>
                     </div>
@@ -149,7 +149,7 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-sm-6">
                       <label class="text " for="attribute">
-                        <h5>ขนาดหรือลักษณะ :</h5>
+                        <h7>ขนาดหรือลักษณะ :</h7>
                       </label>
                       <?php echo ($row["attribute"]); ?>
                     </div>
@@ -157,13 +157,13 @@ if (isset($_GET["id"])) {
                   <div class="row">
                     <div class="col-sm-4">
                       <label class="text " for="unit">
-                        <h5>หน่วยที่นับ : </h5>
+                        <h7>หน่วยที่นับ : </h7>
                       </label>
                       <?php echo ($row["unit_name"]); ?>
                     </div>
                     <div class="col-sm-6">
                       <label class="text " for="fullname">
-                        <h5>ที่เก็บ :</h5>
+                        <h7>ที่เก็บ :</h7>
                       </label>
                       <?php echo ($row["fullname"]); ?>
                       <label class="text " for="bulding">
