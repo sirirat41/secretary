@@ -210,13 +210,16 @@ $monthDay = ($dateMouth - $day) + 1;
 
           </div>
           <thead>
-            <tr class="text-center ">
-              <td><?php $dayY =  $purchase->format('d') . "\n";
+            <tr class="text-center">
+              <td><?php
+
+                    $dayY =  $purchase->format('d') . "\n";
                     $month =  $purchase->format('m') . "\n";
                     $year =  $purchase->format('Y');
                     echo ($dayY);
                     echo month($month);
                     echo ($year);
+
                     ?>
               </td>
               <td> <?php echo ($row["document_no"] . "<br>"); ?></td>
@@ -225,13 +228,27 @@ $monthDay = ($dateMouth - $day) + 1;
               <td><?php echo (number_format(($row["price"]), 2, '.', '')); ?></td>
               <td><?php echo (number_format(($row["price"]), 2, '.', '')); ?></td>
               <td><?php echo ($row["durable_year"]); ?></td>
-              <td><?php $rate = 100 / $row["durable_year"];
-                    echo (number_format($rate, 2, '.', '')); ?>
+              <td><?php
+
+                    if (isset($_SESSION[$row["durable_year"]])) {
+
+                      $rate = "";
+                    } else if ($row["durable_year"]) {
+
+                      $rate = 100 / $row["durable_year"];
+                      echo (number_format($rate, 2, '.', ''));
+                    } else {
+
+                      $rate = "0";
+                    }
+
+                    ?>
+
               </td>
               <td></td>
               <td></td>
               <td></td>
-              <td class="td-actions text-center">
+              <td class="td-actions text-center ">
             </tr>
 
             <?php
@@ -248,7 +265,7 @@ $monthDay = ($dateMouth - $day) + 1;
                       } else {
                         echo ($dateMouth);
                       }
-                      echo (" " . $month . " ");
+                      echo month(" " . $month . " ");
                       if ($i >= 1) {
                         echo ($year + $i);
                       } else {
@@ -317,6 +334,8 @@ $monthDay = ($dateMouth - $day) + 1;
               ?>
           </thead>
           </table>
+
+
         </div>
       </div>
       <br>

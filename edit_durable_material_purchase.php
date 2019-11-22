@@ -5,7 +5,7 @@ require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT *,durable_material_purchase.id as pid FROM durable_material_purchase LEFT JOIN durable_material ON durable_material.id = durable_material_purchase.product_id ";
-  $sql .= "WHERE durable_material_purchase.id = $id ";
+  $sql .= "WHERE durable_material_purchase.product_id = $id ";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];

@@ -46,13 +46,8 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
-<<<<<<< HEAD
                 <h6 class="m-0 font-weight-bold text-danger body-text">
-                  <i class="fas fa-business-time "></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
-=======
-                <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-fw fa-house-damage"></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
->>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
+                  <i class="fas fa-house-damage "></i> แสดงข้อมูลชำรุด (ครุภัณฑ์)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -106,18 +101,6 @@ $show = 10;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                      <tr class="text-center">
-                        <td><?php echo thainumDigit($row["code"]); ?></td>
-                        <td><?php echo thainumDigit($row["attribute"]); ?></td>
-                        <td><?php echo thainumDigit($row["model"]); ?></td>
-                        <td><?php echo thainumDigit($row["damage_date"]); ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
-=======
->>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                       <tr class="text-center body-text">
                         <td><?php echo ($row["code"]); ?></td>
                         <td><?php echo ($row["attribute"]); ?></td>
@@ -125,10 +108,6 @@ $show = 10;
                         <td><?php echo ($row["damage_date"]); ?></td>
                         <td class="td-actions text-center body-text">
                           <button type="button" rel="tooltip" class="btn btn-warning" onclick="window.location = 'edit_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">
-<<<<<<< HEAD
-=======
->>>>>>> b6bcebf763d51864fb681ddd2a473fdea7b889c5
->>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_durable_articles_damage.php?id=<?php echo $row['id']; ?>'">

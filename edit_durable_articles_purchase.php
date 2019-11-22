@@ -5,7 +5,7 @@ require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
   $sql = "SELECT *,durable_articles_purchase.id as pid FROM durable_articles_purchase LEFT JOIN durable_articles ON durable_articles.id = durable_articles_purchase.product_id ";
-  $sql .= "WHERE durable_articles_purchase.id = $id ";
+  $sql .= "WHERE durable_articles_purchase.product_id = $id ";
   //echo $sql ;
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
@@ -398,39 +398,12 @@ if (isset($_GET["id"])) {
                 </div>
                 <br>
                 <div class="row">
-<<<<<<< HEAD
                   <div class="col-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-=======
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
-                      บันทึก
-                      <div class="ripple-container"></div></button>
-                  
->>>>>>> 5e2953e51162b5c09a3c606acabe4240e44dc5b0
                   </div>
                 </div>
               </form>

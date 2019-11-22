@@ -7,8 +7,8 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
   $permitDate = $item["permit_date"];
-  $newReceiveDate = date("ํd-m-Y", strtotime($receiveDate));
-  $newpermitDate = date("ํd-m-Y", strtotime($permitDate));
+  $newReceiveDate = date("Y-m-d", strtotime($receiveDate));
+  $newpermitDate = date("Y-m-d", strtotime($permitDate));
 
   $show = 2;
 }
@@ -110,7 +110,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="receive_date" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>

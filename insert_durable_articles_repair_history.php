@@ -1,6 +1,6 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,10 +44,10 @@ $show=10;
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
-            <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
-            </p>
-          </div>
+        <p class="" onclick="window.history.back()" style="cursor: pointer">
+          <i class="fas fa-angle-left"></i> กลับ
+        </p>
+      </div>
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
@@ -122,30 +122,7 @@ $show=10;
                   <div class="col-md-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
-<<<<<<< HEAD
-                      <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-=======
-                 
->>>>>>> b42bdf62644303c82355bb6e3640ea59e0a2a711
+
                   </div>
                 </div>
               </form>
@@ -236,9 +213,9 @@ $show=10;
                     <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -323,22 +300,23 @@ $show=10;
   </div>
   </div>
   <script>
-   var itemPerPage = 10; //จำนวนข้อมูล
+    var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
     var maxPage = 1;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_articles_repair.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -349,6 +327,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
       var body = $('#modal-articles-body');
@@ -372,9 +351,11 @@ $show=10;
         $('<td>' + thaiNumber(model) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-     
+
       }
-    }/
+    }
+    /
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -418,33 +399,35 @@ $show=10;
       }
       return str;
     }
+
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('body').removeClass('modal-open');
-$('.modal-backdrop').remove();
+      $('.modal-backdrop').remove();
       $('#repair_id').val(id);
     }
   </script>
 
 </body>
 <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการบันทึกข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
