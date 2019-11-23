@@ -64,7 +64,9 @@ $rows = mysqli_fetch_assoc($resultS);
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
+                        <?php if ($_SESSTION["user_type"] == 1) { ?>
                         <a class="body-text" href='display_durable_articles.php'>แสดงรายการครุภัณฑ์</a>
+                        <?php } ?>
                       </div>
                     </div>
               </div>
@@ -87,7 +89,9 @@ $rows = mysqli_fetch_assoc($resultS);
                     <div class="card-footer">
                       <div class="stats">
                         <i class="material-icons"></i>
+                        <?php if ($_SESSTION["user_type"] == 1) { ?>
                         <a href='display_durable_material.php' class="body-text">แสดงรายการวัสดุคงทน</a>
+                        <?php } ?>
                       </div>
                     </div>
               </div>
