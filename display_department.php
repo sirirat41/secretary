@@ -126,7 +126,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="print_department.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-department').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-department').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -284,6 +284,21 @@ $show = 10;
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
+
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+  // Initialize tooltip component
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Initialize popover component
+  $(function() {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
+</body>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -306,18 +321,4 @@ $show = 10;
       </div>
     </div>
   </div>
-</body>
-<!-- Initialize Bootstrap functionality -->
-<script>
-  // Initialize tooltip component
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
-  // Initialize popover component
-  $(function() {
-    $('[data-toggle="popover"]').popover()
-  })
-</script>
-
 </html>
