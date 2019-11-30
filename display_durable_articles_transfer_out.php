@@ -118,7 +118,7 @@ $show = 10;
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" 
-                            data-target="#exampleModal" onclick="$('#remove-transfer_out').val('<?php echo $id; ?>')">
+                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-transfer_out').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             <?php
                             }
