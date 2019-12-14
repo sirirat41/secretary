@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 require "service/connection.php";
-$show = 10;
+$show = 5;
 ?>
 
 <head>
@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_unit</secretary>
+  <secretary style="display : none">display_auditor</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between">
-                <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-city"></i> แสดงข้อมูลหน่วยนับ</h6>
+                <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-city"></i> แสดงข้อมูลผู้ตวรจสอบ</h6>
                 <form class="form-inline">
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -85,11 +85,10 @@ $show = 10;
                           $page = 1;
                         }
                         $start = ($page - 1) * $show;
-                        $sqlSelect = "SELECT * FROM unit";
-                        $sqlSelect .= " WHERE status = 0";
+                        $sqlSelect = "SELECT * FROM auditor";
                         if (isset($_GET["keyword"])) {
                           $keyword = $_GET["keyword"];
-                          $sqlSelect .= " and (name like '%$keyword%')";
+                          $sqlSelect .= " and (Aname like '%$keyword%')";
                         }
                         $sqlSelect .= " Order by id desc LIMIT $start, $show";
                         $result = mysqli_query($conn, $sqlSelect);
@@ -129,11 +128,10 @@ $show = 10;
                 </a>
               </li>
               <?php
-              $sqlSelectCount = "SELECT * FROM unit";
-              $sqlSelectCount .= " WHERE status = 0";
+               $sqlSelect = "SELECT * FROM auditor";
               if (isset($_GET["keyword"])) {
                 $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (name like '%$keyword%')";
+                $sqlSelectCount .= " and (Aname like '%$keyword%')";
               }
               $sqlSelectCount .= " Order by id desc";
               $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -265,7 +263,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลหน่วยนับใช่หรือไม่
+          คุณต้องการลบข้อมูลผู้ตรวจสอบใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_unit.php">
             <input type="hidden" id="rowback-unit" name="unit_id">
           </form>

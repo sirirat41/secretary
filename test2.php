@@ -1,20 +1,31 @@
 <?php
 require 'service/connection.php';
 
-$iss = (isset($_GET["search"]));
-if ($iss) {
+if(isset($_GET['id'])) {
 
- 
-    $search = $_GET["search"];
-    
-    
-    $sqlSelectUser = "SELECT id, username, surname, lastname, tel, position, email FROM user WHERE surname like '%$search%' or lastname  like '%$search%'";
+    $id = $_GET["id"];
+
+    $sqlArticles = "SELECT * FROM durable_articles_purchase WHERE id IN($id+1 ,$id ,$id-1)";
+
+   
   
-    $result = mysqli_query($conn, $sqlSelectUser) or die();
+    // $sqlSelectUser = "SELECT id, username, surname, lastname, tel, position, email FROM user WHERE surname like '%$search%' or lastname  like '%$search%'";
+  
+    $result = mysqli_query($conn, $sqlArticles) or die();
     $data["result"] = true;
     $data["data"] = array();
+
     while ($row = mysqli_fetch_assoc($result)) {
-        array_push($data["data"], $row);
-    }
+   
+         $sqlArticles = "SELECT * FROM durable_articles WHERE id = ".$row["product_id"];
+         $result2 = mysqli_query($conn, $sqlArticles) or die();
+            
+        $data2 = mysqli_fetch_assoc($result2);
+         $row["product"] = $data2;
+         array_push($data["data"], $row);  
+
+    
+    }  
     echo json_encode($data);
+    
 }

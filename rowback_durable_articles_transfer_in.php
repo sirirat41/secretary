@@ -107,7 +107,7 @@ $show = 10;
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["transfer_from"]; ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-transfer_in').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-transfer_in').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           </td>
