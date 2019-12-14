@@ -109,7 +109,7 @@ $show = 10;
                           <td><?php echo ($row["number"]); ?></td>
                           <td><?php echo ($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_supplies_purchase_request.php?id=<?php echo $row['product_id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_supplies_purchase.php?id=<?php echo $row['id']; ?>'">

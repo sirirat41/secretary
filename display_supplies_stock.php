@@ -49,7 +49,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger body-text">
-                  <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลวัสดุสิ้นเปลือง</h6>
+                  <i class="fas fa-fw fa-pen"></i> แสดงข้อมูลจำนวนคงเหลือ</h6>
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>

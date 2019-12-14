@@ -16,7 +16,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_supplies</secretary>
+  <secretary style="display:none">display_supplies</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

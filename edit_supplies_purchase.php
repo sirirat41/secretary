@@ -28,6 +28,11 @@ if (isset($_GET["id"])) {
 
   <title>secretary</title>
   <secretary style="display: none">display_supplies</secretary>
+   <!-- Bootstrap core JavaScript-->
+   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/secretary.js"></script>
+
 
 
   <!-- Custom fonts for this template-->
@@ -231,25 +236,7 @@ if (isset($_GET["id"])) {
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </form>
@@ -315,105 +302,7 @@ if (isset($_GET["id"])) {
   <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-left">
-          <div class="row">
-            <div class="col-md-10 offset-1">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <nav class="navbar navbar-light bg-light">
-                    <h6 class="m-0 font-weight-bold text-danger body-text">
-                      <i class="fas fa-file-invoice-dollar"></i> แก้ไขข้อมูลการจัดซื้อ(ครุภัณฑ์)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
-                      <div>
-                        <button class="btn btn-outline-danger" type="submit">
-                          <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-              </div>
-              </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center body-text">
-                            <th>#</th>
-                            <th>เลขที่ใบสั่งซื้อ</th>
-                            <th>วันที่จัดซื้อ</th>
-                            <th>ชื่อผู้จัดซื้อ</th>
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>จำนวน</th>
-                            <th>การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody id="modal-articles-body">
-                          <!-- ///ดึงข้อมูล -->
-                          <?php
-                          $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-                          $sqlSelect .= " WHERE s.type = t.id and s.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = $_GET["keyword"];
-                            $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-                          }
-                          //echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center body-text">
-                              <td><?php echo ($row["id"]); ?></td>
-                              <td><?php echo ($row["seq"]); ?></td>
-                              <td><?php echo ($row["bill_no"]); ?></td>
-                              <td><?php echo ($row["code"]); ?></td>
-                              <td><?php echo $row["name"]; ?></td>
-                              <td><?php echo $row["type"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedSupplies(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              </td>
-                            </tr>
-                          <?php
-                          }
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+  
         <script>
           function search() {
             var kw = $("#keyword").val();
@@ -434,6 +323,24 @@ if (isset($_GET["id"])) {
           }
         </script>
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

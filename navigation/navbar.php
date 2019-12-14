@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
             <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
             <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
-            <a class="collapse-item stock" href="display_supplies_stock.php">วัสดุสิ้นเปลือง</a>
+            <a class="collapse-item stock" href="display_supplies_stock.php">จำนวนคงเหลือ</a>
             <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
 
 
@@ -320,9 +320,6 @@ if (isset($_SESSION['user_id'])) {
           <!-- Divider -->
           <hr class="sidebar-divider">
 
-
-
-
           <!-- Nav Item - Supplies Collapse Menu -->
           <li class="nav-item nav-supplies">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplies" aria-expanded="true" aria-controls="collapseSupplies">
@@ -330,12 +327,12 @@ if (isset($_SESSION['user_id'])) {
               <span class="body-text-menu">วัสดุสิ้นเปลือง</span>
             </a>
             <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item display" href="display_supplies.php">แสดงข้อมูล</a>
+              <div class="bg-white py-2 collapse-inner rounded body-text-menu">
+                <a class="collapse-item supplies" href="display_supplies.php">แสดงข้อมูล</a>
                 <a class="collapse-item purchase" href="display_supplies_purchase.php">จัดซื้อ</a>
                 <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
                 <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
-                <a class="collapse-item stock" href="display_supplies_stock.php">วัสดุสิ้นเปลือง</a>
+                <a class="collapse-item stock" href="display_supplies_stock.php">จำนวนคงเหลือ</a>
                 <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
               </div>
             </div>
@@ -351,7 +348,7 @@ if (isset($_SESSION['user_id'])) {
               <span class="body-text-menu">หน่วยงาน</span>
             </a>
             <div id="collapseDepartment" class="collapse collapse-department" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
+              <div class="bg-white py-2 collapse-inner rounded body-text-menu">
                 <a class="collapse-item display" href="display_department.php">แสดงหน่วยงาน</a>
               </div>
             </div>
