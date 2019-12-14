@@ -2,11 +2,13 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute ,u.name as unit_name ,d.fullname ,d.bulding ,d.floor FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t,unit as u,department as d WHERE a.id = $id";
+  $sql = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute ,u.name as unit_name ,d.fullname ,d.bulding ,d.floor ,au.Aname ,au.position ,au.rank FROM  supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t,unit as u,department as d ,auditor as au WHERE a.id = $id";
   $sql .= " and a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-  $a = 1;
+  $rank = $row["rank"];
+  $Aname = $row["Aname"];
+  $position = $row["position"];
 }
 ?>
 <!doctype html>
@@ -81,9 +83,9 @@ if (isset($_GET["id"])) {
   <form>
     <div class="row">
       <div class="col-12">
-        <?php for ($a = 1; $a <= 2; $a++) { ?>
-          <div class="page-break<?= ($a == 1) ? "-no" : "" ?>"></div>
-          <div class="table-responsive">
+     
+
+          <div class="table-responsive" >
             <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
               <thead>
                 <body style="padding: 16px">
@@ -110,7 +112,7 @@ if (isset($_GET["id"])) {
                       <div class="col-sm-">
                         <label class="text " for="short_goverment">
                           <div style="width:100px">
-                            <h5>หน่วยงาน: </h5>
+                            <h7>หน่วยงาน: </h7>
                         </label>
                       </div>
                     </div>
@@ -118,14 +120,14 @@ if (isset($_GET["id"])) {
                       <h7>สลก.ตร.</h7>
                     </div>
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-sm-6">
                       <label class="text ">
                         <h7>แผ่นที่</h7>
                       </label>
-                      <?php echo $a++; ?>
+                      
                     </div>
-                  </div>
+                  </div> -->
                   <div class="row">
                     <div class="col-sm-4">
                       <label class="text " for="type">
@@ -221,7 +223,7 @@ if (isset($_GET["id"])) {
                       }
                       ?>
                 
-            <?php } ?>
+
             </table>
 
 
@@ -245,11 +247,34 @@ if (isset($_GET["id"])) {
                 <td colspan="8">จ่าย</td>
                 <td colspan="8">เหลือ</td>
               </tr> -->
+              <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">ตรวจแล้วถูกต้อง</label>
+            </div>
           </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text"><?php echo $rank;?>......................................................</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">(<?php echo $Aname;?>)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text"><?php echo $position;?>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </form>
-
+    </form>
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

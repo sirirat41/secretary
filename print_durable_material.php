@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT *, s.name as seller_name, t.name as durable_material_type_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no FROM durable_material as a 
+  $sql = "SELECT *, s.name as seller_name, t.name as durable_material_type_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no ,au.Aname ,au.position ,au.rank FROM auditor as au ,durable_material as a 
   LEFT JOIN durable_material_purchase as p ON a.id = p.product_id 
   LEFT JOIN seller as s ON a.seller_id = s.id 
   LEFT JOIN department as d ON a.department_id = d.id 
@@ -348,20 +348,20 @@ $monthDay = ($dateMouth - $day) + 1;
         </div>
         <br>
         <div class="row">
-          <div class="col-sm-5 offset-sm-7" align="right">
-            <label class="text">พ.ต.ท.หญิง......................................................</label>
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text"><?php echo $row["rank"];?>...........................................................</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(กรรณิการ์ เหล่าทัพ)</label>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo $row["Aname"];?>)</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รอง ผกก.ฝอ.สลก.ตร.
-            </label>
-          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row["position"];?>
+              </label>
+            </div>
         </div>
       </div>
     <?php }  ?>

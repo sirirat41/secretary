@@ -73,7 +73,7 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center body-text">
-                        <th>ลำดับ</th>
+                     
                         <th>วันที่ซ่อม</th>
                         <th>รหัสครุภัณฑ์(ชำรุด)</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
@@ -103,7 +103,7 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                         <tr class="text-center body-text">
-                          <td><?php echo ($row["seq"]); ?></td>
+                     
                           <td><?php echo ($row["repair_date"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo $row["attribute"]; ?></td>

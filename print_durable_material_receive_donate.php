@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT d.*, m.code , m.picture FROM durable_material_receive_donate as d, durable_material as m WHERE d.id = $id";
+  $sql = "SELECT d.*, m.code , m.picture ,au.Aname ,au.position ,au.rank FROM durable_material_receive_donate as d, durable_material as m ,auditor as au WHERE d.id = $id";
   $sql .= " and d.product_id = m.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
 
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
-      <div class="table-responsive">
+      <div class="table-responsive" align="center">
         <table width="600" border="1" align="center">
           <h7 class="m-3 font-weight-bold " align="center"> ข้อมูลการรับบริจาค(วัสดุคงทน)</h7>
           <form>
@@ -139,17 +139,17 @@ if (isset($_GET["id"])) {
           <br>
           <div class="row">
             <div class="col-sm-5 offset-sm-7" align="right">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
+              <label class="text"><?php echo $row["rank"];?>......................................................</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+              <label class="text">(<?php echo $row["Aname"];?>)</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              <label class="text"><?php echo $row["position"];?>
               </label>
             </div>
           </div>
