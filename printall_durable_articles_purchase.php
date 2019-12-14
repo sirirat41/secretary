@@ -1,5 +1,12 @@
 <?php
 require "service/connection.php";
+
+  $sql = "SELECT a.rank ,a.Aname ,a.position FROM auditor as a ";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $rank = $row["rank"];
+  $Aname = $row["Aname"];
+  $position = $row["position"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,20 +124,20 @@ require "service/connection.php";
               </div>
               <br>
               <div class="row">
-                <div class="col-sm-4 offset-sm-8">
-                  <label class="text">พ.ต.ท.หญิง......................................................</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3 offset-sm-9">
-                  <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3 offset-sm-9">
-                  <label class="text">รอง ผกก.ฝอ.สลก.ตร.
-                  </label></font>
-                </div>
+            <div class="col-sm-5 offset-sm-6" align="right">
+              <label class="text"><?php echo $rank;?>......................................................</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">(<?php echo $Aname;?>)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text"><?php echo $position;?>
+              </label></font>
+            </div>
               </div>
             </div>
             </form>

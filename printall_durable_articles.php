@@ -1,5 +1,12 @@
 <?php
 require "service/connection.php";
+
+  $sql = "SELECT a.rank ,a.Aname ,a.position FROM auditor as a ";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $rank = $row["rank"];
+  $Aname = $row["Aname"];
+  $position = $row["position"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,13 +108,35 @@ require "service/connection.php";
                           ?>
                     </tbody>
                   </table>
+                  <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                  <font size="2">
+                    <label class="text">ตรวจแล้วถูกต้อง</label>
                 </div>
               </div>
+              <br>
+              <div class="row">
+            <div class="col-sm-5 offset-sm-6" align="right">
+              <label class="text"><?php echo $rank;?>......................................................</label>
             </div>
-          </form>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">(<?php echo $Aname;?>)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text"><?php echo $position;?>
+              </label></font>
+            </div>
+              </div>
+            </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->

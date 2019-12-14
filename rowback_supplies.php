@@ -84,6 +84,12 @@ $show = 10;
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t, supplies_stock as st";
                       $sqlSelect .= " WHERE t.id = st.type and s.status = 0 and st.id = s.supplies_id";
                       if (isset($_GET["keyword"])) {
@@ -131,13 +137,13 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t";
-            $sqlSelectCount .= " WHERE s.type = t.id and s.status = 0";
-            if (isset($_GET["keyword"])) {
-              $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
-            }
-            $sqlSelectCount .= " Order by s.id desc";
+                $sqlSelectCount = "SELECT ss.*, t.name FROM supplies_stock as ss, durable_material_type as t";
+                $sqlSelectCount .= " WHERE ss.type = t.id and ss.status = 0";
+                if (isset($_GET["keyword"])) {
+                  $keyword = arabicnumDigit($_GET["keyword"]);
+                  $sqlSelectCount .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                }
+                $sqlSelectCount .= " Order by ss.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);

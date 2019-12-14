@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code , a.picture FROM durable_articles as a,durable_articles_repair_history as r WHERE r.id = $id";
+  $sql = "SELECT r.*, a.code , a.picture ,au.Aname ,au.position ,au.rank FROM durable_articles as a,durable_articles_repair_history as r,auditor as au WHERE r.id = $id";
   $sql .= " and r.repair_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -124,17 +124,17 @@ if (isset($_GET["id"])) {
           <br>
           <div class="row">
             <div class="col-sm-5 offset-sm-7" align="right">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
+              <label class="text"><?php echo $row["rank"];?>......................................................</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+              <label class="text">(<?php echo $row["Aname"];?>)</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              <label class="text"><?php echo $row["position"];?>
               </label>
             </div>
           </div>

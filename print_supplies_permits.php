@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, a.code ,a.supplies_id ,ss.attribute, ss.supplies_name ,d.fullname ,d.pic,d.bulding ,d.floor FROM supplies as a,supplies_permits as p ,department as d , supplies_stock as ss WHERE p.id = $id";
+  $sql = "SELECT p.*, a.code ,a.supplies_id ,ss.attribute, ss.supplies_name ,d.fullname ,d.pic,d.bulding ,d.floor ,au.Aname ,au.position ,au.rank FROM supplies as a,supplies_permits as p ,department as d , supplies_stock as ss ,auditor as au WHERE p.id = $id";
   $sql .= " and a.supplies_id = ss.id and p.product_id = a.id and p.department_id = d.id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
 
   <div class="row">
     <div class="col-sm-12">
-      <div class="table-responsive">
+      <div class="table-responsive" align="center">
         <table width="900" border="1" align="center">
           <h7 class="m-3 font-weight-bold " align="center"> ข้อมูลการยืม-คืน(วัสดุคงทน)</h7>
           <form>
@@ -163,18 +163,18 @@ if (isset($_GET["id"])) {
           </div>
           <br>
           <div class="row">
-            <div class="col-sm-4 offset-sm-8">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text"><?php echo $row["rank"];?>......................................................</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+              <label class="text">(<?php echo $row["Aname"];?>)</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              <label class="text"><?php echo $row["position"];?>
               </label>
             </div>
           </div>

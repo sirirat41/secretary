@@ -129,7 +129,7 @@ if (isset($_GET["id"])) {
           </table>
         <br>
         <br>
-        <div class="card-body">
+        <div class="card-body" align="center">
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
               <label class="text">ตรวจแล้วถูกต้อง</label>
@@ -137,18 +137,18 @@ if (isset($_GET["id"])) {
           </div>
           <br>
           <div class="row">
-            <div class="col-sm-4 offset-sm-8">
-              <label class="text">พ.ต.ท.หญิง......................................................</label>
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text"><?php echo $row["rank"];?>......................................................</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">(กรรณิการ์ เหล่าทัพ)</label>
+              <label class="text">(<?php echo $row["Aname"];?>)</label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
-              <label class="text">รอง ผกก.ฝอ.สลก.ตร.
+              <label class="text"><?php echo $row["position"];?>
               </label>
             </div>
           </div>

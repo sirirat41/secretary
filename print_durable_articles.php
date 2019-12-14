@@ -5,7 +5,7 @@ if (isset($_GET["id"])) {
   //$sql = "SELECT *,durable_articles_purchase.id as pid, department.id as shortname, department.id as fullname, department.id as bulding, department.id as floor, unit.id as unit_name, durable_articles_type.id as durable_articles_type_name, seller.id as seller_name, seller.id as seller_address, seller.id as seller_tel, seller.id as seller_fax FROM durable_articles LEFT JOIN durable_articles_purchase ON durable_articles.id = durable_articles_purchase.product_id LEFT JOIN department ON durable_articles.id = department.id LEFT JOIN unit ON durable_articles.id = unit.id LEFT JOIN durable_articles_type ON durable_articles.id = durable_articles_type.id LEFT JOIN seller ON durable_articles.id = seller.id";
   //$sql .= " WHERE durable_articles.id = $id ";
 
-  $sql = "SELECT *, s.name as seller_name, t.name as durable_articles_type_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no FROM durable_articles as a 
+  $sql = "SELECT *, s.name as seller_name, t.name as durable_articles_type_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no ,au.Aname ,au.position ,au.rank FROM auditor as au ,durable_articles as a 
   LEFT JOIN durable_articles_purchase as p ON a.id = p.product_id 
   LEFT JOIN seller as s ON a.seller_id = s.id 
   LEFT JOIN department as d ON a.department_id = d.id 
@@ -426,20 +426,20 @@ if (isset($_GET["id"])) {
         </div>
         <br>
         <div class="row">
-          <div class="col-sm-5 offset-sm-7" align="right">
-            <label class="text">พ.ต.ท.หญิง......................................................</label>
+            <div class="col-sm-5 offset-sm-7" align="right">
+              <label class="text"><?php echo $row["rank"];?>...........................................................</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(กรรณิการ์ เหล่าทัพ)</label>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo $row["Aname"];?>)</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3 offset-sm-9">
-            <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รอง ผกก.ฝอ.สลก.ตร.
-            </label>
-          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-9">
+              <label class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row["position"];?>
+              </label>
+            </div>
         </div>
       </div>
       <?php }  ?>
