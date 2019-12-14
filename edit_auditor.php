@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display : none">display_auditor</secretary>
+  <secretary style="display : none">edit_auditor</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,7 +64,6 @@ if (isset($_GET["id"])) {
                 </h6>
               </div>
             </div>
-            <br>
             <div class="card-body">
               <form method="post" action="service/service_edit_auditor.php?id=<?php echo $item["id"]; ?>" id="form_insert" enctype="multipart/form-data">
                 <div class="row">

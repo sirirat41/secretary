@@ -56,7 +56,6 @@ require "service/connection.php";
                 </h6>
               </div>
             </div>
-            <br>
             <div class="card-body">
               <form method="post" action="service/service_insert_department.php" id="form_insert" enctype="multipart/form-data">
                 <div class="row">

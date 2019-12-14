@@ -54,7 +54,6 @@ require "service/connection.php";
                 </h6>
               </div>
             </div>
-            <br>
             <div class="card-body">
               <form method="post" action="service/service_insert_supplies_stock.php" id="form_insert">
                 <div class="row">

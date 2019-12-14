@@ -65,7 +65,7 @@ $show = 10;
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
-                  <table class="table table-hover ">
+                  <table class="table table-hover body-text">
                     <thead>
                       <tr class="text-center">
                         <th>ชื่อประเภท</th>

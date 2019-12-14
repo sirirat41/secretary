@@ -70,14 +70,13 @@ if (isset($_GET["id"])) {
                         <div class="card-header card-header-text card-header-danger">
                             <div class="card-text">
 
-                                <h6 class="m-0 font-weight-bold text-danger">
+                                <h6 class="m-0 font-weight-bold text-danger body-text">
                                     <i class="fas fa-fw fa-archive"></i>
                                     แก้ไขข้อมูล(วัสดุสิ้นเปลือง)
                                 </h6>
                             </div>
                         </div>
-                        <br>
-                        <div class="card-body">
+                        <div class="card-body body-text">
                             <form method="post" action="service/service_edit_supplies_purchase_request.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-6 ">

@@ -48,7 +48,7 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between body-text">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
+                <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-archive"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -71,7 +71,7 @@ $show = 10;
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
-                  <table class="table table-hover ">
+                  <table class="table table-hover body-text">
                     <thead>
                       <tr class="text-center">
                         <th>รูปภาพ</th>

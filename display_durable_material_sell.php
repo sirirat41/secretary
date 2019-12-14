@@ -1,4 +1,4 @@
-z<?php
+<?php
   require "service/connection.php";
   $show = 10;
   ?>
@@ -45,7 +45,7 @@ z<?php
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between body-text">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-hand-holding-usd"></i> แสดงข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
+                <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-hand-holding-usd"></i> แสดงข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
 
                 <form class="form-inline">
                   <div>
@@ -101,10 +101,10 @@ z<?php
                         $id = $row["id"]
                         ?>
                         <tr class="text-center body-text">
-                        <td><?php echo ($row["sell_date"]); ?></td>
-                        <td><?php echo ($row["code"]); ?></td>
-                        <td><?php echo ($row["attribute"]); ?></td>
-                        <td><?php echo ($row["name"]); ?></td>
+                          <td><?php echo ($row["sell_date"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
+                          <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location.href = 'edit_durable_material_sell.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>

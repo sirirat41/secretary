@@ -273,28 +273,28 @@ if (isset($_GET["id"])) {
                       </select>
                     </div>
                   </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group bmd-form-group body-text">
-                    <label class="bmd-label-floating">จำนวนวัสดุ :</label>
-                    <input class="form-control body-text" type="text" placeholder="number" name="number" value="<?php echo $item["number"]; ?>">
+                  <div class="col-6">
+                    <div class="form-group bmd-form-group body-text">
+                      <label class="bmd-label-floating">จำนวนวัสดุ :</label>
+                      <input class="form-control body-text" type="text" placeholder="number" name="number" value="<?php echo $item["number"]; ?>">
+                    </div>
                   </div>
                 </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                  <div class="fileinput-new thumbnail img-raised">
-                    <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
-                  </div>
-                  <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                  <div>
-                    <span class="btn btn-raised btn-round btn-default btn-file">
-                      <br>
-                      <div class="col-2 offset-1">
-                        <input type="file" name="image" />
+                <div class="row">
+                  <div class="col-6">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail img-raised">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
                       </div>
-                    </span>
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div><span class="btn btn-raised btn-round btn-default btn-file">
+                        <br>
+                        <div class="col-2 offset-1">
+                          <input type="file" name="image" />
+                        </div>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <br>
@@ -303,33 +303,30 @@ if (isset($_GET["id"])) {
                     <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                     </button>
-                   
                   </div>
                 </div>
-            
             </div>
           </div>
+          <br>
         </div>
-      </div> 
-     </form>
-  <br>
+        </form>
 
-  <!-- สิ้นสุดการเขียนตรงนี้ -->
-  </div>
-  <!-- /.container-fluid -->
-  </div>
-
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        <!-- สิ้นสุดการเขียนตรงนี้ -->
       </div>
+      <!-- /.container-fluid -->
     </div>
-  </footer>
-  <!-- End of Footer -->
+
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
@@ -476,44 +473,44 @@ if (isset($_GET["id"])) {
             </nav>
           </div>
         </div> -->
-        <script>
-          function search() {
-            var kw = $("#keyword").val();
-            $.ajax({
-              url: 'service/service_search_json_durable_material.php',
-              dataType: 'JSON',
-              type: 'GET',
-              data: {
-                keyword: kw
-              },
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            })
-          }
-        </script>
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_durable_material.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+  </script>
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลวัสดุคงทนหรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        คุณต้องการบันทึกข้อมูลวัสดุคงทนหรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

@@ -82,22 +82,12 @@ if (isset($_GET["id"])) {
                   <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
                     บันทึก
                   </button>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 ">
-            <div class="form-group body-text">
-              <label for="shortname">ชื่อย่อ</label>
-              <input type="text" class="form-control body-text" name="shortname" id="shortname" placeholder="shortname" value="<?php echo $item["shortname"]; ?>">
-            </div>
-          </div>
-        </div>
         </form>
-
       </div>
     </div>
   </div>

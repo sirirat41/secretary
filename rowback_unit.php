@@ -70,7 +70,7 @@ $show = 10;
                   <div class="table-responsive">
                     <table class="table table-hover ">
                       <thead>
-                        <tr class="text-cente body-text">
+                        <tr class="text-center body-text">
                           <th>ชื่อหน่วยนับ</th>
                           <th>การทำงาน</th>
                         </tr>

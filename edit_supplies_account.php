@@ -66,7 +66,6 @@ if (isset($_GET["id"])) {
                 </h6>
               </div>
             </div>
-            <br>
             <div class="card-body">
               <form method="post" action="service/service_edit_supplies_account.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
@@ -158,13 +157,9 @@ if (isset($_GET["id"])) {
                           }
                         ?>
                       </select>
-
                     </div>
                   </div>
                 </div>
-
-           
-                <br>
             </div>
           </div>
         </div>

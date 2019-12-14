@@ -37,18 +37,18 @@ require "service/connection.php";
 
     <!-- Begin Page Content -->
 
-    <div class="container-fluid">
+    <div class="container-fluid body-text">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
             <p class="" onclick="window.history.back()" style="cursor: pointer">
-            <i class="fas fa-angle-left"></i> กลับ
+            <i class="fas fa-angle-left body-text"></i> กลับ
             </p>
           </div>
       <div class="row">
         <div class="col-md-6 offset-3">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger">
+              <h6 class="m-0 font-weight-bold text-danger body-text">
                 <i class="fas fa-clipboard-list"></i> เพิ่มข้อมูลประเภท(ครุภัณฑ์)</h6>
             </div>
 

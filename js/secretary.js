@@ -133,8 +133,6 @@ $(document).ready(function () {
             break;
 
 
-
-
         //Supplies วัสดุสิ้นเปลือง
 
         case "display_supplies_distribute":    //แจกจ่าย
@@ -263,6 +261,12 @@ $(document).ready(function () {
             $('.nav-setting').addClass('active');
             $('.collapse-setting').addClass('show');
             $('.collapse-setting .displaym').addClass('active');
+            break;
+
+        case "edit_auditor":
+            $('.nav-setting').addClass('active');
+            $('.collapse-setting').addClass('show');
+            $('.collapse-item.auditor').addClass('active');
             break;
 
     }

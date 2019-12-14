@@ -45,7 +45,7 @@ $show = 10;
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light justify-content-between body-text">
-                <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-archive"></i> แสดงข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
+                <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-archive"></i> แสดงข้อมูลการรับบริจาค(วัสดุคงทน)</h6>
 
                 <form class="form-inline">
                   <div>

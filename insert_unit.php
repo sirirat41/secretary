@@ -54,7 +54,6 @@
               </h6>
             </div>
           </div>
-          <br>
           <div class="card-body">
             <form method="post" action="service/service_insert_unit.php" id="form_insert">
               <div class="row">
@@ -65,7 +64,6 @@
                   </div>
                 </div>
               </div>
-              <br>
               <div class="row">
                 <div class="col-12">
                   <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">

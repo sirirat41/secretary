@@ -67,11 +67,10 @@ if (isset($_GET["id"])) {
                 </h6>
               </div>
             </div>
-            <br>
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_material_damage.php?id=<?php echo $id; ?>" id="form_insert">
               <div class="row">
-                  <div class="col-12 ">
+                  <div class="col-12">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
