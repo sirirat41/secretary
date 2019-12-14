@@ -1,9 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php
 require "service/connection.php";
 $show = 10;
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -14,7 +14,7 @@ $show = 10;
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_department</secretary>
+  <secretary style="display : none">display_auditor</secretary>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +24,7 @@ $show = 10;
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
+
 </head>
 
 <body id="page-top">
@@ -31,6 +32,7 @@ $show = 10;
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <!-- Sidebar -->
     <?php include "navigation/navbar.php"; ?>
 
     </nav>
@@ -40,27 +42,29 @@ $show = 10;
 
     <div class="container-fluid">
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
-      <div class="row ">
-        <p class="" onclick="window.history.back()" style="cursor: pointer">
-          <i class="fas fa-angle-left"></i> กลับ
-        </p>
-      </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8 offset-2">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger body-text">
-                  <i class="fas fa-business-time"></i> แสดงข้อมูลหน่วยงาน</h6>
+                  <i class="fas fa-city"></i> แสดงข้อมูลผู้ตรวจสอบ</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
                     <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_department.php';">
-                      <i class="fas fa-paste"></i>
+                    <!-- <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_unit.php';">
+                      <i class="fas fa-plus"></i>
                     </button>
+                    <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_unit.php';">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_unit.php" target="_blank">
+                      <i class="fas fa-print"></i>
+                    </a> -->
+
                 </form>
             </div>
           </div>
@@ -71,16 +75,12 @@ $show = 10;
                 <div class="table-responsive">
                   <table class="table table-hover ">
                     <thead>
-                      <thead>
-                        <tr class="text-center body-text">
-                          <th>ชื่อหน่วยงาน</th>
-                          <th>ตำแหน่ง</th>
-                          <th>โทรสาร</th>
-                          <th>อาคาร</th>
-                          <th>ชั้น</th>
-                          <th class="text-center">การทำงาน</th>
-                        </tr>
-                      </thead>
+                      <tr class="text-center body-text">
+                        <th>ยศ</th>
+                        <th>ชื่อ</th>
+                        <th>ตำแหน่ง</th>
+                      </tr>
+                    </thead>
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
@@ -91,32 +91,32 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM department";
-                      $sqlSelect .= " WHERE status = 0";
+                      $sqlSelect = "SELECT * FROM auditor";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (fullname like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (name like '%$keyword%')";
                       }
+                      // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         ?>
                         <tr class="text-center body-text">
-                          <td><?php echo $row["fullname"]; ?></td>
-                          <td><?php echo $row["shortname"]; ?></td>
-                          <td><?php echo ($row["tel"]); ?></td>
-                          <td><?php echo ($row["fax"]); ?></td>
-                          <td><?php echo ($row["bulding"]); ?></td>
-                          <td><?php echo ($row["floor"]); ?></td>
+                          <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-department').val('<?php echo $id; ?>')">
-                              <i class="fas fa-sync-alt"></i>
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_unit.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
                             </button>
-                          <?php
-                          }
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-unit').val('<?php echo $id; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
 
-                          ?>
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -127,16 +127,22 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+              <?php
+              $prevPage = "#";
+              if ($page > 1) {
+                $prevPage = "?page=" . ($page - 1);
+              }
+
+              ?>
+              <a class="page-link" href="<?php echo $prevPage; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT * FROM department";
-            $sqlSelectCount .= " WHERE status = 0";
+            $sqlSelectCount = "SELECT * FROM unit";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (fullname like '%$keyword%')";
+              $sqlSelectCount .= " and (name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -185,7 +191,7 @@ $show = 10;
 
             ?>
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a class="page-link" href="<?php echo $nextPage; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
@@ -258,6 +264,7 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -268,14 +275,14 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการกู้ข้อมูลชำรุดของวัสดุใช่หรือไม่
-          <form id="form-rowback" method="post" action="service/service_rowback_department.php">
-            <input type="hidden" id="rowback-department" name="department_id">
+          คุณต้องการลบข้อมูลหน่วยนับใช่หรือไม่
+          <form id="form-drop" method="post" action="service/service_drop_unit.php">
+            <input type="hidden" id="remove-unit" name="unit_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-warning body-text" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>

@@ -148,6 +148,7 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
             <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
             <a class="collapse-item displaym" href="display_durable_material_type.php">แสดงประเภทของวัสดุ</a>
+            <a class="collapse-item auditor" href="edit_auditor.php?id=1">ผู้ตรวจสอบ </a>
             <a class="collapse-item display" href="คู่มือการใช้งาน.pdf">คู่มือการใช้งาน</a>
 
           </div>

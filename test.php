@@ -1,4 +1,24 @@
 <?php
+<<<<<<< HEAD
+// require 'service/connection.php';
+
+// $iss = isset($_GET["search"]);
+// if ($iss) {
+//     $search = $_GET["search"];
+//     $sqlSelectAllUser = "SELECT id, username, surname, lastname, tel, position, email FROM user WHERE surname like '%$search%' or lastname like '%$search%'";
+//     $result = mysqli_query($conn, $sqlSelectAllUser) or die();
+//     $data["result"] = true;
+//     $data["data"] = array();
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         array_push($data["data"], $row);
+//     }
+//     echo json_encode($data);
+// }
+
+
+$input ="1111";
+echo md5($input);
+=======
 require 'service/connection.php';
 if (isset($_GET['id'])) {
     $id = $_GET["id"];
@@ -20,6 +40,7 @@ if (isset($_GET['id'])) {
 // ใช้ md5
 //$input ="1111";
 //echo md5($input);
+>>>>>>> e231f908e4c5772faec0f537a7cda9bb0cdf7fe9
 
 
 

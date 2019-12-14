@@ -106,7 +106,7 @@ $show = 10;
                           <td><?php echo ($row["number"]); ?></td>
                           <td><?php echo ($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#rowback-purchase').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-purchase').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php
