@@ -109,7 +109,7 @@ $show = 10;
                         <td><?php echo ($row["code"]); ?></td>
                         <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
-                        <td class="td-actions text-center">
+                          <td class="td-actions text-center">
                         <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" 
                             onclick="window.location = 'edit_durable_material_repair.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -122,7 +122,7 @@ $show = 10;
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" 
-                            data-target="#exampleModal" onclick="$('#remove-repair').val('<?php echo $id; ?>')">
+                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
