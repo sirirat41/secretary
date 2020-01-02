@@ -325,7 +325,7 @@ require "service/connection.php";
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger body-text">
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุ)</h6>
+                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                       <div>
@@ -553,7 +553,7 @@ require "service/connection.php";
         </button>
       </div>
       <div class="modal-body body-text">
-        คุณต้องการบันทึกข้อมูลครุภัณฑ์หรือไม่ ?
+        คุณต้องการบันทึกข้อมูลวัสดุหรือไม่ ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>

@@ -290,7 +290,7 @@ if (isset($_GET["id"])) {
                     </button>
                 </div>
                 <div class="modal-body ">
-                    คุณต้องการร้องขอการแก้ไขข้อมูลครุภัณฑ์หรือไม่ ?
+                    คุณต้องการร้องขอการแก้ไขข้อมูลวัสดุหรือไม่ ?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
