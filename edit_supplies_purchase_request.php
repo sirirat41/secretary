@@ -118,8 +118,7 @@ if (isset($_GET["id"])) {
                                     <div class="col-md-12 ">
                                         <div class="form-group ">
                                             <label for="receive_address">สถานที่จัดส่ง</label>
-                                            <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?>
-                    </textarea>
+                                            <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -221,11 +220,12 @@ if (isset($_GET["id"])) {
                                 <div class="row">
                                     <label for="exampleFormControlSelect1">เหตุผลการร้องขอการแก้ไข *</label>
                                     <textarea class="form-control" name="reason" id="request" cols="30" rows="5" style="resize: none"></textarea>
+                                    <small id="alert-request" style="color: red; display: none">*กรุณากรอกเหตุผลการร้องขอการแก้ไข</small>
                                 </div>
                                 <br><br>
                                 <div class="row">
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                                        <button type="button" class="btn btn-danger btn btn-block " onclick="validateData();">
                                             ร้องขอการแก้ไข
                                             <div class="ripple-container"></div></button>
                                     </div>
@@ -294,7 +294,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">ร้องขอ</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="$('#form_insert').submit();">ร้องขอ</button>
                 </div>
             </div>
         </div>
@@ -312,6 +312,7 @@ if (isset($_GET["id"])) {
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
+
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -369,7 +370,7 @@ if (isset($_GET["id"])) {
                                                     $result = mysqli_query($conn, $sqlSelect);
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                         $id = $row["id"]
-                                                        ?>
+                                                    ?>
                                                         <tr class="text-center">
                                                             <td><?php echo thainumDigit($row["id"]); ?></td>
                                                             <td><?php echo thainumDigit($row["seq"]); ?></td>
@@ -429,6 +430,26 @@ if (isset($_GET["id"])) {
                                 console.log(error);
                             }
                         })
+                    }
+
+                    function validateData() {
+                        var request = $('#request').val();
+                        var validateCount = 0;
+                        if ($.trim(request) == "") {
+                            validateCount++;
+                            $('#request').focus();
+                            $('#request').addClass('border border-danger');
+                            $('#alert-request').show();
+                        } else {
+                            $('#request').removeClass('border border-danger');
+                            $('#alert-request').hide();
+                        }
+                        if (validateCount > 0) {
+
+
+                        } else {
+                            $('#exampleModal').modal();
+                        }
                     }
                 </script>
 </body>
