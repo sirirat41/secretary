@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // require 'service/connection.php';
 
 // $iss = isset($_GET["search"]);
@@ -18,29 +17,6 @@
 
 $input ="1111";
 echo md5($input);
-=======
-require 'service/connection.php';
-if (isset($_GET['id'])) {
-    $id = $_GET["id"];
-    $sqlSelect = "SELECT * FROM durable_articles_purchase WHERE id IN ($id+1,$id,$id-1)";
-    $result = mysqli_query($conn, $sqlSelect) or die();
-    $data["result"] = true;
-    $data["data"] = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $sqlSelect1 = "SELECT * FROM durable_articles WHERE id =".$row["product_id"];
-        $result1 = mysqli_query($conn, $sqlSelect1) or die();
-        $data1 = mysqli_fetch_assoc($result1);
-        $row["articles"] = $data1;
-        array_push($data["data"], $row);
-    }
-    echo json_encode($data);
-}
-
-
-// ใช้ md5
-//$input ="1111";
-//echo md5($input);
->>>>>>> e231f908e4c5772faec0f537a7cda9bb0cdf7fe9
 
 
 
