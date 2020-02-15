@@ -25,7 +25,11 @@ $email = $_GET["email"];
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/secretary.css" rel="stylesheet">
 
-
+  <style>
+    body {
+      background-color: #880000;
+    }
+  </style>
 </head>
 <body style="padding: 150px">
 
@@ -112,13 +116,13 @@ $email = $_GET["email"];
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
-          </div>
-        </div>
-      </footer>
+      <footer class="sticky-footer">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>By &copy; Sirirat Napaporn Bongkotchaporn</span>
+      </div>
+    </div>
+  </footer>
       <!-- End of Footer -->
 
     </div>
