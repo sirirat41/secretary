@@ -58,7 +58,7 @@ $show = 10;
                     <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" class="btn btn-outline-info" onclick="window.location.href = 'display_durable_articles_repair.php';">
+                    <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" class="btn btn-outline-info" onclick="window.location.href ='display_durable_articles_repair.php';">
                       <i class="fas fa-paste"></i>
                     </button>
                 </form>

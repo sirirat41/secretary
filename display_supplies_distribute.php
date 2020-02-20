@@ -109,7 +109,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
-                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id";
+                      $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id and sd.status = 1" ;
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
@@ -135,7 +135,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_supplies_distribute.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#remove-distribute').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-distribute').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -166,7 +166,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
-            $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id";
+            $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id and sd.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
@@ -302,41 +302,21 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-
-          คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
-
+          คุณต้องการลบข้อมูลการแจกจ่ายวัสดุสิ้นเปลืองใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php">
             <input type="hidden" id="remove-distribute" name="distribute_id">
           </form>
         </div>
-        <div class="modal-footer"> 
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
           <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-left"><?php echo $_GET["message"]; ?><div>
+</body>
 
-            <form id="form-drop" method="post" action="service/service_insert_supplies_distribute.php">
-              <input type="hidden" id="remove-permits" name="permits_id">
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
-          </div>
-        </div>
-      </div>
-
+  </body>
       <script>
         $(document).ready(function() {
           <?php

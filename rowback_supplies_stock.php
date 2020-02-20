@@ -108,8 +108,8 @@ $show = 10
                           <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
 
-                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-stock').val('<?php echo $id; ?>')">
-                              <i class="fas fa-trash-alt"></i>
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-stock').val('<?php echo $id; ?>')">
+                              <i class="fas fa-sync-alt"></i>
                             </button>
                           </td>
                         </tr>
@@ -273,14 +273,14 @@ $show = 10
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
+          คุณต้องการกู้คืนข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_rowback_supplies_stock.php">
             <input type="hidden" id="remove-stock" name="stock_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-warning body-text" onclick="$('#form-drop').submit()">ยืนยันการกู้คืนข้อมูล</button>
         </div>
       </div>
     </div>

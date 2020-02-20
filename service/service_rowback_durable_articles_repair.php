@@ -3,7 +3,7 @@ require "connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["repair_id"])) {
     $repairid = $_POST["repair_id"];
-    $sqlUpdate = "UPDATE durable_articles_repair SET status = 0 WHERE id = " . $repairid;
+    $sqlUpdate = "UPDATE durable_articles_repair SET status = 1 WHERE id = " . $repairid;
 
     $log = "กู้คืนข้อมูลการซ่อมครุภัณฑ์ รหัส " . $repairid ;
     logServer($conn, $log);

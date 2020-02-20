@@ -1,5 +1,12 @@
 <?php
 require "service/connection.php";
+
+  $sql = "SELECT a.rank ,a.Aname ,a.position FROM auditor as a ";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $rank = $row["rank"];
+  $Aname = $row["Aname"];
+  $position = $row["position"];
 ?>
 <!DOCTYPE html>
 <html lang="en">

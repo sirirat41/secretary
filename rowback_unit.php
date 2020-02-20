@@ -99,8 +99,8 @@ $show = 10;
                           <tr class="text-center body-text">
                             <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-unit').val('<?php echo $id; ?>')">
-                                <i class="fas fa-trash-alt"></i>
+                              <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-unit').val('<?php echo $id; ?>')">
+                                <i class="fas fa-sync-alt"></i>
                               </button>
                             </td>
                           </tr>

@@ -52,7 +52,7 @@ $show=10;
         <div class="col-md-6 offset-md-3">
           <div class="card shado mb-6">
             <div class="card-header py-3  body-text">
-              <h6 class="m-0 font-weight-bold text-dange"><i class="fas fa-hand-holding-usd"></i> เพิ่มข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-hand-holding-usd"></i> เพิ่มข้อมูลการขายทอดตลาด(วัสดุคงทน)</h6>
             </div>
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_material_sell.php" id="form_insert">
