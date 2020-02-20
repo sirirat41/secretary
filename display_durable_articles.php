@@ -59,10 +59,13 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_articles.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
+                    
                     <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_articles.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
-                </form>
+                    <a rel="tooltip" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="ปริ้นqrcodeทั้งหมด" href="generate_all_qrcode_articles.php" target="_blank">
+                      <i class="fas fa-qrcode"></i>
+                    </a>
             </div>
           </div>
           </nav>

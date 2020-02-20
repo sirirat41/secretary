@@ -5,8 +5,10 @@ if (isset($_GET["id"])) {
   $sql = "SELECT * FROM user WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
+  
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +21,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
-  <secretary style="display: none">display_user</secretary>
+ 
 
 
   <!-- Custom fonts for this template-->
@@ -54,58 +56,20 @@ if (isset($_GET["id"])) {
         </p>
 </div>
       <div class="row">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-4 offset-4">
           <div class="card shado mb-6">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-store"></i> แก้ไขข้อมูลผู้ใช้งาน</h6>
+              <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-key"></i> แก้ไขรหัสผ่าน</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_edit_user.php?id=<?php echo $id; ?>" id="form_insert">
-                <div class="row">
-                  <div class="col-md-12 ">
-                    <div class="form-group body-text">
-                      <label for="username">ชื่อสมาชิก</label>
-                      <input type="text" class="form-control body-text" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
-                    </div>
-                  </div>
-                </div>
+              <form method="post" action="service/service_edit_password.php?id=<?php echo $_SESSION["user_id"]; ?>"  OnSubmit="return fncSubmit();" id="form_insert">
+                
 
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="password">รหัสผ่าน</label>
-                      <input type="text" class="form-control body-text" name="password" id="inputpassword" aria-describedby="password" placeholder="password" value="<?php echo $item["password"]; ?>" readonly>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group body-text">
-                      <label for="surname">ชื่อ</label>
-                      <input type="text" class="form-control body-text" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname" value="<?php echo $item["surname"]; ?>">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group body-text">
-                      <label for="lastname">นามสกุล</label>
-                      <input type="text" class="form-control body-text" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname" value="<?php echo $item["lastname"]; ?>">
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group body-text">
-                      <label for="tel">เบอร์โทร</label>
-                      <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="form-group body-text">
-                      <label for="position">ตำแหน่ง</label>
-                      <input type="text" class="form-control body-text" name="position" id="inputposition" aria-describedby="position" placeholder="position" value="<?php echo $item["position"]; ?>">
+                      <input type="password" class="form-control body-text" name="password1" id="password1" aria-describedby="password" placeholder="password">
                     </div>
                   </div>
                 </div>
@@ -113,35 +77,15 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
-                      <label for="email">อีเมล์</label>
-                      <input type="text" class="form-control body-text" name="email" id="inputemail" aria-describedby="email" placeholder="email" value="<?php echo $item["email"]; ?>">
+                      <label for="confirmpassword">ยืนยันรหัสผ่าน</label>
+                      <input type="password" class="form-control body-text" name="password2" id="password2" aria-describedby="confirmpassword" placeholder="confirmpassword" >
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group body-text">
-                      <label for="u_type" class="bmd-label-floating">ประเภท</label>
-                      <select class="form-control body-text" id="u_type" name="u_type">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM u_type";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          if ($item["u_type"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] . '"selected>' . $row["t_code"] . '</option>';
-                          } else {
-                            echo '<option value="' . $row["id"] . '">' . $row["t_code"] . '</option>';
-                          }
-                        }
-                        ?>
-                      </select>
-                    </div>
+                 
                   </div>
-                </div>
-
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="submit" class="btn btn-danger btn btn-block " onclick="checkPassword();">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -218,6 +162,80 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script>
+  function fncSubmit() {
+   
+
+if(document.form1.txtUsername.value == "")
+
+{
+
+alert('Please input Username');
+
+document.form1.txtUsername.focus();
+return false;
+
+}  
+
+
+if(document.form1.txtPassword.value == "")
+
+{
+
+alert('Please input Password');
+
+document.form1.txtPassword.focus();    
+
+return false;
+
+}  
+
+ 
+
+if(document.form1.txtConPassword.value == "")
+
+{
+
+alert('Please input Confirm Password');
+
+document.form1.txtConPassword.focus();     
+
+return false;
+
+}  
+
+if(document.form1.txtPassword.value != document.form1.txtConPassword.value)
+
+{
+
+alert('Confirm Password Not Match');
+
+document.form1.txtConPassword.focus();     
+
+return false;
+
+}  
+
+
+if(document.form1.txtName.value == "")
+
+{
+
+alert('Please input Name');
+
+document.form1.txtName.focus();    
+
+return false;
+
+}  
+
+ 
+
+document.form1.submit();
+
+}
+
+</script>
 </body>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
