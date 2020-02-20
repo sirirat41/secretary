@@ -62,7 +62,7 @@ if (isset($_GET["id"])) {
               <div class="card-text">
                 <h6 class="m-0 font-weight-bold text-danger body-text">
                   <i class="fas fa-file-invoice-dollar"></i>
-                  เพิ่มข้อมูลบัญชีคุมวัสดุ
+                  แก้ไขข้อมูลบัญชีคุมวัสดุ
                 </h6>
               </div>
             </div>
