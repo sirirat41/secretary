@@ -48,7 +48,7 @@ require "service/connection.php";
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger body-text">
-                <i class="fas fa-clipboard-list"></i> เพิ่มข้อมูลประเภท(วัสดุคงทน)</h6>
+                <i class="fas fa-clipboard-list"></i> เพิ่มข้อมูลประเภท(วัสดุสิ้งเปลือง)</h6>
             </div>
 
             <div class="card-body">

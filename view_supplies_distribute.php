@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h5 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลวัสดุสิ้นเปลือง</h5>
+                  <i class="fas fa-business-time"></i> ข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง</h5>
                 <form class="form-inline">
             </div>
             </nav>
