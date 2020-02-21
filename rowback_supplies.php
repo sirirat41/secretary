@@ -272,7 +272,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการกู้ข้อมูลชำรุดของวัสดุใช่หรือไม่
+          คุณต้องการกู้ข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
           <form id="form-rowback" method="post" action="service/service_rowback_supplies.php">
             <input type="hidden" id="rowback-supplies" name="supplies_id">
           </form>

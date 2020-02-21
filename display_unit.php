@@ -277,7 +277,6 @@ $show = 10;
           คุณต้องการลบข้อมูลหน่วยนับใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_unit.php">
             <input type="hidden" id="remove-unit" name="unit_id">
-          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>

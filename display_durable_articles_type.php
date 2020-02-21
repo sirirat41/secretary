@@ -273,7 +273,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลประเภทวัสดุใช่หรือไม่
+          คุณต้องการลบข้อมูลประเภทครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_type.php">
             <input type="hidden" id="remove-type" name="type_id">
           </form>

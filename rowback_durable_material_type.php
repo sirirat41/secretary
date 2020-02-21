@@ -276,7 +276,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-warning body-text" onclick="$('#form-rowback').submit()">ยืนยันการกู้ข้อมูล</button>
+          <button type="button" class="btn btn-warning body-text" onclick="$('#form-rowback').submit()">ยืนยันการกู้คืนข้อมูล</button>
         </div>
       </div>
     </div>
