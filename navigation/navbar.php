@@ -39,25 +39,31 @@ if (isset($_SESSION['user_id'])) {
         </a>
         <div id="collapseArticles" class="collapse collapse-articles " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
-            <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
+          <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
             <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_articles_repair.php">รายการซ่อม</a>
-            <a class="collapse-item sell" href="display_durable_articles_sell.php">ขายทอดตลาด</a>
-            <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">โอนเข้า</a>
-            <a class="collapse-item transferO" href="display_durable_articles_transfer_out.php">โอนออก</a>
-            <a class="collapse-item donate" href="display_durable_articles_receive_donate.php">บริจาคเข้า</a>
-            <a class="collapse-item donateO" href="display_durable_articles_donate.php">บริจาคออก </a>
+<br>
+<a class="collapse-item">แทงจำหน่าย</a>
+            <a class="collapse-item sell" href="display_durable_articles_sell.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;ขายทอดตลาด</a>
+            <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนเข้า</a>
+            <a class="collapse-item transferO" href="display_durable_articles_transfer_out.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนออก</a>
+            <a class="collapse-item donates" href="display_durable_articles_receive_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคเข้า</a>
+            <a class="collapse-item donatesO" href="display_durable_articles_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคออก</a>
           </div>
         </div>
       </li>
-
+      <hr class="sidebar-divider">
       <!-- Nav Item - Durable Material Collapse Menu -->
       <li class="nav-item nav-material">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial">
+      <a class="nav-link collapsed" href="#"  data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
           <i class="fas fa-fw fa-box"></i>
-          <span class="body-text-menu">วัสดุคงทน</span>
+          <span class="body-text-menu">วัสดุ</span>
+        </a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial">
+          
+          <span class="body-text-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัสดุคงทน</span>
         </a>
         <div id="collapseMaterial" class="collapse collapse-material" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
@@ -66,11 +72,13 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item permits" href="display_durable_material_permits.php">ยืม-คืน</a>
             <a class="collapse-item damage" href="display_durable_material_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_material_repair.php">รายการซ่อม</a>
-            <a class="collapse-item sell" href="display_durable_material_sell.php">ขายทอดตลาด</a>
-            <a class="collapse-item transfer" href="display_durable_material_transfer_in.php">โอนเข้า</a>
-            <a class="collapse-item transferO" href="display_durable_material_transfer_out.php">โอนออก</a>
-            <a class="collapse-item donates" href="display_durable_material_receive_donate.php">บริจาคเข้า</a>
-            <a class="collapse-item donatesO" href="display_durable_material_donate.php">บริจาคออก</a>
+<br>
+<a class="collapse-item">แทงจำหน่าย</a>
+            <a class="collapse-item sell" href="display_durable_material_sell.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;ขายทอดตลาด</a>
+            <a class="collapse-item transfer" href="display_durable_material_transfer_in.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนเข้า</a>
+            <a class="collapse-item transferO" href="display_durable_material_transfer_out.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนออก</a>
+            <a class="collapse-item donates" href="display_durable_material_receive_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคเข้า</a>
+            <a class="collapse-item donatesO" href="display_durable_material_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคออก</a>
           </div>
         </div>
       </li>
@@ -78,8 +86,8 @@ if (isset($_SESSION['user_id'])) {
       <!-- Nav Item - Supplies Collapse Menu -->
       <li class="nav-item nav-supplies">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplies" aria-expanded="true" aria-controls="collapseSupplies">
-          <i class="fas fa-fw fa-box-open"></i>
-          <span class="body-text-menu">วัสดุสิ้นเปลือง</span>
+         
+          <span class="body-text-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัสดุสิ้นเปลือง</span>
         </a>
         <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
@@ -115,7 +123,7 @@ if (isset($_SESSION['user_id'])) {
       <li class="nav-item nav-user">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
           <i class="fas fa-fw fa-users"></i>
-          <span class="body-text-menu">ผู้ดูแลระบบ</span>
+          <span class="body-text-menu">จัดการข้อมูลผู้ใช้</span>
         </a>
         <div id="collapseUser" class="collapse collapse-user" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
@@ -123,10 +131,15 @@ if (isset($_SESSION['user_id'])) {
           </div>
         </div>
       </li>
+      <li class="nav-item nav-seller">
+        <a class="nav-link collapsed" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+        <i class="fas fa-fw fa-user"></i>
+          <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
+        </a>
 
       <!-- Nav Item - Approve Collapse Menu -->
       <li class="nav-item nav-approve">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
+        <a class="nav-link collapsed displayse" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
           <i class="fas fa-fw fa-folder"></i>
           <span class="body-text-menu">รายการรออนุมัติ</span>
         </a>
@@ -144,10 +157,9 @@ if (isset($_SESSION['user_id'])) {
         </a>
         <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
-            <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
-            <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
-            <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
-            <a class="collapse-item displaym" href="display_durable_material_type.php">แสดงประเภทของวัสดุ</a>
+            <a class="collapse-item displayun" href="display_unit.php">หน่วยนับ</a>
+            <a class="collapse-item displaya" href="display_durable_articles_type.php">ประเภทครุภัณฑ์</a>
+            <a class="collapse-item displaym" href="display_durable_material_type.php">ประเภทวัสดุ</a>
             <a class="collapse-item auditor" href="edit_auditor.php?id=1">ผู้ตรวจสอบ </a>
             <a class="collapse-item display" href="คู่มือการใช้งาน.pdf">คู่มือการใช้งาน</a>
 
@@ -354,7 +366,11 @@ if (isset($_SESSION['user_id'])) {
               </div>
             </div>
           </li>
-
+          <li class="nav-item nav-seller">
+        <a class="nav-link collapsed" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+        <i class="fas fa-fw fa-user"></i>
+          <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
+        </a>
           <!-- Nav Item - Approve Collapse Menu -->
           <li class="nav-item nav-approve">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
@@ -375,10 +391,9 @@ if (isset($_SESSION['user_id'])) {
             </a>
             <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded body-text-menu">
-                <a class="collapse-item displayse" href="display_seller.php">แสดงร้านค้า</a>
-                <a class="collapse-item displayun" href="display_unit.php">แสดงหน่วยนับ</a>
-                <a class="collapse-item displaya" href="display_durable_articles_type.php">แสดงประเภทของครุภัณฑ์</a>
-                <a class="collapse-item displaym" href="display_durable_material_type.php">แสดงประเภทของวัสดุ</a>
+                <a class="collapse-item displayun" href="display_unit.php">หน่วยนับ</a>
+                <a class="collapse-item displaya" href="display_durable_articles_type.php">ประเภทครุภัณฑ์</a>
+                <a class="collapse-item displaym" href="display_durable_material_type.php">ประเภทวัสดุ</a>
                 <a class="collapse-item display" href="คู่มือการใช้งาน.pdf">คู่มือการใช้งาน</a>
 
               </div>
