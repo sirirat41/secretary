@@ -239,11 +239,6 @@ $(document).ready(function () {
 
         // ตั้งค่า display
 
-        case "display_seller":
-            $('.nav-setting').addClass('active');
-            $('.collapse-setting').addClass('show');
-            $('.collapse-setting .displayse').addClass('active');
-            break;
 
         case "display_unit":
             $('.nav-setting').addClass('active');
