@@ -91,7 +91,7 @@ $show = 10;
                       $start = ($page - 1) * $show;
                       $userID = $_SESSION["user_id"];
                       $sqlSelect = "SELECT s.*, ss.supplies_name FROM supplies_request as s, supplies_stock as ss";
-                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0";
+                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0"; //and s.status_request = 'waiting_approve'
                       if ($_SESSION["user_type"] == 2) {
                         $sqlSelect .= " and s.user_request = $userID";
                       }
@@ -100,11 +100,12 @@ $show = 10;
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                       }
                       // echo $sqlSelect;
-                      $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by s.id LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
+                      $count = $start + 1;
+
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
-                        $count = $start + 1;
                         $statusRequest = "";
                         $actionRequest = "";
                         switch ($row["status_request"]) {

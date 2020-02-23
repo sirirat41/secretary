@@ -132,13 +132,8 @@ if (isset($_SESSION['user_id'])) {
         </div>
       </li>
       <li class="nav-item nav-seller">
-<<<<<<< HEAD
         <a class="nav-link collapsed" href="display_seller.php" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
           <i class="fas fa-fw fa-user"></i>
-=======
-        <a class="nav-link" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
-        <i class="fas fa-fw fa-user"></i>
->>>>>>> 7ef573546200ba9327f2ed9668dce108c7522e2c
           <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
         </a>
 
