@@ -273,14 +273,14 @@ $show = 10
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
+          คุณต้องการกู้คืนข้อมูลวัสดุสิ้นเปลืองใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_rowback_supplies_account.php">
             <input type="hidden" id="rowback-account" name="account_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-warning body-text" onclick="$('#form-drop').submit()">ยืนยันการกู้คืนข้อมูล</button>
         </div>
       </div>
     </div>
