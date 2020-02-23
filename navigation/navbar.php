@@ -57,13 +57,10 @@ if (isset($_SESSION['user_id'])) {
       <hr class="sidebar-divider">
       <!-- Nav Item - Durable Material Collapse Menu -->
       <li class="nav-item nav-material">
-      <a class="nav-link collapsed" href="#"  data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
-          <i class="fas fa-fw fa-box"></i>
-          <span class="body-text-menu">วัสดุ</span>
-        </a>
+     
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial">
-          
-          <span class="body-text-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัสดุคงทน</span>
+        <i class="fas fa-fw fa-inbox"></i>
+          <span class="body-text-menu">วัสดุคงทน</span>
         </a>
         <div id="collapseMaterial" class="collapse collapse-material" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
@@ -86,8 +83,8 @@ if (isset($_SESSION['user_id'])) {
       <!-- Nav Item - Supplies Collapse Menu -->
       <li class="nav-item nav-supplies">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplies" aria-expanded="true" aria-controls="collapseSupplies">
-         
-          <span class="body-text-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัสดุสิ้นเปลือง</span>
+        <i class="fas fa-fw fa-box"></i>
+          <span class="body-text-menu">วัสดุสิ้นเปลือง</span>
         </a>
         <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
@@ -325,7 +322,7 @@ if (isset($_SESSION['user_id'])) {
 
           <!-- Nav Item - Dashboard -->
           <li class="nav-item nav-home">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="index.php">
               <i class="fas fa-fw fa-home"></i>
               <span class="body-text-menu">หน้าหลัก</span></a>
           </li>

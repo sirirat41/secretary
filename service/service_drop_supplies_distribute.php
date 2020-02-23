@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['distribute_id'])) {
     logServer($conn, $log);
 
     if (mysqli_query($conn, $sqlUpdate)) {
-        header('Location: ../display_supplies_distribute.php?type='.$type.'message=ลบข้อมูลสำเร็จ');
+        header('Location: ../display_supplies_distribute.php?type='.$type.'&message=ลบข้อมูลสำเร็จ');
     } else {
         header('Location: ../display_supplies_distribute.php?type='.$type.'&message=ลบข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }

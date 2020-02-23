@@ -3,7 +3,7 @@
 <?php
 require "service/connection.php";
 
-$show = 20;
+$show = 50;
 ?>
 
 <head>

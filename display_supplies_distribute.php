@@ -303,7 +303,7 @@ $show = 10;
         </div>
         <div class="modal-body text-left body-text">
           คุณต้องการลบข้อมูลการแจกจ่ายวัสดุสิ้นเปลืองใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php">
+          <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php?type=<?php echo $type; ?>">
             <input type="hidden" id="remove-distribute" name="distribute_id">
           </form>
         </div>

@@ -54,7 +54,6 @@ if (isset($_GET["id"])) {
       <!-- เริ่มเขียนโค๊ดตรงนี้ -->
       <div class="row ">
         <p class="" onclick="window.history.back()" style="cursor: pointer">
-          <i class="fas fa-angle-left"></i> กลับ
         </p>
       </div>
       <div class="row">

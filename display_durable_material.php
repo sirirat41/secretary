@@ -65,6 +65,9 @@ $show = 10;
                     <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_material.php" target="_blank">
                       <i class="fas fa-print"></i>
                     </a>
+                        <a rel="tooltip" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="ปริ้นคิวอาร์โค้ดทั้งหมด" href="generate_all_qrcode_material.php" target="_blank">
+                      <i class="fas fa-qrcode"></i>
+                    </a>
                 </form>
             </div>
           </div>

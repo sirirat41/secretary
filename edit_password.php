@@ -5,7 +5,6 @@ if (isset($_GET["id"])) {
   $sql = "SELECT * FROM user WHERE id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
-  
 }
 ?>
 
@@ -21,7 +20,7 @@ if (isset($_GET["id"])) {
   <meta name="author" content="">
 
   <title>secretary</title>
- 
+
 
 
   <!-- Custom fonts for this template-->
@@ -54,7 +53,7 @@ if (isset($_GET["id"])) {
         <p class="" onclick="window.history.back()" style="cursor: pointer">
           <i class="fas fa-angle-left"></i> กลับ
         </p>
-</div>
+      </div>
       <div class="row">
         <div class="col-md-4 offset-4">
           <div class="card shado mb-6">
@@ -62,8 +61,8 @@ if (isset($_GET["id"])) {
               <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-key"></i> แก้ไขรหัสผ่าน</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_edit_password.php?id=<?php echo $_SESSION["user_id"]; ?>"  OnSubmit="return fncSubmit();" id="form_insert">
-                
+              <form method="post" action="service/service_edit_password.php" id="form_insert">
+
 
                 <div class="row">
                   <div class="col-md-12">
@@ -78,14 +77,14 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="confirmpassword">ยืนยันรหัสผ่าน</label>
-                      <input type="password" class="form-control body-text" name="password2" id="password2" aria-describedby="confirmpassword" placeholder="confirmpassword" >
+                      <input type="password" class="form-control body-text" name="password2" id="password2" aria-describedby="confirmpassword" placeholder="confirmpassword">
                     </div>
                   </div>
-                 
-                  </div>
+
+                </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-danger btn btn-block " onclick="checkPassword();">
+                    <button type="button" class="btn btn-danger btn btn-block " onclick="checkPassword();">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -163,27 +162,36 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
   <script>
-  
-</script>
+      function checkPassword() {
+          let password = $('#password1').val ();
+          let confirmpassword = $('#password2').val ();
+          if (password == confirmpassword && password.trim () != "" && confirmpassword.trim() != "") {
+            $('#exampleModal').modal();
+          }else {
+            alert('รหัสผ่านไม่ตรงกัน หรื เป็นค่าว่าง')
+          }
+      }
+  </script>
 </body>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

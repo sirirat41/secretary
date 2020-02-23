@@ -23,7 +23,7 @@ if (isset($_GET["type"]) && isset($_GET["page"]) && $_GET["type"] == "fix") {
         $sql = "SELECT * FROM durable_articles Order by id LIMIT $page, 1";
     }
 } else {
-    $sql = "SELECT * FROM durable_articles Order by id LIMIT 16";
+    $sql = "SELECT * FROM durable_articles Order by id";
 }
 $result = mysqli_query($conn, $sql);
 $numberOfArticles = mysqli_num_rows($result);
@@ -64,7 +64,7 @@ $numberOfArticles = mysqli_num_rows($result);
             <?php if ($_GET["type"] == "fix") {; ?>
                 <div class="row">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <div class="col-4" align="center" style="padding: 10px; border: 1px solid black">
+                        <div class="col-3" align="center" style="padding: 10px; border: 1px solid black">
                             <img src="generate_qrcode_articles.php?id=<?php echo $row["id"]; ?>" style="width: 100%">
                             <div style="margin-top: -30px"><small><?php echo $row["code"]; ?></small></div>
                         </div>
@@ -120,7 +120,18 @@ $numberOfArticles = mysqli_num_rows($result);
                     backdrop: 'static',
                     keyboard: false
                 })
-            <?php }; ?>
+                <?php } else {
+                echo 'onload = window.print();';
+            }; ?>
+            $('#fix').on('change', function() {
+                $('#page').removeAttr('disabled');
+            })
+            $('#type').on('change', function() {
+                $('#page').attr('disabled', true);
+            })
+            $('form').on('submit', function(e) {
+                $('#page').removeAttr('disabled');
+            })
         })
     </script>
 </body>

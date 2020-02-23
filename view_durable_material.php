@@ -85,7 +85,7 @@ $monthDay = ($dateMouth - $day) + 1;
                   <i class="fas fa-business-time"></i> ข้อมูลวัสดุคงทน</h5>
                 <form class="form-inline">
                   <div>
-                    <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
+                  <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
                 </form>

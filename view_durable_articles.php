@@ -95,10 +95,10 @@ if (isset($_GET["id"])) {
                   <i class="fas fa-business-time"></i> ข้อมูลครุภัณฑ์</h6>
                 <form class="form-inline">
                   <div>
-                    <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
+                 
+                  <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-QR">
                       <i class="fas fa-qrcode"></i>
                     </button>
-
                 </form>
             </div>
           </div>
