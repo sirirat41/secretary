@@ -69,7 +69,6 @@ $show = 10;
                     <thead>
                       <tr class="text-center">
                         <th>ชื่อประเภท</th>
-    
                       </tr>
                     </thead>
                     <tbody>
@@ -83,7 +82,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_material_type";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect .= " WHERE status = 2";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";

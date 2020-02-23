@@ -163,78 +163,7 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
   <script>
-  function fncSubmit() {
-   
-
-if(document.form1.txtUsername.value == "")
-
-{
-
-alert('Please input Username');
-
-document.form1.txtUsername.focus();
-return false;
-
-}  
-
-
-if(document.form1.txtPassword.value == "")
-
-{
-
-alert('Please input Password');
-
-document.form1.txtPassword.focus();    
-
-return false;
-
-}  
-
- 
-
-if(document.form1.txtConPassword.value == "")
-
-{
-
-alert('Please input Confirm Password');
-
-document.form1.txtConPassword.focus();     
-
-return false;
-
-}  
-
-if(document.form1.txtPassword.value != document.form1.txtConPassword.value)
-
-{
-
-alert('Confirm Password Not Match');
-
-document.form1.txtConPassword.focus();     
-
-return false;
-
-}  
-
-
-if(document.form1.txtName.value == "")
-
-{
-
-alert('Please input Name');
-
-document.form1.txtName.focus();    
-
-return false;
-
-}  
-
- 
-
-document.form1.submit();
-
-}
-
+  
 </script>
 </body>
 
