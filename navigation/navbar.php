@@ -49,8 +49,8 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item sell" href="display_durable_articles_sell.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนเข้า</a>
             <a class="collapse-item transferO" href="display_durable_articles_transfer_out.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนออก</a>
-            <a class="collapse-item donates" href="display_durable_articles_receive_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคเข้า</a>
-            <a class="collapse-item donatesO" href="display_durable_articles_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคออก</a>
+            <a class="collapse-item donate" href="display_durable_articles_receive_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคเข้า</a>
+            <a class="collapse-item donateO" href="display_durable_articles_donate.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;บริจาคออก</a>
           </div>
         </div>
       </li>
@@ -132,7 +132,7 @@ if (isset($_SESSION['user_id'])) {
         </div>
       </li>
       <li class="nav-item nav-seller">
-        <a class="nav-link collapsed" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+        <a class="nav-link" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
         <i class="fas fa-fw fa-user"></i>
           <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
         </a>
@@ -392,7 +392,6 @@ if (isset($_SESSION['user_id'])) {
             <div id="collapseSetting" class="collapse collapse-setting" aria-labelledby="headingPages" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded body-text-menu">
                 <a class="collapse-item displayun" href="display_unit.php">หน่วยนับ</a>
-                <a class="collapse-item displaya" href="display_durable_articles_type.php">ประเภทครุภัณฑ์</a>
                 <a class="collapse-item displaym" href="display_durable_material_type.php">ประเภทวัสดุ</a>
                 <a class="collapse-item display" href="คู่มือการใช้งาน.pdf">คู่มือการใช้งาน</a>
 

@@ -132,6 +132,11 @@ $(document).ready(function () {
             $('.collapse-material .transferO').addClass('active');
             break;
 
+            case "display_durable_material_type":  //ซ่อม
+            $('.nav-material').addClass('active');
+            $('.collapse-material').addClass('show');
+            $('.collapse-material .displaym').addClass('active');
+            break;
 
         //Supplies วัสดุสิ้นเปลือง
 
@@ -182,6 +187,13 @@ $(document).ready(function () {
             $('.collapse-department .display').addClass('active');
             break;
 
+
+            case "display_selle":  //หน่วยงาน
+            $('.nav-sell').addClass('active');
+            $('.collapse-selle').addClass('show');
+            $('.collapse-selle .display').addClass('active');
+            break;
+
         // หน่วยงาน Insert
 
         case "insert_department":  //หน่วยงาน
@@ -205,11 +217,11 @@ $(document).ready(function () {
 
         // ตั้งค่า insert
 
-        case "insert_seller":
-            $('.nav-setting').addClass('active');
-            $('.collapse-setting').addClass('show');
-            $('.collapse-setting .insertse').addClass('active');
-            break;
+        // case "insert_seller":
+        //     $('.nav-setting').addClass('active');
+        //     $('.collapse-setting').addClass('show');
+        //     $('.collapse-setting .insertse').addClass('active');
+        //     break;
 
         case "insert_unit":
             $('.nav-setting').addClass('active');
@@ -230,6 +242,7 @@ $(document).ready(function () {
             break;
 
         // Approve
+     
 
         case "display_supplies_request":
             $('.nav-approve').addClass('active');
