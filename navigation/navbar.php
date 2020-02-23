@@ -3,10 +3,10 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 if (isset($_SESSION['user_id'])) {
-  ?>
+?>
   <?php
-    if ($_SESSION['user_type'] == '1') {
-      ?>
+  if ($_SESSION['user_type'] == '1') {
+  ?>
     <ul class="navbar-nav my-primary-color sidebar sidebar-dark accordion" id="accordionSidebar">
       <br>
       <br>
@@ -39,13 +39,13 @@ if (isset($_SESSION['user_id'])) {
         </a>
         <div id="collapseArticles" class="collapse collapse-articles " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded body-text-menu">
-          <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
+            <a class="collapse-item display" href="display_durable_articles.php">แสดงข้อมูล</a>
             <a class="collapse-item purchase" href="display_durable_articles_purchase.php">จัดซื้อ</a>
             <a class="collapse-item permits" href="display_durable_articles_permits.php">ยืม-คืน</a>
             <a class="collapse-item damage" href="display_durable_articles_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_articles_repair.php">รายการซ่อม</a>
-<br>
-<a class="collapse-item">แทงจำหน่าย</a>
+            <br>
+            <a class="collapse-item">แทงจำหน่าย</a>
             <a class="collapse-item sell" href="display_durable_articles_sell.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="display_durable_articles_transfer_in.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนเข้า</a>
             <a class="collapse-item transferO" href="display_durable_articles_transfer_out.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนออก</a>
@@ -57,12 +57,12 @@ if (isset($_SESSION['user_id'])) {
       <hr class="sidebar-divider">
       <!-- Nav Item - Durable Material Collapse Menu -->
       <li class="nav-item nav-material">
-      <a class="nav-link collapsed" href="#"  data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
+        <a class="nav-link collapsed" href="#" data-target="#collapseSetting" aria-expanded="true" aria-controls="collapseSetting">
           <i class="fas fa-fw fa-box"></i>
           <span class="body-text-menu">วัสดุ</span>
         </a>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial">
-          
+
           <span class="body-text-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัสดุคงทน</span>
         </a>
         <div id="collapseMaterial" class="collapse collapse-material" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -72,8 +72,8 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item permits" href="display_durable_material_permits.php">ยืม-คืน</a>
             <a class="collapse-item damage" href="display_durable_material_damage.php">รายการชำรุด</a>
             <a class="collapse-item repair" href="display_durable_material_repair.php">รายการซ่อม</a>
-<br>
-<a class="collapse-item">แทงจำหน่าย</a>
+            <br>
+            <a class="collapse-item">แทงจำหน่าย</a>
             <a class="collapse-item sell" href="display_durable_material_sell.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;ขายทอดตลาด</a>
             <a class="collapse-item transfer" href="display_durable_material_transfer_in.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนเข้า</a>
             <a class="collapse-item transferO" href="display_durable_material_transfer_out.php">&nbsp;&nbsp;<i class="fa fa-caret-right"></i>&nbsp;โอนออก</a>
@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id'])) {
       <!-- Nav Item - Supplies Collapse Menu -->
       <li class="nav-item nav-supplies">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplies" aria-expanded="true" aria-controls="collapseSupplies">
-         
+
           <span class="body-text-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัสดุสิ้นเปลือง</span>
         </a>
         <div id="collapseSupplies" class="collapse collapse-supplies" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -132,12 +132,12 @@ if (isset($_SESSION['user_id'])) {
         </div>
       </li>
       <li class="nav-item nav-seller">
-        <a class="nav-link collapsed" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
-        <i class="fas fa-fw fa-user"></i>
+        <a class="nav-link collapsed" href="display_seller.php" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+          <i class="fas fa-fw fa-user"></i>
           <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
         </a>
 
-      <!-- Nav Item - Approve Collapse Menu -->
+        <!-- Nav Item - Approve Collapse Menu -->
       <li class="nav-item nav-approve">
         <a class="nav-link collapsed displayse" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
           <i class="fas fa-fw fa-folder"></i>
@@ -234,11 +234,11 @@ if (isset($_SESSION['user_id'])) {
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">
                   <?php
-                      $sqlSelectApprove = "SELECT s.*, u.surname, u.lastname FROM supplies_request s, supplies_purchase_request p, user u";
-                      $sqlSelectApprove .= " WHERE p.product_id = s.id and s.status_request = 'waiting_approve' and s.user_request = u.id";
-                      $resultApprove = mysqli_query($conn, $sqlSelectApprove);
-                      echo mysqli_num_rows($resultApprove) <= 0 ? "0" : mysqli_num_rows($resultApprove);
-                      ?>
+                  $sqlSelectApprove = "SELECT s.*, u.surname, u.lastname FROM supplies_request s, supplies_purchase_request p, user u";
+                  $sqlSelectApprove .= " WHERE p.product_id = s.id and s.status_request = 'waiting_approve' and s.user_request = u.id";
+                  $resultApprove = mysqli_query($conn, $sqlSelectApprove);
+                  echo mysqli_num_rows($resultApprove) <= 0 ? "0" : mysqli_num_rows($resultApprove);
+                  ?>
                 </span>
               </a>
               <!-- Dropdown - Alerts -->
@@ -247,21 +247,21 @@ if (isset($_SESSION['user_id'])) {
                   แจ้งเตือน
                 </h6>
                 <?php
-                    $count = 1;
-                    while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
-                      $colorRequest = "bg-primary";
-                      $iconRequest = "fa-file-alt";
-                      if ($rowApproveNavbar["action_request"] == "request_update") {
-                        $iconRequest = "fa-file-alt";
-                        $colorRequest = "bg-primary";
-                      } else {
-                        $iconRequest = "fa-exclamation-triangle";
-                        $colorRequest = "bg-danger";
-                      }
-                      if ($count > 3) {
-                        break;
-                      }
-                      ?>
+                $count = 1;
+                while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
+                  $colorRequest = "bg-primary";
+                  $iconRequest = "fa-file-alt";
+                  if ($rowApproveNavbar["action_request"] == "request_update") {
+                    $iconRequest = "fa-file-alt";
+                    $colorRequest = "bg-primary";
+                  } else {
+                    $iconRequest = "fa-exclamation-triangle";
+                    $colorRequest = "bg-danger";
+                  }
+                  if ($count > 3) {
+                    break;
+                  }
+                ?>
                   <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApproveNavbar["id"]; ?>">
                     <div class="mr-3">
                       <div class="icon-circle <?php echo $colorRequest; ?>">
@@ -274,7 +274,7 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                   </a>
                 <?php $count++;
-                    } ?>
+                } ?>
                 <a class="dropdown-item text-center small text-gray-500 body-text-menu" href="display_supplies_request.php">แสดงแจ้งเตือนทั้งหมด</a>
               </div>
             </li>
@@ -289,6 +289,11 @@ if (isset($_SESSION['user_id'])) {
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="view_profile.php?id=<?php echo $_SESSION["user_id"]; ?>">
+                  <i class="fas fa-fw fa-user fa-fw mr-2 text-gray-400 body-text-menu"></i>
+                  โปรไฟล์ผู้ใช้
+                </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="display_log.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
                   การเข้าใช้งาน
@@ -306,9 +311,9 @@ if (isset($_SESSION['user_id'])) {
 
 
       <?php
-      }
-      if ($_SESSION['user_type'] == '2') {
-        ?>
+    }
+    if ($_SESSION['user_type'] == '2') {
+      ?>
         <ul class="navbar-nav my-primary-color sidebar sidebar-dark accordion" id="accordionSidebar">
           <br>
           <br>
@@ -367,11 +372,11 @@ if (isset($_SESSION['user_id'])) {
             </div>
           </li>
           <li class="nav-item nav-seller">
-        <a class="nav-link collapsed" href="display_seller.php"  data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
-        <i class="fas fa-fw fa-user"></i>
-          <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
-        </a>
-          <!-- Nav Item - Approve Collapse Menu -->
+            <a class="nav-link collapsed" href="display_seller.php" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+              <i class="fas fa-fw fa-user"></i>
+              <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
+            </a>
+            <!-- Nav Item - Approve Collapse Menu -->
           <li class="nav-item nav-approve">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
               <i class="fas fa-fw fa-folder"></i>
@@ -468,11 +473,11 @@ if (isset($_SESSION['user_id'])) {
                     <!-- Counter - Alerts -->
                     <span class="badge badge-danger badge-counter">
                       <?php
-                        $sqlSelectApprove = "SELECT s.*, u.surname, u.lastname FROM supplies_request s, supplies_purchase_request p, user u";
-                        $sqlSelectApprove .= " WHERE p.product_id = s.id and s.status_request = 'waiting_approve' and s.user_request = u.id and u.id = " . $_SESSION["user_id"];
-                        $resultApprove = mysqli_query($conn, $sqlSelectApprove);
-                        echo mysqli_num_rows($resultApprove) <= 0 ? "0" : mysqli_num_rows($resultApprove);
-                        ?>
+                      $sqlSelectApprove = "SELECT s.*, u.surname, u.lastname FROM supplies_request s, supplies_purchase_request p, user u";
+                      $sqlSelectApprove .= " WHERE p.product_id = s.id and s.status_request = 'waiting_approve' and s.user_request = u.id and u.id = " . $_SESSION["user_id"];
+                      $resultApprove = mysqli_query($conn, $sqlSelectApprove);
+                      echo mysqli_num_rows($resultApprove) <= 0 ? "0" : mysqli_num_rows($resultApprove);
+                      ?>
                     </span>
                   </a>
                   <!-- Dropdown - Alerts -->
@@ -481,21 +486,21 @@ if (isset($_SESSION['user_id'])) {
                       แจ้งเตือน
                     </h4>
                     <?php
-                      $count = 1;
-                      while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
-                        $colorRequest = "bg-primary";
+                    $count = 1;
+                    while ($rowApproveNavbar = mysqli_fetch_assoc($resultApprove)) {
+                      $colorRequest = "bg-primary";
+                      $iconRequest = "fa-file-alt";
+                      if ($rowApproveNavbar["action_request"] == "request_update") {
                         $iconRequest = "fa-file-alt";
-                        if ($rowApproveNavbar["action_request"] == "request_update") {
-                          $iconRequest = "fa-file-alt";
-                          $colorRequest = "bg-primary";
-                        } else {
-                          $iconRequest = "fa-exclamation-triangle";
-                          $colorRequest = "bg-danger";
-                        }
-                        if ($count > 3) {
-                          break;
-                        }
-                        ?>
+                        $colorRequest = "bg-primary";
+                      } else {
+                        $iconRequest = "fa-exclamation-triangle";
+                        $colorRequest = "bg-danger";
+                      }
+                      if ($count > 3) {
+                        break;
+                      }
+                    ?>
                       <a class="dropdown-item d-flex align-items-center" href="view_supplies_purchase_request.php?id=<?php echo $rowApproveNavbar["id"]; ?>">
                         <div class="mr-3">
                           <div class="icon-circle <?php echo $colorRequest; ?>">
@@ -508,7 +513,7 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                       </a>
                     <?php $count++;
-                      } ?>
+                    } ?>
                     <a class="dropdown-item text-center small text-gray-500 body-text-menu" href="display_supplies_request.php">แสดงแจ้งเตือนทั้งหมด</a>
                   </div>
                 </li>
@@ -523,6 +528,11 @@ if (isset($_SESSION['user_id'])) {
                   </a>
                   <!-- Dropdown - User Information -->
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="view_profile.php?id=<?php echo $_SESSION["user_id"]; ?>">
+                      <i class="fas fa-fw fa-user fa-fw mr-2 text-gray-400 body-text-menu"></i>
+                      โปรไฟล์ผู้ใช้
+                    </a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="service/service_logout.php">
                       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
                       ออกจากระบบ

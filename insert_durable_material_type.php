@@ -48,7 +48,7 @@ require "service/connection.php";
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger body-text">
-                <i class="fas fa-clipboard-list"></i> เพิ่มข้อมูลประเภท(วัสดุสิ้งเปลือง)</h6>
+                <i class="fas fa-clipboard-list"></i> เพิ่มข้อมูลประเภทวัสดุ</h6>
             </div>
 
             <div class="card-body">
@@ -66,6 +66,14 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="shortname">ชื่อย่อ</label>
                       <input type="text" class="form-control" name="shortname" id="shortname" placeholder="shortname">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group body-text">
+                      <label for="status">สถานะ</label>
+                      <input type="text" class="form-control" name="status" id="status" placeholder="status">
                     </div>
                   </div>
                 </div>
