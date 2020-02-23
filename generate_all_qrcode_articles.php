@@ -52,9 +52,9 @@ $numberOfArticles = mysqli_num_rows($result);
             <?php if ($_GET["type"] == "all") {; ?>
                 <div class="row">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <div class="col-4" align="center" style="padding: 10px; border: 1px solid black">
+                        <div class="col-3" align="center" style="padding: 10px; border: 1px solid black">
                             <img src="generate_qrcode_articles.php?id=<?php echo $row["id"]; ?>" style="width: 100%">
-                            <div style="margin-top: -30px"><small><?php echo $row["code"]; ?></small></div>
+                            <div style="margin-top: -20px"><small><?php echo $row["code"]; ?></small></div>
                         </div>
                     <?php }; // end of while all 
                     ?>
@@ -66,7 +66,7 @@ $numberOfArticles = mysqli_num_rows($result);
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <div class="col-3" align="center" style="padding: 10px; border: 1px solid black">
                             <img src="generate_qrcode_articles.php?id=<?php echo $row["id"]; ?>" style="width: 100%">
-                            <div style="margin-top: -30px"><small><?php echo $row["code"]; ?></small></div>
+                            <div style="margin-top: -20px"><small><?php echo $row["code"]; ?></small></div>
                         </div>
                     <?php }; // end of while all 
                     ?>
@@ -97,7 +97,7 @@ $numberOfArticles = mysqli_num_rows($result);
                             <label class="form-check-label" for="exampleRadios2">
                                 ปริ้นรายการที่
                             </label>
-                            <input class="form-control form-control-sm" type="text" name="page" placeholder="ตัวอย่างเช่น1-5">
+                            <input id="page" class="form-control form-control-sm" type="text" name="page" placeholder="ตัวอย่างเช่น1-5" disabled>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,7 +120,7 @@ $numberOfArticles = mysqli_num_rows($result);
                     backdrop: 'static',
                     keyboard: false
                 })
-                <?php } else {
+            <?php } else {
                 echo 'onload = window.print();';
             }; ?>
             $('#fix').on('change', function() {

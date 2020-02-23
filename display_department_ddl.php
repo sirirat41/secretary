@@ -216,9 +216,10 @@ $show = 10;
         $('#dis').text(' แสดงข้อมูลวัสดุ');
       } else {
         $('#dis').text(' แสดงข้อมูลครุภัณฑ์');
-        generatePagination();
+
 
       }
+              generatePagination();
     }
 
     function nextPage() {
@@ -248,7 +249,8 @@ $show = 10;
           jsonData = response;
           numberOfPage = response.length / itemPerPage;
           changePage(1);
-
+          
+console.log(numberOfPage)
         },
         error: function(error) {
           console.log(error);
@@ -274,7 +276,7 @@ $show = 10;
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

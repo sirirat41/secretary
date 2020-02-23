@@ -46,7 +46,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger body-text">
-                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภท(วัสดุสิ้นเปลือง)</h6>
+                  <i class="fas fa-clipboard-list"></i> แสดงข้อมูลประเภทวัสดุ</h6>
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                   <div>
@@ -88,7 +88,6 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_material_type";
-                      $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";
