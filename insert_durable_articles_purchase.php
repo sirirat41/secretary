@@ -82,7 +82,7 @@ require "service/connection.php";
                 <div class="col-6 ">
                   <div class="form-group body-text">
                     <label class="bmd-label-floating">เลขที่เอกสาร :</label>
-                    <input class="form-control body-text" type="text" placeholder="document_no" name="document_no">
+                    <input class="form-control body-text" type="number" placeholder="document_no" name="document_no">
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group body-text">
                     <label class="bmd-label-floating">จำนวนเงิน :</label>
-                    <input class="form-control body-text" type="text" placeholder="price" name="price">
+                    <input class="form-control body-text" type="number" placeholder="price" name="price">
                   </div>
                 </div>
               </div>
@@ -268,7 +268,7 @@ require "service/connection.php";
                 <div class="col-6">
                   <div class="form-group body-text">
                     <label class="bmd-label-floating">จำนวนครุภัณฑ์ :</label>
-                    <input class="form-control body-text" type="text" placeholder="number" name="number" id="number">
+                    <input class="form-control body-text" type="number" placeholder="number" name="number" id="number">
                   </div>
                 </div>
               </div>
