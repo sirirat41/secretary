@@ -83,44 +83,44 @@ if (isset($_GET["id"])) {
   <form>
     <div class="row">
       <div class="col-12">
-     
 
-          <div class="table-responsive" >
-            <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
-              <thead>
-                <body style="padding: 16px">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-sm-12" align="center">
-                        <h5>บัญชีคุม ประจำปี งบประมาณ <?php echo $row["year"]; ?></h5>
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-7">
-                      </div>
-                      <div class="text " class="col-sm-">
-                        <h7>ส่วนราชการ: </h7>
-                      </div>
-                      <div class="col-sm-3">
-                        <h7>สำนักงานตำรวจแห่งชาติ</h7>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-7">
-                      </div>
-                      <div class="col-sm-">
-                        <label class="text " for="short_goverment">
-                          <div style="width:100px">
-                            <h7>หน่วยงาน: </h7>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                      <h7>สลก.ตร.</h7>
+        <div class="table-responsive">
+          <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
+            <thead>
+
+              <body style="padding: 16px">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-12" align="center">
+                      <h5>บัญชีคุม ประจำปี งบประมาณ <?php echo $row["year"]; ?></h5>
                     </div>
                   </div>
-                  <!-- <div class="row">
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="text " class="col-sm-">
+                      <h7>ส่วนราชการ: </h7>
+                    </div>
+                    <div class="col-sm-3">
+                      <h7>สำนักงานตำรวจแห่งชาติ</h7>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-">
+                      <label class="text " for="short_goverment">
+                        <div style="width:100px">
+                          <h7>หน่วยงาน: </h7>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <h7>สลก.ตร.</h7>
+                  </div>
+                </div>
+                <!-- <div class="row">
                     <div class="col-sm-6">
                       <label class="text ">
                         <h7>แผ่นที่</h7>
@@ -128,106 +128,106 @@ if (isset($_GET["id"])) {
                       
                     </div>
                   </div> -->
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <label class="text " for="type">
-                        <h7>ประเภท :</h7>
-                      </label>
-                      <?php echo $row["name"]; ?>
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="text " for="supplies_name">
-                        <h7>ชื่อหรือชนิดวัสดุ :</h7>
-                      </label>
-                      <?php echo ($row["supplies_name"]); ?>
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="text " for="code">
-                        <h7>รหัส :</h7>
-                      </label>
-                      <?php echo ($row["code"]); ?>
-                    </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="text " for="type">
+                      <h7>ประเภท :</h7>
+                    </label>
+                    <?php echo $row["name"]; ?>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <label class="text " for="attribute">
-                        <h7>ขนาดหรือลักษณะ :</h7>
-                      </label>
-                      <?php echo ($row["attribute"]); ?>
-                    </div>
+                  <div class="col-sm-4">
+                    <label class="text " for="supplies_name">
+                      <h7>ชื่อหรือชนิดวัสดุ :</h7>
+                    </label>
+                    <?php echo ($row["supplies_name"]); ?>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <label class="text " for="unit">
-                        <h7>หน่วยที่นับ : </h7>
-                      </label>
-                      <?php echo ($row["unit_name"]); ?>
-                    </div>
-                    <div class="col-sm-6">
-                      <label class="text " for="fullname">
-                        <h7>ที่เก็บ :</h7>
-                      </label>
-                      <?php echo ($row["fullname"]); ?>
-                      <label class="text " for="bulding">
-                      </label>
-                      <?php echo ($row["bulding"]); ?>
-                      <label class="text " for="floor">
-                      </label>
-                      <?php echo ($row["floor"]); ?>
-                    </div>
+                  <div class="col-sm-4">
+                    <label class="text " for="code">
+                      <h7>รหัส :</h7>
+                    </label>
+                    <?php echo ($row["code"]); ?>
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label class="text " for="attribute">
+                      <h7>ขนาดหรือลักษณะ :</h7>
+                    </label>
+                    <?php echo ($row["attribute"]); ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="text " for="unit">
+                      <h7>หน่วยที่นับ : </h7>
+                    </label>
+                    <?php echo ($row["unit_name"]); ?>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="text " for="fullname">
+                      <h7>ที่เก็บ :</h7>
+                    </label>
+                    <?php echo ($row["fullname"]); ?>
+                    <label class="text " for="bulding">
+                    </label>
+                    <?php echo ($row["bulding"]); ?>
+                    <label class="text " for="floor">
+                    </label>
+                    <?php echo ($row["floor"]); ?>
+                  </div>
+                </div>
 
-                  <tr class="text-center ">
+                <tr class="text-center ">
 
-                    <td rowspan="2">วัน/เดือน/ปี</td>
-                    <td rowspan="2">รับจาก</td>
-                    <td rowspan="2">จ่ายให้</td>
-                    <td rowspan="2">เลขที่เอกสาร</td>
-                    <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
-                    <td rowspan="2">หน่วยนับ</td>
-                    <td colspan="3">จำนวน</td>
-                    <td rowspan="2">หมายเหตุ</td>
-                  </tr class="text-center">
-                  <tr class="text-center">
-                    <td width="10%">บาท </td>
-                    <td>สต.</td>
-                    <td width="7%">รับ</td>
-                    <td width="7%">จ่าย</td>
-                    <td width="7%">คงเหลือ</td>
-                  </tr class="text-center">
-              </thead>
-              <tbody id="tbody">
-                      <?php
-                      $sqlSelect = "SELECT * FROM supplies_account_detail as a";
-                      $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
-                      // echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
-                      <tr class="text-center" height="30" id="firstTr">
-                        <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><?php echo $row["distribute_date"]; ?></td>
-                        <td> <?php echo $row["receive_from"]; ?></td>
-                        <td> <?php echo $row["distribute_to"]; ?></td>
-                        <td> <?php echo $row["document_no"]; ?></td>
-                        <td> <?php echo $row["baht"]; ?></td>
-                        <td> <?php echo $row["satang"]; ?></td>
-                        <td> <?php echo $row["unit"]; ?></td>
-                        <td> <?php echo $row["receive"]; ?></td>
-                        <td> <?php echo $row["distribute"]; ?></td>
-                        <td> <?php echo $row["stock"]; ?></td>
-                        <td><?php echo $row["flag"]; ?></td>
-                      </tr>
+                  <td rowspan="2">วัน/เดือน/ปี</td>
+                  <td rowspan="2">รับจาก</td>
+                  <td rowspan="2">จ่ายให้</td>
+                  <td rowspan="2">เลขที่เอกสาร</td>
+                  <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
+                  <td rowspan="2">หน่วยนับ</td>
+                  <td colspan="3">จำนวน</td>
+                  <td rowspan="2">หมายเหตุ</td>
+                </tr class="text-center">
+                <tr class="text-center">
+                  <td width="10%">บาท </td>
+                  <td>สต.</td>
+                  <td width="7%">รับ</td>
+                  <td width="7%">จ่าย</td>
+                  <td width="7%">คงเหลือ</td>
+                </tr class="text-center">
+            </thead>
+            <tbody id="tbody">
+              <?php
+              $sqlSelect = "SELECT * FROM supplies_account_detail as a";
+              $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
+              // echo $sqlSelect;
+              $result = mysqli_query($conn, $sqlSelect);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["id"];
+              ?>
+                <tr class="text-center" height="30" id="firstTr">
+                  <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><?php echo $row["distribute_date"]; ?></td>
+                  <td> <?php echo $row["receive_from"]; ?></td>
+                  <td> <?php echo $row["distribute_to"]; ?></td>
+                  <td> <?php echo $row["document_no"]; ?></td>
+                  <td> <?php echo $row["baht"]; ?></td>
+                  <td> <?php echo $row["satang"]; ?></td>
+                  <td> <?php echo $row["unit"]; ?></td>
+                  <td> <?php echo $row["receive"]; ?></td>
+                  <td> <?php echo $row["distribute"]; ?></td>
+                  <td> <?php echo $row["stock"]; ?></td>
+                  <td><?php echo $row["flag"]; ?></td>
+                </tr>
 
-                      <?php
-                      }
-                      ?>
-                
-
-            </table>
+              <?php
+              }
+              ?>
 
 
-            <!-- <tr class="text-center">
+          </table>
+
+
+          <!-- <tr class="text-center">
                 <td>วัน/เดือน/ปี</td>
                 <td>รับจาก</td>
                 <td>จ่ายให้</td>
@@ -247,33 +247,33 @@ if (isset($_GET["id"])) {
                 <td colspan="8">จ่าย</td>
                 <td colspan="8">เหลือ</td>
               </tr> -->
-              <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3 offset-sm-9">
+                <label class="text">ตรวจแล้วถูกต้อง</label>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-5 offset-sm-7" align="right">
-              <label class="text"><?php echo $rank;?>......................................................</label>
+            <br>
+            <div class="row">
+              <div class="col-sm-4 offset-sm-8">
+                <label class="text"><?php echo $rank; ?>......................................................</label>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(<?php echo $Aname;?>)</label>
+            <div class="row">
+              <div class="col-sm-3 offset-sm-9">
+                <label class="text">(<?php echo $Aname; ?>)</label>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text"><?php echo $position;?>
-              </label>
+            <div class="row">
+              <div class="col-sm-3 offset-sm-9">
+                <label class="text"><?php echo $position; ?>
+                </label>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </form>
+  </form>
   </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

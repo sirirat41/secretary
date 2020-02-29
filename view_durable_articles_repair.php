@@ -82,18 +82,6 @@ if (isset($_GET["id"])) {
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark body-text" for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                        <?php echo ($row["attribute"]); ?>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark body-text" for="model">ชื่อวัสดุ : </label>
-                        <?php echo ($row["model"]); ?>
-                      </div>
-                    </div>
-                    <div class="row">
                       <div class="col-md-6">
                         <label class="text-dark body-text" for="repair_date">วันที่ซ่อม : </label>
                         <?php echo ($row["repair_date"]); ?>
@@ -105,12 +93,6 @@ if (isset($_GET["id"])) {
                         <?php echo ($row["place"]); ?>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark body-text" for="flag">หมายเหตุ : </label>
-                        <?php echo ($row["flag"]); ?>
-                      </div>
-                    </div>
                   </div>
                 </div>
             </form>
@@ -118,6 +100,58 @@ if (isset($_GET["id"])) {
         </div>
       </div>
     </div>
+    <br>
+    <div class="row ">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
+                <thead>
+                  <tr class="text-center">
+                    <td rowspan="2">ลำดับ</td>
+                    <td rowspan="2">เลขระยะทางเมื่อเข้าซ่อม</td>
+                    <td rowspan="2">รายการซ่อม</td>
+                    <td colspan="2" width="15%" height="10">จำนวนเงิน</td>
+                    <td rowspan="2">สถานที่ซ่อม</td>
+                    <td rowspan="2">วันตรวจรับ</td>
+                    <td rowspan="2">หมายเหตุ</td>
+                  </tr class="text-center">
+                  <tr class="text-center">
+                    <td width="8%">บาท </td>
+                    <td width="6%">สตางค์</td>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                  <?php
+                  $sqlSelect = "SELECT * FROM durable_articles_repair_history as h";
+                  $sqlSelect .= " WHERE h.repair_id = " . $_GET["id"];
+                  //echo $sqlSelect;
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"]
+                  ?>
+                    <tr class="text-center" height="30" id="firstTr">
+                      <td> <input type="hidden" class="form-control history_id" placeholder="" value="<?php echo $row["id"]; ?>"><?php echo $row["seq"]; ?></td>
+                      <td> <?php echo $row["mileage_number"]; ?></td>
+                      <td> <?php echo $row["fix"]; ?></td>
+                      <td> <?php echo $row["baht"]; ?></td>
+                      <td> <?php echo $row["satang"]; ?></td>
+                      <td> <?php echo $row["place"]; ?></td>
+                      <td> <?php echo $row["receive_date"]; ?></td>
+                      <td> <?php echo $row["flag"]; ?></td>
+                    </tr>
+
+                  <?php
+                  }
+                  ?>
+                </tbody>
+              </table>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
     <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
