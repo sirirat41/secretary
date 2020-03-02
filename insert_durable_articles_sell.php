@@ -61,12 +61,14 @@ $show = 10;
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
                       <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                      <small id="alert-inputdocument_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="sell_date">วันที่ขาย</label>
                       <input type="date" class="form-control" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate">
+                      <small id="alert-inputsell_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -102,6 +104,7 @@ $show = 10;
                     <div class="form-group body-text">
                       <label for="buyer">ชื่อผู้ซื้อ</label>
                       <input type="text" class="form-control" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer">
+                      <small id="alert-inputbuyer" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -109,13 +112,14 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -414,6 +418,53 @@ $show = 10;
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var inputdocument_no = $('#inputdocument_no').val();
+      var inputsell_date = $('#inputsell_date').val();
+      var inputbuyer = $('#inputbuyer').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(inputdocument_no) == "") {
+        validateCount++;
+        $('#inputdocument_no').focus();
+        $('#inputdocument_no').addClass('border border-danger');
+        $('#alert-inputdocument_no').show();
+      } else {
+        $('#inputdocument_no').removeClass('border border-danger');
+        $('#alert-inputdocument_no').hide();
+      }
+      if ($.trim(inputsell_date) == "") {
+        validateCount++;
+        $('#inputsell_date').addClass('border border-danger');
+        $('#alert-inputsell_date').show();
+      } else {
+        $('#inputsell_date').removeClass('border border-danger');
+        $('#alert-inputsell_date').hide();
+      }
+      if ($.trim(inputbuyer) == "") {
+        validateCount++;
+        $('#inputbuyer').addClass('border border-danger');
+        $('#alert-inputbuyer').show();
+      } else {
+        $('#inputbuyer').removeClass('border border-danger');
+        $('#alert-inputbuyer').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

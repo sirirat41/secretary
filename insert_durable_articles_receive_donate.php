@@ -58,13 +58,15 @@ $show = 10;
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno">
+                      <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่รับบริจาค</label>
-                      <input type="date" class="form-control" name="receive_date" id="inputreceive_date" aria-describedby="receive_date" placeholder="">
+                      <input type="date" class="form-control" name="receive_date" id="receive_date" aria-describedby="receive_date" placeholder="">
+                      <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -99,13 +101,15 @@ $show = 10;
                   <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="donate_name">ชื่อผู้บริจาค</label>
-                      <input type="text" class="form-control" name="donate_name" id="inputdonate_name" aria-describedby="donate_name" placeholder="donatename">
+                      <input type="text" class="form-control" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="donatename">
+                      <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="form-group body-text">
                       <label for="number">ราคา</label>
-                      <input type="text" class="form-control" name="number" id="inputnumber" aria-describedby="number" placeholder="price">
+                      <input type="text" class="form-control" name="number" id="number" aria-describedby="number" placeholder="price">
+                      <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -114,14 +118,14 @@ $show = 10;
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block" onclick="validateData();">
                       บันทึก
-                  
                   </div>
                 </div>
             </div>
@@ -246,7 +250,7 @@ $show = 10;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["seq"]); ?></td>
@@ -412,6 +416,62 @@ $show = 10;
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var document_no = $('#document_no').val();
+      var donate_name = $('#donate_name').val();
+      var receive_date = $('#receive_date').val();
+      var number = $('#number').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(document_no) == "") {
+        validateCount++;
+        $('#document_no').focus();
+        $('#document_no').addClass('border border-danger');
+        $('#alert-document_no').show();
+      } else {
+        $('#document_no').removeClass('border border-danger');
+        $('#alert-document_no').hide();
+      }
+      if ($.trim(donate_name) == "") {
+        validateCount++;
+        $('#donate_name').addClass('border border-danger');
+        $('#alert-donate_name').show();
+      } else {
+        $('#donate_name').removeClass('border border-danger');
+        $('#alert-donate_name').hide();
+      }
+      if ($.trim(receive_date) == "") {
+        validateCount++;
+        $('#receive_date').addClass('border border-danger');
+        $('#alert-receive_date').show();
+      } else {
+        $('#receive_date').removeClass('border border-danger');
+        $('#alert-receive_date').hide();
+      }
+      if ($.trim(number) == "") {
+        validateCount++;
+        $('#number').addClass('border border-danger');
+        $('#alert-number').show();
+      } else {
+        $('#number').removeClass('border border-danger');
+        $('#alert-number').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

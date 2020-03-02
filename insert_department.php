@@ -63,6 +63,7 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
                       <input class="form-control body-text" name="fullname" type="text" autocomplete="off" placeholder="department" id="department">
+                      <small id="alert-department" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -71,6 +72,7 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control body-text" name="shortname" type="text" placeholder="shortname" id="shortname">
+                      <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -79,12 +81,14 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
                       <input class="form-control body-text" name="bulding" type="text" placeholder="bulding" id="bulding">
+                      <small id="alert-bulding" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชั้น</label>
                       <input class="form-control body-text" name="floor" type="text" placeholder="floor" id="floor">
+                      <small id="alert-floor" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -93,6 +97,7 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรศัพท์</label>
                       <input class="form-control body-text" name="tel" type="text" placeholder="tel" id="tel">
+                      <small id="alert-tel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -101,6 +106,7 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรสาร</label>
                       <input class="form-control body-text" name="fax" type="text" placeholder="fax" id="fax">
+                      <small id="alert-fax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -125,7 +131,7 @@ require "service/connection.php";
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
@@ -249,6 +255,72 @@ require "service/connection.php";
     $("#image").change(function() {
       readURL(this);
     });
+
+    function validateData() {
+      var department = $('#department').val();
+      var shortname = $('#shortname').val();
+      var bulding = $('#bulding').val();
+      var floor = $('#floor').val();
+      var tel = $('#tel').val();
+      var fax = $('#fax').val();
+      var validateCount = 0;
+      if ($.trim(department) == "") {
+        validateCount++;
+        $('#department').focus();
+        $('#department').addClass('border border-danger');
+        $('#alert-department').show();
+      } else {
+        $('#department').removeClass('border border-danger');
+        $('#alert-department').hide();
+      }
+      if ($.trim(shortname) == "") {
+        validateCount++;
+        $('#shortname').addClass('border border-danger');
+        $('#alert-shortname').show();
+      } else {
+        $('#shortname').removeClass('border border-danger');
+        $('#alert-shortname').hide();
+      }
+      if ($.trim(bulding) == "") {
+        validateCount++;
+        $('#bulding').addClass('border border-danger');
+        $('#alert-bulding').show();
+      } else {
+        $('#bulding').removeClass('border border-danger');
+        $('#alert-bulding').hide();
+      }
+      if ($.trim(floor) == "") {
+        validateCount++;
+        $('#floor').addClass('border border-danger');
+        $('#alert-floor').show();
+      } else {
+        $('#floor').removeClass('border border-danger');
+        $('#alert-floor').hide();
+      }
+      if ($.trim(tel) == "") {
+        validateCount++;
+        $('#tel').addClass('border border-danger');
+        $('#alert-tel').show();
+      } else {
+        $('#tel').removeClass('border border-danger');
+        $('#alert-tel').hide();
+      }
+      if ($.trim(fax) == "") {
+        validateCount++;
+        $('#fax').addClass('border border-danger');
+        $('#alert-fax').show();
+      } else {
+        $('#fax').removeClass('border border-danger');
+        $('#alert-fax').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
+    
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
