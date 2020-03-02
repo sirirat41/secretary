@@ -101,7 +101,7 @@ require "service/connection.php";
                         <font size="2"><?php echo $row["attribute"]; ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo $row["type"]; ?></font>
+                        <font size="2"><?php echo $row["name"]; ?></font>
                       </td>
                
 

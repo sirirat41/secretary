@@ -8,16 +8,18 @@ if (isset($_GET['id'])) {
     $receiver = $_POST["receiver"];
     $receiveDate = $_POST["receive_date"];
     $receiviceAddress = $_POST["receive_address"];
+    $number = $_POST["num"];
+   
 
     $updatePurchase = "UPDATE supplies_purchase SET order_no = '$orderNo',";
-    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_date = '$receiveDate', receive_address = '$receiviceAddress'";
+    $updatePurchase .= " order_by = '$orderBy', receiver = '$receiver', receive_date = '$receiveDate', number = number + $number, receive_address = '$receiviceAddress'";
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
     $log = "แก้ไขข้อมูลการจัดซื้อวัสดุสิ้นเปลือง รหัส " . $id ;
     logServer($conn, $log);
 
-  
+    $imgeName = $_POST["picture"];
 
     //อัฟโหลดรูปภาพ
     $target_dir = "../uploads/";
@@ -29,16 +31,29 @@ if (isset($_GET['id'])) {
     }
     //material data
     $shortGoverment = $_POST["short_goverment"];
-    $supplies_id = $_POST["supplies_id"];
     $billNo = $_POST["bill_no"];
     $departmentID = $_POST["department_id"];
     $sellerID = $_POST["seller_id"];
     $unit = $_POST["unit"];
     $price = $_POST["price"];
     $articles_pattern = $_POST["articles_pattern"];
+     
+
+    $sqlSelect = "SELECT * FROM supplies_account_detail WHERE account_id = $id";
+    $resultOld = mysqli_query($conn, $sqlSelect);
+    $dataOld = mysqli_fetch_assoc($resultOld);
+   $stock = $dataOld["stock"];
+ $receive = $number + $stock;
+
+    $sqlInsertstock = "INSERT INTO supplies_account_detail(account_id, receive )";
+    $sqlInsertstock .= " VALUES($id, $receive) ";
+    
+    // $sqlInsertstock = "UPDATE supplies_account_detail SET receive = $number + stock WHERE id = $id";
+    mysqli_query($conn, $sqlInsertstock) or die(mysqli_error($conn));
+  
 
     $updateMaterial = "UPDATE supplies SET short_goverment = '$shortGoverment',";
-    $updateMaterial .= " supplies_id = $supplies_id, bill_no = '$billNo' ,department_id = $departmentID ,";
+    $updateMaterial .= " bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , picture = '$imgeName'";
     $updateMaterial .= " WHERE id = $id";
     mysqli_query($conn, $updateMaterial) or die("Cannot update material" . mysqli_error($conn));

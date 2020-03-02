@@ -93,7 +93,7 @@ if (isset($_SESSION['user_id'])) {
             <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
             <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
             <a class="collapse-item stock" href="display_supplies_stock.php">จำนวนคงเหลือ</a>
-            <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
+            <!-- <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a> -->
 
 
           </div>
@@ -129,11 +129,16 @@ if (isset($_SESSION['user_id'])) {
         </div>
       </li>
       <li class="nav-item nav-seller">
-        <a class="nav-link collapsed" href="display_seller.php" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeller" aria-expanded="true" aria-controls="collapseSeller">
           <i class="fas fa-fw fa-user"></i>
           <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
         </a>
-
+        <div id="collapseSeller" class="collapse collapse-seller" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
+            <a class="collapse-item displayseller" href="display_seller.php">แสดงข้อมูลผู้ขาย</a>
+          </div>
+        </div>
+      </li>
         <!-- Nav Item - Approve Collapse Menu -->
       <li class="nav-item nav-approve">
         <a class="nav-link collapsed displayse" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
@@ -291,6 +296,11 @@ if (isset($_SESSION['user_id'])) {
                   โปรไฟล์ผู้ใช้
                 </a>
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="edit_password.php">
+                  <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
+                  เปลี่ยนรหัสผ่าน
+                </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="display_log.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
                   การเข้าใช้งาน
@@ -348,7 +358,7 @@ if (isset($_SESSION['user_id'])) {
                 <!-- <a class="collapse-item permits" href="display_supplies_permits.php">ยืม-คืน</a> -->
                 <a class="collapse-item distribute" href="display_supplies_distribute_type.php">แจกจ่าย</a>
                 <a class="collapse-item stock" href="display_supplies_stock.php">จำนวนคงเหลือ</a>
-                <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a>
+                <!-- <a class="collapse-item account" href="display_supplies_account.php">บัญชีคุมวัสดุ</a> -->
               </div>
             </div>
           </li>
@@ -369,10 +379,16 @@ if (isset($_SESSION['user_id'])) {
             </div>
           </li>
           <li class="nav-item nav-seller">
-            <a class="nav-link collapsed" href="display_seller.php" data-target="#collapseDepartment" aria-expanded="true" aria-controls="collapseDepartment">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseseller" aria-expanded="true" aria-controls="collapseseller">
               <i class="fas fa-fw fa-user"></i>
               <span class="body-text-menu">จัดการข้อมูลผู้ขาย</span>
             </a>
+            <div id="collapseseller" class="collapse collapse-seller" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded body-text-menu">
+            <a class="collapse-item displaysell" href="display_seller.php">แสดงข้อมูลผู้ขาย</a>
+          </div>
+        </div>
+      </li>
             <!-- Nav Item - Approve Collapse Menu -->
           <li class="nav-item nav-approve">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprove" aria-expanded="true" aria-controls="collapseApprove">
@@ -524,17 +540,24 @@ if (isset($_SESSION['user_id'])) {
                   </a>
                   <!-- Dropdown - User Information -->
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="view_profile.php?id=<?php echo $_SESSION["user_id"]; ?>">
-                      <i class="fas fa-fw fa-user fa-fw mr-2 text-gray-400 body-text-menu"></i>
-                      โปรไฟล์ผู้ใช้
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="service/service_logout.php">
-                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
-                      ออกจากระบบ
-                    </a>
-                  </div>
-                </li>
+                <a class="dropdown-item" href="view_profile.php?id=<?php echo $_SESSION["user_id"]; ?>">
+                  <i class="fas fa-fw fa-user fa-fw mr-2 text-gray-400 body-text-menu"></i>
+                  โปรไฟล์ผู้ใช้
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="edit_password.php">
+                  <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
+                  เปลี่ยนรหัสผ่าน
+                </a>
+          
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="service/service_logout.php">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 body-text-menu"></i>
+                  ออกจากระบบ
+                </a>
+              </div>
+            </li>
+
 
               </ul>
 

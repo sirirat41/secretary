@@ -201,7 +201,7 @@ $show = 10;
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>

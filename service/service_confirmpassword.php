@@ -5,8 +5,8 @@ require 'connection.php';
 if(isset($_GET["id"])) {
     $id = $_GET["id"];
  
-    $password = $_POST["password"];
-    $updatepassword = "UPDATE user SET password = $password ";
+    $password =  md5($_POST["password1"]);
+    $updatepassword = "UPDATE user SET password = '$password' ";
     $updatepassword .= " WHERE id = $id";
   
     mysqli_query($conn, $updatepassword) or die("Cannot update password". mysqli_error($conn));

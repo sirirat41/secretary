@@ -168,7 +168,7 @@ if (isset($_GET["id"])) {
           if (password == confirmpassword && password.trim () != "" && confirmpassword.trim() != "") {
             $('#exampleModal').modal();
           }else {
-            alert('รหัสผ่านไม่ตรงกัน หรื เป็นค่าว่าง')
+            alert('รหัสผ่านไม่ตรงกัน หรือ เป็นค่าว่าง')
           }
       }
   </script>

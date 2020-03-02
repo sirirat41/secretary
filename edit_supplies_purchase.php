@@ -4,8 +4,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT *,supplies_purchase.id as p FROM supplies_purchase LEFT JOIN supplies ON supplies.id = supplies_purchase.product_id ";
-  $sql .= "WHERE supplies_purchase.id = $id ";
+  $sql = "SELECT *,supplies_purchase.id as p  ,s.price ,s.code FROM supplies as s ,supplies_purchase LEFT JOIN supplies ON supplies.id = supplies_purchase.product_id ";
+  $sql .= "WHERE supplies_purchase.id = $id and supplies_purchase.id = s.id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];
@@ -28,8 +28,8 @@ if (isset($_GET["id"])) {
 
   <title>secretary</title>
   <secretary style="display: none">display_supplies</secretary>
-   <!-- Bootstrap core JavaScript-->
-   <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="js/secretary.js"></script>
 
@@ -166,13 +166,20 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" disabled>
+                    </div></div>
+                    <div class="col-5">
+                    <div class="form-group body-text">
+                      <label class="bmd-label-floating">จำนวนวัสดุ</label>
+                      <input class="form-control body-text" type="text" placeholder="number" name="num" id="num" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
-                </div>
+                
+            </div>
+                
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group body-text">
@@ -215,17 +222,17 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." id="image-preview">
                       </div>
-                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                      <div>
-                        <span class="btn btn-raised btn-round btn-default btn-file">
-                          <br>
-                          <div class="col-2 offset-1">
-                            <input type="file" name="image" />
-                          </div>
-                        </span>
-                      </div>
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                      <span class="btn btn-raised btn-round btn-default btn-file">
+                        <br>
+                        <div class="col-2 offset-1">
+                          <input type="file" name="image"  value="<?php echo $item["picture"]; ?>"/>
+                        </div>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -235,7 +242,6 @@ if (isset($_GET["id"])) {
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
                       บันทึก
                       <div class="ripple-container"></div></button>
-
                   </div>
                 </div>
               </form>
@@ -301,26 +307,41 @@ if (isset($_GET["id"])) {
   <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
 
-  
-        <script>
-          function search() {
-            var kw = $("#keyword").val();
-            $.ajax({
-              url: 'service/service_search_json_supplies.php',
-              dataType: 'JSON',
-              type: 'GET',
-              data: {
-                keyword: kw
-              },
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            })
-          }
-        </script>
+
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_supplies.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('#image-preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#image").change(function() {
+      readURL(this);
+    });
+  </script>
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

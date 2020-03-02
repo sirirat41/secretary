@@ -83,8 +83,8 @@ $show = 10;
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
-                        <th>เลขสินทรัพย์</th>
                         <th>ประเภท</th>
+                        <th>สถานะ</th>
                         <th>การทำงาน</th>
                       </tr class="text-center">
                     </thead>
@@ -98,8 +98,8 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-                      $sqlSelect .= " WHERE m.type = t.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
+                      $sqlSelect = "SELECT m.*, t.name ,s.status_name FROM durable_material as m, durable_material_type as t ,status as s";
+                      $sqlSelect .= " WHERE m.type = t.id and m.status = s.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%')";
@@ -115,8 +115,8 @@ $show = 10;
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo ($row["bill_no"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
-                          <td><?php echo ($row["asset_no"]); ?></td>
                           <td><?php echo ($row["name"]); ?></td>
+                          <td><?php echo ($row["status_name"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_material_purchase.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-pencil-alt"></i>
@@ -157,8 +157,8 @@ $show = 10;
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT m.*, t.name FROM durable_material as m, durable_material_type as t";
-            $sqlSelectCount .= " WHERE m.type = t.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
+            $sqlSelectCount = "SELECT m.*, t.name ,s.status_name FROM durable_material as m, durable_material_type as t ,status as s";
+            $sqlSelectCount .= " WHERE m.type = t.id and m.status = s.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%')";
