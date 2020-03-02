@@ -4,11 +4,14 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM supplies_account_detail as d ,supplies_account as s WHERE d.account_id = s.id and d.id = $id";
+    $sql = "SELECT * FROM supplies_account as d ,supplies as s ,supplies_stock as ss ,department as p ,unit as u , supplies_account_detail as sd WHERE d.department = p.id and d.unit_id = u.id and s.supplies_id = ss.id and d.product_id = s.id and d.id = $id";
+
+
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["distribute_date"];
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
+  
 
   //item.code java odject , item["code"] php
 
@@ -78,19 +81,7 @@ if (isset($_GET["id"])) {
                   <div class="col-8">
                     <div class="form-group bmd-form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
-                      <select class="form-control" name="supplies_id" id="supplies_id">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM supplies_stock";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          if ($item["supplies_id"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] .'"selected>' . $row["supplies_name"] . '</option>';
-                          } else {
-                            echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
-                          }
-                          }
-                        ?>
-                      </select>
+                      <input type="text" class="form-control body-text" name="supplies_id" id="supplies_id" placeholder="supplies_id" name="supplies_id" value="<?php echo $item["supplies_name"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -98,27 +89,10 @@ if (isset($_GET["id"])) {
                   <div class="col-12 ">
                     <div class="form-group">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <div class="row">
-                        <div class="col-10 ">
-                        <select class="form-control" name="product_id" id="product_id">
-                            <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["product_id"] == $row["id"]) {
-                              echo '<option value="' . $row["id"] .'"selected>' . $row["code"] . '</option>';
-                            } else {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                            }
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
-                            <i class="fas fa-search"></i>
-                        </div>
-                      </div>
+    
+                      <input type="text" class="form-control body-text" name="product_id" id="product_id" placeholder="product_id" name="product_id" value="<?php echo $item["code"]; ?>">
+                       
+                     
                     </div>
                   </div>
                 </div>

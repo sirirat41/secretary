@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM department as d WHERE d.id = $id";
+  $sql = "SELECT * FROM department WHERE id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 $show = 10;
@@ -61,7 +61,7 @@ $show = 10;
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-city" id="dis"></i></h6>
+                  <i class="fas fa-city" id="dis"></i> (หน่วยงาน<?php echo $row["fullname"]; ?>)</h6>
                 <form class="form-inline" id="form-search">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                   <div>
@@ -249,8 +249,7 @@ $show = 10;
           jsonData = response;
           numberOfPage = response.length / itemPerPage;
           changePage(1);
-          
-console.log(numberOfPage)
+
         },
         error: function(error) {
           console.log(error);

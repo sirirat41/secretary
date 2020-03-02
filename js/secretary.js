@@ -133,9 +133,9 @@ $(document).ready(function () {
             break;
 
             case "display_durable_material_type":  //ซ่อม
-            $('.nav-material').addClass('active');
-            $('.collapse-material').addClass('show');
-            $('.collapse-material .displaym').addClass('active');
+            $('.nav-setting').addClass('active');
+            $('.collapse-setting').addClass('show');
+            $('.collapse-setting .displaym').addClass('active');
             break;
 
         //Supplies วัสดุสิ้นเปลือง
@@ -188,11 +188,11 @@ $(document).ready(function () {
             break;
 
 
-            case "display_selle":  //หน่วยงาน
-            $('.nav-sell').addClass('active');
-            $('.collapse-selle').addClass('show');
-            $('.collapse-selle .display').addClass('active');
-            break;
+            // case "display_selle":  //หน่วยงาน
+            // $('.nav-sell').addClass('active');
+            // $('.collapse-selle').addClass('show');
+            // $('.collapse-selle .display').addClass('active');
+            // break;
 
         // หน่วยงาน Insert
 
@@ -214,7 +214,17 @@ $(document).ready(function () {
             $('.collapse-user .insertu').addClass('active');
             break;
 
+            case "display_seller":  //โอนเข้า
+            $('.nav-seller').addClass('active');
+            $('.collapse-seller').addClass('show');
+            $('.collapse-seller .displayseller').addClass('active');
+            break;
 
+            case "insert_seller":  //โอนเข้า
+            $('.nav-seller').addClass('active');
+            $('.collapse-seller').addClass('show');
+            $('.collapse-seller .insertseller').addClass('active');
+            break;
         // ตั้งค่า insert
 
         // case "insert_seller":
