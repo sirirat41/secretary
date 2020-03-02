@@ -82,7 +82,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                      <input class="form-control body-text" type="text" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
+                      <input class="form-control body-text" type="number" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 body-text">
@@ -102,7 +102,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6 body-text">
                     <div class="form-group">
                       <label class="bmd-label-floating">เลขที่เอกสาร :</label>
-                      <input class="form-control body-text" type="text" placeholder="document_no" name="document_no" value="<?php echo $item["document_no"]; ?>">
+                      <input class="form-control body-text" type="number" placeholder="document_no" name="document_no" value="<?php echo $item["document_no"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -270,7 +270,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
-                      <input class="form-control body-text" type="text" placeholder="price" name="price" value="<?php echo $item["price"]; ?>">
+                      <input class="form-control body-text" type="number" placeholder="price" name="price" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                 </div>

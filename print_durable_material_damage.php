@@ -106,7 +106,6 @@ if (isset($_GET["id"])) {
         </tbody>
         </table>
         <br>
-        <br>
         <div class="card-body">
           <div class="row">
             <div class="col-sm-3 offset-sm-9">
@@ -134,11 +133,7 @@ if (isset($_GET["id"])) {
       </div>
   </div>
   </form>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->

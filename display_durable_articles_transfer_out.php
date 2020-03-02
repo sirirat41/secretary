@@ -117,7 +117,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" style="color: white" href="print_durable_articles_transfer_out.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" data-toggle="modal" 
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" 
                             data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-transfer_out').val('<?php echo $id; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             <?php

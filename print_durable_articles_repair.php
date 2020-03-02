@@ -6,6 +6,9 @@ if (isset($_GET["id"])) {
   $sql .= " and r.damage_id = a.id ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  $rank = $row["rank"];
+  $Aname = $row["Aname"];
+  $position = $row["position"];
 }
 ?>
 
@@ -54,113 +57,148 @@ if (isset($_GET["id"])) {
   <!-- เริ่มเขียนโค๊ดตรงนี้ --><br>
 
   <div class="row">
-    <div class="col-sm-12">
-      <div class="table-responsive" align="center">
-        <table width="800" border="1" align="center">
-          <h7 class="m-3 font-weight-bold " align="center"> ข้อมูลการซ่อม(ครุภัณฑ์)</h7>
-          <form>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12" align="center">
-                  <div class="center" style="width: 200px;">
-                  <img class="img-thumbnail" src="uploads/<?php echo $row["picture"]; ?>">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%">
+          <thead>
+
+            <body style="padding: 16px">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12" align="center">
+                    <h5>รายละเอียดการซ่อม</h5>
                   </div>
                 </div>
+                <br>
+                <div class="row">
+                  <div class="col-sm-7">
+                  </div>
+                  <div class="text " class="col-sm-">
+                    <h7>ส่วนราชการ: </h7>
+                  </div>
+                  <div class="col-sm-3">
+                    <h7>สำนักงานตำรวจแห่งชาติ</h7>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-7">
+                  </div>
+                  <div class="col-sm-">
+                    <label class="text " for="short_goverment">
+                      <div style="width:100px">
+                        <h7>หน่วยงาน: </h7>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h7>สลก.ตร.</h7>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="text " for="model">
+                    <h7>รุ่นแบบ :</h7>
+                  </label>
+                  <?php echo ($row["model"]); ?>
+                </div>
+                <div class="col-sm-4">
+                  <label class="text " for="code">
+                    <h7>รหัสวัสดุ :</h7>
+                  </label>
+                  <?php echo $row["code"]; ?>
+                </div>
+                <div class="col-sm-4">
+                  <label class="text " for="attribute">
+                    <h7>คุณสมบัติ/ลักษณะ :</h7>
+                  </label>
+                  <?php echo ($row["attribute"]); ?>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="text " for="repair_date">
+                    <h7>วันที่ซ่อม : </h7>
+                  </label>
+                  <?php echo ($row["repair_date"]); ?>
+                </div>
+                <div class="col-sm-6">
+                  <label class="text " for="place">
+                    <h7>สถานที่ซ่อม :</h7>
+                  </label>
+                  <?php echo ($row["place"]); ?>
+                </div>
+              </div>
                 <tbody>
                   <thead>
-                    <tr>
-                      <td colspan="2">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <label class="text " for="code">รหัสครุภัณฑ์ : </label>
-                            <?php echo ($row["code"]); ?>
-                          </div>
-                        </div>
-                      </td>
+                  <tr class="text-center">
+                    <td rowspan="2">ลำดับ</td>
+                    <td rowspan="2">เลขระยะทางเมื่อเข้าซ่อม</td>
+                    <td rowspan="2">รายการซ่อม</td>
+                    <td colspan="2" width="15%" height="10">จำนวนเงิน</td>
+                    <td rowspan="2">สถานที่ซ่อม</td>
+                    <td rowspan="2">วันตรวจรับ</td>
+                    <td rowspan="2">หมายเหตุ</td>
+                  </tr class="text-center">
+                  <tr class="text-center">
+                    <td width="8%">บาท </td>
+                    <td width="6%">สตางค์</td>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                  <?php
+                  $sqlSelect = "SELECT * FROM durable_articles_repair_history as h";
+                  $sqlSelect .= " WHERE h.repair_id = " . $_GET["id"];
+                  //echo $sqlSelect;
+                  $result = mysqli_query($conn, $sqlSelect);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row["id"]
+                  ?>
+                    <tr class="text-center" height="30" id="firstTr">
+                      <td> <input type="hidden" class="form-control history_id" placeholder="" value="<?php echo $row["id"]; ?>"><?php echo $row["seq"]; ?></td>
+                      <td> <?php echo $row["mileage_number"]; ?></td>
+                      <td> <?php echo $row["fix"]; ?></td>
+                      <td> <?php echo $row["baht"]; ?></td>
+                      <td> <?php echo $row["satang"]; ?></td>
+                      <td> <?php echo $row["place"]; ?></td>
+                      <td> <?php echo $row["receive_date"]; ?></td>
+                      <td> <?php echo $row["flag"]; ?></td>
                     </tr>
-                    <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark " for="attribute">คุณสมบัติ/ลักษณะ : </label>
-                          <?php echo ($row["attribute"]); ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="text-dark " for="model">รุ่นแบบ : </label>
-                          <?php echo ($row["model"]); ?>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                    <tr>
-                      <td>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <label class="text " for="repair_date">วันที่ซ่อม : </label>
-                            <?php echo ($row["repair_date"]); ?>
-                          </div>
-                      </td>
-                      <td>
-                        <div class="col-sm-12">
-                          <label class="text " for="place">สถานที่ซ่อม : </label>
-                          <?php echo $row["place"]; ?>
-                        </div>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label class="text " for="flag">หมายเหตุ : </label>
-                      <?php echo $row["flag"]; ?>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+
+                  <?php
+                  }
+                  ?>
               </thead>
               </tbody>
           </table>
         <br>
         <br>
         <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">ตรวจแล้วถูกต้อง</label>
+        <div class="row">
+              <div class="col-sm-3 offset-sm-9">
+                <label class="text">ตรวจแล้วถูกต้อง</label>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-5 offset-sm-7" align="right">
-              <label class="text"><?php echo $row["rank"];?>......................................................</label>
+            <br>
+            <div class="row">
+              <div class="col-sm-4 offset-sm-8" >
+                <label class="text"><?php echo $rank; ?>......................................................</label>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text">(<?php echo $row["Aname"];?>)</label>
+            <div class="row">
+              <div class="col-sm-3 offset-sm-9">
+                <label class="text">(<?php echo $Aname; ?>)</label>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-9">
-              <label class="text"><?php echo $row["position"];?>
-              </label>
-            </div>
+            <div class="row">
+              <div class="col-sm-3 offset-sm-9">
+                <label class="text"><?php echo $position; ?>
+                </label>
+              </div>
           </div>
         </div>
       </div>
     </div>
     </form>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
   </div>
   <!-- /.container-fluid -->
