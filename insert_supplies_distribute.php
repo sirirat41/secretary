@@ -249,21 +249,13 @@ require "service/connection.php";
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-
-
                         $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
-
-
-
-                        $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
-
-
-                        $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
-
+                        // $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
+                        // $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                          $sqlSelect .= " and (a.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
                         }
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
