@@ -200,7 +200,7 @@ $show = 10;
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger body-text">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูลครุภัณฑ์</h6>
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด(ครุภัณฑ์)</h6>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
@@ -334,10 +334,10 @@ $show = 10;
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
+        $('<td>' + seq + '</td>').appendTo(tr);
+        $('<td>' + bill_no + '</td>').appendTo(tr);
+        $('<td>' + code + '</td>').appendTo(tr);
+        $('<td>' + type + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
       }

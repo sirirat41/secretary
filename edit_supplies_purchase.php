@@ -230,7 +230,7 @@ if (isset($_GET["id"])) {
                       <span class="btn btn-raised btn-round btn-default btn-file">
                         <br>
                         <div class="col-2 offset-1">
-                          <input type="file" name="image"  value="<?php echo $item["picture"]; ?>"/>
+                          <input type="file" name="image" id="image" value="<?php echo $item["picture"]; ?>"/>
                         </div>
                       </span>
                     </div>

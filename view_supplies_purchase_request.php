@@ -80,375 +80,566 @@ if (isset($_GET["id"])) {
             </div>
             <div class="row">
                 <div class="col-12">
-                    <label class="body-text" for="exampleFormControlSelect1">ร้องขอการแก้ไขโดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
+                    <label class="body-text" for="exampleFormControlSelect1">ร้องขอการ<?php echo $item["action_request"] == "request_update" ? "แก้ไข" : "ลบ"; ?>โดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
                     <textarea class="form-control" disabled name="reason" id="request" cols="30" rows="5" style="resize: none"><?php echo $item["reason"]; ?></textarea>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-6" <?php echo $item["status_request"] != "waiting_approve" ? "style='display: none'" : ""; ?>>
-                    <div class="card">
-                        <div class="card-header card-header-text card-header-danger">
-                            <div class="card-text">
-                                <h5 class="m-0 font-weight-bold text-danger">
-                                    <i class="fas fa-fw fa-archive"></i>
-                                    ข้อมูลเดิม
-                                </h5>
+                <?php if ($item["action_request"] == "request_update") { ?>
+                    <div class="col-6" <?php echo $item["status_request"] != "waiting_approve" ? "style='display: none'" : ""; ?>>
+                        <div class="card">
+                            <div class="card-header card-header-text card-header-danger">
+                                <div class="card-text">
+                                    <h5 class="m-0 font-weight-bold text-danger">
+                                        <i class="fas fa-fw fa-archive"></i>
+                                        ข้อมูลเดิม
+                                    </h5>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="card-body">
-                            <form method="post" action="" id="" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                                            <input class="form-control" type="text" disabled placeholder="order_no" name="order_no" value="<?php echo $itemOld["order_no"]; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                                            <input class="form-control" type="date" disabled placeholder="purchase_date" name="purchase_date" value="<?php echo $oldOrderDate; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 ">
-                                        <div class="form-group body-text">
-                                            <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
-                                            <input class="form-control" type="text" disabled placeholder="order_by" name="order_by" value="<?php echo $itemOld["order_by"]; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label for="receiver">ชื่อผู้รับ</label>
-                                            <input type="text" class="form-control" disabled name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $itemOld["receiver"]; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group body-text">
-                                            <label for="receive_date">วันที่ตรวจรับ</label>
-                                            <input type="date" class="form-control" disabled name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $oldReceiveDate; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group body-text">
-                                            <label for="receive_address">สถานที่จัดส่ง</label>
-                                            <textarea class="form-control" disabled name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $itemOld["receive_address"]; ?></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group bmd-form-group body-text">
-                                            <label class="bmd-label-floating">หน่วยงาน :</label>
-                                            <input class="form-control" type="text" disabled placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $itemOld["short_goverment"]; ?>">
-                                            <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group body-text">
-                                            <label for="bill_no">เลขที่ใบเบิก</label>
-                                            <input type="text" class="form-control" disabled name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $itemOld["bill_no"]; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="form-group body-text">
-                                            <label for="exampleFormControlSelect1">หน่วยงาน</label>
-                                            <select class="form-control" data-style="btn btn-link" disabled id="exampleFormControlSelect1" name="department_id" value="<?php echo $itemOld["department_id"]; ?>">
-                                                <?php
-                                                $sqlSelectType = "SELECT * FROM department";
-                                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                                    if ($item["department_id"] == $row["id"]) {
-                                                        echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
-                                                    } else {
-                                                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group body-text">
-                                            <label for="price">จำนวนเงิน</label>
-                                            <input type="text" class="form-control" disabled name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $itemOld["price"]; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group body-text">
-                                            <label for="price">จำนวนคงเหลือ</label>
-                                            <input type="text" class="form-control" disabled name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $itemOld["stock"]; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group body-text">
-                                            <label for="product_id">รหัสวัสดุ</label>
-                                            <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $itemOld["code"]; ?>" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label for="unit">หน่วยนับ</label>
-                                            <select class="form-control" disabled name="unit" value="<?php echo $itemOld["unit"]; ?>">
-                                                <?php
-                                                $sqlSelectType = "SELECT * FROM unit";
-                                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                                    if ($itemOld["unit"] == $row["id"]) {
-                                                        echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-                                                    } else {
-                                                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group body-text">
-                                            <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
-                                            <select class="form-control" disabled data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $itemOld["seller_id"]; ?>">
-                                                <?php
-                                                $sqlSelectType = "SELECT * FROM seller";
-                                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                                    if ($itemOld["seller_id"] == $row["id"]) {
-                                                        echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-                                                    } else {
-                                                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                            <div class="fileinput-new thumbnail img-raised">
-                                                <img class="img-thumbnail" src="uploads/<?php echo $itemOld["picture"]; ?>" align="center" alt="...">
-                                                <input type="hidden" name="old_image" value="<?php echo $itemOld["picture"]; ?>">
-                                            </div>
-                                            <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <br><br>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- สิ้นสุดการเขียนตรงนี้ -->
-                </div>
-                <div <?php echo $item["status_request"] != "waiting_approve" ? "class='col-8 offset-2'" : "class='col-6'"; ?>>
-                    <div class="card">
-                        <div class="card-header card-header-text card-header-danger">
-                            <div class="card-text">
-
-                                <h5 class="m-0 font-weight-bold text-danger">
-                                    <i class="fas fa-fw fa-archive"></i>
-                                    ข้อมูลที่ร้องขอการแก้ไข
-                                </h5>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card-body">
-                            <form method="post" action="service/service_confirm_supplies_purchase_request.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
-                            <input type="hidden" name="action_request" value="<?php echo $item["action_request"]; ?>">
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                                            <input class="form-control <?php echo $itemOld["order_no"] != $item["order_no"] ? "alert-class" : ""; ?>" type="text" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                                            <input class="form-control <?php echo $newOrderDate != $oldOrderDate ? "alert-class" : ""; ?>" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 ">
-                                        <div class="form-group body-text">
-                                            <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
-                                            <input class="form-control <?php echo $itemOld["order_by"] != $item["order_by"] ? "alert-class" : ""; ?>" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label for="receiver">ชื่อผู้รับ</label>
-                                            <input type="text" class="form-control <?php echo $itemOld["receiver"] != $item["receiver"] ? "alert-class" : ""; ?>" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $item["receiver"]; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group body-text">
-                                            <label for="receive_date">วันที่ตรวจรับ</label>
-                                            <input type="date" class="form-control <?php echo $newReceiveDate != $oldReceiveDate ? "alert-class" : ""; ?>" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $newReceiveDate; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group body-text">
-                                            <label for="receive_address">สถานที่จัดส่ง</label>
-                                            <textarea class="form-control <?php echo $itemOld["receive_address"] != $item["receive_address"] ? "alert-class" : ""; ?>" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group bmd-form-group body-text">
-                                            <label class="bmd-label-floating">หน่วยงาน :</label>
-                                            <input class="form-control <?php echo $itemOld["short_goverment"] != $item["short_goverment"] ? "alert-class" : ""; ?>" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
-                                            <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group body-text">
-                                            <label for="bill_no">เลขที่ใบเบิก</label>
-                                            <input type="text" class="form-control <?php echo $itemOld["bill_no"] != $item["bill_no"] ? "alert-class" : ""; ?>" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="form-group body-text">
-                                            <label for="exampleFormControlSelect1">หน่วยงาน</label>
-                                            <select class="form-control <?php echo $itemOld["department_id"] != $item["department_id"] ? "alert-class" : ""; ?>" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
-                                                <?php
-                                                $sqlSelectType = "SELECT * FROM department";
-                                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                                    if ($item["department_id"] == $row["id"]) {
-                                                        echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
-                                                    } else {
-                                                        echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group body-text">
-                                            <label for="price">จำนวนเงิน</label>
-                                            <input type="text" class="form-control <?php echo $itemOld["price"] != $item["price"] ? "alert-class" : ""; ?>" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group body-text">
-                                            <label for="price">จำนวนคงเหลือ</label>
-                                            <input type="text" class="form-control <?php echo $itemOld["stock"] != $item["number"] ? "alert-class" : ""; ?>" name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $item["number"]; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group body-text">
-                                            <label for="product_id">รหัสวัสดุ</label>
-                                            <input class="form-control <?php echo $itemOld["code"] != $item["code"] ? "alert-class" : ""; ?>" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <div class="form-group body-text">
-                                            <label for="unit">หน่วยนับ</label>
-                                            <select class="form-control <?php echo $itemOld["unit"] != $item["unit"] ? "alert-class" : ""; ?>" name="unit" value="<?php echo $item["unit"]; ?>">
-                                                <?php
-                                                $sqlSelectType = "SELECT * FROM unit";
-                                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                                    if ($item["unit"] == $row["id"]) {
-                                                        echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-                                                    } else {
-                                                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group body-text">
-                                            <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
-                                            <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
-                                                <?php
-                                                $sqlSelectType = "SELECT * FROM seller";
-                                                $resultType = mysqli_query($conn, $sqlSelectType);
-                                                while ($row = mysqli_fetch_assoc($resultType)) {
-                                                    if ($item["seller_id"] == $row["id"]) {
-                                                        echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
-                                                    } else {
-                                                        echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                            <div class="fileinput-new thumbnail img-raised">
-                                                <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
-                                                <input type="hidden" name="old_image" value="<?php echo $item["picture"]; ?>">
-                                            </div>
-                                            <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                                            <div>
-                                                <span class="btn btn-raised btn-round btn-default btn-file">
-                                                    <br>
-                                                    <div class="col-2 offset-1">
-                                                        <input type="file" name="image" />
-                                                    </div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <?php
-                                if ($item["status_request"] == "rejected") {
-                                    ?>
+                            <br>
+                            <div class="card-body">
+                                <form method="post" action="" id="" enctype="multipart/form-data">
                                     <div class="row">
-                                        <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ: </label>
-                                        <div class="col-12">
-                                            <textarea class="form-control" rows="10" disabled><?php echo $item["reject"]; ?></textarea>
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
+                                                <input class="form-control" type="text" disabled placeholder="order_no" name="order_no" value="<?php echo $itemOld["order_no"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
+                                                <input class="form-control" type="date" disabled placeholder="purchase_date" name="purchase_date" value="<?php echo $oldOrderDate; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
+                                                <input class="form-control" type="text" disabled placeholder="order_by" name="order_by" value="<?php echo $itemOld["order_by"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label for="receiver">ชื่อผู้รับ</label>
+                                                <input type="text" class="form-control" disabled name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $itemOld["receiver"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="receive_date">วันที่ตรวจรับ</label>
+                                                <input type="date" class="form-control" disabled name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $oldReceiveDate; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group body-text">
+                                                <label for="receive_address">สถานที่จัดส่ง</label>
+                                                <textarea class="form-control" disabled name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $itemOld["receive_address"]; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group bmd-form-group body-text">
+                                                <label class="bmd-label-floating">หน่วยงาน :</label>
+                                                <input class="form-control" type="text" disabled placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $itemOld["short_goverment"]; ?>">
+                                                <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                                <input type="text" class="form-control" disabled name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $itemOld["bill_no"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group body-text">
+                                                <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                                <select class="form-control" data-style="btn btn-link" disabled id="exampleFormControlSelect1" name="department_id" value="<?php echo $itemOld["department_id"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM department";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["department_id"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group body-text">
+                                                <label for="price">จำนวนเงิน</label>
+                                                <input type="text" class="form-control" disabled name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $itemOld["price"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group body-text">
+                                                <label for="price">จำนวนคงเหลือ</label>
+                                                <input type="text" class="form-control" disabled name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $itemOld["stock"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group body-text">
+                                                <label for="product_id">รหัสวัสดุ</label>
+                                                <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $itemOld["code"]; ?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label for="unit">หน่วยนับ</label>
+                                                <select class="form-control" disabled name="unit" value="<?php echo $itemOld["unit"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM unit";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($itemOld["unit"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                                <select class="form-control" disabled data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $itemOld["seller_id"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM seller";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($itemOld["seller_id"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail img-raised">
+                                                    <img class="img-thumbnail" src="uploads/<?php echo $itemOld["picture"]; ?>" align="center" alt="...">
+                                                    <input type="hidden" name="old_image" value="<?php echo $itemOld["picture"]; ?>">
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                            </div>
                                         </div>
                                     </div>
                                     <br>
-                                <?php }; ?>
-                                <br>
-                            </form>
+                                    <br><br>
+                                </form>
+                            </div>
                         </div>
+                        <!-- สิ้นสุดการเขียนตรงนี้ -->
                     </div>
-                    <!-- สิ้นสุดการเขียนตรงนี้ -->
-                </div>
+                    <div <?php echo $item["status_request"] != "waiting_approve" ? "class='col-8 offset-2'" : "class='col-6'"; ?>>
+                        <div class="card">
+                            <div class="card-header card-header-text card-header-danger">
+                                <div class="card-text">
+
+                                    <h5 class="m-0 font-weight-bold text-danger">
+                                        <i class="fas fa-fw fa-archive"></i>
+                                        ข้อมูลที่ร้องขอการแก้ไข
+                                    </h5>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="card-body">
+                                <form method="post" action="service/service_confirm_supplies_purchase_request.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
+                                    <input type="hidden" name="action_request" value="<?php echo $item["action_request"]; ?>">
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
+                                                <input class="form-control <?php echo $itemOld["order_no"] != $item["order_no"] ? "alert-class" : ""; ?>" type="text" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
+                                                <input class="form-control <?php echo $newOrderDate != $oldOrderDate ? "alert-class" : ""; ?>" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
+                                                <input class="form-control <?php echo $itemOld["order_by"] != $item["order_by"] ? "alert-class" : ""; ?>" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label for="receiver">ชื่อผู้รับ</label>
+                                                <input type="text" class="form-control <?php echo $itemOld["receiver"] != $item["receiver"] ? "alert-class" : ""; ?>" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $item["receiver"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="receive_date">วันที่ตรวจรับ</label>
+                                                <input type="date" class="form-control <?php echo $newReceiveDate != $oldReceiveDate ? "alert-class" : ""; ?>" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $newReceiveDate; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group body-text">
+                                                <label for="receive_address">สถานที่จัดส่ง</label>
+                                                <textarea class="form-control <?php echo $itemOld["receive_address"] != $item["receive_address"] ? "alert-class" : ""; ?>" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group bmd-form-group body-text">
+                                                <label class="bmd-label-floating">หน่วยงาน :</label>
+                                                <input class="form-control <?php echo $itemOld["short_goverment"] != $item["short_goverment"] ? "alert-class" : ""; ?>" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
+                                                <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                                <input type="text" class="form-control <?php echo $itemOld["bill_no"] != $item["bill_no"] ? "alert-class" : ""; ?>" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group body-text">
+                                                <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                                <select class="form-control <?php echo $itemOld["department_id"] != $item["department_id"] ? "alert-class" : ""; ?>" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM department";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["department_id"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group body-text">
+                                                <label for="price">จำนวนเงิน</label>
+                                                <input type="text" class="form-control <?php echo $itemOld["price"] != $item["price"] ? "alert-class" : ""; ?>" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group body-text">
+                                                <label for="price">จำนวนคงเหลือ</label>
+                                                <input type="text" class="form-control <?php echo $itemOld["stock"] != $item["number"] ? "alert-class" : ""; ?>" name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $item["number"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group body-text">
+                                                <label for="product_id">รหัสวัสดุ</label>
+                                                <input class="form-control <?php echo $itemOld["code"] != $item["code"] ? "alert-class" : ""; ?>" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label for="unit">หน่วยนับ</label>
+                                                <select class="form-control <?php echo $itemOld["unit"] != $item["unit"] ? "alert-class" : ""; ?>" name="unit" value="<?php echo $item["unit"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM unit";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["unit"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                                <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM seller";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["seller_id"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail img-raised">
+                                                    <img class="img-thumbnail" src="uploads/<?php echo $item["picture"] != "" ? $item["picture"] : $itemOld["picture"] ; ?>" align="center" alt="...">
+                                                    <input type="hidden" name="old_image" value="<?php echo $item["picture"] != "" ? $item["picture"] : $itemOld["picture"] ; ?>">
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                                <div>
+                                                    <span class="btn btn-raised btn-round btn-default btn-file">
+                                                        <br>
+                                                        <div class="col-2 offset-1">
+                                                            <input type="file" name="image" />
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <?php
+                                    if ($item["status_request"] == "rejected") {
+                                    ?>
+                                        <div class="row">
+                                            <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ: </label>
+                                            <div class="col-12">
+                                                <textarea class="form-control" rows="10" disabled><?php echo $item["reject"]; ?></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    <?php }; ?>
+                                    <br>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- สิ้นสุดการเขียนตรงนี้ -->
+                    </div>
+                <?php } else { ?>
+                    <div class="col-8 offset-2" <?php echo $item["status_request"] != "waiting_approve" ? "style='display: none'" : ""; ?>>
+                        <div class="card">
+                            <div class="card-header card-header-text card-header-danger">
+                                <div class="card-text">
+                                    <h5 class="m-0 font-weight-bold text-danger">
+                                        <i class="fas fa-fw fa-archive"></i>
+                                        ข้อมูลที่ต้องการลบ
+                                    </h5>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="card-body">
+                                <form method="post" action="service/service_confirm_supplies_purchase_request.php?id=<?php echo $id; ?>" id="form_insert" enctype="multipart/form-data">
+                                    <input type="hidden" name="action_request" value="<?php echo $item["action_request"]; ?>">
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
+                                                <input class="form-control" type="text" placeholder="order_no" name="order_no" value="<?php echo $itemOld["order_no"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
+                                                <input class="form-control" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $oldOrderDate; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="form-group body-text">
+                                                <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
+                                                <input class="form-control" type="text" placeholder="order_by" name="order_by" value="<?php echo $itemOld["order_by"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label for="receiver">ชื่อผู้รับ</label>
+                                                <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $itemOld["receiver"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="receive_date">วันที่ตรวจรับ</label>
+                                                <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $oldReceiveDate; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group body-text">
+                                                <label for="receive_address">สถานที่จัดส่ง</label>
+                                                <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $itemOld["receive_address"]; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group bmd-form-group body-text">
+                                                <label class="bmd-label-floating">หน่วยงาน :</label>
+                                                <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $itemOld["short_goverment"]; ?>">
+                                                <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                                <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group body-text">
+                                                <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                                <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM department";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["department_id"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group body-text">
+                                                <label for="price">จำนวนเงิน</label>
+                                                <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group body-text">
+                                                <label for="price">จำนวนคงเหลือ</label>
+                                                <input type="text" class="form-control" name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $item["number"]; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group body-text">
+                                                <label for="product_id">รหัสวัสดุ</label>
+                                                <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group body-text">
+                                                <label for="unit">หน่วยนับ</label>
+                                                <select class="form-control <?php echo $itemOld["unit"] != $item["unit"] ? "alert-class" : ""; ?>" name="unit" value="<?php echo $item["unit"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM unit";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["unit"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group body-text">
+                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                                <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
+                                                    <?php
+                                                    $sqlSelectType = "SELECT * FROM seller";
+                                                    $resultType = mysqli_query($conn, $sqlSelectType);
+                                                    while ($row = mysqli_fetch_assoc($resultType)) {
+                                                        if ($item["seller_id"] == $row["id"]) {
+                                                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail img-raised">
+                                                    <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
+                                                    <input type="hidden" name="old_image" value="<?php echo $item["picture"]; ?>">
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                                <div>
+                                                    <span class="btn btn-raised btn-round btn-default btn-file">
+                                                        <br>
+                                                        <div class="col-2 offset-1">
+                                                            <input type="file" name="image" />
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <?php
+                                    if ($item["status_request"] == "rejected") {
+                                    ?>
+                                        <div class="row">
+                                            <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ: </label>
+                                            <div class="col-12">
+                                                <textarea class="form-control" rows="10" disabled><?php echo $item["reject"]; ?></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    <?php }; ?>
+                                    <br>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- สิ้นสุดการเขียนตรงนี้ -->
+                    </div>
+                <?php } ?>
                 <!-- /.container-fluid -->
             </div>
             <br>
             <?php
             if ($_SESSION["user_type"] == 1 && $item["status_request"] == "waiting_approve") {
-                ?>
+            ?>
                 <div class="row">
                     <div class="col-3 offset-2">
                         <button style="width: 100%" type="button" data-toggle="modal" data-target="#modal-reject" class="btn btn-danger body-text">ไม่อนุมัติ</button>
@@ -492,7 +683,7 @@ if (isset($_GET["id"])) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body body-text">ระบบจะทำการแก้ไขข้อมูลทันที ไม่สามารถกลับไปแก้ไขเพิ่มเติมได้อีก</div>
+                <div class="modal-body body-text">ระบบจะทำการ<?php echo $item["action_request"] == "request_update" ? "แก้ไข" : "ลบ"; ?>ข้อมูลทันที ไม่สามารถกลับไปแก้ไขเพิ่มเติมได้อีก</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary body-text" type="button" data-dismiss="modal">ยกเลิก</button>
                     <button class="btn btn-primary body-text" type="button" data-dismiss="modal" onclick="$('#form_insert').submit()">ยืนยัน</button>
@@ -593,7 +784,7 @@ if (isset($_GET["id"])) {
                                                     $result = mysqli_query($conn, $sqlSelect);
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                         $id = $row["id"]
-                                                        ?>
+                                                    ?>
                                                         <tr class="text-center body-text">
                                                             <td><?php echo ($row["id"]); ?></td>
                                                             <td><?php echo ($row["seq"]); ?></td>

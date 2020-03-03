@@ -102,7 +102,7 @@ $show = 10;
                         ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["code"]); ?></td>
-                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
                           <td><?php echo ($row["permit_date"]); ?></td>
                           <td><?php echo ($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
