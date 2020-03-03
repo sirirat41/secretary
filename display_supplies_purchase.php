@@ -102,6 +102,12 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
+                        $editPath = "";
+                        if ($_SESSION["user_type"] == 1) {
+                          $editPath = "edit_supplies_purchase.php?id=" . $id;
+                        } else {
+                          $editPath = "edit_supplies_purchase_request.php?id=" . $id;
+                        }
                         ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["order_no"]); ?></td>
@@ -109,7 +115,7 @@ $show = 10;
                           <td><?php echo ($row["number"]); ?></td>
                           <td><?php echo ($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
-                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_supplies_purchase.php?id=<?php echo $row['product_id']; ?>'">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = '<?php echo $editPath; ?>'">
                               <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_supplies_purchase.php?id=<?php echo $row['id']; ?>'">

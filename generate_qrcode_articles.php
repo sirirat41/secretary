@@ -12,6 +12,6 @@ if (isset($_GET["id"])) {
 
 
   $id = $_GET["id"];
-    QRcode::png("http://172.20.10.2/secretary/view_qrcode_articles.php?id=$id");
+    QRcode::png("http://secretary4.com/view_qrcode_articles.php?id=$id");
 }
 ?>
