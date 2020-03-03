@@ -284,14 +284,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." id="image-preview">
                       </div>
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                     <div><span class="btn btn-raised btn-round btn-default btn-file">
                         <br>
                         <div class="col-2 offset-1">
-                          <input type="file" name="image" />
+                          <input type="file" name="image" id="image" />
                         </div>
                       </span>
                     </div>
@@ -491,6 +491,22 @@ if (isset($_GET["id"])) {
         }
       })
     }
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('#image-preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#image").change(function() {
+      readURL(this);
+    });
   </script>
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

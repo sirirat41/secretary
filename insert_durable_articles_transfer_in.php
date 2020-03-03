@@ -345,10 +345,10 @@ $show = 10;
         var code = item["code"];
         var type = item["type"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + thaiNumber(seq) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(bill_no) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
+        $('<td>' + (seq) + '</td>').appendTo(tr);
+        $('<td>' + (bill_no) + '</td>').appendTo(tr);
+        $('<td>' + (code) + '</td>').appendTo(tr);
+        $('<td>' + (type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
       }

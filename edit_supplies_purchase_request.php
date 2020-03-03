@@ -215,6 +215,24 @@ if (isset($_GET["id"])) {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail img-raised">
+                                                <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." id="image-preview">
+                                            </div>
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                        <div>
+                                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                                <br>
+                                                <div class="col-2 offset-1">
+                                                    <input type="file" name="image" value="<?php echo $item["picture"]; ?>" />
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <br>
                                 <div class="row">

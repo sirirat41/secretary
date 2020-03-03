@@ -405,6 +405,22 @@ require "service/connection.php";
       })
     })
 
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('#image-preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#image").change(function() {
+      readURL(this);
+    });
+
     function validateData() {
       var order_no = $('#order_no').val();
       var purchase_date = $('#purchase_date').val();

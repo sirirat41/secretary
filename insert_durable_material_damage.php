@@ -198,7 +198,7 @@ $show = 10;
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h5 class="m-0 font-weight-bold text-danger body-text">
-                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h5>
+                      <i class="fas fa-business-time"></i> แสดงข้อมูลชำรุด(วัสดุคงทน)</h5>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>

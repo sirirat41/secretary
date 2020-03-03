@@ -336,9 +336,9 @@ $show = 10;
         var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
-        $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
+        $('<td>' + item.damage_date + '</td>').appendTo(tr);
+        $('<td>' + item.code + '</td>').appendTo(tr);
+        $('<td>' + item.flag + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
       }
