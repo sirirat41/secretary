@@ -66,6 +66,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="name">ชื่อร้านค้า</label>
                       <input type="text" class="form-control body-text" name="name" id="inputname" aria-describedby="name" placeholder="nameseller" value="<?php echo $item["name"]; ?>">
+                      <small id="alert-inputname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -74,6 +75,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
                       <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
+                      <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -82,6 +84,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="fax">แฟกต์</label>
                       <input type="text" class="form-control body-text" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax" value="<?php echo $item["fax"]; ?>">
+                      <small id="alert-inputfax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -90,12 +93,13 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="address">ที่อยู่</label>
                       <textarea class="form-control body-text" name="address" id="address" placeholder="address" rows="3"><?php echo $item["address"]; ?></textarea>
+                      <small id="alert-address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div></button>
                   </div>
@@ -167,42 +171,89 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
- 
-              <script>
-                function search() {
-                  var kw = $("#keyword").val();
-                  $.ajax({
-                    url: 'service/service_search_json_seller.php',
-                    dataType: 'JSON',
-                    type: 'GET',
-                    data: {
-                      keyword: kw
-                    },
 
-                    success: function(data) {
-                      var tbody = $('#modal-articles-body');
-                      tbody.empty();
-                      console.log(data);
-                      for (i = 0; i < data.length; i++) {
-                        var item = data[i];
-                        var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-                        $('<td>' + item.id + '</td>').appendTo(tr);
-                        $('<td>' + item.damage_date + '</td>').appendTo(tr);
-                        $('<td>' + item.code + '</td>').appendTo(tr);
-                        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-                      }
-                    },
-                    error: function(error) {
-                      console.log(error);
-                    }
-                  })
-                }
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_seller.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
 
-                function selectedArticles(id) {
-                  $('#modal-form-search').modal('hide');
-                  $('#id').val(id);
-                }
-              </script>
+        success: function(data) {
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
+          console.log(data);
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.damage_date + '</td>').appendTo(tr);
+            $('<td>' + item.code + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+
+    function selectedArticles(id) {
+      $('#modal-form-search').modal('hide');
+      $('#id').val(id);
+    }
+
+    function validateData() {
+      var inputname = $('#inputname').val();
+      var inputtel = $('#inputtel').val();
+      var inputfax = $('#inputfax').val();
+      var address = $('#address').val();
+      var validateCount = 0;
+      if ($.trim(inputname) == "") {
+        validateCount++;
+        $('#inputname').focus();
+        $('#inputname').addClass('border border-danger');
+        $('#alert-inputname').show();
+      } else {
+        $('#inputname').removeClass('border border-danger');
+        $('#alert-inputname').hide();
+      }
+      if ($.trim(inputtel) == "") {
+        validateCount++;
+        $('#inputtel').addClass('border border-danger');
+        $('#alert-inputtel').show();
+      } else {
+        $('#inputtel').removeClass('border border-danger');
+        $('#alert-inputtel').hide();
+      }
+      if ($.trim(inputfax) == "") {
+        validateCount++;
+        $('#inputfax').addClass('border border-danger');
+        $('#alert-inputfax').show();
+      } else {
+        $('#inputfax').removeClass('border border-danger');
+        $('#alert-inputfax').hide();
+      }
+      if ($.trim(address) == "") {
+        validateCount++;
+        $('#address').addClass('border border-danger');
+        $('#alert-address').show();
+      } else {
+        $('#address').removeClass('border border-danger');
+        $('#alert-address').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
+  </script>
 
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -221,8 +272,8 @@ if (isset($_GET["id"])) {
         <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
         <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
       </div>
-      </div>
     </div>
   </div>
+</div>
 
 </html>

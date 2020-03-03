@@ -354,7 +354,6 @@ $show = 10;
 
       }
     }
-    /
 
     function generatePagination() {
       $('#pagination').empty();

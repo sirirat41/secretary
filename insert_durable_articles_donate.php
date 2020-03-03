@@ -64,12 +64,14 @@ $show = 10;
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
                       <input class="form-control body-text" name="document_no" type="text" id="document_no" placeholder="document_no">
+                      <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
                       <input class="form-control body-text" name="receive_date" type="date" id="receive_date" placeholder="receive_date">
+                      <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -103,19 +105,21 @@ $show = 10;
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
                       <input class="form-control body-text" name="donate_name" type="text" placeholder="donate_name" id="donate_name">
+                      <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
                       <input class="form-control body-text" name="flag" name="flag" type="text" placeholder="flag" id="flag">
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                     </button>
                     <!-- Modal -->
@@ -417,6 +421,53 @@ $show = 10;
     function selectedArticles(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var document_no = $('#document_no').val();
+      var receive_date = $('#receive_date').val();
+      var donate_name = $('#donate_name').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(document_no) == "") {
+        validateCount++;
+        $('#document_no').focus();
+        $('#document_no').addClass('border border-danger');
+        $('#alert-document_no').show();
+      } else {
+        $('#document_no').removeClass('border border-danger');
+        $('#alert-document_no').hide();
+      }
+      if ($.trim(receive_date) == "") {
+        validateCount++;
+        $('#receive_date').addClass('border border-danger');
+        $('#alert-receive_date').show();
+      } else {
+        $('#receive_date').removeClass('border border-danger');
+        $('#alert-receive_date').hide();
+      }
+      if ($.trim(donate_name) == "") {
+        validateCount++;
+        $('#donate_name').addClass('border border-danger');
+        $('#alert-donate_name').show();
+      } else {
+        $('#donate_name').removeClass('border border-danger');
+        $('#alert-donate_name').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

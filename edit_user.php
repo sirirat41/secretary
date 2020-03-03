@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
         <p class="" onclick="window.history.back()" style="cursor: pointer">
           <i class="fas fa-angle-left"></i> กลับ
         </p>
-</div>
+      </div>
       <div class="row">
         <div class="col-md-6 offset-3">
           <div class="card shado mb-6">
@@ -66,6 +66,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="username">ชื่อสมาชิก</label>
                       <input type="text" class="form-control body-text" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
+                      <small id="alert-inputusername" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -75,6 +76,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="password">รหัสผ่าน</label>
                       <input type="text" class="form-control body-text" name="password" id="inputpassword" aria-describedby="password" placeholder="password" value="<?php echo $item["password"]; ?>" readonly>
+                      <small id="alert-inputpassword" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -84,37 +86,39 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="surname">ชื่อ</label>
                       <input type="text" class="form-control body-text" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname" value="<?php echo $item["surname"]; ?>">
+                      <small id="alert-inputsurname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="lastname">นามสกุล</label>
                       <input type="text" class="form-control body-text" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname" value="<?php echo $item["lastname"]; ?>">
+                      <small id="alert-inputlastname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
-
-
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
                       <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
+                      <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group body-text">
                       <label for="position">ตำแหน่ง</label>
                       <input type="text" class="form-control body-text" name="position" id="inputposition" aria-describedby="position" placeholder="position" value="<?php echo $item["position"]; ?>">
+                      <small id="alert-inputposition" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="email">อีเมล์</label>
                       <input type="text" class="form-control body-text" name="email" id="inputemail" aria-describedby="email" placeholder="email" value="<?php echo $item["email"]; ?>">
+                      <small id="alert-inputemail" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -141,7 +145,7 @@ if (isset($_GET["id"])) {
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -218,25 +222,102 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+
+  <script>
+    function validateData() {
+      var inputusername = $('#inputusername').val();
+      var inputpassword = $('#inputpassword').val();
+      var inputsurname = $('#inputsurname').val();
+      var inputlastname = $('#inputlastname').val();
+      var inputtel = $('#inputtel').val();
+      var inputposition = $('#inputposition').val();
+      var inputemail = $('#inputemail').val();
+      var validateCount = 0;
+      if ($.trim(inputusername) == "") {
+        validateCount++;
+        $('#inputusername').focus();
+        $('#inputusername').addClass('border border-danger');
+        $('#alert-inputusername').show();
+      } else {
+        $('#inputusername').removeClass('border border-danger');
+        $('#alert-inputusername').hide();
+      }
+      if ($.trim(inputpassword) == "") {
+        validateCount++;
+        $('#inputpassword').addClass('border border-danger');
+        $('#alert-inputpassword').show();
+      } else {
+        $('#inputpassword').removeClass('border border-danger');
+        $('#alert-inputpassword').hide();
+      }
+      if ($.trim(inputsurname) == "") {
+        validateCount++;
+        $('#inputsurname').addClass('border border-danger');
+        $('#alert-inputsurname').show();
+      } else {
+        $('#inputsurname').removeClass('border border-danger');
+        $('#alert-inputsurname').hide();
+      }
+      if ($.trim(inputlastname) == "") {
+        validateCount++;
+        $('#inputlastname').addClass('border border-danger');
+        $('#alert-inputlastname').show();
+      } else {
+        $('#inputlastname').removeClass('border border-danger');
+        $('#alert-inputlastname').hide();
+      }
+      if ($.trim(inputtel) == "") {
+        validateCount++;
+        $('#inputtel').addClass('border border-danger');
+        $('#alert-inputtel').show();
+      } else {
+        $('#inputtel').removeClass('border border-danger');
+        $('#alert-inputtel').hide();
+      }
+      if ($.trim(inputposition) == "") {
+        validateCount++;
+        $('#inputposition').addClass('border border-danger');
+        $('#alert-inputposition').show();
+      } else {
+        $('#inputposition').removeClass('border border-danger');
+        $('#alert-inputposition').hide();
+      }
+      if ($.trim(inputemail) == "") {
+        validateCount++;
+        $('#inputemail').addClass('border border-danger');
+        $('#alert-inputemail').show();
+      } else {
+        $('#inputemail').removeClass('border border-danger');
+        $('#alert-inputemail').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
+  </script>
 </body>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลผู้ใช้หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

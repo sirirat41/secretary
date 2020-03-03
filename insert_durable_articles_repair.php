@@ -61,12 +61,14 @@ $show = 10;
                     <div class="form-group">
                       <label for="seq">ลำดับ</label>
                       <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq">
+                      <small id="alert-inputseq" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group body-text">
                       <label for="repair_date">วันที่ซ่อม</label>
                       <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
+                      <small id="alert-inputrepair_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -101,7 +103,8 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea class="form-control" name="place" id="exampleFormControlTextarea1" placeholder="place" rows="3"></textarea>
+                      <textarea class="form-control" name="place" id="place" placeholder="place" rows="3"></textarea>
+                      <small id="alert-place" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -109,15 +112,16 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="exampleFormControlTextarea1" placeholder="flag" rows="1"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="1"></textarea>
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
-                 
+
                   </div>
                 </div>
               </form>
@@ -242,7 +246,7 @@ $show = 10;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><?php echo $row["damage_date"]; ?></td>
                             <td><?php echo thainumDigit($row["code"]); ?></td>
@@ -332,11 +336,11 @@ $show = 10;
         var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
-            $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
-            $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
-            $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
-            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-          generatePagination();
+        $('<td>' + thaiNumber(item.damage_date) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(item.code) + '</td>').appendTo(tr);
+        $('<td>' + thaiNumber(item.flag) + '</td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        generatePagination();
       }
     }
 
@@ -406,27 +410,75 @@ $show = 10;
       $('#modal-form-search').modal('hide');
       $('#damage_id').val(id);
     }
+
+    function validateData() {
+      var inputseq = $('#inputseq').val();
+      var inputrepair_date = $('#inputrepair_date').val();
+      var place = $('#place').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(inputseq) == "") {
+        validateCount++;
+        $('#inputseq').focus();
+        $('#inputseq').addClass('border border-danger');
+        $('#alert-inputseq').show();
+      } else {
+        $('#inputseq').removeClass('border border-danger');
+        $('#alert-inputseq').hide();
+      }
+      if ($.trim(inputrepair_date) == "") {
+        validateCount++;
+        $('#inputrepair_date').addClass('border border-danger');
+        $('#alert-inputrepair_date').show();
+      } else {
+        $('#inputrepair_date').removeClass('border border-danger');
+        $('#alert-inputrepair_date').hide();
+      }
+      if ($.trim(place) == "") {
+        validateCount++;
+        $('#place').addClass('border border-danger');
+        $('#alert-place').show();
+      } else {
+        $('#place').removeClass('border border-danger');
+        $('#alert-place').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
 
 </body>
 <div class="ripple-container"></div></button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการบันทึกข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

@@ -70,13 +70,15 @@ if (isset($_GET["id"])) {
                   <div class="col-md-4">
                     <div class="form-group body-text">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control body-text" name="seq" id="seq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
+                      <input type="text" class="form-control body-text" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
+                      <small id="alert-inputseq" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group body-text">
                       <label for="repair_date">วันที่ซ่อม</label>
                       <input type="date" class="form-control body-text" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
+                      <small id="alert-inputrepair_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -113,11 +115,12 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
                       <textarea type="text" class="form-control body-text" name="place" id="place" rows="3" placeholder="place"><?php echo $item["place"]; ?></textarea>
+                      <small id="alert-place" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-danger btn btn-block " data-toggle="modal" data-target="#exampleModal">
+                  <button type="button" class="btn btn-danger btn btn-block " onclick="validateData();">
                     บันทึก
                     <div class="ripple-container"></div></button>
                 </div>
@@ -546,6 +549,44 @@ if (isset($_GET["id"])) {
         }
       })
       //console.log(params);
+    }
+
+    function validateData() {
+      var inputseq = $('#inputseq').val();
+      var inputrepair_date = $('#inputrepair_date').val();
+      var place = $('#place').val();
+      var validateCount = 0;
+      if ($.trim(inputseq) == "") {
+        validateCount++;
+        $('#inputseq').focus();
+        $('#inputseq').addClass('border border-danger');
+        $('#alert-inputseq').show();
+      } else {
+        $('#inputseq').removeClass('border border-danger');
+        $('#alert-inputseq').hide();
+      }
+      if ($.trim(inputrepair_date) == "") {
+        validateCount++;
+        $('#inputrepair_date').addClass('border border-danger');
+        $('#alert-inputrepair_date').show();
+      } else {
+        $('#inputrepair_date').removeClass('border border-danger');
+        $('#alert-inputrepair_date').hide();
+      }
+      if ($.trim(place) == "") {
+        validateCount++;
+        $('#place').addClass('border border-danger');
+        $('#alert-place').show();
+      } else {
+        $('#place').removeClass('border border-danger');
+        $('#alert-place').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 </body>

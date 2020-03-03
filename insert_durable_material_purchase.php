@@ -64,12 +64,14 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
                       <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus>
+                      <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
                       <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date">
+                      <small id="alert-purchase_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -78,12 +80,14 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
                       <input type="text" class="form-control" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $_SESSION["fullname"]; ?>">
+                      <small id="alert-order_by" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร :</label>
-                      <input class="form-control" type="text" placeholder="document_no" name="document_no">
+                      <input class="form-control" type="text" placeholder="document_no" name="document_no" id="document_no">
+                      <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -101,12 +105,14 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="receiver">ชื่อผู้รับ</label>
                       <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $_SESSION["fullname"]; ?>">
+                      <small id="alert-receiver" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่ตรวจรับ</label>
                       <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" name="receive_date">
+                      <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -115,6 +121,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="receive_address">สถานที่จัดส่ง</label>
                       <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" name="address"></textarea>
+                      <small id="alert-receive_address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -122,8 +129,9 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
+                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                      <small id="alert-short_goverment" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
@@ -131,6 +139,7 @@ require "service/connection.php";
                       <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
                       <input class="form-control" type="text" placeholder="asset_no" name="asset_no" id="asset_no">
                       <small style="color: red"> *ตัวอย่าง:100000312000</small>
+                      <small id="alert-asset_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -152,7 +161,8 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                      <input class="form-control" type="text" placeholder="attribute" name="attribute">
+                      <input class="form-control" type="text" placeholder="attribute" name="attribute" id="attribute">
+                      <small id="alert-attribute" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -160,7 +170,8 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
-                      <input class="form-control" type="text" placeholder="namemeterial" name="name">
+                      <input class="form-control" type="text" placeholder="namemeterial" name="name" id="name">
+                      <small id="alert-name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
@@ -196,7 +207,8 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                      <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
+                      <input class="form-control" type="text" placeholder="bill_no" name="bill_no" id="bill_no">
+                      <small id="alert-bill_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -223,6 +235,7 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวนเงิน :</label>
                       <input class="form-control" type="text" placeholder="price" name="price" id="price">
+                      <small id="alert-price" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -244,7 +257,8 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวนวัสดุ :</label>
-                      <input class="form-control" type="text" placeholder="number" name="number">
+                      <input class="form-control" type="text" placeholder="number" name="number" id="number">
+                      <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -269,7 +283,7 @@ require "service/connection.php";
                 <br>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
@@ -390,6 +404,143 @@ require "service/connection.php";
 
       })
     })
+
+    function validateData() {
+      var order_no = $('#order_no').val();
+      var purchase_date = $('#purchase_date').val();
+      var order_by = $('#order_by').val();
+      var document_no = $('#document_no').val();
+      var receiver = $('#receiver').val();
+      var receive_date = $('#receive_date').val();
+      var receive_address = $('#receive_address').val();
+      var short_goverment = $('#short_goverment').val();
+      var asset_no = $('#asset_no').val();
+      var attribute = $('#attribute').val();
+      var name = $('#name').val();
+      var bill_no = $('#bill_no').val();
+      var price = $('#price').val();
+      var number = $('#number').val();
+      var validateCount = 0;
+      if ($.trim(order_no) == "") {
+        validateCount++;
+        $('#order_no').focus();
+        $('#order_no').addClass('border border-danger');
+        $('#alert-order_no').show();
+      } else {
+        $('#order_no').removeClass('border border-danger');
+        $('#alert-order_no').hide();
+      }
+      if ($.trim(purchase_date) == "") {
+        validateCount++;
+        $('#purchase_date').addClass('border border-danger');
+        $('#alert-purchase_date').show();
+      } else {
+        $('#purchase_date').removeClass('border border-danger');
+        $('#alert-purchase_date').hide();
+      }
+      if ($.trim(order_by) == "") {
+        validateCount++;
+        $('#order_by').addClass('border border-danger');
+        $('#alert-order_by').show();
+      } else {
+        $('#order_by').removeClass('border border-danger');
+        $('#alert-order_by').hide();
+      }
+      if ($.trim(document_no) == "") {
+        validateCount++;
+        $('#document_no').addClass('border border-danger');
+        $('#alert-document_no').show();
+      } else {
+        $('#document_no').removeClass('border border-danger');
+        $('#alert-document_no').hide();
+      }
+      if ($.trim(receiver) == "") {
+        validateCount++;
+        $('#receiver').addClass('border border-danger');
+        $('#alert-receiver').show();
+      } else {
+        $('#receiver').removeClass('border border-danger');
+        $('#alert-receiver').hide();
+      }
+      if ($.trim(receive_date) == "") {
+        validateCount++;
+        $('#receive_date').addClass('border border-danger');
+        $('#alert-receive_date').show();
+      } else {
+        $('#receive_date').removeClass('border border-danger');
+        $('#alert-receive_date').hide();
+      }
+      if ($.trim(receive_address) == "") {
+        validateCount++;
+        $('#receive_address').addClass('border border-danger');
+        $('#alert-receive_address').show();
+      } else {
+        $('#receive_address').removeClass('border border-danger');
+        $('#alert-receive_address').hide();
+      }
+      if ($.trim(short_goverment) == "") {
+        validateCount++;
+        $('#short_goverment').addClass('border border-danger');
+        $('#alert-short_goverment').show();
+      } else {
+        $('#short_goverment').removeClass('border border-danger');
+        $('#alert-short_goverment').hide();
+      }
+      if ($.trim(asset_no) == "") {
+        validateCount++;
+        $('#asset_no').addClass('border border-danger');
+        $('#alert-asset_no').show();
+      } else {
+        $('#asset_no').removeClass('border border-danger');
+        $('#alert-asset_no').hide();
+      }
+      if ($.trim(attribute) == "") {
+        validateCount++;
+        $('#attribute').addClass('border border-danger');
+        $('#alert-attribute').show();
+      } else {
+        $('#attribute').removeClass('border border-danger');
+        $('#alert-attribute').hide();
+      }
+      if ($.trim(name) == "") {
+        validateCount++;
+        $('#name').addClass('border border-danger');
+        $('#alert-name').show();
+      } else {
+        $('#name').removeClass('border border-danger');
+        $('#alert-name').hide();
+      }
+      if ($.trim(bill_no) == "") {
+        validateCount++;
+        $('#bill_no').addClass('border border-danger');
+        $('#alert-bill_no').show();
+      } else {
+        $('#bill_no').removeClass('border border-danger');
+        $('#alert-bill_no').hide();
+      }
+      if ($.trim(price) == "") {
+        validateCount++;
+        $('#price').addClass('border border-danger');
+        $('#alert-price').show();
+      } else {
+        $('#price').removeClass('border border-danger');
+        $('#alert-price').hide();
+      }
+      if ($.trim(number) == "") {
+        validateCount++;
+        $('#number').addClass('border border-danger');
+        $('#alert-number').show();
+      } else {
+        $('#number').removeClass('border border-danger');
+        $('#alert-number').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
 </body>
 

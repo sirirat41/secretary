@@ -72,12 +72,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
                       <input type="text" class="form-control body-text" name="document_no" id="document_no" placeholder="no" autofocus value="<?php echo $item["document_no"]; ?>">
+                      <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="transfer_date">วันที่โอน</label>
                       <input type="date" class="form-control body-text" name="transfer_date" id="transfer_date" placeholder="transfer_date" value="<?php echo $newreceiveDate; ?>">
+                      <small id="alert-transfer_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -114,6 +116,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="transfer_form">ชื่อผู้โอน</label>
                       <input type="text" class="form-control body-text" id="transfer_from" name="transfer_from" placeholder="name" value="<?php echo $item["transfer_from"]; ?>">
+                      <small id="alert-transfer_from" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -122,12 +125,13 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="inputEmail3">หมายเหตุ</label>
                       <textarea class="form-control body-text" id="flag" name="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" onclick="validateData();">
                       บันทึก
 
                   </div>
@@ -426,6 +430,53 @@ if (isset($_GET["id"])) {
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var document_no = $('#document_no').val();
+      var transfer_date = $('#transfer_date').val();
+      var transfer_from = $('#transfer_from').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(document_no) == "") {
+        validateCount++;
+        $('#document_no').focus();
+        $('#document_no').addClass('border border-danger');
+        $('#alert-document_no').show();
+      } else {
+        $('#document_no').removeClass('border border-danger');
+        $('#alert-document_no').hide();
+      }
+      if ($.trim(transfer_date) == "") {
+        validateCount++;
+        $('#transfer_date').addClass('border border-danger');
+        $('#alert-transfer_date').show();
+      } else {
+        $('#transfer_date').removeClass('border border-danger');
+        $('#alert-transfer_date').hide();
+      }
+      if ($.trim(transfer_from) == "") {
+        validateCount++;
+        $('#transfer_from').addClass('border border-danger');
+        $('#alert-transfer_from').show();
+      } else {
+        $('#transfer_from').removeClass('border border-danger');
+        $('#alert-transfer_from').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

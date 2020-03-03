@@ -60,6 +60,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="name">ชื่อร้านค้า</label>
                       <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="nameseller">
+                      <small id="alert-inputname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -68,6 +69,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
                       <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                      <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -76,6 +78,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="fax">แฟกต์</label>
                       <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax">
+                      <small id="alert-inputfax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -83,13 +86,14 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="address">ที่อยู่</label>
-                      <textarea class="form-control" name="address" id="exampleFormControlTextarea1" placeholder="address" rows="3"></textarea>
+                      <textarea class="form-control" name="address" id="address" placeholder="address" rows="3"></textarea>
+                      <small id="alert-address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
@@ -165,12 +169,59 @@ require "service/connection.php";
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
       ?>
     })
+
+    function validateData() {
+      var inputname = $('#inputname').val();
+      var inputtel = $('#inputtel').val();
+      var inputfax = $('#inputfax').val();
+      var address = $('#address').val();
+      var validateCount = 0;
+      if ($.trim(inputname) == "") {
+        validateCount++;
+        $('#inputname').focus();
+        $('#inputname').addClass('border border-danger');
+        $('#alert-inputname').show();
+      } else {
+        $('#inputname').removeClass('border border-danger');
+        $('#alert-inputname').hide();
+      }
+      if ($.trim(inputtel) == "") {
+        validateCount++;
+        $('#inputtel').addClass('border border-danger');
+        $('#alert-inputtel').show();
+      } else {
+        $('#inputtel').removeClass('border border-danger');
+        $('#alert-inputtel').hide();
+      }
+      if ($.trim(inputfax) == "") {
+        validateCount++;
+        $('#inputfax').addClass('border border-danger');
+        $('#alert-inputfax').show();
+      } else {
+        $('#inputfax').removeClass('border border-danger');
+        $('#alert-inputfax').hide();
+      }
+      if ($.trim(address) == "") {
+        validateCount++;
+        $('#address').addClass('border border-danger');
+        $('#alert-address').show();
+      } else {
+        $('#address').removeClass('border border-danger');
+        $('#alert-address').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -9,7 +9,7 @@ if (isset($_GET["id"])) {
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["receive_date"];
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
-$show=10;
+  $show = 10;
   //item.code java odject , item["code"] php
 
 }
@@ -72,12 +72,14 @@ $show=10;
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
                       <input class="form-control body-text" name="document_no" type="text" id="document_no" placeholder="document_no" value="<?php echo $item["document_no"]; ?>">
+                      <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
                       <input class="form-control body-text" name="receive_date" type="date" id="receive_date" placeholder="receive_date" value="<?php echo $newOrderDate; ?>">
+                      <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -93,10 +95,10 @@ $show=10;
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
-                              echo '<option value="' . $row["id"] .'"selected>' . $row["code"] . '</option>';
-                            } else {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                            }
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -115,22 +117,24 @@ $show=10;
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
                       <input class="form-control body-text" name="donate_name" type="text" placeholder="donate_name" id="donate_name" value="<?php echo $item["donate_name"]; ?>">
+                      <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
                       <input class="form-control body-text" name="flag" name="flag" type="text" placeholder="flag" id="flag" value="<?php echo $item["flag"]; ?>">
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" onclick="validateData();">
                       บันทึก
                     </button>
-                   
+
                   </div>
                 </div>
               </form>
@@ -222,9 +226,9 @@ $show=10;
                     <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุคงทน)</h6>
                     <form class="form-inline" id="form-search">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search" >
-                   <div>
-                        <button class="btn btn-outline-danger" type="submit" >
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                      <div>
+                        <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -249,8 +253,8 @@ $show=10;
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                   
-                        
+
+
                         $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
                         $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
@@ -260,7 +264,7 @@ $show=10;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["seq"]); ?></td>
@@ -315,15 +319,16 @@ $show=10;
     var showPageSection = 10; //จำนวนเลขหน้า
     var numberOfPage;
     $('#form-search').on('submit', function(e) {
-        e.preventDefault();
-        search();
-      })
+      e.preventDefault();
+      search();
+    })
+
     function search() {
-       var keyword = $('#input-search').val().trim();
+      var keyword = $('#input-search').val().trim();
       $.ajax({
         url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
         dataType: 'JSON',
-         type: 'GET',
+        type: 'GET',
         success: function(data) {
           jsonData = data;
           numberOfPage = data.length / itemPerPage;
@@ -334,6 +339,7 @@ $show=10;
         }
       })
     }
+
     function changePage(page) {
       currentPage = page;
 
@@ -358,7 +364,7 @@ $show=10;
         $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedmaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
-    
+
       }
     }
 
@@ -367,14 +373,16 @@ $show=10;
         currentPage = currentPage + 1;
         changePage(currentPage);
 
+      }
     }
-}
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage = currentPage - 1;
         changePage(currentPage);
       }
     }
+
     function generatePagination() {
       $('#pagination').empty();
       $('<li class="page-item" id="prev-page"> <a class="page-link" href="#" onclick="prevPage();" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>').appendTo($('#pagination'));
@@ -418,31 +426,80 @@ $show=10;
       }
       return str;
     }
+
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
+
+    function validateData() {
+      var document_no = $('#document_no').val();
+      var receive_date = $('#receive_date').val();
+      var donate_name = $('#donate_name').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(document_no) == "") {
+        validateCount++;
+        $('#document_no').focus();
+        $('#document_no').addClass('border border-danger');
+        $('#alert-document_no').show();
+      } else {
+        $('#document_no').removeClass('border border-danger');
+        $('#alert-document_no').hide();
+      }
+      if ($.trim(receive_date) == "") {
+        validateCount++;
+        $('#receive_date').addClass('border border-danger');
+        $('#alert-receive_date').show();
+      } else {
+        $('#receive_date').removeClass('border border-danger');
+        $('#alert-receive_date').hide();
+      }
+      if ($.trim(donate_name) == "") {
+        validateCount++;
+        $('#donate_name').addClass('border border-danger');
+        $('#alert-donate_name').show();
+      } else {
+        $('#donate_name').removeClass('border border-danger');
+        $('#alert-donate_name').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
 
 </body>
- <!-- Modal -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลบริจาคออก(วัสดุ)หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลบริจาคออก(วัสดุ)หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

@@ -91,19 +91,21 @@ $show = 10;
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่ชำรุด</label>
                       <input class="form-control" name="damage_date" type="date" placeholder="damage_date" id="damage_date">
+                      <small id="alert-damage_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
                       <input class="form-control" name="flag" type="text" placeholder="flag" id="flag">
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                     </button>
                     <!-- Modal -->
@@ -402,6 +404,35 @@ $show = 10;
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var damage_date = $('#damage_date').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(damage_date) == "") {
+        validateCount++;
+        $('#damage_date').focus();
+        $('#damage_date').addClass('border border-danger');
+        $('#alert-damage_date').show();
+      } else {
+        $('#damage_date').removeClass('border border-danger');
+        $('#alert-damage_date').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

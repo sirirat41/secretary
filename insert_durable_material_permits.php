@@ -60,6 +60,7 @@ $show = 10;
                     <div class="form-group body-text">
                       <label for="book_no">เลขที่หนังสือ</label>
                       <input type="text" class="form-control" name="book_no" id="book_no" placeholder="no" autofocus>
+                      <small id="alert-book_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -92,12 +93,14 @@ $show = 10;
                     <div class="form-group body-text body-text">
                       <label for="permit_date">วันที่ยืม</label>
                       <input type="date" class="form-control" name="permit_date" id="permit_date" placeholder="permitdate">
+                      <small id="alert-permit_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text body-text">
                       <label for="receive_date">วันที่คืน</label>
                       <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receivedate">
+                      <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -122,12 +125,13 @@ $show = 10;
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"></textarea>
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" onclick="validateData();">
                       บันทึก
                     </button>
                    
@@ -428,6 +432,53 @@ $show = 10;
     function selectedmaterial(id) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var book_no = $('#book_no').val();
+      var permit_date = $('#permit_date').val();
+      var receive_date = $('#receive_date').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(book_no) == "") {
+        validateCount++;
+        $('#book_no').focus();
+        $('#book_no').addClass('border border-danger');
+        $('#alert-book_no').show();
+      } else {
+        $('#book_no').removeClass('border border-danger');
+        $('#alert-book_no').hide();
+      }
+      if ($.trim(permit_date) == "") {
+        validateCount++;
+        $('#permit_date').addClass('border border-danger');
+        $('#alert-permit_date').show();
+      } else {
+        $('#permit_date').removeClass('border border-danger');
+        $('#alert-permit_date').hide();
+      }
+      if ($.trim(receive_date) == "") {
+        validateCount++;
+        $('#receive_date').addClass('border border-danger');
+        $('#alert-receive_date').show();
+      } else {
+        $('#receive_date').removeClass('border border-danger');
+        $('#alert-receive_date').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

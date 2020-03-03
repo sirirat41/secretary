@@ -61,6 +61,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="username">ชื่อสมาชิก</label>
                       <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username">
+                      <small id="alert-inputusername" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -70,6 +71,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="password">รหัสผ่าน</label>
                       <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password">
+                      <small id="alert-inputpassword" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -79,28 +81,30 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="surname">ชื่อ</label>
                       <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname">
+                      <small id="alert-inputsurname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="lastname">นามสกุล</label>
                       <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname">
+                      <small id="alert-inputlastname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
-
-
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
                       <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                      <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group body-text">
                       <label for="position">ตำแหน่ง</label>
                       <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position">
+                      <small id="alert-inputposition" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -110,6 +114,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="email">อีเมล์</label>
                       <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email">
+                      <small id="alert-inputemail" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -132,7 +137,7 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div></button>
                   </div>
@@ -209,7 +214,81 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script>
+    function validateData() {
+      var inputusername = $('#inputusername').val();
+      var inputpassword = $('#inputpassword').val();
+      var inputsurname = $('#inputsurname').val();
+      var inputlastname = $('#inputlastname').val();
+      var inputtel = $('#inputtel').val();
+      var inputposition = $('#inputposition').val();
+      var inputemail = $('#inputemail').val();
+      var validateCount = 0;
+      if ($.trim(inputusername) == "") {
+        validateCount++;
+        $('#inputusername').focus();
+        $('#inputusername').addClass('border border-danger');
+        $('#alert-inputusername').show();
+      } else {
+        $('#inputusername').removeClass('border border-danger');
+        $('#alert-inputusername').hide();
+      }
+      if ($.trim(inputpassword) == "") {
+        validateCount++;
+        $('#inputpassword').addClass('border border-danger');
+        $('#alert-inputpassword').show();
+      } else {
+        $('#inputpassword').removeClass('border border-danger');
+        $('#alert-inputpassword').hide();
+      }
+      if ($.trim(inputsurname) == "") {
+        validateCount++;
+        $('#inputsurname').addClass('border border-danger');
+        $('#alert-inputsurname').show();
+      } else {
+        $('#inputsurname').removeClass('border border-danger');
+        $('#alert-inputsurname').hide();
+      }
+      if ($.trim(inputlastname) == "") {
+        validateCount++;
+        $('#inputlastname').addClass('border border-danger');
+        $('#alert-inputlastname').show();
+      } else {
+        $('#inputlastname').removeClass('border border-danger');
+        $('#alert-inputlastname').hide();
+      }
+      if ($.trim(inputtel) == "") {
+        validateCount++;
+        $('#inputtel').addClass('border border-danger');
+        $('#alert-inputtel').show();
+      } else {
+        $('#inputtel').removeClass('border border-danger');
+        $('#alert-inputtel').hide();
+      }
+      if ($.trim(inputposition) == "") {
+        validateCount++;
+        $('#inputposition').addClass('border border-danger');
+        $('#alert-inputposition').show();
+      } else {
+        $('#inputposition').removeClass('border border-danger');
+        $('#alert-inputposition').hide();
+      }
+      if ($.trim(inputemail) == "") {
+        validateCount++;
+        $('#inputemail').addClass('border border-danger');
+        $('#alert-inputemail').show();
+      } else {
+        $('#inputemail').removeClass('border border-danger');
+        $('#alert-inputemail').hide();
+      }
+      if (validateCount > 0) {
 
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
+  </script>
 
 </body>
 
