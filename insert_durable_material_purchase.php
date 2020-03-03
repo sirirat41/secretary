@@ -384,7 +384,7 @@ require "service/connection.php";
       $('#asset_no').focusout(function() {
         var assetNo = $('#asset_no').val();
         $.ajax({
-          url: 'service/service_check1.php',
+          url: 'service/service_check.php',
           dataType: 'JSON',
           type: 'POST',
           data: {
