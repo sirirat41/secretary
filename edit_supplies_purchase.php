@@ -4,8 +4,8 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT *,supplies_purchase.id as p  ,s.price ,s.code FROM supplies as s ,supplies_purchase LEFT JOIN supplies ON supplies.id = supplies_purchase.product_id ";
-  $sql .= "WHERE supplies_purchase.id = $id and supplies_purchase.id = s.id";
+  $sql = "SELECT *,supplies_purchase.id as p ,s.price ,s.code FROM supplies as s ,supplies_purchase LEFT JOIN supplies ON supplies.id = supplies_purchase.product_id ";
+  $sql .= "WHERE s.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $receiveDate = $item["receive_date"];

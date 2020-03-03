@@ -45,7 +45,7 @@ if ($_POST["email"]) {
             // Content
             $mail->isHTML(true);
             $mail->Subject = 'แจ้งเตือนการเปลี่ยนรหัสผ่าน';
-            $mail->Body    = "สวัสดีคุณ $surname หากต้องการแก้ไขรหัสผ่านของท่านในระบบ Secretary กรุณา <a href='http://localhost:/secretary/confirmpassword.php?id=$id&email=$email'>คลิกที่นี่</a>";
+            $mail->Body    = "สวัสดีคุณ $surname หากต้องการแก้ไขรหัสผ่านของท่านในระบบ Secretary กรุณา <a href='http://secretary4.com/confirmpassword.php?id=$id&email=$email'>คลิกที่นี่</a>";
 
             $mail->send();
 

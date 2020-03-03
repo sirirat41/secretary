@@ -50,7 +50,12 @@ if (isset($_GET['id'])) {
     $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";
     $updateArticles .= " code = '$code' ,type = $type, attribute ='$attribute', model = '$model' , bill_no = '$billNo' ,department_id = $departmentID ,";
     $updateArticles .= " asset_no = '$assetNo' , d_gen = '$dGen', seller_id = $sellerID , unit = $unit , price = $price ,";
-    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring', picture = '$imgeName'";
+    $updateArticles .= " durable_year = $durableYear , storage = '$storage' , money_type = '$moneyType' , acquiring = '$acquiring'";
+    if($imgeName != ""){
+         $updateArticles .= ", picture = '$imgeName'";
+
+    }
+   
     $updateArticles .= " WHERE id = $id";
     mysqli_query($conn, $updateArticles) or die("Cannot update articles" . mysqli_error($conn));
     header('Location: ../display_durable_articles.php?message=แก้ไขข้อมูลสำเร็จ');

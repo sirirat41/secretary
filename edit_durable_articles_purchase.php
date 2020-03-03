@@ -82,7 +82,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                      <input class="form-control body-text" type="number" placeholder="order_no" id="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
+                      <input class="form-control body-text" type="text" placeholder="order_no" id="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
                       <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
-                      <input class="form-control body-text" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" name="articles_pattern" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" id="code" name="code" value="<?php echo $item["code"]; ?>" readonly>
                       <small style="color: red"> *ตัวอย่าง: ค.สง 7700-100-{run_4}-2557</small>
                     </div>
                   </div>
@@ -397,14 +397,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="...">
+                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." >
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>
                         <span class="btn btn-raised btn-round btn-default btn-file">
                           <br>
                           <div class="col-2 offset-1">
-                            <input type="file" name="image" />
+                            <input type="file" name="image" id="image" />
                           </div>
                         </span>
                       </div>

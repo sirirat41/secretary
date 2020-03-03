@@ -211,7 +211,7 @@ $monthDay = ($dateMouth - $day) + 1;
 
                 </div>
                 <thead>
-                  <tr class="text-center body-text">
+                  <tr class="text-center">
                     <td><?php $dayY =  $purchase->format('d') . "\n";
                         $month =  $purchase->format('m') . "\n";
                         $year =  $purchase->format('Y');
@@ -249,7 +249,7 @@ $monthDay = ($dateMouth - $day) + 1;
                           } else {
                             echo ($dateMouth);
                           }
-                          echo (" " . $month . " ");
+                          echo month(" " . $month . " ");
                           if ($i >= 1) {
                             echo ($year + $i);
                           } else {
