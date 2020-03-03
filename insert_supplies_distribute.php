@@ -89,12 +89,14 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวน</label>
                       <input class="form-control" type="text" placeholder="number" name="number" id="number">
+                      <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="distribute_date">วันที่แจกจ่าย</label>
                       <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="distribute_date" name="distribute_date">
+                      <small id="alert-distribute_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -119,14 +121,15 @@ require "service/connection.php";
                     <div class="form-group bmd-form-group body-text">
                       <label for="flag">หมายเหตุ</label>
                       <input class="form-control" type="text" name="flag" placeholder="flag">
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
-                      ตกลง
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
+                      บันทึก
                     </button>
                     <!-- Modal -->
 
@@ -428,6 +431,44 @@ require "service/connection.php";
       console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
+    }
+
+    function validateData() {
+      var number = $('#number').val();
+      var distribute_date = $('#distribute_date').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(number) == "") {
+        validateCount++;
+        $('#number').focus();
+        $('#number').addClass('border border-danger');
+        $('#alert-number').show();
+      } else {
+        $('#number').removeClass('border border-danger');
+        $('#alert-number').hide();
+      }
+      if ($.trim(distribute_date) == "") {
+        validateCount++;
+        $('#distribute_date').addClass('border border-danger');
+        $('#alert-distribute_date').show();
+      } else {
+        $('#distribute_date').removeClass('border border-danger');
+        $('#alert-distribute_date').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
     }
   </script>
 

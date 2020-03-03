@@ -65,17 +65,18 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="name">หน่วยนับ</label>
-                      <input type="text" class="form-control body-text" name="name" id="inputname" aria-describedby="name" placeholder="name" value="<?php echo $item["name"]; ?>">
+                      <input type="text" class="form-control body-text" name="name" id="nameunit" aria-describedby="name" placeholder="name" value="<?php echo $item["name"]; ?>">
+                      <small id="alert-nameunit" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div></button>
 
-                   
+
                   </div>
                 </div>
               </form>
@@ -145,57 +146,75 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
-  
-              <script>
-                function search() {
-                  var kw = $("#keyword").val();
-                  $.ajax({
-                    url: 'service/service_search_json_unit.php',
-                    dataType: 'JSON',
-                    type: 'GET',
-                    data: {
-                      keyword: kw
-                    },
 
-                    success: function(data) {
-                      var tbody = $('#modal-articles-body');
-                      tbody.empty();
-                      console.log(data);
-                      for (i = 0; i < data.length; i++) {
-                        var item = data[i];
-                        var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
-                        $('<td>' + item.id + '</td>').appendTo(tr);
-                        $('<td>' + item.name + '</td>').appendTo(tr);
-                        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-                      }
-                    },
-                    error: function(error) {
-                      console.log(error);
-                    }
-                  })
-                }
+  <script>
+    function search() {
+      var kw = $("#keyword").val();
+      $.ajax({
+        url: 'service/service_search_json_unit.php',
+        dataType: 'JSON',
+        type: 'GET',
+        data: {
+          keyword: kw
+        },
 
-              </script>
+        success: function(data) {
+          var tbody = $('#modal-articles-body');
+          tbody.empty();
+          console.log(data);
+          for (i = 0; i < data.length; i++) {
+            var item = data[i];
+            var tr = $('<tr class="text-center"></tr>').appendTo(tbody);
+            $('<td>' + item.id + '</td>').appendTo(tr);
+            $('<td>' + item.name + '</td>').appendTo(tr);
+            $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      })
+    }
+    function validateData() {
+      var nameunit = $('#nameunit').val();
+      var validateCount = 0;
+      if ($.trim(nameunit) == "") {
+        validateCount++;
+        $('#nameunit').focus();
+        $('#nameunit').addClass('border border-danger');
+        $('#alert-nameunit').show();
+      } else {
+        $('#nameunit').removeClass('border border-danger');
+        $('#alert-nameunit').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
+  </script>
 
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body body-text">
-                            คุณต้องการบันทึกข้อมูลร้านค้าหรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body body-text">
+        คุณต้องการบันทึกข้อมูลร้านค้าหรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>

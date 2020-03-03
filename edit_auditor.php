@@ -71,6 +71,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ยศ</label>
                       <input class="form-control body-text" name="rank" type="text" autocomplete="off" placeholder="rank" id="rank"  value="<?php echo $item["rank"]; ?>">
+                      <small id="alert-rank" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -79,6 +80,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อ</label>
                       <input class="form-control body-text" name="Aname" type="text" autocomplete="off" placeholder="name" id="Aname"  value="<?php echo $item["Aname"]; ?>">
+                      <small id="alert-Aname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -87,6 +89,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
                       <input class="form-control body-text" name="position" type="text" placeholder="position" id="position"  value="<?php echo $item["position"]; ?>">
+                      <small id="alert-position" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -94,7 +97,7 @@ if (isset($_GET["id"])) {
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
@@ -218,6 +221,44 @@ if (isset($_GET["id"])) {
     $("#image").change(function() {
       readURL(this);
     });
+
+    function validateData() {
+      var rank = $('#rank').val();
+      var Aname = $('#Aname').val();
+      var position = $('#position').val();
+      var validateCount = 0;
+      if ($.trim(rank) == "") {
+        validateCount++;
+        $('#rank').focus();
+        $('#rank').addClass('border border-danger');
+        $('#alert-rank').show();
+      } else {
+        $('#rank').removeClass('border border-danger');
+        $('#alert-rank').hide();
+      }
+      if ($.trim(Aname) == "") {
+        validateCount++;
+        $('#Aname').addClass('border border-danger');
+        $('#alert-Aname').show();
+      } else {
+        $('#Aname').removeClass('border border-danger');
+        $('#alert-Aname').hide();
+      }
+      if ($.trim(position) == "") {
+        validateCount++;
+        $('#position').addClass('border border-danger');
+        $('#alert-position').show();
+      } else {
+        $('#position').removeClass('border border-danger');
+        $('#alert-position').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

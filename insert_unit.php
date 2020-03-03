@@ -64,12 +64,13 @@ require "service/connection.php";
                   <div class="form-group bmd-form-group body-text">
                     <label class="bmd-label-floating">ชื่อหน่วยนับ</label>
                     <input class="form-control" type="text" name="name" id="nameunit" placeholder="nameunit">
+                    <small id="alert-nameunit" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                  <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                     ตกลง
                   </button>
                 </div>
@@ -146,12 +147,31 @@ require "service/connection.php";
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
       ?>
     })
+    function validateData() {
+      var nameunit = $('#nameunit').val();
+      var validateCount = 0;
+      if ($.trim(nameunit) == "") {
+        validateCount++;
+        $('#nameunit').focus();
+        $('#nameunit').addClass('border border-danger');
+        $('#alert-nameunit').show();
+      } else {
+        $('#nameunit').removeClass('border border-danger');
+        $('#alert-nameunit').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

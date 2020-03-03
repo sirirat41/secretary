@@ -79,12 +79,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
                       <input class="form-control body-text" type="text" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
+                      <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
                       <input class="form-control body-text" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
+                      <small id="alert-purchase_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -93,6 +95,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
                       <input class="form-control body-text" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
+                      <small id="alert-order_by" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -101,12 +104,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="receiver">ชื่อผู้รับ</label>
                       <input type="text" class="form-control body-text" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $item["receiver"]; ?>">
+                      <small id="alert-receiver" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่ตรวจรับ</label>
                       <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $newReceiveDate; ?>">
+                      <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -114,8 +119,8 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="receive_address">สถานที่จัดส่ง</label>
-                      <textarea class="form-control body-text" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?>
-                    </textarea>
+                      <textarea class="form-control body-text" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?></textarea>
+                      <small id="alert-receive_address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -125,16 +130,18 @@ if (isset($_GET["id"])) {
                       <label class="bmd-label-floating">หน่วยงาน :</label>
                       <input class="form-control body-text" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
+                      <small id="alert-short_goverment" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="bill_no">เลขที่ใบเบิก</label>
-                      <input type="text" class="form-control body-text" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="bill_no" id="bill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                      <small id="alert-bill_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                  </div>
-                  <div class="row">
+                </div>
+                <div class="row">
                   <div class="col-8">
                     <div class="form-group body-text">
                       <label for="exampleFormControlSelect1">หน่วยงาน</label>
@@ -156,17 +163,18 @@ if (isset($_GET["id"])) {
                   <div class="col-4">
                     <div class="form-group body-text">
                       <label for="price">จำนวนเงิน</label>
-                      <input type="text" class="form-control body-text" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                      <input type="text" class="form-control body-text" name="price" id="price" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                      <small id="alert-price" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
-                  <div class="row">
+                <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control body-text" name="supplies_id"  id="supplies_id">
+                          <select class="form-control body-text" name="supplies_id" id="supplies_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM supplies_stock ";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -174,9 +182,9 @@ if (isset($_GET["id"])) {
                               if ($item["unit"] == $row["id"]) {
                                 echo '<option value="' . $row["id"] . '"selected>' . $row["supplies_name"] . '</option>';
                               } else {
-                              echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
+                              }
                             }
-                          }
                             ?>
                           </select>
                         </div>
@@ -188,7 +196,7 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                 </div>
-               
+
                 <div class="row">
                   <div class="col-6 ">
                     <div class="form-group body-text">
@@ -207,7 +215,7 @@ if (isset($_GET["id"])) {
                         ?>
                       </select>
                     </div>
-                    </div>
+                  </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
@@ -391,7 +399,7 @@ if (isset($_GET["id"])) {
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
-                            ?>
+                          ?>
                             <tr class="text-center body-text">
                               <td><?php echo thainumDigit($row["id"]); ?></td>
                               <td><?php echo thainumDigit($row["seq"]); ?></td>
@@ -451,6 +459,107 @@ if (isset($_GET["id"])) {
                 console.log(error);
               }
             })
+          }
+
+          function validateData() {
+            var order_no = $('#order_no').val();
+            var purchase_date = $('#purchase_date').val();
+            var order_by = $('#order_by').val();
+            var receiver = $('#receiver').val();
+            var receive_date = $('#receive_date').val();
+            var receive_address = $('#receive_address').val();
+            var short_goverment = $('#short_goverment').val();
+            var bill_no = $('#bill_no').val();
+            var price = $('#price').val();
+            var number = $('#number').val();
+            var validateCount = 0;
+            if ($.trim(order_no) == "") {
+              validateCount++;
+              $('#order_no').focus();
+              $('#order_no').addClass('border border-danger');
+              $('#alert-order_no').show();
+            } else {
+              $('#order_no').removeClass('border border-danger');
+              $('#alert-order_no').hide();
+            }
+            if ($.trim(purchase_date) == "") {
+              validateCount++;
+              $('#purchase_date').addClass('border border-danger');
+              $('#alert-purchase_date').show();
+            } else {
+              $('#purchase_date').removeClass('border border-danger');
+              $('#alert-purchase_date').hide();
+            }
+            if ($.trim(order_by) == "") {
+              validateCount++;
+              $('#order_by').addClass('border border-danger');
+              $('#alert-order_by').show();
+            } else {
+              $('#order_by').removeClass('border border-danger');
+              $('#alert-order_by').hide();
+            }
+            if ($.trim(receiver) == "") {
+              validateCount++;
+              $('#receiver').addClass('border border-danger');
+              $('#alert-receiver').show();
+            } else {
+              $('#receiver').removeClass('border border-danger');
+              $('#alert-receiver').hide();
+            }
+            if ($.trim(receive_date) == "") {
+              validateCount++;
+              $('#receive_date').addClass('border border-danger');
+              $('#alert-receive_date').show();
+            } else {
+              $('#receive_date').removeClass('border border-danger');
+              $('#alert-receive_date').hide();
+            }
+            if ($.trim(receive_address) == "") {
+              validateCount++;
+              $('#receive_address').addClass('border border-danger');
+              $('#alert-receive_address').show();
+            } else {
+              $('#receive_address').removeClass('border border-danger');
+              $('#alert-receive_address').hide();
+            }
+            if ($.trim(short_goverment) == "") {
+              validateCount++;
+              $('#short_goverment').addClass('border border-danger');
+              $('#alert-short_goverment').show();
+            } else {
+              $('#short_goverment').removeClass('border border-danger');
+              $('#alert-short_goverment').hide();
+            }
+            if ($.trim(bill_no) == "") {
+              validateCount++;
+              $('#bill_no').addClass('border border-danger');
+              $('#alert-bill_no').show();
+            } else {
+              $('#bill_no').removeClass('border border-danger');
+              $('#alert-bill_no').hide();
+            }
+            if ($.trim(price) == "") {
+              validateCount++;
+              $('#price').addClass('border border-danger');
+              $('#alert-price').show();
+            } else {
+              $('#price').removeClass('border border-danger');
+              $('#alert-price').hide();
+            }
+            if ($.trim(number) == "") {
+              validateCount++;
+              $('#number').addClass('border border-danger');
+              $('#alert-number').show();
+            } else {
+              $('#number').removeClass('border border-danger');
+              $('#alert-number').hide();
+            }
+            if (validateCount > 0) {
+
+
+            } else {
+              $('#exampleModal').modal();
+            }
           }
         </script>
 </body>

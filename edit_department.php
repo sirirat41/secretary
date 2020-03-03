@@ -72,6 +72,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
                       <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department" value="<?php echo $item["fullname"]; ?>">
+                      <small id="alert-department" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -79,7 +80,8 @@ if (isset($_GET["id"])) {
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
-                      <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortdepartment" value="<?php echo $item["shortname"]; ?>">
+                      <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortname" value="<?php echo $item["shortname"]; ?>">
+                      <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -88,12 +90,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
                       <input class="form-control" name="bulding" type="text" placeholder="bulding" id="bulding" value="<?php echo $item["bulding"]; ?>">
+                      <small id="alert-bulding" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชั้น</label>
                       <input class="form-control" name="floor" type="text" placeholder="floor" id="floor" value="<?php echo $item["floor"]; ?>">
+                      <small id="alert-floor" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -102,6 +106,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรศัพท์</label>
                       <input class="form-control" name="tel" type="text" placeholder="tel" id="tel" value="<?php echo $item["tel"]; ?>">
+                      <small id="alert-tel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -110,6 +115,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรสาร</label>
                       <input class="form-control" name="fax" type="text" placeholder="fax" id="fax" value="<?php echo $item["fax"]; ?>">
+                      <small id="alert-fax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -134,7 +140,7 @@ if (isset($_GET["id"])) {
                 <br>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
                       บันทึก
                       <div class="ripple-container"></div>
                     </button>
@@ -235,7 +241,7 @@ if (isset($_GET["id"])) {
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
@@ -257,6 +263,71 @@ if (isset($_GET["id"])) {
     $("#image").change(function() {
       readURL(this);
     });
+
+    function validateData() {
+      var department = $('#department').val();
+      var shortname = $('#shortname').val();
+      var bulding = $('#bulding').val();
+      var floor = $('#floor').val();
+      var tel = $('#tel').val();
+      var fax = $('#fax').val();
+      var validateCount = 0;
+      if ($.trim(department) == "") {
+        validateCount++;
+        $('#department').focus();
+        $('#department').addClass('border border-danger');
+        $('#alert-department').show();
+      } else {
+        $('#department').removeClass('border border-danger');
+        $('#alert-department').hide();
+      }
+      if ($.trim(shortname) == "") {
+        validateCount++;
+        $('#shortname').addClass('border border-danger');
+        $('#alert-shortname').show();
+      } else {
+        $('#shortname').removeClass('border border-danger');
+        $('#alert-shortname').hide();
+      }
+      if ($.trim(bulding) == "") {
+        validateCount++;
+        $('#bulding').addClass('border border-danger');
+        $('#alert-bulding').show();
+      } else {
+        $('#bulding').removeClass('border border-danger');
+        $('#alert-bulding').hide();
+      }
+      if ($.trim(floor) == "") {
+        validateCount++;
+        $('#floor').addClass('border border-danger');
+        $('#alert-floor').show();
+      } else {
+        $('#floor').removeClass('border border-danger');
+        $('#alert-floor').hide();
+      }
+      if ($.trim(tel) == "") {
+        validateCount++;
+        $('#tel').addClass('border border-danger');
+        $('#alert-tel').show();
+      } else {
+        $('#tel').removeClass('border border-danger');
+        $('#alert-tel').hide();
+      }
+      if ($.trim(fax) == "") {
+        validateCount++;
+        $('#fax').addClass('border border-danger');
+        $('#alert-fax').show();
+      } else {
+        $('#fax').removeClass('border border-danger');
+        $('#alert-fax').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -72,12 +72,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
                       <input type="text" class="form-control body-text" name="document_no" id="document_no" placeholder="no" autofocus value="<?php echo $item["document_no"]; ?>">
+                      <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="transfer_date">วันที่โอน</label>
                       <input type="date" class="form-control body-text" name="transfer_date" id="transfer_date" placeholder="transfer_date" value="<?php echo $newreceiveDate; ?>">
+                      <small id="alert-transfer_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -87,16 +89,16 @@ if (isset($_GET["id"])) {
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-10 ">
-                        <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
+                          <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
-                              echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
-                            } else {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                            }
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -114,6 +116,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="transfer_form">ชื่อผู้โอน</label>
                       <input type="text" class="form-control body-text" id="transfer_from" name="transfer_from" placeholder="name" value="<?php echo $item["transfer_from"]; ?>">
+                      <small id="alert-transfer_from" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -122,14 +125,15 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="inputEmail3">หมายเหตุ</label>
                       <textarea class="form-control body-text" id="flag" name="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                      <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" onclick="validateData();">
                       บันทึก
-                  
+
                   </div>
                 </div>
             </div>
@@ -260,7 +264,7 @@ if (isset($_GET["id"])) {
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["seq"]); ?></td>
@@ -427,27 +431,75 @@ if (isset($_GET["id"])) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
+
+    function validateData() {
+      var document_no = $('#document_no').val();
+      var transfer_date = $('#transfer_date').val();
+      var transfer_from = $('#transfer_from').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(document_no) == "") {
+        validateCount++;
+        $('#document_no').focus();
+        $('#document_no').addClass('border border-danger');
+        $('#alert-document_no').show();
+      } else {
+        $('#document_no').removeClass('border border-danger');
+        $('#alert-document_no').hide();
+      }
+      if ($.trim(transfer_date) == "") {
+        validateCount++;
+        $('#transfer_date').addClass('border border-danger');
+        $('#alert-transfer_date').show();
+      } else {
+        $('#transfer_date').removeClass('border border-danger');
+        $('#alert-transfer_date').hide();
+      }
+      if ($.trim(transfer_from) == "") {
+        validateCount++;
+        $('#transfer_from').addClass('border border-danger');
+        $('#alert-transfer_from').show();
+      } else {
+        $('#transfer_from').removeClass('border border-danger');
+        $('#alert-transfer_from').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
 
 </body>
 </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            คุณต้องการบันทึกข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการบันทึกข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

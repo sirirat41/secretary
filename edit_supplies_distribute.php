@@ -74,16 +74,16 @@ if (isset($_GET["id"])) {
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-10 ">
-                        <select class="form-control" name="product_id" id="product_id">
+                          <select class="form-control" name="product_id" id="product_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM supplies";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
-                              echo '<option value="' . $row["id"] .'"selected>' . $row["code"] . '</option>';
-                            } else {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                            }
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              }
                             }
                             ?>
                           </select>
@@ -101,12 +101,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group bmd-form-group body-text">
                       <label for="number" class="bmd-label-floating">จำนวน</label>
                       <input class="form-control body-text" type="text" placeholder="number" name="number" id="number" value="<?php echo $item["number"]; ?>">
+                      <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class=" col-6 ">
                     <div class="form-group body-text">
                       <label for="distribute_date">วันที่แจกจ่าย</label>
                       <input class="form-control body-text" type="date" placeholder="distribute_date" name="distribute_date" id="distribute_date" value="<?php echo $newOrderDate; ?>">
+                      <small id="alert-distribute_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -133,11 +135,11 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
-                      ตกลง
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
+                      บันทึก
                     </button>
                     <!-- Modal -->
-                
+
                   </div>
                 </div>
               </form>
@@ -266,7 +268,7 @@ if (isset($_GET["id"])) {
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo $row["supplies_name"]; ?></td>
@@ -431,27 +433,65 @@ if (isset($_GET["id"])) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
-    
+
+    function validateData() {
+      var number = $('#number').val();
+      var distribute_date = $('#distribute_date').val();
+      var flag = $('#flag').val();
+      var validateCount = 0;
+      if ($.trim(number) == "") {
+        validateCount++;
+        $('#number').focus();
+        $('#number').addClass('border border-danger');
+        $('#alert-number').show();
+      } else {
+        $('#number').removeClass('border border-danger');
+        $('#alert-number').hide();
+      }
+      if ($.trim(distribute_date) == "") {
+        validateCount++;
+        $('#distribute_date').addClass('border border-danger');
+        $('#alert-distribute_date').show();
+      } else {
+        $('#distribute_date').removeClass('border border-danger');
+        $('#alert-distribute_date').hide();
+      }
+      if ($.trim(flag) == "") {
+        validateCount++;
+        $('#flag').addClass('border border-danger');
+        $('#alert-flag').show();
+      } else {
+        $('#flag').removeClass('border border-danger');
+        $('#alert-flag').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
 
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body ">
-                            คุณต้องการบันทึกข้อมูลแจกจ่ายวัสดุ (สิ้นเปลือง) หรือไม่ ?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                            <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        คุณต้องการบันทึกข้อมูลแจกจ่ายวัสดุ (สิ้นเปลือง) หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="$('#form_insert').submit();">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>

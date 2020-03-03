@@ -58,6 +58,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="name">ชื่อประเภทวัสดุ</label>
                       <input type="text" class="form-control" name="name" id="name" placeholder="name" autofocus>
+                      <small id="alert-name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -66,6 +67,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="shortname">ชื่อย่อ</label>
                       <input type="text" class="form-control" name="shortname" id="shortname" placeholder="shortname">
+                      <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -74,12 +76,13 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="status">สถานะ</label>
                       <input type="text" class="form-control" name="status" id="status" placeholder="status">
+                      <small id="alert-status" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" onclick="validateData();">
                       บันทึก
                     </button>
 
@@ -163,12 +166,50 @@ require "service/connection.php";
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
       ?>
     })
+
+    function validateData() {
+      var name = $('#name').val();
+      var shortname = $('#shortname').val();
+      var status = $('#status').val();
+      var validateCount = 0;
+      if ($.trim(name) == "") {
+        validateCount++;
+        $('#name').focus();
+        $('#name').addClass('border border-danger');
+        $('#alert-name').show();
+      } else {
+        $('#name').removeClass('border border-danger');
+        $('#alert-name').hide();
+      }
+      if ($.trim(shortname) == "") {
+        validateCount++;
+        $('#shortname').addClass('border border-danger');
+        $('#alert-shortname').show();
+      } else {
+        $('#shortname').removeClass('border border-danger');
+        $('#alert-shortname').hide();
+      }
+      if ($.trim(status) == "") {
+        validateCount++;
+        $('#status').addClass('border border-danger');
+        $('#alert-status').show();
+      } else {
+        $('#status').removeClass('border border-danger');
+        $('#alert-status').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -65,6 +65,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="name">ชื่อประเภทวัสดุ</label>
                       <input type="text" class="form-control body-text" name="name" id="name" placeholder="name" value="<?php echo $item["name"]; ?>">
+                      <small id="alert-name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -73,13 +74,14 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="shortname">ชื่อย่อ</label>
                       <input type="text" class="form-control body-text" name="shortname" id="shortname" placeholder="shortname" value="<?php echo $item["shortname"]; ?>">
+                      <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
               </form>
               <div class="row">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" data-toggle="modal" data-target="#exampleModal">
+                  <button type="button" class="btn btn-danger btn-md btn-block" aria-pressed="false" autocomplete="off" onclick="validateData();">
                     บันทึก
                   </button>
                 </div>
@@ -162,12 +164,42 @@ if (isset($_GET["id"])) {
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
       ?>
     })
+
+    function validateData() {
+      var name = $('#name').val();
+      var shortname = $('#shortname').val();
+      var validateCount = 0;
+      if ($.trim(name) == "") {
+        validateCount++;
+        $('#name').focus();
+        $('#name').addClass('border border-danger');
+        $('#alert-name').show();
+      } else {
+        $('#name').removeClass('border border-danger');
+        $('#alert-name').hide();
+      }
+      if ($.trim(shortname) == "") {
+        validateCount++;
+        $('#shortname').addClass('border border-danger');
+        $('#alert-shortname').show();
+      } else {
+        $('#shortname').removeClass('border border-danger');
+        $('#alert-shortname').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    //console.log(error);
+    }
   </script>
   <!-- Message Modal-->
   <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -156,13 +156,12 @@ require "service/connection.php";
   <script>
     $(document).ready(function() {
       <?php
-      if (isset($_GET["message"])); {
+      if (isset($_GET["message"])) {
         $message = $_GET["message"];
         echo "$('#modal-message').modal();";
       }
       ?>
     })
-
     function validateData() {
       var name = $('#name').val();
       var shortname = $('#shortname').val();
@@ -190,6 +189,7 @@ require "service/connection.php";
       } else {
         $('#exampleModal').modal();
       }
+    //console.log(error);
     }
   </script>
   <!-- Message Modal-->

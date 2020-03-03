@@ -61,6 +61,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="supplies_name">ชื่อวัสดุ</label>
                       <input type="text" class="form-control" name="supplies_name" id="supplies_name" aria-describedby="supplies_name" placeholder="name">
+                      <small id="alert-supplies_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -86,6 +87,7 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="attribute">ลักษณะ/คุณสมบัติ</label>
                       <textarea class="form-control" name="attribute" id="attribute" rows="3" placeholder="address" id="attribute"></textarea>
+                      <small id="alert-attribute" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -93,8 +95,8 @@ require "service/connection.php";
 
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">
-                      ตกลง
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="validateData();">
+                      บันทึก
                     </button>
                     <!-- Modal -->
                   </div>
@@ -168,6 +170,36 @@ require "service/connection.php";
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script>
+    function validateData() {
+      var supplies_name = $('#supplies_name').val();
+      var attribute = $('#attribute').val();
+      var validateCount = 0;
+      if ($.trim(supplies_name) == "") {
+        validateCount++;
+        $('#supplies_name').focus();
+        $('#supplies_name').addClass('border border-danger');
+        $('#alert-supplies_name').show();
+      } else {
+        $('#supplies_name').removeClass('border border-danger');
+        $('#alert-supplies_name').hide();
+      }
+      if ($.trim(attribute) == "") {
+        validateCount++;
+        $('#attribute').addClass('border border-danger');
+        $('#alert-attribute').show();
+      } else {
+        $('#attribute').removeClass('border border-danger');
+        $('#alert-attribute').hide();
+      }
+      if (validateCount > 0) {
+
+
+      } else {
+        $('#exampleModal').modal();
+      }
+    }
+  </script>
 
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
