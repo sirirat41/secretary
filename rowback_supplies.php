@@ -94,13 +94,13 @@ $show = 10;
                       $sqlSelect .= " WHERE t.id = st.type and s.status = 0 and st.id = s.supplies_id";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (s.code like '%$keyword%' or s.type like '%$keyword%' or t.name like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or s.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
-                        ?>
+                      ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["seq"]); ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
@@ -112,7 +112,7 @@ $show = 10;
                               <i class="fas fa-sync-alt"></i>
                             </button>
                           <?php
-                          }
+                        }
 
                           ?>
                     </tbody>
@@ -137,13 +137,13 @@ $show = 10;
               </a>
             </li>
             <?php
-                $sqlSelectCount = "SELECT ss.*, t.name FROM supplies_stock as ss, durable_material_type as t";
-                $sqlSelectCount .= " WHERE ss.type = t.id and ss.status = 0";
-                if (isset($_GET["keyword"])) {
-                  $keyword = arabicnumDigit($_GET["keyword"]);
-                  $sqlSelectCount .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
-                }
-                $sqlSelectCount .= " Order by ss.id desc";
+            $sqlSelectCount = "SELECT s.*, t.name FROM supplies as s, durable_material_type as t, supplies_stock as st";
+            $sqlSelectCount .= " WHERE t.id = st.type and s.status = 0 and st.id = s.supplies_id";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or s.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -161,20 +161,20 @@ $show = 10;
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }

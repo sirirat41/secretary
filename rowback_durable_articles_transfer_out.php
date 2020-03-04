@@ -93,7 +93,7 @@ $show = 10;
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
+                        $sqlSelect .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%' or ar.code like '%$keyword%' or ar.attribute like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by trans.id desc LIMIT $start, $show";
@@ -103,7 +103,7 @@ $show = 10;
                         ?>
                         <tr class="text-center body-text">
                           <td><?php echo $row["transfer_date"]; ?></td>
-                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo $row["code"]; ?></td>
                           <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["transfer_to"]; ?></td>
                           <td class="td-actions text-center">
@@ -141,7 +141,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE trans.product_id = ar.id and trans.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
+              $sqlSelectCount .= " and (trans.product_id like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%' or ar.code like '%$keyword%' or ar.attribute like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by trans.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

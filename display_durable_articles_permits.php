@@ -93,7 +93,7 @@ $show = 10;
                       $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or p.receive_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or p.receive_date like '%$keyword%' or a.attribute like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -102,7 +102,7 @@ $show = 10;
                         ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["code"]); ?></td>
-                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
                           <td><?php echo ($row["permit_date"]); ?></td>
                           <td><?php echo ($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
@@ -144,11 +144,11 @@ $show = 10;
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT p.*, m.code , m.attribute ,m.model FROM durable_articles_permits as p,durable_articles as m";
-             $sqlSelectCount .= " WHERE p.product_id = m.id and p.status = 1";
+             $sqlSelectCount = "SELECT p.*, a.code , a.attribute ,a.model FROM durable_articles_permits as p,durable_articles as a";
+             $sqlSelectCount .= " WHERE p.product_id = a.id and p.status = 1";
              if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (m.code like '%$keyword%' or p.permit_date like '%$keyword%' or p.receive_date like '%$keyword%')";
+               $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or p.receive_date like '%$keyword%' or a.attribute like '%$keyword%')";
              }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

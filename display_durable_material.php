@@ -102,7 +102,7 @@ $show = 10;
                       $sqlSelect .= " WHERE m.type = t.id and m.status = s.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%' or m.status like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -161,7 +161,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE m.type = t.id and m.status = s.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%' or m.status like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by m.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

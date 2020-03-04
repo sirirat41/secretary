@@ -94,7 +94,7 @@ $show = 10;
                       $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
+                        $sqlSelect .= " and (sd.number like '%$keyword%' or sd.distribute_date like '%$keyword%' or s.code like '%$keyword%' or d.fullname like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -140,7 +140,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
+              $sqlSelectCount .= " and (sd.number like '%$keyword%' or sd.distribute_date like '%$keyword%' or s.code like '%$keyword%' or d.fullname like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by sd.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

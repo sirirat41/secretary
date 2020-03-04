@@ -97,7 +97,7 @@ $show = 10;
                       }
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%' or s.status_request like '%$keyword%' or s.action_request like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by s.id LIMIT $start, $show";
@@ -176,7 +176,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
             if (isset($_GET["keyword"])) {
               $keyword = $_GET["keyword"];
-              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%' or s.status_request like '%$keyword%' or s.action_request like '%$keyword%')";
             }
             if ($_SESSION["user_type"] == 2) {
               $sqlSelectCount .= " and s.user_request = " . $_SESSION["user_id"];

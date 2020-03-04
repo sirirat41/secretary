@@ -93,7 +93,7 @@ $show = 10;
                       $sqlSelect .= " WHERE status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $sqlSelect .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%'or number like '%$keyword%'or order_by like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
@@ -140,7 +140,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelect .= " and (code like '%$keyword%' or purchase_date like '%$keyword%')";
+              $sqlSelect .= " and (order_no like '%$keyword%' or purchase_date like '%$keyword%'or number like '%$keyword%'or order_by like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

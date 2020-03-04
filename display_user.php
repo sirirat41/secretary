@@ -95,7 +95,7 @@ $show = 10;
                       $sqlSelect .= " WHERE u.u_type = t.id and u.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (u.username like '%$keyword%' or u.surname like '%$keyword%')";
+                        $sqlSelect .= " and (u.username like '%$keyword%' or u.surname like '%$keyword%' or u.lastname like '%$keyword%' or u.position like '%$keyword%' or u.tel like '%$keyword%' or t.t_code like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by u.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -152,7 +152,7 @@ $show = 10;
              $sqlSelectCount .= " WHERE u.u_type = t.id and u.status = 1";
              if (isset($_GET["keyword"])) {
                $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (u.username like '%$keyword%' or u.surname like '%$keyword%')";
+               $sqlSelectCount .= " and (u.username like '%$keyword%' or u.surname like '%$keyword%' or u.lastname like '%$keyword%' or u.position like '%$keyword%' or u.tel like '%$keyword%' or t.t_code like '%$keyword%')";
              }
              $sqlSelectCount .= " Order by u.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

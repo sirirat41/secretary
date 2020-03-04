@@ -112,8 +112,7 @@ $show = 10;
                       $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id and sd.status = 1" ;
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
-                      
+                        $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%' or sd.number like '%$keyword%')";
                       }
                     //  echo $sqlSelect;
                       $sqlSelect .= $selectOnlyType;
@@ -173,7 +172,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id and sd.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
+              $sqlSelectCount .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%' or sd.number like '%$keyword%')";
             }
             $sqlSelectCount .= $selectOnlyType;
             $sqlSelectCount .= " Order by sd.id desc";
