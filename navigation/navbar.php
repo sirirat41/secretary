@@ -163,7 +163,7 @@ if (isset($_SESSION['user_id'])) {
             <a class="collapse-item displaya" href="display_durable_articles_type.php">ประเภทครุภัณฑ์</a>
             <a class="collapse-item displaym" href="display_durable_material_type.php">ประเภทวัสดุ</a>
             <a class="collapse-item auditor" href="edit_auditor.php?id=1">ผู้ตรวจสอบ </a>
-            <a class="collapse-item display" href="คู่มือการใช้งาน.pdf">คู่มือการใช้งาน</a>
+            <a class="collapse-item display" href="คู่มือการใช้งาน.pdf" target="_blank">คู่มือการใช้งาน</a>
 
           </div>
         </div>
@@ -411,7 +411,7 @@ if (isset($_SESSION['user_id'])) {
               <div class="bg-white py-2 collapse-inner rounded body-text-menu">
                 <a class="collapse-item displayun" href="display_unit.php">หน่วยนับ</a>
                 <a class="collapse-item displaym" href="display_durable_material_type.php">ประเภทวัสดุ</a>
-                <a class="collapse-item display" href="คู่มือการใช้งาน.pdf">คู่มือการใช้งาน</a>
+                <a class="collapse-item display" href="คู่มือการใช้งาน.pdf" target="_blank">คู่มือการใช้งาน</a>
 
               </div>
             </div>

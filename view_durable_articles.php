@@ -254,13 +254,13 @@ if (isset($_GET["id"])) {
 
                 </div>
                 <thead>
-                  <tr class="text-center body-text">
+                  <tr class="text-center">
                     <td><?php $dayY =  $purchase->format('d') . "\n";
-                        $month =  $purchase->format('m') . "\n";
-                        $year =  $purchase->format('Y');
-                        echo ($dayY);
-                        echo month($month);
-                        echo ($year);
+                              $month =  $purchase->format('m') . "\n";
+                              $year =  $purchase->format('Y');
+                              echo ($dayY);
+                              echo month($month);
+                              echo ($year);
                         ?>
                     </td>
                     <td><?php echo ($row["document_no"] . "<br>"); ?></td>
@@ -304,7 +304,7 @@ if (isset($_GET["id"])) {
                           } else {
                             echo ($dateMouth);
                           }
-                          echo (" " . $month . " ");
+                          echo month(" " . $month . " ");
                           if ($i >= 1) {
                             echo ($year + $i);
                           } else {
