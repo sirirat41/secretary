@@ -305,6 +305,7 @@ if (isset($_GET["id"])) {
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center body-text">
+                          <th>รูปภาพ</th>
                             <th>วันที่ชำรุด</th>
                             <th>รหัสครุภัณฑ์</th>
                             <th>หมายเหตุ</th>
@@ -314,7 +315,7 @@ if (isset($_GET["id"])) {
                         <tbody id="modal-articles-body">
                           <?php
 
-                          $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+                          $sqlSelect = "SELECT da.*, a.code ,a.picture FROM durable_articles_damage as da, durable_articles as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
@@ -325,11 +326,12 @@ if (isset($_GET["id"])) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                               <td><?php echo ($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["product_id"]; ?>);">
                                   <i class="fas fa-check"></i>
                                 </button>
                               <?php
@@ -408,15 +410,16 @@ if (isset($_GET["id"])) {
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var product_id = item["product_id"];
         var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.product_id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
       }
     }

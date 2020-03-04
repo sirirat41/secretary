@@ -280,12 +280,12 @@ if (isset($_GET["id"])) {
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-10 offset-1 ">
+            <div class="col-md-12 ">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
-                    <h5 class="m-0 font-weight-bold text-danger">
-                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุคงทน)</h5>
+                    <h4 class="m-0 font-weight-bold text-danger body-text">
+                      <i class="fas fa-wrench"></i> แสดงข้อมูลการซ่อม(วัสดุ)</h4>
                     <form class="form-inline" id="form-search">
                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
@@ -296,49 +296,53 @@ if (isset($_GET["id"])) {
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
-                          <tr class="text-center body-text">
-                            <th>วันที่ชำรุด</th>
-                            <th>รหัสครุภัณฑ์</th>
-                            <th>หมายเหตุ</th>
-                            <th>การทำงาน</th>
-                          </tr>
-                        </thead>
-                        <tbody id="modal-articles-body">
-                          <?php
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center body-text">
+                          <td>รูปภาพ</td>
+                          <th>วันที่ชำรุด</th>
+                          <th>รหัสวัสดุ</th>
+                          <th>หมายเหตุ</th>
+                          <th>การทำงาน</th>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-material-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-                          $sqlSelect = "SELECT da.*, m.code FROM durable_material_damage as da, durable_material as m";
-                          $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (da.damage_date like '%$keyword%' or m.code like '%$keyword%')";
-                          }
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"]
-                            ?>
-                            <tr class="text-center">
-                              <td><?php echo ($row["code"]); ?></td>
-                              <td><?php echo $row["damage_date"]; ?></td>
-                              <td><?php echo $row["flag"]; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              <?php
-                              }
-                              ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        $sqlSelect = "SELECT d.*, m.code ,m.picture FROM durable_material_damage as d, durable_material as m";
+                        $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (d.damage_date like '%$keyword%' or m.code like '%$keyword%')";
+                        }
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                        ?>
+                          <tr class="text-centerbody-text">
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                            <td><?php echo $row["damage_date"]; ?></td>
+                            <td><?php echo $row["code"]; ?></td>
+                            <td><?php echo $row["flag"]; ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedmaterial(<?php echo $row["product_id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center" id="pagination">
@@ -360,7 +364,7 @@ if (isset($_GET["id"])) {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
@@ -406,15 +410,16 @@ if (isset($_GET["id"])) {
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var product_id = item["product_id"];
         var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedMaterial(' + item.product_id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
       }
     }
@@ -450,7 +455,7 @@ if (isset($_GET["id"])) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

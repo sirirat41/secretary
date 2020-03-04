@@ -235,7 +235,7 @@ $show = 10;
                         $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (d.damage_date like '%$keyword%' or a.code like '%$keyword%')";
+                          $sqlSelect .= " and (d.damage_date like '%$keyword%' or a.code like '%$keyword%' or d.flag like '%$keyword%')";
                         }
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {

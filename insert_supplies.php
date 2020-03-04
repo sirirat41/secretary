@@ -323,21 +323,21 @@ require "service/connection.php";
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-left">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger body-text">
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search" id="input-search">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
+                    <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
                         <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
@@ -346,48 +346,52 @@ require "service/connection.php";
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center body-text">
+                          <td>ชื่อ</td>
+                          <td>จำนวน</td>
+                          <td>การทำงาน</td>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-supplies-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        $sqlSelect = "SELECT * FROM supplies_stock ";
+                        $sqlSelect .= " WHERE status = 1";
+                        // $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
+                        // $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (stock like '%$keyword%' or supplies_name like '%$keyword%')";
+                        }
+                        // echo $sqlSelect;
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
                           <tr class="text-center body-text">
-                            <th>ชื่อวัสดุ</th>
-                            <th>จำนวน</th>
-                            <th>การทำงาน</th>
+                            <td><?php echo ($row["stock"]); ?></td>
+                            <td><?php echo ($row["supplies_name"]); ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $sqlSelect = "SELECT * FROM supplies_stock as ss";
-                          $sqlSelect .= " WHERE ss.status = 1 ";
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
-                          }
-                          // echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
-                            ?>
-
-                            <tr class="text-center body-text">
-                              <td><?php echo ($row["supplies_name"]); ?></td>
-                              <td><?php echo ($row["stock"]); ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              <?php
-                              }
-                              ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                    </form>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center" id="pagination">
@@ -409,7 +413,7 @@ require "service/connection.php";
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
@@ -429,7 +433,7 @@ require "service/connection.php";
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies_stock.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {
@@ -455,14 +459,10 @@ require "service/connection.php";
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
-        var bill_no = item["bill_no"];
-        var code = item["code"];
-        var type = item["name"];
-        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + (bill_no) + '</td>').appendTo(tr);
-        $('<td>' + (code) + '</td>').appendTo(tr);
-        $('<td>' + (type) + '</td>').appendTo(tr);
+        var name = item["supplies_name"];
+        var stock = item["stock"];
+        $('<td>' + (name) + '</td>').appendTo(tr);
+        $('<td>' + (stock) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         
 

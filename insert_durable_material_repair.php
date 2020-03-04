@@ -219,6 +219,7 @@ $show = 10;
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center body-text">
+                          <td>รูปภาพ</td>
                           <th>วันที่ชำรุด</th>
                           <th>รหัสวัสดุ</th>
                           <th>หมายเหตุ</th>
@@ -230,7 +231,7 @@ $show = 10;
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-                        $sqlSelect = "SELECT d.*, m.code FROM durable_material_damage as d, durable_material as m";
+                        $sqlSelect = "SELECT d.*, m.code ,m.picture FROM durable_material_damage as d, durable_material as m";
                         $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
@@ -241,6 +242,7 @@ $show = 10;
                           $id = $row["id"]
                         ?>
                           <tr class="text-centerbody-text">
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo $row["damage_date"]; ?></td>
                             <td><?php echo $row["code"]; ?></td>
                             <td><?php echo $row["flag"]; ?></td>
@@ -325,11 +327,12 @@ $show = 10;
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
         var product_id = item["product_id"];
+        var picture = item["picture"];
         var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);

@@ -263,7 +263,7 @@ if (isset($_GET["id"])) {
                         $sqlSelect .= " WHERE a.supplies_id = s.id and s.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or s.supplies_name like '%$keyword%' or t.name like '%$keyword%')";
                         }
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {

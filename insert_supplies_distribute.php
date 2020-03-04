@@ -251,13 +251,14 @@ require "service/connection.php";
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                        $sqlSelect = "SELECT a.*, d.fullname , ss.supplies_name FROM supplies as a, department as d ,supplies_stock as ss";
-                        $sqlSelect .= " WHERE a.department_id = d.id and a.status = 1";
+                        $sqlSelect = "SELECT s.*, t.name ,ss.type,ss.supplies_name ,ss.stock FROM supplies as s,supplies_stock as ss , durable_material_type as t";
+                        $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.id ";
+
                         // $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
                         // $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                          $sqlSelect .= " and (s.code like '%$keyword%' or s.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
                         // echo $sqlSelect;
                         $result = mysqli_query($conn, $sqlSelect);
@@ -265,6 +266,7 @@ require "service/connection.php";
                           $id = $row["id"]
                           ?>
                           <tr class="text-center body-text">
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["supplies_name"]); ?></td>
