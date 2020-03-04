@@ -91,6 +91,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM unit";
+                      $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";
@@ -100,7 +101,7 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
-                        ?>
+                      ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["name"]); ?></td>
                           <td class="td-actions text-center">
@@ -139,6 +140,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM unit";
+            $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%')";
@@ -161,20 +163,20 @@ $show = 10;
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }

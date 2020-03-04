@@ -322,14 +322,14 @@ if (isset($_GET["id"])) {
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%')";
+                            $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%' or da.flag like '%$keyword%')";
                           }
                           $result = mysqli_query($conn, $sqlSelect);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
-                              <td><?php echo thainumDigit($row["code"]); ?></td>
+                              <td><?php echo ($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">

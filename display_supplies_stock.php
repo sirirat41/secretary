@@ -96,7 +96,7 @@ $show = 10;
                       $sqlSelect .= " WHERE ss.type = t.id and ss.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                        $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%' or t.name like '%$keyword%' or ss.attribute like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by ss.id desc LIMIT $start, $show";
@@ -145,7 +145,7 @@ $show = 10;
                  $sqlSelectCount .= " WHERE ss.type = t.id and ss.status = 1 ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+              $sqlSelectCount .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%' or t.name like '%$keyword%' or ss.attribute like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by ss.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

@@ -92,17 +92,13 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
-                        
-                      
                         ?>
                         <tr class="text-center">
                           <td><a class="nav-link active"  href='display_supplies_distribute.php?type=<?php echo $row['id']; ?>'>
                               <?php echo $row["name"]; ?></a></td>
-                  
                         </tr>
                       <?php
                       }
-
                       ?>
                     </tbody>
                   </table>

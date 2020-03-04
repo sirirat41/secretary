@@ -92,7 +92,7 @@ $show = 10;
                       $sqlSelect .= " WHERE p.product_id = a.id and p.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or a.attribute like '%$keyword%' or p.receive_date like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by p.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -101,9 +101,9 @@ $show = 10;
                         ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["code"]); ?></td>
-                          <td><?php echo $row["attribute"]; ?></td>
-                          <td><?php echo $row["permit_date"]; ?></td>
-                          <td><?php echo $row["receive_date"]; ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
+                          <td><?php echo ($row["permit_date"]); ?></td>
+                          <td><?php echo ($row["receive_date"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-permits').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
@@ -138,7 +138,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE p.product_id = a.id and p.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%')";
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or a.attribute like '%$keyword%' or p.receive_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

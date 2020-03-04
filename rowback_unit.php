@@ -57,7 +57,7 @@ $show = 10;
                 <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-city"></i> แสดงข้อมูลหน่วยนับ</h6>
                 <form class="form-inline">
                   <div>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i></button>
                     <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="แสดงข้อมูล" type="button" onclick="window.location.href='display_unit.php';">

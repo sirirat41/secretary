@@ -95,7 +95,7 @@ $show = 10;
                       $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
                       }
                       // echo $sqlSelect;
 
@@ -159,7 +159,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
             if (isset($_GET["keyword"])) {
               $keyword = $_GET["keyword"];
-              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

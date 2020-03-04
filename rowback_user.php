@@ -90,7 +90,7 @@ $show = 10;
                       $sqlSelect .= " WHERE status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (username like '%$keyword%' or surname like '%$keyword%')";
+                        $sqlSelect .= " and (username like '%$keyword%' or surname like '%$keyword%' or lastname like '%$keyword%')";
                       }
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -99,7 +99,7 @@ $show = 10;
                         <tr class="text-center body-text">
                           <td><?php echo ($row["username"]); ?></td>
                           <td><?php echo ($row["surname"]); ?></td>
-                          <td><?php echo $row["lastname"]; ?></td>
+                          <td><?php echo ($row["lastname"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-user').val('<?php echo $id; ?>')">
                               <i class="fas fa-sync-alt"></i>
@@ -134,7 +134,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = $_GET["keyword"];
-              $sqlSelectCount .= " and (username like '%$keyword%' or surname like '%$keyword%')";
+              $sqlSelectCount .= " and (username like '%$keyword%' or surname like '%$keyword%' or lastname like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

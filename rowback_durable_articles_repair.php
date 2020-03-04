@@ -93,7 +93,7 @@ $show = 10;
                       $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
+                        $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or r.seq like '%$keyword%' or r.repair_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
@@ -104,7 +104,7 @@ $show = 10;
                         <tr class="text-center body-text">
                           <td><?php echo $row["seq"]; ?></td>
                           <td><?php echo $row["repair_date"]; ?></td>
-                          <td><?php echo thainumDigit($row["code"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo $row["place"]; ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#rowback-repair').val('<?php echo $id; ?>')">
@@ -141,7 +141,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE r.damage_id = a.id and r.status = 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or r.place like '%$keyword%' or r.seq like '%$keyword%' or r.repair_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by r.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

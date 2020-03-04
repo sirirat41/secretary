@@ -88,9 +88,10 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_material_type";
+                      $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (name like '%$keyword%')";
+                        $sqlSelect .= " and (name like '%$keyword%' or shortname like '%$keyword%')";
                       }
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by id desc LIMIT $start, $show";
@@ -139,7 +140,7 @@ $show = 10;
             $sqlSelectCount .= " WHERE status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (name like '%$keyword%')";
+              $sqlSelectCount .= " and (name like '%$keyword%' or shortname like '%$keyword%')";
             }
             // echo $sqlSelect;
             $sqlSelectCount .= " Order by id desc LIMIT $start, $show";
