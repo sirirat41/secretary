@@ -262,14 +262,14 @@ $show = 50;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลหน่วยงานใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_department.php">
             <input type="hidden" id="remove-department" name="department_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

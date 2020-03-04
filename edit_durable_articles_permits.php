@@ -257,7 +257,6 @@ if (isset($_GET["id"])) {
                       <thead>
                         <tr class="text-center body-text">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
@@ -282,7 +281,6 @@ if (isset($_GET["id"])) {
                         ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo ($row["seq"]); ?></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["name"]); ?></td>
@@ -367,12 +365,10 @@ if (isset($_GET["id"])) {
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
-        var type = item["type"];
+        var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + seq + '</td>').appendTo(tr);
         $('<td>' + bill_no + '</td>').appendTo(tr);
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + type + '</td>').appendTo(tr);
@@ -413,7 +409,7 @@ if (isset($_GET["id"])) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

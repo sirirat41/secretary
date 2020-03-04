@@ -124,7 +124,7 @@ $show = 10;
                             $actionRequest = "ร้องขอการแก้ไข";
                             break;
                           case "request_delete":
-                            $actionRequest = "ร้องขอการลบข้อมูล";
+                            $actionRequest = "ร้องขอการยกเลิกข้อมูล";
                             break;
                         }
                         ?>
@@ -310,13 +310,13 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left">
-          คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_supplies.php">
             <input type="hidden" id="remove-supplies" name="supplies_id">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

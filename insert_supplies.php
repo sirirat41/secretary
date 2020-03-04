@@ -161,7 +161,7 @@ require "service/connection.php";
                         <div class="col-md-10 ">
                           <select class="form-control" name="supplies_id" id="supplies_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies_stock ";
+                            $sqlSelectType = "SELECT * FROM supplies_stock WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
@@ -337,7 +337,7 @@ require "service/connection.php";
                     <h6 class="m-0 font-weight-bold text-danger body-text">
                       <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
                     <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search" id="input-search">
                       <div>
                         <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
@@ -361,7 +361,7 @@ require "service/connection.php";
                         <tbody>
                           <?php
                           $sqlSelect = "SELECT * FROM supplies_stock as ss";
-                          // $sqlSelect .= " WHERE ss.supplies_name = s.id "
+                          $sqlSelect .= " WHERE ss.status = 1 ";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
                             $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
@@ -456,19 +456,18 @@ require "service/connection.php";
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + (seq) + '</td>').appendTo(tr);
         $('<td>' + (bill_no) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-        generatePagination();
+        
 
       }
+      generatePagination();
     }
 
     function nextPage() {
@@ -502,7 +501,7 @@ require "service/connection.php";
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

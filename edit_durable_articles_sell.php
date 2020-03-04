@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                         <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -238,7 +238,6 @@ if (isset($_GET["id"])) {
                       <thead>
                         <tr class="text-center body-text">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
@@ -263,7 +262,6 @@ if (isset($_GET["id"])) {
                           ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo ($row["seq"]); ?></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["name"]); ?></td>
@@ -347,12 +345,10 @@ if (isset($_GET["id"])) {
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
-        var type = item["type"];
+        var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + seq + '</td>').appendTo(tr);
         $('<td>' + bill_no + '</td>').appendTo(tr);
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + type + '</td>').appendTo(tr);

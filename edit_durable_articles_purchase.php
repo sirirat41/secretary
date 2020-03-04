@@ -228,8 +228,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                      <input class="form-control body-text" type="text" placeholder="asset_no" id="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>">
-                      <small id="alert-asset_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
+                      <input class="form-control body-text" type="text" placeholder="asset_no" id="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>" readonly>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -397,22 +396,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail img-raised">
-<<<<<<< HEAD
-                        <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." >
-=======
                         <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." id="image-preview">
->>>>>>> 23c7b1b3d8d855b4ff8cf36e55c99114e0fa68ea
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                       <div>
                         <span class="btn btn-raised btn-round btn-default btn-file">
                           <br>
                           <div class="col-2 offset-1">
-<<<<<<< HEAD
-                            <input type="file" name="image" id="image" />
-=======
                             <input type="file" name="image" id="image"/>
->>>>>>> 23c7b1b3d8d855b4ff8cf36e55c99114e0fa68ea
                           </div>
                         </span>
                       </div>
@@ -643,7 +634,7 @@ if (isset($_GET["id"])) {
       var model = $('#model').val();
       var bill_no = $('#bill_no').val();
       var budget = $('#budget').val();
-      var asset_no = $('#asset_no').val();
+      
       var d_gen = $('#d_gen').val();
       var price = $('#price').val();
       var storage = $('#storage').val();
@@ -745,14 +736,14 @@ if (isset($_GET["id"])) {
         $('#budget').removeClass('border border-danger');
         $('#alert-budget').hide();
       }
-      if ($.trim(asset_no) == "") {
-        validateCount++;
-        $('#asset_no').addClass('border border-danger');
-        $('#alert-asset_no').show();
-      } else {
-        $('#asset_no').removeClass('border border-danger');
-        $('#alert-asset_no').hide();
-      }
+      // if ($.trim(asset_no) == "") {
+      //   validateCount++;
+      //   $('#asset_no').addClass('border border-danger');
+      //   $('#alert-asset_no').show();
+      // } else {
+      //   $('#asset_no').removeClass('border border-danger');
+      //   $('#alert-asset_no').hide();
+      // }
       if ($.trim(d_gen) == "") {
         validateCount++;
         $('#d_gen').addClass('border border-danger');

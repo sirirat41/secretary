@@ -113,11 +113,15 @@ $show = 10;
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%')";
+                      
                       }
+                    //  echo $sqlSelect;
                       $sqlSelect .= $selectOnlyType;
                       $sqlSelect .= " Order by sd.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
+                     
                       while ($row = mysqli_fetch_assoc($result)) {
+
                         $id = $row["id"]
                         ?>
                         <tr class="text-center body-text">
@@ -135,7 +139,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_supplies_distribute.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-distribute').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-distribute').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -302,14 +306,15 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลการแจกจ่ายวัสดุสิ้นเปลืองใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลการแจกจ่ายวัสดุสิ้นเปลืองใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_supplies_distribute.php?type=<?php echo $type; ?>">
             <input type="hidden" id="remove-distribute" name="distribute_id">
+            <input type="hidden" id="remove-product-id" name="product_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

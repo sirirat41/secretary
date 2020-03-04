@@ -76,6 +76,8 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="status">สถานะ</label>
                       <input type="text" class="form-control" name="status" id="status" placeholder="status">
+                      <small style="color: red"> * 1 = วัสดุคงทน  </small><br>
+                      <small style="color: red"> * 2 = วัสดุสิ้นเปลือง</small>
                       <small id="alert-status" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

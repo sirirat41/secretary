@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = mysqli_fetch_assoc($result);
     $stockID = $row["id"];
     $stock = $row["stock"];
+    $supplies = $row["supplies_id"];
     $type = $row["type"];
 
     $log = "เพิ่มข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
@@ -24,11 +25,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO supplies_distribute(product_id ,number ,distribute_date ,department_id , flag)";
         $sql .= " VALUES($idcode[0], '$number', '$distributedate', $departmentId, '$flag')"; 
 
+     
     
 
         if (mysqli_query($conn, $sql)) {
+
+        $sqlSelect = "SELECT d.*,s.supplies_id ,s.code FROM supplies_distribute as d , supplies as s WHERE s.id = $productId";
+        $resultOld = mysqli_query($conn, $sqlSelect);
+        $dataOld = mysqli_fetch_assoc($resultOld);
+       $number = $dataOld["number"];
+       $product = $dataOld["product_id"];
             
-       $sqlUpdate = "UPDATE supplies SET status = 10 WHERE id IN ( SELECT id FROM( SELECT id FROM supplies WHERE status = 1 and code = $idcode[1] LIMIT '$number')tmp)";
+       $sqlUpdate = "UPDATE supplies SET status = 10 WHERE id = $product";
         mysqli_query($conn, $sqlUpdate);
         
             $sqlUpdatestock = "UPDATE supplies_stock SET stock = stock - $number WHERE id = $stockID";

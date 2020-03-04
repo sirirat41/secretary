@@ -8,8 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $place = $_POST["place"];
     $flag = $_POST["flag"];
 
-    $sql = "INSERT INTO durable_material_repair(seq, damage_id, repair_date, place, flag)";
-    $sql .= " VALUES($seq, $damageid, '$repairdate', '$place', '$flag')";
+    $sql = "INSERT INTO durable_material_repair( damage_id, repair_date, place, flag)";
+    $sql .= " VALUES( $damageid, '$repairdate', '$place', '$flag')";
 
     $log = "เพิ่มข้อมูลการซ่อมวัสดุคงทน";
     logServer($conn, $log);

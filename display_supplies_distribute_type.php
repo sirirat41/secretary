@@ -83,7 +83,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_material_type";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect .= " WHERE status = 2";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%')";
@@ -127,7 +127,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM durable_material_type";
-            $sqlSelectCount .= " WHERE status = 1";
+            $sqlSelectCount .= " WHERE status = 2";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%')";
@@ -263,14 +263,14 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลหน่วยงานใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_department.php">
             <input type="hidden" id="remove-department" name="department_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

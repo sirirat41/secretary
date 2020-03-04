@@ -281,7 +281,7 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลชำรุดของวัสดุ (คงทน) ใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลชำรุดของวัสดุ (คงทน) ใช่หรือไม่
 
           <form id="form-drop" method="post" action="service/service_drop_durable_material_damage.php">
             <input type="hidden" id="remove-material" name="damage_id">
@@ -289,7 +289,7 @@ $show = 10;
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

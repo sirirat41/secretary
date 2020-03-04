@@ -200,7 +200,7 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                      <input class="form-control body-text" type="text" placeholder="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>">
+                      <input class="form-control body-text" type="text" placeholder="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>" readonly>
                     </div>
                   </div>
                 </div>

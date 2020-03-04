@@ -283,12 +283,12 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลรับบริจาคครุภัณฑ์ใช่หรือไม่ </div>
+          คุณต้องการยกเลิกข้อมูลรับบริจาคครุภัณฑ์ใช่หรือไม่ </div>
         <form id="form-drop" method="post" action="service/service_drop_durable_articles_receive_donate.php">
           <input type="hidden" id="remove-receive_donate" name="receive_donate_id">
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+            <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
           </div>
       </div>
     </div>
