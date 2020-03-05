@@ -63,14 +63,14 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
-                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="no" autofocus id="order_no">
+                      <input type="text" class="form-control" name="order_no" id="order_no" placeholder="" autofocus id="order_no">
                       <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
-                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="purchase_date" id="purchase_date">
+                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="" id="purchase_date">
                       <small id="alert-purchase_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group body-text">
                       <label for="order_by">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="name" name="order_by" id="order_by">
+                      <input type="text" class="form-control" name="order_by" id="order_by" placeholder="" name="order_by" id="order_by">
                       <small id="alert-order_by" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -97,7 +97,7 @@ require "service/connection.php";
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label for="receiver">ชื่อผู้รับ</label>
-                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" id="receiver">
+                      <input type="text" class="form-control" name="receiver" id="receiver" placeholder="" id="receiver">
                       <small id="alert-receiver" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -113,7 +113,7 @@ require "service/connection.php";
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="receive_address">สถานที่จัดส่ง</label>
-                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"></textarea>
+                      <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="" id="address"></textarea>
                       <small id="alert-receive_address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -122,7 +122,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment">
+                      <input class="form-control" type="text" placeholder="" name="short_goverment" id="short_goverment">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                       <small id="alert-short_goverment" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
@@ -133,7 +133,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="bill_no">เลขที่ใบเบิก</label>
-                      <input type="text" class="form-control" name="bill_no" id="bill_no" aria-describedby="bill_no" placeholder="bill_no">
+                      <input type="text" class="form-control" name="bill_no" id="bill_no" aria-describedby="bill_no" placeholder="">
                       <small id="alert-bill_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -161,7 +161,7 @@ require "service/connection.php";
                         <div class="col-md-10 ">
                           <select class="form-control" name="supplies_id" id="supplies_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies_stock ";
+                            $sqlSelectType = "SELECT * FROM supplies_stock WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
@@ -195,7 +195,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="price">จำนวนเงิน</label>
-                      <input type="text" class="form-control" name="price" id="price" aria-describedby="price" placeholder="price">
+                      <input type="text" class="form-control" name="price" id="price" aria-describedby="price" placeholder="">
                       <small id="alert-price" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -204,7 +204,7 @@ require "service/connection.php";
                   <div class="col-4">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวนวัสดุ</label>
-                      <input class="form-control" type="text" placeholder="number" name="number" id="number">
+                      <input class="form-control" type="number" placeholder="" name="number" id="number">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -323,21 +323,21 @@ require "service/connection.php";
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
+          <h5 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-left">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <nav class="navbar navbar-light bg-light">
                     <h6 class="m-0 font-weight-bold text-danger body-text">
-                      <i class="fas fa-file-invoice-dollar"></i> เพิ่มข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h6>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                      <i class="fas fa-business-time"></i> แสดงข้อมูล(วัสดุสิ้นเปลือง)</h6>
+                    <form class="form-inline" id="form-search">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
                       <div>
                         <button class="btn btn-outline-danger" type="submit">
                           <i class="fas fa-search"></i>
@@ -346,48 +346,52 @@ require "service/connection.php";
                 </div>
               </div>
               </nav>
-              <form>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table table-hover ">
-                        <thead>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover ">
+                      <thead>
+                        <tr class="text-center body-text">
+                          <td>ชื่อ</td>
+                          <td>จำนวน</td>
+                          <td>การทำงาน</td>
+                        </tr class="text-center">
+                      </thead>
+                      <tbody id="modal-supplies-body">
+                        <!-- ///ดึงข้อมูล -->
+                        <?php
+                        //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        $sqlSelect = "SELECT * FROM supplies_stock ";
+                        $sqlSelect .= " WHERE status = 1";
+                        // $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
+                        // $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
+                        if (isset($_GET["keyword"])) {
+                          $keyword = arabicnumDigit($_GET["keyword"]);
+                          $sqlSelect .= " and (stock like '%$keyword%' or supplies_name like '%$keyword%')";
+                        }
+                        // echo $sqlSelect;
+                        $result = mysqli_query($conn, $sqlSelect);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $id = $row["id"]
+                          ?>
                           <tr class="text-center body-text">
-                            <th>ชื่อวัสดุ</th>
-                            <th>จำนวน</th>
-                            <th>การทำงาน</th>
+                            <td><?php echo ($row["stock"]); ?></td>
+                            <td><?php echo ($row["supplies_name"]); ?></td>
+                            <td class="td-actions text-center">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
+                                <i class="fas fa-check"></i>
+                              </button>
+                            </td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $sqlSelect = "SELECT * FROM supplies_stock as ss";
-                          // $sqlSelect .= " WHERE ss.supplies_name = s.id "
-                          if (isset($_GET["keyword"])) {
-                            $keyword = arabicnumDigit($_GET["keyword"]);
-                            $sqlSelect .= " and (ss.stock like '%$keyword%' or ss.supplies_name like '%$keyword%')";
-                          }
-                          // echo $sqlSelect;
-                          $result = mysqli_query($conn, $sqlSelect);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row["id"];
-                            ?>
-
-                            <tr class="text-center body-text">
-                              <td><?php echo ($row["supplies_name"]); ?></td>
-                              <td><?php echo ($row["stock"]); ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
-                                  <i class="fas fa-check"></i>
-                                </button>
-                              <?php
-                              }
-                              ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                    </form>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center" id="pagination">
@@ -409,7 +413,7 @@ require "service/connection.php";
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
       </div>
     </div>
   </div>
@@ -429,7 +433,7 @@ require "service/connection.php";
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies_stock.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {
@@ -455,20 +459,15 @@ require "service/connection.php";
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
-        var code = item["code"];
-        var type = item["name"];
-        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + (seq) + '</td>').appendTo(tr);
-        $('<td>' + (bill_no) + '</td>').appendTo(tr);
-        $('<td>' + (code) + '</td>').appendTo(tr);
-        $('<td>' + (type) + '</td>').appendTo(tr);
+        var name = item["supplies_name"];
+        var stock = item["stock"];
+        $('<td>' + (name) + '</td>').appendTo(tr);
+        $('<td>' + (stock) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-        generatePagination();
+        
 
       }
+      generatePagination();
     }
 
     function nextPage() {
@@ -502,7 +501,7 @@ require "service/connection.php";
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

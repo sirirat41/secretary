@@ -3,21 +3,16 @@ require "connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['damage_id'])) {
     $damage_id = $_POST["damage_id"];
-
-    $log = "ลบข้อมูลการชำรุดครุภัณฑ์ รหัส " . $damage_id;
+    $productid = $_POST["product_id"];
+    $log = "ยกเลิกข้อมูลการชำรุดครุภัณฑ์";
     logServer($conn, $log);
 
     $sqlUpdate = "UPDATE durable_articles_damage SET status = 0 WHERE id = " . $damage_id;
-    if (mysqli_query($conn, $sqlUpdate)) {
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update donate_id: " . mysqli_error($conn));
 
-        $sqlUpdate1 ="UPDATE durable_articles SET status = 1 WHERE id = $damage_id";
-        mysqli_query($conn ,$sqlUpdate1);
-        header('Location: ../display_durable_articles_damage.php?message=ลบข้อมูลสำเร็จ');
+        $sqlUpdate ="UPDATE durable_articles SET status = 1 WHERE id = $productid";
+       
+        mysqli_query($conn, $sqlUpdate) or die("Cannot update donate_id: " . mysqli_error($conn));
 
-    } else {
-        header('Location: ../display_durable_articles_damage.php?message=ลบข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
-    }
-} else {
-    header('Location: ../display_durable_articles_damage.php?message=ข้อมูลผิดพลาด');
+    header('Location: ../display_durable_articles_damage.php?message=ยกเลิกข้อมูลสำเร็จ');
 }
-?>

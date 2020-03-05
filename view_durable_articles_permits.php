@@ -108,9 +108,9 @@ if (isset($_GET["id"])) {
                       <div class="col-md-12">
                         <label class="text-dark body-text" for="fullname">หน่วยงานที่ยืม : </label>
                         <?php echo ($row["fullname"]); ?>
-                        <label class="text-dark body-text" for="bulding"> ตึก </label>
+                        <label class="text-dark body-text" for="bulding">  </label>
                         <?php echo ($row["bulding"]); ?>
-                        <label class="text-dark body-text" for="floor"> ชั้น </label>
+                        <label class="text-dark body-text" for="floor"> </label>
                         <?php echo ($row["floor"]); ?>
                       </div>
                     </div>

@@ -14,7 +14,7 @@ if(isset($_GET['id'])) {
     $updateOld = "UPDATE durable_material SET status = 1 WHERE id = $oldProductID";
     mysqli_query($conn, $updateOld);
 
-    $log = "แก้ไขข้อมูลการชำรุดวัสดุคงทน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการชำรุดวัสดุคงทน";
     logServer($conn, $log);
 
     $updatePurchase = "UPDATE durable_material SET status = 3";

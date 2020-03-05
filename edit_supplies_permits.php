@@ -69,7 +69,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="book_no">เลขที่หนังสือ</label>
-                      <input type="text" class="form-control body-text" name="book_no" id="book_no" placeholder="no" autofocus value="<?php echo $item["book_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="book_no" id="book_no" placeholder="" autofocus value="<?php echo $item["book_no"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -77,7 +77,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="product_id" type="text" placeholder="" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                   </div>
                 </div>
                 </div>
@@ -86,7 +86,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="number">จำนวน</label>
 
-                      <input type="text" class="form-control body-text" name="number" id="number" placeholder="number" value="<?php echo $item["number"]; ?>">
+                      <input type="number" class="form-control body-text" name="number" id="number" placeholder="" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -94,13 +94,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="date" class="form-control body-text" name="permit_date" id="permit_date" placeholder="permitdate" value="<?php echo $newpermit_date; ?>">
+                      <input type="date" class="form-control body-text" name="permit_date" id="permit_date" placeholder="" value="<?php echo $newpermit_date; ?>">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="receivedate" value="<?php echo $newreceivedate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="" value="<?php echo $newreceivedate; ?>">
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ if (isset($_GET["id"])) {
                         <div class="col-md-12">
                           <div class="form-group body-text">
                             <label for="flag">หมายเหตุ</label>
-                            <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                            <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder=""><?php echo $item["flag"]; ?></textarea>
                           </div>
                         </div>
                       </div>

@@ -115,7 +115,7 @@ $monthDay = ($dateMouth - $day) + 1;
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="code">รหัสวัสดุ (คงทน) : </label>
+                      <label class="text-dark body-text" for="code">รหัสวัสดุคงทน : </label>
                       <?php echo ($row["code"]); ?>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ $monthDay = ($dateMouth - $day) + 1;
                       <?php echo ($row["durable_material_type_name"]); ?>
                     </div>
                     <div class="col-md-6">
-                      <label class="text-dark body-text" for="name">ชื่อวัสดุ (คงทน) : </label>
+                      <label class="text-dark body-text" for="name">ชื่อวัสดุคงทน : </label>
                       <?php echo ($row["name"]); ?>
                     </div>
                   </div>
@@ -147,7 +147,7 @@ $monthDay = ($dateMouth - $day) + 1;
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="name">ร้านค้า : </label>
+                      <label class="text-dark body-text" for="name">ชื่อผู้ขาย : </label>
                       <?php echo ($row["seller_name"]); ?>
                     </div>
                   </div>

@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['account_id'])) {
     $account_id = $_POST["account_id"];
     $sqlUpdate = "UPDATE supplies_account SET status = 1 WHERE id = " . $account_id;
     
-    $log = "ลบข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง รหัส " . $account_id;
+    $log = "ลบข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
     if (mysqli_query($conn, $sqlUpdate)) {

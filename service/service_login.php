@@ -8,7 +8,7 @@
             $username = $_POST["username"];
             $password = $_POST["password"];
             $password = md5($password);
-            $sql = "SELECT * FROM user WHERE username = '$username' and password = '$password'";
+            $sql = "SELECT * FROM user WHERE username = '$username' and password = '$password' and status = 1";
             $response["sql"] = $sql;
             $result = mysqli_query($conn, $sql);
             $row = mysqli_num_rows($result);

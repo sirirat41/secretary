@@ -90,7 +90,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="code">รหัส : </label>
+                      <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง : </label>
                       <?php echo ($row["code"]); ?>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุ : </label>
+                      <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุสิ้นเปลือง : </label>
                       <?php echo ($row["supplies_name"]); ?>
                     </div>
                   </div>

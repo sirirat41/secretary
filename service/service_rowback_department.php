@@ -4,7 +4,7 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department_id"] )) {
     $department_id = $_POST["department_id"];
 
-    $log = "กู้คืนข้อมูลหน่วยงาน รหัส " . $department_id ;
+    $log = "กู้คืนข้อมูลหน่วยงาน";
     logServer($conn, $log);
 
 

@@ -6,7 +6,7 @@ if(isset($_GET['id'])) {
     $name = $_POST["name"];
 
 
-    $log = "แก้ไขข้อมูลหน่วยงาน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลหน่วยงาน";
     logServer($conn, $log);
 
     $updateUnit = "UPDATE unit SET name = '$name'";

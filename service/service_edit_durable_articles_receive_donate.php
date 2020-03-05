@@ -12,7 +12,7 @@ if(isset($_GET["id"])) {
     $number = $_POST["number"];
     $flag = $_POST["flag"];
 
-    $log = "แก้ไขข้อมูลการรับบริจาคครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการรับบริจาคครุภัณฑ์";
     logServer($conn, $log);
 
     

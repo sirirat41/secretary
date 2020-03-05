@@ -295,7 +295,7 @@ require "service/connection.php";
                     <label class="bmd-label-floating">ประเภทเงิน :</label>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input body-text" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ"> เงินงบประมาณ
+                        <input class="form-check-input body-text" type="radio" name="money_type" id="inlineRadio1" value="เงินงบประมาณ" <?php echo "checked" ?>> เงินงบประมาณ
                         <span class="circle">
                           <span class="check"></span>
                         </span>
@@ -334,7 +334,7 @@ require "service/connection.php";
                     <label class="bmd-label-floating body-text">วิธีการได้มา :</label>
                     <div class="form-check form-check-radio form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input body-text" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง"> เฉพาะเจาะจง
+                        <input class="form-check-input body-text" type="radio" name="acquiring" id="inlineRadio1" value="เฉพาะเจาะจง" <?php echo "checked" ?>> เฉพาะเจาะจง
                         <span class="circle">
                           <span class="check"></span>
                         </span>

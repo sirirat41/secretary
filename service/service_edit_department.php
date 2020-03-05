@@ -9,7 +9,7 @@ if(isset($_GET['id'])) {
     $bulding = $_POST["bulding"];
     $floor = $_POST["floor"];
 
-    $log = "แก้ไขข้อมูลหน่วยงาน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลหน่วยงาน";
     logServer($conn, $log);
 
     $target_dir = "../depart/";
@@ -20,7 +20,12 @@ if(isset($_GET['id'])) {
     }
 
     $updatePurchase = "UPDATE department SET fullname = '$fullname',";
-    $updatePurchase .= " shortname = '$shortname', fax = '$fax' , bulding = '$bulding' , floor = '$floor' ,pic = '$imgeName'";
+    $updatePurchase .= " shortname = '$shortname', fax = '$fax' , bulding = '$bulding' , floor = '$floor'";
+    if($imgeName != ""){
+        $updateArticles .= ", pic = '$imgeName'";
+
+   }
+  
     $updatePurchase .= " WHERE id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update department: " . mysqli_error($conn));
     header('Location: ../display_department.php?message=แก้ไขข้อมูลสำเร็จ');

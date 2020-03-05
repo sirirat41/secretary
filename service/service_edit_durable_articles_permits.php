@@ -11,7 +11,7 @@ if(isset($_GET["id"])) {
     $department_id = $_POST["department_id"];
     $flag = $_POST["flag"];
     
-    $log = "แก้ไขข้อมูลการยืม-คืนครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการยืม-คืนครุภัณฑ์";
     logServer($conn, $log);
 
     $sqlSelect = "SELECT * FROM durable_articles_permits WHERE id = $id";

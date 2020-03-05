@@ -65,7 +65,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="name">หน่วยนับ</label>
-                      <input type="text" class="form-control body-text" name="name" id="nameunit" aria-describedby="name" placeholder="name" value="<?php echo $item["name"]; ?>">
+                      <input type="text" class="form-control body-text" name="name" id="nameunit" aria-describedby="name" placeholder="" value="<?php echo $item["name"]; ?>">
                       <small id="alert-nameunit" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

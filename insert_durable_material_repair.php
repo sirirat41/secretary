@@ -57,14 +57,8 @@ $show = 10;
             <div class="card-body">
               <form method="post" action="service/service_insert_durable_material_repair.php" id="form_insert">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group body-text">
-                      <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq">
-                      <small id="alert-inputseq" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
-                    </div>
-                  </div>
-                  <div class="col-md-8">
+                  
+                  <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="repair_date">วันที่ซ่อม</label>
                       <input type="date" class="form-control" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="">
@@ -80,7 +74,7 @@ $show = 10;
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material ";
+                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 3";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -225,6 +219,7 @@ $show = 10;
                     <table class="table table-hover ">
                       <thead>
                         <tr class="text-center body-text">
+                          <td>รูปภาพ</td>
                           <th>วันที่ชำรุด</th>
                           <th>รหัสวัสดุ</th>
                           <th>หมายเหตุ</th>
@@ -236,7 +231,7 @@ $show = 10;
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-                        $sqlSelect = "SELECT d.*, m.code FROM durable_material_damage as d, durable_material as m";
+                        $sqlSelect = "SELECT d.*, m.code ,m.picture FROM durable_material_damage as d, durable_material as m";
                         $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
@@ -247,6 +242,7 @@ $show = 10;
                           $id = $row["id"]
                         ?>
                           <tr class="text-centerbody-text">
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo $row["damage_date"]; ?></td>
                             <td><?php echo $row["code"]; ?></td>
                             <td><?php echo $row["flag"]; ?></td>
@@ -331,11 +327,12 @@ $show = 10;
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
-        var picture = item["picture"];
         var product_id = item["product_id"];
+        var picture = item["picture"];
         var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
@@ -375,7 +372,7 @@ $show = 10;
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
@@ -410,20 +407,19 @@ $show = 10;
     }
 
     function validateData() {
-      var inputseq = $('#inputseq').val();
       var inputrepair_date = $('#inputrepair_date').val();
       var place = $('#place').val();
       var flag = $('#flag').val();
       var validateCount = 0;
-      if ($.trim(inputseq) == "") {
-        validateCount++;
-        $('#inputseq').focus();
-        $('#inputseq').addClass('border border-danger');
-        $('#alert-inputseq').show();
-      } else {
-        $('#inputseq').removeClass('border border-danger');
-        $('#alert-inputseq').hide();
-      }
+      // if ($.trim(inputseq) == "") {
+      //   validateCount++;
+      //   $('#inputseq').focus();
+      //   $('#inputseq').addClass('border border-danger');
+      //   $('#alert-inputseq').show();
+      // } else {
+      //   $('#inputseq').removeClass('border border-danger');
+      //   $('#alert-inputseq').hide();
+      // }
       if ($.trim(inputrepair_date) == "") {
         validateCount++;
         $('#inputrepair_date').addClass('border border-danger');

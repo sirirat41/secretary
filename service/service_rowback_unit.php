@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["unit_id"] )) {
     $unit_id = $_POST["unit_id"];
     $sqlUpdate ="UPDATE unit SET status = 1 WHERE id = " .$unit_id;
 
-    $log = "กู้คืนข้อมูลหน่วยนับ รหัส " . $unit_id ;
+    $log = "กู้คืนข้อมูลหน่วยนับ";
     logServer($conn, $log);
 
     

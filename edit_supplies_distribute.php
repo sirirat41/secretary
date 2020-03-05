@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
+                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -100,14 +100,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label for="number" class="bmd-label-floating">จำนวน</label>
-                      <input class="form-control body-text" type="text" placeholder="number" name="number" id="number" value="<?php echo $item["number"]; ?>">
+                      <input class="form-control body-text" type="text" placeholder="" name="number" id="number" value="<?php echo $item["number"]; ?>">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class=" col-6 ">
                     <div class="form-group body-text">
                       <label for="distribute_date">วันที่แจกจ่าย</label>
-                      <input class="form-control body-text" type="date" placeholder="distribute_date" name="distribute_date" id="distribute_date" value="<?php echo $newOrderDate; ?>">
+                      <input class="form-control body-text" type="date" placeholder="" name="distribute_date" id="distribute_date" value="<?php echo $newOrderDate; ?>">
                       <small id="alert-distribute_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -116,7 +116,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน</label>
-                      <select class="form-control body-text" name="department_id" name="department_id" id="department_id" value="<?php echo $item["department_id"]; ?>">
+                      <select class="form-control body-text" name="department_id"  id="department_id" value="<?php echo $item["department_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -263,7 +263,7 @@ if (isset($_GET["id"])) {
                         $sqlSelect .= " WHERE a.supplies_id = s.id and s.type = t.id and a.status = 1 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
+                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or s.supplies_name like '%$keyword%' or t.name like '%$keyword%')";
                         }
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -361,9 +361,9 @@ if (isset($_GET["id"])) {
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + thaiNumber(supplies_name) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(code) + '</td>').appendTo(tr);
-        $('<td>' + thaiNumber(type) + '</td>').appendTo(tr);
+        $('<td>' + (supplies_name) + '</td>').appendTo(tr);
+        $('<td>' + (code) + '</td>').appendTo(tr);
+        $('<td>' + (type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
 
@@ -401,7 +401,7 @@ if (isset($_GET["id"])) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
@@ -437,7 +437,6 @@ if (isset($_GET["id"])) {
     function validateData() {
       var number = $('#number').val();
       var distribute_date = $('#distribute_date').val();
-      var flag = $('#flag').val();
       var validateCount = 0;
       if ($.trim(number) == "") {
         validateCount++;
@@ -455,14 +454,6 @@ if (isset($_GET["id"])) {
       } else {
         $('#distribute_date').removeClass('border border-danger');
         $('#alert-distribute_date').hide();
-      }
-      if ($.trim(flag) == "") {
-        validateCount++;
-        $('#flag').addClass('border border-danger');
-        $('#alert-flag').show();
-      } else {
-        $('#flag').removeClass('border border-danger');
-        $('#alert-flag').hide();
       }
       if (validateCount > 0) {
 

@@ -99,7 +99,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="model">ร่นแบบ : </label>
+                      <label class="text-dark body-text" for="model">รุ่นแบบ : </label>
                       <?php echo ($row["model"]); ?>
                     </div>
                   </div>

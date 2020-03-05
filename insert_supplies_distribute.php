@@ -67,7 +67,7 @@ require "service/connection.php";
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
+                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . ':' . $row["code"] . '">' . $row["code"] . '</option>';
@@ -88,14 +88,14 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวน</label>
-                      <input class="form-control" type="text" placeholder="number" name="number" id="number">
+                      <input class="form-control" type="number" placeholder="" name="number" id="number">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="distribute_date">วันที่แจกจ่าย</label>
-                      <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="distribute_date" name="distribute_date">
+                      <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date">
                       <small id="alert-distribute_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน</label>
-                      <select class="form-control" name="department_id" name="department_id" id="department_id">
+                      <select class="form-control" name="department_id" id="department_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -120,7 +120,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <input class="form-control" type="text" name="flag" placeholder="flag">
+                      <input class="form-control" type="text" name="flag" placeholder="" id="flag">
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -241,7 +241,6 @@ require "service/connection.php";
                       <thead>
                         <tr class="text-center body-text">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสวัสดุ</td>
                           <td>ประเภท</td>
@@ -252,20 +251,22 @@ require "service/connection.php";
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-                        $sqlSelect = "SELECT a.*, t.name FROM supplies as a, durable_material_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        $sqlSelect = "SELECT s.*, t.name ,ss.type,ss.supplies_name ,ss.stock FROM supplies as s,supplies_stock as ss , durable_material_type as t";
+                        $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.id ";
+
                         // $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
                         // $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
+                          $sqlSelect .= " and (s.code like '%$keyword%' or s.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
+                        // echo $sqlSelect;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
                           ?>
                           <tr class="text-center body-text">
-                            <td><?php echo ($row["seq"]); ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["supplies_name"]); ?></td>
@@ -353,12 +354,10 @@ require "service/connection.php";
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var id = item["id"];
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + (seq) + '</td>').appendTo(tr);
         $('<td>' + (bill_no) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
@@ -399,7 +398,7 @@ require "service/connection.php";
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

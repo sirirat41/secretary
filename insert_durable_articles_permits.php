@@ -90,14 +90,14 @@ $show = 10;
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="date" class="form-control body-text" name="permit_date" placeholder="permitdate" id="permit_date">
+                      <input type="date" class="form-control body-text" name="permit_date" placeholder="" id="permit_date">
                       <small id="alert-permit_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control body-text" name="receive_date" placeholder="receivedate" id="receive_date">
+                      <input type="date" class="form-control body-text" name="receive_date" placeholder="" id="receive_date">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -111,7 +111,7 @@ $show = 10;
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["bulding"] . " ชั้น" . $row["floor"] . '</option>';
+                          echo '<option value="' . $row["id"] . '">' . $row["bulding"] . " " . $row["floor"] . '</option>';
                           // <option><?php echo $row["id"] . " " . $row["name"]; 
                         }
                         ?>
@@ -123,7 +123,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder="flag"></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder=""></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -239,7 +239,6 @@ $show = 10;
                       <thead>
                         <tr class="text-center body-text">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
@@ -264,7 +263,6 @@ $show = 10;
                           ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo ($row["seq"]); ?></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["name"]); ?></td>
@@ -350,12 +348,10 @@ $show = 10;
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + (seq) + '</td>').appendTo(tr);
         $('<td>' + (bill_no) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);

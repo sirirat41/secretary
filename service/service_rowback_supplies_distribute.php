@@ -4,7 +4,7 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['distribute_id'])) {
     $distribute_id = $_POST["distribute_id"];
 
-    $log = "กู้คืนข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง รหัส " . $distribute_id ;
+    $log = "กู้คืนข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
     $sqlUpdate = "UPDATE supplies_distribute SET status = 1 WHERE id = " . $distribute_id;

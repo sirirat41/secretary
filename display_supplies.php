@@ -74,6 +74,7 @@ $show = 10;
                   <table class="table table-hover body-text">
                     <thead>
                       <tr class="text-center">
+                        <th>ลำดับ</th>
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
@@ -91,14 +92,14 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
-                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status != 0";
+                      $sqlSelect = "SELECT s.*, ss.supplies_name ,t.status_name FROM supplies as s, supplies_stock as ss ,status as t";
+                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = t.id and s.status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
                       }
                       // echo $sqlSelect;
-
+                      $count = $start + 1;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -111,6 +112,7 @@ $show = 10;
                         }
                         ?>
                         <tr class="text-center">
+                          <td><?php echo $count++; ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo ($row["bill_no"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
@@ -291,9 +293,9 @@ $show = 10;
         </div>
         <div class="modal-body text-left">
           <?php if ($_SESSION["user_type"] == 1) { ?>
-            คุณต้องการลบข้อมูลวัสดุใช่หรือไม่
+            คุณต้องการยกเลิกข้อมูลวัสดุใช่หรือไม่
           <?php } else { ?>
-            กรุณาใส่เหตุการลบข้อมูล
+            กรุณาใส่เหตุการยกเลิกข้อมูล
           <?php } ?>
           <input type="hidden" id="temp-id">
           <form id="form-drop" method="post" action="service/service_drop_supplies.php">
@@ -307,9 +309,9 @@ $show = 10;
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           <?php if ($_SESSION["user_type"] == 1) { ?>
-            <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit();">ยืนยันการลบข้อมูล</button>
+            <button type="button" class="btn btn-danger" onclick="$('#form-drop').submit();">ยืนยันการยกเลิกข้อมูล</button>
           <?php } else { ?>
-            <button type="button" class="btn btn-danger" onclick="rejectRequest();">ยืนยันการร้องขอลบข้อมูล</button>
+            <button type="button" class="btn btn-danger" onclick="rejectRequest();">ยืนยันการร้องขอยกเลิกข้อมูล</button>
           <?php } ?>
         </div>
       </div>

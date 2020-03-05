@@ -59,7 +59,7 @@ $show = 10;
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno">
+                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ $show = 10;
                         <div class="col-md-10">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material";
+                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -102,14 +102,14 @@ $show = 10;
                   <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="donate_name">ชื่อผู้บริจาค</label>
-                      <input type="text" class="form-control" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="donatename">
+                      <input type="text" class="form-control" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="">
                       <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="form-group body-text">
                       <label for="number">ราคา</label>
-                      <input type="text" class="form-control" name="number" id="number" aria-describedby="number" placeholder="price">
+                      <input type="text" class="form-control" name="number" id="number" aria-describedby="number" placeholder="">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -118,7 +118,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="" rows="3"></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -237,7 +237,6 @@ $show = 10;
                       <thead>
                         <tr class="text-center body-text">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสวัสดุ</td>
                           <td>ประเภท</td>
@@ -262,7 +261,6 @@ $show = 10;
                           ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo ($row["seq"]); ?></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["name"]); ?></td>
@@ -348,12 +346,10 @@ $show = 10;
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + (seq) + '</td>').appendTo(tr);
         $('<td>' + (bill_no) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
@@ -384,17 +380,17 @@ $show = 10;
       $('<li class="page-item" id="next-page"> <a class="page-link" href="#" onclick="nextPage();" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li>').appendTo($('#pagination'));
       $('new-page').removeClass();
       maxPage = numberOfPage;
-
       var countDiv = parseInt((currentPage - 1) / showPageSection);
       var start_i = (countDiv * showPageSection);
       var sectionGroup = ((countDiv * showPageSection) + showPageSection);
       var end_i = sectionGroup > maxPage ? maxPage : sectionGroup;
 
+
       for (let i = start_i; i < end_i; i++) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

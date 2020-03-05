@@ -28,6 +28,17 @@ if (!isset($_SESSION["user_type"])) {
         $num);
     };
 
+    function thai($thai){
+        return str_replace(array('รอการอนุมัติ' , 'อนุมัติแล้ว' , 'ปฎิเสธการร้องขอ' , 'ร้องขอการแก้ไข' , 'ร้องขอการยกเลิกข้อมูล'),
+        array(  "waiting_approve" , "approved" , "rejected" , "request_update" , "request_delete"),
+        $thai);
+    };
+    function eng($thai){
+        return str_replace(array( "waiting_approve" , "approved" , "rejected" , "request_update" , "request_delete"),
+        array( 'รอการอนุมัติ' , 'อนุมัติแล้ว' , 'ปฎิเสธการร้องขอ' , 'ร้องขอการแก้ไข' , 'ร้องขอการยกเลิกข้อมูล'),
+        $thai);
+    };
+
     function logServer($conn ,$action) {
         $userID = $_SESSION["user_id"];
         $sql = "INSERT INTO log(user_id, action) VALUES($userID ,'$action')";

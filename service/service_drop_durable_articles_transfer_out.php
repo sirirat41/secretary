@@ -1,21 +1,18 @@
 <?php
 require "connection.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["transfer_in_out"] )) {
+    $transfer_inID = $_POST["transfer_in_out"];
+    $productid = $_POST["product_id"];
+    $sqlUpdate ="UPDATE durable_articles_transfer_out SET status = 0 WHERE id = ". $transfer_inID;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["transfer_out_id"] )) {
-    $transfer_outID = $_POST["transfer_out_id"];
-    $sqlUpdate ="UPDATE durable_articles_transfer_out SET status = 0 WHERE id = ". $transfer_outID;
-
-    $log = "ลบข้อมูลการโอนออกครุภัณฑ์ รหัส " . $transfer_outID;
+    $log = "ยกเลิกข้อมูลการโอนเข้าครุภัณฑ์";
     logServer($conn, $log);
 
-    if (mysqli_query($conn, $sqlUpdate)) {
-        header('Location: ../display_durable_articles_transfer_out.php?message=ลบข้อมูลสำเร็จ');
-    } else {
-        header('Location: ../display_durable_articles_transfer_out.php?message=ลบข้อมูลไม่สำเร็จ');
-    }
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update transfer_out_id: " . mysqli_error($conn));
 
-} else {
-    header('Location: ../display_durable_articles_transfer_out.php?message=ข้อมูลผิดพลาด');
+    $sqlUpdate = "UPDATE durable_articles SET status = 1";
+    $sqlUpdate .= " WHERE id = $productid";
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update transfer_out_id: " . mysqli_error($conn));
+
+    header('Location: ../display_durable_articles_transfer_out.php?message=ยกเลิกข้อมูลสำเร็จ');
 }
-
-?>

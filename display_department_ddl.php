@@ -68,7 +68,7 @@ $show = 10;
                     <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_department.php" target="_blank">
+                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" target="_blank" href="printall_department_type.php?id=<?php echo $row['id']; ?>">
                       <i class="fas fa-print"></i>
                     </a>
                 </form>

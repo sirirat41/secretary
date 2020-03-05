@@ -59,7 +59,7 @@ if (isset($_GET["id"])) {
         </p>
       </div>
       <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-6 offset-md-3">
           <div class="card shado mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-wrench"></i> แก้ไขข้อมูลการซ่อม(ครุภัณฑ์)</h6>
@@ -67,14 +67,8 @@ if (isset($_GET["id"])) {
             <div class="card-body">
               <form method="post" action="service/service_edit_durable_articles_repair.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group body-text">
-                      <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control body-text" name="seq" id="inputseq" aria-describedby="seq" placeholder="seq" autofocus value="<?php echo $item["seq"]; ?>">
-                      <small id="alert-inputseq" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
-                    </div>
-                  </div>
-                  <div class="col-md-8">
+                 
+                  <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="repair_date">วันที่ซ่อม</label>
                       <input type="date" class="form-control body-text" name="repair_date" id="inputrepair_date" aria-describedby="repair_date" placeholder="" value="<?php echo $newrepairdate; ?>">
@@ -84,13 +78,15 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="row">
                   <div class="col-12 ">
+
                     <div class="form-group">
                       <label for="damage_id">รหัสครุภัณฑ์(ชำรุด)</label>
                       <div class="row">
-                        <div class="col-10 ">
+                        
+                        <div class="col-10">
                           <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 4";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["damage_id"] == $row["id"]) {
@@ -114,7 +110,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea type="text" class="form-control body-text" name="place" id="place" rows="3" placeholder="place"><?php echo $item["place"]; ?></textarea>
+                      <textarea type="text" class="form-control body-text" name="place" id="place" rows="3" placeholder=""><?php echo $item["place"]; ?></textarea>
                       <small id="alert-place" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -309,6 +305,7 @@ if (isset($_GET["id"])) {
                       <table class="table table-hover ">
                         <thead>
                           <tr class="text-center body-text">
+                          <th>รูปภาพ</th>
                             <th>วันที่ชำรุด</th>
                             <th>รหัสครุภัณฑ์</th>
                             <th>หมายเหตุ</th>
@@ -318,7 +315,7 @@ if (isset($_GET["id"])) {
                         <tbody id="modal-articles-body">
                           <?php
 
-                          $sqlSelect = "SELECT da.*, a.code FROM durable_articles_damage as da, durable_articles as a";
+                          $sqlSelect = "SELECT da.*, a.code ,a.picture FROM durable_articles_damage as da, durable_articles as a";
                           $sqlSelect .= " WHERE da.product_id = a.id and da.status = 1";
                           if (isset($_GET["keyword"])) {
                             $keyword = arabicnumDigit($_GET["keyword"]);
@@ -329,11 +326,12 @@ if (isset($_GET["id"])) {
                             $id = $row["id"]
                             ?>
                             <tr class="text-center">
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                               <td><?php echo ($row["code"]); ?></td>
                               <td><?php echo $row["damage_date"]; ?></td>
                               <td><?php echo $row["flag"]; ?></td>
                               <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["id"]; ?>);">
+                                <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(<?php echo $row["product_id"]; ?>);">
                                   <i class="fas fa-check"></i>
                                 </button>
                               <?php
@@ -412,15 +410,16 @@ if (isset($_GET["id"])) {
         const item = jsonData[i];
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
+        var product_id = item["product_id"];
         var picture = item["picture"];
-        var seq = item["seq"];
-        var bill_no = item["bill_no"];
+        var damage_date = item["damage_date"];
         var code = item["code"];
         var flag = item["flag"];
+        $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + item.damage_date + '</td>').appendTo(tr);
         $('<td>' + item.code + '</td>').appendTo(tr);
         $('<td>' + item.flag + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success" onclick="selectedArticles(' + item.product_id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
       }
     }
@@ -456,7 +455,7 @@ if (isset($_GET["id"])) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

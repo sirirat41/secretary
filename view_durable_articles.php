@@ -126,7 +126,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="code">รหัส : </label>
+                      <label class="text-dark body-text" for="code">รหัสครุภัณฑ์ : </label>
                       <?php echo ($row["code"]); ?>
                     </div>
                   </div>

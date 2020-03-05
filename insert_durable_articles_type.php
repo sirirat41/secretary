@@ -58,7 +58,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="name">ชื่อประเภทครุภัณฑ์</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="name" autofocus>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="" autofocus>
                       <small id="alert-name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -67,7 +67,7 @@ require "service/connection.php";
                   <div class="col-md-12 ">
                     <div class="form-group">
                       <label for="shortname">ชื่อย่อ</label>
-                      <input type="text" class="form-control" name="shortname" id="shortname" placeholder="shortname">
+                      <input type="text" class="form-control" name="shortname" id="shortname" placeholder="">
                       <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

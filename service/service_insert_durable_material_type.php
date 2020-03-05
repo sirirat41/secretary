@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO durable_material_type(name,shortname,status )";
         $sql .= " VALUES('$name', '$shortname', '$status')"; 
 
-        $log = "เพิ่มข้อมูลประเภทวัสดุคงทน ";
+        $log = "เพิ่มข้อมูลประเภทวัสดุคงทน";
         logServer($conn, $log);
 
         if (mysqli_query($conn, $sql)) {

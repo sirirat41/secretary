@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                     <div class="col-md-8">
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
+                          <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง : </label>
                           <?php echo ($row["code"]); ?>
                         </div>
                       </div>
@@ -84,15 +84,15 @@ if (isset($_GET["id"])) {
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <label class="text-dark body-text" for="distribute_date">วันที่แจกจ่าย : </label>
                           <?php echo ($row["distribute_date"]); ?>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <label class="text-dark body-text" for="department_id">หน่วยงาน : </label>
-                          <?php echo ($row["department_id"]); ?>
+                          <?php echo ($row["fullname"]); ?>
                         </div>
                       </div>
                       <div class="row">

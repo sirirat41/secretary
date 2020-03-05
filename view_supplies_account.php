@@ -74,7 +74,7 @@ if (isset($_GET["id"])) {
                       
                       <div class="row">
                         <div class="col-md-6">
-                          <label class="text-dark body-text" for="number">ชื่อวัสดุ : </label>
+                          <label class="text-dark body-text" for="number">ชื่อวัสดุสิ้นเปลือง : </label>
                           <?php echo ($row["supplies_name"]); ?>
                         </div>
                         <div class="col-md-6">
@@ -84,7 +84,7 @@ if (isset($_GET["id"])) {
                       </div>
                       <div class="row">
                         <div class="col-md-6">
-                          <label class="text-dark body-text" for="distribute_date">รหัสวัสดุ : </label>
+                          <label class="text-dark body-text" for="distribute_date">รหัสวัสดุสิ้นเปลือง : </label>
                           <?php echo ($row["code"]); ?>
                         </div>
                       </div>

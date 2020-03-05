@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark body-text" for="code">รหัสวัสดุ : </label>
+                        <label class="text-dark body-text" for="code">รหัสวัสดุคงทน : </label>
                         <?php echo ($row["code"]); ?>
                       </div>
                     </div>
@@ -90,7 +90,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark body-text" for="name">ชื่อวัสดุ : </label>
+                        <label class="text-dark body-text" for="name">ชื่อวัสดุคงทน : </label>
                         <?php echo ($row["name"]); ?>
                       </div>
                     </div>
@@ -108,9 +108,9 @@ if (isset($_GET["id"])) {
                       <div class="col-md-12">
                         <label class="text-dark body-text" for="fullname">หน่วยงานที่ยืม : </label>
                         <?php echo ($row["fullname"]); ?>
-                        <label class="text-dark body-text" for="bulding"> ตึก </label>
+                        <label class="text-dark body-text" for="bulding"> </label>
                         <?php echo ($row["bulding"]); ?>
-                        <label class="text-dark body-text" for="floor"> ชั้น </label>
+                        <label class="text-dark body-text" for="floor"> </label>
                         <?php echo ($row["floor"]); ?>
                       </div>
                     </div>

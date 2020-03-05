@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
-    $log = "แก้ไขข้อมูลการจัดซื้อวัสดุสิ้นเปลือง รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการจัดซื้อวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
     $imgeName = $_POST["picture"];

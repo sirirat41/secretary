@@ -66,7 +66,7 @@ $show = 50;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center body-text">
-                        <th>ประเภทผู้ใช้</th>
+                        <th>ชื่อผู้ใช้</th>
                         <th>การทำงาน</th>
                         <th>วันที่/เวลา</th>
              
@@ -82,11 +82,11 @@ $show = 50;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT l.*,u.username FROM log as l,user as u";
+                      $sqlSelect = "SELECT l.*,u.username, u.surname FROM log as l,user as u";
                       $sqlSelect .= " WHERE l.user_id = u.id ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (u.username like '$keyword%' or l.action like '%$keyword%' or l.date like '%$keyword%')";
+                        $sqlSelect .= " and (u.surname like '$keyword%' or l.action like '%$keyword%' or l.date like '%$keyword%')";
                       }
                       $sqlSelect .= " Order by l.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -94,7 +94,7 @@ $show = 50;
                         $id = $row["id"];
                         ?>
                         <tr class="text-center body-text">
-                          <td><?php echo ($row["username"]); ?></td>
+                          <td><?php echo ($row["surname"]); ?></td>
                           <td><?php echo ($row["action"]); ?></td>
                           <td><?php echo ($row["date"]); ?></td>
                      
@@ -125,11 +125,11 @@ $show = 50;
               </a>
             </li>
             <?php
-              $sqlSelectCount = "SELECT l.*,u.username FROM log as l,user as u";
+              $sqlSelectCount = "SELECT l.*,u.username , u.surname FROM log as l,user as u";
               $sqlSelectCount .= " WHERE l.user_id = u.id ";
               if (isset($_GET["keyword"])) {
                 $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (u.username like '$keyword%' or l.action like '%$keyword%' or l.date like '%$keyword%')";
+                $sqlSelectCount .= " and (u.surname like '$keyword%' or l.action like '%$keyword%' or l.date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by l.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
@@ -262,14 +262,14 @@ $show = 50;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลหน่วยงานใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลหน่วยงานใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_department.php">
             <input type="hidden" id="remove-department" name="department_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stockID = $row["id"];
     $stock = $row["stock"];
 
-    $log = "เพิ่มข้อมูลการยืม-คืนวัสดุสิ้นเปลือง ";
+    $log = "เพิ่มข้อมูลการยืม-คืนวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
     if ($stock >= $number) {

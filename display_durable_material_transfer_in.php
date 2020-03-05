@@ -118,7 +118,7 @@ $show = 10;
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" 
-                            data-target="#exampleModal" onclick="$('#remove-transfer_in').val('<?php echo $id; ?>')">
+                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-transfer_in').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           <?php
@@ -284,14 +284,15 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลการโอนเข้าวัสดุใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลการโอนเข้าวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_transfer_in.php">
             <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
+            <input type="hidden" id="remove-product-id" name="product_id">
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

@@ -91,7 +91,7 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT u.*,t.t_code FROM user as u ,u_type as t";
+                      $sqlSelect = "SELECT u.*,t.t_name FROM user as u ,u_type as t";
                       $sqlSelect .= " WHERE u.u_type = t.id and u.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
@@ -108,7 +108,7 @@ $show = 10;
                         <td><?php echo $row["lastname"]; ?></td>
                         <td><?php echo $row["position"]; ?></td>
                         <td><?php echo $row["tel"]; ?></td>
-                        <td><?php echo $row["t_code"]; ?></td>
+                        <td><?php echo $row["t_name"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_user.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>
@@ -284,14 +284,14 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_user.php">
             <input type="hidden" id="remove-user" name="user_id">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ if(isset($_GET["id"])) {
     $updatetype .= " shortname = '$shortname'";
     $updatetype .= " WHERE id = $id";
   
-    $log = "แก้ไขข้อมูลประเภทครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลประเภทครุภัณฑ์";
     logServer($conn, $log);
 
     mysqli_query($conn, $updatetype) or die("Cannot update permits". mysqli_error($conn));

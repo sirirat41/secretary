@@ -64,7 +64,7 @@ if (isset($_GET["id"])) {
                                   <div class="col-md-12">
                                       <div class="form-group">
                                           <label for="name">ชื่อประเภทครุภัณฑ์</label>
-                                          <input type="text" class="form-control" name="name" id="name" placeholder="name" value="<?php echo $item["name"]; ?>"> 
+                                          <input type="text" class="form-control" name="name" id="name" placeholder="" value="<?php echo $item["name"]; ?>"> 
                                       </div>
                                   </div>
                               </div>
@@ -72,7 +72,7 @@ if (isset($_GET["id"])) {
                                 <div class="col-md-12 ">
                                   <div class="form-group">
                                  <label for="shortname">ชื่อย่อ</label>
-                                  <input type="text" class="form-control" name="shortname" id="shortname" placeholder="shortname" value="<?php echo $item["shortname"]; ?>">
+                                  <input type="text" class="form-control" name="shortname" id="shortname" placeholder="" value="<?php echo $item["shortname"]; ?>">
                                 </div>
                               </div>
                             </div> 

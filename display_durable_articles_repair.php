@@ -119,7 +119,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_durable_articles_repair.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -284,13 +284,14 @@ $show = 10;
           </button>
         </div>
         <div class="modal-body text-left body-text">
-          คุณต้องการลบข้อมูลซ่อมครุภัณฑ์ใช่หรือไม่
+          คุณต้องการยกเลิกข้อมูลซ่อมครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_repair.php">
             <input type="hidden" id="remove-repair" name="repair_id">
+            <input type="hidden" id="remove-product-id" name="product_id">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการลบข้อมูล</button>
+          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
         </div>
       </div>
     </div>

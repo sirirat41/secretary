@@ -7,8 +7,8 @@
         $thai = thainumDigit($keyword);
         $arabic = arabicnumDigit($keyword);
         $sqlSelect = "SELECT d.*, m.code FROM durable_articles_damage as d, durable_articles as m";
-        $sqlSelect .= " WHERE d.product_id = m.id ";
-        $sqlSelect .=" and (m.code like '%$thai%' or d.damage_date like '%$thai%'";
+        $sqlSelect .= " WHERE d.product_id = m.id and d.status = 1";
+        $sqlSelect .=" and (m.code like '%$thai%' or d.damage_date like '%$thai%' or d.flag like '%$thai%'";
         $sqlSelect .= " or m.code like '%$arabic%' or d.damage_date like '%$arabic%')";
         $data = array();
         $result = mysqli_query($conn, $sqlSelect);

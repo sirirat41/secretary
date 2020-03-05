@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["transfer_in_id"] )) {
     $transfer_inID = $_POST["transfer_in_id"];
     $sqlUpdate ="UPDATE durable_material_transfer_in SET status = 1 WHERE id = ". $transfer_inID;
 
-    $log = "กู้คืนข้อมูลการโอนเข้าวัสดุคงทน รหัส " . $transfer_inID ;
+    $log = "กู้คืนข้อมูลการโอนเข้าวัสดุคงทน";
     logServer($conn, $log);
 
 

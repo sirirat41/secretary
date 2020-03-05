@@ -72,7 +72,7 @@ if (isset($_POST["body"])) {
 
         mysqli_query($conn, $updatesupplies) or die(mysqli_error($conn));
     }  
-         $log = "แก้ไขข้อมูลทะเบียนคุมวัสดุสิ้นเปลือง รหัส " . $id;
+         $log = "แก้ไขข้อมูลทะเบียนคุมวัสดุสิ้นเปลือง";
         logServer($conn, $log);
     //header('Location: ../display_durable_articles_repair.php?message=เพิ่มข้อมูลสำเร็จ');
     $resp["result"] = true;

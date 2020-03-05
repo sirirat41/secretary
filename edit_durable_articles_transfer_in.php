@@ -71,14 +71,14 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control body-text" name="document_no" id="document_no" placeholder="no" autofocus value="<?php echo $item["document_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="document_no" id="document_no" placeholder="" autofocus value="<?php echo $item["document_no"]; ?>">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="transfer_date">วันที่โอน</label>
-                      <input type="date" class="form-control body-text" name="transfer_date" id="transfer_date" placeholder="transfer_date" value="<?php echo $newreceiveDate; ?>">
+                      <input type="date" class="form-control body-text" name="transfer_date" id="transfer_date" placeholder="" value="<?php echo $newreceiveDate; ?>">
                       <small id="alert-transfer_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 5";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -115,7 +115,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="transfer_form">ชื่อผู้โอน</label>
-                      <input type="text" class="form-control body-text" id="transfer_from" name="transfer_from" placeholder="name" value="<?php echo $item["transfer_from"]; ?>">
+                      <input type="text" class="form-control body-text" id="transfer_from" name="transfer_from" placeholder="" value="<?php echo $item["transfer_from"]; ?>">
                       <small id="alert-transfer_from" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -124,7 +124,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="inputEmail3">หมายเหตุ</label>
-                      <textarea class="form-control body-text" id="flag" name="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" id="flag" name="flag" rows="3" placeholder=""><?php echo $item["flag"]; ?></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -242,7 +242,6 @@ if (isset($_GET["id"])) {
                       <thead>
                         <tr class="text-center body-text">
                           <td>รูปภาพ</td>
-                          <td>ลำดับ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสครุภัณฑ์</td>
                           <td>ประเภท</td>
@@ -267,7 +266,6 @@ if (isset($_GET["id"])) {
                         ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                            <td><?php echo ($row["seq"]); ?></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["name"]); ?></td>
@@ -353,12 +351,10 @@ if (isset($_GET["id"])) {
         //console.log(item);
         var tr = $('<tr class="text-center"></tr>').appendTo(body);
         var picture = item["picture"];
-        var seq = item["seq"];
         var bill_no = item["bill_no"];
         var code = item["code"];
-        var type = item["type"];
+        var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
-        $('<td>' + seq + '</td>').appendTo(tr);
         $('<td>' + bill_no + '</td>').appendTo(tr);
         $('<td>' + code + '</td>').appendTo(tr);
         $('<td>' + type + '</td>').appendTo(tr);
@@ -398,7 +394,7 @@ if (isset($_GET["id"])) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }

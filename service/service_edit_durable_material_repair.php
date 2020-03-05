@@ -22,11 +22,11 @@ if(isset($_GET["id"])) {
     $updaterepair .= " WHERE id = $damageid";
     mysqli_query($conn, $updaterepair) or die("Cannot update repair: " . mysqli_error($conn));
 
-    $updaterepair = "UPDATE durable_material_repair SET seq = $seq,";
-    $updaterepair .= " repair_date = '$repairdate' , damage_id = '$damageid' , place = '$place' , flag = '$flag'";
+    $updaterepair = "UPDATE durable_material_repair SET repair_date = '$repairdate' ,";
+    $updaterepair .= "  damage_id = '$damageid' , place = '$place' , flag = '$flag'";
     $updaterepair .= " WHERE id = $id";
 
-    $log = "แก้ไขข้อมูลการซ่อมวัสดุคงทน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการซ่อมวัสดุคงทน";
     logServer($conn, $log);
     
     mysqli_query($conn, $updaterepair) or die("Cannot update repair" . mysqli_error($conn));
