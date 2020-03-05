@@ -86,7 +86,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10">
                           <select class="form-control" name="damage_id" id="damage_id" value="<?php echo $item["damage_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 3";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 4";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["damage_id"] == $row["id"]) {
@@ -110,7 +110,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea type="text" class="form-control body-text" name="place" id="place" rows="3" placeholder="place"><?php echo $item["place"]; ?></textarea>
+                      <textarea type="text" class="form-control body-text" name="place" id="place" rows="3" placeholder=""><?php echo $item["place"]; ?></textarea>
                       <small id="alert-place" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

@@ -63,14 +63,11 @@ if (isset($_GET["id"])) {
             <form>
               <div class="card-body">
                 <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <label class="text-dark body-text" for="username">ชื่อสมาชิก : </label>
                         <?php echo ($row["username"]); ?>
                       </div>
-                      <div class="col-md-6">
-                        <label class="text-dark body-text" for="password">รหัสผ่าน : </label>
-                        <?php echo ($row["password"]); ?>
-                      </div>
+                    
                     </div>
                     <div class="row">
                       <div class="col-md-6">

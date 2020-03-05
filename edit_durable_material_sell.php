@@ -68,14 +68,14 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control body-text" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno" autofocus value="<?php echo $item["document_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="" autofocus value="<?php echo $item["document_no"]; ?>">
                       <small id="alert-inputdocument_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="sell_date">วันที่ขาย</label>
-                      <input type="date" class="form-control body-text" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate" value="<?php echo $newselldate; ?>">
+                      <input type="date" class="form-control body-text" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="" value="<?php echo $newselldate; ?>">
                       <small id="alert-inputsell_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control body-text" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 9";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -112,7 +112,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="buyer">ชื่อผู้ซื้อ</label>
-                      <input type="text" class="form-control body-text" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer" value="<?php echo $item["buyer"]; ?>">
+                      <input type="text" class="form-control body-text" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="" value="<?php echo $item["buyer"]; ?>">
                       <small id="alert-inputbuyer" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -121,7 +121,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="" rows="3"><?php echo $item["flag"]; ?></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

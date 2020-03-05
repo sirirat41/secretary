@@ -4,7 +4,7 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['damage_id'])) {
     $damage_id = $_POST["damage_id"];
 
-    $log = "กู้คืนข้อมูลการชำรุดวัสดุคงทน รหัส " . $damage_id ;
+    $log = "กู้คืนข้อมูลการชำรุดวัสดุคงทน";
     logServer($conn, $log);
 
 

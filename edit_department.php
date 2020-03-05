@@ -71,7 +71,7 @@ if (isset($_GET["id"])) {
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
-                      <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="department" id="department" value="<?php echo $item["fullname"]; ?>">
+                      <input class="form-control" name="fullname" type="text" autocomplete="off" placeholder="" id="department" value="<?php echo $item["fullname"]; ?>">
                       <small id="alert-department" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
-                      <input class="form-control" name="shortname" type="text" placeholder="shortdepartment" id="shortname" value="<?php echo $item["shortname"]; ?>">
+                      <input class="form-control" name="shortname" type="text" placeholder="" id="shortname" value="<?php echo $item["shortname"]; ?>">
                       <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -89,14 +89,14 @@ if (isset($_GET["id"])) {
                   <div class=" col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
-                      <input class="form-control" name="bulding" type="text" placeholder="bulding" id="bulding" value="<?php echo $item["bulding"]; ?>">
+                      <input class="form-control" name="bulding" type="text" placeholder="" id="bulding" value="<?php echo $item["bulding"]; ?>">
                       <small id="alert-bulding" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชั้น</label>
-                      <input class="form-control" name="floor" type="text" placeholder="floor" id="floor" value="<?php echo $item["floor"]; ?>">
+                      <input class="form-control" name="floor" type="text" placeholder="" id="floor" value="<?php echo $item["floor"]; ?>">
                       <small id="alert-floor" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ if (isset($_GET["id"])) {
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรศัพท์</label>
-                      <input class="form-control" name="tel" type="text" placeholder="tel" id="tel" value="<?php echo $item["tel"]; ?>">
+                      <input class="form-control" name="tel" type="text" placeholder="" id="tel" value="<?php echo $item["tel"]; ?>">
                       <small id="alert-tel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ if (isset($_GET["id"])) {
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรสาร</label>
-                      <input class="form-control" name="fax" type="text" placeholder="fax" id="fax" value="<?php echo $item["fax"]; ?>">
+                      <input class="form-control" name="fax" type="text" placeholder="" id="fax" value="<?php echo $item["fax"]; ?>">
                       <small id="alert-fax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -330,24 +330,6 @@ if (isset($_GET["id"])) {
     }
   </script>
   <!-- Message Modal-->
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <?php echo $_GET["message"]; ?>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ตกลง</button>
-        </div>
-      </div>
-    </div>
-  </div>
   
 </body>
 

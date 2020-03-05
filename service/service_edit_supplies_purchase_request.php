@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $suppliesPattern = $_POST["supplies_pattern"];
     $status = 1;
 
-    $log = "เพิ่มข้อมูลวัสดุสิ้นเปลือง ";
+    $log = "เพิ่มข้อมูลวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
     $sqlSelectData = "SELECT * FROM supplies WHERE id = $id";

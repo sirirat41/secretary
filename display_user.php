@@ -91,7 +91,7 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT u.*,t.t_code FROM user as u ,u_type as t";
+                      $sqlSelect = "SELECT u.*,t.t_name FROM user as u ,u_type as t";
                       $sqlSelect .= " WHERE u.u_type = t.id and u.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
@@ -108,7 +108,7 @@ $show = 10;
                         <td><?php echo $row["lastname"]; ?></td>
                         <td><?php echo $row["position"]; ?></td>
                         <td><?php echo $row["tel"]; ?></td>
-                        <td><?php echo $row["t_code"]; ?></td>
+                        <td><?php echo $row["t_name"]; ?></td>
                         <td class="td-actions text-center">
                           <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_user.php?id=<?php echo $row['id']; ?>'">
                             <i class="fas fa-pencil-alt"></i>

@@ -62,15 +62,15 @@ if (isset($_GET["id"])) {
             <div class="card-body">
               <form method="post" action="service/service_edit_user.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="username">ชื่อสมาชิก</label>
-                      <input type="text" class="form-control body-text" name="username" id="inputusername" aria-describedby="username" placeholder="username" value="<?php echo $item["username"]; ?>">
+                      <input type="text" class="form-control body-text" name="username" id="inputusername" aria-describedby="username" placeholder="" value="<?php echo $item["username"]; ?>">
                       <small id="alert-inputusername" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
-
+<!-- 
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
@@ -79,36 +79,38 @@ if (isset($_GET["id"])) {
                       <small id="alert-inputpassword" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="surname">ชื่อ</label>
-                      <input type="text" class="form-control body-text" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname" value="<?php echo $item["surname"]; ?>">
+                      <input type="text" class="form-control body-text" name="surname" id="inputsurname" aria-describedby="surname" placeholder="" value="<?php echo $item["surname"]; ?>">
                       <small id="alert-inputsurname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="lastname">นามสกุล</label>
-                      <input type="text" class="form-control body-text" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname" value="<?php echo $item["lastname"]; ?>">
+                      <input type="text" class="form-control body-text" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="" value="<?php echo $item["lastname"]; ?>">
                       <small id="alert-inputlastname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
-                      <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
+                      <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="" value="<?php echo $item["tel"]; ?>">
                       <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="position">ตำแหน่ง</label>
-                      <input type="text" class="form-control body-text" name="position" id="inputposition" aria-describedby="position" placeholder="position" value="<?php echo $item["position"]; ?>">
+                      <input type="text" class="form-control body-text" name="position" id="inputposition" aria-describedby="position" placeholder="" value="<?php echo $item["position"]; ?>">
                       <small id="alert-inputposition" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -117,7 +119,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="email">อีเมล์</label>
-                      <input type="text" class="form-control body-text" name="email" id="inputemail" aria-describedby="email" placeholder="email" value="<?php echo $item["email"]; ?>">
+                      <input type="text" class="form-control body-text" name="email" id="inputemail" aria-describedby="email" placeholder="" value="<?php echo $item["email"]; ?>">
                       <small id="alert-inputemail" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -132,9 +134,9 @@ if (isset($_GET["id"])) {
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
                           if ($item["u_type"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] . '"selected>' . $row["t_code"] . '</option>';
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["t_name"] . '</option>';
                           } else {
-                            echo '<option value="' . $row["id"] . '">' . $row["t_code"] . '</option>';
+                            echo '<option value="' . $row["id"] . '">' . $row["t_name"] . '</option>';
                           }
                         }
                         ?>
@@ -226,7 +228,7 @@ if (isset($_GET["id"])) {
   <script>
     function validateData() {
       var inputusername = $('#inputusername').val();
-      var inputpassword = $('#inputpassword').val();
+      // var inputpassword = $('#inputpassword').val();
       var inputsurname = $('#inputsurname').val();
       var inputlastname = $('#inputlastname').val();
       var inputtel = $('#inputtel').val();
@@ -242,14 +244,14 @@ if (isset($_GET["id"])) {
         $('#inputusername').removeClass('border border-danger');
         $('#alert-inputusername').hide();
       }
-      if ($.trim(inputpassword) == "") {
-        validateCount++;
-        $('#inputpassword').addClass('border border-danger');
-        $('#alert-inputpassword').show();
-      } else {
-        $('#inputpassword').removeClass('border border-danger');
-        $('#alert-inputpassword').hide();
-      }
+      // if ($.trim(inputpassword) == "") {
+      //   validateCount++;
+      //   $('#inputpassword').addClass('border border-danger');
+      //   $('#alert-inputpassword').show();
+      // } else {
+      //   $('#inputpassword').removeClass('border border-danger');
+      //   $('#alert-inputpassword').hide();
+      // }
       if ($.trim(inputsurname) == "") {
         validateCount++;
         $('#inputsurname').addClass('border border-danger');

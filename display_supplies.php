@@ -74,6 +74,7 @@ $show = 10;
                   <table class="table table-hover body-text">
                     <thead>
                       <tr class="text-center">
+                        <th>ลำดับ</th>
                         <th>รูปภาพ</th>
                         <th>เลขที่ใบเบิก</th>
                         <th>รหัสวัสดุ</th>
@@ -98,7 +99,7 @@ $show = 10;
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
                       }
                       // echo $sqlSelect;
-
+                      $count = $start + 1;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -111,6 +112,7 @@ $show = 10;
                         }
                         ?>
                         <tr class="text-center">
+                          <td><?php echo $count++; ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                           <td><?php echo ($row["bill_no"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>

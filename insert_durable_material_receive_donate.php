@@ -59,7 +59,7 @@ $show = 10;
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno">
+                      <input type="text" class="form-control" name="document_no" id="document_no" aria-describedby="document_no" placeholder="">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -102,14 +102,14 @@ $show = 10;
                   <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="donate_name">ชื่อผู้บริจาค</label>
-                      <input type="text" class="form-control" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="donatename">
+                      <input type="text" class="form-control" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="">
                       <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="form-group body-text">
                       <label for="number">ราคา</label>
-                      <input type="text" class="form-control" name="number" id="number" aria-describedby="number" placeholder="price">
+                      <input type="text" class="form-control" name="number" id="number" aria-describedby="number" placeholder="">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -118,7 +118,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="" rows="3"></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

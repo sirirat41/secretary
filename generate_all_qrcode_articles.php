@@ -97,7 +97,7 @@ $numberOfArticles = mysqli_num_rows($result);
                             <label class="form-check-label" for="exampleRadios2">
                                 ปริ้นรายการที่
                             </label>
-                            <input id="page" class="form-control form-control-sm" type="text" name="page" placeholder="ตัวอย่างเช่น1-5" disabled>
+                            <input id="page" class="form-control form-control-sm" type="text" name="page" placeholder="ตัวอย่างเช่น 1 หรือ 1-5 หรือ 1,5 " disabled>
                         </div>
                     </div>
                     <div class="modal-footer">

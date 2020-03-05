@@ -110,13 +110,13 @@ if (isset($_GET["id"])) {
                   <div class="col-md-8">
                     <div class="form-group body-text">
                       <label for="fix">รายการซ่อมวัสดุ</label>
-                      <input type="text" class="form-control body-text" name="fix" id="fix" aria-describedby="fix" placeholder="listfix" value="<?php echo $item["fix"]; ?>">
+                      <input type="text" class="form-control body-text" name="fix" id="fix" aria-describedby="fix" placeholder="" value="<?php echo $item["fix"]; ?>">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group body-text">
                       <label for="price">ราคา</label>
-                      <input type="text" class="form-control body-text" name="price" id="price" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                      <input type="text" class="form-control body-text" name="price" id="price" aria-describedby="price" placeholder="" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="" rows="3"><?php echo $item["flag"]; ?></textarea>
                     </div>
                   </div>
 

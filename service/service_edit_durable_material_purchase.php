@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     $updatePurchase .= " WHERE product_id = $id";
     mysqli_query($conn, $updatePurchase) or die("Cannot update purchase: " . mysqli_error($conn));
 
-    $log = "แก้ไขข้อมูลการจัดซื้อวัสดุคงทน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการจัดซื้อวัสดุคงทน";
     logServer($conn, $log);
 
     //อัฟโหลดรูปภาพ
@@ -45,7 +45,12 @@ if (isset($_GET['id'])) {
 
     $updateMaterial = "UPDATE durable_material SET short_goverment = '$shortGoverment',";
     $updateMaterial .= " code = '$code' , type = $type, attribute ='$attribute', bill_no = '$billNo' ,department_id = $departmentID ,";
-    $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name', picture = '$imgeName',asset_no = '$assetNo'";
+    $updateMaterial .= " seller_id = $sellerID , unit = $unit , price = $price , durable_year = $durableYear ,name = '$name',asset_no = '$assetNo'";
+    if($imgeName != ""){
+        $updateArticles .= ", picture = '$imgeName'";
+
+   }
+  
     $updateMaterial .= " WHERE id = $id";
     mysqli_query($conn, $updateMaterial) or die("Cannot update material" . mysqli_error($conn));
     header('Location: ../display_durable_material.php?message=แก้ไขข้อมูลสำเร็จ');

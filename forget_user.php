@@ -51,7 +51,7 @@
                 <div class="row">
                   <div class="col-md-10 offset-1">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="email" id="email" placeholder="email" autofocus>
+                      <input type="text" class="form-control" name="email" id="email" placeholder="" autofocus>
                     </div>
                   </div>
                 </div>

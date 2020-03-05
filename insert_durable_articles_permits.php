@@ -90,14 +90,14 @@ $show = 10;
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="date" class="form-control body-text" name="permit_date" placeholder="permitdate" id="permit_date">
+                      <input type="date" class="form-control body-text" name="permit_date" placeholder="" id="permit_date">
                       <small id="alert-permit_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control body-text" name="receive_date" placeholder="receivedate" id="receive_date">
+                      <input type="date" class="form-control body-text" name="receive_date" placeholder="" id="receive_date">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -111,7 +111,7 @@ $show = 10;
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["bulding"] . " ชั้น" . $row["floor"] . '</option>';
+                          echo '<option value="' . $row["id"] . '">' . $row["bulding"] . " " . $row["floor"] . '</option>';
                           // <option><?php echo $row["id"] . " " . $row["name"]; 
                         }
                         ?>
@@ -123,7 +123,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder="flag"></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" rows="3" placeholder=""></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

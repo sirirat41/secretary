@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h5 class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(วัสดุคงทน)</h5>
+                  <i class="fas fa-business-time"></i> ข้อมูลการยืม-คืน(วัสดุสิ้นเปลือง)</h5>
                 <form class="form-inline">
 
             </div>
@@ -79,7 +79,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark body-text" for="code">รหัสวัสดุ : </label>
+                        <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง : </label>
                         <?php echo ($row["code"]); ?>
                       </div>
                     </div>
@@ -91,7 +91,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุ : </label>
+                        <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุสิ้นเปลือง : </label>
                         <?php echo ($row["supplies_name"]); ?>
                       </div>
                     </div>
@@ -109,9 +109,9 @@ if (isset($_GET["id"])) {
                       <div class="col-md-12">
                         <label class="text-dark body-text" for="fullname">หน่วยงานที่ยืม : </label>
                         <?php echo ($row["fullname"]); ?>
-                        <label class="text-dark body-text" for="bulding"> ตึก </label>
+                        <label class="text-dark body-text" for="bulding"></label>
                         <?php echo ($row["bulding"]); ?>
-                        <label class="text-dark body-text" for="floor"> ชั้น </label>
+                        <label class="text-dark body-text" for="floor"> </label>
                         <?php echo ($row["floor"]); ?>
                       </div>
                     </div>

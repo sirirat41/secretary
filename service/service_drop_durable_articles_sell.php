@@ -1,21 +1,19 @@
 <?php
 require "connection.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["product_id"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sell_id"])) {
+    $sell = $_POST["sell_id"];
     $productid = $_POST["product_id"];
-    $sqlUpdate = "UPDATE durable_articles_sell SET status = 0 WHERE id = " . $productid;
+    $sqlUpdate = "UPDATE durable_articles_sell SET status = 0 WHERE id = " . $sell;
 
-    $log = "ลบข้อมูลการขายทอดตลาดครุภัณฑ์ รหัส " . $productid;
+    $log = "ยกเลิกข้อมูลการขายทอดตลาดครุภัณฑ์";
     logServer($conn, $log);
 
-    if (mysqli_query($conn, $sqlUpdate)) {
-        header('Location: ../display_durable_articles_sell.php?message=ลบข้อมูลสำเร็จ');
-    } else {
-        header('Location: ../display_durable_articles_sell.php?message=ลบข้อมูลไม่สำเร็จ');
-    }
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update product_id: " . mysqli_error($conn));
 
-    } else {
-        header('Location: ../display_durable_articles_sell.php?message=ลบข้อมูลผิดพลาด');
-    }
+    $sqlUpdate = "UPDATE durable_articles SET status = 1";
+    $sqlUpdate .= " WHERE id = $productid";
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update product_id: " . mysqli_error($conn));
 
-?>
+    header('Location: ../display_durable_articles_sell.php?message=ยกเลิกข้อมูลสำเร็จ');
+}

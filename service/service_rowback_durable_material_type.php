@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["type_id"] )) {
     $typeID = $_POST["type_id"];
     $sqlUpdate ="UPDATE durable_material_type SET status = 1 WHERE id = ". $typeID;
 
-    $log = "กู้คืนข้อมูลประเภทวัสดุคงทน รหัส " . $typeID ;
+    $log = "กู้คืนข้อมูลประเภทวัสดุคงทน";
     logServer($conn, $log);
 
 

@@ -13,7 +13,7 @@ if(isset($_GET["id"])) {
     $updatepermit .= " permit_date = '$permit_date', receive_date = '$receivedate', flag = '$flag'";
     $updatepermit .= " WHERE id = $id";
   
-    $log = "แก้ไขข้อมูลการยืม-คืนวัสดุสิ้นเปลือง รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการยืม-คืนวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
   

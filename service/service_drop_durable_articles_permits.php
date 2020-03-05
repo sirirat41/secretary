@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["permits_id"] )) {
     $productID = $_POST["product_id"];
     $sqlUpdate ="UPDATE durable_articles_permits SET status = 0 WHERE id = ". $permitsID;
     mysqli_query($conn, $sqlUpdate) or die("Cannot update permits_id: " . mysqli_error($conn));
-    $log = "ลบข้อมูลการยืม-คืนครุภัณฑ์ รหัส " . $permitsID;
+    $log = "ยกเลิกข้อมูลการยืม-คืนครุภัณฑ์";
     logServer($conn, $log);
 
     
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["permits_id"] )) {
     $sqlUpdate .= " WHERE id = $productID";
     mysqli_query($conn, $sqlUpdate) or die("Cannot update permits: " . mysqli_error($conn));
 
-        header('Location: ../display_durable_articles_permits.php?message=ลบข้อมูลสำเร็จ');
+        header('Location: ../display_durable_articles_permits.php?message=ยกเลิกข้อมูลสำเร็จ');
    
 }
 

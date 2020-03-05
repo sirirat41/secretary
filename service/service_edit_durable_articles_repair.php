@@ -26,7 +26,7 @@ if(isset($_GET["id"])) {
     $updaterepair .= " damage_id = '$damageid' , place = '$place' , flag = '$flag'";
     $updaterepair .= " WHERE id = $id";
 
-    $log = "แก้ไขข้อมูลการซ่อมครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการซ่อมครุภัณฑ์";
     logServer($conn, $log);
     
     mysqli_query($conn, $updaterepair) or die("Cannot update repair" . mysqli_error($conn));

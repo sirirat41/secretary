@@ -69,12 +69,7 @@ if (isset($_GET["id"])) {
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="text-dark body-text" for="seq">ลำดับ : </label>
-                        <?php echo ($row["seq"]); ?>
-                      </div>
-                    </div>
+             
                     <div class="row">
                       <div class="col-md-12">
                         <label class="text-dark body-text" for="damage_id">รหัสครุภัณฑ์ : </label>

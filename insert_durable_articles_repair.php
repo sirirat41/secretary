@@ -97,7 +97,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="place">สถานที่ซ่อม</label>
-                      <textarea class="form-control" name="place" id="place" placeholder="place" rows="3"></textarea>
+                      <textarea class="form-control" name="place" id="place" placeholder="" rows="3"></textarea>
                       <small id="alert-place" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -106,7 +106,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="1"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="" rows="1"></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

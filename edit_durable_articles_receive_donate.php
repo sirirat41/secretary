@@ -66,7 +66,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control body-text" name="document_no" id="document_no" aria-describedby="document_no" placeholder="documentno" value="<?php echo $item["document_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="document_no" id="document_no" aria-describedby="document_no" placeholder="" value="<?php echo $item["document_no"]; ?>">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 7";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -110,14 +110,14 @@ if (isset($_GET["id"])) {
                   <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="donate_name ">ชื่อผู้บริจาค</label>
-                      <input type="text" class="form-control body-text" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="donatename" value="<?php echo $item["donate_name"]; ?>">
+                      <input type="text" class="form-control body-text" name="donate_name" id="donate_name" aria-describedby="donate_name" placeholder="" value="<?php echo $item["donate_name"]; ?>">
                       <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-5">
                     <div class="form-group body-text">
                       <label for="number">ราคา</label>
-                      <input type="text" class="form-control body-text" name="number" id="number" aria-describedby="number" placeholder="price" value="<?php echo $item["number"]; ?>">
+                      <input type="text" class="form-control body-text" name="number" id="number" aria-describedby="number" placeholder="" value="<?php echo $item["number"]; ?>">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -126,7 +126,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="flag" rows="3"><?php echo $item["flag"]; ?></textarea>
+                      <textarea class="form-control body-text" name="flag" id="flag" placeholder="" rows="3"><?php echo $item["flag"]; ?></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

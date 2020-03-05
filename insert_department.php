@@ -62,7 +62,7 @@ require "service/connection.php";
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อหน่วยงาน</label>
-                      <input class="form-control body-text" name="fullname" type="text" autocomplete="off" placeholder="department" id="department">
+                      <input class="form-control body-text" name="fullname" type="text" autocomplete="off" placeholder="" id="department">
                       <small id="alert-department" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -71,7 +71,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
-                      <input class="form-control body-text" name="shortname" type="text" placeholder="shortname" id="shortname">
+                      <input class="form-control body-text" name="shortname" type="text" placeholder="" id="shortname">
                       <small id="alert-shortname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -80,14 +80,14 @@ require "service/connection.php";
                   <div class=" col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
-                      <input class="form-control body-text" name="bulding" type="text" placeholder="bulding" id="bulding">
+                      <input class="form-control body-text" name="bulding" type="text" placeholder="" id="bulding">
                       <small id="alert-bulding" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชั้น</label>
-                      <input class="form-control body-text" name="floor" type="text" placeholder="floor" id="floor">
+                      <input class="form-control body-text" name="floor" type="text" placeholder="" id="floor">
                       <small id="alert-floor" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -96,7 +96,7 @@ require "service/connection.php";
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรศัพท์</label>
-                      <input class="form-control body-text" name="tel" type="text" placeholder="tel" id="tel">
+                      <input class="form-control body-text" name="tel" type="text" placeholder="" id="tel">
                       <small id="alert-tel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ require "service/connection.php";
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">โทรสาร</label>
-                      <input class="form-control body-text" name="fax" type="text" placeholder="fax" id="fax">
+                      <input class="form-control body-text" name="fax" type="text" placeholder="" id="fax">
                       <small id="alert-fax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -323,24 +323,7 @@ require "service/connection.php";
     
   </script>
   <!-- Message Modal-->
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <?php echo $_GET["message"]; ?>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </body>
 
 </html>

@@ -68,7 +68,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="password">รหัสผ่าน</label>
-                      <input type="password" class="form-control body-text" name="password1" id="password1" aria-describedby="password" placeholder="password">
+                      <input type="password" class="form-control body-text" name="password1" id="password1" aria-describedby="password" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -77,7 +77,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="confirmpassword">ยืนยันรหัสผ่าน</label>
-                      <input type="password" class="form-control body-text" name="password2" id="password2" aria-describedby="confirmpassword" placeholder="confirmpassword">
+                      <input type="password" class="form-control body-text" name="password2" id="password2" aria-describedby="confirmpassword" placeholder="">
                     </div>
                   </div>
 

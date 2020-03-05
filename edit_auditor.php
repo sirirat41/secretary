@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ยศ</label>
-                      <input class="form-control body-text" name="rank" type="text" autocomplete="off" placeholder="rank" id="rank"  value="<?php echo $item["rank"]; ?>">
+                      <input class="form-control body-text" name="rank" type="text" autocomplete="off" placeholder="" id="rank"  value="<?php echo $item["rank"]; ?>">
                       <small id="alert-rank" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ if (isset($_GET["id"])) {
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อ</label>
-                      <input class="form-control body-text" name="Aname" type="text" autocomplete="off" placeholder="name" id="Aname"  value="<?php echo $item["Aname"]; ?>">
+                      <input class="form-control body-text" name="Aname" type="text" autocomplete="off" placeholder="" id="Aname"  value="<?php echo $item["Aname"]; ?>">
                       <small id="alert-Aname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ตำแหน่ง</label>
-                      <input class="form-control body-text" name="position" type="text" placeholder="position" id="position"  value="<?php echo $item["position"]; ?>">
+                      <input class="form-control body-text" name="position" type="text" placeholder="" id="position"  value="<?php echo $item["position"]; ?>">
                       <small id="alert-position" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -261,7 +261,7 @@ if (isset($_GET["id"])) {
     }
   </script>
   <!-- Message Modal-->
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -271,14 +271,14 @@ if (isset($_GET["id"])) {
           </button>
         </div>
         <div class="modal-body">
-          <?php echo $_GET["message"]; ?>
+        
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger body-text" data-dismiss="modal">ตกลง</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </body>
 
 </html>

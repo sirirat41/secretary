@@ -101,14 +101,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่ชำรุด</label>
-                      <input class="form-control body-text" name="damage_date" type="date" placeholder="damage_date" id="damage_date" value="<?php echo $newOrderDate; ?>">
+                      <input class="form-control body-text" name="damage_date" type="date" placeholder="" id="damage_date" value="<?php echo $newOrderDate; ?>">
                       <small id="alert-damage_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
-                      <input class="form-control body-text" name="flag" type="text" placeholder="flag" id="flag" value="<?php echo $item["flag"]; ?>">
+                      <input class="form-control body-text" name="flag" type="text" placeholder="" id="flag" value="<?php echo $item["flag"]; ?>">
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

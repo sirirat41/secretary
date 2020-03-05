@@ -62,7 +62,7 @@ require "service/connection.php";
                   <div class="col-4">
                     <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
-                      <input type="text" class="form-control" name="year" id="year" placeholder="year" name="year">
+                      <input type="number" class="form-control" name="year" id="year" placeholder="" name="year">
                     </div>
                   </div>
                   <div class="col-8">

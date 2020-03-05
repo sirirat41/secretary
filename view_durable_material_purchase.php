@@ -2,10 +2,16 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT p.*, m.code, m.attribute ,m.name , m.picture FROM durable_material_purchase as p ,durable_material as m WHERE p.id = $id";
-  $sql .= " and p.product_id = m.id and m.status = 1 ";
+  $sql = "SELECT *, s.name as seller_name, t.name as durable_material_type_name, u.name as unit_name, s.tel seller_tel, s.fax seller_fax, s.address seller_address, p.document_no document_no FROM durable_material_purchase as p 
+  LEFT JOIN durable_material as a ON a.id = p.product_id 
+  LEFT JOIN seller as s ON a.seller_id = s.id 
+  LEFT JOIN department as d ON a.department_id = d.id 
+  LEFT JOIN durable_material_type as t ON a.type = t.id
+  LEFT JOIN unit as u ON a.unit = u.id 
+  WHERE p.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  // echo $sql;
 }
 ?>
 
@@ -99,7 +105,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="name">ชื่อวัสดุ : </label>
+                      <label class="text-dark body-text" for="name">ชื่อวัสดุคงทน : </label>
                       <?php echo ($row["name"]); ?>
                     </div>
                   </div>

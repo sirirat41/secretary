@@ -94,17 +94,11 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label class="text-dark body-text" for="bulding">อาคาร : </label>
-                      <?php echo ($row["bulding"]); ?>
+                      <label class="text-dark body-text" for="bulding">ที่ตั้ง</label>
+                      <?php echo ($row["bulding"]); ?> <?php echo ($row["floor"]); ?>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label class="text-dark body-text" for="floor">ชั้น : </label>
-                      <?php echo ($row["floor"]); ?>
-                    </div>
-                  </div>
-                </div>
+                  
           </form>
         </div>
         <div class="card-body">

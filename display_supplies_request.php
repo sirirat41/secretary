@@ -137,7 +137,7 @@ $show = 10;
                               <td><?php echo $actionRequest; ?></td>
                               <td><?php echo $statusRequest; ?></td>
                               <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
+                                <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
                                   <i class="far fa-eye"></i>
                                 </button>
                                 <?php if ($_SESSION["user_type"] == 1 && $row["status_request"] == "waiting_approve") { ?>

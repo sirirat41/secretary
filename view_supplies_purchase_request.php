@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
             </div>
             <div class="row">
                 <div class="col-12">
-                    <label class="body-text" for="exampleFormControlSelect1">ร้องขอการ<?php echo $item["action_request"] == "request_update" ? "แก้ไข" : "ลบ"; ?>โดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
+                    <label class="body-text" for="exampleFormControlSelect1">ร้องขอการ<?php echo $item["action_request"] == "request_update" ? "แก้ไข" : "ยกเลิก"; ?>โดย คุณ <?php echo $userRequest["surname"] . " " . $userRequest["lastname"]; ?></label>
                     <textarea class="form-control" disabled name="reason" id="request" cols="30" rows="5" style="resize: none"><?php echo $item["reason"]; ?></textarea>
                 </div>
             </div>
@@ -125,13 +125,13 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-6 ">
                                             <div class="form-group body-text">
-                                                <label for="receiver">ชื่อผู้รับ</label>
+                                                <label for="receiver">ชื่อผู้รับ :</label>
                                                 <input type="text" class="form-control" disabled name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $itemOld["receiver"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="receive_date">วันที่ตรวจรับ</label>
+                                                <label for="receive_date">วันที่ตรวจรับ :</label>
                                                 <input type="date" class="form-control" disabled name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $oldReceiveDate; ?>">
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="form-group body-text">
-                                                <label for="receive_address">สถานที่จัดส่ง</label>
+                                                <label for="receive_address">สถานที่จัดส่ง :</label>
                                                 <textarea class="form-control" disabled name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $itemOld["receive_address"]; ?></textarea>
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                                <label for="bill_no">เลขที่ใบเบิก :</label>
                                                 <input type="text" class="form-control" disabled name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $itemOld["bill_no"]; ?>">
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="form-group body-text">
-                                                <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                                <label for="exampleFormControlSelect1">หน่วยงาน :</label>
                                                 <select class="form-control" data-style="btn btn-link" disabled id="exampleFormControlSelect1" name="department_id" value="<?php echo $itemOld["department_id"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM department";
@@ -180,13 +180,13 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group body-text">
-                                                <label for="price">จำนวนเงิน</label>
+                                                <label for="price">จำนวนเงิน :</label>
                                                 <input type="text" class="form-control" disabled name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $itemOld["price"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group body-text">
-                                                <label for="price">จำนวนคงเหลือ</label>
+                                                <label for="price">จำนวนคงเหลือ :</label>
                                                 <input type="text" class="form-control" disabled name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $itemOld["stock"]; ?>">
                                             </div>
                                         </div>
@@ -194,7 +194,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="form-group body-text">
-                                                <label for="product_id">รหัสวัสดุ</label>
+                                                <label for="product_id">รหัสวัสดุสินเปลือง :</label>
                                                 <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $itemOld["code"]; ?>" readonly>
                                             </div>
                                         </div>
@@ -220,7 +220,7 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย :</label>
                                                 <select class="form-control" disabled data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $itemOld["seller_id"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM seller";
@@ -295,13 +295,13 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-6 ">
                                             <div class="form-group body-text">
-                                                <label for="receiver">ชื่อผู้รับ</label>
+                                                <label for="receiver">ชื่อผู้รับ :</label>
                                                 <input type="text" class="form-control <?php echo $itemOld["receiver"] != $item["receiver"] ? "alert-class" : ""; ?>" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $item["receiver"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="receive_date">วันที่ตรวจรับ</label>
+                                                <label for="receive_date">วันที่ตรวจรับ :</label>
                                                 <input type="date" class="form-control <?php echo $newReceiveDate != $oldReceiveDate ? "alert-class" : ""; ?>" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $newReceiveDate; ?>">
                                             </div>
                                         </div>
@@ -309,7 +309,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="form-group body-text">
-                                                <label for="receive_address">สถานที่จัดส่ง</label>
+                                                <label for="receive_address">สถานที่จัดส่ง :</label>
                                                 <textarea class="form-control <?php echo $itemOld["receive_address"] != $item["receive_address"] ? "alert-class" : ""; ?>" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?></textarea>
                                             </div>
                                         </div>
@@ -324,7 +324,7 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                                <label for="bill_no">เลขที่ใบเบิก :</label>
                                                 <input type="text" class="form-control <?php echo $itemOld["bill_no"] != $item["bill_no"] ? "alert-class" : ""; ?>" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
                                             </div>
                                         </div>
@@ -332,7 +332,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="form-group body-text">
-                                                <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                                <label for="exampleFormControlSelect1">หน่วยงาน :</label>
                                                 <select class="form-control <?php echo $itemOld["department_id"] != $item["department_id"] ? "alert-class" : ""; ?>" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM department";
@@ -350,13 +350,13 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group body-text">
-                                                <label for="price">จำนวนเงิน</label>
+                                                <label for="price">จำนวนเงิน :</label>
                                                 <input type="text" class="form-control <?php echo $itemOld["price"] != $item["price"] ? "alert-class" : ""; ?>" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group body-text">
-                                                <label for="price">จำนวนคงเหลือ</label>
+                                                <label for="price">จำนวนคงเหลือ :</label>
                                                 <input type="text" class="form-control <?php echo $itemOld["stock"] != $item["number"] ? "alert-class" : ""; ?>" name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $item["number"]; ?>">
                                             </div>
                                         </div>
@@ -364,7 +364,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="form-group body-text">
-                                                <label for="product_id">รหัสวัสดุ</label>
+                                                <label for="product_id">รหัสวัสดุสิ้นเปลือง :</label>
                                                 <input class="form-control <?php echo $itemOld["code"] != $item["code"] ? "alert-class" : ""; ?>" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                                             </div>
                                         </div>
@@ -372,7 +372,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-6 ">
                                             <div class="form-group body-text">
-                                                <label for="unit">หน่วยนับ</label>
+                                                <label for="unit">หน่วยนับ :</label>
                                                 <select class="form-control <?php echo $itemOld["unit"] != $item["unit"] ? "alert-class" : ""; ?>" name="unit" value="<?php echo $item["unit"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM unit";
@@ -390,7 +390,7 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย :</label>
                                                 <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM seller";
@@ -431,7 +431,7 @@ if (isset($_GET["id"])) {
                                     if ($item["status_request"] == "rejected") {
                                     ?>
                                         <div class="row">
-                                            <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ: </label>
+                                            <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ : </label>
                                             <div class="col-12">
                                                 <textarea class="form-control" rows="10" disabled><?php echo $item["reject"]; ?></textarea>
                                             </div>
@@ -451,7 +451,7 @@ if (isset($_GET["id"])) {
                                 <div class="card-text">
                                     <h5 class="m-0 font-weight-bold text-danger">
                                         <i class="fas fa-fw fa-archive"></i>
-                                        ข้อมูลที่ต้องการลบ
+                                        ข้อมูลที่ต้องการยกเลิก
                                     </h5>
                                 </div>
                             </div>
@@ -484,13 +484,13 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-6 ">
                                             <div class="form-group body-text">
-                                                <label for="receiver">ชื่อผู้รับ</label>
+                                                <label for="receiver">ชื่อผู้รับ :</label>
                                                 <input type="text" class="form-control" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $itemOld["receiver"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="receive_date">วันที่ตรวจรับ</label>
+                                                <label for="receive_date">วันที่ตรวจรับ :</label>
                                                 <input type="date" class="form-control" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $oldReceiveDate; ?>">
                                             </div>
                                         </div>
@@ -498,7 +498,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="form-group body-text">
-                                                <label for="receive_address">สถานที่จัดส่ง</label>
+                                                <label for="receive_address">สถานที่จัดส่ง :</label>
                                                 <textarea class="form-control" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $itemOld["receive_address"]; ?></textarea>
                                             </div>
                                         </div>
@@ -513,7 +513,7 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="bill_no">เลขที่ใบเบิก</label>
+                                                <label for="bill_no">เลขที่ใบเบิก :</label>
                                                 <input type="text" class="form-control" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
                                             </div>
                                         </div>
@@ -521,7 +521,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="form-group body-text">
-                                                <label for="exampleFormControlSelect1">หน่วยงาน</label>
+                                                <label for="exampleFormControlSelect1">หน่วยงาน :</label>
                                                 <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="department_id" value="<?php echo $item["department_id"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM department";
@@ -539,13 +539,13 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group body-text">
-                                                <label for="price">จำนวนเงิน</label>
+                                                <label for="price">จำนวนเงิน :</label>
                                                 <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group body-text">
-                                                <label for="price">จำนวนคงเหลือ</label>
+                                                <label for="price">จำนวนคงเหลือ :</label>
                                                 <input type="text" class="form-control" name="number" id="" aria-describedby="price" placeholder="stock" value="<?php echo $item["number"]; ?>">
                                             </div>
                                         </div>
@@ -553,7 +553,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="form-group body-text">
-                                                <label for="product_id">รหัสวัสดุ</label>
+                                                <label for="product_id">รหัสวัสดุสิ้นเปลือง :</label>
                                                 <input class="form-control" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
                                             </div>
                                         </div>
@@ -561,7 +561,7 @@ if (isset($_GET["id"])) {
                                     <div class="row">
                                         <div class="col-6 ">
                                             <div class="form-group body-text">
-                                                <label for="unit">หน่วยนับ</label>
+                                                <label for="unit">หน่วยนับ :</label>
                                                 <select class="form-control <?php echo $itemOld["unit"] != $item["unit"] ? "alert-class" : ""; ?>" name="unit" value="<?php echo $item["unit"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM unit";
@@ -579,7 +579,7 @@ if (isset($_GET["id"])) {
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group body-text">
-                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย</label>
+                                                <label for="exampleFormControlSelect1">ชื่อผู้ขาย :</label>
                                                 <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1" name="seller_id" value="<?php echo $item["seller_id"]; ?>">
                                                     <?php
                                                     $sqlSelectType = "SELECT * FROM seller";
@@ -620,7 +620,7 @@ if (isset($_GET["id"])) {
                                     if ($item["status_request"] == "rejected") {
                                     ?>
                                         <div class="row">
-                                            <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ: </label>
+                                            <label class="body-text" for="exampleFormControlSelect1">เหตุผลในการปฎิเสธ : </label>
                                             <div class="col-12">
                                                 <textarea class="form-control" rows="10" disabled><?php echo $item["reject"]; ?></textarea>
                                             </div>
@@ -683,7 +683,7 @@ if (isset($_GET["id"])) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body body-text">ระบบจะทำการ<?php echo $item["action_request"] == "request_update" ? "แก้ไข" : "ลบ"; ?>ข้อมูลทันที ไม่สามารถกลับไปแก้ไขเพิ่มเติมได้อีก</div>
+                <div class="modal-body body-text">ระบบจะทำการ<?php echo $item["action_request"] == "request_update" ? "แก้ไข" : "ยกเลิก"; ?>ข้อมูลทันที ไม่สามารถกลับไปแก้ไขเพิ่มเติมได้อีก</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary body-text" type="button" data-dismiss="modal">ยกเลิก</button>
                     <button class="btn btn-primary body-text" type="button" data-dismiss="modal" onclick="$('#form_insert').submit()">ยืนยัน</button>

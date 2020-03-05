@@ -60,14 +60,14 @@ $show = 10;
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="documentno">
+                      <input type="text" class="form-control" name="document_no" id="inputdocument_no" aria-describedby="document_no" placeholder="">
                       <small id="alert-inputdocument_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="sell_date">วันที่ขาย</label>
-                      <input type="date" class="form-control" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="selldate">
+                      <input type="date" class="form-control" name="sell_date" id="inputsell_date" aria-describedby="sell_date" placeholder="">
                       <small id="alert-inputsell_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -103,7 +103,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="buyer">ชื่อผู้ซื้อ</label>
-                      <input type="text" class="form-control" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="namebuyer">
+                      <input type="text" class="form-control" name="buyer" id="inputbuyer" aria-describedby="buyer" placeholder="">
                       <small id="alert-inputbuyer" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="" rows="3"></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

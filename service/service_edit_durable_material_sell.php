@@ -10,7 +10,7 @@ if(isset($_GET["id"])) {
     $documentno = $_POST["document_no"];
     $flag = $_POST["flag"];
 
-    $log = "แก้ไขข้อมูลการขายทอดตลาดวัสดุคงทน  รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการขายทอดตลาดวัสดุคงทน";
     logServer($conn, $log);
 
        

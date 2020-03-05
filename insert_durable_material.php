@@ -65,13 +65,13 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="order_no">เลขที่ใบสั่งซื้อ</label>
-                      <input type="text" class="form-control" name="order_no" placeholder="order_no">
+                      <input type="text" class="form-control" name="order_no" placeholder="">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
-                      <input type="date" class="form-control" name="purchase_date" placeholder="purchase_date">
+                      <input type="date" class="form-control" name="purchase_date" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -79,13 +79,13 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control" name="order_by" placeholder="order_by">
+                      <input type="text" class="form-control" name="order_by" placeholder="">
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร :</label>
-                      <input class="form-control" type="text" placeholder="document_no" name="document_no"">
+                      <input class="form-control" type="text" placeholder="" name="document_no">
                     </div>
                   </div>
                 </div>
@@ -93,13 +93,13 @@ require "service/connection.php";
                       <div class="col-6 ">
                         <div class="form-group body-text">
                           <label for="receiver">ชื่อผู้รับ</label>
-                          <input type="text" class="form-control" name="receiver" placeholder="receiver">
+                          <input type="text" class="form-control" name="receiver" placeholder="">
                         </div>
                       </div>
                       <div class="col-6">
                         <div class="form-group body-text">
                           <label for="receive_date">วันที่ตรวจรับ</label>
-                          <input type="date" class="form-control" name="receive_date" placeholder="receive_date" name="receive_date">
+                          <input type="date" class="form-control" name="receive_date" placeholder="" name="receive_date">
                         </div>
                       </div>
                     </div>
@@ -107,7 +107,7 @@ require "service/connection.php";
                       <div class="col-12 ">
                         <div class="form-group body-text">
                           <label for="receive_address">สถานที่จัดส่ง</label>
-                          <textarea class="form-control" name="receive_address" rows="3" placeholder="address" name="address"></textarea>
+                          <textarea class="form-control" name="receive_address" rows="3" placeholder="" name="address"></textarea>
                         </div>
                       </div>
                     </div>
@@ -115,7 +115,7 @@ require "service/connection.php";
                       <div class="col-6">
                         <div class="form-group bmd-form-group body-text">
                           <label class="bmd-label-floating">หน่วยงาน :</label>
-                          <input class="form-control" type="text" placeholder="short_goverment" name="short_goverment">
+                          <input class="form-control" type="text" placeholder="" name="short_goverment">
                           <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                         </div>
                       </div>
@@ -138,13 +138,13 @@ require "service/connection.php";
                       <div class="col-6">
                         <div class="form-group bmd-form-group body-text">
                           <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                          <input class="form-control" type="text" placeholder="attribute" name="attribute">
+                          <input class="form-control" type="text" placeholder="" name="attribute">
                         </div>
                       </div>
                       <div class="col-6 ">
                         <div class="form-group bmd-form-group body-text">
                           <label class="bmd-label-floating">ชื่อวัสดุ (คงทน) :</label>
-                          <input class="form-control" type="text" placeholder="name" name="name">
+                          <input class="form-control" type="text" placeholder="" name="name">
                         </div>
                       </div>
                     </div>
@@ -180,7 +180,7 @@ require "service/connection.php";
                       <div class="col-6">
                         <div class="form-group bmd-form-group body-text">
                           <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                          <input class="form-control" type="text" placeholder="bill_no" name="bill_no">
+                          <input class="form-control" type="text" placeholder="" name="bill_no">
                         </div>
                       </div>
                       <div class="col-6">
@@ -206,7 +206,7 @@ require "service/connection.php";
                       <div class="col-6 ">
                         <div class="form-groupbody-text body-text">
                           <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                          <input class="form-control" type="text" placeholder="asset_no" name="asset_no">
+                          <input class="form-control" type="text" placeholder="" name="asset_no">
                         </div>
                       </div>
                     </div>
@@ -214,7 +214,7 @@ require "service/connection.php";
                       <div class="col-6">
                         <div class="form-group bmd-form-group body-text">
                           <label class="bmd-label-floating">จำนวนเงิน :</label>
-                          <input class="form-control" type="text" placeholder="price" name="price" id="price">
+                          <input class="form-control" type="text" placeholder="" name="price" id="price">
                         </div>
                       </div>
                       <div class="col-6">
@@ -238,7 +238,7 @@ require "service/connection.php";
                       <div class="col-6">
                         <div class="form-group bmd-form-group body-text">
                           <label class="bmd-label-floating">จำนวนวัสดุ :</label>
-                          <input class="form-control" type="text" placeholder="number" name="number">
+                          <input class="form-control" type="number" placeholder="" name="number">
                         </div>
                       </div>
                     </div>

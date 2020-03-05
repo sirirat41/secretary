@@ -65,7 +65,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="name">ชื่อร้านค้า</label>
-                      <input type="text" class="form-control body-text" name="name" id="inputname" aria-describedby="name" placeholder="nameseller" value="<?php echo $item["name"]; ?>">
+                      <input type="text" class="form-control body-text" name="name" id="inputname" aria-describedby="name" placeholder="" value="<?php echo $item["name"]; ?>">
                       <small id="alert-inputname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -74,7 +74,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
-                      <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel" value="<?php echo $item["tel"]; ?>">
+                      <input type="text" class="form-control body-text" name="tel" id="inputtel" aria-describedby="tel" placeholder="" value="<?php echo $item["tel"]; ?>">
                       <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -83,7 +83,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 body-text">
                     <div class="form-group body-text">
                       <label for="fax">แฟกต์</label>
-                      <input type="text" class="form-control body-text" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax" value="<?php echo $item["fax"]; ?>">
+                      <input type="text" class="form-control body-text" name="fax" id="inputfax" aria-describedby="fax" placeholder="" value="<?php echo $item["fax"]; ?>">
                       <small id="alert-inputfax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -92,7 +92,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="address">ที่อยู่</label>
-                      <textarea class="form-control body-text" name="address" id="address" placeholder="address" rows="3"><?php echo $item["address"]; ?></textarea>
+                      <textarea class="form-control body-text" name="address" id="address" placeholder="" rows="3"><?php echo $item["address"]; ?></textarea>
                       <small id="alert-address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

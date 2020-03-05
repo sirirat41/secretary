@@ -73,14 +73,14 @@ if (isset($_GET["id"])) {
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
-                      <input class="form-control" name="document_no" type="text" id="document_no" placeholder="document_no" value="<?php echo $item["document_no"]; ?>">
+                      <input class="form-control" name="document_no" type="text" id="document_no" placeholder="" value="<?php echo $item["document_no"]; ?>">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
-                      <input class="form-control" name="receive_date" type="date" id="receive_date" placeholder="receive_date" value="<?php echo $newOrderDate; ?>">
+                      <input class="form-control" name="receive_date" type="date" id="receive_date" placeholder="" value="<?php echo $newOrderDate; ?>">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -93,7 +93,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control body-text" name="product_id" id="product_id" value="<?php echo $item["product_id"]; ?>">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 8";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -118,7 +118,7 @@ if (isset($_GET["id"])) {
                   <div class=" col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
-                      <input class="form-control" name="donate_name" type="text" placeholder="donate_name" id="donate_name" value="<?php echo $item["donate_name"]; ?>">
+                      <input class="form-control" name="donate_name" type="text" placeholder="" id="donate_name" value="<?php echo $item["donate_name"]; ?>">
                       <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -127,7 +127,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
-                      <textarea type="text" class="form-control" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                      <textarea type="text" class="form-control" name="flag" id="flag" rows="3" placeholder=""><?php echo $item["flag"]; ?></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

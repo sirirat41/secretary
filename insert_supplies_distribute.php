@@ -88,14 +88,14 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">จำนวน</label>
-                      <input class="form-control" type="text" placeholder="number" name="number" id="number">
+                      <input class="form-control" type="number" placeholder="" name="number" id="number">
                       <small id="alert-number" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="distribute_date">วันที่แจกจ่าย</label>
-                      <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="distribute_date" name="distribute_date">
+                      <input type="date" class="form-control" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date">
                       <small id="alert-distribute_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน</label>
-                      <select class="form-control" name="department_id" name="department_id" id="department_id">
+                      <select class="form-control" name="department_id" id="department_id">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -120,7 +120,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <input class="form-control" type="text" name="flag" placeholder="flag" id="flag">
+                      <input class="form-control" type="text" name="flag" placeholder="" id="flag">
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

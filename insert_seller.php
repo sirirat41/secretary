@@ -59,7 +59,7 @@ require "service/connection.php";
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="name">ชื่อร้านค้า</label>
-                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="nameseller">
+                      <input type="text" class="form-control" name="name" id="inputname" aria-describedby="name" placeholder="">
                       <small id="alert-inputname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -68,7 +68,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
-                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="">
                       <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -77,7 +77,7 @@ require "service/connection.php";
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="fax">แฟกต์</label>
-                      <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="fax">
+                      <input type="text" class="form-control" name="fax" id="inputfax" aria-describedby="fax" placeholder="">
                       <small id="alert-inputfax" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="address">ที่อยู่</label>
-                      <textarea class="form-control" name="address" id="address" placeholder="address" rows="3"></textarea>
+                      <textarea class="form-control" name="address" id="address" placeholder="" rows="3"></textarea>
                       <small id="alert-address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -224,24 +224,7 @@ require "service/connection.php";
     }
   </script>
   <!-- Message Modal-->
-  <div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <?php echo $_GET["message"]; ?>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-dangerbody-text" data-dismiss="modal">ตกลง</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 
 </body>
 

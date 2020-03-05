@@ -59,14 +59,14 @@ $show = 10;
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="document_no">เลขที่เอกสาร</label>
-                      <input type="text" class="form-control" name="document_no" id="document_no" placeholder="no" autofocus>
+                      <input type="text" class="form-control" name="document_no" id="document_no" placeholder="" autofocus>
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="transfer_date">วันที่โอน</label>
-                      <input type="date" class="form-control" name="transfer_date" id="transfer_date" placeholder="receivedate">
+                      <input type="date" class="form-control" name="transfer_date" id="transfer_date" placeholder="">
                       <small id="alert-transfer_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -99,7 +99,7 @@ $show = 10;
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="transfer_from">ชื่อผู้โอน</label>
-                      <input type="text" class="form-control" name="transfer_from" id="transfer_form" placeholder="name">
+                      <input type="text" class="form-control" name="transfer_from" id="transfer_form" placeholder="">
                       <small id="alert-transfer_from" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -108,7 +108,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="inputEmail3">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" rows="3" placeholder="flag"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" rows="3" placeholder=""></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

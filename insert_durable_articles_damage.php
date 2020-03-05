@@ -96,7 +96,7 @@ $show = 10;
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
-                      <input class="form-control body-text" name="flag" type="text" placeholder="flag" id="flag">
+                      <input class="form-control body-text" name="flag" type="text" placeholder="" id="flag">
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

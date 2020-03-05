@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["permits_id"] )) {
     $productID = $_POST["product_id"];
     $sqlUpdate ="UPDATE durable_material_permits SET status = 0 WHERE id = ". $permitsID;
     mysqli_query($conn, $sqlUpdate) or die("Cannot update permits_id: " . mysqli_error($conn));
-    $log = "ยกเลิกข้อมูลการยืม-คืนวัสดุคงทน ลำดับ " . $permitsID;
+    $log = "ยกเลิกข้อมูลการยืม-คืนวัสดุคงทน";
     logServer($conn, $log);
 
     

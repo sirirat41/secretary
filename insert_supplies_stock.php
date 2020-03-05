@@ -60,7 +60,7 @@ require "service/connection.php";
                   <div class="col-12">
                     <div class="form-group body-text">
                       <label for="supplies_name">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control" name="supplies_name" id="supplies_name" aria-describedby="supplies_name" placeholder="name">
+                      <input type="text" class="form-control" name="supplies_name" id="supplies_name" aria-describedby="supplies_name" placeholder="">
                       <small id="alert-supplies_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ require "service/connection.php";
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="attribute">ลักษณะ/คุณสมบัติ</label>
-                      <textarea class="form-control" name="attribute" id="attribute" rows="3" placeholder="address" id="attribute"></textarea>
+                      <textarea class="form-control" name="attribute" id="attribute" rows="3" placeholder="" id="attribute"></textarea>
                       <small id="alert-attribute" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

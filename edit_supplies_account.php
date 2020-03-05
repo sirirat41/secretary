@@ -75,13 +75,13 @@ if (isset($_GET["id"])) {
                   <div class="col-4">
                     <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
-                      <input type="text" class="form-control body-text" name="year" id="year" placeholder="year" name="year" value="<?php echo $item["year"]; ?>">
+                      <input type="text" class="form-control body-text" name="year" id="year" placeholder="" name="year" value="<?php echo $item["year"]; ?>">
                     </div>
                   </div>
                   <div class="col-8">
                     <div class="form-group bmd-form-group body-text">
                       <label for="supplies_id">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control body-text" name="supplies_id" id="supplies_id" placeholder="supplies_id" name="supplies_id" value="<?php echo $item["supplies_name"]; ?>">
+                      <input type="text" class="form-control body-text" name="supplies_id" id="supplies_id" placeholder="" name="supplies_id" value="<?php echo $item["supplies_name"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group">
                       <label for="product_id">รหัสวัสดุ</label>
     
-                      <input type="text" class="form-control body-text" name="product_id" id="product_id" placeholder="product_id" name="product_id" value="<?php echo $item["code"]; ?>">
+                      <input type="text" class="form-control body-text" name="product_id" id="product_id" placeholder="" name="product_id" value="<?php echo $item["code"]; ?>">
                        
                      
                     </div>

@@ -60,7 +60,7 @@ $show = 10;
                   <div class="col-md-4">
                     <div class="form-group body-text">
                       <label for="seq">ลำดับ</label>
-                      <input type="text" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="">
+                      <input type="number" class="form-control" name="seq" id="inputseq" aria-describedby="seq" placeholder="">
                     </div>
                   </div>
                   <div class="col-md-8">
@@ -101,13 +101,13 @@ $show = 10;
                   <div class="col-md-8">
                     <div class="form-group body-text">
                       <label for="fix">รายการซ่อมครุภัณฑ์</label>
-                      <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="listfix">
+                      <input type="text" class="form-control" name="fix" id="inputfix" aria-describedby="fix" placeholder="">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group body-text">
                       <label for="price">ราคา</label>
-                      <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="price">
+                      <input type="text" class="form-control" name="price" id="inputprice" aria-describedby="price" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ $show = 10;
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea class="form-control" name="flag" id="flag" placeholder="flag" rows="3"></textarea>
+                      <textarea class="form-control" name="flag" id="flag" placeholder="" rows="3"></textarea>
                     </div>
                   </div>
 

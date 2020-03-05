@@ -57,11 +57,20 @@ require "service/connection.php";
             <div class="card-body">
               <form method="post" action="service/service_insert_user.php" id="form_insert">
                 <div class="row">
-                  <div class="col-md-12 ">
+                  <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="username">ชื่อสมาชิก</label>
-                      <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="username">
+                      <input type="text" class="form-control" name="username" id="inputusername" aria-describedby="username" placeholder="">
                       <small id="alert-inputusername" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
+                    </div>
+                  </div>
+              
+
+                  <div class="col-md-6">
+                    <div class="form-group body-text">
+                      <label for="password">รหัสผ่าน</label>
+                      <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="">
+                      <small id="alert-inputpassword" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -69,41 +78,33 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
-                      <label for="password">รหัสผ่าน</label>
-                      <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="password">
-                      <small id="alert-inputpassword" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group body-text">
                       <label for="surname">ชื่อ</label>
-                      <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="surname">
+                      <input type="text" class="form-control" name="surname" id="inputsurname" aria-describedby="surname" placeholder="">
                       <small id="alert-inputsurname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="lastname">นามสกุล</label>
-                      <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="lastname">
+                      <input type="text" class="form-control" name="lastname" id="inputlastname" aria-describedby="lastname" placeholder="">
                       <small id="alert-inputlastname" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <div class="form-group body-text">
                       <label for="tel">เบอร์โทร</label>
-                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="tel">
+                      <input type="text" class="form-control" name="tel" id="inputtel" aria-describedby="tel" placeholder="">
                       <small id="alert-inputtel" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="position">ตำแหน่ง</label>
-                      <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="position">
+                      <input type="text" class="form-control" name="position" id="inputposition" aria-describedby="position" placeholder="">
                       <small id="alert-inputposition" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -113,7 +114,7 @@ require "service/connection.php";
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="email">อีเมล์</label>
-                      <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="email">
+                      <input type="text" class="form-control" name="email" id="inputemail" aria-describedby="email" placeholder="">
                       <small id="alert-inputemail" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -127,7 +128,7 @@ require "service/connection.php";
                         $sqlSelectType = "SELECT * FROM u_type";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["t_code"] . '</option>';
+                          echo '<option value="' . $row["id"] . '">' . $row["t_name"] . '</option>';
                         }
                         ?>
                       </select>

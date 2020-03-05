@@ -3,19 +3,20 @@ require "connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["repair_id"])) {
     $repairid = $_POST["repair_id"];
-    $sqlUpdate = "UPDATE durable_material_repair SET status = 0 WHERE id = " . $repairid;
+    $productid = $_POST["product_id"];
 
-    $log = "ลบข้อมูลการซ่อมวัสดุคงทน รหัส " . $repairid;
+    $sqlUpdate = "UPDATE durable_material_repair SET status = 0 WHERE id = " . $repairid;
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update repair_id: " . mysqli_error($conn));
+    $log = "ยกเลิกข้อมูลการซ่อมวัสดุคงทน";
     logServer($conn, $log);
 
-    if (mysqli_query($conn, $sqlUpdate)) {
-        header('Location: ../display_durable_material_repair.php?message=ลบข้อมูลสำเร็จ');
-    } else {
-        header('Location: ../display_durable_material_repair.php?message=ลบข้อมูลไม่สำเร็จ');
-    }
+    
+    $sqlUpdate = "UPDATE durable_material SET status = 3";
+    $sqlUpdate .= " WHERE id = $productid";
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update permits: " . mysqli_error($conn));
 
-    } else {
-        header('Location: ../display_durable_material_repair.php?message=ลบข้อมูลผิดพลาด');
-    }
+        header('Location: ../display_durable_articles_repair.php?message=ยกเลิกข้อมูลสำเร็จ');
+   
+}
 
 ?>

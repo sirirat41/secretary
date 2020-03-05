@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                     <div class="col-md-8">
                       <div class="row">
                         <div class="col-md-12">
-                          <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง (ย่อ) : </label>
+                          <label class="text-dark body-text" for="code">รหัสวัสดุสิ้นเปลือง : </label>
                           <?php echo ($row["code"]); ?>
                         </div>
                       </div>

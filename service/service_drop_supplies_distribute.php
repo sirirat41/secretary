@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['distribute_id'])) {
     $sqlUpdate ="UPDATE supplies_distribute SET status = 0 WHERE id = ". $distribute_id;
     mysqli_query($conn, $sqlUpdate) or die("Cannot update distribute_id: " . mysqli_error($conn));
     
-    $log = "ยกเลิกข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง รหัส " . $distribute_id;
+    $log = "ยกเลิกข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
     logServer($conn, $log);
 
     $sqlSelect = "SELECT d.*,s.supplies_id ,s.code FROM supplies_distribute as d , supplies as s WHERE s.id = $productID";

@@ -10,7 +10,7 @@ if (isset($_GET["id"])) {
 
     $type = $_GET["type"];
 
-    $log = "แก้ไขข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง ลำดับที่ " . $id;
+    $log = "แก้ไขข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
     logServer($conn, $log);
     $sqlSelect = "SELECT d.*,s.supplies_id ,s.code FROM supplies_distribute as d , supplies as s WHERE d.id = $id";
     $resultOld = mysqli_query($conn, $sqlSelect);

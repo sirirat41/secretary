@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
     $moneyType = $_POST["money_type"];
     $acquiring = $_POST["acquiring"];
 
-    $log = "แก้ไขข้อมูลการจัดซื้อครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการจัดซื้อครุภัณฑ์";
     logServer($conn, $log);
 
     $updateArticles = "UPDATE durable_articles SET short_goverment = '$shortGoverment',";

@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT *,supplies_purchase.id as p ,s.price ,s.code FROM supplies as s ,supplies_purchase LEFT JOIN supplies ON supplies.id = supplies_purchase.product_id ";
+  $sql = "SELECT *,supplies_purchase.id as p ,s.price ,s.code ,s.picture FROM supplies as s ,supplies_purchase LEFT JOIN supplies ON supplies.id = supplies_purchase.product_id ";
   $sql .= "WHERE s.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
@@ -84,13 +84,13 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                      <input class="form-control body-text" type="text" placeholder="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
+                      <input class="form-control body-text" type="text" placeholder="" name="order_no" value="<?php echo $item["order_no"]; ?>">
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                      <input class="form-control body-text" type="date" placeholder="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
+                      <input class="form-control body-text" type="date" placeholder="" name="purchase_date" value="<?php echo $newOrderDate; ?>">
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ if (isset($_GET["id"])) {
                   <div class="col-12">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้จัดซื้อ :</label>
-                      <input class="form-control body-text" type="text" placeholder="order_by" name="order_by" value="<?php echo $item["order_by"]; ?>">
+                      <input class="form-control body-text" type="text" placeholder="" name="order_by" value="<?php echo $item["order_by"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -106,13 +106,13 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label for="receiver">ชื่อผู้รับ</label>
-                      <input type="text" class="form-control body-text" name="receiver" id="receiver" placeholder="receiver" id="receiver" value="<?php echo $item["receiver"]; ?>">
+                      <input type="text" class="form-control body-text" name="receiver" id="receiver" placeholder="" id="receiver" value="<?php echo $item["receiver"]; ?>">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่ตรวจรับ</label>
-                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="receive_date" id="receive_date" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="" id="receive_date" value="<?php echo $newReceiveDate; ?>">
                     </div>
                   </div>
                 </div>
@@ -120,22 +120,22 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="receive_address">สถานที่จัดส่ง</label>
-                      <textarea class="form-control body-text" name="receive_address" id="receive_address" rows="3" placeholder="address" id="address"><?php echo $item["receive_address"]; ?></textarea>
+                      <textarea class="form-control body-text" name="receive_address" id="receive_address" rows="3" placeholder="" id="address"><?php echo $item["receive_address"]; ?></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
-                      <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control body-text" type="text" placeholder="short_goverment" name="short_goverment" id="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
+                      <label class="bmd-label-floating">หน่วยงาน </label>
+                      <input class="form-control body-text" type="text" placeholder="" name="short_goverment" id="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
                       <small id="emailHelp" class="form-text text-danger body-text"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="bill_no">เลขที่ใบเบิก</label>
-                      <input type="text" class="form-control body-text" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                      <input type="text" class="form-control body-text" name="bill_no" id="inputbill_no" aria-describedby="bill_no" placeholder="" value="<?php echo $item["bill_no"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ if (isset($_GET["id"])) {
                   <div class="col-4">
                     <div class="form-group body-text">
                       <label for="price">จำนวนเงิน</label>
-                      <input type="text" class="form-control body-text" name="price" id="inputprice" aria-describedby="price" placeholder="price" value="<?php echo $item["price"]; ?>">
+                      <input type="text" class="form-control body-text" name="price" id="inputprice" aria-describedby="price" placeholder="" value="<?php echo $item["price"]; ?>">
                     </div>
                   </div>
                 </div>
@@ -169,12 +169,12 @@ if (isset($_GET["id"])) {
                   <div class="col-md-7">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="product_id" type="text" placeholder="product_id" id="product_id" value="<?php echo $item["code"]; ?>" disabled>
+                      <input class="form-control body-text" name="product_id" type="text" placeholder="" id="product_id" value="<?php echo $item["code"]; ?>" disabled>
                     </div></div>
                     <div class="col-5">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">จำนวนวัสดุ</label>
-                      <input class="form-control body-text" type="text" placeholder="number" name="num" id="num" value="<?php echo $item["number"]; ?>">
+                      <input class="form-control body-text" type="number" placeholder="" name="num" id="num" value="<?php echo $item["number"]; ?>">
                     </div>
                   </div>
                 
@@ -224,19 +224,19 @@ if (isset($_GET["id"])) {
                       <div class="fileinput-new thumbnail img-raised">
                         <img class="img-thumbnail" src="uploads/<?php echo $item["picture"]; ?>" align="center" alt="..." id="image-preview">
                       </div>
-                    </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                    <div>
-                      <span class="btn btn-raised btn-round btn-default btn-file">
-                        <br>
-                        <div class="col-2 offset-1">
-                          <input type="file" name="image" id="image" value="<?php echo $item["picture"]; ?>"/>
-                        </div>
-                      </span>
+                      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                          <br>
+                          <div class="col-2 offset-1">
+                            <input type="file" name="image" id="image"/>
+                          </div>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <br><br>
+                <br>
                 <div class="row">
                   <div class="col-12">
                     <button type="button" class="btn btn-danger btn btn-block body-text" data-toggle="modal" data-target="#exampleModal">

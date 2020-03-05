@@ -68,7 +68,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="book_no">เลขที่หนังสือ</label>
-                      <input type="text" class="form-control" name="book_no" id="book_no" placeholder="no" value="<?php echo $item["book_no"]; ?>" autofocus>
+                      <input type="text" class="form-control" name="book_no" id="book_no" placeholder="" value="<?php echo $item["book_no"]; ?>" autofocus>
                       <small id="alert-book_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -105,14 +105,14 @@ if (isset($_GET["id"])) {
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input class="form-control" name="permit_date" id="permit_date" placeholder="permitdate" type="date" value="<?php echo $newpermitDate; ?>">
+                      <input class="form-control" name="permit_date" id="permit_date" placeholder="" type="date" value="<?php echo $newpermitDate; ?>">
                       <small id="alert-permit_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="receive_date" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="" value="<?php echo $newReceiveDate; ?>">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -141,7 +141,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12">
                     <div class="form-group body-text">
                       <label for="flag">หมายเหตุ</label>
-                      <textarea type="text" class="form-control body-text" name="flag" id="flag" rows="3" placeholder="flag"><?php echo $item["flag"]; ?></textarea>
+                      <textarea type="text" class="form-control body-text" name="flag" id="flag" rows="3" placeholder=""><?php echo $item["flag"]; ?></textarea>
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

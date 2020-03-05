@@ -63,14 +63,14 @@ $show = 10;
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">เลขที่เอกสาร</label>
-                      <input class="form-control body-text" name="document_no" type="text" id="document_no" placeholder="document_no">
+                      <input class="form-control body-text" name="document_no" type="text" id="document_no" placeholder="">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
-                      <input class="form-control body-text" name="receive_date" type="date" id="receive_date" placeholder="receive_date">
+                      <input class="form-control body-text" name="receive_date" type="date" id="receive_date" placeholder="">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -104,14 +104,14 @@ $show = 10;
                   <div class=" col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">ชื่อผู้บริจาค</label>
-                      <input class="form-control body-text" name="donate_name" type="text" placeholder="donate_name" id="donate_name">
+                      <input class="form-control body-text" name="donate_name" type="text" placeholder="" id="donate_name">
                       <small id="alert-donate_name" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หมายเหตุ</label>
-                      <input class="form-control body-text" name="flag" name="flag" type="text" placeholder="flag" id="flag">
+                      <input class="form-control body-text" name="flag" name="flag" type="text" placeholder="" id="flag">
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

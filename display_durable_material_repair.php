@@ -73,7 +73,6 @@ $show = 10;
                   <table class="table table-hover ">
                     <thead>
                       <tr class="text-center body-text">
-                        <th>ลำดับ</th>
                         <th>วันที่ซ่อม</th>
                         <th>รหัสวัสดุ(ชำรุด)</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
@@ -104,7 +103,6 @@ $show = 10;
                         $id = $row["id"]
                         ?>
                       <tr class="text-center body-text">
-                        <td><?php echo ($row["seq"]); ?></td>
                         <td><?php echo ($row["repair_date"]); ?></td>
                         <td><?php echo ($row["code"]); ?></td>
                         <td><?php echo $row["attribute"]; ?></td>
@@ -122,7 +120,7 @@ $show = 10;
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" 
-                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>')">
+                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
@@ -291,6 +289,7 @@ $show = 10;
           คุณต้องการยกเลิกข้อมูลซ่อมวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material_repair.php">
             <input type="hidden" id="remove-repair" name="repair_id">
+            <input type="hidden" id="remove-product-id" name="product_id">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>

@@ -9,7 +9,7 @@ if(isset($_GET['id'])) {
     $donateName = $_POST["donate_name"];
     $flag = $_POST["flag"];
 
-    $log = "แก้ไขข้อมูลการบริจาคครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการบริจาคครุภัณฑ์";
     logServer($conn, $log);
     
     $sqlSelect = "SELECT * FROM durable_articles_donate WHERE id = $id";

@@ -407,20 +407,19 @@ $show = 10;
     }
 
     function validateData() {
-      var inputseq = $('#inputseq').val();
       var inputrepair_date = $('#inputrepair_date').val();
       var place = $('#place').val();
       var flag = $('#flag').val();
       var validateCount = 0;
-      if ($.trim(inputseq) == "") {
-        validateCount++;
-        $('#inputseq').focus();
-        $('#inputseq').addClass('border border-danger');
-        $('#alert-inputseq').show();
-      } else {
-        $('#inputseq').removeClass('border border-danger');
-        $('#alert-inputseq').hide();
-      }
+      // if ($.trim(inputseq) == "") {
+      //   validateCount++;
+      //   $('#inputseq').focus();
+      //   $('#inputseq').addClass('border border-danger');
+      //   $('#alert-inputseq').show();
+      // } else {
+      //   $('#inputseq').removeClass('border border-danger');
+      //   $('#alert-inputseq').hide();
+      // }
       if ($.trim(inputrepair_date) == "") {
         validateCount++;
         $('#inputrepair_date').addClass('border border-danger');

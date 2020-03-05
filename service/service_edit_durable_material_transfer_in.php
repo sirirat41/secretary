@@ -25,7 +25,7 @@ if(isset($_GET["id"])) {
     $updatetransferin .= " product_id = '$product_id', transfer_date = '$transfer_date', transfer_from = '$transfer_from', flag = '$flag'";
     $updatetransferin .= " WHERE id = $id";
   
-    $log = "แก้ไขข้อมูลการโอนเข้าวัสดุคงทน รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการโอนเข้าวัสดุคงทน";
     logServer($conn, $log);
 
     mysqli_query($conn, $updatetransferin) or die("Cannot update transfer_in". mysqli_error($conn));

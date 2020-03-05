@@ -82,14 +82,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6 ">
                     <div class="form-group body-text">
                       <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ :</label>
-                      <input class="form-control body-text" type="text" placeholder="order_no" id="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
+                      <input class="form-control body-text" type="text" placeholder="" id="order_no" name="order_no" value="<?php echo $item["order_no"]; ?>">
                       <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 body-text">
                     <div class="form-group ">
                       <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
-                      <input class="form-control body-text" type="date" placeholder="purchase_date" id="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
+                      <input class="form-control body-text" type="date" placeholder="" id="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
                       <small id="alert-purchase_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -98,14 +98,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6 body-text">
                     <div class="form-group">
                       <label for="order_no">ชื่อผู้จัดซื้อ</label>
-                      <input type="text" class="form-control body-text" name="order_by" id="order_by" placeholder="order_by" value="<?php echo $item["order_by"]; ?>">
+                      <input type="text" class="form-control body-text" name="order_by" id="order_by" placeholder="" value="<?php echo $item["order_by"]; ?>">
                       <small id="alert-order_by" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 body-text">
                     <div class="form-group">
                       <label class="bmd-label-floating">เลขที่เอกสาร :</label>
-                      <input class="form-control body-text" type="number" placeholder="document_no" id="document_no" name="document_no" value="<?php echo $item["document_no"]; ?>">
+                      <input class="form-control body-text" type="number" placeholder="" id="document_no" name="document_no" value="<?php echo $item["document_no"]; ?>">
                       <small id="alert-document_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -113,8 +113,8 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น :</label>
-                      <input class="form-control body-text" type="text" placeholder="รหัสครุภัณฑ์ตั้งต้น" id="code" name="code" value="<?php echo $item["code"]; ?>" readonly>
+                      <label class="bmd-label-floating">รหัสครุภัณฑ์ตั้งต้น </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="code" name="code" value="<?php echo $item["code"]; ?>" readonly>
                       <small style="color: red"> *ตัวอย่าง: ค.สง 7700-100-{run_4}-2557</small>
                     </div>
                   </div>
@@ -123,14 +123,14 @@ if (isset($_GET["id"])) {
                   <div class="col-6 body-text">
                     <div class="form-group">
                       <label for="receiver">ชื่อผู้รับ</label>
-                      <input type="text" class="form-control body-text" name="receiver" id="receiver" placeholder="receiver" value="<?php echo $item["receiver"]; ?>">
+                      <input type="text" class="form-control body-text" name="receiver" id="receiver" placeholder="" value="<?php echo $item["receiver"]; ?>">
                       <small id="alert-receiver" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 body-text">
                     <div class="form-group">
                       <label for="receive_date">วันที่ตรวจรับ</label>
-                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="receive_date" value="<?php echo $newReceiveDate; ?>">
+                      <input type="date" class="form-control body-text" name="receive_date" id="receive_date" placeholder="" value="<?php echo $newReceiveDate; ?>">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 body-text">
                     <div class="form-group ">
                       <label for="receive_address">สถานที่จัดส่ง</label>
-                      <textarea class="form-control body-text" name="receive_address" id="receive_address" rows="3" placeholder="address"><?php echo $item["receive_address"]; ?></textarea>
+                      <textarea class="form-control body-text" name="receive_address" id="receive_address" rows="3" placeholder=""><?php echo $item["receive_address"]; ?></textarea>
                       <small id="alert-receive_address" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -147,15 +147,15 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6 body-text">
                     <div class="form-group">
-                      <label class="bmd-label-floating">หน่วยงาน :</label>
-                      <input class="form-control body-text" type="text" placeholder="short_goverment" id="short_goverment" name="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
+                      <label class="bmd-label-floating">หน่วยงาน</label>
+                      <input class="form-control body-text" type="text" placeholder="" id="short_goverment" name="short_goverment" value="<?php echo $item["short_goverment"]; ?>">
                       <small id="emailHelp" class="form-text text-danger"> *เป็นชื่อหน่วยงาน (ย่อ) ของส่วนราชการ</small>
                       <small id="alert-short_goverment" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6 body-text">
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1">ประเภทครุภัณฑ์ : </label>
+                      <label for="exampleFormControlSelect1">ประเภทครุภัณฑ์ </label>
                       <select class="form-control body-text" data-style="btn btn-link" id="exampleFormControlSelect1" name="type" value="<?php echo $item["type"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM durable_articles_type";
@@ -175,15 +175,15 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ :</label>
-                      <input class="form-control body-text" type="text" placeholder="attribute" id="attribute" name="attribute" value="<?php echo $item["attribute"]; ?>">
+                      <label class="bmd-label-floating">ลักษณะ/คุณสมบัติ </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="attribute" name="attribute" value="<?php echo $item["attribute"]; ?>">
                       <small id="alert-attribute" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">รุ่นแบบ :</label>
-                      <input class="form-control body-text" type="text" placeholder="model" id="model" name="model" value="<?php echo $item["model"]; ?>">
+                      <label class="bmd-label-floating">รุ่นแบบ </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="model" name="model" value="<?php echo $item["model"]; ?>">
                       <small id="alert-model" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -191,15 +191,15 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">เลขที่ใบเบิก :</label>
-                      <input class="form-control body-text" type="text" placeholder="bill_no" id="bill_no" name="bill_no" value="<?php echo $item["bill_no"]; ?>">
+                      <label class="bmd-label-floating">เลขที่ใบเบิก </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="bill_no" name="bill_no" value="<?php echo $item["bill_no"]; ?>">
                       <small id="alert-bill_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">งบประมาณ :</label>
-                      <input class="form-control body-text" type="text" placeholder="budget" id="budget" name="budget" value="<?php echo $item["budget"]; ?>">
+                      <label class="bmd-label-floating">งบประมาณ </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="budget" name="budget" value="<?php echo $item["budget"]; ?>">
                       <small id="alert-budget" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -207,7 +207,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">หน่วยงานที่รับผิดชอบ :</label>
+                      <label class="bmd-label-floating">หน่วยงานที่รับผิดชอบ </label>
                       <select class="form-control body-text" name="department_id" value="<?php echo $item["department_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
@@ -227,15 +227,15 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">เลขสินทรัพย์ :</label>
-                      <input class="form-control body-text" type="text" placeholder="asset_no" id="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>" readonly>
+                      <label class="bmd-label-floating">เลขสินทรัพย์ </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="asset_no" name="asset_no" value="<?php echo $item["asset_no"]; ?>" readonly>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="form-group body-text">
-                        <label class="bmd-label-floating">เอกสารสำรองเงิน :</label>
-                        <input class="form-control body-text" type="text" placeholder="d_gen" name="d_gen" id="d_gen" value="<?php echo $item["d_gen"]; ?>">
+                        <label class="bmd-label-floating">เอกสารสำรองเงิน </label>
+                        <input class="form-control body-text" type="text" placeholder="" name="d_gen" id="d_gen" value="<?php echo $item["d_gen"]; ?>">
                         <small id="alert-d_gen" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                       </div>
                     </div>
@@ -263,7 +263,7 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">หน่วยนับ :</label>
+                      <label class="bmd-label-floating">หน่วยนับ </label>
                       <select class="form-control body-text" name="unit" value="<?php echo $item["unit"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM unit";
@@ -281,8 +281,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">จำนวนเงิน :</label>
-                      <input class="form-control body-text" type="number" placeholder="price" id="price" name="price" value="<?php echo $item["price"]; ?>">
+                      <label class="bmd-label-floating">จำนวนเงิน </label>
+                      <input class="form-control body-text" type="number" placeholder="" id="price" name="price" value="<?php echo $item["price"]; ?>">
                       <small id="alert-price" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -290,8 +290,8 @@ if (isset($_GET["id"])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ :</label>
-                      <select class="form-control body-text" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year" name="durable_year" value="<?php echo $item["durable_year"]; ?>">
+                      <label for="exampleFormControlSelect1">จำนวนปีของครุภัณฑ์ </label>
+                      <select class="form-control body-text" data-style="btn btn-link" id="exampleFormControlSelect1" name="durable_year"  value="<?php echo $item["durable_year"]; ?>">
                         <?php
                         for ($i = 0; $i <= 10; $i++) {
                           if ($item["durable_year"] == $i) {
@@ -306,8 +306,8 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
-                      <label class="bmd-label-floating">ห้องเก็บครุภัณฑ์ :</label>
-                      <input class="form-control body-text" type="text" placeholder="storage" id="storage" name="storage" value="<?php echo $item["storage"]; ?>">
+                      <label class="bmd-label-floating">ห้องเก็บครุภัณฑ์ </label>
+                      <input class="form-control body-text" type="text" placeholder="" id="storage" name="storage" value="<?php echo $item["storage"]; ?>">
                       <small id="alert-storage" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

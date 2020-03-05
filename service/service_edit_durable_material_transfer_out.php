@@ -25,7 +25,7 @@ if(isset($_GET["id"])) {
     $updatetransferout .= " product_id = '$product_id', transfer_date = '$transfer_date', transfer_to = '$transfer_to', flag = '$flag'";
     $updatetransferout .= " WHERE id = $id";
   
-    $log = "แก้ไขข้อมูลการโอนเข้าครุภัณฑ์ รหัส " . $id ;
+    $log = "แก้ไขข้อมูลการโอนเข้าครุภัณฑ์";
     logServer($conn, $log);
 
     mysqli_query($conn, $updatetransferout) or die("Cannot update transfer_out". mysqli_error($conn));

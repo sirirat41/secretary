@@ -117,7 +117,7 @@ $show = 10;
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_durable_articles_transfer_in.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-transfer_in').val('<?php echo $id; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-transfer_in').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           </td>
@@ -287,6 +287,7 @@ $show = 10;
           คุณต้องการยกเลิกข้อมูลการโอนเข้าครุภัณฑ์ใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_transfer_in.php">
             <input type="hidden" id="remove-transfer_in" name="transfer_in_id">
+            <input type="hidden" id="remove-product-id" name="product_id">
           </form>
         </div>
         <div class="modal-footer">

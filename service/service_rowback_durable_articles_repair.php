@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["repair_id"])) {
     $repairid = $_POST["repair_id"];
     $sqlUpdate = "UPDATE durable_articles_repair SET status = 1 WHERE id = " . $repairid;
 
-    $log = "กู้คืนข้อมูลการซ่อมครุภัณฑ์ รหัส " . $repairid ;
+    $log = "กู้คืนข้อมูลการซ่อมครุภัณฑ์";
     logServer($conn, $log);
 
     if (mysqli_query($conn, $sqlUpdate)) {

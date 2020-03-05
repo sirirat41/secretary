@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
             <div class="card-header py-3">
               <nav class="navbar navbar-light bg-light">
                 <h5  class="m-0 font-weight-bold text-danger">
-                  <i class="fas fa-business-time"></i> ข้อมูลการจัดซื้อ(วัสดุสิ้นเปลือง)</h5>
+                  <i class="fas fa-business-time"></i> ข้อมูลการจัดซื้อวัสดุสิ้นเปลือง</h5>
                 <form class="form-inline">
                   <div>
                 </form>
@@ -99,7 +99,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุ : </label>
+                      <label class="text-dark body-text" for="supplies_name">ชื่อวัสดุสิ้นเปลือง : </label>
                       <?php echo ($row["supplies_name"]); ?>
                     </div>
                   </div>
@@ -133,7 +133,7 @@ if (isset($_GET["id"])) {
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-dark body-text" for="name">ร้านค้า : </label>
+                      <label class="text-dark body-text" for="name">ชื่อผู้ขาย : </label>
                       <?php echo ($row["name"]); ?>
                     </div>
                   </div>
