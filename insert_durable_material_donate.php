@@ -103,7 +103,7 @@ $show = 10;
                   <div class="col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">วันที่บริจาค</label>
-                      <input class="form-control" name="receive_date" type="date" placeholder="">
+                      <input class="form-control" name="receive_date" id="receive_date" type="date" placeholder="">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

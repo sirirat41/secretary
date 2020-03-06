@@ -71,7 +71,6 @@ require "service/connection.php";
                     <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
                       <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="">
-                      <small id="alert-purchase_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                 </div>
@@ -94,8 +93,8 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group body-text">
-                      <label class="bmd-label-floating">รหัสวัสดุตั้งต้น :</label>
-                      <input class="form-control" type="text" placeholder="รหัสวัสดุฑ์ตั้งต้น" name="material_pattern">
+                      <label class="bmd-label-floating">รหัสวัสดุตั้งต้น </label>
+                      <input class="form-control" type="text" placeholder="" name="material_pattern">
                       <small style="color: red"> *ตัวอย่าง: ว.สนง. {run_4}/62</small>
                     </div>
                   </div>
@@ -381,6 +380,12 @@ require "service/connection.php";
       })
     }
     $(document).ready(function() {
+      <?php
+      if (isset($_GET["message"])) {
+        $message = $_GET["message"];
+        echo "alert('$message');";
+      }
+      ?>
       $('#asset_no').focusout(function() {
         var assetNo = $('#asset_no').val();
         $.ajax({

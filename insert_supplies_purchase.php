@@ -71,7 +71,7 @@ require "service/connection.php";
                   <div class="col-6">
                     <div class="form-group body-text">
                       <label for="purchase_date">วันที่จัดซื้อ</label>
-                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="" id="purchase_date">
+                      <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="">
                     </div>
                   </div>
                 </div>

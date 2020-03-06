@@ -99,7 +99,7 @@ $show = 10;
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="transfer_from">ชื่อผู้โอน</label>
-                      <input type="text" class="form-control" name="transfer_from" id="transfer_form" placeholder="">
+                      <input type="text" class="form-control" name="transfer_from" id="transfer_from" placeholder="">
                       <small id="alert-transfer_from" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

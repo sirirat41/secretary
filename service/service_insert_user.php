@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $password = md5($password);
     $sql = "INSERT INTO user(username, password, surname, lastname, tel, position, email, u_type)";
-    $sql .= " VALUES('$username', '$password', '$surname', '$lastname', $tel, '$position', '$email', '$utype')";
+    $sql .= " VALUES('$username', '$password', '$surname', '$lastname', '$tel', '$position', '$email', '$utype')";
 
     if (mysqli_query($conn, $sql)) {
         header('Location: ../display_user.php?message=เพิ่มข้อมูลสำเร็จ');

@@ -445,7 +445,7 @@ if (isset($_GET["id"])) {
                         <!-- สิ้นสุดการเขียนตรงนี้ -->
                     </div>
                 <?php } else { ?>
-                    <div class="col-8 offset-2" <?php echo $item["status_request"] != "waiting_approve" ? "style='display: none'" : ""; ?>>
+                    <div class="col-8 offset-2" <?php echo $item["action_request"] != "request_delete" ? "style='display: none'" : ""; ?>>
                         <div class="card">
                             <div class="card-header card-header-text card-header-danger">
                                 <div class="card-text">

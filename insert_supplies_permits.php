@@ -118,7 +118,7 @@ $show = 10;
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . " ตึก" . $row["bulding"] . " ชั้น" . $row["floor"] . '</option>';
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . " " . $row["bulding"] . " " . $row["floor"] . '</option>';
                         }
                         ?>
                       </select>
