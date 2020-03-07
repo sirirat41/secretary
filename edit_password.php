@@ -64,6 +64,15 @@ if (isset($_GET["id"])) {
               <form method="post" action="service/service_edit_password.php" id="form_insert">
 
 
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group body-text">
+                      <label for="password">รหัสผ่านเก่า</label>
+                      <input type="password" class="form-control body-text" name="password" id="password" aria-describedby="password" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">
