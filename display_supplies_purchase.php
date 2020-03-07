@@ -77,6 +77,7 @@ $show = 10;
                       <tr class="text-center body-text">
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
+                        <th>ชื่อวัสดุ</th>
                         <th>จำนวน</th>
                         <th>ชื่อผู้จัดซื้อ</th>
                         <th>การทำงาน</th>
@@ -91,13 +92,13 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM supplies_purchase";
-                      $sqlSelect .= " WHERE status = 1 ";
+                      $sqlSelect = "SELECT sp.*, ss.supplies_name, s.supplies_id FROM supplies_purchase as sp, supplies_stock as ss, supplies as s";
+                      $sqlSelect .= " WHERE sp.product_id = s.id and s.supplies_id = ss.id and sp.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
                       }
-                       // echo $sqlSelect;
+                       //echo $sqlSelect;
                       $sqlSelect .= " Group by order_no Order by id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -112,6 +113,7 @@ $show = 10;
                         <tr class="text-center body-text">
                           <td><?php echo ($row["order_no"]); ?></td>
                           <td><?php echo ($row["purchase_date"]); ?></td>
+                          <td><?php echo ($row["supplies_name"]); ?></td>
                           <td><?php echo ($row["number"]); ?></td>
                           <td><?php echo ($row["order_by"]); ?></td>
                           <td class="td-actions text-center">

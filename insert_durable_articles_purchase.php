@@ -61,7 +61,7 @@ require "service/connection.php";
               <div class="row">
                 <div class="col-6 ">
                   <div class="form-group body-text">
-                    <label class="bmd-label-floating">เลขที่ใบสั่งซื้อ </label>
+                    <label class="bmd-label-floating">เลขที่ใบส่งของ </label>
                     <input class="form-control body-text" type="text" placeholder="" name="order_no" id="order_no">
                     <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                   </div>

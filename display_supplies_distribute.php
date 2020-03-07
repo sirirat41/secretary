@@ -94,6 +94,7 @@ $show = 10;
                       <tr class="text-center body-text">
                       <th>วันที่แจกจ่าย</th>
                         <th>รหัสวัสดุ</th>
+                        <th>ชื่อวัสดุ</th>
                         <th>หน่วยงาน</th>
                         <th>จำนวน</th>
                         <th>การทำงาน</th>
@@ -126,6 +127,7 @@ $show = 10;
                         <tr class="text-center body-text">
                         <td><?php echo $row["distribute_date"]; ?></td>
                           <td><?php echo $row["code"]; ?></td>
+                          <td><?php echo ($row["supplies_name"]); ?></td>
                           <td><?php echo $row["fullname"]; ?></td>
                           <td><?php echo $row["number"]; ?></td>
                           <td class="td-actions text-center">

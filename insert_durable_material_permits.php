@@ -209,6 +209,8 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+  
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -312,6 +314,13 @@ $show = 10;
   </div>
   </div>
   <script>
+    $(document).ready(function() {
+      $("#permit_date").on("change", function() {
+        $('#receive_date').attr('min', $(this).val());
+        $('#receive_date').val('');
+      })
+    })
+
     var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;
