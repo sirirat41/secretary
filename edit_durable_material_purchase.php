@@ -86,10 +86,10 @@ if (isset($_GET["id"])) {
                       <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="form-group body-text">
-                      <label for="purchase_date">วันที่จัดซื้อ</label>
-                      <input type="date" class="form-control body-text" name="purchase_date" id="purchase_date" placeholder="" value="<?php echo $newOrderDate; ?>">
+                  <div class="col-6 body-text">
+                    <div class="form-group ">
+                      <label class="bmd-label-floating">วันที่จัดซื้อ :</label>
+                      <input class="form-control body-text" type="date" placeholder="" id="purchase_date" name="purchase_date" value="<?php echo $newOrderDate; ?>">
                       <small id="alert-purchase_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ if (isset($_GET["id"])) {
                   <div class="col-md-12 ">
                     <div class="form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-                      <input class="form-control body-text" name="product_id" type="text" placeholder="" id="product_id" value="<?php echo $item["code"]; ?>" readonly>
+                      <input class="form-control body-text" name="code" type="text" placeholder="" id="code" value="<?php echo $item["code"]; ?>" readonly>
                     </div>
                   </div>
                 </div>

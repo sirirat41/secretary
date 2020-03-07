@@ -51,44 +51,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultCheck = mysqli_query($conn, $sqlCheck);
     $numberBefore = mysqli_num_rows($resultCheck);
 
+    if ($number > 0) {
+        for ($i = 0; $i < $number; $i++) {
 
-    for ($i = 0; $i < $number; $i++) {
+            $seq = $i + 1;
+            $code = "";
+            if ($numberBefore > 0) {
+                $len = substr_count($pattern, "_");
+                $replacement = "";
+                for ($j = 0; $j < $len; $j++) {
+                    $replacement .= "_";
+                }
+                $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
+            } else {
+                $len = substr_count($pattern, "_");
+                $replacement = "";
+                for ($j = 0; $j < $len; $j++) {
+                    $replacement .= "_";
+                }
+                $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
+            }
+            $runAsset = $asset_no++;
 
-        $seq = $i + 1;
-        $code = "";
-        if ($numberBefore > 0) {
-            $len = substr_count($pattern, "_");
-            $replacement = "";
-            for ($j = 0; $j < $len; $j++) {
-                $replacement .= "_";
+            $sqlCheck = "SELECT * FROM durable_material WHERE code = '$newCode'";
+            $resultCheck = mysqli_query($conn, $sqlCheck);
+            if (mysqli_num_rows($resultCheck) == 0) {
+
+                $sqlInsertMaterial = "INSERT INTO durable_material ( seq, code, type, attribute, bill_no, department_id, ";
+                $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , asset_no , name , picture)";
+                $sqlInsertMaterial .= " VALUES($seq,'$newCode', $type, '$attribute', '$bill_no', $department_id ,";
+                $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , '$runAsset', '$name','$imgeName')";
+
+// echo $sqlInsertMaterial;
+                mysqli_query($conn, $sqlInsertMaterial) or die(mysqli_error($conn));
+                $productID = mysqli_insert_id($conn);
+
+                $sqlInsertPurchase = "INSERT INTO durable_material_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, document_no)";
+                $sqlInsertPurchase .= " VALUES($productID, '$order_no', '$purchase_date' , $seller_id, '$order_by','$receiver', '$receive_date', '$receive_address', $number, $document_no)";
+
+                mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));
+                header('location: ../display_durable_material_purchase.php');
+            } else {
+                header('location: ../insert_durable_material_purchase.php?message=รหัสครุภัณฑ์ซ้ำ');
+                break;
             }
-            $newCode = str_replace($replacement, autoRun(++$numberBefore, $len), $pattern);
-        } else {
-            $len = substr_count($pattern, "_");
-            $replacement = "";
-            for ($j = 0; $j < $len; $j++) {
-                $replacement .= "_";
-            }
-            $newCode = str_replace($replacement, autoRun($seq, $len), $pattern);
         }
-        $runAsset = $asset_no++;
-
-        $sqlInsertMaterial = "INSERT INTO durable_material ( seq, code, type, attribute, bill_no, department_id, ";
-        $sqlInsertMaterial .= " seller_id, goverment, unit, price, short_goverment, durable_year , asset_no , name , picture)";
-        $sqlInsertMaterial .= " VALUES($seq,'$newCode', $type, '$attribute', '$bill_no', $department_id ,";
-        $sqlInsertMaterial .= " $seller_id, '$goverment', $unit, $price, '$short_goverment', $durable_year , '$runAsset', '$name','$imgeName')";
-
-
-        mysqli_query($conn, $sqlInsertMaterial) or die(mysqli_error($conn));
-        $productID = mysqli_insert_id($conn);
-
-        $sqlInsertPurchase = "INSERT INTO durable_material_purchase (product_id, order_no, purchase_date, seller_id, order_by, receiver, receive_date, receive_address, number, document_no)";
-        $sqlInsertPurchase .= " VALUES($productID, '$order_no', $purchase_date , $seller_id, '$order_by','$receiver', '$receive_date', '$receive_address', $number, $document_no)";
-
-        mysqli_query($conn, $sqlInsertPurchase) or die(mysqli_error($conn));;
+    } else {
+        header('location: ../display_durable_material.php');
     }
-
-    header('location: ../display_durable_material.php');
 } else {
     header('location: ../display_durable_material.php');
 }
@@ -110,7 +120,8 @@ function convertPattern($pattern)
                 $underNum .= "_";
             }
             $pattern = str_replace($founded, $underNum, $pattern);
-        } else { }
+        } else {
+        }
     }
     return $pattern;
 }

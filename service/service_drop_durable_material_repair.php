@@ -13,9 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["repair_id"])) {
     
     $sqlUpdate = "UPDATE durable_material SET status = 3";
     $sqlUpdate .= " WHERE id = $productid";
-    mysqli_query($conn, $sqlUpdate) or die("Cannot update permits: " . mysqli_error($conn));
+    mysqli_query($conn, $sqlUpdate) or die("Cannot update repair : " . mysqli_error($conn));
 
-        header('Location: ../display_durable_articles_repair.php?message=ยกเลิกข้อมูลสำเร็จ');
+        header('Location: ../display_durable_material_repair.php?message=ยกเลิกข้อมูลสำเร็จ');
    
 }
 

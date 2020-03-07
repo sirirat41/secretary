@@ -88,7 +88,7 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT * FROM durable_material_type";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect .= " WHERE status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (name like '%$keyword%' or shortname like '%$keyword%')";
@@ -137,7 +137,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT * FROM durable_material_type";
-            $sqlSelectCount .= " WHERE status = 1";
+            $sqlSelectCount .= " WHERE status != 0";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (name like '%$keyword%' or shortname like '%$keyword%')";

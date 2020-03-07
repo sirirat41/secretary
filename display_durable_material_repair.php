@@ -120,7 +120,7 @@ $show = 10;
                               <i class="fas fa-print"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" 
-                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
+                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["damage_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>

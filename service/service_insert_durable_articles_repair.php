@@ -17,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: ../display_durable_articles_repair.php?message=เพิ่มข้อมูลสำเร็จ');
         $sqlUpdate ="UPDATE durable_articles SET status = 4 WHERE id = $damageid";
         mysqli_query($conn ,$sqlUpdate);
+        $sqlUpdate ="UPDATE durable_articles_damage SET status = 2 WHERE product_id = $damageid";
+        mysqli_query($conn ,$sqlUpdate);
     } else {
         header('Location: ../display_durable_articles_repair.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }

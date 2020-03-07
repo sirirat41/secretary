@@ -97,8 +97,24 @@ $show = 10;
                       }
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%' or s.status_request like '%$keyword%' or s.action_request like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%' or s.status_request like '%$keyword%' or s.action_request like '%$keyword%' ";
+                        if ($keyword != "") {
+                          if (strpos("ร้องขอการลบข้อมูล", $keyword) !== false) {
+                            $sqlSelect .= " or action_request = 'request_delete' ";
+                          } else if (strpos("ร้องขอการแก้ไข", $keyword) !== false) {
+                            $sqlSelect .= " or action_request = 'request_update' ";
+                          } else if (strpos("ปฎิเสธการร้องขอ", $keyword) !== false) {
+                            $sqlSelect .= " or status_request = 'rejected' ";
+                          } else if (strpos("รอการอนุมัติ", $keyword) !== false) {
+                            $sqlSelect .= " or status_request = 'waiting_approve' ";
+                          } else if (strpos("อนุมัติแล้ว", $keyword) !== false) {
+                            $sqlSelect .= " or status_request = 'approved' ";
+                          }
+                        }
+                        $sqlSelect .= ")";
                       }
+
+
                       // echo $sqlSelect;
                       $sqlSelect .= " Order by s.id LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
@@ -127,29 +143,29 @@ $show = 10;
                             $actionRequest = "ร้องขอการยกเลิกข้อมูล";
                             break;
                         }
-                        ?>
-                            <tr class="text-center">
-                              <td><?php echo $count++; ?></td>
-                              <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
-                              <td><?php echo ($row["bill_no"]); ?></td>
-                              <td><?php echo ($row["code"]); ?></td>
-                              <td><?php echo ($row["supplies_name"]); ?></td>
-                              <td><?php echo $actionRequest; ?></td>
-                              <td><?php echo $statusRequest; ?></td>
-                              <td class="td-actions text-center">
-                                <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
-                                  <i class="far fa-eye"></i>
-                                </button>
-                                <?php if ($_SESSION["user_type"] == 1 && $row["status_request"] == "waiting_approve") { ?>
-                                  <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" class="btn btn-danger" onclick="showDialogReject(<?php echo $row["id"]; ?>);">
-                                    <i class="far fa-times-circle"></i>
-                                  </button>
-                                <?php }; ?>
-                              </td>
-                            </tr>
-                          <?php
-                          }
-                          ?>
+                      ?>
+                        <tr class="text-center">
+                          <td><?php echo $count++; ?></td>
+                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                          <td><?php echo ($row["bill_no"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo ($row["supplies_name"]); ?></td>
+                          <td><?php echo $actionRequest; ?></td>
+                          <td><?php echo $statusRequest; ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" data-toggle="tooltip" data-placement="top" title="ดูข้อมูลเพิ่มเติม" class="btn btn-info" onclick="window.location = 'view_supplies_purchase_request.php?id=<?php echo $row['id']; ?>'">
+                              <i class="far fa-eye"></i>
+                            </button>
+                            <?php if ($_SESSION["user_type"] == 1 && $row["status_request"] == "waiting_approve") { ?>
+                              <button type="button" rel="tooltip" title="ไม่อนุมัติ" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" class="btn btn-danger" onclick="showDialogReject(<?php echo $row["id"]; ?>);">
+                                <i class="far fa-times-circle"></i>
+                              </button>
+                            <?php }; ?>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -176,7 +192,21 @@ $show = 10;
             $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
             if (isset($_GET["keyword"])) {
               $keyword = $_GET["keyword"];
-              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%' or s.status_request like '%$keyword%' or s.action_request like '%$keyword%')";
+              $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%' or s.status_request like '%$keyword%' or s.action_request like '%$keyword%' ";
+              if ($keyword != "") {
+                if (strpos("ร้องขอการลบข้อมูล", $keyword) !== false) {
+                  $sqlSelectCount .= " or action_request = 'request_delete' ";
+                } else if (strpos("ร้องขอการแก้ไข", $keyword) !== false) {
+                  $sqlSelectCount .= " or action_request = 'request_update' ";
+                } else if (strpos("ปฎิเสธการร้องขอ", $keyword) !== false) {
+                  $sqlSelectCount .= " or status_request = 'rejected' ";
+                } else if (strpos("รอการอนุมัติ", $keyword) !== false) {
+                  $sqlSelectCount .= " or status_request = 'waiting_approve' ";
+                } else if (strpos("อนุมัติแล้ว", $keyword) !== false) {
+                  $sqlSelectCount .= " or status_request = 'approved' ";
+                }
+              }
+              $sqlSelectCount .= ")";
             }
             if ($_SESSION["user_type"] == 2) {
               $sqlSelectCount .= " and s.user_request = " . $_SESSION["user_id"];
@@ -199,20 +229,20 @@ $show = 10;
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }

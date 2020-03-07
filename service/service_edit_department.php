@@ -20,7 +20,7 @@ if(isset($_GET['id'])) {
     }
 
     $updatePurchase = "UPDATE department SET fullname = '$fullname',";
-    $updatePurchase .= " shortname = '$shortname', fax = '$fax' , bulding = '$bulding' , floor = '$floor'";
+    $updatePurchase .= " shortname = '$shortname', fax = '$fax' , bulding = '$bulding' , floor = '$floor' ";
     if($imgeName != ""){
         $updateArticles .= ", pic = '$imgeName'";
 

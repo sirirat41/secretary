@@ -373,7 +373,7 @@ require "service/connection.php";
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><?php echo ($row["stock"]); ?></td>
                             <td><?php echo ($row["supplies_name"]); ?></td>
@@ -446,6 +446,14 @@ require "service/connection.php";
         }
       })
     }
+    $(document).ready(function() {
+      <?php
+      if (isset($_GET["message"])) {
+        $message = $_GET["message"];
+        echo "alert('$message');";
+      }
+      ?>
+    })
 
     function changePage(page) {
       currentPage = page;
@@ -464,7 +472,7 @@ require "service/connection.php";
         $('<td>' + (name) + '</td>').appendTo(tr);
         $('<td>' + (stock) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
-        
+
 
       }
       generatePagination();

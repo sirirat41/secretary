@@ -18,6 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        
         $sqlUpdate ="UPDATE durable_material SET status = 4 WHERE id = $damageid";
         mysqli_query($conn ,$sqlUpdate);
+        $sqlUpdate ="UPDATE durable_material_damage SET status = 2 WHERE product_id = $damageid";
+        mysqli_query($conn ,$sqlUpdate);
          echo $sqlUpdate;
     } else {
         header('Location: ../display_durable_material_repair.php?message=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');

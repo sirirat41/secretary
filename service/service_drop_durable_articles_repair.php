@@ -14,5 +14,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["repair_id"])) {
     $sqlUpdate .= " WHERE id = $productid";
     mysqli_query($conn, $sqlUpdate) or die("Cannot update repair_id: " . mysqli_error($conn));
 
-    header('Location: ../display_durable_material_repair.php?message=ยกเลิกข้อมูลสำเร็จ');
+    header('Location: ../display_durable_articles_repair.php?message=ยกเลิกข้อมูลสำเร็จ');
 }
