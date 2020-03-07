@@ -59,7 +59,7 @@ require "service/connection.php";
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table width="100%" border="1" class="landscape">
-                <h6 class="m-3 font-weight-bold " align="center"> ข้อมูลวัสดุคงทน</h6>
+                <h6 class="m-3 font-weight-bold " align="center"> การเก็บข้อมูลวัสดุคงทนของสำนักงานเลขานุการตำรวจแห่งชาติ</h6>
                      <form>
                         <thead>
                       <tr class="text-center">

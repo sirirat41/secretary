@@ -96,7 +96,7 @@ $show = 10;
                   </div>
                   <div class="col-6 ">
                     <div class="form-group bmd-form-group body-text">
-                      <label class="bmd-label-floating">หมายเหตุ</label>
+                      <label class="bmd-label-floating">อาการที่ชำรุด</label>
                       <input class="form-control" name="flag" type="text" placeholder="" id="flag">
                       <small id="alert-flag" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>

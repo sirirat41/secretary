@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="col-sm-8 offset-sm-2">
       <div class="table-responsive" align="center">
         <table width="600" border="1" align="center">
-          <h7 class="m-3 font-weight-bold " align="center"> ข้อมูลการรับบริจาค(วัสดุคงทน)</h7>
+          <h7 class="m-3 font-weight-bold " align="center"> การเก็บข้อมูลการรับบริจาค(วัสดุคงทน)ของสำนักงานเลขานุการตำรวจแห่งชาติ</h7>
           <form>
             <div class="card-body">
               <div class="row">

@@ -69,7 +69,7 @@ require "service/connection.php";
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="password">รหัสผ่าน</label>
-                      <input type="text" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="">
+                      <input type="password" class="form-control" name="password" id="inputpassword" aria-describedby="password" placeholder="">
                       <small id="alert-inputpassword" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>

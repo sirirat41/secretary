@@ -41,8 +41,8 @@ require "service/connection.php";
       <div class="row">
         <div class="col-md-12">
           <div class="table-responsive">
-            <table width="600" border="1" align="center">
-              <h6 class="m-3 font-weight-bold " align="center">แสดงข้อมูลร้านค้า</h6>
+            <table width="950" border="1" align="center">
+              <h6 class="m-3 font-weight-bold " align="center">การเก็บข้อมูลร้านค้าของสำนักงานเลขานุการตำรวจแห่งชาติ</h6>
               <form>
                 <thead>
                   <tr class="text-center">
