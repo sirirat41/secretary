@@ -1,7 +1,7 @@
 <?php
 require "service/connection.php";
 $show = 10;
-
+$keyword = "";
 
 ?>
 <!DOCTYPE html>
@@ -61,9 +61,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_supplies.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_supplies.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -318,7 +318,9 @@ $show = 10;
       </div>
     </div>
   </div>
-
+  <form action="printall_supplies.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
 <script>
