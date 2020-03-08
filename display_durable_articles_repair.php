@@ -91,11 +91,11 @@ $keyword = "";
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.model FROM durable_articles_repair as r, durable_articles as a";
-                      $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
+                      $sqlSelect = "SELECT r.*, m.code ,m.attribute , m.model,d.product_id FROM durable_articles_repair as r, durable_articles_damage as d,durable_articles as m";
+                      $sqlSelect .= " WHERE r.damage_id = d.id and d.product_id = m.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%' or r.repair_date like '%$keyword%')";
+                        $sqlSelect .= " and (m.code like '%$keyword%' or m.attribute like '%$keyword%' or m.model like '%$keyword%' or r.repair_date like '%$keyword%')";
                       }
                       //echo $sqlSelect;
                       $sqlSelect .= " Order by r.id desc LIMIT $start, $show";
@@ -150,11 +150,11 @@ $keyword = "";
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT r.*, a.code ,a.attribute , a.model FROM durable_articles_repair as r, durable_articles as a";
-            $sqlSelectCount .= " WHERE r.damage_id = a.id and r.status = 1";
+       $sqlSelectCount = "SELECT r.*, m.code ,m.attribute , m.model,d.product_id FROM durable_articles_repair as r, durable_articles_damage as d,durable_articles as m";
+       $sqlSelectCount .= " WHERE r.damage_id = d.id and d.product_id = m.id and r.status = 1";    
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%' or r.repair_date like '%$keyword%')";
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.attribute like '%$keyword%' or m.model like '%$keyword%' or r.repair_date like '%$keyword%')";
             }
             $sqlSelectCount .= " Order by r.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

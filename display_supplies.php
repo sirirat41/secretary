@@ -93,15 +93,16 @@ $show = 10;
                       }
                       $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT s.*, ss.supplies_name ,t.status_name FROM supplies as s, supplies_stock as ss ,status as t";
-                      $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.id = s.id and s.status = t.id and s.status != 0";
+                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = t.id and s.status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
                       }
-                      // echo $sqlSelect;
+                     
                       $count = $start + 1;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
-                      $result = mysqli_query($conn, $sqlSelect);
+                      $result = mysqli_query($conn, $sqlSelect); 
+                      // echo $sqlSelect;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         $editPath = "";
@@ -158,7 +159,7 @@ $show = 10;
             </li>
             <?php
             $sqlSelectCount = "SELECT s.*, ss.supplies_name FROM supplies as s, supplies_stock as ss";
-            $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status != 0";
+            $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status = t.id and s.status != 0";
             if (isset($_GET["keyword"])) {
               $keyword = $_GET["keyword"];
               $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";

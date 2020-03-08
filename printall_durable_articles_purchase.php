@@ -74,14 +74,13 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT p.*,a.attribute FROM durable_articles_purchase as p,durable_articles as a";
-                  $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 ";
-                  if (isset($_GET["keyword"])) {
-                    $keyword = arabicnumDigit($_GET["keyword"]);
-                    $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
-                  }
-                  //  echo $sqlSelect;
-                  $sqlSelect .= " Group by order_no Order by id desc";
+                 $sqlSelect = "SELECT a.*, t.name ,s.status_name,p.purchase_date , p.numberFROM durable_articles as a, durable_articles_type as t ,status as s ,durable_articles_purchase as p";
+                 $sqlSelect .= " WHERE a.type = t.id and p.product_id = a.id and a.status = s.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
+                 if (isset($_GET["keyword"])) {
+                   $keyword = arabicnumDigit($_GET["keyword"]);
+                   $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
+                 }
+           $sqlSelect .= " Order by a.id desc";
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"];
