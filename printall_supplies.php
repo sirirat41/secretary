@@ -65,7 +65,9 @@ require "service/connection.php";
               <form>
                 <thead>
                   <tr class="text-center">
-                   
+                  <th>
+                      <font size="2">ลำดับ</font>
+                    </th>
                     <th>
                       <font size="2">เลขที่ใบเบิก</font>
                     </th>
@@ -73,38 +75,41 @@ require "service/connection.php";
                       <font size="2">รหัสวัสดุ</font>
                     </th>
                     <th>
-                      <font size="2">ประเภท</font>
+                      <font size="2">วันที่จัดซื้อ</font>
                     </th>
                     <th>
-                      <font size="2">รายการ</font>
+                      <font size="2">ชื่อวัสดุสิ้นเปลือง</font>
                     </th>
                     <th>
                       <font size="2">ลักษณะ/คุณสมบัติ</font>
                     </th>
                     <th>
-                      <font size="2">หน่วยนับ</font>
+                      <font size="2">ประเภท</font>
                     </th>
                   
                     <th>
-                      <font size="2">หน่วยงานที่รับผิดชอบ</font>
+                      <font size="2">สถานะ</font>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT s.* , d.fullname ,un.name ,ss.supplies_name ,ss.type,ss.attribute ,t.name as tname FROM supplies as s, durable_material_type as t, department as d, unit as un ,supplies_stock as ss";
-                  $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.id and s.department_id = d.id and s.unit = un.id and s.status = 1";
-                  if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%')";
-                  }
+               $sqlSelect = "SELECT s.*, ss.supplies_name ,t.status_name , p.purchase_date , p.number ,ss.attribute ,ss.type ,tt.name FROM supplies as s, supplies_stock as ss ,status as t ,supplies_purchase as p ,durable_material_type as tt";
+               $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = tt.id and s.status = t.id and s.status != 0";
+               if (isset($_GET["keyword"])) {
+                 $keyword = $_GET["keyword"];
+                 $sqlSelect .= " and (s.code like '%$keyword%' or tt.name like '%$keyword%' or p.purchase_date like '%$keyword%'or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
+               }
+                  $count = 1;
                   // echo $sqlSelect;
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"]
                     ?>
                     <tr class="text-center">
-                     
+                    <td>
+                        <font size="2"><?php echo $count++; ?></font>
+                      </td>
                       <td>
                         <font size="2"><?php echo ($row["bill_no"]); ?></font>
                       </td>
@@ -112,7 +117,7 @@ require "service/connection.php";
                         <font size="2"><?php echo ($row["code"]); ?></font>
                       </td>
                       <td>
-                        <font size="2"><?php echo ($row["tname"]); ?></font>
+                        <font size="2"><?php echo ($row["purchase_date"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo ($row["supplies_name"]); ?></font>
@@ -125,7 +130,7 @@ require "service/connection.php";
                       </td>
                     
                       <td>
-                        <font size="2"><?php echo ($row["fullname"]); ?></font>
+                        <font size="2"><?php echo ($row["status_name"]); ?></font>
                       </td>
                     </tr>
                   <?php

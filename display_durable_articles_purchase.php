@@ -299,7 +299,7 @@ $keyword = "";
       </div>
     </div>
   </div>
-  <form action="printall_durable_articles_purchase.php" method="get" id="form-print" target="_blank">
+  <form action="printall_durable_articles.php" method="get" id="form-print" target="_blank">
     <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
   </form>
 </body>

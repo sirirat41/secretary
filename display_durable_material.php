@@ -99,13 +99,14 @@ $keyword = "";
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT m.*, t.name ,s.status_name FROM durable_material as m, durable_material_type as t ,status as s";
-                      $sqlSelect .= " WHERE m.type = t.id and m.status = s.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
+                      $sqlSelect = "SELECT a.*, t.name ,s.status_name,p.purchase_date ,p.number FROM durable_material as a, durable_material_type as t ,status as s ,durable_material_purchase as p";
+                      $sqlSelect .= " WHERE a.type = t.id and p.product_id = a.id and a.status = s.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
                       }
-                      $sqlSelect .= " Order by m.id desc LIMIT $start, $show";
+                      $count = 1;
+                      $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       $count = $start + 1;
                       while ($row = mysqli_fetch_assoc($result)) {
@@ -158,13 +159,14 @@ $keyword = "";
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT m.*, t.name ,s.status_name FROM durable_material as m, durable_material_type as t ,status as s";
-            $sqlSelectCount .= " WHERE m.type = t.id and m.status = s.id and m.status != 0 and m.status != 6 and m.status != 8 and m.status != 9";
-            if (isset($_GET["keyword"])) {
-              $keyword = arabicnumDigit($_GET["keyword"]);
-              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%' or m.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
-            }
-            $sqlSelectCount .= " Order by m.id desc";
+                $sqlSelectCount = "SELECT a.*, t.name ,s.status_name,p.purchase_date ,p.number FROM durable_material as a, durable_material_type as t ,status as s ,durable_material_purchase as p";
+                $sqlSelectCount .= " WHERE a.type = t.id and p.product_id = a.id and a.status = s.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
+                if (isset($_GET["keyword"])) {
+                  $keyword = arabicnumDigit($_GET["keyword"]);
+                  $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
+                }
+                $count = 1;
+            $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -296,6 +298,7 @@ $keyword = "";
           คุณต้องการยกเลิกข้อมูลวัสดุใช่หรือไม่
           <form id="form-drop" method="post" action="service/service_drop_durable_material.php">
             <input type="hidden" id="remove-material" name="material_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>

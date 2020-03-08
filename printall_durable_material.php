@@ -63,35 +63,36 @@ require "service/connection.php";
                      <form>
                         <thead>
                       <tr class="text-center">
-                        <th><font size="2">ลำดับ</font></th>
-                        <th><font size="2">รหัสวัสดุ</font></th>
-                        <th><font size="2">เลขสินทรัพท์</font></th>
-                        <th><font size="2">ประเภท</font></th>
-                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
+                      <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">เลขที่ใบเบิก</font></th>
-                        <th><font size="2">หน่วยงานที่รักผิดชอบ</font></th>
+                        <th><font size="2">รหัสครุภัณฑ์</font></th>
+                        <th><font size="2">วันที่จัดซื้อ</font></th>
+                        <th><font size="2">ลักษณะ/คุณสมบัติ</font></th>
+                        <th><font size="2">ประเภท</font></th>
+                        <th><font size="2">สถานะ</font></th>
                       </tr>
                     </thead>
                     <tbody>
                     <?php
-                      $sqlSelect = "SELECT m.*, t.name , d.fullname FROM durable_material as m, durable_material_type as t, department as d";
-                      $sqlSelect .= " WHERE m.department_id = d.id and m.type = t.id and m.status = 1";
-                      if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (m.code like '%$keyword%' or m.bill_no like '%$keyword%' or t.name like '%$keyword%')";
-                      }
+                            $sqlSelect = "SELECT a.*, t.name ,s.status_name,p.purchase_date ,p.number FROM durable_material as a, durable_material_type as t ,status as s ,durable_material_purchase as p";
+                            $sqlSelect .= " WHERE a.type = t.id and p.product_id = a.id and a.status = s.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
+                            if (isset($_GET["keyword"])) {
+                              $keyword = arabicnumDigit($_GET["keyword"]);
+                              $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
+                            }
+                            $count = 1;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
                         ?>
                       <tr class="text-center">
-                        <td><font size="2"><?php echo ($row["id"]); ?></font></td>
-                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
-                        <td><font size="2"><?php echo ($row["asset_no"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["name"]; ?></font></td>
-                        <td><font size="2"><?php echo ($row["attribute"]); ?></font></td>
+                        <td><font size="2"><?php echo $count++; ?></font></td>
                         <td><font size="2"><?php echo ($row["bill_no"]); ?></font></td>
-                        <td><font size="2"><?php echo $row["fullname"]; ?></font></td>
+                        <td><font size="2"><?php echo ($row["code"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["purchase_date"]; ?></font></td>
+                        <td><font size="2"><?php echo ($row["attribute"]); ?></font></td>
+                        <td><font size="2"><?php echo ($row["name"]); ?></font></td>
+                        <td><font size="2"><?php echo $row["status_name"]; ?></font></td>
                       </tr>
                           <?php
                           }
@@ -198,7 +199,7 @@ require "service/connection.php";
         </div>
         <div class="modal-body text-left">
           คุณต้องการลบข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
+          <form id="form-drop" method="post" action="service/service_drop_durable_material_permits.php">
             <input type="hidden" id="remove-permits" name="permits_id">
           </form>
         </div>

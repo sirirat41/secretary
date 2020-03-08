@@ -59,7 +59,7 @@ $keyword = "";
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_articles.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    
+
                     <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
                     </button>
@@ -107,7 +107,7 @@ $keyword = "";
                       $count = $start + 1;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
-                        ?>
+                      ?>
                         <tr class="text-center body-text">
                           <td><?php echo $count++; ?></td>
                           <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
@@ -155,12 +155,12 @@ $keyword = "";
               </a>
             </li>
             <?php
-                  $sqlSelectCount = "SELECT a.*, t.name ,s.status_name,p.purchase_date FROM durable_articles as a, durable_articles_type as t ,status as s ,durable_articles_purchase as p";
-                  $sqlSelectCount .= " WHERE a.type = t.id and p.product_id = a.id and a.status = s.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
-                  if (isset($_GET["keyword"])) {
-                    $keyword = arabicnumDigit($_GET["keyword"]);
-                    $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
-                  }
+            $sqlSelectCount = "SELECT a.*, t.name ,s.status_name,p.purchase_date FROM durable_articles as a, durable_articles_type as t ,status as s ,durable_articles_purchase as p";
+            $sqlSelectCount .= " WHERE a.type = t.id and p.product_id = a.id and a.status = s.id and a.status != 0 and a.status != 6 and a.status != 8 and a.status != 9";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by a.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -179,20 +179,20 @@ $keyword = "";
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
