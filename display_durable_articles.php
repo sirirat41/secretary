@@ -1,6 +1,7 @@
 <?php
 require "service/connection.php";
 $show = 10;
+$keyword = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +60,9 @@ $show = 10;
                       <i class="fas fa-sync-alt"></i>
                     </button>
                     
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_articles.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                     <a rel="tooltip" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="ปริ้นคิวอาร์โค้ดทั้งหมด" href="generate_all_qrcode_articles.php" target="_blank">
                       <i class="fas fa-qrcode"></i>
                     </a>
@@ -300,6 +301,9 @@ $show = 10;
       </div>
     </div>
   </div>
+  <form action="printall_durable_articles.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 
 <!-- Initialize Bootstrap functionality -->
