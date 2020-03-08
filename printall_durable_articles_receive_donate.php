@@ -71,12 +71,14 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT d.*, a.code FROM durable_articles_receive_donate as d, durable_articles as a";
+                  $sqlSelect = "SELECT d.*, a.code, a.attribute ,a.model FROM durable_articles_receive_donate as d, durable_articles as a";
                   $sqlSelect .= " WHERE d.product_id = a.id and d.status = 1";
                   if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%')";
+                    $keyword = arabicnumDigit($_GET["keyword"]);
+                    $sqlSelect .= " and (a.code like '%$keyword%' or d.donate_name like '%$keyword%' or d.receive_date like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
                   }
+                  //echo $sqlSelect;
+                  $sqlSelect .= " Order by d.id desc";
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"];

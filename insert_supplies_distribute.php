@@ -67,12 +67,11 @@ require "service/connection.php";
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . ':' . $row["code"] . '">' . $row["code"] . '</option>';
+                              echo '<option value="' . $row["id"] . ':' . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                             }
-                            // 
                             ?>
                           </select>
                         </div>
@@ -243,6 +242,7 @@ require "service/connection.php";
                           <td>รูปภาพ</td>
                           <td>เลขที่ใบเบิก</td>
                           <td>รหัสวัสดุ</td>
+                          <th>ชื่อวัสดุ</th>
                           <td>ประเภท</td>
                           <td>การทำงาน</td>
                         </tr class="text-center">
@@ -264,12 +264,13 @@ require "service/connection.php";
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
-                          <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
+                            <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
                             <td><?php echo ($row["code"]); ?></td>
                             <td><?php echo ($row["supplies_name"]); ?></td>
+                            <td><?php echo ($row["type"]); ?></td>
                             <td class="td-actions text-center">
                               <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
@@ -356,10 +357,12 @@ require "service/connection.php";
         var picture = item["picture"];
         var bill_no = item["bill_no"];
         var code = item["code"];
+        var supplies_name = item["supplies_name"];
         var type = item["name"];
         $('<td><img class="img-thumbnail" width="100px" src="uploads/' + picture + '"></td>').appendTo(tr);
         $('<td>' + (bill_no) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
+        $('<td>' + (supplies_name) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
         $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();

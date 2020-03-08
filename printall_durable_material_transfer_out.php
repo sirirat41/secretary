@@ -78,9 +78,11 @@ require "service/connection.php";
                       $sqlSelect = "SELECT trans.*, ar.code ,ar.attribute ,ar.name FROM durable_material as ar, durable_material_transfer_out as trans";
                       $sqlSelect .= " WHERE trans.product_id = ar.id and trans.status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (ar.code like '%$keyword%' or trans.transfer_date like '%$keyword%' or trans.transfer_to like '%$keyword%' or ar.attribute like '%$keyword%')";
                       }
+                      // echo $sqlSelect;
+                      $sqlSelect .= " Order by trans.id desc";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];

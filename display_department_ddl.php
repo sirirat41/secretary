@@ -81,8 +81,8 @@ $show = 10;
                 <table class="table table-hover">
                   <thead id="table-name" align="center">
                     <th scope="col" id="th-1"></th>
-                    <th scope="col">คุณสมบัติ/ลักษณะ</th>
                     <th scope="col" id="th-2"></th>
+                    <th scope="col">คุณสมบัติ/ลักษณะ</th>
                   </thead>
                   <tbody id="body-content">
 
@@ -199,8 +199,9 @@ $show = 10;
           model = element["supplies_name"];
         }
         $('<td>' + code + '</td>').appendTo(tr);
-        $('<td>' + attr + '</td>').appendTo(tr);
         $('<td>' + model + '</td>').appendTo(tr);
+        $('<td>' + attr + '</td>').appendTo(tr);
+        
       }
 
       if (item != 1) {
@@ -209,7 +210,7 @@ $show = 10;
       } else {
 
         $('#th-1').text('รหัสครุภัณฑ์');
-        $('#th-2').text('รุ่นแบบ');
+        $('#th-2').text('ชื่อครุภัณฑ์');
       }
 
       if (item != 1) {

@@ -1,6 +1,7 @@
 <?php
 require "service/connection.php";
 $show = 10;
+$keyword = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,9 +61,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_material_purchase.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_material_purchase.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -76,6 +77,7 @@ $show = 10;
                       <tr class="text-center body-text">
                         <th>เลขที่ใบสั่งซื้อ</th>
                         <th>วันที่จัดซื้อ</th>
+                        <th>คุณสมบัติ/ลักษณะ</th>
                         <th>จำนวน</th>
                         <th>ชื่อผู้จัดซื้อ</th>
                         <th>การทำงาน</th>
@@ -90,11 +92,11 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT * FROM durable_material_purchase";
-                      $sqlSelect .= " WHERE status = 1";
+                      $sqlSelect = "SELECT p.*,m.attribute FROM durable_material_purchase as p,durable_material as m";
+                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
-                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or number like '%$keyword%' or purchase_date like '%$keyword%')";
+                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
                       }
                        // echo $sqlSelect;
                       $sqlSelect .= " Group by order_no Order by id desc LIMIT $start, $show";
@@ -105,6 +107,7 @@ $show = 10;
                         <tr class="text-center body-text">
                           <td><?php echo ($row["order_no"]); ?></td>
                           <td><?php echo ($row["purchase_date"]); ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
                           <td><?php echo ($row["number"]); ?></td>
                           <td><?php echo ($row["order_by"]); ?></td>
                           <td class="td-actions text-center">
@@ -287,6 +290,9 @@ $show = 10;
       </div>
     </div>
   </div>
+  <form action="printall_durable_material_purchase.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
 <script>

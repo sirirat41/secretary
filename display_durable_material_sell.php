@@ -1,7 +1,8 @@
 <?php
-  require "service/connection.php";
-  $show = 10;
-  ?>
+require "service/connection.php";
+$show = 10;
+$keyword = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,9 +60,9 @@
                     <button class="btn btn-outline-warning" type="button" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" onclick="window.location.href='rowback_durable_material_sell.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_material_sell.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -99,7 +100,7 @@
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
-                        ?>
+                      ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["sell_date"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
@@ -169,20 +170,20 @@
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
@@ -285,6 +286,7 @@
           <form id="form-drop" method="post" action="service/service_drop_durable_material_sell.php">
             <input type="hidden" id="remove-sell" name="sell_id">
             <input type="hidden" id="remove-product-id" name="product_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
@@ -293,7 +295,9 @@
       </div>
     </div>
   </div>
-
+  <form action="printall_durable_material_sell.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
 <script>

@@ -1,6 +1,7 @@
 <?php
 require "service/connection.php";
 $show = 10;
+$keyword = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +60,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนาข้อมูล" type="button" onclick="window.location.href='rowback_durable_material_repair.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_material_repair.php" target="_blank">
-                              <i class="fas fa-print"></i>
-                            </a>
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
+                      <i class="fas fa-print"></i>
+                    </button>
                 </form>
             </div>
           </div>
@@ -76,7 +77,7 @@ $show = 10;
                         <th>วันที่ซ่อม</th>
                         <th>รหัสวัสดุ(ชำรุด)</th>
                         <th>ลักษณะ/คุณสมบัติ</th>
-                        <th>ชื่อครุภัณฑ์</th>
+                        <th>ชื่อวัสดุ</th>
                         <th class="text-center">การทำงาน</th>
                       </tr>
                     </thead>
@@ -101,30 +102,28 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
-                        ?>
-                      <tr class="text-center body-text">
-                        <td><?php echo ($row["repair_date"]); ?></td>
-                        <td><?php echo ($row["code"]); ?></td>
-                        <td><?php echo $row["attribute"]; ?></td>
+                      ?>
+                        <tr class="text-center body-text">
+                          <td><?php echo ($row["repair_date"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo $row["attribute"]; ?></td>
                           <td><?php echo $row["name"]; ?></td>
                           <td class="td-actions text-center">
-                        <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" 
-                            onclick="window.location = 'edit_durable_material_repair.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_material_repair.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location = 'view_durable_material_repair.php?id=<?php echo $row['id']; ?>'">
                               <i class="fas fa-clipboard-list"></i>
                             </button>
-                       
+
                             <a rel="tooltip" class="btn btn-primary" style="color: white" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" href="print_durable_material_repair.php?id=<?php echo $row['id']; ?>" target="_blank">
                               <i class="fas fa-print"></i>
                             </a>
-                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" 
-                            data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["damage_id"]; ?>')">
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-repair').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["damage_id"]; ?>')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -138,7 +137,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -150,14 +149,14 @@ $show = 10;
               </a>
             </li>
             <?php
-           $sqlSelectCount = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
-           $sqlSelectCount .= " WHERE r.damage_id = m.id and r.status = 1";
-           if (isset($_GET["keyword"])) {
-             $keyword = arabicnumDigit($_GET["keyword"]);
-             $sqlSelectCount .= " and (m.code like '%$keyword%' or m.name like '%$keyword%' or r.repair_date like '%$keyword%' or m.attribute like '%$keyword%')";
-           }
-           //echo $sqlSelect;
-           $sqlSelectCount .= " Order by r.id desc LIMIT $start, $show";
+            $sqlSelectCount = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
+            $sqlSelectCount .= " WHERE r.damage_id = m.id and r.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (m.code like '%$keyword%' or m.name like '%$keyword%' or r.repair_date like '%$keyword%' or m.attribute like '%$keyword%')";
+            }
+            //echo $sqlSelect;
+            $sqlSelectCount .= " Order by r.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -175,30 +174,30 @@ $show = 10;
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -290,6 +289,7 @@ $show = 10;
           <form id="form-drop" method="post" action="service/service_drop_durable_material_repair.php">
             <input type="hidden" id="remove-repair" name="repair_id">
             <input type="hidden" id="remove-product-id" name="product_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
@@ -298,7 +298,9 @@ $show = 10;
       </div>
     </div>
   </div>
-
+  <form action="printall_durable_material_repair.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
 <script>

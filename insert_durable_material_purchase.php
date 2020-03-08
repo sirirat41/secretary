@@ -62,7 +62,7 @@ require "service/connection.php";
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group body-text">
-                      <label for="order_no">เลขที่ใบสั่งซื้อ</label>
+                      <label for="order_no">เลขที่ใบส่งของ</label>
                       <input type="text" class="form-control" name="order_no" id="order_no" placeholder="" autofocus>
                       <small id="alert-order_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>

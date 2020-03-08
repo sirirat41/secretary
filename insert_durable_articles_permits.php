@@ -45,7 +45,7 @@ $show = 10;
         </p>
       </div>
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-6 offset-3">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-danger body-text">
@@ -68,7 +68,7 @@ $show = 10;
                       <label for="product_id">รหัสครุภัณฑ์</label>
                       <div class="row">
                         <div class="col-md-10 ">
-                          <select class="form-control body-text" name="product_id" id ="product_id">
+                          <select class="form-control body-text" name="product_id" id="product_id">
                             <?php
                             $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
@@ -90,14 +90,14 @@ $show = 10;
                   <div class="col-md-6 ">
                     <div class="form-group body-text">
                       <label for="permit_date">วันที่ยืม</label>
-                      <input type="date" class="form-control body-text" name="permit_date" placeholder="" id="permit_date">
+                      <input type="date" class="form-control body-text" data-date="" data-date-format="DD-MMMM-YYYY" name="permit_date" placeholder="" id="permit_date">
                       <small id="alert-permit_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group body-text">
                       <label for="receive_date">วันที่คืน</label>
-                      <input type="date" class="form-control body-text" name="receive_date" placeholder="" id="receive_date">
+                      <input type="date" class="form-control body-text" data-date="" data-date-format="DD-MMMM-YYYY" name="receive_date" placeholder="" id="receive_date">
                       <small id="alert-receive_date" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                     </div>
                   </div>
@@ -133,7 +133,7 @@ $show = 10;
                     <button type="button" class="btn btn-danger btn-md btn-block body-text" aria-pressed="false" autocomplete="off" onclick="validateData();">
                       บันทึก
                     </button>
-                    
+
                   </div>
                 </div>
               </form>
@@ -204,6 +204,7 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -260,7 +261,7 @@ $show = 10;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center body-text">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["bill_no"]); ?></td>
@@ -307,6 +308,13 @@ $show = 10;
   </div>
   </div>
   <script>
+    $(document).ready(function() {
+      $("#permit_date").on("change", function() {
+        $('#receive_date').attr('min', $(this).val());
+        $('#receive_date').val('');
+      })
+    })
+
     var itemPerPage = 10; //จำนวนข้อมูล
     var jsonData;
     var currentPage = 1;

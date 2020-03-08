@@ -1,6 +1,7 @@
 <?php
 require "service/connection.php";
 $show = 10;
+$keyword = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +60,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_articles_permits.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_articles_permits.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -74,14 +75,14 @@ $show = 10;
                     <thead>
                       <tr class="text-center body-text">
                         <th>รหัสครุภัณฑ์</th>
-                        <th>ลักษณะ/คุณสมบัติ</th>  
+                        <th>ลักษณะ/คุณสมบัติ</th>
                         <th>วันที่ยืม</th>
                         <th>วันที่คืน</th>
                         <th>การทำงาน</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+                      <?php
                       //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
                       if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -99,7 +100,7 @@ $show = 10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
-                        ?>
+                      ?>
                         <tr class="text-center body-text">
                           <td><?php echo ($row["code"]); ?></td>
                           <td><?php echo ($row["attribute"]); ?></td>
@@ -119,7 +120,7 @@ $show = 10;
                               <i class="fas fa-trash-alt"></i>
                             </button>
                           <?php
-                          }
+                        }
 
                           ?>
                     </tbody>
@@ -132,7 +133,7 @@ $show = 10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -144,12 +145,12 @@ $show = 10;
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT p.*, a.code , a.attribute ,a.model FROM durable_articles_permits as p,durable_articles as a";
-             $sqlSelectCount .= " WHERE p.product_id = a.id and p.status = 1";
-             if (isset($_GET["keyword"])) {
+            $sqlSelectCount = "SELECT p.*, a.code , a.attribute ,a.model FROM durable_articles_permits as p,durable_articles as a";
+            $sqlSelectCount .= " WHERE p.product_id = a.id and p.status = 1";
+            if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
-               $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or p.receive_date like '%$keyword%' or a.attribute like '%$keyword%')";
-             }
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or p.permit_date like '%$keyword%' or p.receive_date like '%$keyword%' or a.attribute like '%$keyword%')";
+            }
             $sqlSelectCount .= " Order by p.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
@@ -168,30 +169,30 @@ $show = 10;
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
               }
             }
             ?>
-         <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -211,7 +212,7 @@ $show = 10;
 
 
   </div>
-  
+
   <!-- End of Main Content -->
 
   <!-- Footer -->
@@ -271,42 +272,46 @@ $show = 10;
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
-  
 
-<!-- Initialize Bootstrap functionality -->
-<script>
-  // Initialize tooltip component
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
 
-  // Initialize popover component
-  $(function() {
-    $('[data-toggle="popover"]').popover()
-  })
-</script>
+  <!-- Initialize Bootstrap functionality -->
+  <script>
+    // Initialize tooltip component
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    // Initialize popover component
+    $(function() {
+      $('[data-toggle="popover"]').popover()
+    })
+  </script>
+  <form action="printall_durable_articles_permits.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-left body-text">
-          คุณต้องการยกเลิกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
-          <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
-            <input type="hidden" id="remove-permits" name="permits_id">
-            <input type="hidden" id="remove-product-id" name="product_id">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title " id="exampleModalLabel">แจ้งเตือน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left body-text">
+        คุณต้องการยกเลิกข้อมูลการยืม-คืนวัสดุใช่หรือไม่
+        <form id="form-drop" method="post" action="service/service_drop_durable_articles_permits.php">
+          <input type="hidden" id="remove-permits" name="permits_id">
+          <input type="hidden" id="remove-product-id" name="product_id">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger body-text" onclick="$('#form-drop').submit()">ยืนยันการยกเลิกข้อมูล</button>
       </div>
     </div>
   </div>
+</div>
+
 </html>

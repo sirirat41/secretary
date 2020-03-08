@@ -4,7 +4,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM supplies_distribute as d ,supplies as s WHERE d.id = $id";
+  $sql = "SELECT * FROM supplies_distribute as d ,supplies as s ,supplies_stock as ss WHERE s.supplies_id = ss.id and d.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["distribute_date"];
@@ -76,13 +76,13 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] . '</option>';
+                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                               } else {
-                                echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                                echo '<option value="' . $row["id"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                               }
                             }
                             ?>
