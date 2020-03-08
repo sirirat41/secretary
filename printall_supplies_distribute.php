@@ -79,12 +79,14 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT sd.*, s.code, d.fullname FROM supplies_distribute as sd, supplies as s, department as d";
-                  $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and sd.status = 1";
+                  $sqlSelect = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
+                  $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id and sd.status = 1" ;
                   if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (sd.product_id like '%$keyword%' or sd.bill_no like '%$keyword%' or s.code like '%$keyword%')";
+                    $keyword = arabicnumDigit($_GET["keyword"]);
+                    $sqlSelect .= " and (sd.distribute_date like '%$keyword%' or d.fullname like '%$keyword%' or s.code like '%$keyword%' or sd.number like '%$keyword%')";
                   }
+                //  echo $sqlSelect;
+                  $sqlSelect .= $selectOnlyType;
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"]

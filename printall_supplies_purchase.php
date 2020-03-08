@@ -82,11 +82,12 @@ require "service/connection.php";
                 <tbody>
                   <?php
                   $sqlSelect = "SELECT p.*,ss.attribute ,a.code ,ss.supplies_name FROM supplies_purchase as p,supplies as a , supplies_stock as ss";
-                  $sqlSelect .= " WHERE a.supplies_id = ss.id and p.product_id = a.id and p.status = 1 Group by order_no";
+                  $sqlSelect .= " WHERE a.supplies_id = ss.id and p.product_id = a.id and p.status = 1";
                   if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (p.order_no like '%$keyword%' or p.order_by like '%$keyword%')";
+                    $keyword = arabicnumDigit($_GET["keyword"]);
+                    $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
                   }
+                  $sqlSelect .= " Group by order_no Order by id desc";
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"];

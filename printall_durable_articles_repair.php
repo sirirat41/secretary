@@ -59,7 +59,7 @@ require "service/connection.php";
                       <font size="2">วันที่ซ่อม</font>
                     </th>
                     <th>
-                      <font size="2">รหัสครุภัณฑ์</font>
+                      <font size="2">รหัสครุภัณฑ์(ชำรุด)</font>
                     </th>
                     <th>
                       <font size="2">ลักษณะ/คุณสมบัติ</font>
@@ -74,9 +74,11 @@ require "service/connection.php";
                   $sqlSelect = "SELECT r.*, a.code ,a.attribute , a.model FROM durable_articles_repair as r, durable_articles as a";
                   $sqlSelect .= " WHERE r.damage_id = a.id and r.status = 1";
                   if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (a.code like '%$keyword%' or r.place like '%$keyword%')";
+                    $keyword = arabicnumDigit($_GET["keyword"]);
+                    $sqlSelect .= " and (a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%' or r.repair_date like '%$keyword%')";
                   }
+                  //echo $sqlSelect;
+                  $sqlSelect .= " Order by r.id desc";
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"];

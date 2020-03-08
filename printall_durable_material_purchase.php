@@ -57,7 +57,6 @@ require "service/connection.php";
                         <th><font size="2">ลำดับ</font></th>
                         <th><font size="2">เลขที่ใบสั่งซื้อ</font></th>
                          <th><font size="2">วันที่จัดซื้อ</font></th>
-                         <th><font size="2">เลขที่เอกสาร</font></th>
                          <th><font size="2">คุณสมบัติ/ลักษณะ</font></th>
                         <th><font size="2">จำนวน</font></th>
                         <th><font size="2">ชื่อผู้จัดซื้อ</font></th>
@@ -65,12 +64,14 @@ require "service/connection.php";
                     </thead>
                     <tbody>
                       <?php
-                      $sqlSelect = "SELECT p.*,a.attribute FROM durable_material_purchase as p,durable_material as a";
-                      $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 Group by order_no";
+                      $sqlSelect = "SELECT p.*,m.attribute FROM durable_material_purchase as p,durable_material as m";
+                      $sqlSelect .= " WHERE p.product_id = m.id and p.status = 1 ";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (p.order_no like '%$keyword%' or p.order_by like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
                       }
+                       // echo $sqlSelect;
+                      $sqlSelect .= " Group by order_no Order by id desc";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
@@ -79,7 +80,6 @@ require "service/connection.php";
                         <td><font size="2"><?php echo $row["id"]; ?></font></td>
                         <td><font size="2"><?php echo ($row["order_no"]); ?></font></td>
                         <td><font size="2"><?php echo $row["purchase_date"]; ?></font></td>
-                        <td><font size="2"><?php echo $row["document_no"]; ?></font></td>
                         <td><font size="2"><?php echo $row["attribute"]; ?></font></td>
                         <td><font size="2"><?php echo $row["number"]; ?></font></td>
                         <td><font size="2"><?php echo $row["order_by"]; ?></font></td>

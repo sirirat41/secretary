@@ -1,6 +1,7 @@
 <?php
 require "service/connection.php";
 $show = 10;
+$keyword = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +60,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_articles_repair.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_articles_repair.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -106,7 +107,7 @@ $show = 10;
                      
                           <td><?php echo ($row["repair_date"]); ?></td>
                           <td><?php echo ($row["code"]); ?></td>
-                          <td><?php echo $row["attribute"]; ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
                           <td><?php echo ($row["model"]); ?></td>
                           <td class="td-actions text-center">
                             <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location = 'edit_durable_articles_repair.php?id=<?php echo $row['id']; ?>'">
@@ -288,6 +289,7 @@ $show = 10;
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_repair.php">
             <input type="hidden" id="remove-repair" name="repair_id">
             <input type="hidden" id="remove-product-id" name="product_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
@@ -296,7 +298,9 @@ $show = 10;
       </div>
     </div>
   </div>
-
+  <form action="printall_durable_articles_repair.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
 <script>

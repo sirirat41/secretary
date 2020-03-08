@@ -1,6 +1,7 @@
 <?php
 require "service/connection.php";
-$show=10;
+$show = 10;
+$keyword = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,16 +53,16 @@ $show=10;
                   <div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit"><i class="fas fa-search"></i>
-                  </button>
+                    </button>
                     <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_durable_articles_sell.php';">
                       <i class="fas fa-plus"></i>
                     </button>
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_durable_articles_sell.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_durable_articles_sell.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -82,12 +83,12 @@ $show=10;
                     <tbody>
                       <!-- ///ดึงข้อมูล -->
                       <?php
-                        if (isset($_GET["page"])) {
-                          $page = $_GET["page"];
-                        } else {
-                          $page = 1;
-                        }
-                        $start = ($page - 1) * $show;
+                      if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                      } else {
+                        $page = 1;
+                      }
+                      $start = ($page - 1) * $show;
                       $sqlSelect = "SELECT s.*, a.code ,a.attribute ,a.model FROM durable_articles_sell as s, durable_articles as a";
                       $sqlSelect .= " WHERE s.product_id = a.id and s.status = 1";
                       if (isset($_GET["keyword"])) {
@@ -99,27 +100,27 @@ $show=10;
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"]
-                        ?>
-                      <tr class="text-center body-text">
-                        <td><?php echo ($row["sell_date"]); ?></td>
-                        <td><?php echo ($row["code"]); ?></td>
-                        <td><?php echo ($row["attribute"]); ?></td>
-                        <td><?php echo ($row["model"]); ?></td>
-                        <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location.href = 'edit_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location.href = 'view_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
-                            <i class="fas fa-clipboard-list"></i>
-                          </button>
-                          <a rel="tooltip" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" style="color: white" href="print_durable_articles_sell.php?id=<?php echo $row['id']; ?>" target="_blank">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-sell').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                      </tr>
+                      ?>
+                        <tr class="text-center body-text">
+                          <td><?php echo ($row["sell_date"]); ?></td>
+                          <td><?php echo ($row["code"]); ?></td>
+                          <td><?php echo ($row["attribute"]); ?></td>
+                          <td><?php echo ($row["model"]); ?></td>
+                          <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล" onclick="window.location.href = 'edit_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียดข้อมูล" onclick="window.location.href = 'view_durable_articles_sell.php?id=<?php echo $row['id']; ?>'">
+                              <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <a rel="tooltip" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูล" style="color: white" href="print_durable_articles_sell.php?id=<?php echo $row['id']; ?>" target="_blank">
+                              <i class="fas fa-print"></i>
+                            </a>
+                            <button type="button" rel="tooltip" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="ยกเลิกข้อมูล" data-toggle="modal" data-target="#exampleModal" onclick="$('#exampleModal').modal();$('#remove-sell').val('<?php echo $id; ?>');$('#remove-product-id').val('<?php echo $row["product_id"]; ?>')">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
                       <?php
                       }
                       ?>
@@ -133,7 +134,7 @@ $show=10;
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-            <?php
+              <?php
               $prevPage = "#";
               if ($page > 1) {
                 $prevPage = "?page=" . ($page - 1);
@@ -145,13 +146,13 @@ $show=10;
               </a>
             </li>
             <?php
-              $sqlSelectCount = "SELECT s.*, a.code FROM durable_articles_sell as s, durable_articles as a";
-              $sqlSelectCount .= " WHERE s.product_id = a.id and s.status = 1";
-              if (isset($_GET["keyword"])) {
-                $keyword = arabicnumDigit($_GET["keyword"]);
-                $sqlSelectCount .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%' or s.sell_date like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
-             }
-             $sqlSelectCount .= " Order by s.id desc LIMIT $start, $show";
+            $sqlSelectCount = "SELECT s.*, a.code FROM durable_articles_sell as s, durable_articles as a";
+            $sqlSelectCount .= " WHERE s.product_id = a.id and s.status = 1";
+            if (isset($_GET["keyword"])) {
+              $keyword = arabicnumDigit($_GET["keyword"]);
+              $sqlSelectCount .= " and (a.code like '%$keyword%' or s.document_no like '%$keyword%' or s.sell_date like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
+            }
+            $sqlSelectCount .= " Order by s.id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);
@@ -169,30 +170,30 @@ $show=10;
 
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
-                ?>
+            ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i); ?>">......</a></li>
               <?php
-                }
-                if (isset($_GET["keyword"])) {
-                  ?>
+              }
+              if (isset($_GET["keyword"])) {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
-                } else {
-                  ?>
+              } else {
+              ?>
                 <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
-                    if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
-                      ?>
+                if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
+                ?>
                   <li class="page-item"><a class="page-link" href="?page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
               }
             }
             ?>
-      <?php
-             $nextPage = "#";
+            <?php
+            $nextPage = "#";
             if ($page < $maxshowpage) {
-              
+
               $nextPage = "?page=" . ($page + 1);
             }
 
@@ -286,6 +287,7 @@ $show=10;
           <form id="form-drop" method="post" action="service/service_drop_durable_articles_sell.php">
             <input type="hidden" id="remove-sell" name="sell_id">
             <input type="hidden" id="remove-product-id" name="product_id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
@@ -294,7 +296,9 @@ $show=10;
       </div>
     </div>
   </div>
-
+  <form action="printall_durable_articles_sell.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
 <script>

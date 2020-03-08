@@ -62,9 +62,6 @@ require "service/connection.php";
                       <font size="2">วันที่จัดซื้อ</font>
                     </th>
                     <th>
-                      <font size="2">เลขที่เอกสาร</font>
-                    </th>
-                    <th>
                       <font size="2">คุณสมบัติ/ลักษณะ</font>
                     </th>
                     <th>
@@ -78,11 +75,13 @@ require "service/connection.php";
                 <tbody>
                   <?php
                   $sqlSelect = "SELECT p.*,a.attribute FROM durable_articles_purchase as p,durable_articles as a";
-                  $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 Group by order_no";
+                  $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 ";
                   if (isset($_GET["keyword"])) {
-                    $keyword = $_GET["keyword"];
-                    $sqlSelect .= " and (p.order_no like '%$keyword%' or p.order_by like '%$keyword%')";
+                    $keyword = arabicnumDigit($_GET["keyword"]);
+                    $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
                   }
+                  //  echo $sqlSelect;
+                  $sqlSelect .= " Group by order_no Order by id desc";
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"];
@@ -96,9 +95,6 @@ require "service/connection.php";
                       </td>
                       <td>
                         <font size="2"><?php echo ($row["purchase_date"]); ?></font>
-                      </td>
-                      <td>
-                        <font size="2"><?php echo ($row["document_no"]); ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo ($row["attribute"]); ?></font>
