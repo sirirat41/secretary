@@ -74,12 +74,12 @@ $show = 10;
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 3";
-                            $resultType = mysqli_query($conn, $sqlSelectType);
-                            while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
-                            }
-                            ?>
+                                  $sqlSelectType = "SELECT * FROM durable_material_damage as d,durable_material as a WHERE a.id = d.product_id and d.status = 1";
+                                  $resultType = mysqli_query($conn, $sqlSelectType);
+                                  while ($row = mysqli_fetch_assoc($resultType)) {
+                                    echo '<option value="' . $row["product_id"] . '">' . $row["code"] . " : " . $row["flag"] . '</option>';
+                                  }
+                                  ?>
                           </select>
                         </div>
                         <div class="col-md-2">
@@ -119,8 +119,21 @@ $show = 10;
 
                   </div>
                 </div>
+            </div></div>
+              </form>
+              <div class="row">
+            <div class="col-12 card" style="padding: 10px" align="center">
+              <h4>ประวัติการซ่อม </h4>
+              <hr>
+              <div id="history_log">
+
+              </div>
+              <p id="label_empty_history">วัสดุคงทน ชิ้นนี้ไม่มีประวัติการซ่อม</p>
+
+              </div>
+              </div>
             </div>
-            </form>
+            
           </div>
           <!-- สิ้นสุดการเขียนตรงนี้ -->
         </div>
@@ -297,6 +310,55 @@ $show = 10;
       e.preventDefault();
       search();
     })
+
+    $(document).ready(function() {
+      $('#damage_id').on('change', function(e) {
+        checkDamageHistory($(this).find(":selected").val());
+        // alert($(this).val());
+      });
+      $('#damage_id').change();
+
+    })
+
+    function checkDamageHistory(pid) {
+      var history = $('#history_log');
+      $.ajax({
+        url: 'service/service_get_item_material_repair_history.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+          id: pid
+        },
+        success: function(data) {
+          if (data.length > 0) {
+            console.log(data);
+            $('#label_empty_history').hide();
+            history.empty();
+            history.show();
+            addHeaderHistory();
+            for (i = 0; i < data.length; i++) {
+              var ele = data[i];
+              var body = '<div class="row"><div class="col-md-2">' + (i + 1) + '</div><div class="col-md-4">' + (ele.repair_date) + '</div><div class="col-md-6">' + (ele.flag) + '</div></div>';
+              $(body).appendTo(history);
+            }
+          } else {
+            $('#label_empty_history').show();
+            history.hide();
+          }
+        },
+        error(error) {
+          console.error(error);
+          $('#label_empty_history').show();
+          history.hide();
+        }
+      })
+    }
+
+    function addHeaderHistory() {
+      var history = $('#history_log');
+      var header = '<div class="row"><div class="col-md-2"><b>ครั้งที่</b></div><div class="col-md-4"><b>วันที่ซ่อม</b></div><div class="col-md-6"><b>สาเหตุที่ซ่อม</b></div></div><hr>';
+      $(header).appendTo(history)
+    }
 
     function search() {
       var keyword = $('#input-search').val().trim();

@@ -502,7 +502,8 @@ require "service/connection.php";
           },
           success: function(data) {
             if (!data.result) {
-              alert("มีข้อมูลซ้ำ" + data.data);
+              alert("มีข้อมูลซ้ำ" + data.asset_no);
+              $('#asset_no').val('');
             }
             console.log(data);
           },

@@ -39,8 +39,8 @@ $show = 10;
 <body id="page-top">
   <?php
   if (isset($_GET["type"])) {
-    $id = $_GET["type"];
-    $sql = "SELECT * FROM durable_material_type WHERE id = $id";
+    $type = $_GET["type"];
+    $sql = "SELECT * FROM durable_material_type WHERE id = $type";
     $result = mysqli_query($conn, $sql) or die('cannot select data');
     $item = mysqli_fetch_assoc($result);
   }
@@ -68,6 +68,7 @@ $show = 10;
 
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                  <input class="" type="text" name="type" value="<?php echo $type;?>" style="display: none">
                   <div>
                     <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
@@ -195,20 +196,20 @@ $show = 10;
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
                 ?>
-                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i); ?>">......</a></li>
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $type; ?>&page=<?php echo ($i); ?>">......</a></li>
               <?php
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo thainumDigit($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $type; ?>&page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link" href="?type=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link" href="?type=<?php echo $type; ?>&page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>
-                  <li class="page-item"><a class="page-link" href="?typ=<?php echo $_GET["type"]; ?>&page=<?php echo ($i + 2); ?>">......</a></li>
+                  <li class="page-item"><a class="page-link" href="?type=<?php echo $type; ?>&page=<?php echo ($i + 2); ?>">......</a></li>
             <?php
                 }
               }
