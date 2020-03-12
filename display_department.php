@@ -4,6 +4,7 @@
 require "service/connection.php";
 
 $show = 10;
+$keyword = "";
 ?>
 
 <head>
@@ -62,9 +63,9 @@ $show = 10;
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_department.php';">
                       <i class="fas fa-sync-alt"></i>
                     </button>
-                    <a rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" href="printall_department.php" target="_blank">
+                    <button type="button" rel="tooltip" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="ปริ้นข้อมูลทั้งหมด" onclick="$('#form-print').submit();">
                       <i class="fas fa-print"></i>
-                    </a>
+                    </button>
                 </form>
             </div>
           </div>
@@ -298,6 +299,10 @@ $show = 10;
     $('[data-toggle="popover"]').popover()
   })
 </script>
+
+<form action="printall_department.php" method="get" id="form-print" target="_blank">
+    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+  </form>
 </body>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

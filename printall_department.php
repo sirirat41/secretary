@@ -70,9 +70,10 @@ require "service/connection.php";
                       $sqlSelect = "SELECT * FROM department";
                       $sqlSelect .= " WHERE status = 1";
                       if (isset($_GET["keyword"])) {
-                        $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (fullname like '%$keyword%')";
+                        $keyword = arabicnumDigit($_GET["keyword"]);
+                        $sqlSelect .= " and (fullname like '%$keyword%' or shortname like '%$keyword%' or bulding like '%$keyword%' or floor like '%$keyword%' or tel like '%$keyword%' or fax like '%$keyword%')";
                       }
+                      $sqlSelect .= " Order by id desc";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
