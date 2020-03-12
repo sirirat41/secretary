@@ -5,6 +5,7 @@ if(isset($_GET['id'])) {
     $id = $_GET["id"];
     $fullname = $_POST["fullname"];
     $shortname = $_POST["shortname"];
+    $tel = $_POST["tel"];
     $fax = $_POST["fax"];
     $bulding = $_POST["bulding"];
     $floor = $_POST["floor"];
@@ -20,7 +21,7 @@ if(isset($_GET['id'])) {
     }
 
     $updatePurchase = "UPDATE department SET fullname = '$fullname',";
-    $updatePurchase .= " shortname = '$shortname', fax = '$fax' , bulding = '$bulding' , floor = '$floor' ";
+    $updatePurchase .= " shortname = '$shortname', tel = '$tel' ,fax = '$fax' , bulding = '$bulding' , floor = '$floor' ";
     if($imgeName != ""){
         $updateArticles .= ", pic = '$imgeName'";
 
