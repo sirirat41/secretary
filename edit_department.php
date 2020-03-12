@@ -89,8 +89,20 @@ if (isset($_GET["id"])) {
                   <div class=" col-6">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">อาคาร</label>
-                      <input class="form-control" name="bulding" type="text" placeholder="" id="bulding" value="<?php echo $item["bulding"]; ?>">
-                      <small id="alert-bulding" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
+                      <!-- <input class="form-control" name="bulding" type="text" placeholder="" id="bulding" value=""> -->
+                      <select class="form-control body-text" data-style="btn btn-link" id="bulding" name="bulding" value="<?php echo $item["bulding"]; ?>">
+                      <option value="อาคาร 1">อาคาร 1</option>
+                      <option value="อาคาร 2">อาคาร 2</option>
+                      <option value="อาคาร 3">อาคาร 3</option>
+                      <option value="อาคาร 4">อาคาร 4</option>
+                      <option value="อาคาร 5">อาคาร 5</option>
+                      <option value="อาคาร 6">อาคาร 6</option>
+                      <option value="อาคาร 7">อาคาร 7</option>
+                      <option value="อาคาร 8">อาคาร 8</option>
+                      <option value="อาคาร 9">อาคาร 9</option>
+                      <option value="อาคาร 10">อาคาร 10</option>
+                    </select>
+                      <!-- <small id="alert-bulding" style="color: red; display: none">*กรุณากรอกข้อมูล</small> -->
                     </div>
                   </div>
                   <div class="col-6">
