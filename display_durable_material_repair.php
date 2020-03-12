@@ -91,8 +91,8 @@ $keyword = "";
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
-                      $sqlSelect .= " WHERE r.damage_id = m.id and r.status = 1";
+                      $sqlSelect = "SELECT r.*, m.code ,m.attribute , m.name,d.product_id FROM durable_material_repair as r, durable_material_damage as d,durable_material as m";
+                      $sqlSelect .= " WHERE r.damage_id = d.id and d.product_id = m.id and r.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (m.code like '%$keyword%' or m.name like '%$keyword%' or r.repair_date like '%$keyword%' or m.attribute like '%$keyword%')";
@@ -149,8 +149,8 @@ $keyword = "";
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT r.*, m.code ,m.attribute , m.name FROM durable_material_repair as r, durable_material as m";
-            $sqlSelectCount .= " WHERE r.damage_id = m.id and r.status = 1";
+          $sqlSelectCount = "SELECT r.*, m.code ,m.attribute , m.name,d.product_id FROM durable_material_repair as r, durable_material_damage as d,durable_material as m";
+          $sqlSelectCount .= " WHERE r.damage_id = d.id and d.product_id = m.id and r.status = 1";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (m.code like '%$keyword%' or m.name like '%$keyword%' or r.repair_date like '%$keyword%' or m.attribute like '%$keyword%')";

@@ -192,7 +192,8 @@ if (isset($_GET["id"])) {
   <script src="js/secretary.js"></script>
 <script>
       $(document).ready(function() {
-        checkDamageHistory();
+        checkDamageHistory(<?php echo $row["product_id"];?>);
+        
 
     })
   function checkDamageHistory(pid) {

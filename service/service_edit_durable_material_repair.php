@@ -4,11 +4,10 @@ if(isset($_GET["id"])) {
     $id = $_GET["id"];
 
     //receive_donate data
-    $seq = $_POST["seq"];
     $repairdate = $_POST["repair_date"];
     $damageid = $_POST["damage_id"];
     $place = $_POST["place"];
-    $flag = $_POST["flag"];
+    // $flag = $_POST["flag"];
 
       
     $sqlSelect = "SELECT * FROM durable_material_repair WHERE id = $id";
@@ -23,13 +22,13 @@ if(isset($_GET["id"])) {
     mysqli_query($conn, $updaterepair) or die("Cannot update repair: " . mysqli_error($conn));
 
     $updaterepair = "UPDATE durable_material_repair SET repair_date = '$repairdate' ,";
-    $updaterepair .= "  damage_id = '$damageid' , place = '$place' , flag = '$flag'";
+    $updaterepair .= "  damage_id = '$damageid' , place = '$place'";
     $updaterepair .= " WHERE id = $id";
 
     $log = "แก้ไขข้อมูลการซ่อมวัสดุคงทน";
     logServer($conn, $log);
-    
+  echo $updaterepair;
     mysqli_query($conn, $updaterepair) or die("Cannot update repair" . mysqli_error($conn));
-    header('Location: ../display_durable_material_repair.php?message=แก้ไขข้อมูลสำเร็จ');
+    // header('Location: ../display_durable_material_repair.php?message=แก้ไขข้อมูลสำเร็จ');
 
 }

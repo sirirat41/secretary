@@ -2,10 +2,12 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT r.*, a.code ,a.attribute , a.model ,a.picture FROM durable_articles as a,durable_articles_repair as r WHERE r.id = $id";
-  $sql .= " and r.damage_id = a.id ";
+  $sql = "SELECT r.*, m.code ,m.attribute , m.model,d.product_id FROM durable_articles_repair as r, durable_articles_damage as d,durable_articles as m";
+  $sql .= " WHERE r.damage_id = d.id and d.product_id = m.id and r.status = 1 and r.id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  $damageID = $row["damage_id"];
+ 
 }
 ?>
 
@@ -16,9 +18,9 @@ if (isset($_GET["id"])) {
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta model="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta model="description" content="">
+  <meta model="author" content="">
 
   <title>secretary</title>
   <secretary style="display: none">display_durable_articles_repair</secretary>
@@ -93,6 +95,18 @@ if (isset($_GET["id"])) {
             </form>
           </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-12 card" style="padding: 10px" align="center">
+              <h4>ประวัติการซ่อม </h4>
+              <hr>
+              <div id="history_log">
+
+              </div>
+              <p id="label_empty_history">ครุภัณฑ์ ชิ้นนี้ไม่มีประวัติการซ่อม</p>
+              </div>
+
+              </div>
       </div>
     </div>
     <br>
@@ -144,6 +158,7 @@ if (isset($_GET["id"])) {
               </table>
               <br>
             </div>
+                </div>
           </div>
         </div>
       </div>
@@ -212,7 +227,56 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script>
+      $(document).ready(function() {
+        checkDamageHistory(<?php echo $damageID;?>);
 
+        
+
+    })
+  function checkDamageHistory(pid) {
+// alert('00');
+
+      var history = $('#history_log');
+      $.ajax({
+        url: 'service/service_get_item_repair_history.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+          id: pid
+        },
+        success: function(data) {
+          if (data.length > 0) {
+            console.log(data);
+            $('#label_empty_history').hide();
+            history.empty();
+            history.show();
+            addHeaderHistory();
+            for (i = 0; i < data.length; i++) {
+              var ele = data[i];
+              var body = '<div class="row"><div class="col-md-2">' + (i + 1) + '</div><div class="col-md-4">' + (ele.repair_date) + '</div><div class="col-md-6">' + (ele.flag) + '</div></div>';
+              $(body).appendTo(history);
+            }
+          } else {
+            $('#label_empty_history').show();
+            history.hide();
+            console.log(data);
+          }
+        },
+        error(error) {
+          console.error(error);
+          $('#label_empty_history').show();
+          history.hide();
+        }
+      })
+    }
+
+    function addHeaderHistory() {
+      var history = $('#history_log');
+      var header = '<div class="row"><div class="col-md-2"><b>ครั้งที่</b></div><div class="col-md-4"><b>วันที่ซ่อม</b></div><div class="col-md-6"><b>สาเหตุที่ซ่อม</b></div></div><hr>';
+      $(header).appendTo(history)
+    }
+  </script>
 </body>
 
 </html>

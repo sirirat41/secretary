@@ -74,21 +74,23 @@ require "service/connection.php";
                 </thead>
                 <tbody>
                   <?php
-                  $sqlSelect = "SELECT p.*,a.attribute FROM durable_articles_purchase as p,durable_articles as a";
-                  $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 ";
-                  if (isset($_GET["keyword"])) {
-                    $keyword = arabicnumDigit($_GET["keyword"]);
-                    $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
-                  }
-                  //  echo $sqlSelect;
-                  $sqlSelect .= " Group by order_no Order by id desc";
+                 $sqlSelect = "SELECT p.*,a.attribute FROM durable_articles_purchase as p,durable_articles as a";
+                 $sqlSelect .= " WHERE p.product_id = a.id and p.status = 1 ";
+                 if (isset($_GET["keyword"])) {
+                   $keyword = arabicnumDigit($_GET["keyword"]);
+                   $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
+                 }
+                 //  echo $sqlSelect;
+                 $sqlSelect .= " Group by order_no Order by id desc ";
+                 $count = 1;
+        
                   $result = mysqli_query($conn, $sqlSelect);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["id"];
                     ?>
                     <tr class="text-center">
                       <td>
-                        <font size="2"><?php echo ($row["id"]); ?></font>
+                        <font size="2"><?php echo $count++; ?></font>
                       </td>
                       <td>
                         <font size="2"><?php echo ($row["order_no"]); ?></font>

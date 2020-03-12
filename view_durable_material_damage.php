@@ -108,6 +108,18 @@ if (isset($_GET["id"])) {
         </div>
       </div>
     </div>
+    <br>
+    <div class="row">
+            <div class="col-12 card" style="padding: 10px" align="center">
+              <h4>ประวัติการชำรุด </h4>
+              <hr>
+              <div id="history_log">
+
+              </div>
+              <p id="label_empty_history">ครุภัณฑ์ ชิ้นนี้ไม่มีประวัติการชำรุด</p>
+              </div>
+
+              </div>
     </div>
   </div>
   <!-- สิ้นสุดการเขียนตรงนี้ -->
@@ -175,7 +187,52 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
+  <script>
+      $(document).ready(function() {
+        checkDamageHistory(<?php echo $row["product_id"];?>);
+        
 
+    })
+  function checkDamageHistory(pid) {
+      var history = $('#history_log');
+      $.ajax({
+        url: 'service/service_get_item_material_damage_history.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+          id: pid
+        },
+        success: function(data) {
+          if (data.length > 0) {
+            console.log(data);
+            $('#label_empty_history').hide();
+            history.empty();
+            history.show();
+            addHeaderHistory();
+            for (i = 0; i < data.length; i++) {
+              var ele = data[i];
+              var body = '<div class="row"><div class="col-md-2">' + (i + 1) + '</div><div class="col-md-4">' + (ele.damage_date) + '</div><div class="col-md-6">' + (ele.flag) + '</div></div>';
+              $(body).appendTo(history);
+            }
+          } else {
+            $('#label_empty_history').show();
+            history.hide();
+          }
+        },
+        error(error) {
+          console.error(error);
+          $('#label_empty_history').show();
+          history.hide();
+        }
+      })
+    }
+
+    function addHeaderHistory() {
+      var history = $('#history_log');
+      var header = '<div class="row"><div class="col-md-2"><b>ครั้งที่</b></div><div class="col-md-4"><b>วันที่ชำรุด</b></div><div class="col-md-6"><b>สาเหตุที่ชำรุด</b></div></div><hr>';
+      $(header).appendTo(history)
+    }
+  </script>
 </body>
 
 </html>

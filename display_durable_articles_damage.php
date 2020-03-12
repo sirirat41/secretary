@@ -91,8 +91,8 @@ $keyword = "";
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT da.*, a.code ,a.picture ,a.attribute ,a.model FROM durable_articles_damage as da, durable_articles as a";
-                      $sqlSelect .= " WHERE da.product_id = a.id and da.status !=0";
+                      $sqlSelect = "SELECT da.*,m.code, m.picture ,m.attribute ,m.model FROM durable_articles_damage as da, durable_articles as m";
+                      $sqlSelect .= " WHERE da.product_id = m.id and da.status = 1";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";
@@ -147,8 +147,8 @@ $keyword = "";
               </a>
             </li>
             <?php
-             $sqlSelectCount = "SELECT da.*, a.code ,a.attribute ,a.model FROM durable_articles_damage as da, durable_articles as a";
-             $sqlSelectCount .= " WHERE da.product_id = a.id and da.status != 0";
+            $sqlSelectCount = "SELECT da.*,m.code, m.picture ,m.attribute ,m.model FROM durable_articles_damage as da, durable_articles as m";
+            $sqlSelectCount .= " WHERE da.product_id = m.id and da.status = 1";
              if (isset($_GET["keyword"])) {
                $keyword = arabicnumDigit($_GET["keyword"]);
                $sqlSelectCount .= " and (da.damage_date like '%$keyword%' or a.code like '%$keyword%' or a.attribute like '%$keyword%' or a.model like '%$keyword%')";

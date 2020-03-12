@@ -2,7 +2,7 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-  $sql = "SELECT * FROM durable_articles_repair as r,durable_articles as a WHERE r.id = $id";
+  $sql = "SELECT * FROM durable_articles_repair as r WHERE r.id = $id";
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $repairdate = $item["repair_date"];
@@ -10,6 +10,7 @@ if (isset($_GET["id"])) {
   // $newReceiveDate = date("ํY-m-d", strtotime($receiveDate));
   $newrepairdate = date("Y-m-d", strtotime($repairdate));
   $show = 10;
+  // echo $item["damage_id"];
 }
 ?>
 <!DOCTYPE html>
@@ -662,7 +663,7 @@ if (isset($_GET["id"])) {
         </button>
       </div>
       <div class="modal-body">
-        คุณต้องการแก้ไขข้อมูลรายการซ่อมครุภัณฑ์หรือไม่ ?
+        คุณต้องการเพิ่มข้อมูลการซ่อมครุภัณฑ์หรือไม่ ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
