@@ -201,7 +201,7 @@ require "service/connection.php";
                   <div class="form-group body-text">
                     <label class="bmd-label-floating">เลขสินทรัพย์ </label>
                     <input class="form-control body-text" type="text" placeholder="" name="asset_no" id="asset_no">
-                    <small style="color: red"> *ตัวอย่าง:100000312000</small>
+                    <small style="color: red"> *ตัวอย่าง:100000312000 / หากไม่มีเลขสินทรัพย์กรุณาใส่ -</small>
                     <small id="alert-asset_no" style="color: red; display: none">*กรุณากรอกข้อมูล</small>
                   </div>
                 </div>
