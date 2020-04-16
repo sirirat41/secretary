@@ -38,10 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_query($conn, $sqlUpdatestock);
             header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลสำเร็จ');
         } else {
-            header('Location: ../display_supplies_distribute.php?messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
+            header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
     } else {
-        header('Location: ../display_supplies_distribute.php?message=จำนวนที่แจกจ่ายเกินกว่าสินค้าคงเหลือ');
+        header('Location: ../display_supplies_distribute.php?type=' . $type . '&message=จำนวนที่แจกจ่ายเกินกว่าสินค้าคงเหลือ');
     }
 } else {
 

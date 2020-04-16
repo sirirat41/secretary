@@ -168,7 +168,16 @@ require "service/connection.php";
                     <tr class="text-center body-text" height="30" id="firstTr">
                       <td> <input type="date" class="form-control distribute_date" name="distribute_date[]" id="distribute_date" placeholder=""></td>
                       <td> <input type="text" class="form-control receive_from" name="receive_from[]" id="receive_from" placeholder=""></td>
-                      <td> <input type="text" class="form-control distribute_to" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to"></td>
+                      <td> 
+                      <select class="form-control distribute_to" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to">
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row["id"] . '">' . $row["fullname"] . " " . $row["bulding"] . " " . $row["floor"] . '</option>';
+                        }
+                        ?>
+                      </select></td>
                       <td> <input type="text" class="form-control document_no" name="document_no[]" id="document_no" placeholder="" name="document_no"></td>
                       <td> <input type="text" class="form-control baht" name="baht[]" id="baht" placeholder="" name="baht"></td>
                       <td> <input type="text" class="form-control satang" name="satang[]" id="satang" placeholder="" name="satang"></td>

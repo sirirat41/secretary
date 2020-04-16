@@ -4,6 +4,7 @@ $_SESSION["user_type"] = "99";
 require 'connection.php';
 if(isset($_GET["id"])) {
     $id = $_GET["id"];
+    $email = $_GET["email"];
  
     $password =  md5($_POST["password1"]);
     $updatepassword = "UPDATE user SET password = '$password' ";

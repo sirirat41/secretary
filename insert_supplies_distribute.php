@@ -1,5 +1,11 @@
 <?php
 require "service/connection.php";
+
+$selectOnlyType = "";
+if (isset($_GET["type"])) {
+  $type = $_GET["type"];
+  $selectOnlyType = " and ss.type = $type";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +64,7 @@ require "service/connection.php";
               </div>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_insert_supplies_distribute.php" id="form_insert">
+              <form method="post" action="service/service_insert_supplies_distribute.php?type=<?php echo $_GET["type"]; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-12 ">
                     <div class="form-group body-text">
@@ -67,10 +73,10 @@ require "service/connection.php";
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
+                            $sqlSelectType = "SELECT *,s.id as sidd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and ss.type = $type and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . ':' . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                              echo '<option value="' . $row["sidd"] . ':' . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                             }
                             ?>
                           </select>

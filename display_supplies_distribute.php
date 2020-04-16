@@ -38,14 +38,14 @@ $keyword = "";
 </head>
 
 <body id="page-top">
-  <?php
+  <!-- <?php
   if (isset($_GET["type"])) {
     $type = $_GET["type"];
     $sql = "SELECT * FROM durable_material_type WHERE id = $type";
     $result = mysqli_query($conn, $sql) or die('cannot select data');
     $item = mysqli_fetch_assoc($result);
   }
-  ?>
+  ?> -->
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -74,7 +74,7 @@ $keyword = "";
                     <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="ค้นหาข้อมูล" type="submit">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_supplies_distribute.php';">
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="top" title="เพิ่มข้อมูล" type="button" onclick="window.location.href='insert_supplies_distribute.php?type=<?php echo $type; ?>';">
                       <i class="fas fa-plus"></i>
                     </button>
                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="กู้คืนข้อมูล" type="button" onclick="window.location.href='rowback_supplies_distribute.php';">
@@ -111,7 +111,7 @@ $keyword = "";
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
+                      $sqlSelect = "SELECT sd.*, s.code, d.fullname ,ss.supplies_name ,ss.type ,s.supplies_id FROM supplies_distribute as sd, supplies as s, department as d ,supplies_stock as ss";
                       $sqlSelect .= " WHERE sd.product_id = s.id and sd.department_id = d.id and s.supplies_id = ss.id and sd.status = 1" ;
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
