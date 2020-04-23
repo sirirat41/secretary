@@ -12,7 +12,7 @@ if (isset($_GET["id"])) {
 
     $log = "แก้ไขข้อมูลการแจกจ่ายวัสดุสิ้นเปลือง";
     logServer($conn, $log);
-    $sqlSelect = "SELECT d.*,s.supplies_id ,s.code FROM supplies_distribute as d , supplies as s WHERE d.id = $id";
+    $sqlSelect = "SELECT d.*,s.supplies_id ,s.code,s.id FROM supplies_distribute as d , supplies as s WHERE d.product_id = s.id and d.id = $id";
     $resultOld = mysqli_query($conn, $sqlSelect);
     $dataOld = mysqli_fetch_assoc($resultOld);
     $numberold = $dataOld["number"];
@@ -22,7 +22,7 @@ if (isset($_GET["id"])) {
     // $sqlSelect1 = "SELECT * FROM supplies_stock WHERE id = $id";
     // $resultOld1 = mysqli_query($conn, $sqlSelect1);
     // $dataOld1 = mysqli_fetch_assoc($resultOld1);
-    // $stock = $dataOld1["stock"];
+    // $stock = $dataOld1["stock"]; 
 
     // $updateOld = "UPDATE supplies SET status = 1 WHERE id = $oldProductID";
     // mysqli_query($conn, $updateOld);

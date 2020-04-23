@@ -72,27 +72,40 @@ if (isset($_GET["id"])) {
             <div class="card-body">
               <form method="post" action="service/service_edit_supplies_account.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
-                  <div class="col-4">
+                  <div class="col-12">
                     <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
                       <input type="text" class="form-control body-text" name="year" id="year" placeholder="" name="year" value="<?php echo $item["year"]; ?>">
                     </div>
                   </div>
-                  <div class="col-8">
-                    <div class="form-group bmd-form-group body-text">
-                      <label for="supplies_id">ชื่อวัสดุ</label>
-                      <input type="text" class="form-control body-text" name="supplies_id" id="supplies_id" placeholder="" name="supplies_id" value="<?php echo $item["supplies_name"]; ?>">
-                    </div>
-                  </div>
+                
                 </div>
                 <div class="row">
-                  <div class="col-12 ">
-                    <div class="form-group">
+                  <div class="col-md-12">
+                    <div class="form-group bmd-form-group body-text">
                       <label for="product_id">รหัสวัสดุ</label>
-    
-                      <input type="text" class="form-control body-text" name="product_id" id="product_id" placeholder="" name="product_id" value="<?php echo $item["code"]; ?>">
-                       
+                      <div class="row">
+                        <div class="col-md-10">
+                      <select class="form-control" name="product_id" id="product_id">
+                            <?php
+                            $sqlSelectType = "SELECT *,s.id as idd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row = mysqli_fetch_assoc($resultType)) {
+                              if ($item["product_id"] == $row["idd"]) {
+                                echo '<option value="' . $row["idd"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row["idd"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                              }
+                            }
+                            ?>
+                          </select>
                      
+                    </div>
+                    <div class="col-md-1">
+                          <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
+                            <i class="fas fa-search"></i>
+                            </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -176,7 +189,19 @@ if (isset($_GET["id"])) {
                       <tr class="text-center" height="30" id="firstTr">
                         <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
                         <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $row["receive_from"]; ?>"></td>
-                        <td> <input type="text" class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" name="distribute_to" value="<?php echo $row["distribute_to"]; ?>"></td>
+                        <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" >
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row2 = mysqli_fetch_assoc($resultType)) {
+                          if ($item["distribute_to"] == $row2["id"]) {
+                            echo '<option value="' . $row2["id"] . '"selected>' . $row2["fullname"] . " " . $row2["bulding"] . " " . $row2["floor"] . '</option>';
+                          } else {
+                            echo '<option value="' . $row2["id"] . '">' . $row2["fullname"] . " " . $row2["bulding"] . " " . $row2["floor"] . '</option>';
+                          }
+                        }
+                        ?>
+                      </select></td>
                         <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no" value="<?php echo $row["document_no"]; ?>"></td>
                         <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht" value="<?php echo $row["baht"]; ?>"></td>
                         <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang" value="<?php echo $row["satang"]; ?>"></td>
@@ -193,7 +218,15 @@ if (isset($_GET["id"])) {
                 <tr class="text-center" height="30" id="firstTr">
                         <td> <input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" ></td>
                         <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" ></td>
-                        <td> <input type="text" class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" name="distribute_to" ></td>
+                        <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" >
+                        <?php
+                        $sqlSelectType = "SELECT * FROM department";
+                        $resultType = mysqli_query($conn, $sqlSelectType);
+                        while ($row1 = mysqli_fetch_assoc($resultType)) {
+                          echo '<option value="' . $row1["id"] . '">' . $row1["fullname"] . " " . $row1["bulding"] . " " . $row1["floor"] . '</option>';
+                        }
+                        ?>
+                      </select></td>
                         <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no" ></td>
                         <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht" ></td>
                         <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang"></td>
@@ -418,7 +451,7 @@ if (isset($_GET["id"])) {
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies_account.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {
@@ -489,7 +522,7 @@ if (isset($_GET["id"])) {
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
@@ -546,7 +579,7 @@ if (isset($_GET["id"])) {
     function sendData() {
       var params = {};
       params["year"] = $('#year').val();
-      params["supplies_id"] = $('#supplies_id').val();
+      // params["supplies_id"] = $('#supplies_id').val();
       params["product_id"] = $('#product_id').val();
       params["unit_id"] = $('#unit_id').val();
       params["department"] = $('#department').val();

@@ -89,8 +89,8 @@ $show = 10;
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
-                      $sqlSelect .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
+                      $sqlSelect = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t ";
+                      $sqlSelect .= " WHERE a.product_id = s.id and s.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
                       if (isset($_GET["keyword"])) {
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";
@@ -148,7 +148,7 @@ $show = 10;
             </li>
             <?php
                $sqlSelectCount = "SELECT a.*, t.name ,s.code ,s.supplies_id ,ss.stock ,ss.type, ss.supplies_name, ss.attribute FROM supplies as s ,supplies_stock as ss, supplies_account as a, durable_material_type as t";
-               $sqlSelectCount .= " WHERE a.product_id = s.id and a.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
+               $sqlSelectCount .= " WHERE a.product_id = s.id and s.supplies_id = ss.id and ss.type = t.id and a.status = 1 ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.supplies_name like '%$keyword%')";

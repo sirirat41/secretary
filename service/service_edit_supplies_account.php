@@ -6,7 +6,7 @@ if (isset($_POST["body"])) {
     //supplies_diatribute data
     $id = $_GET["id"];
     $product_id = $body["product_id"];
-    $supplies_id = $body["supplies_id"];
+    // $supplies_id = $body["supplies_id"];
     $unit_id = $body["unit_id"];
     $department = $body["department"];
     $year = $body["year"];
@@ -61,10 +61,10 @@ if (isset($_POST["body"])) {
             $stock = $stock == "" ? 0 : $stock;
             $distribute = $distribute == "" ? 0 : $distribute;
             $receive = $receive == "" ? 0 : $receive;
-            $updatesupplies = "INSERT INTO supplies_account_detail(account_id ,distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit,receive , distribute,stock ,flag) VALUES($id ,'$distribute_date' ,'$receive_from' ,'$distribute_to',' $document_no','$baht' ,'$satang', '$unit',$receive ,$distribute , $stock ,'$flag')";
+            $updatesupplies = "INSERT INTO supplies_account_detail(account_id ,distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit,receive , distribute,stock ,flag) VALUES($id ,'$distribute_date' ,'$receive_from' ,'$distribute_to',' $document_no','$baht' ,'$satang', '$unit','$receive' ,'$distribute' , '$stock' ,'$flag')";
         } else {
             $updatesupplies = "UPDATE supplies_account_detail SET distribute_date = '$distribute_date',";
-            $updatesupplies .= " receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = $stock , flag = '$flag'";
+            $updatesupplies .= " receive_from = '$receive_from', distribute_to = '$distribute_to',document_no = '$document_no',baht = '$baht', satang = '$satang', unit = '$unit', receive = '$receive', distribute = '$distribute', stock = '$stock' , flag = '$flag'";
             $updatesupplies .= " WHERE id = $account_id";
         }
 

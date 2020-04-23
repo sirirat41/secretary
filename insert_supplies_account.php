@@ -59,26 +59,14 @@ require "service/connection.php";
             <div class="card-body">
               <form method="post" action="service/service_insert_supplies_account.php" id="form_insert">
                 <div class="row">
-                  <div class="col-4">
+                  <div class="col-12">
                     <div class="form-group body-text">
                       <label for="year">ปีงบประมาณ</label>
                       <input type="number" class="form-control" name="year" id="year" placeholder="" name="year">
+                      <small id="emailHelp" class="form-text text-danger"> *กรุณาระบุปีงบประมาณ</small>
                     </div>
                   </div>
-                  <div class="col-8">
-                    <div class="form-group bmd-form-group body-text">
-                      <label for="supplies_id">ชื่อวัสดุ</label>
-                      <select class="form-control" name="supplies_id" id="supplies_id">
-                        <?php
-                        $sqlSelectType = "SELECT * FROM supplies_stock";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row["id"] . '">' . $row["supplies_name"] . '</option>';
-                        }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
+                
                 </div>
                 <div class="row">
                   <div class="col-md-12">
@@ -88,10 +76,10 @@ require "service/connection.php";
                         <div class="col-md-10">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies";
+                             $sqlSelectType = "SELECT *,s.id as idd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
+                              echo '<option value="' . $row["idd"] . '">' . $row["code"] ." ". $row["supplies_name"] .  '</option>';
                             }
                             ?>
                           </select>
@@ -169,7 +157,7 @@ require "service/connection.php";
                       <td> <input type="date" class="form-control distribute_date" name="distribute_date[]" id="distribute_date" placeholder=""></td>
                       <td> <input type="text" class="form-control receive_from" name="receive_from[]" id="receive_from" placeholder=""></td>
                       <td> 
-                      <select class="form-control distribute_to" name="distribute_to[]" id="distribute_to" placeholder="" name="distribute_to">
+                      <select class="form-control distribute_to" name="distribute_to[]" id="distribute_to" placeholder="">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -178,14 +166,14 @@ require "service/connection.php";
                         }
                         ?>
                       </select></td>
-                      <td> <input type="text" class="form-control document_no" name="document_no[]" id="document_no" placeholder="" name="document_no"></td>
-                      <td> <input type="text" class="form-control baht" name="baht[]" id="baht" placeholder="" name="baht"></td>
-                      <td> <input type="text" class="form-control satang" name="satang[]" id="satang" placeholder="" name="satang"></td>
-                      <td> <input type="text" class="form-control unit" name="unit[]" id="unit" placeholder="" name="unit"></td>
-                      <td> <input type="text" class="form-control receive" name="receive[]" id="receive" placeholder="" name="receive"></td>
-                      <td> <input type="text" class="form-control table-distribute" name="distribute[]" id="distribute" placeholder="" name="distribute"></td>
+                      <td> <input type="text" class="form-control document_no" name="document_no[]" id="document_no" placeholder="" ></td>
+                      <td> <input type="text" class="form-control baht" name="baht[]" id="baht" placeholder=""></td>
+                      <td> <input type="text" class="form-control satang" name="satang[]" id="satang" placeholder="" ></td>
+                      <td> <input type="text" class="form-control unit" name="unit[]" id="unit" placeholder="" ></td>
+                      <td> <input type="text" class="form-control receive" name="receive[]" id="receive" placeholder="" ></td>
+                      <td> <input type="text" class="form-control table-distribute" name="distribute[]" id="distribute" placeholder="" ></td>
                       <td> <input type="text" class="form-control table-stock" name="stock[]" id="stock" placeholder=""></td>
-                      <td><input type="text" class="form-control flag" name="flag[]" id="flag" placeholder="" name="flag"></td>
+                      <td><input type="text" class="form-control flag" name="flag[]" id="flag" placeholder="" ></td>
                     </tr>
                   </tbody>
                 </table>
@@ -284,25 +272,7 @@ require "service/connection.php";
   <script src="js/secretary.js"></script>
 
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body body-text">
-          คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger body-text" onclick="sendData();">บันทึก</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -420,7 +390,7 @@ require "service/connection.php";
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies_account.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {
@@ -491,7 +461,7 @@ require "service/connection.php";
         if (i != 0 && i == start_i) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
-        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + thaiNumber(i + 1) + '</a></li>').insertBefore($('#next-page'));
+        $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 1) + ');">' + (i + 1) + '</a></li>').insertBefore($('#next-page'));
         if ((i + 1) < maxPage && i == end_i - 1) {
           $('<li class="page-item new-page"><a class="page-link" onclick="changePage(' + (i + 2) + ');">' + ("......") + '</a></li>').insertBefore($('#next-page'));
         }
@@ -547,7 +517,7 @@ require "service/connection.php";
     function sendData() {
       var params = {};
       params["year"] = $('#year').val();
-      params["supplies_id"] = $('#supplies_id').val();
+      // params["supplies_id"] = $('#supplies_id').val();
       params["product_id"] = $('#product_id').val();
       params["unit_id"] = $('#unit_id').val();
       params["department"] = $('#department').val();
@@ -576,14 +546,39 @@ require "service/connection.php";
           body: params
         },
         success: function(data) {
+         
           if (data.result) {
             window.location = "display_supplies_account.php";
+            
           }
-        }
+          
+        }, error: function(error) {
+   console.log(error);
+}
       })
-      //console.log(params);
+      
+      // console.log(params);
     }
+    
   </script>
 </body>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body body-text">
+          คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary body-text" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger body-text" onclick="sendData();">บันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>

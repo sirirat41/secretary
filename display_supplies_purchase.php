@@ -100,7 +100,7 @@ $keyword = "";
                         $sqlSelect .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
                       }
                        //echo $sqlSelect;
-                      $sqlSelect .= " Group by order_no Order by id desc LIMIT $start, $show";
+                      $sqlSelect .= " Order by id desc";
                       $result = mysqli_query($conn, $sqlSelect);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
@@ -149,13 +149,13 @@ $keyword = "";
               </a>
             </li>
             <?php
-            $sqlSelectCount = "SELECT * FROM supplies_purchase";
-            $sqlSelectCount .= " WHERE status = 1 ";
+             $sqlSelectCount = "SELECT sp.*, ss.supplies_name, s.supplies_id FROM supplies_purchase as sp, supplies_stock as ss, supplies as s";
+             $sqlSelectCount .= " WHERE sp.product_id = s.id and s.supplies_id = ss.id and sp.status = 1 ";
             if (isset($_GET["keyword"])) {
               $keyword = arabicnumDigit($_GET["keyword"]);
               $sqlSelectCount .= " and (order_no like '%$keyword%' or order_by like '%$keyword%' or purchase_date like '%$keyword%' or number like '%$keyword%')";
             }
-            $sqlSelectCount .= " Group by order_no Order by id desc LIMIT $start, $show";
+            $sqlSelectCount .= " Order by id desc LIMIT $start, $show";
             $resultCount = mysqli_query($conn, $sqlSelectCount);
             $total = mysqli_num_rows($resultCount);
             $pageNumber = ceil($total / $show);

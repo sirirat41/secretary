@@ -74,7 +74,7 @@ $show = 10;
                         <div class="col-md-10">
                           <select class="form-control" name="damage_id" id="damage_id">
                             <?php
-                                  $sqlSelectType = "SELECT *,d.id as did FROM durable_material_damage as d,durable_material as a ,durable_materila_repair as r WHERE a.id = d.product_id and d.status = 1";
+                                  $sqlSelectType = "SELECT *,d.id as did FROM durable_material_damage as d,durable_material as a WHERE a.id = d.product_id and d.status = 1";
                                   $resultType = mysqli_query($conn, $sqlSelectType);
                                   while ($row = mysqli_fetch_assoc($resultType)) {
                                     echo '<option value="' . $row["did"] . '">' . $row["code"] . " : " . $row["flag"] . '</option>';

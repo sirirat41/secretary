@@ -14,7 +14,14 @@ if (isset($_GET["id"])) {
 
 }
 ?>
+  <?php
 
+$selectOnlyType = "";
+if (isset($_GET["type"])) {
+  $type = $_GET["type"];
+  $selectOnlyType = " and ss.type = $type";
+}
+?>
 <head>
 
   <meta charset="utf-8">
@@ -76,13 +83,13 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
+                             $sqlSelectType = "SELECT *,s.id as sidd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and ss.type = $type and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              if ($item["product_id"] == $row["id"]) {
-                                echo '<option value="' . $row["id"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                              if ($item["product_id"] == $row["sidd"]) {
+                                echo '<option value="' . $row["sidd"] . $row["code"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                               } else {
-                                echo '<option value="' . $row["id"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["sidd"] . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                               }
                             }
                             ?>
@@ -257,14 +264,16 @@ if (isset($_GET["id"])) {
                         <!-- ///ดึงข้อมูล -->
                         <?php
                         //$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        $sqlSelect = "SELECT s.*, t.name ,ss.type,ss.supplies_name ,ss.stock FROM supplies as s,supplies_stock as ss , durable_material_type as t";
+                        $sqlSelect .= " WHERE s.supplies_id = ss.id and ss.type = t.id and t.id = $type and s.status = 1";
 
-
-                        $sqlSelect = "SELECT a.*, t.name,s.supplies_name,s.type,s.attribute FROM supplies as a, supplies_stock as s ,durable_material_type as t";
-                        $sqlSelect .= " WHERE a.supplies_id = s.id and s.type = t.id and a.status = 1 ";
+                        // $sqlSelect = "SELECT * FROM supplies_stock as ss,supplies as s";
+                        // $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = 1";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
-                          $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or s.supplies_name like '%$keyword%' or t.name like '%$keyword%')";
+                          $sqlSelect .= " and (s.code like '%$keyword%' or s.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
+                        // echo $sqlSelect;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
@@ -328,9 +337,10 @@ if (isset($_GET["id"])) {
     })
 
     function search() {
+      var type = "<?php echo $_GET["type"]; ?>";
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_supplies.php?keyword=' + keyword,
+        url: 'service/service_search_json_supplies.php?keyword=' + keyword + '&type=' + type ,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {
@@ -364,7 +374,7 @@ if (isset($_GET["id"])) {
         $('<td>' + (supplies_name) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + + item.code + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
 
       }
@@ -430,6 +440,7 @@ if (isset($_GET["id"])) {
     }
 
     function selectedsupplies(id) {
+      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }

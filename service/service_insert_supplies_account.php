@@ -4,12 +4,12 @@ require "connection.php";
 if (isset($_POST["body"])) {
     $body = $_POST["body"];
     $year = $body["year"];
-    $supplies_id = $body["supplies_id"];
+    // $supplies_id = $body["supplies_id"];
     $productId = $body["product_id"];
     $unit_id = $body["unit_id"];
     $department = $body["department"];
 
-    $sql = "INSERT INTO supplies_account(year ,supplies_id , product_id, unit_id, department) VALUES($year , $supplies_id, $productId, $unit_id, $department)";
+    $sql = "INSERT INTO supplies_account(year  , product_id, unit_id, department) VALUES($year , $productId, $unit_id, $department)";
     mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $accountId = mysqli_insert_id($conn);
 
@@ -27,7 +27,7 @@ if (isset($_POST["body"])) {
         $stock1 = $item["stock"];
         $flag1 = $item["flag"];
 
-        $sql = "INSERT INTO supplies_account_detail(account_id, distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit,receive , distribute,stock ,flag) VALUES($accountId, '$disdate' ,'$receive_from1' ,'$distribute_to1',' $document_no1','$baht1' ,'$satang1 ', '$unit1',$receive1 ,$distribute1 , $stock1 ,'$flag1')";
+        $sql = "INSERT INTO supplies_account_detail(account_id, distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit ,receive , distribute ,stock ,flag) VALUES($accountId, '$disdate' ,'$receive_from1' ,$distribute_to1,'$document_no1','$baht1' ,'$satang1', '$unit1' ,'$receive1' ,'$distribute1' , '$stock1' ,'$flag1')";
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
     }
 
