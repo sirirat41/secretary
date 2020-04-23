@@ -77,7 +77,7 @@ if (isset($_GET["type"])) {
                             $sqlSelectType = "SELECT *,s.id as sidd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and ss.type = $type and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
-                              echo '<option value="' . $row["sidd"] . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                              echo '<option value="' . $row["sidd"] . ':' . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                             }
                             ?>
                           </select>
@@ -279,7 +279,7 @@ if (isset($_GET["type"])) {
                             <td><?php echo ($row["supplies_name"]); ?></td>
                             <td><?php echo ($row["name"]); ?></td>
                             <td class="td-actions text-center">
-                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["code"]; ?>);">
+                              <button type="button" rel="tooltip" class="btn btn-success" onclick="selectedsupplies(<?php echo $row["id"]; ?>);">
                                 <i class="fas fa-check"></i>
                               </button>
                             </td>
@@ -372,7 +372,7 @@ if (isset($_GET["type"])) {
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (supplies_name) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
 
       }

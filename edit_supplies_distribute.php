@@ -87,9 +87,9 @@ if (isset($_GET["type"])) {
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["sidd"]) {
-                                echo '<option value="' . $row["sidd"] . $row["code"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["sidd"] . ':' . $row["code"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                               } else {
-                                echo '<option value="' . $row["sidd"] . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["sidd"] . ':' . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
                               }
                             }
                             ?>
@@ -374,7 +374,7 @@ if (isset($_GET["type"])) {
         $('<td>' + (supplies_name) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + + item.code + ');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
 
       }

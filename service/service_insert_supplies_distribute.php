@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sqlUpdatestock1 = "UPDATE supplies_account_detail SET distribute = $number WHERE account_id = $account_id";
             mysqli_query($conn, $sqlUpdatestock1);
             echo $sqlUpdatestock1;
-            // header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลสำเร็จ');
+            header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลสำเร็จ');
         } else {
             header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
         }
