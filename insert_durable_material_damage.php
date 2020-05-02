@@ -114,6 +114,7 @@ $show = 10;
               </form>
             </div>
           </div>
+          </br>
           <div class="row">
             <div class="col-12 card" style="padding: 10px" align="center">
               <h4>ประวัติการชำรุด </h4>

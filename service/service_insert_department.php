@@ -4,6 +4,7 @@ require "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = $_POST["fullname"];
     $shortname = $_POST["shortname"];
+    $tel = $_POST["tel"];
     $fax = $_POST["fax"];
     $bulding = $_POST["bulding"];
     $floor = $_POST["floor"];
@@ -18,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     }
-    $sql = "INSERT INTO department(fullname, shortname, fax, bulding, floor ,pic)";
-    $sql .= " VALUES('$fullname', '$shortname', '$fax', '$bulding', '$floor','$imgeName')";
+    $sql = "INSERT INTO department(fullname, shortname, tel ,fax, bulding, floor ,pic)";
+    $sql .= " VALUES('$fullname', '$shortname', '$tel' ,'$fax', '$bulding', '$floor','$imgeName')";
 
     if (mysqli_query($conn, $sql)) {
         header('Location: ../insert_department.php?message=เพิ่มข้อมูลสำเร็จ');
