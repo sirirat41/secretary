@@ -61,8 +61,9 @@ if (isset($_POST["body"])) {
             }
             $stock = $stock == "" ? 0 : $stock;
             $distribute = $distribute == "" ? 0 : $distribute;
+        //    echo $distribute;
             $receive = $receive == "" ? 0 : $receive;
-            $stock = $receive - $distribute;
+            $stock = intval($receive) - intval($distribute);
             $updatesupplies = "INSERT INTO supplies_account_detail(account_id ,distribute_date ,receive_from , distribute_to, document_no, baht, satang, unit,receive , distribute,stock ,flag) VALUES($id ,'$distribute_date' ,'$receive_from' ,'$distribute_to',' $document_no','$baht' ,'$satang', '$unit','$receive' ,'$distribute' , '$stock' ,'$flag')";
      
            

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if (mysqli_query($conn, $sql)) {
 
-            $sqlSelect = "SELECT d.*,s.supplies_id ,s.code ,s.id as sidd FROM supplies_distribute as d , supplies as s WHERE s.id = $productId";
+            $sqlSelect = "SELECT d.*,s.supplies_id ,s.code ,s.id as sidd FROM supplies_distribute as d , supplies as s WHERE s.id = $idcode[0]";
             echo "select : " . $sqlSelect . "<br>";
             $resultOld = mysqli_query($conn, $sqlSelect);
             $dataOld = mysqli_fetch_assoc($resultOld);
@@ -39,20 +39,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sqlUpdatestock = "UPDATE supplies_stock SET stock = stock - $number WHERE id = $stockID";
             mysqli_query($conn, $sqlUpdatestock);
 
-            $sqlSelect1 = "SELECT a.*,d.receive ,d.distribute ,d.stock ,d.account_id ,a.id as idd ,d.id as did FROM supplies_account as a , supplies_account_detail as d ,supplies as s WHERE d.account_id = a.id and a.product_id = s.id and a.status = 1";
+
+            // $sqlSelect1 = "SELECT a.*,d.receive ,d.distribute ,d.stock ,d.account_id ,a.id as idd ,d.id as did ,sd.product_id FROM supplies_account as a , supplies_account_detail as d ,supplies as s ,supplies_distribute as sd WHERE d.account_id = a.id and a.product_id = s.id and a.status = 1";
+           $sqlSelect1 = "SELECT * FROM supplies_account WHERE product_id = $idcode[0] and status = 1";
             echo "select : " . $sqlSelect1 . "<br>";
             $results = mysqli_query($conn, $sqlSelect1);
             $sa = mysqli_fetch_assoc($results);
-            $receive = $sa["receive"];
-            $distribute = $sa["distribute"];
-            $stock1 = $sa["stock"];
-            $account_id = $sa["idd"];
-            $did = $sa["did"];
+            // $receive = $sa["receive"];
+            // $distribute = $sa["distribute"];
+            // $stock1 = $sa["stock"];
+            $account_id = $sa["id"];
+            // $did = $sa["did"];
             echo $sqlSelect1;
 
-            $sqlUpdatestock1 = "UPDATE supplies_account_detail SET distribute = $number , stock = $receive - $number  WHERE account_id = $account_id ";
-            mysqli_query($conn, $sqlUpdatestock1);
-            echo $sqlUpdatestock1;
+             $sqlUpdatestock1 = "INSERT INTO supplies_account_detail(account_id ,distribute_date ,distribute )";
+             $sqlUpdatestock1 .= " VALUES($account_id ,'$distributedate', '$number')";
+             mysqli_query($conn, $sqlUpdatestock1) or die(mysqli_error($conn));
+            // $sqlUpdatestock1 = "UPDATE supplies_account_detail SET distribute = $number  WHERE account_id = $account_id ";
+            // mysqli_query($conn, $sqlUpdatestock1);
+            // echo $sqlUpdatestock1;
             header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลสำเร็จ');
         } else {
             header('Location: ../display_supplies_distribute.php?type=' . $type . '&messagee=เพิ่มข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');

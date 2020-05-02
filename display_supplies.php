@@ -92,17 +92,18 @@ $keyword = "";
                         $page = 1;
                       }
                       $start = ($page - 1) * $show;
-                      $sqlSelect = "SELECT s.*, ss.supplies_name ,t.status_name , p.purchase_date , p.number FROM supplies as s, supplies_stock as ss ,status as t ,supplies_purchase as p";
-                      $sqlSelect .= " WHERE s.supplies_id = ss.id and s.status = t.id and s.status != 0";
+                      $sqlSelect = "SELECT s.*, ss.supplies_name ,p.purchase_date , p.number FROM supplies as s, supplies_stock as ss ,supplies_purchase as p";
+                      $sqlSelect .= " WHERE p.product_id = s.id and s.supplies_id = ss.id and s.status != 0";
                       if (isset($_GET["keyword"])) {
                         $keyword = $_GET["keyword"];
-                        $sqlSelect .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or p.purchase_date like '%$keyword%'or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
+                        $sqlSelect .= " and (s.code like '%$keyword%' or p.purchase_date like '%$keyword%'or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
                       }
                      
-                      $count = $start + 1;
+                      // $count = $start + 1;
                       $sqlSelect .= " Order by s.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect); 
                       // echo $sqlSelect;
+                      $count = $start + 1;
                       while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row["id"];
                         $editPath = "";
@@ -158,11 +159,11 @@ $keyword = "";
               </a>
             </li>
             <?php
-         $sqlSelectCount = "SELECT s.*, ss.supplies_name ,t.status_name , p.purchase_date , p.number FROM supplies as s, supplies_stock as ss ,status as t ,supplies_purchase as p";
-         $sqlSelectCount .= " WHERE s.supplies_id = ss.id and s.status = t.id and s.status != 0";
+           $sqlSelectCount = "SELECT s.*, ss.supplies_name ,p.purchase_date , p.number FROM supplies as s, supplies_stock as ss ,supplies_purchase as p";
+           $sqlSelectCount .= " WHERE p.product_id = s.id and s.supplies_id = ss.id and s.status != 0";
          if (isset($_GET["keyword"])) {
            $keyword = $_GET["keyword"];
-           $sqlSelectCount .= " and (s.code like '%$keyword%' or ss.type like '%$keyword%' or p.purchase_date like '%$keyword%'or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
+           $sqlSelectCount .= " and (s.code like like '%$keyword%' or p.purchase_date like '%$keyword%'or ss.supplies_name like '%$keyword%' or s.bill_no like '%$keyword%')";
          }
             $sqlSelectCount .= " Order by s.id desc";
             $resultCount = mysqli_query($conn, $sqlSelectCount);

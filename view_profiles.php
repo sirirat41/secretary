@@ -113,7 +113,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="window.location = 'edit_users.php?id=<?php echo $row['id']; ?>'">
+                    <button type="button" class="btn btn-danger btn btn-block body-text" onclick="window.location = 'edit_user.php?id=<?php echo $row['id']; ?>'">
                       แก้ไขข้อมูล
                       <div class="ripple-container"></div></button>
 

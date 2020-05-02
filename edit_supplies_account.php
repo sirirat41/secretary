@@ -184,11 +184,21 @@ if (isset($_GET["id"])) {
                     // echo $sqlSelect;
                     $result = mysqli_query($conn, $sqlSelect);
                     $beforeIndexItem = null;
+                    $lastRemain = 0;
+                    $isFirstDistribute = false;
                     while ($row = mysqli_fetch_assoc($result)) {
                       $id = $row["id"];
+                      if ($row["receive"] == "" || $row["receive"] == null) {
+                        $isFirstDistribute = true;
+                      } else {
+                        $isFirstDistribute = false;
+                      }
+                      // $lastRemain = $row["stock"];
+                      // echo "rec = " . $row["receive"];
+                      // if ($row["receive"])
                     ?>
                       <tr class="text-center" height="30" id="firstTr">
-                        <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
+                        <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><input type="hidden" class="form-control check_distribute" placeholder="" value="<?php echo $isFirstDistribute; ?>"><input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $row["distribute_date"]; ?>"></td>
                         <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $row["receive_from"]; ?>"></td>
                         <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="">
                             <?php
@@ -596,6 +606,7 @@ if (isset($_GET["id"])) {
         item["baht"] = $('.baht:eq(' + i + ')').val();
         item["satang"] = $('.satang:eq(' + i + ')').val();
         item["unit"] = $('.unit:eq(' + i + ')').val();
+        var isFirstDistribute = $('.check_distribute:eq(' + i + ')').val();
         console.log("itemId: " + item["id"]);
         console.log("table-stock: " + $('.table-stock').length);
         if (typeof item["id"] === "undefined" && $('.table-stock').length > 1) {
@@ -603,14 +614,24 @@ if (isset($_GET["id"])) {
           item["receive"] = parseInt($('.receive:eq(' + i + ')').val()) + parseInt(lastRemain);
         } else {
           item["receive"] = $('.receive:eq(' + i + ')').val();
+          if (item["receive"] == "") {
+            var lastRemain = $('.table-stock:eq(' + (i - 1) + ')').val();
+            item["receive"] = 0 + parseInt(lastRemain);
+          } else if(isFirstDistribute == 1) {
+            var lastRemain = $('.table-stock:eq(' + (i - 1) + ')').val();
+           item["receive"] = parseInt($('.receive:eq(' + i + ')').val()) + parseInt(lastRemain);
+          }
 
         }
 
-      
+
         item["distribute"] = $('.table-distribute:eq(' + i + ')').val();
         item["stock"] = $('.table-stock:eq(' + i + ')').val();
         item["flag"] = $('.flag:eq(' + i + ')').val();
-        data.push(item);
+        if (!isNaN(item["receive"])) {
+          data.push(item);
+        }
+        console.log(item["receive"]);
       })
       params["data"] = data;
       $.ajax({

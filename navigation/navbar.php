@@ -291,7 +291,7 @@ if (isset($_SESSION['user_id'])) {
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="view_profile.php?id=<?php echo $_SESSION["user_id"]; ?>">
+                <a class="dropdown-item" href="view_profiles.php?id=<?php echo $_SESSION["user_id"]; ?>">
                   <i class="fas fa-fw fa-user fa-fw mr-2 text-gray-400 body-text-menu"></i>
                   โปรไฟล์ผู้ใช้
                 </a>
