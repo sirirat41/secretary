@@ -12,16 +12,16 @@ if (isset($_GET["id"])) {
 
   //item.code java odject , item["code"] php
 
-}
-?>
-  <?php
 
+}
 $selectOnlyType = "";
 if (isset($_GET["type"])) {
   $type = $_GET["type"];
   $selectOnlyType = " and ss.type = $type";
 }
 ?>
+
+
 <head>
 
   <meta charset="utf-8">
@@ -83,13 +83,13 @@ if (isset($_GET["type"])) {
                         <div class="col-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                             $sqlSelectType = "SELECT *,s.id as sidd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and ss.type = $type and s.status = 1";
+                            $sqlSelectType = "SELECT *,s.id as sidd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and ss.type = $type and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["sidd"]) {
-                                echo '<option value="' . $row["sidd"] . ':' . $row["code"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["sidd"] . ':' . $row["code"] .'"selected>' . $row["code"] . " " . $row["supplies_name"] . '</option>';
                               } else {
-                                echo '<option value="' . $row["sidd"] . ':' . $row["code"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["sidd"] . ':' . $row["code"] .'">' . $row["code"] . " " . $row["supplies_name"] . '</option>';
                               }
                             }
                             ?>
@@ -123,7 +123,7 @@ if (isset($_GET["type"])) {
                   <div class="col-12">
                     <div class="form-group bmd-form-group body-text">
                       <label class="bmd-label-floating">หน่วยงาน</label>
-                      <select class="form-control body-text" name="department_id"  id="department_id" value="<?php echo $item["department_id"]; ?>">
+                      <select class="form-control body-text" name="department_id" id="department_id" value="<?php echo $item["department_id"]; ?>">
                         <?php
                         $sqlSelectType = "SELECT * FROM department";
                         $resultType = mysqli_query($conn, $sqlSelectType);
@@ -273,7 +273,6 @@ if (isset($_GET["type"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (s.code like '%$keyword%' or s.bill_no like '%$keyword%' or t.name like '%$keyword%')";
                         }
-                        // echo $sqlSelect;
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
@@ -374,7 +373,7 @@ if (isset($_GET["type"])) {
         $('<td>' + (supplies_name) + '</td>').appendTo(tr);
         $('<td>' + (code) + '</td>').appendTo(tr);
         $('<td>' + (type) + '</td>').appendTo(tr);
-        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(\'' + item.id + ':' + item.code + '\');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
+        $('<td class="td-actions text-center"><button type="button" rel="tooltip" class="btn btn-success"onclick="selectedsupplies(' + item.id + ':' + item.code +');"><i class="fas fa-check"></i></button></td>').appendTo(tr);
         generatePagination();
 
       }
@@ -440,7 +439,6 @@ if (isset($_GET["type"])) {
     }
 
     function selectedsupplies(id) {
-      console.log(id);
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }

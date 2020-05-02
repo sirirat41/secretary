@@ -4,14 +4,14 @@
 require "service/connection.php";
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
-    $sql = "SELECT * FROM supplies_account as d ,supplies as s ,supplies_stock as ss ,department as p ,unit as u , supplies_account_detail as sd WHERE d.department = p.id and d.unit_id = u.id and s.supplies_id = ss.id and d.product_id = s.id and d.id = $id";
+  $sql = "SELECT * FROM supplies_account as d ,supplies as s ,supplies_stock as ss ,department as p ,unit as u , supplies_account_detail as sd WHERE d.department = p.id and d.unit_id = u.id and s.supplies_id = ss.id and d.product_id = s.id and d.id = $id";
 
 
   $result = mysqli_query($conn, $sql) or die('cannot select data');
   $item = mysqli_fetch_assoc($result);
   $orderDate = $item["distribute_date"];
   $newOrderDate = date("Y-m-d", strtotime($orderDate));
-  
+
 
   //item.code java odject , item["code"] php
 
@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
                       <input type="text" class="form-control body-text" name="year" id="year" placeholder="" name="year" value="<?php echo $item["year"]; ?>">
                     </div>
                   </div>
-                
+
                 </div>
                 <div class="row">
                   <div class="col-md-12">
@@ -86,31 +86,31 @@ if (isset($_GET["id"])) {
                       <label for="product_id">รหัสวัสดุ</label>
                       <div class="row">
                         <div class="col-md-10">
-                      <select class="form-control" name="product_id" id="product_id">
+                          <select class="form-control" name="product_id" id="product_id">
                             <?php
                             $sqlSelectType = "SELECT *,s.id as idd FROM supplies as s , supplies_stock as ss WHERE s.supplies_id = ss.id and s.status = 1";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["idd"]) {
-                                echo '<option value="' . $row["idd"] . '"selected>' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["idd"] . '"selected>' . $row["code"] . " " . $row["supplies_name"] . '</option>';
                               } else {
-                                echo '<option value="' . $row["idd"] . '">' . $row["code"] ." ". $row["supplies_name"] . '</option>';
+                                echo '<option value="' . $row["idd"] . '">' . $row["code"] . " " . $row["supplies_name"] . '</option>';
                               }
                             }
                             ?>
                           </select>
-                     
-                    </div>
-                    <div class="col-md-1">
+
+                        </div>
+                        <div class="col-md-1">
                           <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#modal-form-search" onclick="search()">
                             <i class="fas fa-search"></i>
-                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                <div class="col-4">
+                  <div class="col-4">
                     <div class="form-group bmd-form-group">
                       <label for="unit_id">หน่วยนับ</label>
                       <select class="form-control" name="unit_id" id="unit_id">
@@ -119,11 +119,11 @@ if (isset($_GET["id"])) {
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
                           if ($item["unit_id"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] .'"selected>' . $row["name"] . '</option>';
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["name"] . '</option>';
                           } else {
                             echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
                           }
-                          }
+                        }
                         ?>
                       </select>
                     </div>
@@ -137,11 +137,11 @@ if (isset($_GET["id"])) {
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
                           if ($item["department"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] .'"selected>' . $row["fullname"] . '</option>';
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
                           } else {
                             echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
                           }
-                          }
+                        }
                         ?>
                       </select>
                     </div>
@@ -155,53 +155,55 @@ if (isset($_GET["id"])) {
       <div class="row ">
         <div class="col-12">
           <div class="card">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
-                    <thead>
-                      <tr class="text-center body-text">
-                        <td rowspan="2">วัน/เดือน/ปี</td>
-                        <td rowspan="2">รับจาก</td>
-                        <td rowspan="2">จ่ายให้</td>
-                        <td rowspan="2">เลขที่เอกสาร</td>
-                        <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
-                        <td rowspan="2">หน่วยนับ</td>
-                        <td colspan="3">จำนวน</td>
-                        <td rowspan="2">หมายเหตุ</td>
-                      </tr class="text-center">
-                      <tr class="text-center">
-                        <td width="10%">บาท </td>
-                        <td>สต.</td>
-                        <td width="7%">รับ</td>
-                        <td width="7%">จ่าย</td>
-                        <td width="7%">คงเหลือ</td>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody">
-                      <?php
-                      $sqlSelect = "SELECT * FROM supplies_account_detail as a";
-                      $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
-                      // echo $sqlSelect;
-                      $result = mysqli_query($conn, $sqlSelect);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["id"];
-                        ?>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class='border-color-gray' align="center" cellpadding="10" cellspacing="10" border="1" width="100%" id="myTbl">
+                  <thead>
+                    <tr class="text-center body-text">
+                      <td rowspan="2">วัน/เดือน/ปี</td>
+                      <td rowspan="2">รับจาก</td>
+                      <td rowspan="2">จ่ายให้</td>
+                      <td rowspan="2">เลขที่เอกสาร</td>
+                      <td colspan="2" width="15%" height="10">ราคาต่อหน่วย</td>
+                      <td rowspan="2">หน่วยนับ</td>
+                      <td colspan="3">จำนวน</td>
+                      <td rowspan="2">หมายเหตุ</td>
+                    </tr class="text-center">
+                    <tr class="text-center">
+                      <td width="10%">บาท </td>
+                      <td>สต.</td>
+                      <td width="7%">รับ</td>
+                      <td width="7%">จ่าย</td>
+                      <td width="7%">คงเหลือ</td>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                    <?php
+                    $sqlSelect = "SELECT * FROM supplies_account_detail as a";
+                    $sqlSelect .= " WHERE a.account_id = " . $_GET["id"];
+                    // echo $sqlSelect;
+                    $result = mysqli_query($conn, $sqlSelect);
+                    $beforeIndexItem = null;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $id = $row["id"];
+                    ?>
                       <tr class="text-center" height="30" id="firstTr">
                         <td> <input type="hidden" class="form-control account_id" placeholder="" value="<?php echo $row["id"]; ?>"><input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" value="<?php echo $orderDate; ?>"></td>
                         <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" value="<?php echo $row["receive_from"]; ?>"></td>
-                        <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" >
-                        <?php
-                        $sqlSelectType = "SELECT * FROM department";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row2 = mysqli_fetch_assoc($resultType)) {
-                          if ($item["distribute_to"] == $row2["id"]) {
-                            echo '<option value="' . $row2["id"] . '"selected>' . $row2["fullname"] . " " . $row2["bulding"] . " " . $row2["floor"] . '</option>';
-                          } else {
-                            echo '<option value="' . $row2["id"] . '">' . $row2["fullname"] . " " . $row2["bulding"] . " " . $row2["floor"] . '</option>';
-                          }
-                        }
-                        ?>
-                      </select></td>
+                        <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="">
+                            <?php
+                            $sqlSelectType = "SELECT * FROM department";
+                            $resultType = mysqli_query($conn, $sqlSelectType);
+                            while ($row2 = mysqli_fetch_assoc($resultType)) {
+                              if ($item["distribute_to"] == $row2["id"]) {
+                                echo '<option value="' . $row2["id"] . '"selected>' . $row2["fullname"] . " " . $row2["bulding"] . " " . $row2["floor"] . '</option>';
+                              } else {
+                                echo '<option value="' . $row2["id"] . '">' . $row2["fullname"] . " " . $row2["bulding"] . " " . $row2["floor"] . '</option>';
+                              }
+                            }
+                            ?>
+
+                          </select></td>
                         <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no" value="<?php echo $row["document_no"]; ?>"></td>
                         <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht" value="<?php echo $row["baht"]; ?>"></td>
                         <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang" value="<?php echo $row["satang"]; ?>"></td>
@@ -212,46 +214,46 @@ if (isset($_GET["id"])) {
                         <td><input type="text" class="form-control flag" name="flag" id="flag" placeholder="" name="flag" value="<?php echo $row["flag"]; ?>"></td>
                       </tr>
 
-                      <?php
-                      }
-                      ?>
-                <tr class="text-center" height="30" id="firstTr">
-                        <td> <input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date" ></td>
-                        <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from" ></td>
-                        <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="" >
-                        <?php
-                        $sqlSelectType = "SELECT * FROM department";
-                        $resultType = mysqli_query($conn, $sqlSelectType);
-                        while ($row1 = mysqli_fetch_assoc($resultType)) {
-                          echo '<option value="' . $row1["id"] . '">' . $row1["fullname"] . " " . $row1["bulding"] . " " . $row1["floor"] . '</option>';
-                        }
-                        ?>
-                      </select></td>
-                        <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no" ></td>
-                        <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht" ></td>
-                        <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang"></td>
-                        <td> <input type="text" class="form-control unit" name="unit" id="unit" placeholder="" name="unit" ></td>
-                        <td> <input type="text" class="form-control receive" name="receive" id="receive" placeholder="" name="receive" ></td>
-                        <td> <input type="text" class="form-control table-distribute" name="distribute" id="distribute" placeholder="" name="distribute" ></td>
-                        <td> <input type="text" class="form-control table-stock" name="stock" id="stock" placeholder="" name="stock" ></td>
-                        <td><input type="text" class="form-control flag" name="flag" id="flag" placeholder="" name="flag" ></td>
-                      </tr>
-                      </tbody>
-                  </table>
-                  <br>
-                  <table width="500" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td>
-                        <button id="addRow" type="button">+</button>
-                        <button id="removeRow" type="button">-</button>
-
-                      </td>
+                    <?php
+                    }
+                    ?>
+                    <tr class="text-center" height="30" id="firstTr">
+                      <td> <input type="date" class="form-control distribute_date" name="distribute_date" id="distribute_date" placeholder="" name="distribute_date"></td>
+                      <td> <input type="text" class="form-control receive_from" name="receive_from" id="receive_from" placeholder="" name="receive_from"></td>
+                      <td> <select class="form-control distribute_to" name="distribute_to" id="distribute_to" placeholder="">
+                          <?php
+                          $sqlSelectType = "SELECT * FROM department";
+                          $resultType = mysqli_query($conn, $sqlSelectType);
+                          while ($row1 = mysqli_fetch_assoc($resultType)) {
+                            echo '<option value="' . $row1["id"] . '">' . $row1["fullname"] . " " . $row1["bulding"] . " " . $row1["floor"] . '</option>';
+                          }
+                          ?>
+                        </select></td>
+                      <td> <input type="text" class="form-control document_no" name="document_no" id="document_no" placeholder="" name="document_no"></td>
+                      <td> <input type="text" class="form-control baht" name="baht" id="baht" placeholder="" name="baht"></td>
+                      <td> <input type="text" class="form-control satang" name="satang" id="satang" placeholder="" name="satang"></td>
+                      <td> <input type="text" class="form-control unit" name="unit" id="unit" placeholder="" name="unit"></td>
+                      <td> <input type="text" class="form-control receive" name="receive" id="receive" placeholder="" name="receive"></td>
+                      <td> <input type="text" class="form-control table-distribute" name="distribute" id="distribute" placeholder="" name="distribute"></td>
+                      <td> <input type="text" class="form-control table-stock" name="stock" id="stock" placeholder="" name="stock"></td>
+                      <td><input type="text" class="form-control flag" name="flag" id="flag" placeholder="" name="flag"></td>
                     </tr>
-                  </table>
-                </div>
-
+                  </tbody>
+                </table>
                 <br>
-                <div class="row">
+                <table width="500" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <button id="addRow" type="button">+</button>
+                      <button id="removeRow" type="button">-</button>
+
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <br>
+              <div class="row">
                 <div class="col-12">
                   <button type="button" class="btn btn-danger btn btn-block" data-toggle="modal" data-target="#exampleModal">
                     ตกลง
@@ -333,7 +335,7 @@ if (isset($_GET["id"])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/secretary.js"></script>
 
- 
+
   <div class="modal fade" id="modal-form-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -389,7 +391,7 @@ if (isset($_GET["id"])) {
                         $result = mysqli_query($conn, $sqlSelect);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $id = $row["id"]
-                          ?>
+                        ?>
                           <tr class="text-center">
                             <td><img class="img-thumbnail" width="100px" src="uploads/<?php echo $row["picture"]; ?>"></td>
                             <td><?php echo ($row["supplies_name"]); ?></td>
@@ -554,22 +556,22 @@ if (isset($_GET["id"])) {
       $('#modal-form-search').modal('hide');
       $('#product_id').val(id);
     }
-    
-   
+
+
     $(function() {
       $("#addRow").click(function() {
         //$("#myTbl").append($("#firstTr").clone());
         var tr = $('#myTbl tr:last').clone();
-        $.each(tr.find("input"), function(i,e) {
+        $.each(tr.find("input"), function(i, e) {
           $(e).val("");
         });
         tr.appendTo($('#tbody'));
       });
       $("#removeRow").click(function() {
         // if ($("#myTbl tr").parents() > 1) {
-          if ($("#myTbl tr").length > 3) {
-        $("#myTbl tr:last").remove();
-          }
+        if ($("#myTbl tr").length > 3) {
+          $("#myTbl tr:last").remove();
+        }
         // } else {
         //   alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
         // }
@@ -594,7 +596,17 @@ if (isset($_GET["id"])) {
         item["baht"] = $('.baht:eq(' + i + ')').val();
         item["satang"] = $('.satang:eq(' + i + ')').val();
         item["unit"] = $('.unit:eq(' + i + ')').val();
-        item["receive"] = $('.receive:eq(' + i + ')').val();
+        console.log("itemId: " + item["id"]);
+        console.log("table-stock: " + $('.table-stock').length);
+        if (typeof item["id"] === "undefined" && $('.table-stock').length > 1) {
+          var lastRemain = $('.table-stock:eq(' + (i - 1) + ')').val();
+          item["receive"] = parseInt($('.receive:eq(' + i + ')').val()) + parseInt(lastRemain);
+        } else {
+          item["receive"] = $('.receive:eq(' + i + ')').val();
+
+        }
+
+      
         item["distribute"] = $('.table-distribute:eq(' + i + ')').val();
         item["stock"] = $('.table-stock:eq(' + i + ')').val();
         item["flag"] = $('.flag:eq(' + i + ')').val();
@@ -607,7 +619,8 @@ if (isset($_GET["id"])) {
         dataType: 'JSON',
         data: {
           body: params
-        }, success: function(data) {
+        },
+        success: function(data) {
           if (data.result) {
             window.location = "display_supplies_account.php";
           }
@@ -622,22 +635,23 @@ if (isset($_GET["id"])) {
 
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body ">
-          คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-          <button type="button" class="btn btn-danger" onclick="sendData();">บันทึก</button>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือน </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        คุณต้องการบันทึกข้อมูลบัญชีคุม(วัสดุ)หรือไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" onclick="sendData();">บันทึก</button>
       </div>
     </div>
   </div>
+</div>
+
 </html>
