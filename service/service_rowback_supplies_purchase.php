@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["purchase_id"] )) {
     }
 
 
-    $sqlUpdate ="UPDATE supplies_purchase SET status = 1 WHERE document_no = '$documentNo' and order_no = '$orderNo'";
+    $sqlUpdate ="UPDATE supplies_purchase SET status = 1 WHERE id = " . $purchaseID;
 
     $log = "กู้คืนข้อมูลการจัดซื้อวัสดุสิ้นเปลือง";
     logServer($conn, $log);

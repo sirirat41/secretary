@@ -66,8 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($conn, $sqlInsertstock) or die(mysqli_error($conn));
         $accountID = mysqli_insert_id($conn);
 
-        $sqlInsertde = "INSERT INTO supplies_account_detail(account_id, distribute_date, receive_from, document_no , baht , satang,unit ,receive )";
-        $sqlInsertde .= " VALUES($accountID, '$purchase_date', '$shortgoverment', '$billno' , $price ,$satang ,$unit,$number) ";
+        $sqlInsertde = "INSERT INTO supplies_account_detail(account_id, distribute_date, receive_from, document_no , baht , satang ,receive )";
+        $sqlInsertde .= " VALUES($accountID, '$purchase_date', '$shortgoverment', '$billno' , $price ,$satang ,$number) ";
         mysqli_query($conn, $sqlInsertde) or die(mysqli_error($conn));
 
 
