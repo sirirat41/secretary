@@ -87,6 +87,7 @@ if (isset($_GET["id"])) {
                     <div class="form-group body-text">
                       <label for="confirmpassword">ยืนยันรหัสผ่าน</label>
                       <input type="password" class="form-control body-text" name="password2" id="password2" aria-describedby="confirmpassword" placeholder="">
+                      <small style="color: red;">*กรุณาใส่ตัวอักษรตัวเล็ก ใหญ่ และตัวเลข รหัสต้องมีความยาว 6 ตัว</small>
                     </div>
                   </div>
 

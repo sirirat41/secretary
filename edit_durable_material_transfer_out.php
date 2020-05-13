@@ -88,7 +88,7 @@ if (isset($_GET["id"])) {
                         <div class="col-10 ">
                           <select class="form-control body-text" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_material WHERE status = 6";
+                            $sqlSelectType = "SELECT * FROM durable_material WHERE status != 0 and status != 2 and status != 3 and status != 4 and status != 8 and status != 9 and status != 10";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               if ($item["product_id"] == $row["id"]) {
@@ -253,7 +253,7 @@ if (isset($_GET["id"])) {
 
 
                         $sqlSelect = "SELECT a.*, t.name FROM durable_material as a, durable_material_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status != 0 and a.status != 2 and a.status != 3 and a.status != 4 and a.status != 8 and a.status != 9 and a.status != 10";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
@@ -322,7 +322,7 @@ if (isset($_GET["id"])) {
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_material.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_material_transfer_out.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {

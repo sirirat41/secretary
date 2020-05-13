@@ -155,11 +155,11 @@ $show = 50;
                 }
                 if (isset($_GET["keyword"])) {
                   ?>
-                <li class="page-item"><a class="page-link <?php echo ($i + 1 == $page) ? "current-page" : ""; ?>" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link <?php echo ($i + 1 == $page); ?>" href="?page=<?php echo ($i + 1); ?>&keyword=<?php echo $_GET["keyword"]; ?>"><?php echo ($i + 1); ?></a></li>
               <?php
                 } else {
                   ?>
-                <li class="page-item"><a class="page-link <?php echo ($i + 1 == $page) ? "current-page" : ""; ?>" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+                <li class="page-item"><a class="page-link <?php echo ($i + 1 == $page); ?>" href="?page=<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
                 <?php
                     if (($i + 1) < $maxshowpage && $i == $end_i - 1) {
                       ?>

@@ -81,7 +81,7 @@ $show = 10;
                         <div class="col-md-10 ">
                           <select class="form-control" name="product_id" id="product_id">
                             <?php
-                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status = 1";
+                            $sqlSelectType = "SELECT * FROM durable_articles WHERE status != 0 and status != 2 and status != 3 and status != 4 and status != 7 and status != 8 and status != 9";
                             $resultType = mysqli_query($conn, $sqlSelectType);
                             while ($row = mysqli_fetch_assoc($resultType)) {
                               echo '<option value="' . $row["id"] . '">' . $row["code"] . '</option>';
@@ -242,7 +242,7 @@ $show = 10;
 
 
                         $sqlSelect = "SELECT a.*, t.name FROM durable_articles as a, durable_articles_type as t";
-                        $sqlSelect .= " WHERE a.type = t.id and a.status = 1 ";
+                        $sqlSelect .= " WHERE a.type = t.id and a.status != 0 and a.status != 2 and a.status != 3 and a.status != 4 and a.status != 7 and a.status != 8 and a.status != 9 ";
                         if (isset($_GET["keyword"])) {
                           $keyword = arabicnumDigit($_GET["keyword"]);
                           $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or t.name like '%$keyword%')";
@@ -311,7 +311,7 @@ $show = 10;
     function search() {
       var keyword = $('#input-search').val().trim();
       $.ajax({
-        url: 'service/service_search_json_durable_articles.php?keyword=' + keyword,
+        url: 'service/service_search_json_durable_articles_transfer_in.php?keyword=' + keyword,
         dataType: 'JSON',
         type: 'GET',
         success: function(data) {

@@ -69,6 +69,7 @@ $email = $_GET["email"];
                             <div class="form-group">
                               
                               <input type="password" class="form-control" name="password2" id="password2" aria-describedby="password" placeholder="Confirm Password" >
+                              <small style="color: red;">*กรุณาใส่ตัวอักษรตัวเล็ก ใหญ่ และตัวเลข รหัสต้องมีความยาว 6 ตัว</small>
                             </div>
                         </div>
                     </div>

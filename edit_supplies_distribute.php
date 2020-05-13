@@ -129,9 +129,9 @@ if (isset($_GET["type"])) {
                         $resultType = mysqli_query($conn, $sqlSelectType);
                         while ($row = mysqli_fetch_assoc($resultType)) {
                           if ($item["department_id"] == $row["id"]) {
-                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . '</option>';
+                            echo '<option value="' . $row["id"] . '"selected>' . $row["fullname"] . " " .$row["bulding"] . $row["floor"] . '</option>';
                           } else {
-                            echo '<option value="' . $row["id"] . '">' . $row["fullname"] . '</option>';
+                            echo '<option value="' . $row["id"] . '">' .$row["fullname"] . " ". $row["bulding"] . $row["floor"] . '</option>';
                           }
                         }
                         ?>

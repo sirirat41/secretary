@@ -38,7 +38,7 @@ if (isset($_POST["password1"])) {
                 mysqli_query($conn, $sql) or die("Cannot update password" . mysqli_error($conn));
                 header('location: service_logout.php');
             } else {
-                header('Location: ../edit_password.php?กรุณาใส่รหัสผ่านมากกว่าใส่ตัวอักษรตัวเล็ก ใหญ่ และตัวเลข ให้ครบตามที่กำหนด');
+                header('Location: ../edit_password.php?กรุณาใส่ตัวอักษรตัวเล็ก ใหญ่ และตัวเลข ให้ครบตามที่กำหนด');
             }
         } else {
             header('Location: ../edit_password.php?edit_password.php?รหัสผ่านใหม่ตรงกับรหัสผ่านเดิม กรุณากรอกใหม่');
