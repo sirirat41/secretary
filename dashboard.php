@@ -9,7 +9,6 @@ $rowm = mysqli_fetch_assoc($resultM);
 $sqlS = "SELECT COUNT(id) as totalS FROM supplies";
 $resultS = mysqli_query($conn, $sqlS);
 $rows = mysqli_fetch_assoc($resultS);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +33,6 @@ $rows = mysqli_fetch_assoc($resultS);
   <link href="css/secretary.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -237,14 +235,14 @@ $rows = mysqli_fetch_assoc($resultS);
               $sqlSupplies = "SELECT COUNT(*) as total FROM supplies s, supplies_purchase p ";
               $sqlSupplies .= " WHERE s.id = p.product_id and p.receive_date < '$useDate'";
               $resultA = mysqli_query($conn, $sqlArticles);
-              $totalA = (mysqli_fetch_assoc($resultA))["total"];
+              $totalA = (mysqli_fetch_assoc($resultA));
               $resultM = mysqli_query($conn, $sqlMaterial);
-              $totalM = (mysqli_fetch_assoc($resultM))["total"];
+              $totalM = (mysqli_fetch_assoc($resultM));
               $resultS = mysqli_query($conn, $sqlSupplies);
-              $totalS = (mysqli_fetch_assoc($resultS))["total"];
-              array_push($jsonA, $totalA);
-              array_push($jsonM, $totalM);
-              array_push($jsonS, $totalS);
+              $totalS = (mysqli_fetch_assoc($resultS));
+              array_push($jsonA, $totalA["total"]);
+              array_push($jsonM, $totalM["total"]);
+              array_push($jsonS, $totalS["total"]);
             }
             ?>
             var dataA = <?php echo json_encode($jsonA); ?>;
@@ -304,5 +302,4 @@ $rows = mysqli_fetch_assoc($resultS);
   <script src="js/secretary.js"></script>
 
 </body>
-
 </html>

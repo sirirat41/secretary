@@ -172,11 +172,10 @@ $keyword = "";
               $page = $_GET["page"];
               $page == $page = 0 ? 1 : $page;
             }
-            $countDiv = intdiv($page - 1, $pageNumber);
+            $countDiv = $page - 1 == 0 ? 0 : intdiv($page - 1, $pageNumber);
             $start_i = ($countDiv * $pageNumber);
             $sectionGroup = (($countDiv * $pageNumber) + $pageNumber);
             $end_i =  $sectionGroup > $maxshowpage ? $maxshowpage : $sectionGroup;
-
             for ($i = $start_i; $i < $end_i; $i++) {
               if ($i != 0 && $i == $start_i) {
             ?>
