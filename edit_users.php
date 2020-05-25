@@ -60,7 +60,7 @@ if (isset($_GET["id"])) {
               <h6 class="m-0 font-weight-bold text-danger body-text"><i class="fas fa-store"></i> แก้ไขข้อมูลผู้ใช้งาน</h6>
             </div>
             <div class="card-body">
-              <form method="post" action="service/service_edit_user.php?id=<?php echo $id; ?>" id="form_insert">
+              <form method="post" action="service/service_edit_users.php?id=<?php echo $id; ?>" id="form_insert">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group body-text">

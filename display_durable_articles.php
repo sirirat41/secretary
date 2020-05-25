@@ -102,6 +102,7 @@ $keyword = "";
                         $keyword = arabicnumDigit($_GET["keyword"]);
                         $sqlSelect .= " and (a.code like '%$keyword%' or a.bill_no like '%$keyword%' or p.purchase_date like '%$keyword%' or t.name like '%$keyword%' or a.asset_no like '%$keyword%' or s.status_name like '%$keyword%')";
                       }
+                      echo $sqlSelect;
                       $sqlSelect .= " Order by a.id desc LIMIT $start, $show";
                       $result = mysqli_query($conn, $sqlSelect);
                       $count = $start + 1;

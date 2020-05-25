@@ -11,9 +11,9 @@ if(isset($_GET["id"])) {
     $tel = $_POST["tel"];
     $position = $_POST["position"];
     $email = $_POST["email"];
-    $utype = $_POST["u_type"];
+    // $utype = $_POST["u_type"];
     $updateuser = "UPDATE user SET username = '$username',";
-    $updateuser .= " surname = '$surname', lastname = '$lastname', tel = '$tel', position = '$position', email = '$email', u_type = '$utype'";
+    $updateuser .= " surname = '$surname', lastname = '$lastname', tel = '$tel', position = '$position', email = '$email' ";
     $updateuser .= " WHERE id = $id";
   
     $log = "แก้ไขข้อมูลผู้ใช้งาน ประเภทผู้ใช้ชื่อ " . $username ;
