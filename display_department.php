@@ -301,7 +301,7 @@ $keyword = "";
 </script>
 
 <form action="printall_department.php" method="get" id="form-print" target="_blank">
-    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+    <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
   </form>
 </body>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

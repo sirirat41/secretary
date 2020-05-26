@@ -296,7 +296,7 @@ $keyword = "";
     </div>
   </div>
   <form action="printall_durable_articles_donate.php" method="get" id="form-print" target="_blank">
-    <input type="text" name="keyword" value="<?php echo $keyword; ?>" />
+    <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
   </form>
 </body>
 <!-- Initialize Bootstrap functionality -->
